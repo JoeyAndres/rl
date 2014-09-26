@@ -1,0 +1,4 @@
+# C/C++ ignore list.
+*.o
+
+# Netbeans ignore.
