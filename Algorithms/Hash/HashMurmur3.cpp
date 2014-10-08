@@ -14,7 +14,7 @@
 
 using namespace std;
 
-void AI::getHashVal(const vector<AI::INT>& key, HashMurmur3Out& out) {
+void AI::Algorithm::getHashVal(const vector<AI::INT>& key, HashMurmur3Out& out) {
 	MurmurHash3_x64_128(&key[0], key.size() * sizeof(AI::INT),
 			AI::MURMUR_HASH_SEED, &(out.hashVal[0]));
 }

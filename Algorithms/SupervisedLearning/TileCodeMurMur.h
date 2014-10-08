@@ -60,8 +60,8 @@ inline void AI::Algorithm::TileCodeMurMur::getFeatureVector(
 		// Add a unique number_tiling identifier.
 		tileComponents[this->_dimension] = i;
 
-		AI::HashMurmur3Out hash;
-		AI::getHashVal(tileComponents, hash);
+		AI::Algorithm::HashMurmur3Out hash;
+		AI::Algorithm::getHashVal(tileComponents, hash);
 
 		tilings.push_back(hash.hashVal[0] % this->_sizeCache);
 	}

@@ -20,6 +20,7 @@
 #endif
 
 namespace AI {
+namespace Algorithm {
 uint32_t SuperFastHash(const char * data, int len) {
 	uint32_t hash = len, tmp;
 	int rem;
@@ -68,4 +69,5 @@ uint32_t SuperFastHash(const char * data, int len) {
 
 	return hash;
 }
-}
+} /* Algorithm */
+} /* AI */

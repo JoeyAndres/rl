@@ -7,6 +7,7 @@
 #include "HashUNH.h"
 
 namespace AI {
+namespace Algorithm {
 /**
  * Hash function from University New Hampshire CMAC program.
  * @param coordinates
@@ -54,4 +55,5 @@ AI::INT hashUNH(AI::INT *coordinates, size_t num_indices, size_t memory_size) {
 AI::INT hashUNH(vector<AI::INT>& coordinateVector, size_t memorySize) {
 	return hashUNH(&coordinateVector[0], coordinateVector.size(), memorySize);
 }
-}
+} /* Algorithm */
+} /* AI */

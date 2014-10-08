@@ -75,7 +75,8 @@ inline void AI::Algorithm::TileCodeSuperFastHash::getFeatureVector(
 // Add a unique number_tiling identifier.
 		tileComponents[this->_dimension] = i;
 
-		AI::UINT hashVal = AI::SuperFastHash((char*) &tileComponents[0],
+		AI::UINT hashVal = AI::Algorithm::SuperFastHash(
+				(char*) &tileComponents[0],
 				tileComponents.size() * sizeof(tileComponents[0]));
 		tilings.push_back(hashVal % this->_sizeCache);
 	}
