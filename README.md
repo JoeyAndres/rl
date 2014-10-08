@@ -22,7 +22,23 @@ An attempt to modularize popular Reinforcement Learning algorithms.
    
    viii. Dyna-Q Concurrent with Eligibility Traces (Watkins)
    
-   ix. Dyna-Q Prioritized Sweep   
+   ix. Dyna-Q Prioritized Sweep
+
+2. Supervised Learning
+   
+   i. Gradient Descent
+
+   ii. Gradient Descent Concurrent
+
+   iii. Q-Learning Eligibility Traces Gradient Descent       
+   
+   iv. Sarsa Eligibility Traces Gradient Descent
+   
+3. Policy Selection
+   
+   i. Epsilon Greedy
+   
+   ii. Soft-max 
 
 ## Compilation
 
