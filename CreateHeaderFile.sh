@@ -1,8 +1,8 @@
 #!/bin/bash
 
-$(rm -f includes/*);
+$(rm -rf includes/*);
 fileList=($(find . -name "*.h" -not -path "*boost*" -not -path "*Tests*" -not -path "*UnitTest++*" -type f -mtime -14 -printf '%f\n'));
-fileListNoFilter=($(find . -name "*.h" -o -name "*.hpp" -not -path "*UnitTest++*"));
+fileListNoFilter=($(find . -name "*.h" -o -name "*.hpp" -not -path "*UnitTest++*" -not -path "*boost*"));
 fileListMod=();
 for ((i = 0; i < "${#fileList[*]}"; i++));
 do
@@ -13,6 +13,8 @@ for ((i = 0; i < "${#fileListNoFilter[*]}"; i++));
 do
     cp "${fileListNoFilter[i]}" ./includes
 done
+
+cp -r ./boost/* ./includes/
 
 # Create files.
 echo "" > ./includes/AI.h
