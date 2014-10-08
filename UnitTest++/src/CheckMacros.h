@@ -8,27 +8,27 @@
 #include "CurrentTest.h"
 
 #ifdef CHECK
-    #error UnitTest++ redefines CHECK
+#error UnitTest++ redefines CHECK
 #endif
 
 #ifdef CHECK_EQUAL
-	#error UnitTest++ redefines CHECK_EQUAL
+#error UnitTest++ redefines CHECK_EQUAL
 #endif
 
 #ifdef CHECK_CLOSE
-	#error UnitTest++ redefines CHECK_CLOSE
+#error UnitTest++ redefines CHECK_CLOSE
 #endif
 
 #ifdef CHECK_ARRAY_EQUAL
-	#error UnitTest++ redefines CHECK_ARRAY_EQUAL
+#error UnitTest++ redefines CHECK_ARRAY_EQUAL
 #endif
 
 #ifdef CHECK_ARRAY_CLOSE
-	#error UnitTest++ redefines CHECK_ARRAY_CLOSE
+#error UnitTest++ redefines CHECK_ARRAY_CLOSE
 #endif
 
 #ifdef CHECK_ARRAY2D_CLOSE
-	#error UnitTest++ redefines CHECK_ARRAY2D_CLOSE
+#error UnitTest++ redefines CHECK_ARRAY2D_CLOSE
 #endif
 
 #define CHECK(value) \
@@ -103,7 +103,6 @@
                     "Unhandled exception in CHECK_ARRAY_CLOSE(" #expected ", " #actual ")"); \
         } \
     } while (0)
-
 
 #define CHECK_THROW(expression, ExpectedExceptionType) \
     do \

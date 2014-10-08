@@ -19,88 +19,90 @@
 using namespace boost::threadpool;
 
 namespace AI {
-  namespace Algorithm {
-	class GradientDescentCC: public GradientDescent {
-	public:
-	  GradientDescentCC(TileCode& tileCode, AI::FLOAT stepSize,
-		  AI::FLOAT discountRate, AI::FLOAT lambda);
+namespace Algorithm {
+class GradientDescentCC: public GradientDescent {
+public:
+	GradientDescentCC(TileCode& tileCode, AI::FLOAT stepSize,
+			AI::FLOAT discountRate, AI::FLOAT lambda);
 
-	  virtual void decreaseEligibilityTraces();
-	  virtual void backUpWeights(FLOAT tdError);
+	virtual void decreaseEligibilityTraces();
+	virtual void backUpWeights(FLOAT tdError);
 
-	protected:
-	  virtual void _decreaseEligibilityTracesWorker(AI::UINT starti,
-		  AI::UINT length);
-	  virtual void _backUpWeightsWorker(FLOAT tdError, AI::UINT starti,
-		  AI::UINT length);
+protected:
+	virtual void _decreaseEligibilityTracesWorker(AI::UINT starti,
+			AI::UINT length);
+	virtual void _backUpWeightsWorker(FLOAT tdError, AI::UINT starti,
+			AI::UINT length);
 
-	private:
-	  AI::UINT _maxThreads;
-	  pool _threadPool;
-	};
+private:
+	AI::UINT _maxThreads;
+	pool _threadPool;
+};
 
-  } /* namespace Algorithm */
+} /* namespace Algorithm */
 } /* namespace AI */
 
 inline AI::Algorithm::GradientDescentCC::GradientDescentCC(TileCode& tileCode,
-	AI::FLOAT stepSize, AI::FLOAT discountRate, AI::FLOAT lambda) :
-		GradientDescent(tileCode, stepSize, discountRate, lambda),
-		_threadPool(6) {
-  _maxThreads = 6;
+		AI::FLOAT stepSize, AI::FLOAT discountRate, AI::FLOAT lambda) :
+		GradientDescent(tileCode, stepSize, discountRate, lambda), _threadPool(
+				6) {
+	_maxThreads = 6;
 }
 
 inline void AI::Algorithm::GradientDescentCC::decreaseEligibilityTraces() {
-  AI::UINT localIteration = this->getSize() / _maxThreads;
-  AI::UINT remainderIteration = this->getSize() % _maxThreads;
-  AI::UINT startingi = 0;
-  for (AI::UINT i = 0; i < _maxThreads; i++) {
-	_threadPool.schedule(
-		boost::bind(&GradientDescentCC::_decreaseEligibilityTracesWorker, this,
-					startingi, localIteration));
-	startingi += localIteration;
-  }
-  if (remainderIteration > 0) {
-	_threadPool.schedule(
-		boost::bind(&GradientDescentCC::_decreaseEligibilityTracesWorker, this,
-					startingi, remainderIteration));
-  }
+	AI::UINT localIteration = this->getSize() / _maxThreads;
+	AI::UINT remainderIteration = this->getSize() % _maxThreads;
+	AI::UINT startingi = 0;
+	for (AI::UINT i = 0; i < _maxThreads; i++) {
+		_threadPool.schedule(
+				boost::bind(
+						&GradientDescentCC::_decreaseEligibilityTracesWorker,
+						this, startingi, localIteration));
+		startingi += localIteration;
+	}
+	if (remainderIteration > 0) {
+		_threadPool.schedule(
+				boost::bind(
+						&GradientDescentCC::_decreaseEligibilityTracesWorker,
+						this, startingi, remainderIteration));
+	}
 
-  _threadPool.wait();
+	_threadPool.wait();
 }
 
 inline void AI::Algorithm::GradientDescentCC::backUpWeights(FLOAT tdError) {
-  AI::UINT localIteration = this->getSize() / _maxThreads;
-  AI::UINT remainderIteration = this->getSize() % _maxThreads;
-  AI::UINT startingi = 0;
-  for (AI::UINT i = 0; i < _maxThreads; i++) {
-	_threadPool.schedule(
-		boost::bind(&GradientDescentCC::_backUpWeightsWorker, this, tdError,
-					startingi, localIteration));
-	startingi += localIteration;
-  }
-  if (remainderIteration > 0) {
-	_threadPool.schedule(
-		boost::bind(&GradientDescentCC::_backUpWeightsWorker, this, tdError,
-					startingi, remainderIteration));
-  }
+	AI::UINT localIteration = this->getSize() / _maxThreads;
+	AI::UINT remainderIteration = this->getSize() % _maxThreads;
+	AI::UINT startingi = 0;
+	for (AI::UINT i = 0; i < _maxThreads; i++) {
+		_threadPool.schedule(
+				boost::bind(&GradientDescentCC::_backUpWeightsWorker, this,
+						tdError, startingi, localIteration));
+		startingi += localIteration;
+	}
+	if (remainderIteration > 0) {
+		_threadPool.schedule(
+				boost::bind(&GradientDescentCC::_backUpWeightsWorker, this,
+						tdError, startingi, remainderIteration));
+	}
 
-  _threadPool.wait();
+	_threadPool.wait();
 }
 
 inline void AI::Algorithm::GradientDescentCC::_decreaseEligibilityTracesWorker(
-	AI::UINT starti, AI::UINT length) {
-  AI::FLOAT multiplier = (this->_discountRate) * (this->_lambda);
-  for (AI::UINT i = starti; i < starti + length; i++) {
-	this->_e.at(i) = multiplier * this->_e.at(i);
-  }
+		AI::UINT starti, AI::UINT length) {
+	AI::FLOAT multiplier = (this->_discountRate) * (this->_lambda);
+	for (AI::UINT i = starti; i < starti + length; i++) {
+		this->_e.at(i) = multiplier * this->_e.at(i);
+	}
 }
 
 inline void AI::Algorithm::GradientDescentCC::_backUpWeightsWorker(
-	FLOAT tdError, AI::UINT starti, AI::UINT length) {
-  AI::FLOAT multiplier = this->_stepSize * tdError;
-  for (AI::UINT i = starti; i < starti + length; i++) {
-	this->_w[i] += multiplier * this->_e[i];
-  }
+		FLOAT tdError, AI::UINT starti, AI::UINT length) {
+	AI::FLOAT multiplier = this->_stepSize * tdError;
+	for (AI::UINT i = starti; i < starti + length; i++) {
+		this->_w[i] += multiplier * this->_e[i];
+	}
 }
 
 #endif /* GRADIENTDESCENTCC_H_ */

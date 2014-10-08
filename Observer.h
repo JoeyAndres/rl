@@ -8,22 +8,22 @@
 #ifndef OBSERVER_H
 #define	OBSERVER_H
 
-template <class NotifyArgument>
+template<class NotifyArgument>
 class Observer {
 public:
-    Observer();
-    virtual ~Observer();
+	Observer();
+	virtual ~Observer();
 
-    virtual void notify(NotifyArgument arg) = 0;
+	virtual void notify(NotifyArgument arg) = 0;
 private:
 
 };
 
-template <class NotifyArgument>
+template<class NotifyArgument>
 Observer<NotifyArgument>::Observer() {
 }
 
-template <class NotifyArgument>
+template<class NotifyArgument>
 Observer<NotifyArgument>::~Observer() {
 }
 

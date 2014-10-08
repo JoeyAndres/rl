@@ -15,11 +15,10 @@ using namespace std;
 
 namespace AI {
 
-  void ActuatorMountainCar::applyAction(
-	  const vector<AI::FLOAT>& action) {
+void ActuatorMountainCar::applyAction(const vector<AI::FLOAT>& action) {
 	MountainCarEnvironment& mce = MountainCarEnvironment::getInstance();
 	mce.applyAction(std::round(action[0]));
-  }
+}
 
 }
 /* namespace AI */

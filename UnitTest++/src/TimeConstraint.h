@@ -8,18 +8,17 @@ namespace UnitTest {
 class TestResults;
 class TestDetails;
 
-class TimeConstraint
-{
+class TimeConstraint {
 public:
-    TimeConstraint(int ms, TestDetails const& details);
-    ~TimeConstraint();
+	TimeConstraint(int ms, TestDetails const& details);
+	~TimeConstraint();
 
 private:
-    void operator=(TimeConstraint const&); 
+	void operator=(TimeConstraint const&);
 	TimeConstraint(TimeConstraint const&);
 
 	Timer m_timer;
-    TestDetails const& m_details;
+	TestDetails const& m_details;
 	int const m_maxMs;
 };
 

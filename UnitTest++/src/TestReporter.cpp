@@ -2,9 +2,7 @@
 
 namespace UnitTest {
 
-
-TestReporter::~TestReporter()
-{
+TestReporter::~TestReporter() {
 }
 
 }

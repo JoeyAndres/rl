@@ -3,14 +3,12 @@
 
 namespace UnitTest {
 
-TestResults*& CurrentTest::Results()
-{
+TestResults*& CurrentTest::Results() {
 	static TestResults* testResults = NULL;
 	return testResults;
 }
 
-const TestDetails*& CurrentTest::Details()
-{
+const TestDetails*& CurrentTest::Details() {
 	static const TestDetails* testDetails = NULL;
 	return testDetails;
 }

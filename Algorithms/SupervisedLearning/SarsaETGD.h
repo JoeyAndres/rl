@@ -20,22 +20,22 @@
 using namespace std;
 
 namespace AI {
-  namespace Algorithm {
+namespace Algorithm {
 
-	class SarsaETGD final: public ReinforcementLearningGD {
-	public:
-	  SarsaETGD(TileCode& tileCode, AI::FLOAT stepSize, AI::FLOAT discountRate,
-		  AI::FLOAT lambda, Policy<vector<FLOAT>, vector<FLOAT> >& policy);
-	};
-  } /* namespace Algorithm */
+class SarsaETGD final: public ReinforcementLearningGD {
+public:
+	SarsaETGD(TileCode& tileCode, AI::FLOAT stepSize, AI::FLOAT discountRate,
+			AI::FLOAT lambda, Policy<vector<FLOAT>, vector<FLOAT> >& policy);
+};
+} /* namespace Algorithm */
 } /* namespace AI */
 
 AI::Algorithm::SarsaETGD::SarsaETGD(TileCode& tileCode, AI::FLOAT stepSize,
-	AI::FLOAT discountRate, AI::FLOAT lambda,
-	Policy<vector<FLOAT>, vector<FLOAT> >& policy) :
+		AI::FLOAT discountRate, AI::FLOAT lambda,
+		Policy<vector<FLOAT>, vector<FLOAT> >& policy) :
 		ReinforcementLearningGD(tileCode, stepSize, discountRate, lambda,
-								policy) {
-  this->setLearningPolicy(policy);
+				policy) {
+	this->setLearningPolicy(policy);
 }
 
 #endif	/* SARSAETGD_H */

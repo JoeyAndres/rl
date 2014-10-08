@@ -30,20 +30,20 @@ using std::cout;
 using std::endl;
 
 namespace AI {
-  /**
-   * A class that represent an AI agent.
-   */
-  template<class S, class A>
-  class Agent {
-  public:
+/**
+ * A class that represent an AI agent.
+ */
+template<class S, class A>
+class Agent {
+public:
 	/**
 	 * @param sensorInstance aggregate a sensor object.
 	 * @param actuatorInstance aggregate a actuator object.
 	 * @param learningAlgorithm aggregate a Learning algorithm
 	 */
 	Agent(SensorStatesAbstract<S>& sensorInstance,
-		Actuator<A>& actuatorInstance,
-		Algorithm::LearningAlgorithm<S, A>& learningAlgorithm);
+			Actuator<A>& actuatorInstance,
+			Algorithm::LearningAlgorithm<S, A>& learningAlgorithm);
 
 	/**
 	 * Prepare agent prior to start execution.
@@ -71,13 +71,13 @@ namespace AI {
 	 */
 	FLOAT getAccumulativeReward() const;
 
-  private:
+private:
 	/**
 	 * @return CurrentState.
 	 */
 	S _getCurrentState();
 
-  protected:
+protected:
 	// Aggregated learning algorithm.
 	Algorithm::LearningAlgorithm<S, A>& _learningAlgorithm;
 
@@ -90,75 +90,72 @@ namespace AI {
 	// Keeps track of accumulation of reward during the span of the episode.
 	// Specifically, after the call of preExecute, and after the call of postExecute.
 	FLOAT _accumulativeReward;
-  };
+};
 
-  template<class D = FLOAT>
-  using AgentSL = Agent<vector<D>, vector<D>>;
+template<class D = FLOAT>
+using AgentSL = Agent<vector<D>, vector<D>>;
 
 } /* namespace AI */
 
 template<class S, class A>
 AI::Agent<S, A>::Agent(SensorStatesAbstract<S>& sensorInstance,
-	Actuator<A>& actuatorInstance,
-	Algorithm::LearningAlgorithm<S, A>& learningAlgorithm) :
-		_sensorInstance(sensorInstance),
-		_actuatorInstance(actuatorInstance),
-		_learningAlgorithm(learningAlgorithm),
-		_accumulativeReward(0.0F) {
+		Actuator<A>& actuatorInstance,
+		Algorithm::LearningAlgorithm<S, A>& learningAlgorithm) :
+		_sensorInstance(sensorInstance), _actuatorInstance(actuatorInstance), _learningAlgorithm(
+				learningAlgorithm), _accumulativeReward(0.0F) {
 }
 
 template<class S, class A>
 S AI::Agent<S, A>::_getCurrentState() {
-  S state = _sensorInstance.getSensorState();
+	S state = _sensorInstance.getSensorState();
 
-  return state;
+	return state;
 }
 
 template<class S, class A>
 void AI::Agent<S, A>::preExecute() {
-  _currentState = _getCurrentState();
-  _currentAction = _learningAlgorithm.getAction(
-	  _currentState, _actuatorInstance.getActionSet());
-  _learningAlgorithm.reset();
-  _accumulativeReward = 0.0F;
+	_currentState = _getCurrentState();
+	_currentAction = _learningAlgorithm.getAction(_currentState,
+			_actuatorInstance.getActionSet());
+	_learningAlgorithm.reset();
+	_accumulativeReward = 0.0F;
 }
 
 template<class S, class A>
 void AI::Agent<S, A>::execute() {
-  _actuatorInstance.applyAction(_currentAction);
-  S nextState = _getCurrentState();
-  FLOAT reward = _sensorInstance.getReward(_currentState);
+	_actuatorInstance.applyAction(_currentAction);
+	S nextState = _getCurrentState();
+	FLOAT reward = _sensorInstance.getReward(_currentState);
 
-  // Accumulate reward.
-  _accumulativeReward += reward;
+	// Accumulate reward.
+	_accumulativeReward += reward;
 
-  // Update value, e.g. perform back ups.
-  _learningAlgorithm.update(StateAction<S, A>(_currentState, _currentAction),
-							nextState, reward,
-							_actuatorInstance.getActionSet());
+	// Update value, e.g. perform back ups.
+	_learningAlgorithm.update(StateAction<S, A>(_currentState, _currentAction),
+			nextState, reward, _actuatorInstance.getActionSet());
 
-  // Get the action from the algorithm.
-  // *Note the algorithm will retrieve from controlPolicy.
-  _currentAction = _learningAlgorithm.getAction(
-	  nextState, _actuatorInstance.getActionSet());
+	// Get the action from the algorithm.
+	// *Note the algorithm will retrieve from controlPolicy.
+	_currentAction = _learningAlgorithm.getAction(nextState,
+			_actuatorInstance.getActionSet());
 
-  // Update current state.
-  _currentState = nextState;
+	// Update current state.
+	_currentState = nextState;
 }
 
 template<class S, class A>
 bool AI::Agent<S, A>::episodeDone() {
-  return _sensorInstance.isTerminalState(_currentState);
+	return _sensorInstance.isTerminalState(_currentState);
 }
 
 template<class S, class A>
 AI::FLOAT AI::Agent<S, A>::postExecute() {
-  return _accumulativeReward;
+	return _accumulativeReward;
 }
 
 template<class S, class A>
 inline AI::FLOAT AI::Agent<S, A>::getAccumulativeReward() const {
-  return _accumulativeReward;
+	return _accumulativeReward;
 }
 
 #endif /* AGENT_H_ */

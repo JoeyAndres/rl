@@ -13,15 +13,15 @@
 
 namespace AI {
 
-    class StateActionTransitionException : public std::exception {
-    public:
-        StateActionTransitionException(std::string extraMsg);
+class StateActionTransitionException: public std::exception {
+public:
+	StateActionTransitionException(std::string extraMsg);
 
-        virtual const char* what() const throw ();
+	virtual const char* what() const throw ();
 
-    private:
-        std::string _extramMsg;
-    };
+private:
+	std::string _extramMsg;
+};
 }
 
 #endif	/* STATEACTIONTRANSITIONEXCEPTION_H */

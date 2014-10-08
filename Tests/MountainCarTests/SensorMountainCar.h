@@ -15,15 +15,15 @@
 using namespace std;
 
 namespace AI {
-  // TODO: Mkae SensorStatesContinous for Supervised Learners.
-  class SensorMountainCar final :
-  public SensorStatesContinous {
+// TODO: Mkae SensorStatesContinous for Supervised Learners.
+class SensorMountainCar final :
+public SensorStatesContinous {
 	virtual vector<AI::FLOAT> getSensorState();
 	virtual bool isState(const vector<AI::FLOAT>& state) const;
 	virtual AI::FLOAT getReward(vector<AI::FLOAT>& sensorState)
-		throw (StateNotExistException);
+			throw (StateNotExistException);
 	virtual bool isTerminalState(const vector<AI::FLOAT>& stateData) const;
-  };
+};
 
 } /* namespace AI */
 

@@ -8,21 +8,21 @@
 #include "MemoryOutStream.h"
 
 #ifndef UNITTEST_POSIX
-	#define UNITTEST_THROW_SIGNALS
+#define UNITTEST_THROW_SIGNALS
 #else
-	#include "Posix/SignalTranslator.h"
+#include "Posix/SignalTranslator.h"
 #endif
 
 #ifdef TEST
-    #error UnitTest++ redefines TEST
+#error UnitTest++ redefines TEST
 #endif
 
 #ifdef TEST_EX
-	#error UnitTest++ redefines TEST_EX
+#error UnitTest++ redefines TEST_EX
 #endif
 
 #ifdef TEST_FIXTURE_EX
-	#error UnitTest++ redefines TEST_FIXTURE_EX
+#error UnitTest++ redefines TEST_FIXTURE_EX
 #endif
 
 #define SUITE(Name)                                                         \
@@ -48,9 +48,7 @@
 																		   \
     void Test##Name::RunImpl() const
 
-
 #define TEST(Name) TEST_EX(Name, UnitTest::Test::GetTestList())
-
 
 #define TEST_FIXTURE_EX(Fixture, Name, List)                                         \
     class Fixture##Name##Helper : public Fixture									 \
@@ -108,6 +106,5 @@
     void Fixture##Name##Helper::RunImpl()
 
 #define TEST_FIXTURE(Fixture,Name) TEST_FIXTURE_EX(Fixture, Name, UnitTest::Test::GetTestList())
-
 
 #endif

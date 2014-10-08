@@ -9,12 +9,12 @@
 
 namespace AI {
 
-  StateActionTransitionException::StateActionTransitionException(
-	  std::string extraMsg) {
+StateActionTransitionException::StateActionTransitionException(
+		std::string extraMsg) {
 	_extramMsg = extraMsg;
-  }
+}
 
-  const char* StateActionTransitionException::what() const throw () {
+const char* StateActionTransitionException::what() const throw () {
 	return _extramMsg.c_str();
-  }
+}
 }

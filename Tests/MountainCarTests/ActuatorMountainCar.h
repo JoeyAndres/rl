@@ -17,10 +17,10 @@
 using namespace std;
 
 namespace AI {
-  class ActuatorMountainCar final : public Actuator<vector<AI::FLOAT> > {
-  public:
+class ActuatorMountainCar final : public Actuator<vector<AI::FLOAT> > {
+public:
 	virtual void applyAction(const vector<AI::FLOAT>& action);
-  };
+};
 
 } /* namespace AI */
 

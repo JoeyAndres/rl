@@ -11,7 +11,7 @@
 #include "stdint.h" /* Replace with <stdint.h> if appropriate */
 
 namespace AI {
-  uint32_t SuperFastHash(const char * data, int len);
+uint32_t SuperFastHash(const char * data, int len);
 }
 
 #endif /* HASHSUPERFASTHASH_H_ */

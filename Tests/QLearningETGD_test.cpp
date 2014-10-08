@@ -92,7 +92,6 @@ TEST(SarsaETGDMountainCar01) {
 	CHECK(iterationCount < 300);
 }
 
-
 TEST(SarsaETGDMountainCar02) {
 	DimensionInfo<AI::FLOAT> dimensionalInfo[] = { DimensionInfo<AI::FLOAT>(
 			-1.2F, 0.5F, 10), DimensionInfo<AI::FLOAT>(-0.07F, 0.07F, 10),
@@ -131,7 +130,6 @@ TEST(SarsaETGDMountainCar02) {
 	cout << endl;
 	CHECK(iterationCount < 300);
 }
-
 
 TEST(SarsaETGDMountainCar03) {
 	DimensionInfo<AI::FLOAT> dimensionalInfo[] = { DimensionInfo<AI::FLOAT>(

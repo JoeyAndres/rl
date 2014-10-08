@@ -2,16 +2,15 @@
 #include "../CurrentTest.h"
 #include "ScopedCurrentTest.h"
 
-namespace 
-{
+namespace {
 
-TEST(CanSetandGetDetails)
-{
+TEST(CanSetandGetDetails) {
 	bool ok = false;
 	{
 		ScopedCurrentTest scopedTest;
 
-		const UnitTest::TestDetails* details = reinterpret_cast< const UnitTest::TestDetails* >(12345);
+		const UnitTest::TestDetails* details =
+				reinterpret_cast<const UnitTest::TestDetails*>(12345);
 		UnitTest::CurrentTest::Details() = details;
 
 		ok = (UnitTest::CurrentTest::Details() == details);
@@ -20,8 +19,7 @@ TEST(CanSetandGetDetails)
 	CHECK(ok);
 }
 
-TEST(CanSetAndGetResults)
-{
+TEST(CanSetAndGetResults) {
 	bool ok = false;
 	{
 		ScopedCurrentTest scopedTest;

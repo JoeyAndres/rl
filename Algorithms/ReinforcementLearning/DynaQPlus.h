@@ -10,8 +10,8 @@
 
 class DynaQPlus {
 public:
-    DynaQPlus();
-private:    
+	DynaQPlus();
+private:
 };
 
 #endif	/* DYNAQPLUS_H */

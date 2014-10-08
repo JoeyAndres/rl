@@ -7,63 +7,58 @@ using namespace UnitTest;
 
 namespace {
 
-TEST(PassingTestHasNoFailures)
-{
-    class PassingTest : public Test
-    {
-    public:
-        PassingTest() : Test("passing") {}
-        virtual void RunImpl() const
-        {
-            CHECK(true);
-        }
-    };
+TEST(PassingTestHasNoFailures) {
+	class PassingTest: public Test {
+	public:
+		PassingTest() :
+				Test("passing") {
+		}
+		virtual void RunImpl() const {
+			CHECK(true);
+		}
+	};
 
-    TestResults results;
+	TestResults results;
 	{
 		ScopedCurrentTest scopedResults(results);
 		PassingTest().Run();
 	}
 
-    CHECK_EQUAL(0, results.GetFailureCount());
+	CHECK_EQUAL(0, results.GetFailureCount());
 }
 
+TEST(FailingTestHasFailures) {
+	class FailingTest: public Test {
+	public:
+		FailingTest() :
+				Test("failing") {
+		}
+		virtual void RunImpl() const {
+			CHECK(false);
+		}
+	};
 
-TEST(FailingTestHasFailures)
-{
-    class FailingTest : public Test
-    {
-    public:
-        FailingTest() : Test("failing") {}
-        virtual void RunImpl() const
-        {
-            CHECK(false);
-        }
-    };
-
-    TestResults results;
+	TestResults results;
 	{
 		ScopedCurrentTest scopedResults(results);
 		FailingTest().Run();
 	}
 
-    CHECK_EQUAL(1, results.GetFailureCount());
+	CHECK_EQUAL(1, results.GetFailureCount());
 }
 
+TEST(ThrowingTestsAreReportedAsFailures) {
+	class CrashingTest: public Test {
+	public:
+		CrashingTest() :
+				Test("throwing") {
+		}
+		virtual void RunImpl() const {
+			throw "Blah";
+		}
+	};
 
-TEST(ThrowingTestsAreReportedAsFailures)
-{
-    class CrashingTest : public Test
-    {
-    public:
-        CrashingTest() : Test("throwing") {}
-        virtual void RunImpl() const
-        {
-            throw "Blah";
-        }
-    };
- 
-    TestResults results;
+	TestResults results;
 	{
 		ScopedCurrentTest scopedResult(results);
 		CrashingTest().Run();
@@ -72,21 +67,19 @@ TEST(ThrowingTestsAreReportedAsFailures)
 	CHECK_EQUAL(1, results.GetFailureCount());
 }
 
-
 #ifndef UNITTEST_MINGW
-TEST(CrashingTestsAreReportedAsFailures)
-{
-    class CrashingTest : public Test
-    {
-    public:
-        CrashingTest() : Test("crashing") {}
-        virtual void RunImpl() const
-        {
-            reinterpret_cast< void (*)() >(0)();
-        }
-    };
+TEST(CrashingTestsAreReportedAsFailures) {
+	class CrashingTest: public Test {
+	public:
+		CrashingTest() :
+				Test("crashing") {
+		}
+		virtual void RunImpl() const {
+			reinterpret_cast<void (*)()>(0)();
+		}
+	};
 
-    TestResults results;
+	TestResults results;
 	{
 		ScopedCurrentTest scopedResult(results);
 		CrashingTest().Run();
@@ -96,27 +89,23 @@ TEST(CrashingTestsAreReportedAsFailures)
 }
 #endif
 
-TEST(TestWithUnspecifiedSuiteGetsDefaultSuite)
-{
-    Test test("test");
-    CHECK(test.m_details.suiteName != NULL);
-    CHECK_EQUAL("DefaultSuite", test.m_details.suiteName);
+TEST(TestWithUnspecifiedSuiteGetsDefaultSuite) {
+	Test test("test");
+	CHECK(test.m_details.suiteName != NULL);
+	CHECK_EQUAL("DefaultSuite", test.m_details.suiteName);
 }
 
-TEST(TestReflectsSpecifiedSuiteName)
-{
-    Test test("test", "testSuite");
-    CHECK(test.m_details.suiteName != NULL);
-    CHECK_EQUAL("testSuite", test.m_details.suiteName);
+TEST(TestReflectsSpecifiedSuiteName) {
+	Test test("test", "testSuite");
+	CHECK(test.m_details.suiteName != NULL);
+	CHECK_EQUAL("testSuite", test.m_details.suiteName);
 }
 
-void Fail()
-{
+void Fail() {
 	CHECK(false);
 }
 
-TEST(OutOfCoreCHECKMacrosCanFailTests)
-{
+TEST(OutOfCoreCHECKMacrosCanFailTests) {
 	TestResults results;
 	{
 		ScopedCurrentTest scopedResult(results);
