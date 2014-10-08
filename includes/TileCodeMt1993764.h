@@ -1,30 +1,27 @@
 /*
- * TileCode
+ * TileCodeMt1993764.h
  *
  *  Created on: Jun 18, 2014
  *      Author: jandres
  */
 
-#ifndef TILECODESUPERFASTHASH_H_
-#define TILECODESUPERFASTHASH_H_
+#ifndef TIleCODEMT1993764_H_
+#define TIleCODEMT1993764_H_
+
+#include <random>
 
 #include "TileCode.h"
-#include "HashSuperFastHash.h"
-#include "xxhash.h"
 
 namespace AI {
 namespace Algorithm {
-/**
- * TileCoding with Superfast hash.
- * Superfast hash created by Paul Hsieh.
- */
-class TileCodeSuperFastHash: public TileCode {
+
+class TileCodeMt1993764: public TileCode {
 public:
 	/**
 	 * @param dimensionalInfos
 	 * @param numTilings
 	 */
-	TileCodeSuperFastHash(vector<DimensionInfo<FLOAT> > dimensionalInfos,
+	TileCodeMt1993764(vector<DimensionInfo<FLOAT> > dimensionalInfos,
 			size_t numTilings);
 
 	/**
@@ -34,7 +31,7 @@ public:
 	 * will be used instead. The bigger the sizeHint, the less likely is the collision
 	 * during hashing.
 	 */
-	TileCodeSuperFastHash(vector<DimensionInfo<FLOAT> > dimensionalInfos,
+	TileCodeMt1993764(vector<DimensionInfo<FLOAT> > dimensionalInfos,
 			size_t numTilings, size_t sizeHint);
 
 	/**
@@ -44,18 +41,20 @@ public:
 	 */
 	virtual void getFeatureVector(const STATE_CONT& parameters,
 			FEATURE_VECTOR& fv);
+
+protected:
+	std::mt19937_64 _prng;
 };
 
-}
-/* namespace Algorithm */
+} /* namespace Algorithm */
 } /* namespace AI */
 
-inline AI::Algorithm::TileCodeSuperFastHash::TileCodeSuperFastHash(
+inline AI::Algorithm::TileCodeMt1993764::TileCodeMt1993764(
 		vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings) :
 		TileCode(dimensionalInfos, numTilings) {
 }
 
-inline AI::Algorithm::TileCodeSuperFastHash::TileCodeSuperFastHash(
+inline AI::Algorithm::TileCodeMt1993764::TileCodeMt1993764(
 		vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings,
 		size_t sizeHint) :
 		TileCode(dimensionalInfos, numTilings) {
@@ -64,7 +63,7 @@ inline AI::Algorithm::TileCodeSuperFastHash::TileCodeSuperFastHash(
 	}
 }
 
-inline void AI::Algorithm::TileCodeSuperFastHash::getFeatureVector(
+inline void AI::Algorithm::TileCodeMt1993764::getFeatureVector(
 		const STATE_CONT& parameters, FEATURE_VECTOR& tilings) {
 	vector<AI::INT> tileComponents(this->_dimension + 1);
 	for (size_t i = 0; i < this->_numTilings; i++) {
@@ -75,10 +74,11 @@ inline void AI::Algorithm::TileCodeSuperFastHash::getFeatureVector(
 // Add a unique number_tiling identifier.
 		tileComponents[this->_dimension] = i;
 
-		AI::UINT hashVal = AI::SuperFastHash((char*) &tileComponents[0],
-				tileComponents.size() * sizeof(tileComponents[0]));
-		tilings.push_back(hashVal % this->_sizeCache);
+		std::seed_seq seed1(tileComponents.begin(), tileComponents.end());
+		_prng.seed(seed1);
+
+		tilings.push_back(_prng() % this->_sizeCache);
 	}
 }
 
-#endif /* TileCode */
+#endif // TIleCODEMT1993764_H_

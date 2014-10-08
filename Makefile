@@ -8,7 +8,7 @@ INCLUDE_PATHS = -I. -I./Algorithms -I./Tests -I./Tests/RandomWalkTests \
 	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./boost -I./boost/threadpool \
 	-I./Algorithms/Hash -I./AIBase
 LIBRARY_PATHS = -L. -L./UnitTest++
-AI_LIB_PATH := ./lib/AIlib.a
+AI_LIB_PATH := ./lib/libAI.a
 
 LIBRARY = -lpthread -lUnitTest++ -lboost_atomic -lrt -lboost_system -lboost_thread
 
@@ -38,7 +38,8 @@ ALGORITHM_OBJECT := $(filter-out %TileCodeTest.o, $(ALGORITHM_OBJECT)) \
 	
 OBJECT := $(TEST_ENVIRONMENT) $(ALGORITHM_OBJECT) $(AI_BASE_OBJECT)
 
-all: $(OBJECT) $(TEST_OBJECT)	
+all: $(OBJECT) $(TEST_OBJECT)
+	bash CreateHeaderFile.sh
 
 objects: $(OBJECT)
 	

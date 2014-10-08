@@ -1,19 +1,22 @@
 #!/bin/bash
 
-fileList=($(find . -name "*.h" -not -path "*UnitTest++*" -not -path "*boost*" -not -path "*Tests*" -type f | sort));
-fileListMod=()
-for ((i = 0; i < "${#fileList[*]}"; i++))
+$(rm -f includes/*);
+fileList=($(find . -name "*.h" -not -path "*boost*" -not -path "*Tests*" -not -path "*UnitTest++*" -type f -mtime -14 -printf '%f\n'));
+fileListNoFilter=($(find . -name "*.h" -o -name "*.hpp" -not -path "*UnitTest++*"));
+fileListMod=();
+for ((i = 0; i < "${#fileList[*]}"; i++));
 do
     fileListMod+=($"#include \""${fileList[i]}$"\"")
-    #echo "${fileListMod[i]}"
 done
 
-# Create if file don't exist, or erase it's contents otherwise.
-AI_HEADER=$(cat AI_Header.txt)$'\n\n'
-echo "$AI_HEADER" > AI.h
-
-for ((i = 0; i < "${#fileListMod[*]}"; i++))
+for ((i = 0; i < "${#fileListNoFilter[*]}"; i++));
 do
-    # Append the includes.
-    echo "${fileListMod[i]}" >> AI.h
+    cp "${fileListNoFilter[i]}" ./includes
+done
+
+# Create files.
+echo "" > ./includes/AI.h
+for ((i = 0; i < "${#fileList[*]}"; i++));
+do
+    echo "${fileListMod[i]}" >> ./includes/AI.h
 done
