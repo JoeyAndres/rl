@@ -3,4 +3,14 @@ AIProjectv2
 
 An attempt to modularize popular Reinforcement Learning algorithms.
 
-I recommend to see **Tests** directory to see sample program such as gradient descent via tile coding.
+
+## Compilation
+
+**Dependency:**
+
+* boost_1_55_0 or greater.
+  
+* g++-4.8 or greater.
+
+
+To build everything and create library, simply execute *make* in terminal.
