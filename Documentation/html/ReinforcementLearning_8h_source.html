@@ -13,6 +13,12 @@
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -119,7 +125,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html">   31</a></span>&#160;<span class="keyword">class </span><a class="code" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html">ReinforcementLearning</a> : <span class="keyword">public</span> <a class="code" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">LearningAlgorithm</a>&lt;S, A&gt; {</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html">ReinforcementLearning</a>(AI::FLOAT stepSize, AI::FLOAT discountRate,</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                        <a class="code" href="classAI_1_1Algorithm_1_1Policy.html">Policy&lt;S, A&gt;</a>&amp; policy);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                        <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy&lt;S, A&gt;</a>&amp; policy);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  A argMax(<span class="keyword">const</span> S&amp; state, <span class="keyword">const</span> set&lt;A&gt;&amp; actionSet) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
@@ -169,8 +175,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;} <span class="comment">/* namespace AI */</span></div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
-<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a9700b470cb894d43e0db7aedd80576f1">  123</a></span>&#160;<a class="code" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a9700b470cb894d43e0db7aedd80576f1">AI::Algorithm::ReinforcementLearning&lt;S, A&gt;::ReinforcementLearning</a>(</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    AI::FLOAT stepSize, AI::FLOAT discountRate, <a class="code" href="classAI_1_1Algorithm_1_1Policy.html">Policy&lt;S, A&gt;</a>&amp; policy)</div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a4d182d91c68aef838b80843acd044b1e">  123</a></span>&#160;<a class="code" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a4d182d91c68aef838b80843acd044b1e">AI::Algorithm::ReinforcementLearning&lt;S, A&gt;::ReinforcementLearning</a>(</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    AI::FLOAT stepSize, AI::FLOAT discountRate, <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy&lt;S, A&gt;</a>&amp; policy)</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    : <a class="code" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">LearningAlgorithm</a>&lt;S, A&gt;(policy) {</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  _stepSize = stepSize;</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  _discountRate = discountRate;</div>
@@ -303,11 +309,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classAI_1_1Algorithm_1_1LearningAlgorithm_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a></div><div class="ttdoc">Base class for all learning algorithms. </div><div class="ttdef"><b>Definition:</b> LearningAlgorithm.h:34</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearning_html_aa45b49ec954f6934df4d541b70076bd6"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#aa45b49ec954f6934df4d541b70076bd6">AI::Algorithm::ReinforcementLearning::backUpStateActionPair</a></div><div class="ttdeci">virtual void backUpStateActionPair(const StateAction&lt; S, A &gt; &amp;currentStateAction, const AI::FLOAT reward, const StateAction&lt; S, A &gt; &amp;nextStateActionPair)</div><div class="ttdef"><b>Definition:</b> ReinforcementLearning.h:224</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearning_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearning.html">AI::Algorithm::ReinforcementLearning</a></div><div class="ttdef"><b>Definition:</b> ReinforcementLearning.h:31</div></div>
-<div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearning_html_a9700b470cb894d43e0db7aedd80576f1"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a9700b470cb894d43e0db7aedd80576f1">AI::Algorithm::ReinforcementLearning::ReinforcementLearning</a></div><div class="ttdeci">ReinforcementLearning(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy&lt; S, A &gt; &amp;policy)</div><div class="ttdef"><b>Definition:</b> ReinforcementLearning.h:123</div></div>
+<div class="ttc" id="classAI_1_1Algorithm_1_1Policy_1_1Policy_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">AI::Algorithm::Policy::Policy</a></div><div class="ttdoc">Base class for all Policy. </div><div class="ttdef"><b>Definition:</b> Policy.h:34</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearning_html_a04932645faa6c385e4c587f7f845b484"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a04932645faa6c385e4c587f7f845b484">AI::Algorithm::ReinforcementLearning::setStepSize</a></div><div class="ttdeci">virtual void setStepSize(AI::FLOAT stepSize)</div><div class="ttdef"><b>Definition:</b> ReinforcementLearning.h:164</div></div>
 <div class="ttc" id="classAI_1_1StateActionPairContainer_html"><div class="ttname"><a href="classAI_1_1StateActionPairContainer.html">AI::StateActionPairContainer</a></div><div class="ttdef"><b>Definition:</b> StateActionPairContainer.h:28</div></div>
-<div class="ttc" id="classAI_1_1Algorithm_1_1Policy_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Policy.html">AI::Algorithm::Policy</a></div><div class="ttdef"><b>Definition:</b> Policy.h:24</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearning_html_ad078677d92b33df4ae7d3c78e040b766"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#ad078677d92b33df4ae7d3c78e040b766">AI::Algorithm::ReinforcementLearning::getStateActionValue</a></div><div class="ttdeci">virtual AI::FLOAT getStateActionValue(const StateAction&lt; S, A &gt; &amp;stateAction)</div><div class="ttdef"><b>Definition:</b> ReinforcementLearning.h:218</div></div>
+<div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearning_html_a4d182d91c68aef838b80843acd044b1e"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a4d182d91c68aef838b80843acd044b1e">AI::Algorithm::ReinforcementLearning::ReinforcementLearning</a></div><div class="ttdeci">ReinforcementLearning(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy&lt; S, A &gt; &amp;policy)</div><div class="ttdef"><b>Definition:</b> ReinforcementLearning.h:123</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearning_html_a25d7fa245a79e61061436dc0f1db90cb"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a25d7fa245a79e61061436dc0f1db90cb">AI::Algorithm::ReinforcementLearning::update</a></div><div class="ttdeci">virtual void update(const StateAction&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const AI::FLOAT reward, const set&lt; A &gt; &amp;actionSet)</div><div class="ttdef"><b>Definition:</b> ReinforcementLearning.h:241</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearning_html_ad1d8a8ebb47fb71a53b15b770795e286"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#ad1d8a8ebb47fb71a53b15b770795e286">AI::Algorithm::ReinforcementLearning::argMax</a></div><div class="ttdeci">A argMax(const S &amp;state, const set&lt; A &gt; &amp;actionSet) const </div><div class="ttdef"><b>Definition:</b> ReinforcementLearning.h:131</div></div>
 <div class="ttc" id="classAI_1_1StateAction_html"><div class="ttname"><a href="classAI_1_1StateAction.html">AI::StateAction</a></div><div class="ttdef"><b>Definition:</b> StateAction.h:13</div></div>
@@ -316,7 +322,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 03:22:10 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 13:06:44 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

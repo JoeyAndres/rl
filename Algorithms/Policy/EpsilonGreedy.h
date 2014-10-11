@@ -21,14 +21,30 @@ using namespace std;
 namespace AI {
 namespace Algorithm {
 namespace Policy {
+
+/*! \class EpsilonGreedy
+ *  \brief Selects greedy action with probability <i>greediness</i>
+ *
+ *  Let \f$ 0 \leq greediness < 1 \f$, which is the probability of selecting optimal
+ *  action. During the selection of non-optimal, they are selected in equiprobable
+ *  manner.
+ *
+ *  \tparam S State data type.
+ *  \tparam A Action data type.
+ */
 template<class S, class A>
 class EpsilonGreedy : public Policy<S, A> {
  public:
+  /**
+   * @param greediness probability of selecting greedy action.
+   */
   EpsilonGreedy(AI::FLOAT greediness);
   virtual ~EpsilonGreedy();
 
   /**
-   * Returns the action that will "likely" gives the highest reward from the current state.
+   * Returns the action that will "likely" gives the highest reward from the current
+   * state.
+   *
    * @param state the state to apply the argMax to.
    * @param stateAction map of StateAction to value.
    * @param actionSet a set of possible actions.
@@ -52,14 +68,14 @@ class EpsilonGreedy : public Policy<S, A> {
  protected:
   random_device _randomDevice;
   uniform_real_distribution<AI::FLOAT> _distribution;
-  AI::FLOAT _greediness;
+  AI::FLOAT _greediness;  //!< Probability of selecting a greedy action.
 };
 
 typedef EpsilonGreedy<vector<AI::FLOAT>, vector<AI::FLOAT> > EpsilonGreedySL;
 
-}
-}
-}
+} /* Policy */
+} /* Algorithm */
+} /* AI */
 
 template<class S, class A>
 AI::Algorithm::Policy::EpsilonGreedy<S, A>::EpsilonGreedy(AI::FLOAT greediness)
@@ -99,7 +115,8 @@ const A& AI::Algorithm::Policy::EpsilonGreedy<S, A>::argMax(
 }
 
 template<class S, class A>
-void AI::Algorithm::Policy::EpsilonGreedy<S, A>::setGreediness(AI::FLOAT greediness) {
+void AI::Algorithm::Policy::EpsilonGreedy<S, A>::setGreediness(
+    AI::FLOAT greediness) {
   this->_greediness = greediness;
 }
 

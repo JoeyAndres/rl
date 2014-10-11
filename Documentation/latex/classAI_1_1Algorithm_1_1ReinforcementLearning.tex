@@ -14,7 +14,7 @@ Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Reinforcement\-Learning$<$ S, A
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearning_a9700b470cb894d43e0db7aedd80576f1}{Reinforcement\-Learning} (A\-I\-::\-F\-L\-O\-A\-T step\-Size, A\-I\-::\-F\-L\-O\-A\-T discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy}{Policy}$<$ S, A $>$ \&policy)
+\hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearning_a4d182d91c68aef838b80843acd044b1e}{Reinforcement\-Learning} (A\-I\-::\-F\-L\-O\-A\-T step\-Size, A\-I\-::\-F\-L\-O\-A\-T discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<$ S, A $>$ \&policy)
 \item 
 A \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearning_ad1d8a8ebb47fb71a53b15b770795e286}{arg\-Max} (const S \&state, const set$<$ A $>$ \&action\-Set) const 
 \item 
@@ -86,15 +86,15 @@ $<$ S, A $>$ \& {\bfseries get\-State\-Action\-Pair\-Container} () const }\label
 Abstract class for all Reinforcement learning algorithms. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearning_a9700b470cb894d43e0db7aedd80576f1}{\index{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning@{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning}!Reinforcement\-Learning@{Reinforcement\-Learning}}
+\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearning_a4d182d91c68aef838b80843acd044b1e}{\index{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning@{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning}!Reinforcement\-Learning@{Reinforcement\-Learning}}
 \index{Reinforcement\-Learning@{Reinforcement\-Learning}!AI::Algorithm::ReinforcementLearning@{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning}}
 \subsubsection[{Reinforcement\-Learning}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning}$<$ S, A $>$\-::{\bf Reinforcement\-Learning} (
 \begin{DoxyParamCaption}
 \item[{A\-I\-::\-F\-L\-O\-A\-T}]{step\-Size, }
 \item[{A\-I\-::\-F\-L\-O\-A\-T}]{discount\-Rate, }
-\item[{{\bf Policy}$<$ S, A $>$ \&}]{policy}
+\item[{{\bf Policy\-::\-Policy}$<$ S, A $>$ \&}]{policy}
 \end{DoxyParamCaption}
-)}}\label{classAI_1_1Algorithm_1_1ReinforcementLearning_a9700b470cb894d43e0db7aedd80576f1}
+)}}\label{classAI_1_1Algorithm_1_1ReinforcementLearning_a4d182d91c68aef838b80843acd044b1e}
 
 \begin{DoxyParams}{Parameters}
 {\em step\-Size} & range \mbox{[}0.\-0, 1.\-0\mbox{]}. High step size means faster learning, but less precise convergence. \\
@@ -268,7 +268,7 @@ Implements \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a7d216d791e558e1
 
 
 
-Reimplemented in \hyperlink{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_ad08b55f3cf927189dd31abf9fc1c2959}{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Prioritize\-Sweeping$<$ S, A $>$}, \hyperlink{classAI_1_1Algorithm_1_1SarsaET_adf13376b7ec8fdfa2b19ffadb1aa81e7}{A\-I\-::\-Algorithm\-::\-Sarsa\-E\-T$<$ S, A $>$}, \hyperlink{classAI_1_1Algorithm_1_1Sarsa_ae1d62478d3e31cace3fb594e05f83d1c}{A\-I\-::\-Algorithm\-::\-Sarsa$<$ S, A $>$}, \hyperlink{classAI_1_1Algorithm_1_1DynaQETWatkins_aa4e40af0fd705cd5d1f7fd13834c57c6}{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-E\-T\-Watkins$<$ S, A $>$}, \hyperlink{classAI_1_1Algorithm_1_1DynaQ_a4542226b17db4ed8a2c5ec17d37dc42f}{A\-I\-::\-Algorithm\-::\-Dyna\-Q$<$ S, A $>$}, \hyperlink{classAI_1_1Algorithm_1_1QLearningETWatkins_a5cbad8c16dfbf6fe72c85fe5c8c4e273}{A\-I\-::\-Algorithm\-::\-Q\-Learning\-E\-T\-Watkins$<$ S, A $>$}, \hyperlink{classAI_1_1Algorithm_1_1QLearning_a042e1987ce21a94f59603c4cb1eeed82}{A\-I\-::\-Algorithm\-::\-Q\-Learning$<$ S, A $>$}, and \hyperlink{classAI_1_1Algorithm_1_1DynaQCC_ae23b8f0afbb9fc5024aef9ce720c9b84}{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C$<$ S, A $>$}.
+Reimplemented in \hyperlink{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_ad08b55f3cf927189dd31abf9fc1c2959}{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Prioritize\-Sweeping$<$ S, A $>$}, \hyperlink{classAI_1_1Algorithm_1_1SarsaET_adf13376b7ec8fdfa2b19ffadb1aa81e7}{A\-I\-::\-Algorithm\-::\-Sarsa\-E\-T$<$ S, A $>$}, \hyperlink{classAI_1_1Algorithm_1_1Sarsa_ae1d62478d3e31cace3fb594e05f83d1c}{A\-I\-::\-Algorithm\-::\-Sarsa$<$ S, A $>$}, \hyperlink{classAI_1_1Algorithm_1_1DynaQETWatkins_aa4e40af0fd705cd5d1f7fd13834c57c6}{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-E\-T\-Watkins$<$ S, A $>$}, \hyperlink{classAI_1_1Algorithm_1_1DynaQ_a4542226b17db4ed8a2c5ec17d37dc42f}{A\-I\-::\-Algorithm\-::\-Dyna\-Q$<$ S, A $>$}, \hyperlink{classAI_1_1Algorithm_1_1QLearning_a042e1987ce21a94f59603c4cb1eeed82}{A\-I\-::\-Algorithm\-::\-Q\-Learning$<$ S, A $>$}, \hyperlink{classAI_1_1Algorithm_1_1QLearningETWatkins_a5cbad8c16dfbf6fe72c85fe5c8c4e273}{A\-I\-::\-Algorithm\-::\-Q\-Learning\-E\-T\-Watkins$<$ S, A $>$}, and \hyperlink{classAI_1_1Algorithm_1_1DynaQCC_ae23b8f0afbb9fc5024aef9ce720c9b84}{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C$<$ S, A $>$}.
 
 
 

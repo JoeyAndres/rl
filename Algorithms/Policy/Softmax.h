@@ -22,20 +22,29 @@ using namespace std;
 namespace AI {
 namespace Algorithm {
 namespace Policy {
-/**
- * Softmax Policy
- * <p>
- * Softmax places a probability to each action during action selection.
- * A state action pair with greater value yields to higher chance of being
- * chosen as next action. As opposed to epsilon greedy, this choses its
- * action not randomly.
- * <b>temperature</b> is the attribute that controls the greediness.
- * Lower temperature means discrepancy of probability is magnified, making
- * softmax close to greedy. High temperature means a more realistic representation
- * of probabilities.
- * </p>
+/*! \class Softmax
+ *  \brief Greedy action is given highest selection probability, but all others
+ *         are ranked and weighted according to their value estimates.
+ *
+ * Greedy action is given highest selection probability, but all others
+ * are ranked and weighted according to their value estimates. In contrast with
+ * EpsilonGreedy Algorithm where non-greedy actions have equal chance of being
+ * chosen, non-greedy actions in Softmax are chosen depending on their value
+ * estimates. The higher the value estimates, the more likely to be chosen.
+ *
+ * In essence, Softmax chooses action <i>a</i> with probability,
+ *
+ * \f$\dfrac{e^{\frac{Q_t(a)}{\tau}}}{\sum_{i=1}^n e^{\frac{Q_t(a)}{\tau}}}\f$
+ *
+ * where \f$\tau\f$ is the temperature. High temperature cause the actions to be
+ * all (nearly) equiprobable. Low temperatures cause a greater difference in
+ * selection probability that differ in their action estimates.
+ *
  * This policy algorithm is adapted from Sutton and Barto RL book 2nd edition
  * pg 31.
+ *
+ * \tparam S State data type.
+ * \tparam A Action data type.
  */
 template<class S, class A>
 class Softmax : public Policy<S, A> {
@@ -48,13 +57,17 @@ class Softmax : public Policy<S, A> {
  private:
   std::random_device _randomDevice;
   std::uniform_real_distribution<AI::FLOAT> _distribution;
-  AI::FLOAT _temperature;
+  AI::FLOAT _temperature;  //!< High temperature cause the actions to be all
+                           //!< (nearly) equiprobable. Low temperatures cause a
+                           //!< a greater difference in selection probability
+                           //!< that differ in their action estimates.
 };
 
 typedef Softmax<vector<AI::FLOAT>, vector<AI::FLOAT> > SoftmaxSL;
-}
-}
-}
+
+} /* Policy */
+} /* Algorithm */
+} /* AI */
 
 template<class S, class A>
 AI::Algorithm::Policy::Softmax<S, A>::Softmax(AI::FLOAT temperature)

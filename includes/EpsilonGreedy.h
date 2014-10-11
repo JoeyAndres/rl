@@ -21,6 +21,10 @@ using namespace std;
 namespace AI {
 namespace Algorithm {
 namespace Policy {
+
+/*! \class EpsilonGreedy
+ *  \brief Selects greedy action \f$(1-\epsilon)\f$
+ */
 template<class S, class A>
 class EpsilonGreedy : public Policy<S, A> {
  public:

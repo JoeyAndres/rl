@@ -13,6 +13,12 @@
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -116,7 +122,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1ReinforcementLearningGD.html">ReinforcementLearningGD</a>(<a class="code" href="classAI_1_1Algorithm_1_1TileCode.html">TileCode</a>&amp; tileCode, AI::FLOAT stepSize,</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                          AI::FLOAT discountRate, AI::FLOAT lambda,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                          <a class="code" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a>&lt;vector&lt;FLOAT&gt;, vector&lt;FLOAT&gt; &gt;&amp; policy);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                          <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt;vector&lt;FLOAT&gt;, vector&lt;FLOAT&gt; &gt;&amp; policy);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAI_1_1Algorithm_1_1ReinforcementLearningGD.html#afca8d60ac090dec611f3834c0e8872c0">update</a>(</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;      <span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction</a>&lt;vector&lt;FLOAT&gt;, vector&lt;FLOAT&gt; &gt;&amp; currentStateAction,</div>
@@ -145,7 +151,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;ReinforcementLearningGD::ReinforcementLearningGD(</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="classAI_1_1Algorithm_1_1TileCode.html">TileCode</a>&amp; tileCode, AI::FLOAT stepSize, AI::FLOAT discountRate,</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    AI::FLOAT lambda, <a class="code" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a>&lt;vector&lt;FLOAT&gt;, vector&lt;FLOAT&gt; &gt;&amp; policy)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    AI::FLOAT lambda, <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt;vector&lt;FLOAT&gt;, vector&lt;FLOAT&gt; &gt;&amp; policy)</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    : <a class="code" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">LearningAlgorithm</a>&lt;vector&lt;FLOAT&gt;, vector&lt;FLOAT&gt; &gt;(policy),</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      _gradientDescent(tileCode, stepSize, discountRate, lambda) {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
@@ -174,7 +180,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">const</span> vector&lt;FLOAT&gt;&amp; state, <span class="keyword">const</span> set&lt;vector&lt;FLOAT&gt; &gt;&amp; actionSet) {</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  map&lt;actionVector&lt;FLOAT&gt;, FLOAT&gt; actionValueMap;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  _buildActionValues(actionSet, state, actionValueMap);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="keyword">const</span> vector&lt;FLOAT&gt;&amp; nextAction = this-&gt;<a class="code" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1783770f6b4e96d69cd51a4d5ea1bb0d">_learningPolicy</a>.getAction(</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="keyword">const</span> vector&lt;FLOAT&gt;&amp; nextAction = this-&gt;<a class="code" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a603f2a2905636a150c0fb9946085837a">_learningPolicy</a>.<a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html#a1bd1f511d0f5dce4f4b080232845852c">getAction</a>(</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      actionValueMap, actionSet);</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="keywordflow">return</span> nextAction;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
@@ -201,23 +207,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;} <span class="comment">/* namespace AI */</span></div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* REINFORCEMENTLEARNINGGD_H_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="classAI_1_1Algorithm_1_1LearningAlgorithm_html_a1783770f6b4e96d69cd51a4d5ea1bb0d"><div class="ttname"><a href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1783770f6b4e96d69cd51a4d5ea1bb0d">AI::Algorithm::LearningAlgorithm&lt; vector&lt; FLOAT &gt;, vector&lt; FLOAT &gt; &gt;::_learningPolicy</a></div><div class="ttdeci">Policy&lt; vector&lt; FLOAT &gt;, vector&lt; FLOAT &gt; &gt; &amp; _learningPolicy</div><div class="ttdoc">Policy for action selection offline. </div><div class="ttdef"><b>Definition:</b> LearningAlgorithm.h:118</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearningGD_html_afca8d60ac090dec611f3834c0e8872c0"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearningGD.html#afca8d60ac090dec611f3834c0e8872c0">AI::Algorithm::ReinforcementLearningGD::update</a></div><div class="ttdeci">virtual void update(const StateAction&lt; vector&lt; FLOAT &gt;, vector&lt; FLOAT &gt; &gt; &amp;currentStateAction, const vector&lt; FLOAT &gt; &amp;nextStateVector, const FLOAT reward, const set&lt; vector&lt; FLOAT &gt; &gt; &amp;actionSet)</div><div class="ttdef"><b>Definition:</b> ReinforcementLearningGD.h:68</div></div>
+<div class="ttc" id="classAI_1_1Algorithm_1_1Policy_1_1Policy_html_a1bd1f511d0f5dce4f4b080232845852c"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html#a1bd1f511d0f5dce4f4b080232845852c">AI::Algorithm::Policy::Policy::getAction</a></div><div class="ttdeci">virtual const A &amp; getAction(const map&lt; A, AI::FLOAT &gt; &amp;actionValues, const set&lt; A &gt; &amp;actionSet)=0</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1LearningAlgorithm_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a></div><div class="ttdoc">Base class for all learning algorithms. </div><div class="ttdef"><b>Definition:</b> LearningAlgorithm.h:34</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1LearningAlgorithm_html_ad5b5f6baa9c03f68427008abeeb35535"><div class="ttname"><a href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#ad5b5f6baa9c03f68427008abeeb35535">AI::Algorithm::LearningAlgorithm&lt; vector&lt; FLOAT &gt;, vector&lt; FLOAT &gt; &gt;::_getLearningPolicyAction</a></div><div class="ttdeci">const vector&lt; FLOAT &gt; &amp; _getLearningPolicyAction(const map&lt; vector&lt; FLOAT &gt;, AI::FLOAT &gt; &amp;actionValueMap, const set&lt; vector&lt; FLOAT &gt; &gt; &amp;actionSet)</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearningGD_html_a97a8fe122f39d0b47a9df496502c2555"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearningGD.html#a97a8fe122f39d0b47a9df496502c2555">AI::Algorithm::ReinforcementLearningGD::getAction</a></div><div class="ttdeci">virtual const vector&lt; FLOAT &gt; &amp; getAction(const vector&lt; FLOAT &gt; &amp;state, const set&lt; vector&lt; FLOAT &gt; &gt; &amp;actionSet)</div><div class="ttdef"><b>Definition:</b> ReinforcementLearningGD.h:82</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearningGD_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearningGD.html">AI::Algorithm::ReinforcementLearningGD</a></div><div class="ttdef"><b>Definition:</b> ReinforcementLearningGD.h:23</div></div>
+<div class="ttc" id="classAI_1_1Algorithm_1_1Policy_1_1Policy_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">AI::Algorithm::Policy::Policy</a></div><div class="ttdoc">Base class for all Policy. </div><div class="ttdef"><b>Definition:</b> Policy.h:34</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1GradientDescent_html_a8dcc60ebf28babbe120fe7b20334380f"><div class="ttname"><a href="classAI_1_1Algorithm_1_1GradientDescent.html#a8dcc60ebf28babbe120fe7b20334380f">AI::Algorithm::GradientDescent::getValueFromParameters</a></div><div class="ttdeci">FLOAT getValueFromParameters(const vector&lt; FLOAT &gt; &amp;parameters) const </div><div class="ttdef"><b>Definition:</b> GradientDescent.h:99</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1TileCode_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1TileCode.html">AI::Algorithm::TileCode</a></div><div class="ttdef"><b>Definition:</b> TileCode.h:28</div></div>
-<div class="ttc" id="classAI_1_1Algorithm_1_1Policy_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Policy.html">AI::Algorithm::Policy</a></div><div class="ttdef"><b>Definition:</b> Policy.h:24</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1GradientDescent_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1GradientDescent.html">AI::Algorithm::GradientDescent</a></div><div class="ttdef"><b>Definition:</b> GradientDescent.h:26</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearningGD_html_a937edc4d2b11025bccbd450163155660"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearningGD.html#a937edc4d2b11025bccbd450163155660">AI::Algorithm::ReinforcementLearningGD::getStateActionValue</a></div><div class="ttdeci">virtual FLOAT getStateActionValue(const StateAction&lt; vector&lt; FLOAT &gt;, vector&lt; FLOAT &gt; &gt; &amp;stateAction)</div><div class="ttdef"><b>Definition:</b> ReinforcementLearningGD.h:91</div></div>
+<div class="ttc" id="classAI_1_1Algorithm_1_1LearningAlgorithm_html_a603f2a2905636a150c0fb9946085837a"><div class="ttname"><a href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a603f2a2905636a150c0fb9946085837a">AI::Algorithm::LearningAlgorithm&lt; vector&lt; FLOAT &gt;, vector&lt; FLOAT &gt; &gt;::_learningPolicy</a></div><div class="ttdeci">Policy::Policy&lt; vector&lt; FLOAT &gt;, vector&lt; FLOAT &gt; &gt; &amp; _learningPolicy</div><div class="ttdoc">Policy for action selection offline. </div><div class="ttdef"><b>Definition:</b> LearningAlgorithm.h:118</div></div>
 <div class="ttc" id="classAI_1_1StateAction_html"><div class="ttname"><a href="classAI_1_1StateAction.html">AI::StateAction</a></div><div class="ttdef"><b>Definition:</b> StateAction.h:13</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearningGD_html_ad6f2fa8bc762d6760e9c61a132ccd098"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearningGD.html#ad6f2fa8bc762d6760e9c61a132ccd098">AI::Algorithm::ReinforcementLearningGD::reset</a></div><div class="ttdeci">virtual void reset()</div><div class="ttdef"><b>Definition:</b> ReinforcementLearningGD.h:104</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 03:22:10 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 13:06:44 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

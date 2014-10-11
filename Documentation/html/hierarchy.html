@@ -13,6 +13,12 @@
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -136,11 +142,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr id="row_16_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="structNDimensionalVector_3_010_00_01D_01_4.html" target="_self">NDimensionalVector&lt; 0, D &gt;</a></td><td class="desc"></td></tr>
 <tr id="row_17_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classObservable.html" target="_self">Observable&lt; NotifyArgument &gt;</a></td><td class="desc"></td></tr>
 <tr id="row_18_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classObserver.html" target="_self">Observer&lt; NotifyArgument &gt;</a></td><td class="desc"></td></tr>
-<tr id="row_19_" class="even"><td class="entry"><img id="arr_19_" src="ftv2mnode.png" alt="o" width="16" height="22" onclick="toggleFolder('19_')"/><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classAI_1_1Algorithm_1_1Policy.html" target="_self">AI::Algorithm::Policy&lt; S, A &gt;</a></td><td class="desc"></td></tr>
-<tr id="row_19_0_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classAI_1_1Algorithm_1_1EpsilonGreedy.html" target="_self">AI::Algorithm::EpsilonGreedy&lt; S, A &gt;</a></td><td class="desc"></td></tr>
-<tr id="row_19_1_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classAI_1_1Algorithm_1_1Softmax.html" target="_self">AI::Algorithm::Softmax&lt; S, A &gt;</a></td><td class="desc"></td></tr>
-<tr id="row_20_"><td class="entry"><img id="arr_20_" src="ftv2mnode.png" alt="o" width="16" height="22" onclick="toggleFolder('20_')"/><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classAI_1_1Algorithm_1_1Policy.html" target="_self">AI::Algorithm::Policy&lt; vector&lt; FLOAT &gt;, vector&lt; FLOAT &gt; &gt;</a></td><td class="desc"></td></tr>
-<tr id="row_20_0_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classAI_1_1Algorithm_1_1EpsilonGreedy.html" target="_self">AI::Algorithm::EpsilonGreedy&lt; vector&lt; FLOAT &gt;, vector&lt; FLOAT &gt; &gt;</a></td><td class="desc"></td></tr>
+<tr id="row_19_" class="even"><td class="entry"><img id="arr_19_" src="ftv2mnode.png" alt="o" width="16" height="22" onclick="toggleFolder('19_')"/><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html" target="_self">AI::Algorithm::Policy::Policy&lt; S, A &gt;</a></td><td class="desc">Base class for all <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html" title="Base class for all Policy. ">Policy</a> </td></tr>
+<tr id="row_19_0_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html" target="_self">AI::Algorithm::Policy::EpsilonGreedy&lt; S, A &gt;</a></td><td class="desc">Selects greedy action with probability <em>greediness</em> </td></tr>
+<tr id="row_19_1_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Softmax.html" target="_self">AI::Algorithm::Policy::Softmax&lt; S, A &gt;</a></td><td class="desc">Greedy action is given highest selection probability, but all others are ranked and weighted according to their value estimates </td></tr>
+<tr id="row_20_"><td class="entry"><img id="arr_20_" src="ftv2mnode.png" alt="o" width="16" height="22" onclick="toggleFolder('20_')"/><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html" target="_self">AI::Algorithm::Policy::Policy&lt; vector&lt; FLOAT &gt;, vector&lt; FLOAT &gt; &gt;</a></td><td class="desc"></td></tr>
+<tr id="row_20_0_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html" target="_self">AI::Algorithm::Policy::EpsilonGreedy&lt; vector&lt; FLOAT &gt;, vector&lt; FLOAT &gt; &gt;</a></td><td class="desc"></td></tr>
 <tr id="row_21_"><td class="entry"><img id="arr_21_" src="ftv2mnode.png" alt="o" width="16" height="22" onclick="toggleFolder('21_')"/><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classAI_1_1SensorStatesAbstract.html" target="_self">AI::SensorStatesAbstract&lt; SensorData &gt;</a></td><td class="desc"></td></tr>
 <tr id="row_21_0_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classAI_1_1SensorStatesDiscrete.html" target="_self">AI::SensorStatesDiscrete&lt; SensorData &gt;</a></td><td class="desc"></td></tr>
 <tr id="row_22_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2cl.png" alt="C" width="24" height="22" /><a class="el" href="classAI_1_1SensorStatesAbstract.html" target="_self">AI::SensorStatesAbstract&lt; S &gt;</a></td><td class="desc"></td></tr>
@@ -161,7 +167,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 03:22:10 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 13:06:44 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

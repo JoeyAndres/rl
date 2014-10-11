@@ -1,0 +1,71 @@
+\hypertarget{classAI_1_1Algorithm_1_1Policy_1_1Policy}{\section{A\-I\-:\-:Algorithm\-:\-:Policy\-:\-:Policy$<$ S, A $>$ Class Template Reference}
+\label{classAI_1_1Algorithm_1_1Policy_1_1Policy}\index{A\-I\-::\-Algorithm\-::\-Policy\-::\-Policy$<$ S, A $>$@{A\-I\-::\-Algorithm\-::\-Policy\-::\-Policy$<$ S, A $>$}}
+}
+
+
+Base class for all \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy}.  
+
+
+
+
+{\ttfamily \#include $<$Policy.\-h$>$}
+
+Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Policy\-:\-:Policy$<$ S, A $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classAI_1_1Algorithm_1_1Policy_1_1Policy}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual const A \& \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy_a1bd1f511d0f5dce4f4b080232845852c}{get\-Action} (const map$<$ A, A\-I\-::\-F\-L\-O\-A\-T $>$ \&action\-Values, const set$<$ A $>$ \&action\-Set)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class S, class A$>$class A\-I\-::\-Algorithm\-::\-Policy\-::\-Policy$<$ S, A $>$}
+
+Base class for all \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy}. 
+
+\hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy} sets the rule for action selection given a mapping of action to action values and a set of action.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em S} & State data type. \\
+\hline
+{\em A} & Action data type. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1Policy_1_1Policy_a1bd1f511d0f5dce4f4b080232845852c}{\index{A\-I\-::\-Algorithm\-::\-Policy\-::\-Policy@{A\-I\-::\-Algorithm\-::\-Policy\-::\-Policy}!get\-Action@{get\-Action}}
+\index{get\-Action@{get\-Action}!AI::Algorithm::Policy::Policy@{A\-I\-::\-Algorithm\-::\-Policy\-::\-Policy}}
+\subsubsection[{get\-Action}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S, class A$>$ virtual const A\& {\bf A\-I\-::\-Algorithm\-::\-Policy\-::\-Policy}$<$ S, A $>$\-::get\-Action (
+\begin{DoxyParamCaption}
+\item[{const map$<$ A, A\-I\-::\-F\-L\-O\-A\-T $>$ \&}]{action\-Values, }
+\item[{const set$<$ A $>$ \&}]{action\-Set}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classAI_1_1Algorithm_1_1Policy_1_1Policy_a1bd1f511d0f5dce4f4b080232845852c}
+Returns {\bfseries action} given a mapping of actions and their value and a set of actions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em action\-Values} & a mapping of actions to their corresponding value. \\
+\hline
+{\em action\-Set} & set of actions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries action} given a mapping of actions and their value and a set of actions. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy_a00a2dde7f4df14fd046e034694184f65}{A\-I\-::\-Algorithm\-::\-Policy\-::\-Epsilon\-Greedy$<$ S, A $>$}, \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy_a00a2dde7f4df14fd046e034694184f65}{A\-I\-::\-Algorithm\-::\-Policy\-::\-Epsilon\-Greedy$<$ vector$<$ F\-L\-O\-A\-T $>$, vector$<$ F\-L\-O\-A\-T $>$ $>$}, and \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Softmax_adf507bcadedab2d33e3fcc0059918d19}{A\-I\-::\-Algorithm\-::\-Policy\-::\-Softmax$<$ S, A $>$}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Algorithms/\-Policy/Policy.\-h\end{DoxyCompactItemize}

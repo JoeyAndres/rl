@@ -13,6 +13,12 @@
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -116,7 +122,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
 <div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1SarsaET.html">   31</a></span>&#160;<span class="keyword">class </span><a class="code" href="classAI_1_1Algorithm_1_1SarsaET.html">SarsaET</a> final: <span class="keyword">public</span> <a class="code" href="classAI_1_1Algorithm_1_1EligibilityTraces.html">EligibilityTraces</a>&lt;S, A&gt;, <span class="keyword">public</span> <a class="code" href="classAI_1_1Algorithm_1_1Sarsa.html">Sarsa</a>&lt;S, A&gt; {</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1SarsaET.html#a992281468719624306939da1f865db37">SarsaET</a>(AI::FLOAT stepSize, AI::FLOAT discountRate, <a class="code" href="classAI_1_1Algorithm_1_1Policy.html">Policy&lt;S, A&gt;</a>&amp; policy,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1SarsaET.html#aa934143376cc47c6e42e3ec67fb93eae">SarsaET</a>(AI::FLOAT stepSize, AI::FLOAT discountRate, <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy&lt;S, A&gt;</a>&amp; policy,</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;          AI::FLOAT lambda);</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAI_1_1Algorithm_1_1SarsaET.html#adf13376b7ec8fdfa2b19ffadb1aa81e7">update</a>(<span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; currentStateAction,</div>
@@ -141,8 +147,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1SarsaET.html#a992281468719624306939da1f865db37">   78</a></span>&#160;<a class="code" href="classAI_1_1Algorithm_1_1SarsaET.html#a992281468719624306939da1f865db37">SarsaET&lt;S, A&gt;::SarsaET</a>(AI::FLOAT stepSize, AI::FLOAT discountRate,</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                       <a class="code" href="classAI_1_1Algorithm_1_1Policy.html">Policy&lt;S, A&gt;</a>&amp; policy, AI::FLOAT lambda)</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1SarsaET.html#aa934143376cc47c6e42e3ec67fb93eae">   78</a></span>&#160;<a class="code" href="classAI_1_1Algorithm_1_1SarsaET.html#aa934143376cc47c6e42e3ec67fb93eae">SarsaET&lt;S, A&gt;::SarsaET</a>(AI::FLOAT stepSize, AI::FLOAT discountRate,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                       <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy&lt;S, A&gt;</a>&amp; policy, AI::FLOAT lambda)</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    : <a class="code" href="classAI_1_1Algorithm_1_1EligibilityTraces.html">EligibilityTraces</a>&lt;S, A&gt;(lambda),</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      <a class="code" href="classAI_1_1Algorithm_1_1Sarsa.html">Sarsa</a>&lt;S, A&gt;(stepSize, discountRate, policy) {</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
@@ -151,17 +157,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SARSA_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1EligibilityTraces_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1EligibilityTraces.html">AI::Algorithm::EligibilityTraces</a></div><div class="ttdef"><b>Definition:</b> EligibilityTraces.h:40</div></div>
+<div class="ttc" id="classAI_1_1Algorithm_1_1SarsaET_html_aa934143376cc47c6e42e3ec67fb93eae"><div class="ttname"><a href="classAI_1_1Algorithm_1_1SarsaET.html#aa934143376cc47c6e42e3ec67fb93eae">AI::Algorithm::SarsaET::SarsaET</a></div><div class="ttdeci">SarsaET(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy&lt; S, A &gt; &amp;policy, AI::FLOAT lambda)</div><div class="ttdef"><b>Definition:</b> SarsaET.h:78</div></div>
+<div class="ttc" id="classAI_1_1Algorithm_1_1Policy_1_1Policy_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">AI::Algorithm::Policy::Policy</a></div><div class="ttdoc">Base class for all Policy. </div><div class="ttdef"><b>Definition:</b> Policy.h:34</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1SarsaET_html_adf13376b7ec8fdfa2b19ffadb1aa81e7"><div class="ttname"><a href="classAI_1_1Algorithm_1_1SarsaET.html#adf13376b7ec8fdfa2b19ffadb1aa81e7">AI::Algorithm::SarsaET::update</a></div><div class="ttdeci">virtual void update(const StateAction&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const AI::FLOAT reward, const set&lt; A &gt; &amp;actionSet)</div><div class="ttdef"><b>Definition:</b> SarsaET.h:62</div></div>
-<div class="ttc" id="classAI_1_1Algorithm_1_1Policy_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Policy.html">AI::Algorithm::Policy</a></div><div class="ttdef"><b>Definition:</b> Policy.h:24</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearning_html_a25d7fa245a79e61061436dc0f1db90cb"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a25d7fa245a79e61061436dc0f1db90cb">AI::Algorithm::ReinforcementLearning::update</a></div><div class="ttdeci">virtual void update(const StateAction&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const AI::FLOAT reward, const set&lt; A &gt; &amp;actionSet)</div><div class="ttdef"><b>Definition:</b> ReinforcementLearning.h:241</div></div>
 <div class="ttc" id="classAI_1_1StateAction_html"><div class="ttname"><a href="classAI_1_1StateAction.html">AI::StateAction</a></div><div class="ttdef"><b>Definition:</b> StateAction.h:13</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1SarsaET_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1SarsaET.html">AI::Algorithm::SarsaET</a></div><div class="ttdef"><b>Definition:</b> SarsaET.h:31</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1Sarsa_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Sarsa.html">AI::Algorithm::Sarsa</a></div><div class="ttdef"><b>Definition:</b> Sarsa.h:32</div></div>
-<div class="ttc" id="classAI_1_1Algorithm_1_1SarsaET_html_a992281468719624306939da1f865db37"><div class="ttname"><a href="classAI_1_1Algorithm_1_1SarsaET.html#a992281468719624306939da1f865db37">AI::Algorithm::SarsaET::SarsaET</a></div><div class="ttdeci">SarsaET(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy&lt; S, A &gt; &amp;policy, AI::FLOAT lambda)</div><div class="ttdef"><b>Definition:</b> SarsaET.h:78</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 03:22:10 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 13:06:44 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

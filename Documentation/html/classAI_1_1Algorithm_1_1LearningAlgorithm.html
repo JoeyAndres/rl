@@ -13,6 +13,12 @@
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -125,28 +131,28 @@ Inheritance diagram for AI::Algorithm::LearningAlgorithm&lt; S, A &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af49f907f3042d07c541e883cb8edd9f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#af49f907f3042d07c541e883cb8edd9f8">LearningAlgorithm</a> (<a class="el" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a>&lt; S, A &gt; &amp;controlPolicy)</td></tr>
-<tr class="separator:af49f907f3042d07c541e883cb8edd9f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fe54228193c0d7a28fba7de00441d7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a8fe54228193c0d7a28fba7de00441d7f">LearningAlgorithm</a> (<a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;controlPolicy)</td></tr>
+<tr class="separator:a8fe54228193c0d7a28fba7de00441d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d216d791e558e15a73083af6257ed72"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a7d216d791e558e15a73083af6257ed72">update</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const AI::FLOAT reward, const set&lt; A &gt; &amp;actionSet)=0</td></tr>
 <tr class="separator:a7d216d791e558e15a73083af6257ed72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeca4eded9bc0a02312ccbbfd05f8daa"><td class="memItemLeft" align="right" valign="top">virtual const A &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#afeca4eded9bc0a02312ccbbfd05f8daa">getAction</a> (const S &amp;state, const set&lt; A &gt; &amp;actionSet)=0</td></tr>
 <tr class="separator:afeca4eded9bc0a02312ccbbfd05f8daa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1044b2558109e8dd3d3bf5bedb9723b5"><td class="memItemLeft" align="right" valign="top">virtual AI::FLOAT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1044b2558109e8dd3d3bf5bedb9723b5">getStateActionValue</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;stateAction)=0</td></tr>
 <tr class="separator:a1044b2558109e8dd3d3bf5bedb9723b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91df9fe0a6f2aa33de05c02724dda01b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a91df9fe0a6f2aa33de05c02724dda01b">seControltPolicy</a> (<a class="el" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a>&lt; S, A &gt; &amp;policy)</td></tr>
-<tr class="separator:a91df9fe0a6f2aa33de05c02724dda01b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72c258f85d7e8d4c4006eefd15d88d44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a>&lt; S, A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a72c258f85d7e8d4c4006eefd15d88d44">getControlPolicy</a> ()</td></tr>
-<tr class="separator:a72c258f85d7e8d4c4006eefd15d88d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d26cb76c945a5312ce4ac4fdabc4d31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1d26cb76c945a5312ce4ac4fdabc4d31">seControltPolicy</a> (<a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;policy)</td></tr>
+<tr class="separator:a1d26cb76c945a5312ce4ac4fdabc4d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab123635bc3d527052051c7f4c37a986c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#ab123635bc3d527052051c7f4c37a986c">getControlPolicy</a> ()</td></tr>
+<tr class="separator:ab123635bc3d527052051c7f4c37a986c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebe650b79f39ffd46ece7adb44ddaf60"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#aebe650b79f39ffd46ece7adb44ddaf60">reset</a> ()</td></tr>
 <tr class="separator:aebe650b79f39ffd46ece7adb44ddaf60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafc85fe7b2ad9331ae41593784321641"><td class="memItemLeft" align="right" valign="top">const AI::FLOAT &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#aafc85fe7b2ad9331ae41593784321641">getDefaultStateActionValue</a> () const </td></tr>
 <tr class="separator:aafc85fe7b2ad9331ae41593784321641"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1da99bfa2de96f397a4ef07e53ab5697"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1da99bfa2de96f397a4ef07e53ab5697">setDefaultStateActionValue</a> (const AI::FLOAT &amp;defaultStateActionValue)</td></tr>
 <tr class="separator:a1da99bfa2de96f397a4ef07e53ab5697"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca50977412a978c428af7ea3ae73f50b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#aca50977412a978c428af7ea3ae73f50b">setLearningPolicy</a> (<a class="el" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a>&lt; S, A &gt; &amp;policy)</td></tr>
-<tr class="separator:aca50977412a978c428af7ea3ae73f50b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc959d1d4f846b96f7537c33d78b52b4"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a>&lt; S, A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#acc959d1d4f846b96f7537c33d78b52b4">getLearningPolicy</a> () const </td></tr>
-<tr class="separator:acc959d1d4f846b96f7537c33d78b52b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a826f61675ac11b699c4328c44cccdae5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a826f61675ac11b699c4328c44cccdae5">setLearningPolicy</a> (<a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;policy)</td></tr>
+<tr class="separator:a826f61675ac11b699c4328c44cccdae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac506aa1838ba12e2069c098d6faec16"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#aac506aa1838ba12e2069c098d6faec16">getLearningPolicy</a> () const </td></tr>
+<tr class="separator:aac506aa1838ba12e2069c098d6faec16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -159,21 +165,22 @@ Protected Attributes</h2></td></tr>
 AI::FLOAT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#ae3b8ccdc51ad2a8c1cc2ef9009258466">_defaultStateActionValue</a></td></tr>
 <tr class="memdesc:ae3b8ccdc51ad2a8c1cc2ef9009258466"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place holder for default state action value. <br/></td></tr>
 <tr class="separator:ae3b8ccdc51ad2a8c1cc2ef9009258466"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5215770356f6411a2bacc51de60dbe6a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5215770356f6411a2bacc51de60dbe6a"></a>
-<a class="el" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a>&lt; S, A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a5215770356f6411a2bacc51de60dbe6a">_controlPolicy</a></td></tr>
-<tr class="memdesc:a5215770356f6411a2bacc51de60dbe6a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a> for action selection online. <br/></td></tr>
-<tr class="separator:a5215770356f6411a2bacc51de60dbe6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1783770f6b4e96d69cd51a4d5ea1bb0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1783770f6b4e96d69cd51a4d5ea1bb0d"></a>
-<a class="el" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a>&lt; S, A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1783770f6b4e96d69cd51a4d5ea1bb0d">_learningPolicy</a></td></tr>
-<tr class="memdesc:a1783770f6b4e96d69cd51a4d5ea1bb0d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a> for action selection offline. <br/></td></tr>
-<tr class="separator:a1783770f6b4e96d69cd51a4d5ea1bb0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad74dbed6a7be0c699d42642b9968bf86"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad74dbed6a7be0c699d42642b9968bf86"></a>
+<a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#ad74dbed6a7be0c699d42642b9968bf86">_controlPolicy</a></td></tr>
+<tr class="memdesc:ad74dbed6a7be0c699d42642b9968bf86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Policy for action selection online. <br/></td></tr>
+<tr class="separator:ad74dbed6a7be0c699d42642b9968bf86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a603f2a2905636a150c0fb9946085837a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a603f2a2905636a150c0fb9946085837a"></a>
+<a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a603f2a2905636a150c0fb9946085837a">_learningPolicy</a></td></tr>
+<tr class="memdesc:a603f2a2905636a150c0fb9946085837a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Policy for action selection offline. <br/></td></tr>
+<tr class="separator:a603f2a2905636a150c0fb9946085837a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
-<tr class="memitem:aafabba8e5f9251c1438e608a4431bad3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aafabba8e5f9251c1438e608a4431bad3"></a>
-static <a class="el" href="classAI_1_1Algorithm_1_1EpsilonGreedy.html">EpsilonGreedy</a>&lt; S, A &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#aafabba8e5f9251c1438e608a4431bad3">_defaultLearningPolicy</a></td></tr>
-<tr class="memdesc:aafabba8e5f9251c1438e608a4431bad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default offline policy. <br/></td></tr>
-<tr class="separator:aafabba8e5f9251c1438e608a4431bad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9b3db3c2443e1a44803ec6d34887485"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad9b3db3c2443e1a44803ec6d34887485"></a>
+static <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html">Policy::EpsilonGreedy</a><br class="typebreak"/>
+&lt; S, A &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#ad9b3db3c2443e1a44803ec6d34887485">_defaultLearningPolicy</a></td></tr>
+<tr class="memdesc:ad9b3db3c2443e1a44803ec6d34887485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default offline policy. <br/></td></tr>
+<tr class="separator:ad9b3db3c2443e1a44803ec6d34887485"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class S, class A&gt;<br/>
@@ -189,7 +196,7 @@ class AI::Algorithm::LearningAlgorithm&lt; S, A &gt;</h3>
   </dd>
 </dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="af49f907f3042d07c541e883cb8edd9f8"></a>
+<a class="anchor" id="a8fe54228193c0d7a28fba7de00441d7f"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -198,7 +205,7 @@ template&lt;class S, class A&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a>&lt; S, A &gt;::<a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">LearningAlgorithm</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a>&lt; S, A &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;&#160;</td>
           <td class="paramname"><em>controlPolicy</em></td><td>)</td>
           <td></td>
         </tr>
@@ -298,14 +305,14 @@ template&lt;class S, class A&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a72c258f85d7e8d4c4006eefd15d88d44"></a>
+<a class="anchor" id="ab123635bc3d527052051c7f4c37a986c"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class S , class A &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a>&lt; S, A &gt; &amp; <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a>&lt; S, A &gt;::getControlPolicy </td>
+          <td class="memname"><a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp; <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a>&lt; S, A &gt;::getControlPolicy </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -342,7 +349,7 @@ template&lt;class S , class A &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="acc959d1d4f846b96f7537c33d78b52b4"></a>
+<a class="anchor" id="aac506aa1838ba12e2069c098d6faec16"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -352,7 +359,7 @@ template&lt;class S , class A &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classAI_1_1Algorithm_1_1Policy.html">AI::Algorithm::Policy</a>&lt; S, A &gt; &amp; <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a>&lt; S, A &gt;::getLearningPolicy </td>
+          <td class="memname">const <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">AI::Algorithm::Policy::Policy</a>&lt; S, A &gt; &amp; <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a>&lt; S, A &gt;::getLearningPolicy </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -432,7 +439,7 @@ template&lt;class S , class A &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a91df9fe0a6f2aa33de05c02724dda01b"></a>
+<a class="anchor" id="a1d26cb76c945a5312ce4ac4fdabc4d31"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -441,7 +448,7 @@ template&lt;class S, class A&gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a>&lt; S, A &gt;::seControltPolicy </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a>&lt; S, A &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;&#160;</td>
           <td class="paramname"><em>policy</em></td><td>)</td>
           <td></td>
         </tr>
@@ -488,7 +495,7 @@ template&lt;class S , class A &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="aca50977412a978c428af7ea3ae73f50b"></a>
+<a class="anchor" id="a826f61675ac11b699c4328c44cccdae5"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -500,7 +507,7 @@ template&lt;class S, class A&gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a>&lt; S, A &gt;::setLearningPolicy </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a>&lt; S, A &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;&#160;</td>
           <td class="paramname"><em>policy</em></td><td>)</td>
           <td></td>
         </tr>
@@ -579,7 +586,7 @@ template&lt;class S, class A&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>next action to be executed. </dd></dl>
 
-<p>Implemented in <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a25d7fa245a79e61061436dc0f1db90cb">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping.html#ad08b55f3cf927189dd31abf9fc1c2959">AI::Algorithm::DynaQPrioritizeSweeping&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1SarsaET.html#adf13376b7ec8fdfa2b19ffadb1aa81e7">AI::Algorithm::SarsaET&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1Sarsa.html#ae1d62478d3e31cace3fb594e05f83d1c">AI::Algorithm::Sarsa&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1DynaQETWatkins.html#aa4e40af0fd705cd5d1f7fd13834c57c6">AI::Algorithm::DynaQETWatkins&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html#a4542226b17db4ed8a2c5ec17d37dc42f">AI::Algorithm::DynaQ&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1QLearningETWatkins.html#a5cbad8c16dfbf6fe72c85fe5c8c4e273">AI::Algorithm::QLearningETWatkins&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1QLearning.html#a042e1987ce21a94f59603c4cb1eeed82">AI::Algorithm::QLearning&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearningGD.html#afca8d60ac090dec611f3834c0e8872c0">AI::Algorithm::ReinforcementLearningGD</a>, and <a class="el" href="classAI_1_1Algorithm_1_1DynaQCC.html#ae23b8f0afbb9fc5024aef9ce720c9b84">AI::Algorithm::DynaQCC&lt; S, A &gt;</a>.</p>
+<p>Implemented in <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a25d7fa245a79e61061436dc0f1db90cb">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping.html#ad08b55f3cf927189dd31abf9fc1c2959">AI::Algorithm::DynaQPrioritizeSweeping&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1SarsaET.html#adf13376b7ec8fdfa2b19ffadb1aa81e7">AI::Algorithm::SarsaET&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1Sarsa.html#ae1d62478d3e31cace3fb594e05f83d1c">AI::Algorithm::Sarsa&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1DynaQETWatkins.html#aa4e40af0fd705cd5d1f7fd13834c57c6">AI::Algorithm::DynaQETWatkins&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html#a4542226b17db4ed8a2c5ec17d37dc42f">AI::Algorithm::DynaQ&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1QLearning.html#a042e1987ce21a94f59603c4cb1eeed82">AI::Algorithm::QLearning&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1QLearningETWatkins.html#a5cbad8c16dfbf6fe72c85fe5c8c4e273">AI::Algorithm::QLearningETWatkins&lt; S, A &gt;</a>, <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearningGD.html#afca8d60ac090dec611f3834c0e8872c0">AI::Algorithm::ReinforcementLearningGD</a>, and <a class="el" href="classAI_1_1Algorithm_1_1DynaQCC.html#ae23b8f0afbb9fc5024aef9ce720c9b84">AI::Algorithm::DynaQCC&lt; S, A &gt;</a>.</p>
 
 </div>
 </div>
@@ -589,7 +596,7 @@ template&lt;class S, class A&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 03:22:10 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 13:06:44 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

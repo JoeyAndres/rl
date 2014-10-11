@@ -13,6 +13,12 @@
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -118,7 +124,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
 <div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1DynaQ.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classAI_1_1Algorithm_1_1DynaQ.html">DynaQ</a> : <span class="keyword">public</span> <a class="code" href="classAI_1_1Algorithm_1_1DynaQRLMP.html">DynaQRLMP</a>&lt;S, A&gt; {</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1DynaQ.html">DynaQ</a>(AI::FLOAT stepSize, AI::FLOAT discountRate, <a class="code" href="classAI_1_1Algorithm_1_1Policy.html">Policy&lt;S, A&gt;</a>&amp; policy,</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1DynaQ.html">DynaQ</a>(AI::FLOAT stepSize, AI::FLOAT discountRate, <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy&lt;S, A&gt;</a>&amp; policy,</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        AI::UINT simulationIterationCount, AI::FLOAT stateTransitionGreediness,</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        AI::FLOAT stateTransitionStepSize);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
@@ -131,8 +137,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;} <span class="comment">/* namespace AI */</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1DynaQ.html#a7a25f397835208cde0c975733873b76d">   58</a></span>&#160;<a class="code" href="classAI_1_1Algorithm_1_1DynaQ.html#a7a25f397835208cde0c975733873b76d">AI::Algorithm::DynaQ&lt;S, A&gt;::DynaQ</a>(AI::FLOAT stepSize, AI::FLOAT discountRate,</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                  <a class="code" href="classAI_1_1Algorithm_1_1Policy.html">Policy&lt;S, A&gt;</a>&amp; policy,</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1DynaQ.html#aa543816270f72b2c4ac1f77fb818f792">   58</a></span>&#160;<a class="code" href="classAI_1_1Algorithm_1_1DynaQ.html#aa543816270f72b2c4ac1f77fb818f792">AI::Algorithm::DynaQ&lt;S, A&gt;::DynaQ</a>(AI::FLOAT stepSize, AI::FLOAT discountRate,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                  <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy&lt;S, A&gt;</a>&amp; policy,</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                                  AI::UINT simulationIterationCount,</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                  AI::FLOAT stateTransitionGreediness,</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                                  AI::FLOAT stateTransitionStepSize)</div>
@@ -160,16 +166,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* DYNAQ_H */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor"></span></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1DynaQRLMP_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1DynaQRLMP.html">AI::Algorithm::DynaQRLMP</a></div><div class="ttdef"><b>Definition:</b> DynaQRLMP.h:17</div></div>
-<div class="ttc" id="classAI_1_1Algorithm_1_1DynaQ_html_a7a25f397835208cde0c975733873b76d"><div class="ttname"><a href="classAI_1_1Algorithm_1_1DynaQ.html#a7a25f397835208cde0c975733873b76d">AI::Algorithm::DynaQ::DynaQ</a></div><div class="ttdeci">DynaQ(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy&lt; S, A &gt; &amp;policy, AI::UINT simulationIterationCount, AI::FLOAT stateTransitionGreediness, AI::FLOAT stateTransitionStepSize)</div><div class="ttdef"><b>Definition:</b> DynaQ.h:58</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1DynaQ_html_a4542226b17db4ed8a2c5ec17d37dc42f"><div class="ttname"><a href="classAI_1_1Algorithm_1_1DynaQ.html#a4542226b17db4ed8a2c5ec17d37dc42f">AI::Algorithm::DynaQ::update</a></div><div class="ttdeci">virtual void update(const StateAction&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const FLOAT reward, const set&lt; A &gt; &amp;actionSet)</div><div class="ttdef"><b>Definition:</b> DynaQ.h:68</div></div>
+<div class="ttc" id="classAI_1_1Algorithm_1_1DynaQ_html_aa543816270f72b2c4ac1f77fb818f792"><div class="ttname"><a href="classAI_1_1Algorithm_1_1DynaQ.html#aa543816270f72b2c4ac1f77fb818f792">AI::Algorithm::DynaQ::DynaQ</a></div><div class="ttdeci">DynaQ(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy&lt; S, A &gt; &amp;policy, AI::UINT simulationIterationCount, AI::FLOAT stateTransitionGreediness, AI::FLOAT stateTransitionStepSize)</div><div class="ttdef"><b>Definition:</b> DynaQ.h:58</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1DynaQ_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1DynaQ.html">AI::Algorithm::DynaQ</a></div><div class="ttdef"><b>Definition:</b> DynaQ.h:36</div></div>
-<div class="ttc" id="classAI_1_1Algorithm_1_1Policy_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Policy.html">AI::Algorithm::Policy</a></div><div class="ttdef"><b>Definition:</b> Policy.h:24</div></div>
+<div class="ttc" id="classAI_1_1Algorithm_1_1Policy_1_1Policy_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">AI::Algorithm::Policy::Policy</a></div><div class="ttdoc">Base class for all Policy. </div><div class="ttdef"><b>Definition:</b> Policy.h:34</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearning_html_a25d7fa245a79e61061436dc0f1db90cb"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a25d7fa245a79e61061436dc0f1db90cb">AI::Algorithm::ReinforcementLearning::update</a></div><div class="ttdeci">virtual void update(const StateAction&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const AI::FLOAT reward, const set&lt; A &gt; &amp;actionSet)</div><div class="ttdef"><b>Definition:</b> ReinforcementLearning.h:241</div></div>
 <div class="ttc" id="classAI_1_1StateAction_html"><div class="ttname"><a href="classAI_1_1StateAction.html">AI::StateAction</a></div><div class="ttdef"><b>Definition:</b> StateAction.h:13</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 03:22:10 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 13:06:44 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

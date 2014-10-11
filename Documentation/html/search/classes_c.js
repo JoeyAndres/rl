@@ -8,7 +8,7 @@ var searchData=
   ['sensorstatesabstract_3c_20vector_3c_20ai_3a_3afloat_20_3e_20_3e',['SensorStatesAbstract&lt; vector&lt; AI::FLOAT &gt; &gt;',['../classAI_1_1SensorStatesAbstract.html',1,'AI']]],
   ['sensorstatescontinous',['SensorStatesContinous',['../classAI_1_1SensorStatesContinous.html',1,'AI']]],
   ['sensorstatesdiscrete',['SensorStatesDiscrete',['../classAI_1_1SensorStatesDiscrete.html',1,'AI']]],
-  ['softmax',['Softmax',['../classAI_1_1Algorithm_1_1Softmax.html',1,'AI::Algorithm']]],
+  ['softmax',['Softmax',['../classAI_1_1Algorithm_1_1Policy_1_1Softmax.html',1,'AI::Algorithm::Policy']]],
   ['stateaction',['StateAction',['../classAI_1_1StateAction.html',1,'AI']]],
   ['stateactionnotexistexception',['StateActionNotExistException',['../classAI_1_1StateActionNotExistException.html',1,'AI']]],
   ['stateactionpaircontainer',['StateActionPairContainer',['../classAI_1_1StateActionPairContainer.html',1,'AI']]],

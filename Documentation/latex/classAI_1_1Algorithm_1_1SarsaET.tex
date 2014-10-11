@@ -14,7 +14,7 @@ Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Sarsa\-E\-T$<$ S, A $>$\-:\begi
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classAI_1_1Algorithm_1_1SarsaET_a992281468719624306939da1f865db37}{Sarsa\-E\-T} (A\-I\-::\-F\-L\-O\-A\-T step\-Size, A\-I\-::\-F\-L\-O\-A\-T discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy}{Policy}$<$ S, A $>$ \&policy, A\-I\-::\-F\-L\-O\-A\-T lambda)
+\hyperlink{classAI_1_1Algorithm_1_1SarsaET_aa934143376cc47c6e42e3ec67fb93eae}{Sarsa\-E\-T} (A\-I\-::\-F\-L\-O\-A\-T step\-Size, A\-I\-::\-F\-L\-O\-A\-T discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<$ S, A $>$ \&policy, A\-I\-::\-F\-L\-O\-A\-T lambda)
 \item 
 virtual void \hyperlink{classAI_1_1Algorithm_1_1SarsaET_adf13376b7ec8fdfa2b19ffadb1aa81e7}{update} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const S \&next\-State, const A\-I\-::\-F\-L\-O\-A\-T reward, const set$<$ A $>$ \&action\-Set)
 \end{DoxyCompactItemize}
@@ -32,16 +32,16 @@ virtual void \hyperlink{classAI_1_1Algorithm_1_1SarsaET_adf13376b7ec8fdfa2b19ffa
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classAI_1_1Algorithm_1_1SarsaET_a992281468719624306939da1f865db37}{\index{A\-I\-::\-Algorithm\-::\-Sarsa\-E\-T@{A\-I\-::\-Algorithm\-::\-Sarsa\-E\-T}!Sarsa\-E\-T@{Sarsa\-E\-T}}
+\hypertarget{classAI_1_1Algorithm_1_1SarsaET_aa934143376cc47c6e42e3ec67fb93eae}{\index{A\-I\-::\-Algorithm\-::\-Sarsa\-E\-T@{A\-I\-::\-Algorithm\-::\-Sarsa\-E\-T}!Sarsa\-E\-T@{Sarsa\-E\-T}}
 \index{Sarsa\-E\-T@{Sarsa\-E\-T}!AI::Algorithm::SarsaET@{A\-I\-::\-Algorithm\-::\-Sarsa\-E\-T}}
 \subsubsection[{Sarsa\-E\-T}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-Algorithm\-::\-Sarsa\-E\-T}$<$ S, A $>$\-::{\bf Sarsa\-E\-T} (
 \begin{DoxyParamCaption}
 \item[{A\-I\-::\-F\-L\-O\-A\-T}]{step\-Size, }
 \item[{A\-I\-::\-F\-L\-O\-A\-T}]{discount\-Rate, }
-\item[{{\bf Policy}$<$ S, A $>$ \&}]{policy, }
+\item[{{\bf Policy\-::\-Policy}$<$ S, A $>$ \&}]{policy, }
 \item[{A\-I\-::\-F\-L\-O\-A\-T}]{lambda}
 \end{DoxyParamCaption}
-)}}\label{classAI_1_1Algorithm_1_1SarsaET_a992281468719624306939da1f865db37}
+)}}\label{classAI_1_1Algorithm_1_1SarsaET_aa934143376cc47c6e42e3ec67fb93eae}
 
 \begin{DoxyParams}{Parameters}
 {\em greedy} & determines how random is get\-Next\-State() is. A value of 1.\-0 means get\-Next\-State returns based on current likelihood of a state occuring (not random). With 0.\-0, it will not rely on the likelihood of state and return a random nextstate. \\

@@ -13,6 +13,12 @@
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -91,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="qindex"><a class="qindex" href="#letter_A">A</a>&#160;|&#160;<a class="qindex" href="#letter_D">D</a>&#160;|&#160;<a class="qindex" href="#letter_E">E</a>&#160;|&#160;<a class="qindex" href="#letter_G">G</a>&#160;|&#160;<a class="qindex" href="#letter_H">H</a>&#160;|&#160;<a class="qindex" href="#letter_L">L</a>&#160;|&#160;<a class="qindex" href="#letter_M">M</a>&#160;|&#160;<a class="qindex" href="#letter_N">N</a>&#160;|&#160;<a class="qindex" href="#letter_O">O</a>&#160;|&#160;<a class="qindex" href="#letter_P">P</a>&#160;|&#160;<a class="qindex" href="#letter_Q">Q</a>&#160;|&#160;<a class="qindex" href="#letter_R">R</a>&#160;|&#160;<a class="qindex" href="#letter_S">S</a>&#160;|&#160;<a class="qindex" href="#letter_T">T</a>&#160;|&#160;<a class="qindex" href="#letter_U">U</a></div>
 <table style="margin: 10px; white-space: nowrap;" align="center" width="95%" border="0" cellspacing="0" cellpadding="0">
 <tr><td rowspan="2" valign="bottom"><a name="letter_A"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;A&#160;&#160;</div></td></tr></table>
-</td><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1EpsilonGreedy.html">EpsilonGreedy</a> (AI::Algorithm)&#160;&#160;&#160;</td><td valign="top"><a class="el" href="structNDimensionalVector_3_010_00_01D_01_4.html">NDimensionalVector&lt; 0, D &gt;</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_S"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;S&#160;&#160;</div></td></tr></table>
+</td><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html">EpsilonGreedy</a> (AI::Algorithm::Policy)&#160;&#160;&#160;</td><td valign="top"><a class="el" href="structNDimensionalVector_3_010_00_01D_01_4.html">NDimensionalVector&lt; 0, D &gt;</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_S"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;S&#160;&#160;</div></td></tr></table>
 </td><td rowspan="2" valign="bottom"><a name="letter_T"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;T&#160;&#160;</div></td></tr></table>
 </td></tr>
 <tr><td rowspan="2" valign="bottom"><a name="letter_G"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;G&#160;&#160;</div></td></tr></table>
@@ -105,9 +111,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </td><td rowspan="2" valign="bottom"><a name="letter_P"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;P&#160;&#160;</div></td></tr></table>
 </td><td valign="top"><a class="el" href="classAI_1_1SensorStatesAbstract.html">SensorStatesAbstract</a> (<a class="el" href="namespaceAI.html">AI</a>)&#160;&#160;&#160;</td><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1TileCodeMurMur.html">TileCodeMurMur</a> (AI::Algorithm)&#160;&#160;&#160;</td></tr>
 <tr><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1DimensionInfo.html">DimensionInfo</a> (AI::Algorithm)&#160;&#160;&#160;</td><td valign="top"><a class="el" href="classAI_1_1SensorStatesContinous.html">SensorStatesContinous</a> (<a class="el" href="namespaceAI.html">AI</a>)&#160;&#160;&#160;</td><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1TileCodeSuperFastHash.html">TileCodeSuperFastHash</a> (AI::Algorithm)&#160;&#160;&#160;</td></tr>
-<tr><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html">DynaQ</a> (AI::Algorithm)&#160;&#160;&#160;</td><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1Hash_1_1HashInterface.html">HashInterface</a> (AI::Algorithm::Hash)&#160;&#160;&#160;</td><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1Policy.html">Policy</a> (AI::Algorithm)&#160;&#160;&#160;</td><td valign="top"><a class="el" href="classAI_1_1SensorStatesDiscrete.html">SensorStatesDiscrete</a> (<a class="el" href="namespaceAI.html">AI</a>)&#160;&#160;&#160;</td><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1TileCodeUNH.html">TileCodeUNH</a> (AI::Algorithm)&#160;&#160;&#160;</td></tr>
+<tr><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html">DynaQ</a> (AI::Algorithm)&#160;&#160;&#160;</td><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1Hash_1_1HashInterface.html">HashInterface</a> (AI::Algorithm::Hash)&#160;&#160;&#160;</td><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy</a> (AI::Algorithm::Policy)&#160;&#160;&#160;</td><td valign="top"><a class="el" href="classAI_1_1SensorStatesDiscrete.html">SensorStatesDiscrete</a> (<a class="el" href="namespaceAI.html">AI</a>)&#160;&#160;&#160;</td><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1TileCodeUNH.html">TileCodeUNH</a> (AI::Algorithm)&#160;&#160;&#160;</td></tr>
 <tr><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html">DynaQBase</a> (AI::Algorithm)&#160;&#160;&#160;</td><td valign="top"><a class="el" href="structAI_1_1Algorithm_1_1Hash_1_1HashMurmur3Out.html">HashMurmur3Out</a> (AI::Algorithm::Hash)&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_Q"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;Q&#160;&#160;</div></td></tr></table>
-</td><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1Softmax.html">Softmax</a> (AI::Algorithm)&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_U"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;U&#160;&#160;</div></td></tr></table>
+</td><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Softmax.html">Softmax</a> (AI::Algorithm::Policy)&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_U"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;U&#160;&#160;</div></td></tr></table>
 </td></tr>
 <tr><td valign="top"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCC.html">DynaQCC</a> (AI::Algorithm)&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_L"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;L&#160;&#160;</div></td></tr></table>
 </td><td valign="top"><a class="el" href="classAI_1_1StateAction.html">StateAction</a> (<a class="el" href="namespaceAI.html">AI</a>)&#160;&#160;&#160;</td></tr>
@@ -130,7 +136,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 03:22:10 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 13:06:44 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

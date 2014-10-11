@@ -1,0 +1,82 @@
+\hypertarget{classAI_1_1Algorithm_1_1Policy_1_1Softmax}{\section{A\-I\-:\-:Algorithm\-:\-:Policy\-:\-:Softmax$<$ S, A $>$ Class Template Reference}
+\label{classAI_1_1Algorithm_1_1Policy_1_1Softmax}\index{A\-I\-::\-Algorithm\-::\-Policy\-::\-Softmax$<$ S, A $>$@{A\-I\-::\-Algorithm\-::\-Policy\-::\-Softmax$<$ S, A $>$}}
+}
+
+
+Greedy action is given highest selection probability, but all others are ranked and weighted according to their value estimates.  
+
+
+
+
+{\ttfamily \#include $<$Softmax.\-h$>$}
+
+Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Policy\-:\-:Softmax$<$ S, A $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classAI_1_1Algorithm_1_1Policy_1_1Softmax}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1Policy_1_1Softmax_a7f91fab0a3e3ae62fda6851f23170e9e}{{\bfseries Softmax} (A\-I\-::\-F\-L\-O\-A\-T temperature)}\label{classAI_1_1Algorithm_1_1Policy_1_1Softmax_a7f91fab0a3e3ae62fda6851f23170e9e}
+
+\item 
+virtual const A \& \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Softmax_adf507bcadedab2d33e3fcc0059918d19}{get\-Action} (const map$<$ A, A\-I\-::\-F\-L\-O\-A\-T $>$ \&action\-Values, const set$<$ A $>$ \&action\-Set)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class S, class A$>$class A\-I\-::\-Algorithm\-::\-Policy\-::\-Softmax$<$ S, A $>$}
+
+Greedy action is given highest selection probability, but all others are ranked and weighted according to their value estimates. 
+
+Greedy action is given highest selection probability, but all others are ranked and weighted according to their value estimates. In contrast with \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy}{Epsilon\-Greedy} Algorithm where non-\/greedy actions have equal chance of being chosen, non-\/greedy actions in \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Softmax}{Softmax} are chosen depending on their value estimates. The higher the value estimates, the more likely to be chosen.
+
+In essence, \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Softmax}{Softmax} chooses action {\itshape a} with probability,
+
+$\dfrac{e^{\frac{Q_t(a)}{\tau}}}{\sum_{i=1}^n e^{\frac{Q_t(a)}{\tau}}}$
+
+where $\tau$ is the temperature. High temperature cause the actions to be all (nearly) equiprobable. Low temperatures cause a greater difference in selection probability that differ in their action estimates.
+
+This policy algorithm is adapted from Sutton and Barto R\-L book 2nd edition pg 31.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em S} & State data type. \\
+\hline
+{\em A} & Action data type. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1Policy_1_1Softmax_adf507bcadedab2d33e3fcc0059918d19}{\index{A\-I\-::\-Algorithm\-::\-Policy\-::\-Softmax@{A\-I\-::\-Algorithm\-::\-Policy\-::\-Softmax}!get\-Action@{get\-Action}}
+\index{get\-Action@{get\-Action}!AI::Algorithm::Policy::Softmax@{A\-I\-::\-Algorithm\-::\-Policy\-::\-Softmax}}
+\subsubsection[{get\-Action}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ const A \& {\bf A\-I\-::\-Algorithm\-::\-Policy\-::\-Softmax}$<$ S, A $>$\-::get\-Action (
+\begin{DoxyParamCaption}
+\item[{const map$<$ A, A\-I\-::\-F\-L\-O\-A\-T $>$ \&}]{action\-Values, }
+\item[{const set$<$ A $>$ \&}]{action\-Set}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1Policy_1_1Softmax_adf507bcadedab2d33e3fcc0059918d19}
+Returns {\bfseries action} given a mapping of actions and their value and a set of actions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em action\-Values} & a mapping of actions to their corresponding value. \\
+\hline
+{\em action\-Set} & set of actions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries action} given a mapping of actions and their value and a set of actions. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy_a1bd1f511d0f5dce4f4b080232845852c}{A\-I\-::\-Algorithm\-::\-Policy\-::\-Policy$<$ S, A $>$}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Algorithms/\-Policy/Softmax.\-h\end{DoxyCompactItemize}
