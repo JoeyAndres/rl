@@ -13,19 +13,26 @@
 #include "SensorBase.h"
 
 namespace AI {
-class SensorStatesContinous : public SensorBase<vector<AI::FLOAT> > {
-  virtual vector<AI::FLOAT> getSensorState() = 0;
-  virtual bool isState(const vector<AI::FLOAT>& state) const = 0;
-  virtual bool isTerminalState(const vector<AI::FLOAT>& stateData) const = 0;
+
+/*! \class SensorContinous
+ *  \brief Base class for sensor with continuous data.
+ *
+ *  Base class for sensor with continuous data(s).
+ */
+class SensorContinuous : public SensorBase<STATE_CONT > {
+  virtual STATE_CONT getSensorState() = 0;
+  virtual bool isState(const STATE_CONT& state) const = 0;
+  virtual bool isTerminalState(const STATE_CONT& stateData) const = 0;
 
   /**
    * Maps sensorState to its corresponding reward.
    * @param sensorState to be mapped to its corresponding reward.
    * @return reward
    */
-  virtual AI::FLOAT getReward(vector<AI::FLOAT>& sensorState)
+  virtual AI::FLOAT getReward(STATE_CONT& sensorState)
       throw (StateNotExistException) = 0;
 };
+
 } /* namespace AI */
 
 #endif /* SENSORSTATESCONTINOUS_H_ */

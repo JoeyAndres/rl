@@ -13,7 +13,11 @@
 #include "SensorBase.h"
 
 namespace AI {
-class SensorStatesContinous : public SensorBase<vector<AI::FLOAT> > {
+
+/*! \class SensorContinous
+ *
+ */
+class SensorContinuous : public SensorBase<vector<AI::FLOAT> > {
   virtual vector<AI::FLOAT> getSensorState() = 0;
   virtual bool isState(const vector<AI::FLOAT>& state) const = 0;
   virtual bool isTerminalState(const vector<AI::FLOAT>& stateData) const = 0;

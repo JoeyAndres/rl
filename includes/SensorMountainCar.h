@@ -17,7 +17,7 @@ using namespace std;
 namespace AI {
 // TODO: Mkae SensorStatesContinous for Supervised Learners.
 class SensorMountainCar final :
-public SensorStatesContinous {
+public SensorContinuous {
   virtual vector<AI::FLOAT> getSensorState();
   virtual bool isState(const vector<AI::FLOAT>& state) const;
   virtual AI::FLOAT getReward(vector<AI::FLOAT>& sensorState)

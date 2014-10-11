@@ -14,7 +14,7 @@ using namespace std;
 
 namespace AI {
 template<class SensorData>
-class SensorStatesDiscrete : public SensorBase<SensorData> {
+class SensorDiscrete : public SensorBase<SensorData> {
  public:
   virtual const set<SensorData>& getObservedStates() const;
   virtual void addTerminalState(const SensorData& terminalData);
@@ -28,24 +28,24 @@ class SensorStatesDiscrete : public SensorBase<SensorData> {
 } /* namespace AI */
 
 template<class SensorData>
-const set<SensorData>& AI::SensorStatesDiscrete<SensorData>::getObservedStates() const {
+const set<SensorData>& AI::SensorDiscrete<SensorData>::getObservedStates() const {
   return this->_sensorData;
 }
 
 template<class SensorData>
-bool AI::SensorStatesDiscrete<SensorData>::isTerminalState(
+bool AI::SensorDiscrete<SensorData>::isTerminalState(
     const SensorData& stateData) const {
   return _terminalStates.find(stateData) != _terminalStates.end();
 }
 
 template<class SensorData>
-void AI::SensorStatesDiscrete<SensorData>::addSensorData(
+void AI::SensorDiscrete<SensorData>::addSensorData(
     const SensorData& sensorData) {
   _sensorData.insert(sensorData);
 }
 
 template<class SensorData>
-void AI::SensorStatesDiscrete<SensorData>::addTerminalState(
+void AI::SensorDiscrete<SensorData>::addTerminalState(
     const SensorData& terminalData) {
   // Ensure terminal state is also in _sensorData.
   addSensorData(terminalData);
@@ -53,7 +53,7 @@ void AI::SensorStatesDiscrete<SensorData>::addTerminalState(
 }
 
 template<class SensorData>
-bool AI::SensorStatesDiscrete<SensorData>::isState(
+bool AI::SensorDiscrete<SensorData>::isState(
     const SensorData& state) const {
   return _sensorData.find(state) != _sensorData.end();
 }

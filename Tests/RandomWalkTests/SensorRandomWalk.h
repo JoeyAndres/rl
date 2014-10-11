@@ -13,12 +13,12 @@
 namespace AI {
 
 template<class SensorData>
-class SensorRandomWalk final : public SensorStatesDiscrete<SensorData> {
+class SensorRandomWalk final : public SensorDiscrete<SensorData> {
   virtual SensorData getSensorState() = 0;
 };
 
 template<>
-class SensorRandomWalk<AI::INT> final : public SensorStatesDiscrete<AI::INT> {
+class SensorRandomWalk<AI::INT> final : public SensorDiscrete<AI::INT> {
  public:
   virtual AI::INT getSensorState();
   virtual AI::FLOAT getReward(AI::INT& sensorState)
