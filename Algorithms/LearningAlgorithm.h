@@ -36,7 +36,7 @@ class LearningAlgorithm {
   /**
    * @param controlPolicy policy for action selection online.
    */
-  LearningAlgorithm(Policy<S, A>& controlPolicy);
+  LearningAlgorithm(Policy::Policy<S, A>& controlPolicy);
 
   /**
    * Update the stateAction map.
@@ -70,12 +70,12 @@ class LearningAlgorithm {
   /**
    * @param policy to set the current control policy with.
    */
-  void seControltPolicy(Policy<S, A>& policy);
+  void seControltPolicy(Policy::Policy<S, A>& policy);
 
   /**
    * @return current control policy
    */
-  Policy<S, A>& getControlPolicy();
+  Policy::Policy<S, A>& getControlPolicy();
 
   /**
    * Reset anything prior to running episode.
@@ -95,12 +95,12 @@ class LearningAlgorithm {
   /**
    * @param policy set the new learning policy.
    */
-  void setLearningPolicy(Policy<S, A>& policy);
+  void setLearningPolicy(Policy::Policy<S, A>& policy);
 
   /**
    * @return current learning policy.
    */
-  const Policy<S, A> & getLearningPolicy() const;
+  const Policy::Policy<S, A> & getLearningPolicy() const;
 
  protected:
   /**
@@ -114,31 +114,31 @@ class LearningAlgorithm {
 
  protected:
   AI::FLOAT _defaultStateActionValue;  //!< Place holder for default state action value.
-  Policy<S, A>& _controlPolicy;  //!< Policy for action selection online.
-  Policy<S, A>& _learningPolicy;  //!< Policy for action selection offline.
+  Policy::Policy<S, A>& _controlPolicy;  //!< Policy for action selection online.
+  Policy::Policy<S, A>& _learningPolicy;  //!< Policy for action selection offline.
 
  protected:
-  static EpsilonGreedy<S, A> _defaultLearningPolicy;  //!< Default offline policy.
+  static Policy::EpsilonGreedy<S, A> _defaultLearningPolicy;  //!< Default offline policy.
 };
 
 template<class S, class A>
-EpsilonGreedy<S, A> LearningAlgorithm<S, A>::_defaultLearningPolicy(
+Policy::EpsilonGreedy<S, A> LearningAlgorithm<S, A>::_defaultLearningPolicy(
     AI::DEFAULT_GREEDINESS_LEARNING_POLICY);
 
 template<class S, class A>
-LearningAlgorithm<S, A>::LearningAlgorithm(Policy<S, A>& controlPolicy)
+LearningAlgorithm<S, A>::LearningAlgorithm(Policy::Policy<S, A>& controlPolicy)
     : _controlPolicy(controlPolicy),
       _learningPolicy(_defaultLearningPolicy) {
   _defaultStateActionValue = AI::FLOAT();
 }
 
 template<class S, class A>
-void LearningAlgorithm<S, A>::seControltPolicy(Policy<S, A>& policy) {
+void LearningAlgorithm<S, A>::seControltPolicy(Policy::Policy<S, A>& policy) {
   this->_controlPolicy = policy;
 }
 
 template<class S, class A>
-Policy<S, A>& LearningAlgorithm<S, A>::getControlPolicy() {
+Policy::Policy<S, A>& LearningAlgorithm<S, A>::getControlPolicy() {
   return _controlPolicy;
 }
 
@@ -162,12 +162,12 @@ inline void LearningAlgorithm<S, A>::setDefaultStateActionValue(
 
 template<class S, class A>
 inline void AI::Algorithm::LearningAlgorithm<S, A>::setLearningPolicy(
-    Policy<S, A>& policy) {
+    Policy::Policy<S, A>& policy) {
   _learningPolicy = policy;
 }
 
 template<class S, class A>
-inline const AI::Algorithm::Policy<S, A>& AI::Algorithm::LearningAlgorithm<S, A>::getLearningPolicy() const {
+inline const AI::Algorithm::Policy::Policy<S, A>& AI::Algorithm::LearningAlgorithm<S, A>::getLearningPolicy() const {
   return _learningPolicy;
 }
 

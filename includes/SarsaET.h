@@ -40,7 +40,7 @@ class SarsaET final: public EligibilityTraces<S, A>, public Sarsa<S, A> {
    * environment. A value of 1.0 yields to forgeting the frequency information
    * of all other transition states, suitable for deterministic environment.
    */
-  SarsaET(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy<S, A>& policy,
+  SarsaET(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy,
           AI::FLOAT lambda);
 
   /**
@@ -76,7 +76,7 @@ void SarsaET<S, A>::update(const StateAction<S, A>& currentStateAction,
 
 template<class S, class A>
 SarsaET<S, A>::SarsaET(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                       Policy<S, A>& policy, AI::FLOAT lambda)
+                       Policy::Policy<S, A>& policy, AI::FLOAT lambda)
     : EligibilityTraces<S, A>(lambda),
       Sarsa<S, A>(stepSize, discountRate, policy) {
 }

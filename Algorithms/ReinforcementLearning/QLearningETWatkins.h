@@ -32,7 +32,7 @@ class QLearningETWatkins final: public EligibilityTraces<S, A>,
     public QLearning<S, A> {
  public:
   QLearningETWatkins(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                     Policy<S, A>& policy, AI::FLOAT lambda);
+                     Policy::Policy<S, A>& policy, AI::FLOAT lambda);
 
   /**
    * Update the stateAction map.
@@ -71,7 +71,7 @@ void QLearningETWatkins<S, A>::update(
 template<class S, class A>
 QLearningETWatkins<S, A>::QLearningETWatkins(AI::FLOAT stepSize,
                                              AI::FLOAT discountRate,
-                                             Policy<S, A>& policy,
+                                             Policy::Policy<S, A>& policy,
                                              AI::FLOAT lambda)
     : EligibilityTraces<S, A>(lambda),
       QLearning<S, A>(stepSize, discountRate, policy) {

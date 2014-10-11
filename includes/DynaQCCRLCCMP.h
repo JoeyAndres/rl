@@ -19,7 +19,7 @@ class DynaQCCRLCCMP : public DynaQCCBase<S, A>, public ReinforcementLearning<S,
   using DynaQCCBase<S, A>::backUpStateActionPair;
  public:
   DynaQCCRLCCMP(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                Policy<S, A>& policy, AI::UINT simulationIterationCount,
+                Policy::Policy<S, A>& policy, AI::UINT simulationIterationCount,
                 AI::FLOAT stateTransitionGreediness,
                 AI::FLOAT stateTransitionStepSize);
 
@@ -34,7 +34,7 @@ class DynaQCCRLCCMP : public DynaQCCBase<S, A>, public ReinforcementLearning<S,
 
 template<class S, class A>
 inline AI::Algorithm::DynaQCCRLCCMP<S, A>::DynaQCCRLCCMP(
-    AI::FLOAT stepSize, AI::FLOAT discountRate, Policy<S, A>& policy,
+    AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy,
     AI::UINT simulationIterationCount, AI::FLOAT stateTransitionGreediness,
     AI::FLOAT stateTransitionStepSize)
     : ReinforcementLearning<S, A>(stepSize, discountRate, policy),

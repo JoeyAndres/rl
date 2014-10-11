@@ -45,7 +45,7 @@ TEST(SarsaETGDInitialization) {
           + sizeof(dimensionalInfo) / sizeof(DimensionInfo<AI::FLOAT> ));
   dimensionalInfoVector[2].setGeneralizationScale(0.0F);
   TileCodeCorrect tileCode(dimensionalInfoVector, 8);
-  EpsilonGreedySL policy(1.0F);
+  Policy::EpsilonGreedySL policy(1.0F);
   QLearningETGD qlearning(tileCode, 0.1F, 1.0F, 0.9F, policy);
   SensorMountainCar smc;
   ActuatorMountainCar amc;
@@ -68,7 +68,7 @@ TEST(SarsaETGDMountainCar01) {
           + sizeof(dimensionalInfo) / sizeof(DimensionInfo<AI::FLOAT> ));
   dimensionalInfoVector[2].setGeneralizationScale(0.0F);
   TileCodeCorrect tileCode(dimensionalInfoVector, 8);
-  EpsilonGreedySL policy(1.0F);
+  Policy::EpsilonGreedySL policy(1.0F);
   QLearningETGD qlearning(tileCode, 0.1F, 1.0F, 0.9F, policy);
   SensorMountainCar smc;
   ActuatorMountainCar amc;
@@ -109,7 +109,7 @@ TEST(SarsaETGDMountainCar02) {
           + sizeof(dimensionalInfo) / sizeof(DimensionInfo<AI::FLOAT> ));
   dimensionalInfoVector[2].setGeneralizationScale(0.0F);
   TileCodeMurMur tileCode(dimensionalInfoVector, 8);
-  EpsilonGreedySL policy(1.0F);
+  Policy::EpsilonGreedySL policy(1.0F);
   QLearningETGD qlearning(tileCode, 0.1F, 1.0F, 0.9F, policy);
   SensorMountainCar smc;
   ActuatorMountainCar amc;
@@ -150,7 +150,7 @@ TEST(SarsaETGDMountainCar03) {
           + sizeof(dimensionalInfo) / sizeof(DimensionInfo<AI::FLOAT> ));
   dimensionalInfoVector[2].setGeneralizationScale(0.0F);
   TileCodeMt1993764 tileCode(dimensionalInfoVector, 8);
-  EpsilonGreedySL policy(1.0F);
+  Policy::EpsilonGreedySL policy(1.0F);
   QLearningETGD qlearning(tileCode, 0.1F, 1.0F, 0.9F, policy);
   SensorMountainCar smc;
   ActuatorMountainCar amc;

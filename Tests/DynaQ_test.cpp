@@ -31,7 +31,7 @@ TEST(DynaQInitialization) {
   ActuatorRandomWalk<AI::INT> arw;
   arw.addAction(L);
   arw.addAction(R);
-  Algorithm::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
+  Algorithm::Policy::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
   Algorithm::DynaQ<AI::INT, AI::INT> dynaQAlgorithm(0.1F, 0.9F, policy, 100,
                                                     1.0F, 1.0F);
 
@@ -58,7 +58,7 @@ TEST(DynaQSoftmaxPolicy) {
   ActuatorRandomWalk<AI::INT> arw;
   arw.addAction(L);
   arw.addAction(R);
-  Algorithm::Softmax<AI::INT, AI::INT> policy(0.1F);
+  Algorithm::Policy::Softmax<AI::INT, AI::INT> policy(0.1F);
   Algorithm::DynaQ<AI::INT, AI::INT> dynaQAlgorithm(0.1F, 0.9F, policy, 50,
                                                     1.0F, 1.0F);
 
@@ -88,7 +88,7 @@ TEST(DynaQMultithreading) {
   ActuatorRandomWalk<AI::INT> arw;
   arw.addAction(L);
   arw.addAction(R);
-  Algorithm::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
+  Algorithm::Policy::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
   Algorithm::DynaQCC<AI::INT, AI::INT> dynaQCCAlgorithm(0.1F, 0.9F, policy,
                                                         1200, 1.0F, 1.0F);
 

@@ -30,7 +30,7 @@ TEST(DynaQInitialization) {
   ActuatorRandomWalk<AI::INT> arw;
   arw.addAction(L);
   arw.addAction(R);
-  Algorithm::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
+  Algorithm::Policy::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
   Algorithm::DynaQPrioritizeSweeping<AI::INT, AI::INT> dynaQAlgorithm(0.1F,
                                                                       0.9F,
                                                                       policy,
@@ -61,7 +61,7 @@ TEST(DynaQSoftmaxPolicy) {
   ActuatorRandomWalk<AI::INT> arw;
   arw.addAction(L);
   arw.addAction(R);
-  Algorithm::Softmax<AI::INT, AI::INT> policy(0.1F);
+  Algorithm::Policy::Softmax<AI::INT, AI::INT> policy(0.1F);
   Algorithm::DynaQPrioritizeSweeping<AI::INT, AI::INT> dynaQAlgorithm(0.1F,
                                                                       0.9F,
                                                                       policy,

@@ -41,7 +41,7 @@ class Sarsa : public ReinforcementLearning<S, A> {
    * environment. A value of 1.0 yields to forgeting the frequency information
    * of all other transition states, suitable for deterministic environment.
    */
-  Sarsa(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy<S, A>& policy);
+  Sarsa(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy);
 
   /**
    * Update the stateAction map.
@@ -70,7 +70,7 @@ void Sarsa<S, A>::update(const StateAction<S, A>& currentStateAction,
 
 template<class S, class A>
 Sarsa<S, A>::Sarsa(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                   Policy<S, A>& policy)
+                   Policy::Policy<S, A>& policy)
     : ReinforcementLearning<S, A>(stepSize, discountRate, policy) {
   this->setLearningPolicy(policy);
 }

@@ -27,7 +27,7 @@ TEST(SarsaInitialization) {
   ActuatorRandomWalk<AI::INT> arw;
   arw.addAction(L);
   arw.addAction(R);
-  Algorithm::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
+  Algorithm::Policy::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
   Algorithm::Sarsa<AI::INT, AI::INT> sarsaAlgorithm(0.1F, 0.9F, policy);
 
   Agent<AI::INT, AI::INT> agent(srw, arw, sarsaAlgorithm);

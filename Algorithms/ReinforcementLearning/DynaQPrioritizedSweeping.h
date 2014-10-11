@@ -51,7 +51,7 @@ class DynaQPrioritizeSweeping final: public DynaQ<S, A> {
    * @param stateTransitionStepSize High value means faster learning in models but lower values means more accurate models.
    */
   DynaQPrioritizeSweeping(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                          Policy<S, A>& policy,
+                          Policy::Policy<S, A>& policy,
                           AI::UINT simulationIterationCount,
                           AI::FLOAT stateTransitionGreediness,
                           AI::FLOAT stateTransitionStepSize,
@@ -74,7 +74,7 @@ class DynaQPrioritizeSweeping final: public DynaQ<S, A> {
 
 template<class S, class A>
 DynaQPrioritizeSweeping<S, A>::DynaQPrioritizeSweeping(
-    AI::FLOAT stepSize, AI::FLOAT discountRate, Policy<S, A>& policy,
+    AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy,
     AI::UINT simulationIterationCount, AI::FLOAT stateTransitionGreediness,
     AI::FLOAT stateTransitionStepSize, AI::FLOAT priorityThreshold)
     : DynaQ<S, A>(stepSize, discountRate, policy, simulationIterationCount,

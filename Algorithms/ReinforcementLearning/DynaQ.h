@@ -42,7 +42,7 @@ class DynaQ : public DynaQRLMP<S, A> {
    * @param stateTransitionGreediness High value means less likely to choose random action during simulation.
    * @param stateTransitionStepSize High value means faster learning in models but lower values means more accurate models.
    */
-  DynaQ(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy<S, A>& policy,
+  DynaQ(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy,
         AI::UINT simulationIterationCount, AI::FLOAT stateTransitionGreediness,
         AI::FLOAT stateTransitionStepSize);
 
@@ -56,7 +56,7 @@ class DynaQ : public DynaQRLMP<S, A> {
 
 template<class S, class A>
 AI::Algorithm::DynaQ<S, A>::DynaQ(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                                  Policy<S, A>& policy,
+                                  Policy::Policy<S, A>& policy,
                                   AI::UINT simulationIterationCount,
                                   AI::FLOAT stateTransitionGreediness,
                                   AI::FLOAT stateTransitionStepSize)

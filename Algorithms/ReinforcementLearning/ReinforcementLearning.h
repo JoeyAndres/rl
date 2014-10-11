@@ -35,7 +35,7 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
    * @param discountRate range [0.0, 1.0]. High discount rate means more consideration of future events.
    */
   ReinforcementLearning(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                        Policy<S, A>& policy);
+                        Policy::Policy<S, A>& policy);
 
   /**
    * Returns the action that will "likely" gives the highest reward from the current state.
@@ -121,7 +121,7 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
 
 template<class S, class A>
 AI::Algorithm::ReinforcementLearning<S, A>::ReinforcementLearning(
-    AI::FLOAT stepSize, AI::FLOAT discountRate, Policy<S, A>& policy)
+    AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy)
     : LearningAlgorithm<S, A>(policy) {
   _stepSize = stepSize;
   _discountRate = discountRate;

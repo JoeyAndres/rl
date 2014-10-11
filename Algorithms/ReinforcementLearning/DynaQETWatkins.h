@@ -44,7 +44,7 @@ class DynaQETWatkins final: public DynaQ<S, A>, public EligibilityTraces<S, A> {
    * @param stateTransitionStepSize High value means faster learning in models but lower values means more accurate models.
    */
   DynaQETWatkins(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                 Policy<S, A>& policy, AI::UINT simulationIterationCount,
+                 Policy::Policy<S, A>& policy, AI::UINT simulationIterationCount,
                  AI::FLOAT stateTransitionGreediness,
                  AI::FLOAT stateTransitionStepSize, AI::FLOAT lambda);
 
@@ -56,7 +56,7 @@ class DynaQETWatkins final: public DynaQ<S, A>, public EligibilityTraces<S, A> {
 
 template<class S, class A>
 DynaQETWatkins<S, A>::DynaQETWatkins(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                                     Policy<S, A>& policy,
+                                     Policy::Policy<S, A>& policy,
                                      AI::UINT simulationIterationCount,
                                      AI::FLOAT stateTransitionGreediness,
                                      AI::FLOAT stateTransitionStepSize,

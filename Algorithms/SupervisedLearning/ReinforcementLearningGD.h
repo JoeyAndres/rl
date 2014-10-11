@@ -25,7 +25,7 @@ class ReinforcementLearningGD : public LearningAlgorithm<vector<FLOAT>,
  public:
   ReinforcementLearningGD(TileCode& tileCode, AI::FLOAT stepSize,
                           AI::FLOAT discountRate, AI::FLOAT lambda,
-                          Policy<vector<FLOAT>, vector<FLOAT> >& policy);
+                          Policy::Policy<vector<FLOAT>, vector<FLOAT> >& policy);
 
   virtual void update(
       const StateAction<vector<FLOAT>, vector<FLOAT> >& currentStateAction,
@@ -54,7 +54,7 @@ class ReinforcementLearningGD : public LearningAlgorithm<vector<FLOAT>,
 
 ReinforcementLearningGD::ReinforcementLearningGD(
     TileCode& tileCode, AI::FLOAT stepSize, AI::FLOAT discountRate,
-    AI::FLOAT lambda, Policy<vector<FLOAT>, vector<FLOAT> >& policy)
+    AI::FLOAT lambda, Policy::Policy<vector<FLOAT>, vector<FLOAT> >& policy)
     : LearningAlgorithm<vector<FLOAT>, vector<FLOAT> >(policy),
       _gradientDescent(tileCode, stepSize, discountRate, lambda) {
 }

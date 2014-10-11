@@ -31,7 +31,8 @@ namespace Algorithm {
 template<class S, class A>
 class QLearning : public ReinforcementLearning<S, A> {
  public:
-  QLearning(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy<S, A>& policy);
+  QLearning(AI::FLOAT stepSize, AI::FLOAT discountRate,
+            Policy::Policy<S, A>& policy);
 
   /**
    * Update the stateAction map.
@@ -67,7 +68,7 @@ void QLearning<S, A>::update(const StateAction<S, A>& currentStateAction,
 
 template<class S, class A>
 QLearning<S, A>::QLearning(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                           Policy<S, A>& policy)
+                           Policy::Policy<S, A>& policy)
     : ReinforcementLearning<S, A>(stepSize, discountRate, policy) {
 }
 } /* Algorithm */

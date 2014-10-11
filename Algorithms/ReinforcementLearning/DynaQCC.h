@@ -15,7 +15,7 @@ namespace Algorithm {
 template<class S, class A>
 class DynaQCC : public DynaQCCRLCCMP<S, A> {
  public:
-  DynaQCC(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy<S, A>& policy,
+  DynaQCC(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy,
           AI::UINT simulationIterationCount,
           AI::FLOAT stateTransitionGreediness,
           AI::FLOAT stateTransitionStepSize);
@@ -30,7 +30,7 @@ class DynaQCC : public DynaQCCRLCCMP<S, A> {
 
 template<class S, class A>
 inline AI::Algorithm::DynaQCC<S, A>::DynaQCC(
-    AI::FLOAT stepSize, AI::FLOAT discountRate, Policy<S, A>& policy,
+    AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy,
     AI::UINT simulationIterationCount, AI::FLOAT stateTransitionGreediness,
     AI::FLOAT stateTransitionStepSize)
     : DynaQCCRLCCMP<S, A>(stepSize, discountRate, policy,

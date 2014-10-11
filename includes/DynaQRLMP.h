@@ -18,7 +18,7 @@ class DynaQRLMP : public ReinforcementLearning<S, A>, public DynaQBase<S, A> {
   using DynaQBase<S, A>::argMax;
   using DynaQBase<S, A>::backUpStateActionPair;
  public:
-  DynaQRLMP(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy<S, A>& policy,
+  DynaQRLMP(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy,
             AI::UINT simulationIterationCount,
             AI::FLOAT stateTransitionGreediness,
             AI::FLOAT stateTransitionStepSize);
@@ -34,7 +34,7 @@ class DynaQRLMP : public ReinforcementLearning<S, A>, public DynaQBase<S, A> {
 
 template<class S, class A>
 inline AI::Algorithm::DynaQRLMP<S, A>::DynaQRLMP(
-    AI::FLOAT stepSize, AI::FLOAT discountRate, Policy<S, A>& policy,
+    AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy,
     AI::UINT simulationIterationCount, AI::FLOAT stateTransitionGreediness,
     AI::FLOAT stateTransitionStepSize)
     : ReinforcementLearning<S, A>(stepSize, discountRate, policy),

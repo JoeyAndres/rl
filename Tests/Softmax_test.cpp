@@ -12,7 +12,7 @@ using namespace AI::Algorithm;
 using namespace std;
 
 TEST(SoftmaxInitialization) {
-  Softmax<AI::INT, AI::INT> policy(0.9F);
+  Policy::Softmax<AI::INT, AI::INT> policy(0.9F);
 
   AI::INT dummyState(1);
 

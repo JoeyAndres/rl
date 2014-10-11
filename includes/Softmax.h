@@ -63,7 +63,7 @@ AI::Algorithm::Policy::Softmax<S, A>::Softmax(AI::FLOAT temperature)
 }
 
 template<class S, class A>
-const A& AI::Algorithm::Softmax<S, A>::getAction(
+const A& AI::Algorithm::Policy::Softmax<S, A>::getAction(
     const map<A, AI::FLOAT>& actionValues, const set<A>& actionSet) {
   // Acquire E(i=1...n) e^(Q(i)/temp)
   AI::FLOAT sum = 0.0F;
