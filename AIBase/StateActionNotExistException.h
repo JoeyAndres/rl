@@ -20,17 +20,17 @@ namespace AI {
  * does not exist. e.g. map[StateAction] throws out of
  * range since StateAction does not exist.
  */
-class StateActionNotExistException: public exception {
-public:
-	/**
-	 * @param extraMessage To add more details of the cause
-	 * of exception. This should put the exception in a better context.
-	 */
-	StateActionNotExistException(string extraMessage);
-	virtual const char* what() const throw ();
+class StateActionNotExistException : public exception {
+ public:
+  /**
+   * @param extraMessage To add more details of the cause
+   * of exception. This should put the exception in a better context.
+   */
+  StateActionNotExistException(string extraMessage);
+  virtual const char* what() const throw ();
 
-private:
-	string _extraMessage;
+ private:
+  string _extraMessage;
 };
 
 } /* namespace AI */

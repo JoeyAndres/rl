@@ -13,20 +13,29 @@
 #include <cstdint>
 #include <vector>
 
+#include "HashInterface.h"
+
 using namespace std;
 
 namespace AI {
 namespace Algorithm {
+namespace Hash {
+
 /**
  * Encapsulates the output of the murmur hash. uint64_t hashVal[2] is
  * the the array being encapsulated since output of murmur3 hash is 128 bit.
  */
 struct HashMurmur3Out {
-	uint64_t hashVal[2];
+  uint64_t hashVal[2];
 };
 
-void getHashVal(const vector<AI::INT>& key, HashMurmur3Out& out);
+class Murmur3 : public HashInterface<HashMurmur3Out> {
+ public:
+  virtual HashMurmur3Out hash(const AI::BYTE *const byteArray, size_t len);
+  virtual HashMurmur3Out hash(const vector<AI::BYTE>& byteArray);
+};
 
+} /* Hash */
 } /* Algorithm */
 } /* AI */
 

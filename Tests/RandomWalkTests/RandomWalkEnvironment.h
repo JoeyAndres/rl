@@ -22,18 +22,18 @@ const AI::INT L(0), R(1);
 namespace AI {
 
 class RandomWalkEnvironment {
-private:
-	RandomWalkEnvironment();
-public:
-	static RandomWalkEnvironment& getInstance();
+ private:
+  RandomWalkEnvironment();
+ public:
+  static RandomWalkEnvironment& getInstance();
 
-	void reset();
+  void reset();
 
-	void applyAction(AI::INT Action);
-	AI::INT getCurrentState() const;
-private:
-	AI::INT _currentState;
-	map<AI::StateAction<AI::INT, AI::INT>, AI::INT> _env;
+  void applyAction(AI::INT Action);
+  AI::INT getCurrentState() const;
+ private:
+  AI::INT _currentState;
+  map<AI::StateAction<AI::INT, AI::INT>, AI::INT> _env;
 };
 
 } /* namespace AI */

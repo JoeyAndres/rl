@@ -10,12 +10,12 @@
 namespace AI {
 
 StateNotExistException::StateNotExistException(string extraMessage) {
-	_extraMessage = extraMessage;
+  _extraMessage = extraMessage;
 }
 
 const char* StateNotExistException::what() const throw () {
-	string newMsg = "State does not exist. " + _extraMessage;
-	return newMsg.c_str();
+  string newMsg = "State does not exist. " + _extraMessage;
+  return newMsg.c_str();
 }
 
 } /* namespace AI */

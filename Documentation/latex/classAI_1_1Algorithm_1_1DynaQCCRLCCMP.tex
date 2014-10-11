@@ -1,0 +1,63 @@
+\hypertarget{classAI_1_1Algorithm_1_1DynaQCCRLCCMP}{\section{A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P$<$ S, A $>$ Class Template Reference}
+\label{classAI_1_1Algorithm_1_1DynaQCCRLCCMP}\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P$<$ S, A $>$@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P$<$ S, A $>$}}
+}
+Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P$<$ S, A $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classAI_1_1Algorithm_1_1DynaQCCRLCCMP}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a0f499caa1b10a4610e927fa5bbcf1466}{{\bfseries Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P} (A\-I\-::\-F\-L\-O\-A\-T step\-Size, A\-I\-::\-F\-L\-O\-A\-T discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy}{Policy}$<$ S, A $>$ \&policy, A\-I\-::\-U\-I\-N\-T simulation\-Iteration\-Count, A\-I\-::\-F\-L\-O\-A\-T state\-Transition\-Greediness, A\-I\-::\-F\-L\-O\-A\-T state\-Transition\-Step\-Size)}\label{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a0f499caa1b10a4610e927fa5bbcf1466}
+
+\item 
+virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_aebff9b81db5bd2ae33bd3d6662539bc0}{back\-Up\-State\-Action\-Pair} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const F\-L\-O\-A\-T reward, const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&next\-State\-Action\-Pair)
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a145fa4fdba2289842a77c9d483a42ef2}{virtual A {\bfseries arg\-Max} (const S \&state, const set$<$ A $>$ \&action\-Set) const }\label{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a145fa4fdba2289842a77c9d483a42ef2}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_aebff9b81db5bd2ae33bd3d6662539bc0}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P}!back\-Up\-State\-Action\-Pair@{back\-Up\-State\-Action\-Pair}}
+\index{back\-Up\-State\-Action\-Pair@{back\-Up\-State\-Action\-Pair}!AI::Algorithm::DynaQCCRLCCMP@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P}}
+\subsubsection[{back\-Up\-State\-Action\-Pair}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P}$<$ S, A $>$\-::back\-Up\-State\-Action\-Pair (
+\begin{DoxyParamCaption}
+\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{current\-State\-Action, }
+\item[{const F\-L\-O\-A\-T}]{reward, }
+\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{next\-State\-Action\-Pair}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_aebff9b81db5bd2ae33bd3d6662539bc0}
+Acquire the value of the state action pair. Each algorithm group (rl, supervised, unsupervised), or specific algorithm (Q, \hyperlink{classAI_1_1Algorithm_1_1Sarsa}{Sarsa}, Gradient Descent) must implement. 
+\begin{DoxyParams}{Parameters}
+{\em state\-Action} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Value of state\-Action. Does the main back up for all Temporal difference\-: Q(\-S, A) $<$-\/ Q(\-S, A) + step\-Size$\ast$\mbox{[}R + max\-\_\-action(S', A') -\/ Q(\-S, A)\mbox{]} 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em current\-State\-Action} & \\
+\hline
+{\em current\-State\-Action\-Value} & \\
+\hline
+{\em next\-State} & \\
+\hline
+{\em next\-Action} & \\
+\hline
+{\em state\-Action\-Pair\-Value\-Map} & \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearning_aa45b49ec954f6934df4d541b70076bd6}{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning$<$ S, A $>$}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Algorithms/\-Reinforcement\-Learning/Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P.\-h\end{DoxyCompactItemize}

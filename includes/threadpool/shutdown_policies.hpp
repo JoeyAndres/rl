@@ -29,11 +29,11 @@ namespace threadpool {
  */
 template<typename Pool>
 class wait_for_all_tasks {
-public:
-	static void shutdown(Pool& pool) {
-		pool.wait();
-		pool.terminate_all_workers(true);
-	}
+ public:
+  static void shutdown(Pool& pool) {
+    pool.wait();
+    pool.terminate_all_workers(true);
+  }
 };
 
 /*! \brief ShutdownPolicy which waits for the completion of all active tasks 
@@ -43,12 +43,12 @@ public:
  */
 template<typename Pool>
 class wait_for_active_tasks {
-public:
-	static void shutdown(Pool& pool) {
-		pool.clear();
-		pool.wait();
-		pool.terminate_all_workers(true);
-	}
+ public:
+  static void shutdown(Pool& pool) {
+    pool.clear();
+    pool.wait();
+    pool.terminate_all_workers(true);
+  }
 };
 
 /*! \brief ShutdownPolicy which does not wait for any tasks or worker termination.
@@ -59,14 +59,14 @@ public:
  */
 template<typename Pool>
 class immediately {
-public:
-	static void shutdown(Pool& pool) {
-		pool.clear();
-		pool.terminate_all_workers(false);
-	}
+ public:
+  static void shutdown(Pool& pool) {
+    pool.clear();
+    pool.terminate_all_workers(false);
+  }
 };
 
 }
-} // namespace boost::threadpool
+}  // namespace boost::threadpool
 
 #endif // THREADPOOL_SHUTDOWN_POLICIES_HPP_INCLUDED

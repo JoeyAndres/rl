@@ -1,0 +1,58 @@
+\hypertarget{classAI_1_1Algorithm_1_1DynaQCC}{\section{A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-C\-C$<$ S, A $>$ Class Template Reference}
+\label{classAI_1_1Algorithm_1_1DynaQCC}\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C$<$ S, A $>$@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C$<$ S, A $>$}}
+}
+Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-C\-C$<$ S, A $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classAI_1_1Algorithm_1_1DynaQCC}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQCC_a5ffe7676d88f48717731c809accb7801}{{\bfseries Dyna\-Q\-C\-C} (A\-I\-::\-F\-L\-O\-A\-T step\-Size, A\-I\-::\-F\-L\-O\-A\-T discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy}{Policy}$<$ S, A $>$ \&policy, A\-I\-::\-U\-I\-N\-T simulation\-Iteration\-Count, A\-I\-::\-F\-L\-O\-A\-T state\-Transition\-Greediness, A\-I\-::\-F\-L\-O\-A\-T state\-Transition\-Step\-Size)}\label{classAI_1_1Algorithm_1_1DynaQCC_a5ffe7676d88f48717731c809accb7801}
+
+\item 
+virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQCC_ae23b8f0afbb9fc5024aef9ce720c9b84}{update} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const S \&next\-State, const F\-L\-O\-A\-T reward, const set$<$ A $>$ \&action\-Set)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQCC_ae23b8f0afbb9fc5024aef9ce720c9b84}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C}!update@{update}}
+\index{update@{update}!AI::Algorithm::DynaQCC@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C}$<$ S, A $>$\-::update (
+\begin{DoxyParamCaption}
+\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{current\-State\-Action, }
+\item[{const S \&}]{next\-State, }
+\item[{const F\-L\-O\-A\-T}]{reward, }
+\item[{const set$<$ A $>$ \&}]{action\-Set}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQCC_ae23b8f0afbb9fc5024aef9ce720c9b84}
+Update the state\-Action map. 
+\begin{DoxyParams}{Parameters}
+{\em current\-State} & \\
+\hline
+{\em current\-Action} & \\
+\hline
+{\em next\-State} & \\
+\hline
+{\em reward} & reward of current\-State and current\-Action. \\
+\hline
+{\em state\-Action} & A map of \hyperlink{classAI_1_1StateAction}{State\-Action} to Value. \\
+\hline
+{\em action\-Set} & A set of all actions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+next action to be executed. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearning_a25d7fa245a79e61061436dc0f1db90cb}{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning$<$ S, A $>$}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Algorithms/\-Reinforcement\-Learning/Dyna\-Q\-C\-C.\-h\end{DoxyCompactItemize}

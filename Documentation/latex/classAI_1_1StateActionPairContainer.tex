@@ -1,0 +1,121 @@
+\hypertarget{classAI_1_1StateActionPairContainer}{\section{A\-I\-:\-:State\-Action\-Pair\-Container$<$ S, A $>$ Class Template Reference}
+\label{classAI_1_1StateActionPairContainer}\index{A\-I\-::\-State\-Action\-Pair\-Container$<$ S, A $>$@{A\-I\-::\-State\-Action\-Pair\-Container$<$ S, A $>$}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classAI_1_1StateActionPairContainer_a12842518174d0af5fc89c7a86e766099}{add\-State} (const S \&state, A\-I\-::\-F\-L\-O\-A\-T value, const set$<$ A $>$ \&action\-Set)
+\item 
+virtual void \hyperlink{classAI_1_1StateActionPairContainer_af4c9faef1c7d4e35b11f95b8a84352ae}{add\-Action} (A \&action, A\-I\-::\-F\-L\-O\-A\-T value, const set$<$ S $>$ \&action\-Set)
+\item 
+virtual bool \hyperlink{classAI_1_1StateActionPairContainer_a4da559c1dafe0c368a331c47aede0490}{state\-In\-State\-Action\-Pair\-Map} (const S \&state, const set$<$ A $>$ \&action\-Set) const 
+\item 
+virtual const A\-I\-::\-F\-L\-O\-A\-T \& \hyperlink{classAI_1_1StateActionPairContainer_aa3dccc9c82a2ec4130050c832e3da6c9}{get\-State\-Action\-Value} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&state\-Action) const   throw (\-State\-Action\-Not\-Exist\-Exception)
+\item 
+\hypertarget{classAI_1_1StateActionPairContainer_a26fa5b9fd043865695e6c4adf97188d5}{virtual void {\bfseries set\-State\-Action\-Value} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&state\-Action, A\-I\-::\-F\-L\-O\-A\-T value)  throw (\-State\-Action\-Not\-Exist\-Exception)}\label{classAI_1_1StateActionPairContainer_a26fa5b9fd043865695e6c4adf97188d5}
+
+\item 
+\hypertarget{classAI_1_1StateActionPairContainer_a4dc529e9a2fa432e93fe4e4d083fce6e}{const A\-I\-::\-F\-L\-O\-A\-T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&state\-Action) const }\label{classAI_1_1StateActionPairContainer_a4dc529e9a2fa432e93fe4e4d083fce6e}
+
+\item 
+\hypertarget{classAI_1_1StateActionPairContainer_abb152cc2644ba6fad1da5476b746dd30}{map$<$ \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$\\*
+, A\-I\-::\-F\-L\-O\-A\-T $>$\-::const\-\_\-iterator {\bfseries begin} () const }\label{classAI_1_1StateActionPairContainer_abb152cc2644ba6fad1da5476b746dd30}
+
+\item 
+\hypertarget{classAI_1_1StateActionPairContainer_a36cb0d1278cd67b4a7b4967ef6740937}{map$<$ \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$\\*
+, A\-I\-::\-F\-L\-O\-A\-T $>$\-::const\-\_\-iterator {\bfseries end} () const }\label{classAI_1_1StateActionPairContainer_a36cb0d1278cd67b4a7b4967ef6740937}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAI_1_1StateActionPairContainer_afeb95c4cb5d37ce8f8fd1a2b3518211b}{map$<$ \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$\\*
+, A\-I\-::\-F\-L\-O\-A\-T $>$ {\bfseries \-\_\-state\-Action\-Pair\-Map}}\label{classAI_1_1StateActionPairContainer_afeb95c4cb5d37ce8f8fd1a2b3518211b}
+
+\item 
+\hypertarget{classAI_1_1StateActionPairContainer_a70b98a34845bd7744fa4e8b7c3163939}{boost\-::shared\-\_\-mutex {\bfseries \-\_\-state\-Action\-Pair\-Map\-Mutex}}\label{classAI_1_1StateActionPairContainer_a70b98a34845bd7744fa4e8b7c3163939}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1StateActionPairContainer_af4c9faef1c7d4e35b11f95b8a84352ae}{\index{A\-I\-::\-State\-Action\-Pair\-Container@{A\-I\-::\-State\-Action\-Pair\-Container}!add\-Action@{add\-Action}}
+\index{add\-Action@{add\-Action}!AI::StateActionPairContainer@{A\-I\-::\-State\-Action\-Pair\-Container}}
+\subsubsection[{add\-Action}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-State\-Action\-Pair\-Container}$<$ S, A $>$\-::add\-Action (
+\begin{DoxyParamCaption}
+\item[{A \&}]{action, }
+\item[{A\-I\-::\-F\-L\-O\-A\-T}]{value, }
+\item[{const set$<$ S $>$ \&}]{action\-Set}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1StateActionPairContainer_af4c9faef1c7d4e35b11f95b8a84352ae}
+Adds a new action. 
+\begin{DoxyParams}{Parameters}
+{\em action} & \\
+\hline
+{\em value} & \\
+\hline
+{\em action\-Set} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1StateActionPairContainer_a12842518174d0af5fc89c7a86e766099}{\index{A\-I\-::\-State\-Action\-Pair\-Container@{A\-I\-::\-State\-Action\-Pair\-Container}!add\-State@{add\-State}}
+\index{add\-State@{add\-State}!AI::StateActionPairContainer@{A\-I\-::\-State\-Action\-Pair\-Container}}
+\subsubsection[{add\-State}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-State\-Action\-Pair\-Container}$<$ S, A $>$\-::add\-State (
+\begin{DoxyParamCaption}
+\item[{const S \&}]{state, }
+\item[{A\-I\-::\-F\-L\-O\-A\-T}]{value, }
+\item[{const set$<$ A $>$ \&}]{action\-Set}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1StateActionPairContainer_a12842518174d0af5fc89c7a86e766099}
+Adds a new state. Note that in order to avoid overwriting \begin{DoxySeeAlso}{See Also}
+\hyperlink{classAI_1_1StateActionPairContainer_a4da559c1dafe0c368a331c47aede0490}{state\-In\-State\-Action\-Pair\-Map()}. 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em state} & State to be added. \\
+\hline
+{\em value} & Value of the state to be added. \\
+\hline
+{\em action\-Array} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1StateActionPairContainer_aa3dccc9c82a2ec4130050c832e3da6c9}{\index{A\-I\-::\-State\-Action\-Pair\-Container@{A\-I\-::\-State\-Action\-Pair\-Container}!get\-State\-Action\-Value@{get\-State\-Action\-Value}}
+\index{get\-State\-Action\-Value@{get\-State\-Action\-Value}!AI::StateActionPairContainer@{A\-I\-::\-State\-Action\-Pair\-Container}}
+\subsubsection[{get\-State\-Action\-Value}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ const A\-I\-::\-F\-L\-O\-A\-T \& {\bf A\-I\-::\-State\-Action\-Pair\-Container}$<$ S, A $>$\-::get\-State\-Action\-Value (
+\begin{DoxyParamCaption}
+\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{state\-Action}
+\end{DoxyParamCaption}
+) const throw  {\bf State\-Action\-Not\-Exist\-Exception}) \hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classAI_1_1StateActionPairContainer_aa3dccc9c82a2ec4130050c832e3da6c9}
+
+\begin{DoxyParams}{Parameters}
+{\em state\-Action} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value of state\-Action. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em State\-Action\-Not\-Eist\-Exception} & when state\-Action does not exist. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classAI_1_1StateActionPairContainer_a4da559c1dafe0c368a331c47aede0490}{\index{A\-I\-::\-State\-Action\-Pair\-Container@{A\-I\-::\-State\-Action\-Pair\-Container}!state\-In\-State\-Action\-Pair\-Map@{state\-In\-State\-Action\-Pair\-Map}}
+\index{state\-In\-State\-Action\-Pair\-Map@{state\-In\-State\-Action\-Pair\-Map}!AI::StateActionPairContainer@{A\-I\-::\-State\-Action\-Pair\-Container}}
+\subsubsection[{state\-In\-State\-Action\-Pair\-Map}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ bool {\bf A\-I\-::\-State\-Action\-Pair\-Container}$<$ S, A $>$\-::state\-In\-State\-Action\-Pair\-Map (
+\begin{DoxyParamCaption}
+\item[{const S \&}]{state, }
+\item[{const set$<$ A $>$ \&}]{action\-Set}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1StateActionPairContainer_a4da559c1dafe0c368a331c47aede0490}
+
+\begin{DoxyParams}{Parameters}
+{\em state} & to be search in the \-\_\-state\-Action\-Pair\-Map. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if state is in \-\_\-state\-Action\-Pair\-Map. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+A\-I\-Base/State\-Action\-Pair\-Container.\-h\end{DoxyCompactItemize}

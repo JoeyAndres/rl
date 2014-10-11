@@ -23,18 +23,18 @@ namespace AI {
 
 template<class SensorData>
 class SensorStatesAbstract {
-public:
-	virtual SensorData getSensorState() = 0;
-	virtual bool isState(const SensorData& state) const = 0;
-	virtual bool isTerminalState(const SensorData& stateData) const = 0;
+ public:
+  virtual SensorData getSensorState() = 0;
+  virtual bool isState(const SensorData& state) const = 0;
+  virtual bool isTerminalState(const SensorData& stateData) const = 0;
 
-	/**
-	 * Maps sensorState to its corresponding reward.
-	 * @param sensorState to be mapped to its corresponding reward.
-	 * @return reward
-	 */
-	virtual AI::FLOAT getReward(SensorData& sensorState)
-			throw (StateNotExistException) = 0;
+  /**
+   * Maps sensorState to its corresponding reward.
+   * @param sensorState to be mapped to its corresponding reward.
+   * @return reward
+   */
+  virtual AI::FLOAT getReward(SensorData& sensorState)
+      throw (StateNotExistException) = 0;
 
 };
 } /* namespace AI */

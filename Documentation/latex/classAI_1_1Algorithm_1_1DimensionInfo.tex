@@ -1,0 +1,182 @@
+\hypertarget{classAI_1_1Algorithm_1_1DimensionInfo}{\section{A\-I\-:\-:Algorithm\-:\-:Dimension\-Info$<$ D $>$ Class Template Reference}
+\label{classAI_1_1Algorithm_1_1DimensionInfo}\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info$<$ D $>$@{A\-I\-::\-Algorithm\-::\-Dimension\-Info$<$ D $>$}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAI_1_1Algorithm_1_1DimensionInfo_a81474f419c3763f3de2833c8edb378c4}{Dimension\-Info} (D lower\-Range, D higher\-Range, A\-I\-::\-U\-I\-N\-T grid\-Count)
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a1401520e0bfb6e50b064ab0d94b8d5ec}{{\bfseries Dimension\-Info} (D lower\-Range, D higher\-Range, A\-I\-::\-U\-I\-N\-T grid\-Count, A\-I\-::\-F\-L\-O\-A\-T generalization\-Scale)}\label{classAI_1_1Algorithm_1_1DimensionInfo_a1401520e0bfb6e50b064ab0d94b8d5ec}
+
+\item 
+D \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo_a20db996bd27cf32c94fa1365546bde98}{Get\-Offsets} () const 
+\item 
+A\-I\-::\-U\-I\-N\-T \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo_a06b80f631364311d2e731ea6646a2232}{Get\-Grid\-Count\-Real} () const 
+\item 
+void \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo_a44578552f80f0772396bdc0430059e9e}{Set\-Grid\-Count\-Ideal} (A\-I\-::\-U\-I\-N\-T grid\-Count\-Ideal)
+\item 
+A\-I\-::\-U\-I\-N\-T \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo_a6f6590d1d331c55ff424196a16232d94}{Get\-Grid\-Count\-Ideal} () const 
+\item 
+A\-I\-::\-F\-L\-O\-A\-T \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo_ac00dab53a32a43aca17dcb48d8109436}{Get\-Range\-Difference} () const 
+\item 
+void \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo_a9889cad59dddd038f7fbddbd2ac6ece4}{set\-Upper\-Bound} (D upper\-Bound)
+\item 
+void \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo_adef1b2721242ef4ca4978a1ceb8d2474}{set\-Lower\-Bound} (D lower\-Bound)
+\item 
+D \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo_a01eab7ae14a0653b6042afc93ec988c5}{get\-Upper\-Bound} ()
+\item 
+D \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo_a21bdf660f342425445db64a1dea1fc2f}{get\-Lower\-Bound} ()
+\item 
+A\-I\-::\-F\-L\-O\-A\-T \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo_a82de90c2830def513911e4a3135ac2e2}{get\-Generalization\-Scale} () const 
+\item 
+void \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo_a53462f78d4d95d27ccb421f519b3112a}{set\-Generalization\-Scale} (A\-I\-::\-F\-L\-O\-A\-T generalization)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a81474f419c3763f3de2833c8edb378c4}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!Dimension\-Info@{Dimension\-Info}}
+\index{Dimension\-Info@{Dimension\-Info}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
+\subsubsection[{Dimension\-Info}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D $>$ {\bf A\-I\-::\-Algorithm\-::\-Dimension\-Info}$<$ D $>$\-::{\bf Dimension\-Info} (
+\begin{DoxyParamCaption}
+\item[{D}]{lower\-Range, }
+\item[{D}]{higher\-Range, }
+\item[{A\-I\-::\-U\-I\-N\-T}]{grid\-Count}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Algorithm_1_1DimensionInfo_a81474f419c3763f3de2833c8edb378c4}
+\hyperlink{classAI_1_1Algorithm_1_1DimensionInfo}{Dimension\-Info} consist of range \mbox{[}a, b\mbox{]} and grid\-Count. Higher grid count means more precision, less grid count means more generalization. 
+\begin{DoxyParams}{Parameters}
+{\em lower\-Range} & a in \mbox{[}a, b\mbox{]} \\
+\hline
+{\em higher\-Range} & b in \mbox{[}a , b\mbox{]} \\
+\hline
+{\em grid\-Count} & High value means more precision, less means more generalization. \\
+\hline
+{\em generalizationscale} & scales the generalization. Greater than 1 means exagerated, (0, 1), otherwise, reduced influence. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a82de90c2830def513911e4a3135ac2e2}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!get\-Generalization\-Scale@{get\-Generalization\-Scale}}
+\index{get\-Generalization\-Scale@{get\-Generalization\-Scale}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
+\subsubsection[{get\-Generalization\-Scale}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D $>$ A\-I\-::\-F\-L\-O\-A\-T {\bf A\-I\-::\-Algorithm\-::\-Dimension\-Info}$<$ D $>$\-::get\-Generalization\-Scale (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classAI_1_1Algorithm_1_1DimensionInfo_a82de90c2830def513911e4a3135ac2e2}
+\begin{DoxyReturn}{Returns}
+the generalization amount. 
+\end{DoxyReturn}
+\hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a6f6590d1d331c55ff424196a16232d94}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!Get\-Grid\-Count\-Ideal@{Get\-Grid\-Count\-Ideal}}
+\index{Get\-Grid\-Count\-Ideal@{Get\-Grid\-Count\-Ideal}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
+\subsubsection[{Get\-Grid\-Count\-Ideal}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D $>$ A\-I\-::\-U\-I\-N\-T {\bf A\-I\-::\-Algorithm\-::\-Dimension\-Info}$<$ D $>$\-::Get\-Grid\-Count\-Ideal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classAI_1_1Algorithm_1_1DimensionInfo_a6f6590d1d331c55ff424196a16232d94}
+\begin{DoxyReturn}{Returns}
+grid\-Count. 
+\end{DoxyReturn}
+\hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a06b80f631364311d2e731ea6646a2232}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!Get\-Grid\-Count\-Real@{Get\-Grid\-Count\-Real}}
+\index{Get\-Grid\-Count\-Real@{Get\-Grid\-Count\-Real}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
+\subsubsection[{Get\-Grid\-Count\-Real}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D $>$ A\-I\-::\-U\-I\-N\-T {\bf A\-I\-::\-Algorithm\-::\-Dimension\-Info}$<$ D $>$\-::Get\-Grid\-Count\-Real (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classAI_1_1Algorithm_1_1DimensionInfo_a06b80f631364311d2e731ea6646a2232}
+\begin{DoxyReturn}{Returns}
+usually grid\-Count + 1. 
+\end{DoxyReturn}
+\hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a21bdf660f342425445db64a1dea1fc2f}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!get\-Lower\-Bound@{get\-Lower\-Bound}}
+\index{get\-Lower\-Bound@{get\-Lower\-Bound}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
+\subsubsection[{get\-Lower\-Bound}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D $>$ D {\bf A\-I\-::\-Algorithm\-::\-Dimension\-Info}$<$ D $>$\-::get\-Lower\-Bound (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Algorithm_1_1DimensionInfo_a21bdf660f342425445db64a1dea1fc2f}
+\begin{DoxyReturn}{Returns}
+a in range \mbox{[}a, b\mbox{]}. 
+\end{DoxyReturn}
+\hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a20db996bd27cf32c94fa1365546bde98}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!Get\-Offsets@{Get\-Offsets}}
+\index{Get\-Offsets@{Get\-Offsets}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
+\subsubsection[{Get\-Offsets}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D $>$ D {\bf A\-I\-::\-Algorithm\-::\-Dimension\-Info}$<$ D $>$\-::Get\-Offsets (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classAI_1_1Algorithm_1_1DimensionInfo_a20db996bd27cf32c94fa1365546bde98}
+\begin{DoxyReturn}{Returns}
+range/grid\-Count. Divide this with number of tilings when used for acquiring feature vector to get the real increment. 
+\end{DoxyReturn}
+\hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_ac00dab53a32a43aca17dcb48d8109436}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!Get\-Range\-Difference@{Get\-Range\-Difference}}
+\index{Get\-Range\-Difference@{Get\-Range\-Difference}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
+\subsubsection[{Get\-Range\-Difference}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D $>$ A\-I\-::\-F\-L\-O\-A\-T {\bf A\-I\-::\-Algorithm\-::\-Dimension\-Info}$<$ D $>$\-::Get\-Range\-Difference (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classAI_1_1Algorithm_1_1DimensionInfo_ac00dab53a32a43aca17dcb48d8109436}
+\begin{DoxyReturn}{Returns}
+Acquire the difference in range \mbox{[}a, b\mbox{]}. Or $\vert$b-\/a$\vert$. 
+\end{DoxyReturn}
+\hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a01eab7ae14a0653b6042afc93ec988c5}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!get\-Upper\-Bound@{get\-Upper\-Bound}}
+\index{get\-Upper\-Bound@{get\-Upper\-Bound}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
+\subsubsection[{get\-Upper\-Bound}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D $>$ D {\bf A\-I\-::\-Algorithm\-::\-Dimension\-Info}$<$ D $>$\-::get\-Upper\-Bound (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Algorithm_1_1DimensionInfo_a01eab7ae14a0653b6042afc93ec988c5}
+\begin{DoxyReturn}{Returns}
+b in range \mbox{[}a, b\mbox{]}/ 
+\end{DoxyReturn}
+\hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a53462f78d4d95d27ccb421f519b3112a}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!set\-Generalization\-Scale@{set\-Generalization\-Scale}}
+\index{set\-Generalization\-Scale@{set\-Generalization\-Scale}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
+\subsubsection[{set\-Generalization\-Scale}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dimension\-Info}$<$ D $>$\-::set\-Generalization\-Scale (
+\begin{DoxyParamCaption}
+\item[{A\-I\-::\-F\-L\-O\-A\-T}]{generalization}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Algorithm_1_1DimensionInfo_a53462f78d4d95d27ccb421f519b3112a}
+
+\begin{DoxyParams}{Parameters}
+{\em generalization} & scales the generalization. Greater than 1 means exagerated, (0, 1), otherwise, reduced influence. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a44578552f80f0772396bdc0430059e9e}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!Set\-Grid\-Count\-Ideal@{Set\-Grid\-Count\-Ideal}}
+\index{Set\-Grid\-Count\-Ideal@{Set\-Grid\-Count\-Ideal}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
+\subsubsection[{Set\-Grid\-Count\-Ideal}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dimension\-Info}$<$ D $>$\-::Set\-Grid\-Count\-Ideal (
+\begin{DoxyParamCaption}
+\item[{A\-I\-::\-U\-I\-N\-T}]{grid\-Count\-Ideal}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Algorithm_1_1DimensionInfo_a44578552f80f0772396bdc0430059e9e}
+Changes the grid\-Count. 
+\begin{DoxyParams}{Parameters}
+{\em grid\-Count\-Ideal} & new grid\-Count value. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_adef1b2721242ef4ca4978a1ceb8d2474}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!set\-Lower\-Bound@{set\-Lower\-Bound}}
+\index{set\-Lower\-Bound@{set\-Lower\-Bound}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
+\subsubsection[{set\-Lower\-Bound}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dimension\-Info}$<$ D $>$\-::set\-Lower\-Bound (
+\begin{DoxyParamCaption}
+\item[{D}]{lower\-Bound}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Algorithm_1_1DimensionInfo_adef1b2721242ef4ca4978a1ceb8d2474}
+
+\begin{DoxyParams}{Parameters}
+{\em lower\-Bound} & to set a in range \mbox{[}a, b\mbox{]}. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a9889cad59dddd038f7fbddbd2ac6ece4}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!set\-Upper\-Bound@{set\-Upper\-Bound}}
+\index{set\-Upper\-Bound@{set\-Upper\-Bound}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
+\subsubsection[{set\-Upper\-Bound}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename D $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dimension\-Info}$<$ D $>$\-::set\-Upper\-Bound (
+\begin{DoxyParamCaption}
+\item[{D}]{upper\-Bound}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Algorithm_1_1DimensionInfo_a9889cad59dddd038f7fbddbd2ac6ece4}
+
+\begin{DoxyParams}{Parameters}
+{\em upper\-Bound} & to set b in range \mbox{[}a, b\mbox{]}. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Algorithms/\-Supervised\-Learning/Dimension\-Info.\-h\end{DoxyCompactItemize}

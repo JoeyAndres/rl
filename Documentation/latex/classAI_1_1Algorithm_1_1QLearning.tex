@@ -1,0 +1,73 @@
+\hypertarget{classAI_1_1Algorithm_1_1QLearning}{\section{A\-I\-:\-:Algorithm\-:\-:Q\-Learning$<$ S, A $>$ Class Template Reference}
+\label{classAI_1_1Algorithm_1_1QLearning}\index{A\-I\-::\-Algorithm\-::\-Q\-Learning$<$ S, A $>$@{A\-I\-::\-Algorithm\-::\-Q\-Learning$<$ S, A $>$}}
+}
+
+
+{\ttfamily \#include $<$Q\-Learning.\-h$>$}
+
+Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Q\-Learning$<$ S, A $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classAI_1_1Algorithm_1_1QLearning}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1QLearning_a755235439225d9ba78440f2ef7441c81}{{\bfseries Q\-Learning} (A\-I\-::\-F\-L\-O\-A\-T step\-Size, A\-I\-::\-F\-L\-O\-A\-T discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy}{Policy}$<$ S, A $>$ \&policy)}\label{classAI_1_1Algorithm_1_1QLearning_a755235439225d9ba78440f2ef7441c81}
+
+\item 
+virtual void \hyperlink{classAI_1_1Algorithm_1_1QLearning_a042e1987ce21a94f59603c4cb1eeed82}{update} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const S \&next\-State, const A\-I\-::\-F\-L\-O\-A\-T reward, const set$<$ A $>$ \&action\-Set)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class S, class A$>$class A\-I\-::\-Algorithm\-::\-Q\-Learning$<$ S, A $>$}
+
+\hyperlink{classAI_1_1Algorithm_1_1QLearning}{Q\-Learning} 
+
+An implementation of T\-D(0) that employs Off-\/\-Policy T\-D Control. Meaning different policy is used for approximating q$\ast$ and action-\/selection. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1QLearning_a042e1987ce21a94f59603c4cb1eeed82}{\index{A\-I\-::\-Algorithm\-::\-Q\-Learning@{A\-I\-::\-Algorithm\-::\-Q\-Learning}!update@{update}}
+\index{update@{update}!AI::Algorithm::QLearning@{A\-I\-::\-Algorithm\-::\-Q\-Learning}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-Algorithm\-::\-Q\-Learning}$<$ S, A $>$\-::update (
+\begin{DoxyParamCaption}
+\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{current\-State\-Action, }
+\item[{const S \&}]{next\-State, }
+\item[{const A\-I\-::\-F\-L\-O\-A\-T}]{reward, }
+\item[{const set$<$ A $>$ \&}]{action\-Set}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1QLearning_a042e1987ce21a94f59603c4cb1eeed82}
+Update the state\-Action map. 
+\begin{DoxyParams}{Parameters}
+{\em current\-State} & \\
+\hline
+{\em current\-Action} & \\
+\hline
+{\em next\-State} & \\
+\hline
+{\em current\-State\-Action\-Value} & Value of current\-State and current\-Action. \\
+\hline
+{\em state\-Action} & A map of \hyperlink{classAI_1_1StateAction}{State\-Action} to Value. \\
+\hline
+{\em action\-Set} & A set of all actions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+next action to be executed. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearning_a25d7fa245a79e61061436dc0f1db90cb}{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning$<$ S, A $>$}.
+
+
+
+Reimplemented in \hyperlink{classAI_1_1Algorithm_1_1QLearningETWatkins_a5cbad8c16dfbf6fe72c85fe5c8c4e273}{A\-I\-::\-Algorithm\-::\-Q\-Learning\-E\-T\-Watkins$<$ S, A $>$}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Algorithms/\-Reinforcement\-Learning/Q\-Learning.\-h\end{DoxyCompactItemize}

@@ -1,0 +1,106 @@
+\hypertarget{classAI_1_1Algorithm_1_1DynaQETWatkins}{\section{A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-E\-T\-Watkins$<$ S, A $>$ Class Template Reference}
+\label{classAI_1_1Algorithm_1_1DynaQETWatkins}\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-E\-T\-Watkins$<$ S, A $>$@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-E\-T\-Watkins$<$ S, A $>$}}
+}
+
+
+{\ttfamily \#include $<$Dyna\-Q\-E\-T\-Watkins.\-h$>$}
+
+Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-E\-T\-Watkins$<$ S, A $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.357314cm]{classAI_1_1Algorithm_1_1DynaQETWatkins}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAI_1_1Algorithm_1_1DynaQETWatkins_a06cc345554bc70be5c059c771f4a5634}{Dyna\-Q\-E\-T\-Watkins} (A\-I\-::\-F\-L\-O\-A\-T step\-Size, A\-I\-::\-F\-L\-O\-A\-T discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy}{Policy}$<$ S, A $>$ \&policy, A\-I\-::\-U\-I\-N\-T simulation\-Iteration\-Count, A\-I\-::\-F\-L\-O\-A\-T state\-Transition\-Greediness, A\-I\-::\-F\-L\-O\-A\-T state\-Transition\-Step\-Size, A\-I\-::\-F\-L\-O\-A\-T lambda)
+\item 
+virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQETWatkins_aa4e40af0fd705cd5d1f7fd13834c57c6}{update} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const S \&next\-State, const A\-I\-::\-F\-L\-O\-A\-T current\-State\-Action\-Value, const set$<$ A $>$ \&action\-Set)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class S, class A$>$class A\-I\-::\-Algorithm\-::\-Dyna\-Q\-E\-T\-Watkins$<$ S, A $>$}
+
+\hyperlink{classAI_1_1Algorithm_1_1DynaQETWatkins}{Dyna\-Q\-E\-T\-Watkins} 
+
+The \hyperlink{classAI_1_1Algorithm_1_1DynaQETWatkins}{Dyna\-Q\-E\-T\-Watkins} algorithm is a subclass of Reinforcement Algorithm. \hyperlink{classAI_1_1Algorithm_1_1DynaQETWatkins}{Dyna\-Q\-E\-T\-Watkins} employs simulation\-Count for every update thus improving the conversion rate.
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{classAI_1_1StateActionTransition}{State\-Action\-Transition} representing the models.
+
+\hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} 
+
+\hyperlink{classAI_1_1Algorithm_1_1EligibilityTraces}{Eligibility\-Traces} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQETWatkins_a06cc345554bc70be5c059c771f4a5634}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-E\-T\-Watkins@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-E\-T\-Watkins}!Dyna\-Q\-E\-T\-Watkins@{Dyna\-Q\-E\-T\-Watkins}}
+\index{Dyna\-Q\-E\-T\-Watkins@{Dyna\-Q\-E\-T\-Watkins}!AI::Algorithm::DynaQETWatkins@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-E\-T\-Watkins}}
+\subsubsection[{Dyna\-Q\-E\-T\-Watkins}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-E\-T\-Watkins}$<$ S, A $>$\-::{\bf Dyna\-Q\-E\-T\-Watkins} (
+\begin{DoxyParamCaption}
+\item[{A\-I\-::\-F\-L\-O\-A\-T}]{step\-Size, }
+\item[{A\-I\-::\-F\-L\-O\-A\-T}]{discount\-Rate, }
+\item[{{\bf Policy}$<$ S, A $>$ \&}]{policy, }
+\item[{A\-I\-::\-U\-I\-N\-T}]{simulation\-Iteration\-Count, }
+\item[{A\-I\-::\-F\-L\-O\-A\-T}]{state\-Transition\-Greediness, }
+\item[{A\-I\-::\-F\-L\-O\-A\-T}]{state\-Transition\-Step\-Size, }
+\item[{A\-I\-::\-F\-L\-O\-A\-T}]{lambda}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Algorithm_1_1DynaQETWatkins_a06cc345554bc70be5c059c771f4a5634}
+
+\begin{DoxyParams}{Parameters}
+{\em step\-Size} & range \mbox{[}0.\-0, 1.\-0\mbox{]}. High step size means faster learning, but less precise convergence. \\
+\hline
+{\em discount\-Rate} & range \mbox{[}0.\-0, 1.\-0\mbox{]}. High discount rate means more consideration of future events. \\
+\hline
+{\em simulation\-Iteration\-Count} & How many simulation per update. \\
+\hline
+{\em state\-Transition\-Greediness} & High value means less likely to choose random action during simulation. \\
+\hline
+{\em state\-Transition\-Step\-Size} & High value means faster learning in models but lower values means more accurate models. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQETWatkins_aa4e40af0fd705cd5d1f7fd13834c57c6}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-E\-T\-Watkins@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-E\-T\-Watkins}!update@{update}}
+\index{update@{update}!AI::Algorithm::DynaQETWatkins@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-E\-T\-Watkins}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-E\-T\-Watkins}$<$ S, A $>$\-::update (
+\begin{DoxyParamCaption}
+\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{current\-State\-Action, }
+\item[{const S \&}]{next\-State, }
+\item[{const A\-I\-::\-F\-L\-O\-A\-T}]{reward, }
+\item[{const set$<$ A $>$ \&}]{action\-Set}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQETWatkins_aa4e40af0fd705cd5d1f7fd13834c57c6}
+Update the state\-Action map. 
+\begin{DoxyParams}{Parameters}
+{\em current\-State} & \\
+\hline
+{\em current\-Action} & \\
+\hline
+{\em next\-State} & \\
+\hline
+{\em reward} & reward of current\-State and current\-Action. \\
+\hline
+{\em state\-Action} & A map of \hyperlink{classAI_1_1StateAction}{State\-Action} to Value. \\
+\hline
+{\em action\-Set} & A set of all actions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+next action to be executed. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classAI_1_1Algorithm_1_1DynaQ_a4542226b17db4ed8a2c5ec17d37dc42f}{A\-I\-::\-Algorithm\-::\-Dyna\-Q$<$ S, A $>$}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Algorithms/\-Reinforcement\-Learning/Dyna\-Q\-E\-T\-Watkins.\-h\end{DoxyCompactItemize}

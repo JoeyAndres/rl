@@ -1,0 +1,63 @@
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase}{\section{A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-Base$<$ S, A $>$ Class Template Reference}
+\label{classAI_1_1Algorithm_1_1DynaQBase}\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base$<$ S, A $>$@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base$<$ S, A $>$}}
+}
+Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-Base$<$ S, A $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.557078cm]{classAI_1_1Algorithm_1_1DynaQBase}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a089f4024fab2f19179dea637b7f6c8ee}{{\bfseries Dyna\-Q\-Base} (A\-I\-::\-U\-I\-N\-T simulation\-Iteration\-Count, A\-I\-::\-F\-L\-O\-A\-T state\-Transition\-Greediness, A\-I\-::\-F\-L\-O\-A\-T state\-Transition\-Step\-Size)}\label{classAI_1_1Algorithm_1_1DynaQBase_a089f4024fab2f19179dea637b7f6c8ee}
+
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a0d5777706e9c2be04ee1834ad593c795}{virtual void {\bfseries back\-Up\-State\-Action\-Pair} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const F\-L\-O\-A\-T reward, const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&next\-State\-Action\-Pair)=0}\label{classAI_1_1Algorithm_1_1DynaQBase_a0d5777706e9c2be04ee1834ad593c795}
+
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a32044f721ba4afbca5ea144b3f84135b}{virtual A {\bfseries arg\-Max} (const S \&state, const set$<$ A $>$ \&action\-Set) const =0}\label{classAI_1_1Algorithm_1_1DynaQBase_a32044f721ba4afbca5ea144b3f84135b}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a4a45b9303a4b9e0cf93b9a5272739b35}{virtual void {\bfseries \-\_\-update\-Model} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const S \&next\-State, const F\-L\-O\-A\-T reward)}\label{classAI_1_1Algorithm_1_1DynaQBase_a4a45b9303a4b9e0cf93b9a5272739b35}
+
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a0524b63604a75fd079b85a3a6e6ac93d}{virtual void {\bfseries \-\_\-add\-Model\-Safe} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action)}\label{classAI_1_1Algorithm_1_1DynaQBase_a0524b63604a75fd079b85a3a6e6ac93d}
+
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_aefe879b3103a6c4f46176d9fcb1a911d}{virtual void {\bfseries \-\_\-add\-Model} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action)}\label{classAI_1_1Algorithm_1_1DynaQBase_aefe879b3103a6c4f46176d9fcb1a911d}
+
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_ae33343ea87f96ee3a2c2651bfd2cbcc5}{virtual void {\bfseries \-\_\-simulate} (const set$<$ A $>$ \&action\-Set)}\label{classAI_1_1Algorithm_1_1DynaQBase_ae33343ea87f96ee3a2c2651bfd2cbcc5}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a3d375c3e01c7cc8a30c92109780adb9b}{A\-I\-::\-U\-I\-N\-T {\bfseries \-\_\-simulation\-Iteration\-Count}}\label{classAI_1_1Algorithm_1_1DynaQBase_a3d375c3e01c7cc8a30c92109780adb9b}
+
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a1c9b96a2f0fa30d04d538b56ba008db4}{map$<$ \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$\\*
+, \hyperlink{classAI_1_1StateActionTransition}{State\-Action\-Transition}$<$ S $>$ $>$ {\bfseries \-\_\-model}}\label{classAI_1_1Algorithm_1_1DynaQBase_a1c9b96a2f0fa30d04d538b56ba008db4}
+
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_ae3f83dbeea191fc8bdcd518a2e54af97}{A\-I\-::\-F\-L\-O\-A\-T {\bfseries \-\_\-state\-Action\-Transition\-Greediness}}\label{classAI_1_1Algorithm_1_1DynaQBase_ae3f83dbeea191fc8bdcd518a2e54af97}
+
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a1fd132ae0aeb356a891e5b81bf218338}{A\-I\-::\-F\-L\-O\-A\-T {\bfseries \-\_\-state\-Action\-Transition\-Step\-Size}}\label{classAI_1_1Algorithm_1_1DynaQBase_a1fd132ae0aeb356a891e5b81bf218338}
+
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_adc3615604882454399863291f73b8734}{boost\-::shared\-\_\-mutex {\bfseries \-\_\-general\-Lock}}\label{classAI_1_1Algorithm_1_1DynaQBase_adc3615604882454399863291f73b8734}
+
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_ab166bd02d02f17c76a7626372c649849}{boost\-::shared\-\_\-mutex {\bfseries \-\_\-model\-Lock}}\label{classAI_1_1Algorithm_1_1DynaQBase_ab166bd02d02f17c76a7626372c649849}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Algorithms/\-Reinforcement\-Learning/Dyna\-Q\-Base.\-h\end{DoxyCompactItemize}

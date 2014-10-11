@@ -15,12 +15,12 @@ using namespace std;
 
 namespace AI {
 
-class StateNotExistException: exception {
-public:
-	StateNotExistException(string extraMessage);
-	virtual const char* what() const throw ();
-private:
-	string _extraMessage;
+class StateNotExistException : exception {
+ public:
+  StateNotExistException(string extraMessage);
+  virtual const char* what() const throw ();
+ private:
+  string _extraMessage;
 };
 
 } /* namespace AI */

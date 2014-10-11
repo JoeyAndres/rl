@@ -1,12 +1,13 @@
 CXX=g++ -O3
-CXXFLAGS=-Wall -std=c++11 -Wextra -Wshadow
+#CXXFLAGS=-Wall -std=c++11 -Wextra -Wshadow
+CXXFLAGS=-std=c++11
 CPPFLAGS=
 
 INCLUDE_PATHS = -I. -I./Algorithms -I./Tests -I./Tests/RandomWalkTests \
 	-I./Algorithms/ReinforcementLearning -I./Algorithms/SupervisedLearning \
 	-I./Algorithms/Policy -I./Tests/MountainCarTests -I./UnitTest++ \
 	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./boost -I./boost/threadpool \
-	-I./Algorithms/Hash -I./AIBase
+	-I./Algorithms/Hash -I./Algorithms/Hash/Implementation -I./AIBase
 LIBRARY_PATHS = -L. -L./UnitTest++
 AI_LIB_PATH := ./lib/libAI.a
 
@@ -31,7 +32,8 @@ ALGORITHM_OBJECT := $(patsubst %.cpp,%.o,$(wildcard Algorithms/*.cpp)) \
 	$(patsubst %.cpp,%.o,$(wildcard Algorithms/ReinforcementLearning/*.cpp)) \
 	$(patsubst %.cpp,%.o,$(wildcard Algorithms/SupervisedLearning/*.cpp)) \
 	$(patsubst %.cpp,%.o,$(wildcard Algorithms/Policy/*.cpp)) \
-	$(patsubst %.cpp,%.o,$(wildcard Algorithms/Hash/*.cpp))
+	$(patsubst %.cpp,%.o,$(wildcard Algorithms/Hash/*.cpp)) \
+	$(patsubst %.cpp,%.o,$(wildcard Algorithms/Hash/Implementation/*.cpp))
 
 ALGORITHM_OBJECT := $(filter-out %TileCodeTest.o, $(ALGORITHM_OBJECT)) \
 		$(patsubst %.cpp,%.o,$(wildcard *.cpp))	

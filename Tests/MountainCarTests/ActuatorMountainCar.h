@@ -11,15 +11,18 @@
 #include "GlobalHeader.h"
 
 #include <vector>
+#include <set>
 
 #include "ActuatorAction.h"
 
 using namespace std;
 
 namespace AI {
-class ActuatorMountainCar final : public Actuator<vector<AI::FLOAT> > {
-public:
-	virtual void applyAction(const vector<AI::FLOAT>& action);
+class ActuatorMountainCar final : public Actuator<ACTION_CONT> {
+ public:
+  ActuatorMountainCar();
+  ActuatorMountainCar(set<ACTION_CONT> actionSet);
+  virtual void applyAction(const ACTION_CONT& action);
 };
 
 } /* namespace AI */

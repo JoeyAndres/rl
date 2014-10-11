@@ -4,7 +4,7 @@
 namespace UnitTestSuite {
 
 inline char const* GetSuiteName() {
-	return "DefaultSuite";
+  return "DefaultSuite";
 }
 
 }

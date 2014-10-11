@@ -31,7 +31,7 @@ namespace threadpool {
  */
 template<typename Pool, typename Runnable>
 bool schedule(Pool& pool, shared_ptr<Runnable> const & obj) {
-	return pool->schedule(bind(&Runnable::run, obj));
+  return pool->schedule(bind(&Runnable::run, obj));
 }
 
 /*! Schedules a task for asynchronous execution. The task will be executed once only.
@@ -39,20 +39,20 @@ bool schedule(Pool& pool, shared_ptr<Runnable> const & obj) {
  */
 template<typename Pool>
 typename enable_if<
-		is_void<typename result_of<typename Pool::task_type()>::type>, bool>::type schedule(
-		Pool& pool, typename Pool::task_type const & task) {
-	return pool.schedule(task);
+    is_void<typename result_of<typename Pool::task_type()>::type>, bool>::type schedule(
+    Pool& pool, typename Pool::task_type const & task) {
+  return pool.schedule(task);
 }
 
 template<typename Pool>
 typename enable_if<
-		is_void<typename result_of<typename Pool::task_type()>::type>, bool>::type schedule(
-		shared_ptr<Pool> const pool, typename Pool::task_type const & task) {
-	return pool->schedule(task);
+    is_void<typename result_of<typename Pool::task_type()>::type>, bool>::type schedule(
+    shared_ptr<Pool> const pool, typename Pool::task_type const & task) {
+  return pool->schedule(task);
 }
 
 }
-} // namespace boost::threadpool
+}  // namespace boost::threadpool
 
 #endif // THREADPOOL_POOL_ADAPTORS_HPP_INCLUDED
 

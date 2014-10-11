@@ -21,7 +21,7 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
-
+namespace Policy {
 /**
  * Softmax Policy
  * <p>
@@ -38,66 +38,66 @@ namespace Algorithm {
  * pg 31.
  */
 template<class S, class A>
-class Softmax: public Policy<S, A> {
-public:
-	Softmax(AI::FLOAT temperature);
+class Softmax : public Policy<S, A> {
+ public:
+  Softmax(AI::FLOAT temperature);
 
-	virtual const A& getAction(const map<A, AI::FLOAT>& actionValues,
-			const set<A>& actionSet);
+  virtual const A& getAction(const map<A, AI::FLOAT>& actionValues,
+                             const set<A>& actionSet);
 
-private:
-	std::random_device _randomDevice;
-	std::uniform_real_distribution<AI::FLOAT> _distribution;
-	AI::FLOAT _temperature;
+ private:
+  std::random_device _randomDevice;
+  std::uniform_real_distribution<AI::FLOAT> _distribution;
+  AI::FLOAT _temperature;
 };
 
 typedef Softmax<vector<AI::FLOAT>, vector<AI::FLOAT> > SoftmaxSL;
 }
 }
+}
 
 template<class S, class A>
-AI::Algorithm::Softmax<S, A>::Softmax(AI::FLOAT temperature) :
-		_distribution(0.0F, 1.0F) {
-	_temperature = temperature;
+AI::Algorithm::Policy::Softmax<S, A>::Softmax(AI::FLOAT temperature)
+    : _distribution(0.0F, 1.0F) {
+  _temperature = temperature;
 }
 
 template<class S, class A>
 const A& AI::Algorithm::Softmax<S, A>::getAction(
-		const map<A, AI::FLOAT>& actionValues, const set<A>& actionSet) {
-	// Acquire E(i=1...n) e^(Q(i)/temp)
-	AI::FLOAT sum = 0.0F;
-	for (const A& action : actionSet) {
-		sum += exp(actionValues.at(action) / _temperature);
-	}
+    const map<A, AI::FLOAT>& actionValues, const set<A>& actionSet) {
+  // Acquire E(i=1...n) e^(Q(i)/temp)
+  AI::FLOAT sum = 0.0F;
+  for (const A& action : actionSet) {
+    sum += exp(actionValues.at(action) / _temperature);
+  }
 
-	// Acquire probability for each action.
-	map<A, AI::FLOAT> actionProbabilityMap;
-	for (const A& action : actionSet) {
-		AI::FLOAT probability = exp(actionValues.at(action) / _temperature)
-				/ sum;
-		actionProbabilityMap[action] = probability;
-	}
+  // Acquire probability for each action.
+  map<A, AI::FLOAT> actionProbabilityMap;
+  for (const A& action : actionSet) {
+    AI::FLOAT probability = exp(actionValues.at(action) / _temperature) / sum;
+    actionProbabilityMap[action] = probability;
+  }
 
-	// Choose action based on probability.
-	AI::FLOAT randomNumberWeightedSelection = _distribution(_randomDevice);
+  // Choose action based on probability.
+  AI::FLOAT randomNumberWeightedSelection = _distribution(_randomDevice);
 
-	// Get the one that matches the random value.
-	auto iter = actionProbabilityMap.begin();
-	for (; iter != actionProbabilityMap.end(); iter++) {
-		AI::FLOAT currentProbability = iter->second;
+  // Get the one that matches the random value.
+  auto iter = actionProbabilityMap.begin();
+  for (; iter != actionProbabilityMap.end(); iter++) {
+    AI::FLOAT currentProbability = iter->second;
 
-		// If current frequency is greater than highest frequency and at the
-		// time lower than the current random number then
-		// Error = randomNumber-highestFreq is of the lowest, therefore,
-		// a candidate.
-		if (currentProbability > randomNumberWeightedSelection) {
-			return iter->first;
-		}
+    // If current frequency is greater than highest frequency and at the
+    // time lower than the current random number then
+    // Error = randomNumber-highestFreq is of the lowest, therefore,
+    // a candidate.
+    if (currentProbability > randomNumberWeightedSelection) {
+      return iter->first;
+    }
 
-		randomNumberWeightedSelection -= currentProbability;
-	}
+    randomNumberWeightedSelection -= currentProbability;
+  }
 
-	assert(false);
+  assert(false);
 }
 
 #endif	/* SOFTMAX_H */

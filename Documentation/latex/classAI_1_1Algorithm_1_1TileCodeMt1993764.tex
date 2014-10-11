@@ -1,0 +1,89 @@
+\hypertarget{classAI_1_1Algorithm_1_1TileCodeMt1993764}{\section{A\-I\-:\-:Algorithm\-:\-:Tile\-Code\-Mt1993764 Class Reference}
+\label{classAI_1_1Algorithm_1_1TileCodeMt1993764}\index{A\-I\-::\-Algorithm\-::\-Tile\-Code\-Mt1993764@{A\-I\-::\-Algorithm\-::\-Tile\-Code\-Mt1993764}}
+}
+Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Tile\-Code\-Mt1993764\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classAI_1_1Algorithm_1_1TileCodeMt1993764}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAI_1_1Algorithm_1_1TileCodeMt1993764_a0d8eee3e74ccf5587d1f376e9c54a33f}{Tile\-Code\-Mt1993764} (vector$<$ \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo}{Dimension\-Info}$<$ F\-L\-O\-A\-T $>$ $>$ dimensional\-Infos, size\-\_\-t num\-Tilings)
+\item 
+\hyperlink{classAI_1_1Algorithm_1_1TileCodeMt1993764_a6062251f25cab695518db0fda5f97dc6}{Tile\-Code\-Mt1993764} (vector$<$ \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo}{Dimension\-Info}$<$ F\-L\-O\-A\-T $>$ $>$ dimensional\-Infos, size\-\_\-t num\-Tilings, size\-\_\-t size\-Hint)
+\item 
+virtual void \hyperlink{classAI_1_1Algorithm_1_1TileCodeMt1993764_a8d3e8fd183947d9dcb19e63139ea0871}{get\-Feature\-Vector} (const S\-T\-A\-T\-E\-\_\-\-C\-O\-N\-T \&parameters, F\-E\-A\-T\-U\-R\-E\-\_\-\-V\-E\-C\-T\-O\-R \&fv)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1TileCodeMt1993764_a2b2f796c8f67e2076c1149c9d5e43be9}{std\-::mt19937\-\_\-64 {\bfseries \-\_\-prng}}\label{classAI_1_1Algorithm_1_1TileCodeMt1993764_a2b2f796c8f67e2076c1149c9d5e43be9}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1TileCodeMt1993764_a0d8eee3e74ccf5587d1f376e9c54a33f}{\index{A\-I\-::\-Algorithm\-::\-Tile\-Code\-Mt1993764@{A\-I\-::\-Algorithm\-::\-Tile\-Code\-Mt1993764}!Tile\-Code\-Mt1993764@{Tile\-Code\-Mt1993764}}
+\index{Tile\-Code\-Mt1993764@{Tile\-Code\-Mt1993764}!AI::Algorithm::TileCodeMt1993764@{A\-I\-::\-Algorithm\-::\-Tile\-Code\-Mt1993764}}
+\subsubsection[{Tile\-Code\-Mt1993764}]{\setlength{\rightskip}{0pt plus 5cm}A\-I\-::\-Algorithm\-::\-Tile\-Code\-Mt1993764\-::\-Tile\-Code\-Mt1993764 (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Dimension\-Info}$<$ F\-L\-O\-A\-T $>$ $>$}]{dimensional\-Infos, }
+\item[{size\-\_\-t}]{num\-Tilings}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAI_1_1Algorithm_1_1TileCodeMt1993764_a0d8eee3e74ccf5587d1f376e9c54a33f}
+
+\begin{DoxyParams}{Parameters}
+{\em dimensional\-Infos} & \\
+\hline
+{\em num\-Tilings} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1TileCodeMt1993764_a6062251f25cab695518db0fda5f97dc6}{\index{A\-I\-::\-Algorithm\-::\-Tile\-Code\-Mt1993764@{A\-I\-::\-Algorithm\-::\-Tile\-Code\-Mt1993764}!Tile\-Code\-Mt1993764@{Tile\-Code\-Mt1993764}}
+\index{Tile\-Code\-Mt1993764@{Tile\-Code\-Mt1993764}!AI::Algorithm::TileCodeMt1993764@{A\-I\-::\-Algorithm\-::\-Tile\-Code\-Mt1993764}}
+\subsubsection[{Tile\-Code\-Mt1993764}]{\setlength{\rightskip}{0pt plus 5cm}A\-I\-::\-Algorithm\-::\-Tile\-Code\-Mt1993764\-::\-Tile\-Code\-Mt1993764 (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Dimension\-Info}$<$ F\-L\-O\-A\-T $>$ $>$}]{dimensional\-Infos, }
+\item[{size\-\_\-t}]{num\-Tilings, }
+\item[{size\-\_\-t}]{size\-Hint}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAI_1_1Algorithm_1_1TileCodeMt1993764_a6062251f25cab695518db0fda5f97dc6}
+
+\begin{DoxyParams}{Parameters}
+{\em dimensional\-Infos} & \\
+\hline
+{\em num\-Tilings} & \\
+\hline
+{\em size\-Hint} & If size\-Hint is greater than calculated size, then size\-Hint will be used instead. The bigger the size\-Hint, the less likely is the collision during hashing. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1TileCodeMt1993764_a8d3e8fd183947d9dcb19e63139ea0871}{\index{A\-I\-::\-Algorithm\-::\-Tile\-Code\-Mt1993764@{A\-I\-::\-Algorithm\-::\-Tile\-Code\-Mt1993764}!get\-Feature\-Vector@{get\-Feature\-Vector}}
+\index{get\-Feature\-Vector@{get\-Feature\-Vector}!AI::Algorithm::TileCodeMt1993764@{A\-I\-::\-Algorithm\-::\-Tile\-Code\-Mt1993764}}
+\subsubsection[{get\-Feature\-Vector}]{\setlength{\rightskip}{0pt plus 5cm}void A\-I\-::\-Algorithm\-::\-Tile\-Code\-Mt1993764\-::get\-Feature\-Vector (
+\begin{DoxyParamCaption}
+\item[{const S\-T\-A\-T\-E\-\_\-\-C\-O\-N\-T \&}]{parameters, }
+\item[{F\-E\-A\-T\-U\-R\-E\-\_\-\-V\-E\-C\-T\-O\-R \&}]{fv}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1TileCodeMt1993764_a8d3e8fd183947d9dcb19e63139ea0871}
+Hashed the parameter in Real space to a Natural space \mbox{[}0, infinity). 
+\begin{DoxyParams}{Parameters}
+{\em parameters} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of discretize index. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classAI_1_1Algorithm_1_1TileCode_ad2ba639c550e7d267d066e54b20f6000}{A\-I\-::\-Algorithm\-::\-Tile\-Code}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Algorithms/\-Supervised\-Learning/Tile\-Code\-Mt1993764.\-h\end{DoxyCompactItemize}

@@ -13,12 +13,21 @@
 #include <cstdint>
 #include <vector>
 
+#include "HashInterface.h"
+
 using namespace std;
 
 namespace AI {
 namespace Algorithm {
-AI::INT hashUNH(AI::INT *coordinates, AI::INT numIndices, size_t memorySize);
-AI::INT hashUNH(vector<AI::INT>& coordinateVector, size_t memorySize);
+namespace Hash{
+
+class UNH : public HashInterface<AI::INT> {
+ public:
+  virtual AI::INT hash(const AI::BYTE *const byteArray, size_t len);
+  virtual AI::INT hash(const vector<AI::BYTE>& byteArray);
+};
+
+} /* Hash */
 } /* Algorithm */
 } /* AI */
 

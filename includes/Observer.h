@@ -10,12 +10,12 @@
 
 template<class NotifyArgument>
 class Observer {
-public:
-	Observer();
-	virtual ~Observer();
+ public:
+  Observer();
+  virtual ~Observer();
 
-	virtual void notify(NotifyArgument arg) = 0;
-private:
+  virtual void notify(NotifyArgument arg) = 0;
+ private:
 
 };
 

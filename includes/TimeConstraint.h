@@ -9,17 +9,17 @@ class TestResults;
 class TestDetails;
 
 class TimeConstraint {
-public:
-	TimeConstraint(int ms, TestDetails const& details);
-	~TimeConstraint();
+ public:
+  TimeConstraint(int ms, TestDetails const& details);
+  ~TimeConstraint();
 
-private:
-	void operator=(TimeConstraint const&);
-	TimeConstraint(TimeConstraint const&);
+ private:
+  void operator=(TimeConstraint const&);
+  TimeConstraint(TimeConstraint const&);
 
-	Timer m_timer;
-	TestDetails const& m_details;
-	int const m_maxMs;
+  Timer m_timer;
+  TestDetails const& m_details;
+  int const m_maxMs;
 };
 
 #define UNITTEST_TIME_CONSTRAINT(ms) \

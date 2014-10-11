@@ -6,13 +6,13 @@
 namespace UnitTest {
 
 class Timer {
-public:
-	Timer();
-	void Start();
-	int GetTimeInMs() const;
+ public:
+  Timer();
+  void Start();
+  int GetTimeInMs() const;
 
-private:
-	struct timeval m_startTime;
+ private:
+  struct timeval m_startTime;
 };
 
 namespace TimeHelpers {

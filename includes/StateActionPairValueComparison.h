@@ -24,27 +24,27 @@ namespace AI {
  */
 template<class S, class A>
 class StateActionPairValueComparison {
-public:
-	StateActionPairValueComparison() {
-	}
-	bool operator()(const pair<StateAction<S, A>, AI::FLOAT>& lhs,
-			const pair<StateAction<S, A>, AI::FLOAT>& rhs);
-private:
+ public:
+  StateActionPairValueComparison() {
+  }
+  bool operator()(const pair<StateAction<S, A>, AI::FLOAT>& lhs,
+                  const pair<StateAction<S, A>, AI::FLOAT>& rhs);
+ private:
 
 };
 
 template<class S, class A>
 bool StateActionPairValueComparison<S, A>::operator()(
-		const pair<StateAction<S, A>, AI::FLOAT>& lhs,
-		const pair<StateAction<S, A>, AI::FLOAT>& rhs) {
-	if (lhs.first < rhs.first)
-		return true;
-	else if (lhs.first > rhs.first)
-		return false;
+    const pair<StateAction<S, A>, AI::FLOAT>& lhs,
+    const pair<StateAction<S, A>, AI::FLOAT>& rhs) {
+  if (lhs.first < rhs.first)
+    return true;
+  else if (lhs.first > rhs.first)
+    return false;
 
-	if (lhs.second < rhs.second)
-		return true;
-	return false;
+  if (lhs.second < rhs.second)
+    return true;
+  return false;
 }
 }
 

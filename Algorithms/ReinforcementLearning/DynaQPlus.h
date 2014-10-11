@@ -9,9 +9,9 @@
 #define	DYNAQPLUS_H
 
 class DynaQPlus {
-public:
-	DynaQPlus();
-private:
+ public:
+  DynaQPlus();
+ private:
 };
 
 #endif	/* DYNAQPLUS_H */

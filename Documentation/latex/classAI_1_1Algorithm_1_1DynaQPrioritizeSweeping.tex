@@ -1,0 +1,129 @@
+\hypertarget{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping}{\section{A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-Prioritize\-Sweeping$<$ S, A $>$ Class Template Reference}
+\label{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping}\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Prioritize\-Sweeping$<$ S, A $>$@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Prioritize\-Sweeping$<$ S, A $>$}}
+}
+
+
+{\ttfamily \#include $<$Dyna\-Q\-Prioritized\-Sweeping.\-h$>$}
+
+Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-Prioritize\-Sweeping$<$ S, A $>$\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.794520cm]{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_a7be2ca032071678ed6e653821cd54026}{Dyna\-Q\-Prioritize\-Sweeping} (A\-I\-::\-F\-L\-O\-A\-T step\-Size, A\-I\-::\-F\-L\-O\-A\-T discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy}{Policy}$<$ S, A $>$ \&policy, A\-I\-::\-U\-I\-N\-T simulation\-Iteration\-Count, A\-I\-::\-F\-L\-O\-A\-T state\-Transition\-Greediness, A\-I\-::\-F\-L\-O\-A\-T state\-Transition\-Step\-Size, A\-I\-::\-F\-L\-O\-A\-T priority\-Threshold)
+\item 
+virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_ad08b55f3cf927189dd31abf9fc1c2959}{update} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const S \&next\-State, const A\-I\-::\-F\-L\-O\-A\-T reward, const set$<$ A $>$ \&action\-Set)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_a328421d2cc8ad26641b7786a5ca8b640}{void {\bfseries \-\_\-priority\-Sweep} (const set$<$ A $>$ \&action\-Set)}\label{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_a328421d2cc8ad26641b7786a5ca8b640}
+
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_a9f69f4ed43b2d9bdb446241fffbb20d7}{A\-I\-::\-F\-L\-O\-A\-T {\bfseries \-\_\-get\-T\-D\-Error} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const A\-I\-::\-F\-L\-O\-A\-T reward, const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&next\-State\-Action)}\label{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_a9f69f4ed43b2d9bdb446241fffbb20d7}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_aceb5ef5c47db0d322b4e03ec2c457d1a}{priority\-\_\-queue\\*
+$<$ State\-Action\-Pair, std\-::vector\\*
+$<$ State\-Action\-Pair $>$\\*
+, \hyperlink{classAI_1_1StateActionPairValueComparison}{State\-Action\-Pair\-Value\-Comparison}\\*
+$<$ S, A $>$ $>$ {\bfseries \-\_\-priority\-Queue}}\label{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_aceb5ef5c47db0d322b4e03ec2c457d1a}
+
+\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_adc3809217aba2de41fbea2b9fb9e5648}{A\-I\-::\-F\-L\-O\-A\-T {\bfseries \-\_\-priority\-Threshold}}\label{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_adc3809217aba2de41fbea2b9fb9e5648}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class S, class A$>$class A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Prioritize\-Sweeping$<$ S, A $>$}
+
+\hyperlink{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping}{Dyna\-Q\-Prioritize\-Sweeping} 
+
+Prioritize Sweeping only backs up states that factor the most to achieving the goal during simulation. This way convergence is achieve faster. Very useful in large state spaces.
+
+\begin{DoxyNote}{Note}
+This is currently very slow. An update is being cultivated.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{classAI_1_1StateActionTransition}{State\-Action\-Transition} representing the models.
+
+\hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_a7be2ca032071678ed6e653821cd54026}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Prioritize\-Sweeping@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Prioritize\-Sweeping}!Dyna\-Q\-Prioritize\-Sweeping@{Dyna\-Q\-Prioritize\-Sweeping}}
+\index{Dyna\-Q\-Prioritize\-Sweeping@{Dyna\-Q\-Prioritize\-Sweeping}!AI::Algorithm::DynaQPrioritizeSweeping@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Prioritize\-Sweeping}}
+\subsubsection[{Dyna\-Q\-Prioritize\-Sweeping}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Prioritize\-Sweeping}$<$ S, A $>$\-::{\bf Dyna\-Q\-Prioritize\-Sweeping} (
+\begin{DoxyParamCaption}
+\item[{A\-I\-::\-F\-L\-O\-A\-T}]{step\-Size, }
+\item[{A\-I\-::\-F\-L\-O\-A\-T}]{discount\-Rate, }
+\item[{{\bf Policy}$<$ S, A $>$ \&}]{policy, }
+\item[{A\-I\-::\-U\-I\-N\-T}]{simulation\-Iteration\-Count, }
+\item[{A\-I\-::\-F\-L\-O\-A\-T}]{state\-Transition\-Greediness, }
+\item[{A\-I\-::\-F\-L\-O\-A\-T}]{state\-Transition\-Step\-Size, }
+\item[{A\-I\-::\-F\-L\-O\-A\-T}]{priority\-Threshold}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_a7be2ca032071678ed6e653821cd54026}
+
+\begin{DoxyParams}{Parameters}
+{\em step\-Size} & range \mbox{[}0.\-0, 1.\-0\mbox{]}. High step size means faster learning, but less precise convergence. \\
+\hline
+{\em discount\-Rate} & range \mbox{[}0.\-0, 1.\-0\mbox{]}. High discount rate means more consideration of future events. \\
+\hline
+{\em simulation\-Iteration\-Count} & How many simulation per update. \\
+\hline
+{\em state\-Transition\-Greediness} & High value means less likely to choose random action during simulation. \\
+\hline
+{\em state\-Transition\-Step\-Size} & High value means faster learning in models but lower values means more accurate models. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_ad08b55f3cf927189dd31abf9fc1c2959}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Prioritize\-Sweeping@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Prioritize\-Sweeping}!update@{update}}
+\index{update@{update}!AI::Algorithm::DynaQPrioritizeSweeping@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Prioritize\-Sweeping}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Prioritize\-Sweeping}$<$ S, A $>$\-::update (
+\begin{DoxyParamCaption}
+\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{current\-State\-Action, }
+\item[{const S \&}]{next\-State, }
+\item[{const A\-I\-::\-F\-L\-O\-A\-T}]{reward, }
+\item[{const set$<$ A $>$ \&}]{action\-Set}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_ad08b55f3cf927189dd31abf9fc1c2959}
+Update the state\-Action map. 
+\begin{DoxyParams}{Parameters}
+{\em current\-State} & \\
+\hline
+{\em current\-Action} & \\
+\hline
+{\em next\-State} & \\
+\hline
+{\em reward} & reward of current\-State and current\-Action. \\
+\hline
+{\em state\-Action} & A map of \hyperlink{classAI_1_1StateAction}{State\-Action} to Value. \\
+\hline
+{\em action\-Set} & A set of all actions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+next action to be executed. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classAI_1_1Algorithm_1_1DynaQ_a4542226b17db4ed8a2c5ec17d37dc42f}{A\-I\-::\-Algorithm\-::\-Dyna\-Q$<$ S, A $>$}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+Algorithms/\-Reinforcement\-Learning/Dyna\-Q\-Prioritized\-Sweeping.\-h\end{DoxyCompactItemize}

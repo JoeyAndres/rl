@@ -33,42 +33,43 @@ namespace detail {
  * internal pointer by locking the passed mutex.
  */
 template<typename T, typename Mutex>
-class locking_ptr: private noncopyable {
-	T* m_obj;                     //!< The instance pointer. 
-	Mutex & m_mutex;              //!< Mutex is used for scoped locking.
+class locking_ptr : private noncopyable {
+  T* m_obj;                     //!< The instance pointer. 
+  Mutex & m_mutex;              //!< Mutex is used for scoped locking.
 
-public:
-	/// Constructor.
-	locking_ptr(volatile T& obj, const volatile Mutex& mtx) :
-			m_obj(const_cast<T*>(&obj)), m_mutex(*const_cast<Mutex*>(&mtx)) {
-		// Lock mutex
-		m_mutex.lock();
-	}
+ public:
+  /// Constructor.
+  locking_ptr(volatile T& obj, const volatile Mutex& mtx)
+      : m_obj(const_cast<T*>(&obj)),
+        m_mutex(*const_cast<Mutex*>(&mtx)) {
+    // Lock mutex
+    m_mutex.lock();
+  }
 
-	/// Destructor.
-	~locking_ptr() {
-		// Unlock mutex
-		m_mutex.unlock();
-	}
+  /// Destructor.
+  ~locking_ptr() {
+    // Unlock mutex
+    m_mutex.unlock();
+  }
 
-	/*! Returns a reference to the stored instance.
-	 * \return The instance's reference.
-	 */
-	T& operator*() const {
-		return *m_obj;
-	}
+  /*! Returns a reference to the stored instance.
+   * \return The instance's reference.
+   */
+  T& operator*() const {
+    return *m_obj;
+  }
 
-	/*! Returns a pointer to the stored instance.
-	 * \return The instance's pointer.
-	 */
-	T* operator->() const {
-		return m_obj;
-	}
+  /*! Returns a pointer to the stored instance.
+   * \return The instance's pointer.
+   */
+  T* operator->() const {
+    return m_obj;
+  }
 };
 
 }
 }
-} // namespace boost::threadpool::detail
+}  // namespace boost::threadpool::detail
 
 #endif // THREADPOOL_DETAIL_LOCKING_PTR_HPP_INCLUDED
 

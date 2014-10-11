@@ -16,34 +16,34 @@ using std::vector;
 
 template<class NotifyArgument>
 class Observable {
-public:
-	Observable();
-	virtual ~Observable();
+ public:
+  Observable();
+  virtual ~Observable();
 
-	bool registerObserver(Observer<NotifyArgument>& observable);
-	bool removeObserver(Observer<NotifyArgument>& observable);
-	void notifyObserves(NotifyArgument& arg);
-private:
-	vector<Observer<NotifyArgument>&> _observers;
+  bool registerObserver(Observer<NotifyArgument>& observable);
+  bool removeObserver(Observer<NotifyArgument>& observable);
+  void notifyObserves(NotifyArgument& arg);
+ private:
+  vector<Observer<NotifyArgument>&> _observers;
 };
 
 template<class NotifyArgument>
 bool Observable<NotifyArgument>::registerObserver(
-		Observer<NotifyArgument>& observable) {
+    Observer<NotifyArgument>& observable) {
 
 }
 
 template<class NotifyArgument>
 bool Observable<NotifyArgument>::removeObserver(
-		Observer<NotifyArgument>& observable) {
+    Observer<NotifyArgument>& observable) {
 
 }
 
 template<class NotifyArgument>
 void Observable<NotifyArgument>::notifyObserves(NotifyArgument& arg) {
-	for (Observer<NotifyArgument>& observer : _observers) {
-		observer.notify(arg);
-	}
+  for (Observer<NotifyArgument>& observer : _observers) {
+    observer.notify(arg);
+  }
 }
 
 #endif	/* OBSERVABLE_H */

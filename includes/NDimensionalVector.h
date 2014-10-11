@@ -18,12 +18,12 @@
  *  */
 template<size_t dim, typename D>
 struct NDimensionalVector {
-	typedef std::vector<typename NDimensionalVector<dim - 1, D>::nArray> nArray;
+  typedef std::vector<typename NDimensionalVector<dim - 1, D>::nArray> nArray;
 };
 
 template<typename D>
 struct NDimensionalVector<0, D> {
-	typedef D nArray;
+  typedef D nArray;
 };
 
 #endif	/* NDIMENSIONALVECTOR_H */

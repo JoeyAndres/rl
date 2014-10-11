@@ -59,108 +59,108 @@ namespace threadpool {
  * \see Scheduling policies: fifo_scheduler, lifo_scheduler, prio_scheduler
  */
 template<typename Task = task_func,
-		template<typename > class SchedulingPolicy = fifo_scheduler, template<
-				typename > class SizePolicy = static_size,
-		template<typename > class SizePolicyController = resize_controller,
-		template<typename > class ShutdownPolicy = wait_for_all_tasks>
+    template<typename > class SchedulingPolicy = fifo_scheduler, template<
+        typename > class SizePolicy = static_size,
+    template<typename > class SizePolicyController = resize_controller,
+    template<typename > class ShutdownPolicy = wait_for_all_tasks>
 class thread_pool {
-	typedef detail::pool_core<Task, SchedulingPolicy, SizePolicy,
-			SizePolicyController, ShutdownPolicy> pool_core_type;
-	shared_ptr<pool_core_type> m_core; // pimpl idiom
-	shared_ptr<void> m_shutdown_controller; // If the last pool holding a pointer to the core is deleted the controller shuts the pool down.
+  typedef detail::pool_core<Task, SchedulingPolicy, SizePolicy,
+      SizePolicyController, ShutdownPolicy> pool_core_type;
+  shared_ptr<pool_core_type> m_core;  // pimpl idiom
+  shared_ptr<void> m_shutdown_controller;  // If the last pool holding a pointer to the core is deleted the controller shuts the pool down.
 
-public:
-	// Type definitions
-	typedef Task task_type;                      //!< Indicates the task's type.
-	typedef SchedulingPolicy<task_type> scheduler_type; //!< Indicates the scheduler's type.
-	/*   typedef thread_pool<Task, 
-	 SchedulingPolicy,
-	 SizePolicy,
-	 ShutdownPolicy > pool_type;          //!< Indicates the thread pool's type.
-	 */
-	typedef SizePolicy<pool_core_type> size_policy_type;
-	typedef SizePolicyController<pool_core_type> size_controller_type;
+ public:
+  // Type definitions
+  typedef Task task_type;                      //!< Indicates the task's type.
+  typedef SchedulingPolicy<task_type> scheduler_type;  //!< Indicates the scheduler's type.
+  /*   typedef thread_pool<Task, 
+   SchedulingPolicy,
+   SizePolicy,
+   ShutdownPolicy > pool_type;          //!< Indicates the thread pool's type.
+   */
+  typedef SizePolicy<pool_core_type> size_policy_type;
+  typedef SizePolicyController<pool_core_type> size_controller_type;
 
-public:
-	/*! Constructor.
-	 * \param initial_threads The pool is immediately resized to set the specified number of threads. The pool's actual number threads depends on the SizePolicy.
-	 */
-	thread_pool(size_t initial_threads = 0) :
-			m_core(new pool_core_type), m_shutdown_controller(
-					static_cast<void*>(0),
-					bind(&pool_core_type::shutdown, m_core)) {
-		size_policy_type::init(*m_core, initial_threads);
-	}
+ public:
+  /*! Constructor.
+   * \param initial_threads The pool is immediately resized to set the specified number of threads. The pool's actual number threads depends on the SizePolicy.
+   */
+  thread_pool(size_t initial_threads = 0)
+      : m_core(new pool_core_type),
+        m_shutdown_controller(static_cast<void*>(0),
+                              bind(&pool_core_type::shutdown, m_core)) {
+    size_policy_type::init(*m_core, initial_threads);
+  }
 
-	/*! Gets the size controller which manages the number of threads in the pool. 
-	 * \return The size controller.
-	 * \see SizePolicy
-	 */
-	size_controller_type size_controller() {
-		return m_core->size_controller();
-	}
+  /*! Gets the size controller which manages the number of threads in the pool. 
+   * \return The size controller.
+   * \see SizePolicy
+   */
+  size_controller_type size_controller() {
+    return m_core->size_controller();
+  }
 
-	/*! Gets the number of threads in the pool.
-	 * \return The number of threads.
-	 */
-	size_t size() const {
-		return m_core->size();
-	}
+  /*! Gets the number of threads in the pool.
+   * \return The number of threads.
+   */
+  size_t size() const {
+    return m_core->size();
+  }
 
-	/*! Schedules a task for asynchronous execution. The task will be executed once only.
-	 * \param task The task function object. It should not throw execeptions.
-	 * \return true, if the task could be scheduled and false otherwise. 
-	 */
-	bool schedule(task_type const & task) {
-		return m_core->schedule(task);
-	}
+  /*! Schedules a task for asynchronous execution. The task will be executed once only.
+   * \param task The task function object. It should not throw execeptions.
+   * \return true, if the task could be scheduled and false otherwise. 
+   */
+  bool schedule(task_type const & task) {
+    return m_core->schedule(task);
+  }
 
-	/*! Returns the number of tasks which are currently executed.
-	 * \return The number of active tasks. 
-	 */
-	size_t active() const {
-		return m_core->active();
-	}
+  /*! Returns the number of tasks which are currently executed.
+   * \return The number of active tasks. 
+   */
+  size_t active() const {
+    return m_core->active();
+  }
 
-	/*! Returns the number of tasks which are ready for execution.    
-	 * \return The number of pending tasks. 
-	 */
-	size_t pending() const {
-		return m_core->pending();
-	}
+  /*! Returns the number of tasks which are ready for execution.    
+   * \return The number of pending tasks. 
+   */
+  size_t pending() const {
+    return m_core->pending();
+  }
 
-	/*! Removes all pending tasks from the pool's scheduler.
-	 */
-	void clear() {
-		m_core->clear();
-	}
+  /*! Removes all pending tasks from the pool's scheduler.
+   */
+  void clear() {
+    m_core->clear();
+  }
 
-	/*! Indicates that there are no tasks pending. 
-	 * \return true if there are no tasks ready for execution.	
-	 * \remarks This function is more efficient that the check 'pending() == 0'.
-	 */
-	bool empty() const {
-		return m_core->empty();
-	}
+  /*! Indicates that there are no tasks pending. 
+   * \return true if there are no tasks ready for execution.	
+   * \remarks This function is more efficient that the check 'pending() == 0'.
+   */
+  bool empty() const {
+    return m_core->empty();
+  }
 
-	/*! The current thread of execution is blocked until the sum of all active
-	 *  and pending tasks is equal or less than a given threshold. 
-	 * \param task_threshold The maximum number of tasks in pool and scheduler.
-	 */
-	void wait(size_t task_threshold = 0) const {
-		m_core->wait(task_threshold);
-	}
+  /*! The current thread of execution is blocked until the sum of all active
+   *  and pending tasks is equal or less than a given threshold. 
+   * \param task_threshold The maximum number of tasks in pool and scheduler.
+   */
+  void wait(size_t task_threshold = 0) const {
+    m_core->wait(task_threshold);
+  }
 
-	/*! The current thread of execution is blocked until the timestamp is met
-	 * or the sum of all active and pending tasks is equal or less 
-	 * than a given threshold.  
-	 * \param timestamp The time when function returns at the latest.
-	 * \param task_threshold The maximum number of tasks in pool and scheduler.
-	 * \return true if the task sum is equal or less than the threshold, false otherwise.
-	 */
-	bool wait(xtime const & timestamp, size_t task_threshold = 0) const {
-		return m_core->wait(timestamp, task_threshold);
-	}
+  /*! The current thread of execution is blocked until the timestamp is met
+   * or the sum of all active and pending tasks is equal or less 
+   * than a given threshold.  
+   * \param timestamp The time when function returns at the latest.
+   * \param task_threshold The maximum number of tasks in pool and scheduler.
+   * \return true if the task sum is equal or less than the threshold, false otherwise.
+   */
+  bool wait(xtime const & timestamp, size_t task_threshold = 0) const {
+    return m_core->wait(timestamp, task_threshold);
+  }
 };
 
 /*! \brief Fifo pool.
@@ -169,7 +169,7 @@ public:
  *
  */
 typedef thread_pool<task_func, fifo_scheduler, static_size, resize_controller,
-		wait_for_all_tasks> fifo_pool;
+    wait_for_all_tasks> fifo_pool;
 
 /*! \brief Lifo pool.
  *
@@ -177,7 +177,7 @@ typedef thread_pool<task_func, fifo_scheduler, static_size, resize_controller,
  *
  */
 typedef thread_pool<task_func, lifo_scheduler, static_size, resize_controller,
-		wait_for_all_tasks> lifo_pool;
+    wait_for_all_tasks> lifo_pool;
 
 /*! \brief Pool for prioritized task.
  *
@@ -185,7 +185,7 @@ typedef thread_pool<task_func, lifo_scheduler, static_size, resize_controller,
  *
  */
 typedef thread_pool<prio_task_func, prio_scheduler, static_size,
-		resize_controller, wait_for_all_tasks> prio_pool;
+    resize_controller, wait_for_all_tasks> prio_pool;
 
 /*! \brief A standard pool.
  *
@@ -195,6 +195,6 @@ typedef thread_pool<prio_task_func, prio_scheduler, static_size,
 typedef fifo_pool pool;
 
 }
-} // namespace boost::threadpool
+}  // namespace boost::threadpool
 
 #endif // THREADPOOL_POOL_HPP_INCLUDED

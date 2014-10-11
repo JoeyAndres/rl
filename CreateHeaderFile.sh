@@ -4,7 +4,7 @@
 $(rm -rf includes/*);
 
 # Acquire fileList (without directory location), fileListNoFilter (with directory location), fileListMod (directory list with '#include ' prefixed).
-fileList=($(find . -name "*.h" -not -path "*boost*" -not -path "*Tests*" -not -path "*UnitTest++*" -type f -mtime -14 -printf '%f\n'));
+fileList=($(find . -name "*.h" -not -path "*boost*" -not -path "*UnitTest++*" -type f -mtime -14 -printf '%f\n'));
 fileListNoFilter=($(find . -name "*.h" -o -name "*.hpp" -not -path "*UnitTest++*" -not -path "*boost*"));
 fileListMod=();
 for ((i = 0; i < "${#fileList[*]}"; i++));

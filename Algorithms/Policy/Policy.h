@@ -19,19 +19,21 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
-
+namespace Policy {
 template<class S, class A>
 class Policy {
-public:
-	virtual const A& getAction(const map<A, AI::FLOAT>& actionValues,
-			const set<A>& actionSet) = 0;
-private:
+ public:
+  virtual const A& getAction(const map<A, AI::FLOAT>& actionValues,
+                             const set<A>& actionSet) = 0;
+ private:
 
 };
 
 typedef Policy<vector<AI::FLOAT>, vector<AI::FLOAT> > PolicySL;
-}
-}
+
+} /* Policy */
+} /* Algorithm */
+} /* AI */
 
 #endif	/* POLICY_H */
 

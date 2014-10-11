@@ -20,19 +20,19 @@ using namespace std;
 namespace AI {
 
 class MountainCarEnvironment {
-private:
-	MountainCarEnvironment();
-public:
-	static MountainCarEnvironment& getInstance();
+ private:
+  MountainCarEnvironment();
+ public:
+  static MountainCarEnvironment& getInstance();
 
-	void reset();
+  void reset();
 
-	AI::FLOAT applyAction(AI::INT Action);
-	const vector<AI::FLOAT>& getCurrentState() const;
-private:
-	vector<AI::FLOAT> _currentState;
-public:
-	AI::FLOAT _currentReward;
+  AI::FLOAT applyAction(AI::INT Action);
+  const vector<AI::FLOAT>& getCurrentState() const;
+ private:
+  vector<AI::FLOAT> _currentState;
+ public:
+  AI::FLOAT _currentReward;
 };
 
 } /* namespace AI */

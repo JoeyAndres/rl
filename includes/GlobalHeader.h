@@ -1,6 +1,6 @@
 /* 
  * File:   globalHeader.h
- * Author: jandres
+ * Author: Joey Andres
  *
  * Created on June 3, 2014, 4:45 PM
  */
@@ -23,6 +23,7 @@ namespace AI {
 typedef double FLOAT;  // Default floating type.
 typedef uint64_t UINT;  // Default unsigned integer type.
 typedef int64_t INT;  // Default signed integer type.
+typedef uint8_t BYTE;  // Byte type.
 
 const FLOAT DEFAULT_GREEDINESS_LEARNING_POLICY = 1.0F;
 

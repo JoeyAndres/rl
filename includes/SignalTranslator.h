@@ -7,22 +7,22 @@
 namespace UnitTest {
 
 class SignalTranslator {
-public:
-	SignalTranslator();
-	~SignalTranslator();
+ public:
+  SignalTranslator();
+  ~SignalTranslator();
 
-	static sigjmp_buf* s_jumpTarget;
+  static sigjmp_buf* s_jumpTarget;
 
-private:
-	sigjmp_buf m_currentJumpTarget;
-	sigjmp_buf* m_oldJumpTarget;
+ private:
+  sigjmp_buf m_currentJumpTarget;
+  sigjmp_buf* m_oldJumpTarget;
 
-	struct sigaction m_old_SIGFPE_action;
-	struct sigaction m_old_SIGTRAP_action;
-	struct sigaction m_old_SIGSEGV_action;
-	struct sigaction m_old_SIGBUS_action;
-	struct sigaction m_old_SIGABRT_action;
-	struct sigaction m_old_SIGALRM_action;
+  struct sigaction m_old_SIGFPE_action;
+  struct sigaction m_old_SIGTRAP_action;
+  struct sigaction m_old_SIGSEGV_action;
+  struct sigaction m_old_SIGBUS_action;
+  struct sigaction m_old_SIGABRT_action;
+  struct sigaction m_old_SIGALRM_action;
 };
 
 #if !defined (__GNUC__)
