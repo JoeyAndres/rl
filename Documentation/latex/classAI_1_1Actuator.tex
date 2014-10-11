@@ -1,24 +1,136 @@
 \hypertarget{classAI_1_1Actuator}{\section{A\-I\-:\-:Actuator$<$ Action\-Data $>$ Class Template Reference}
 \label{classAI_1_1Actuator}\index{A\-I\-::\-Actuator$<$ Action\-Data $>$@{A\-I\-::\-Actuator$<$ Action\-Data $>$}}
 }
+
+
+Base class and interface for all \hyperlink{classAI_1_1Actuator}{Actuator} objects.  
+
+
+
+
+{\ttfamily \#include $<$Actuator\-Action.\-h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1Actuator_aa8a8289a0e6cf705deff59ab455b0315}{{\bfseries Actuator} (set$<$ Action\-Data $>$ data\-Set)}\label{classAI_1_1Actuator_aa8a8289a0e6cf705deff59ab455b0315}
-
+\hyperlink{classAI_1_1Actuator_abf654b2c2f911719c86e7c0369349f78}{Actuator} ()
 \item 
-\hypertarget{classAI_1_1Actuator_a286216eeeda770be796192fe549e5a58}{virtual void {\bfseries apply\-Action} (const Action\-Data \&action)=0}\label{classAI_1_1Actuator_a286216eeeda770be796192fe549e5a58}
-
+\hyperlink{classAI_1_1Actuator_aa8a8289a0e6cf705deff59ab455b0315}{Actuator} (set$<$ Action\-Data $>$ data\-Set)
 \item 
-\hypertarget{classAI_1_1Actuator_a538ccb2220ddb4e8b15c53771a767a2d}{const set$<$ Action\-Data $>$ \& {\bfseries get\-Action\-Set} () const }\label{classAI_1_1Actuator_a538ccb2220ddb4e8b15c53771a767a2d}
-
+virtual void \hyperlink{classAI_1_1Actuator_a286216eeeda770be796192fe549e5a58}{apply\-Action} (const Action\-Data \&action)=0
 \item 
-\hypertarget{classAI_1_1Actuator_a54a31d6d463013d54c7ec9e78c19f2ed}{void {\bfseries add\-Action} (const Action\-Data \&data)}\label{classAI_1_1Actuator_a54a31d6d463013d54c7ec9e78c19f2ed}
-
+const set$<$ Action\-Data $>$ \& \hyperlink{classAI_1_1Actuator_a538ccb2220ddb4e8b15c53771a767a2d}{get\-Action\-Set} () const 
 \item 
-\hypertarget{classAI_1_1Actuator_adbe552dfd0cc9eaed2d27af34d9d6fa1}{void {\bfseries set\-Action\-Set} (set$<$ Action\-Data $>$ data\-Set)}\label{classAI_1_1Actuator_adbe552dfd0cc9eaed2d27af34d9d6fa1}
-
+void \hyperlink{classAI_1_1Actuator_a54a31d6d463013d54c7ec9e78c19f2ed}{add\-Action} (const Action\-Data \&data)
+\item 
+void \hyperlink{classAI_1_1Actuator_adbe552dfd0cc9eaed2d27af34d9d6fa1}{set\-Action\-Set} (set$<$ Action\-Data $>$ data\-Set)
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Action\-Data$>$class A\-I\-::\-Actuator$<$ Action\-Data $>$}
+
+Base class and interface for all \hyperlink{classAI_1_1Actuator}{Actuator} objects. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Action\-Data} & Action data type.\\
+\hline
+\end{DoxyTemplParams}
+Base class and interface for all actuator objects. One can override or extend virtual functions here to direct output to environment. For example, consider a line following robot example.
+
+\paragraph*{Example\-:}
+
+Supposed there is a line following that takes an input from front sensors, and two motors. \hyperlink{classAI_1_1Actuator}{Actuator} class is concerned with the two motors. One can then create a class by inheriting from \hyperlink{classAI_1_1Actuator}{Actuator},
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{class }LineFollowing : \textcolor{keyword}{public} \hyperlink{classAI_1_1Actuator_abf654b2c2f911719c86e7c0369349f78}{Actuator}<std::pair<AI::FLOAT, AI::FLOAT> > \{
+   LineFollowing(set<std::pair<AI::FLOAT, AI::FLOAT> > dataSet);  \textcolor{comment}{// Old constructor.}
+   LineFollowing(AI::FLOAT lowerSpeed, AI::FLOAT upperSpeed);  \textcolor{comment}{// New constructor.}
+   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \hyperlink{classAI_1_1Actuator_a286216eeeda770be796192fe549e5a58}{applyAction}(\textcolor{keyword}{const} std::pair<AI::FLOAT, AI::FLOAT>& action);
+\}
+\end{DoxyCode}
+
+
+The overridden apply\-Action is the method responsible for communicating directly to motor drivers, where speed of each motor is given in pairs of two floats. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAI_1_1Actuator_abf654b2c2f911719c86e7c0369349f78}{\index{A\-I\-::\-Actuator@{A\-I\-::\-Actuator}!Actuator@{Actuator}}
+\index{Actuator@{Actuator}!AI::Actuator@{A\-I\-::\-Actuator}}
+\subsubsection[{Actuator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Action\-Data $>$ {\bf A\-I\-::\-Actuator}$<$ Action\-Data $>$\-::{\bf Actuator} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Actuator_abf654b2c2f911719c86e7c0369349f78}
+no-\/arg constructor. Use this if action set is added later. \begin{DoxyRefDesc}{Deprecated}
+\item[\hyperlink{deprecated__deprecated000001}{Deprecated}]\end{DoxyRefDesc}
+\hypertarget{classAI_1_1Actuator_aa8a8289a0e6cf705deff59ab455b0315}{\index{A\-I\-::\-Actuator@{A\-I\-::\-Actuator}!Actuator@{Actuator}}
+\index{Actuator@{Actuator}!AI::Actuator@{A\-I\-::\-Actuator}}
+\subsubsection[{Actuator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Action\-Data$>$ {\bf A\-I\-::\-Actuator}$<$ Action\-Data $>$\-::{\bf Actuator} (
+\begin{DoxyParamCaption}
+\item[{set$<$ Action\-Data $>$}]{data\-Set}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Actuator_aa8a8289a0e6cf705deff59ab455b0315}
+Constructor for when actions (or some actions) are known. 
+\begin{DoxyParams}{Parameters}
+{\em data\-Set} & Set of actions. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1Actuator_a54a31d6d463013d54c7ec9e78c19f2ed}{\index{A\-I\-::\-Actuator@{A\-I\-::\-Actuator}!add\-Action@{add\-Action}}
+\index{add\-Action@{add\-Action}!AI::Actuator@{A\-I\-::\-Actuator}}
+\subsubsection[{add\-Action}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Action\-Data$>$ void {\bf A\-I\-::\-Actuator}$<$ Action\-Data $>$\-::add\-Action (
+\begin{DoxyParamCaption}
+\item[{const Action\-Data \&}]{data}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Actuator_a54a31d6d463013d54c7ec9e78c19f2ed}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Action\-Data to be added. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Actuator_a286216eeeda770be796192fe549e5a58}{\index{A\-I\-::\-Actuator@{A\-I\-::\-Actuator}!apply\-Action@{apply\-Action}}
+\index{apply\-Action@{apply\-Action}!AI::Actuator@{A\-I\-::\-Actuator}}
+\subsubsection[{apply\-Action}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Action\-Data$>$ virtual void {\bf A\-I\-::\-Actuator}$<$ Action\-Data $>$\-::apply\-Action (
+\begin{DoxyParamCaption}
+\item[{const Action\-Data \&}]{action}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classAI_1_1Actuator_a286216eeeda770be796192fe549e5a58}
+Virtual function to be overloaded.
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{classAI_1_1Actuator}{Actuator} Documentation for example.
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em action} & to be applied to environment. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Actuator_a538ccb2220ddb4e8b15c53771a767a2d}{\index{A\-I\-::\-Actuator@{A\-I\-::\-Actuator}!get\-Action\-Set@{get\-Action\-Set}}
+\index{get\-Action\-Set@{get\-Action\-Set}!AI::Actuator@{A\-I\-::\-Actuator}}
+\subsubsection[{get\-Action\-Set}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Action\-Data $>$ const set$<$ Action\-Data $>$ \& {\bf A\-I\-::\-Actuator}$<$ Action\-Data $>$\-::get\-Action\-Set (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classAI_1_1Actuator_a538ccb2220ddb4e8b15c53771a767a2d}
+\begin{DoxyReturn}{Returns}
+set of actions. 
+\end{DoxyReturn}
+\hypertarget{classAI_1_1Actuator_adbe552dfd0cc9eaed2d27af34d9d6fa1}{\index{A\-I\-::\-Actuator@{A\-I\-::\-Actuator}!set\-Action\-Set@{set\-Action\-Set}}
+\index{set\-Action\-Set@{set\-Action\-Set}!AI::Actuator@{A\-I\-::\-Actuator}}
+\subsubsection[{set\-Action\-Set}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Action\-Data$>$ void {\bf A\-I\-::\-Actuator}$<$ Action\-Data $>$\-::set\-Action\-Set (
+\begin{DoxyParamCaption}
+\item[{set$<$ Action\-Data $>$}]{data\-Set}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Actuator_adbe552dfd0cc9eaed2d27af34d9d6fa1}
+
+\begin{DoxyParams}{Parameters}
+{\em data\-Set} & replace the action set with a new one. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}

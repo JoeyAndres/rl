@@ -20,7 +20,7 @@ ActuatorMountainCar::ActuatorMountainCar() {
 }
 
 ActuatorMountainCar::ActuatorMountainCar(set<ACTION_CONT> actionSet)
-    : Actuator<ACTION_CONT>(actionSet) {
+    : ActuatorBase<ACTION_CONT>(actionSet) {
 }
 
 void ActuatorMountainCar::applyAction(const ACTION_CONT& action) {

@@ -21,8 +21,15 @@ using std::find;
 
 namespace AI {
 
+/*! \class SensorBase
+ *  \brief Base and interface class for all Sensor objects.
+ *  \tparam SensorData State data type.
+ *
+ *  Base and interface class for all Sensor objects. This is not usable, SensorDiscrete and
+ *  SensorContinous to inherit from instead.
+ */
 template<class SensorData>
-class SensorStatesAbstract {
+class SensorBase {
  public:
   virtual SensorData getSensorState() = 0;
   virtual bool isState(const SensorData& state) const = 0;

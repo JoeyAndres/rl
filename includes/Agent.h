@@ -18,10 +18,10 @@
 #include <cassert>
 #include <iostream>
 
+#include "ActuatorBase.h"
 #include "StateAction.h"
 #include "LearningAlgorithm.h"
-#include "SensorStatesAbstract.h"
-#include "ActuatorAction.h"
+#include "SensorBase.h"
 #include "StateActionPairContainer.h"
 
 using std::vector;
@@ -30,18 +30,25 @@ using std::cout;
 using std::endl;
 
 namespace AI {
-/**
- * A class that represent an AI agent.
+
+/*! \class Agent
+ *  \brief A class that represent an AI agent.
+ *
+ *  In Artificial Intelligence, Agent is the entity that recieves input from
+ *  environment. In response, it outputs action to environment.
+ *
+ *  \tparam S State data type.
+ *  \tparam A Action data type.
  */
 template<class S, class A>
 class Agent {
  public:
   /**
    * @param sensorInstance aggregate a sensor object.
-   * @param actuatorInstance aggregate a actuator object.
+   * @param actuatorInstance aggregate an actuator object.
    * @param learningAlgorithm aggregate a Learning algorithm
    */
-  Agent(SensorStatesAbstract<S>& sensorInstance, Actuator<A>& actuatorInstance,
+  Agent(SensorBase<S>& sensorInstance, ActuatorBase<A>& actuatorInstance,
         Algorithm::LearningAlgorithm<S, A>& learningAlgorithm);
 
   /**
@@ -55,12 +62,12 @@ class Agent {
   virtual void execute();
 
   /**
-   * @return true if done.
+   * @return true if episode is done.
    */
   virtual bool episodeDone();
 
   /**
-   * Does clean up stuff after reaching terminal state.
+   * Does clean up routines after reaching terminal state.
    * @return Cummulative reward.
    */
   virtual FLOAT postExecute();
@@ -72,33 +79,43 @@ class Agent {
 
  private:
   /**
-   * @return CurrentState.
+   * @return CurrentState of the agent.
    */
   S _getCurrentState();
 
  protected:
-  // Aggregated learning algorithm.
+  /*! \var _learningAlgorithm
+   *  Aggregates a learning algorithm.
+   */
   Algorithm::LearningAlgorithm<S, A>& _learningAlgorithm;
 
-  SensorStatesAbstract<S>& _sensorInstance;  // Aggregate a Sensor object.
-  Actuator<A>& _actuatorInstance;  // Aggregate an Actuator object.
+  SensorBase<S>& _sensorInstance;  //!< Aggregate a Sensor object.
+  ActuatorBase<A>& _actuatorInstance;  //!< Aggregate an Actuator object.
 
-  S _currentState;  // Keeps track of the current state.
-  A _currentAction;  // Keeps track of the current action.
+  S _currentState;  //!< Keeps track of the current state.
+  A _currentAction;  //!< Keeps track of the current action.
 
-  // Keeps track of accumulation of reward during the span of the episode.
-  // Specifically, after the call of preExecute, and after the call of postExecute.
-  FLOAT _accumulativeReward;
+  FLOAT _accumulativeReward; //!< Keeps track of accumulation of reward during
+                             //!< the span of the episode.Specifically, after
+                             //!< the call of preExecute, and after the call of
+                             //!< postExecute.
 };
 
+/*! \typedef AgentSL
+ *  \brief Agent for Supervised Learning.
+ *  \tparam D data type of Supervised Learning agent.
+ *
+ *  Supervised Learning usually deals with multi-dimension states and action,
+ *  hence the specific typedef of Agent.
+ */
 template<class D = FLOAT>
 using AgentSL = Agent<vector<D>, vector<D>>;
 
 } /* namespace AI */
 
 template<class S, class A>
-AI::Agent<S, A>::Agent(SensorStatesAbstract<S>& sensorInstance,
-                       Actuator<A>& actuatorInstance,
+AI::Agent<S, A>::Agent(SensorBase<S>& sensorInstance,
+                       ActuatorBase<A>& actuatorInstance,
                        Algorithm::LearningAlgorithm<S, A>& learningAlgorithm)
     : _sensorInstance(sensorInstance),
       _actuatorInstance(actuatorInstance),
@@ -137,7 +154,7 @@ void AI::Agent<S, A>::execute() {
                             _actuatorInstance.getActionSet());
 
   // Get the action from the algorithm.
-  // *Note the algorithm will retrieve from controlPolicy.
+  // Note the algorithm will retrieve from controlPolicy.
   _currentAction = _learningAlgorithm.getAction(
       nextState, _actuatorInstance.getActionSet());
 

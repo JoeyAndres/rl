@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -79,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,6 +104,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>A class that represent an <a class="el" href="namespaceAI.html">AI</a> agent.  
+ <a href="classAI_1_1Agent.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="Agent_8h_source.html">Agent.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -122,24 +126,26 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a7ad0d7be90f100fbf20d9134cb4722dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ad0d7be90f100fbf20d9134cb4722dc"></a>
-<a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">Algorithm::LearningAlgorithm</a><br class="typebreak"/>
-&lt; S, A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>_learningAlgorithm</b></td></tr>
-<tr class="separator:a7ad0d7be90f100fbf20d9134cb4722dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae61529c109e21748dca77509b58f1f8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">Algorithm::LearningAlgorithm</a><br class="typebreak"/>
+&lt; S, A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Agent.html#ae61529c109e21748dca77509b58f1f8e">_learningAlgorithm</a></td></tr>
+<tr class="separator:ae61529c109e21748dca77509b58f1f8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47f05ad26341cb3dd19790deab83b027"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47f05ad26341cb3dd19790deab83b027"></a>
-<a class="el" href="classAI_1_1SensorStatesAbstract.html">SensorStatesAbstract</a>&lt; S &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>_sensorInstance</b></td></tr>
+<a class="el" href="classAI_1_1SensorStatesAbstract.html">SensorStatesAbstract</a>&lt; S &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Agent.html#a47f05ad26341cb3dd19790deab83b027">_sensorInstance</a></td></tr>
+<tr class="memdesc:a47f05ad26341cb3dd19790deab83b027"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aggregate a Sensor object. <br/></td></tr>
 <tr class="separator:a47f05ad26341cb3dd19790deab83b027"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a9517c181c1514ffa4f8df2bb68a5dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a9517c181c1514ffa4f8df2bb68a5dc"></a>
-<a class="el" href="classAI_1_1Actuator.html">Actuator</a>&lt; A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>_actuatorInstance</b></td></tr>
+<a class="el" href="classAI_1_1Actuator.html">Actuator</a>&lt; A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Agent.html#a1a9517c181c1514ffa4f8df2bb68a5dc">_actuatorInstance</a></td></tr>
+<tr class="memdesc:a1a9517c181c1514ffa4f8df2bb68a5dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aggregate an <a class="el" href="classAI_1_1Actuator.html" title="Base class and interface for all Actuator objects. ">Actuator</a> object. <br/></td></tr>
 <tr class="separator:a1a9517c181c1514ffa4f8df2bb68a5dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3476836f8e24014e2d0e5bd3fcd06c4f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3476836f8e24014e2d0e5bd3fcd06c4f"></a>
-S&#160;</td><td class="memItemRight" valign="bottom"><b>_currentState</b></td></tr>
+S&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Agent.html#a3476836f8e24014e2d0e5bd3fcd06c4f">_currentState</a></td></tr>
+<tr class="memdesc:a3476836f8e24014e2d0e5bd3fcd06c4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keeps track of the current state. <br/></td></tr>
 <tr class="separator:a3476836f8e24014e2d0e5bd3fcd06c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92741f4d9a5324c909e63ab330379411"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92741f4d9a5324c909e63ab330379411"></a>
-A&#160;</td><td class="memItemRight" valign="bottom"><b>_currentAction</b></td></tr>
+A&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Agent.html#a92741f4d9a5324c909e63ab330379411">_currentAction</a></td></tr>
+<tr class="memdesc:a92741f4d9a5324c909e63ab330379411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keeps track of the current action. <br/></td></tr>
 <tr class="separator:a92741f4d9a5324c909e63ab330379411"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4c5b41816bb39212727186a4af1afec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4c5b41816bb39212727186a4af1afec"></a>
-FLOAT&#160;</td><td class="memItemRight" valign="bottom"><b>_accumulativeReward</b></td></tr>
+<tr class="memitem:aa4c5b41816bb39212727186a4af1afec"><td class="memItemLeft" align="right" valign="top">FLOAT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Agent.html#aa4c5b41816bb39212727186a4af1afec">_accumulativeReward</a></td></tr>
 <tr class="separator:aa4c5b41816bb39212727186a4af1afec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -147,6 +153,14 @@ FLOAT&#160;</td><td class="memItemRight" valign="bottom"><b>_accumulativeReward<
 class AI::Agent&lt; S, A &gt;</h3>
 
 <p>A class that represent an <a class="el" href="namespaceAI.html">AI</a> agent. </p>
+<p>In Artificial Intelligence, <a class="el" href="classAI_1_1Agent.html" title="A class that represent an AI agent. ">Agent</a> is the entity that recieves input from environment. In response, it outputs action to environment.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">S</td><td>State data type. </td></tr>
+    <tr><td class="paramname">A</td><td>Action data type. </td></tr>
+  </table>
+  </dd>
+</dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a2cab0b2534dc40185a3e2f9a858e8023"></a>
 <div class="memitem">
@@ -182,7 +196,7 @@ template&lt;class S , class A &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sensorInstance</td><td>aggregate a sensor object. </td></tr>
-    <tr><td class="paramname">actuatorInstance</td><td>aggregate a actuator object. </td></tr>
+    <tr><td class="paramname">actuatorInstance</td><td>aggregate an actuator object. </td></tr>
     <tr><td class="paramname">learningAlgorithm</td><td>aggregate a Learning algorithm </td></tr>
   </table>
   </dd>
@@ -213,7 +227,7 @@ template&lt;class S , class A &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>true if done. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if episode is done. </dd></dl>
 
 </div>
 </div>
@@ -291,7 +305,7 @@ template&lt;class S , class A &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Does clean up stuff after reaching terminal state. </p>
+<p>Does clean up routines after reaching terminal state. </p>
 <dl class="section return"><dt>Returns</dt><dd>Cummulative reward. </dd></dl>
 
 </div>
@@ -322,13 +336,60 @@ template&lt;class S , class A &gt; </div>
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="aa4c5b41816bb39212727186a4af1afec"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class S , class A &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FLOAT <a class="el" href="classAI_1_1Agent.html">AI::Agent</a>&lt; S, A &gt;::_accumulativeReward</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Keeps track of accumulation of reward during the span of the episode.Specifically, after the call of preExecute, and after the call of postExecute. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae61529c109e21748dca77509b58f1f8e"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class S , class A &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAI_1_1Agent.html">AI::Agent</a>&lt; S, A &gt;::_learningAlgorithm</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Aggregates a learning algorithm. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>AIBase/<a class="el" href="Agent_8h_source.html">Agent.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 13:28:40 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 15:14:24 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

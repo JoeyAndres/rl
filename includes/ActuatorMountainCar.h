@@ -13,12 +13,12 @@
 #include <vector>
 #include <set>
 
-#include "ActuatorAction.h"
+#include "ActuatorBase.h"
 
 using namespace std;
 
 namespace AI {
-class ActuatorMountainCar final : public Actuator<ACTION_CONT> {
+class ActuatorMountainCar final : public ActuatorBase<ACTION_CONT> {
  public:
   ActuatorMountainCar();
   ActuatorMountainCar(set<ACTION_CONT> actionSet);

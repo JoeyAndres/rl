@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -104,7 +105,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -124,14 +125,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
+<li>Actuator()
+: <a class="el" href="classAI_1_1Actuator.html#abf654b2c2f911719c86e7c0369349f78">AI::Actuator&lt; ActionData &gt;</a>
+</li>
 <li>addAction()
-: <a class="el" href="classAI_1_1StateActionPairContainer.html#af4c9faef1c7d4e35b11f95b8a84352ae">AI::StateActionPairContainer&lt; S, A &gt;</a>
+: <a class="el" href="classAI_1_1Actuator.html#a54a31d6d463013d54c7ec9e78c19f2ed">AI::Actuator&lt; ActionData &gt;</a>
+, <a class="el" href="classAI_1_1StateActionPairContainer.html#af4c9faef1c7d4e35b11f95b8a84352ae">AI::StateActionPairContainer&lt; S, A &gt;</a>
 </li>
 <li>addState()
 : <a class="el" href="classAI_1_1StateActionPairContainer.html#a12842518174d0af5fc89c7a86e766099">AI::StateActionPairContainer&lt; S, A &gt;</a>
 </li>
 <li>Agent()
 : <a class="el" href="classAI_1_1Agent.html#a2cab0b2534dc40185a3e2f9a858e8023">AI::Agent&lt; S, A &gt;</a>
+</li>
+<li>applyAction()
+: <a class="el" href="classAI_1_1Actuator.html#a286216eeeda770be796192fe549e5a58">AI::Actuator&lt; ActionData &gt;</a>
 </li>
 <li>argMax()
 : <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a1a7489821592b81576e5bc8674fc43c3">AI::Algorithm::Policy::EpsilonGreedy&lt; S, A &gt;</a>
@@ -191,6 +199,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Softmax.html#adf507bcadedab2d33e3fcc0059918d19">AI::Algorithm::Policy::Softmax&lt; S, A &gt;</a>
 , <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#acb89c1734df6658a422af510b7c36377">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a>
 , <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearningGD.html#a97a8fe122f39d0b47a9df496502c2555">AI::Algorithm::ReinforcementLearningGD</a>
+</li>
+<li>getActionSet()
+: <a class="el" href="classAI_1_1Actuator.html#a538ccb2220ddb4e8b15c53771a767a2d">AI::Actuator&lt; ActionData &gt;</a>
 </li>
 <li>getControlPolicy()
 : <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#ab123635bc3d527052051c7f4c37a986c">AI::Algorithm::LearningAlgorithm&lt; S, A &gt;</a>
@@ -327,6 +338,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>seControltPolicy()
 : <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1d26cb76c945a5312ce4ac4fdabc4d31">AI::Algorithm::LearningAlgorithm&lt; S, A &gt;</a>
 </li>
+<li>setActionSet()
+: <a class="el" href="classAI_1_1Actuator.html#adbe552dfd0cc9eaed2d27af34d9d6fa1">AI::Actuator&lt; ActionData &gt;</a>
+</li>
 <li>setDefaultStateActionValue()
 : <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1da99bfa2de96f397a4ef07e53ab5697">AI::Algorithm::LearningAlgorithm&lt; S, A &gt;</a>
 </li>
@@ -411,7 +425,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 13:28:40 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 15:14:25 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

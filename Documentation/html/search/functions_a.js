@@ -3,6 +3,7 @@ var searchData=
   ['sarsa',['Sarsa',['../classAI_1_1Algorithm_1_1Sarsa.html#a02dae564a53ea2284a23d047a8998fca',1,'AI::Algorithm::Sarsa']]],
   ['sarsaet',['SarsaET',['../classAI_1_1Algorithm_1_1SarsaET.html#aa934143376cc47c6e42e3ec67fb93eae',1,'AI::Algorithm::SarsaET']]],
   ['secontroltpolicy',['seControltPolicy',['../classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1d26cb76c945a5312ce4ac4fdabc4d31',1,'AI::Algorithm::LearningAlgorithm']]],
+  ['setactionset',['setActionSet',['../classAI_1_1Actuator.html#adbe552dfd0cc9eaed2d27af34d9d6fa1',1,'AI::Actuator']]],
   ['setdefaultstateactionvalue',['setDefaultStateActionValue',['../classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1da99bfa2de96f397a4ef07e53ab5697',1,'AI::Algorithm::LearningAlgorithm']]],
   ['setdiscountrate',['setDiscountRate',['../classAI_1_1Algorithm_1_1ReinforcementLearning.html#a1fc1e11a3ddb4377c4d6813a95ce87f4',1,'AI::Algorithm::ReinforcementLearning']]],
   ['setgeneralizationscale',['setGeneralizationScale',['../classAI_1_1Algorithm_1_1DimensionInfo.html#a53462f78d4d95d27ccb421f519b3112a',1,'AI::Algorithm::DimensionInfo']]],

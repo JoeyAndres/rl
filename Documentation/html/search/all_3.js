@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['dimensioninfo',['DimensionInfo',['../classAI_1_1Algorithm_1_1DimensionInfo.html',1,'AI::Algorithm']]],
+  ['deprecated_20list',['Deprecated List',['../deprecated.html',1,'']]],
   ['dimensioninfo',['DimensionInfo',['../classAI_1_1Algorithm_1_1DimensionInfo.html#a81474f419c3763f3de2833c8edb378c4',1,'AI::Algorithm::DimensionInfo']]],
+  ['dimensioninfo',['DimensionInfo',['../classAI_1_1Algorithm_1_1DimensionInfo.html',1,'AI::Algorithm']]],
   ['dynaq',['DynaQ',['../classAI_1_1Algorithm_1_1DynaQ.html',1,'AI::Algorithm']]],
   ['dynaq',['DynaQ',['../classAI_1_1Algorithm_1_1DynaQ.html#aa543816270f72b2c4ac1f77fb818f792',1,'AI::Algorithm::DynaQ']]],
   ['dynaqbase',['DynaQBase',['../classAI_1_1Algorithm_1_1DynaQBase.html',1,'AI::Algorithm']]],
@@ -11,7 +12,7 @@ var searchData=
   ['dynaqetwatkins',['DynaQETWatkins',['../classAI_1_1Algorithm_1_1DynaQETWatkins.html#a0601ab5adb8ba7d0d94d93b6194528c9',1,'AI::Algorithm::DynaQETWatkins']]],
   ['dynaqetwatkins',['DynaQETWatkins',['../classAI_1_1Algorithm_1_1DynaQETWatkins.html',1,'AI::Algorithm']]],
   ['dynaqplus',['DynaQPlus',['../classDynaQPlus.html',1,'']]],
-  ['dynaqprioritizesweeping',['DynaQPrioritizeSweeping',['../classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping.html',1,'AI::Algorithm']]],
   ['dynaqprioritizesweeping',['DynaQPrioritizeSweeping',['../classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping.html#ac1b32e8772e967a3bb74ac34708e4dfe',1,'AI::Algorithm::DynaQPrioritizeSweeping']]],
+  ['dynaqprioritizesweeping',['DynaQPrioritizeSweeping',['../classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping.html',1,'AI::Algorithm']]],
   ['dynaqrlmp',['DynaQRLMP',['../classAI_1_1Algorithm_1_1DynaQRLMP.html',1,'AI::Algorithm']]]
 ];

@@ -8,13 +8,13 @@
 #ifndef SENSORSTATESDISCRETE_H_
 #define SENSORSTATESDISCRETE_H_
 
-#include "SensorStatesAbstract.h"
+#include "SensorBase.h"
 
 using namespace std;
 
 namespace AI {
 template<class SensorData>
-class SensorStatesDiscrete : public SensorStatesAbstract<SensorData> {
+class SensorStatesDiscrete : public SensorBase<SensorData> {
  public:
   virtual const set<SensorData>& getObservedStates() const;
   virtual void addTerminalState(const SensorData& terminalData);

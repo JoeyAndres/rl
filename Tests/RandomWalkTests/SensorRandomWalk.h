@@ -8,7 +8,7 @@
 #ifndef SENSORRANDOMWALK_H_
 #define SENSORRANDOMWALK_H_
 
-#include "SensorStatesDiscrete.h"
+#include "SensorDiscrete.h"
 
 namespace AI {
 

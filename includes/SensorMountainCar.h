@@ -10,7 +10,7 @@
 
 #include <vector>
 
-#include "SensorStatesContinous.h"
+#include "SensorContinous.h"
 
 using namespace std;
 
