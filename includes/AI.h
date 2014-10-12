@@ -51,7 +51,6 @@
 #include "IndexDoc.h"
 #include "GlobalHeader.h"
 #include "Observable.h"
-#include "SensorContinous.h"
 #include "StateActionPairContainer.h"
 #include "StateActionPairValueComparison.h"
 #include "ActuatorBase.h"

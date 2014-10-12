@@ -25,14 +25,28 @@ namespace AI {
  *  \brief Base and interface class for all Sensor objects.
  *  \tparam SensorData State data type.
  *
- *  Base and interface class for all Sensor objects. This is not usable, SensorDiscrete and
- *  SensorContinous to inherit from instead.
+ *  Base and interface class for all Sensor objects. For sensors with
+ *  states of discrete nature, @see SensorBase. Otherwise, use this or
+ *  SensorContinuous.
  */
 template<class SensorData>
 class SensorBase {
  public:
+  /**
+   * @return current state of agent in environment.
+   */
   virtual SensorData getSensorState() = 0;
+
+  /**
+   * @param state to determine if its in state space.
+   * @return true if state is domain in state space.
+   */
   virtual bool isState(const SensorData& state) const = 0;
+
+  /**
+   * @param stateData to determine if it is a terminal state.
+   * @return true if its a terminal state.
+   */
   virtual bool isTerminalState(const SensorData& stateData) const = 0;
 
   /**
@@ -44,6 +58,12 @@ class SensorBase {
       throw (StateNotExistException) = 0;
 
 };
+
+/*! \typedef SensorContinuous
+ *  \brief Base class for Sensor with continuous state space.
+ */
+typedef SensorBase<vector<AI::FLOAT> > SensorContinuous;
+
 } /* namespace AI */
 
 #endif /* SENSORS_ABSTRACT_H_ */

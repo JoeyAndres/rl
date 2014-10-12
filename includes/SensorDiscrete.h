@@ -13,14 +13,37 @@
 using namespace std;
 
 namespace AI {
+
+/*! \class SensorDiscrete
+ *  \brief Base class for sensors of discrete nature.
+ *  \tparam SensorData State data type that is discrete, e.g. AI::UINT,
+ *          AI::INT, etc.
+ *
+ *  Base class for sensors of discrete nature.
+ */
 template<class SensorData>
 class SensorDiscrete : public SensorBase<SensorData> {
  public:
-  virtual const set<SensorData>& getObservedStates() const;
-  virtual void addTerminalState(const SensorData& terminalData);
-  virtual void addSensorData(const SensorData& sensorData);
+  // Overriden methods.
   virtual bool isState(const SensorData& state) const;
   virtual bool isTerminalState(const SensorData& stateData) const;
+
+ public:
+  /**
+   * @return set of currently observed states.
+   */
+  virtual const set<SensorData>& getObservedStates() const;
+
+  /**
+   * @param terminalData new terminal state to be added.
+   */
+  virtual void addTerminalState(const SensorData& terminalData);
+
+  /**
+   * @param sensorData adds a new observed sensor data.
+   */
+  virtual void addSensorData(const SensorData& sensorData);
+
  private:
   set<SensorData> _sensorData;  // Keep track of the observed states.
   set<SensorData> _terminalStates;  // Must know when to stop.
@@ -53,8 +76,7 @@ void AI::SensorDiscrete<SensorData>::addTerminalState(
 }
 
 template<class SensorData>
-bool AI::SensorDiscrete<SensorData>::isState(
-    const SensorData& state) const {
+bool AI::SensorDiscrete<SensorData>::isState(const SensorData& state) const {
   return _sensorData.find(state) != _sensorData.end();
 }
 

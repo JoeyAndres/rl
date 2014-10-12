@@ -24,21 +24,28 @@ using namespace std;
 namespace AI {
 namespace Algorithm {
 
-/**
- * Abstract class for all Reinforcement learning algorithms.
+/*! \class ReinforcementLearning
+ *  \brief Abstract class for all Reinforcement learning algorithms.
+ *  \tparam S state data type.
+ *  \tparam A action data type.
+ *
+ * All reinforcement algorithm inherit from this class.
  */
 template<class S, class A>
 class ReinforcementLearning : public LearningAlgorithm<S, A> {
  public:
   /**
-   * @param stepSize range [0.0, 1.0]. High step size means faster learning, but less precise convergence.
-   * @param discountRate range [0.0, 1.0]. High discount rate means more consideration of future events.
+   * @param stepSize range [0.0, 1.0]. High step size means faster learning, but
+   * less precise convergence.
+   * @param discountRate range [0.0, 1.0]. High discount rate means more
+   * consideration of future events.
    */
   ReinforcementLearning(AI::FLOAT stepSize, AI::FLOAT discountRate,
                         Policy::Policy<S, A>& policy);
 
   /**
-   * Returns the action that will "likely" gives the highest reward from the current state.
+   * Returns the action that will most "likely" gives the highest reward from the
+   * current state.
    * @param state the state to apply the argMax to.
    * @param stateAction map of StateAction to value.
    * @param actionSet a set of possible actions.
@@ -62,18 +69,10 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
   virtual AI::FLOAT getStepSize() const;
 
   /**
-   * @param stepSize
+   * @param stepSize set the step size of Reinforcement Learning.
    */
   virtual void setStepSize(AI::FLOAT stepSize);
 
-  /**
-   * Acquire the value of the state action pair. Each algorithm group (rl,
-   * supervised, unsupervised), or specific algorithm (Q, Sarsa, Gradient Descent)
-   * must implement.
-   * @param stateAction
-   * @return Value of stateAction.
-   */
-  //virtual AI::FLOAT getStateActionValue(const StateAction<S, A>& stateAction) const;
   /**
    * Does the main back up for all Temporal difference:
    * Q(S, A) <- Q(S, A) + stepSize*[R + max_action(S', A') - Q(S, A)]
@@ -224,7 +223,7 @@ template<class S, class A>
 void AI::Algorithm::ReinforcementLearning<S, A>::backUpStateActionPair(
     const StateAction<S, A>& currentStateAction, const AI::FLOAT reward,
     const StateAction<S, A>& nextStateActionPair) {
-  boost::unique_lock < boost::shared_mutex > containerLock(_containerLock);
+  boost::unique_lock<boost::shared_mutex> containerLock(_containerLock);
 
   setStateActionValue(
       currentStateAction,

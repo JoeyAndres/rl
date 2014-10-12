@@ -121,8 +121,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1TileCodeUNH.html">TileCodeUNH</a>(vector&lt;<a class="code" href="classAI_1_1Algorithm_1_1DimensionInfo.html">DimensionInfo&lt;FLOAT&gt;</a> &gt; dimensionalInfos, <span class="keywordtype">size_t</span> numTilings,</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;              <span class="keywordtype">size_t</span> sizeHint);</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAI_1_1Algorithm_1_1TileCodeUNH.html#a7b13840ff09b20ff2ad06965f3f4800f">getFeatureVector</a>(<span class="keyword">const</span> STATE_CONT&amp; parameters,</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                                FEATURE_VECTOR&amp; fv);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAI_1_1Algorithm_1_1TileCodeUNH.html#a7b13840ff09b20ff2ad06965f3f4800f">getFeatureVector</a>(<span class="keyword">const</span> <a class="code" href="namespaceAI.html#aff63ec21d97dd5f086fddbc3103f5707">STATE_CONT</a>&amp; parameters,</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                                <a class="code" href="namespaceAI.html#a23a39e1b301a5c1345fa508796940631">FEATURE_VECTOR</a>&amp; fv);</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <span class="keywordtype">size_t</span> mod(<span class="keywordtype">size_t</span> n, <span class="keywordtype">size_t</span> k) {</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">return</span> (n &gt;= 0) ? n % k : k - 1 - ((-n - 1) % k);</div>
@@ -167,7 +167,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
 <div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1TileCodeUNH.html#a7b13840ff09b20ff2ad06965f3f4800f">   76</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classAI_1_1Algorithm_1_1TileCodeUNH.html#a7b13840ff09b20ff2ad06965f3f4800f">AI::Algorithm::TileCodeUNH::getFeatureVector</a>(</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">const</span> STATE_CONT&amp; parameters, FEATURE_VECTOR&amp; tilings) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">const</span> <a class="code" href="namespaceAI.html#aff63ec21d97dd5f086fddbc3103f5707">STATE_CONT</a>&amp; parameters, <a class="code" href="namespaceAI.html#a23a39e1b301a5c1345fa508796940631">FEATURE_VECTOR</a>&amp; tilings) {</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  assert(this-&gt;_dimension == parameters.size());</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  vector&lt;AI::UINT&gt; base(this-&gt;_dimension, 0);</div>
@@ -188,7 +188,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    tileComponents[this-&gt;_dimension] = i;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <a class="code" href="classAI_1_1Algorithm_1_1Hash_1_1UNH.html">AI::Algorithm::Hash::UNH</a> hashAlg;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    tilings.push_back(hashAlg.<a class="code" href="classAI_1_1Algorithm_1_1Hash_1_1UNH.html#acc52e3c2f323e748882ee5d9d66be698">hash</a>((AI::BYTE*)&amp;tileComponents[0], this-&gt;_sizeCache));</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    tilings.push_back(hashAlg.<a class="code" href="classAI_1_1Algorithm_1_1Hash_1_1UNH.html#acc52e3c2f323e748882ee5d9d66be698">hash</a>((<a class="code" href="namespaceAI.html#a9d4bcda82fe0f9aac3c4861e24491581">AI::BYTE</a>*)&amp;tileComponents[0], this-&gt;_sizeCache));</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  }</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
@@ -196,13 +196,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classAI_1_1Algorithm_1_1TileCodeUNH_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1TileCodeUNH.html">AI::Algorithm::TileCodeUNH</a></div><div class="ttdef"><b>Definition:</b> TileCodeUNH.h:18</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1Hash_1_1UNH_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Hash_1_1UNH.html">AI::Algorithm::Hash::UNH</a></div><div class="ttdef"><b>Definition:</b> HashUNH.h:24</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1DimensionInfo_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1DimensionInfo.html">AI::Algorithm::DimensionInfo</a></div><div class="ttdef"><b>Definition:</b> DimensionInfo.h:22</div></div>
+<div class="ttc" id="namespaceAI_html_aff63ec21d97dd5f086fddbc3103f5707"><div class="ttname"><a href="namespaceAI.html#aff63ec21d97dd5f086fddbc3103f5707">AI::STATE_CONT</a></div><div class="ttdeci">std::vector&lt; FLOAT &gt; STATE_CONT</div><div class="ttdoc">State container. </div><div class="ttdef"><b>Definition:</b> GlobalHeader.h:33</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1Hash_1_1UNH_html_acc52e3c2f323e748882ee5d9d66be698"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Hash_1_1UNH.html#acc52e3c2f323e748882ee5d9d66be698">AI::Algorithm::Hash::UNH::hash</a></div><div class="ttdeci">virtual AI::INT hash(const AI::BYTE *const byteArray, size_t len)</div><div class="ttdef"><b>Definition:</b> HashUNH.cpp:12</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1TileCodeUNH_html_a7b13840ff09b20ff2ad06965f3f4800f"><div class="ttname"><a href="classAI_1_1Algorithm_1_1TileCodeUNH.html#a7b13840ff09b20ff2ad06965f3f4800f">AI::Algorithm::TileCodeUNH::getFeatureVector</a></div><div class="ttdeci">virtual void getFeatureVector(const STATE_CONT &amp;parameters, FEATURE_VECTOR &amp;fv)</div><div class="ttdef"><b>Definition:</b> TileCodeUNH.h:76</div></div>
+<div class="ttc" id="namespaceAI_html_a9d4bcda82fe0f9aac3c4861e24491581"><div class="ttname"><a href="namespaceAI.html#a9d4bcda82fe0f9aac3c4861e24491581">AI::BYTE</a></div><div class="ttdeci">uint8_t BYTE</div><div class="ttdoc">Byte type. </div><div class="ttdef"><b>Definition:</b> GlobalHeader.h:26</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1TileCode_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1TileCode.html">AI::Algorithm::TileCode</a></div><div class="ttdef"><b>Definition:</b> TileCode.h:28</div></div>
+<div class="ttc" id="namespaceAI_html_a23a39e1b301a5c1345fa508796940631"><div class="ttname"><a href="namespaceAI.html#a23a39e1b301a5c1345fa508796940631">AI::FEATURE_VECTOR</a></div><div class="ttdeci">std::vector&lt; UINT &gt; FEATURE_VECTOR</div><div class="ttdef"><b>Definition:</b> GlobalHeader.h:40</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 15:14:24 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 20:50:07 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

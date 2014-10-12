@@ -122,21 +122,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1SarsaETGD.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="classAI_1_1Algorithm_1_1SarsaETGD.html">SarsaETGD</a> final: <span class="keyword">public</span> <a class="code" href="classAI_1_1Algorithm_1_1ReinforcementLearningGD.html">ReinforcementLearningGD</a> {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1SarsaETGD.html">SarsaETGD</a>(<a class="code" href="classAI_1_1Algorithm_1_1TileCode.html">TileCode</a>&amp; tileCode, AI::FLOAT stepSize, AI::FLOAT discountRate,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            AI::FLOAT lambda, <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt;vector&lt;FLOAT&gt;, vector&lt;FLOAT&gt; &gt;&amp; policy);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1SarsaETGD.html">SarsaETGD</a>(<a class="code" href="classAI_1_1Algorithm_1_1TileCode.html">TileCode</a>&amp; tileCode, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> lambda, <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt;vector&lt;FLOAT&gt;, vector&lt;FLOAT&gt; &gt;&amp; policy);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;};</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;} <span class="comment">/* namespace Algorithm */</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;} <span class="comment">/* namespace AI */</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;AI::Algorithm::SarsaETGD::SarsaETGD(</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    TileCode&amp; tileCode, AI::FLOAT stepSize, AI::FLOAT discountRate,</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    AI::FLOAT lambda, Policy::Policy&lt;vector&lt;FLOAT&gt;, vector&lt;FLOAT&gt; &gt;&amp; policy)</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    TileCode&amp; tileCode, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> lambda, Policy::Policy&lt;vector&lt;FLOAT&gt;, vector&lt;FLOAT&gt; &gt;&amp; policy)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    : ReinforcementLearningGD(tileCode, stepSize, discountRate, lambda, policy) {</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  this-&gt;<a class="code" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a826f61675ac11b699c4328c44cccdae5">setLearningPolicy</a>(policy);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* SARSAETGD_H */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span></div>
+<div class="ttc" id="namespaceAI_html_a41b74884a20833db653dded3918e05c3"><div class="ttname"><a href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a></div><div class="ttdeci">double FLOAT</div><div class="ttdoc">Default floating type. </div><div class="ttdef"><b>Definition:</b> GlobalHeader.h:23</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1LearningAlgorithm_html_a826f61675ac11b699c4328c44cccdae5"><div class="ttname"><a href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a826f61675ac11b699c4328c44cccdae5">AI::Algorithm::LearningAlgorithm&lt; vector&lt; FLOAT &gt;, vector&lt; FLOAT &gt; &gt;::setLearningPolicy</a></div><div class="ttdeci">void setLearningPolicy(Policy::Policy&lt; vector&lt; FLOAT &gt;, vector&lt; FLOAT &gt; &gt; &amp;policy)</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1ReinforcementLearningGD_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1ReinforcementLearningGD.html">AI::Algorithm::ReinforcementLearningGD</a></div><div class="ttdef"><b>Definition:</b> ReinforcementLearningGD.h:23</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1Policy_1_1Policy_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">AI::Algorithm::Policy::Policy</a></div><div class="ttdoc">Base class for all Policy. </div><div class="ttdef"><b>Definition:</b> Policy.h:34</div></div>
@@ -145,7 +146,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 15:14:24 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 20:50:07 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

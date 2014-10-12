@@ -14,11 +14,11 @@
 using namespace std;
 
 namespace AI {
-/**
- * StateActionNotExistException
- * Handling situations when StateAction being queried
- * does not exist. e.g. map[StateAction] throws out of
- * range since StateAction does not exist.
+/*! \class StateActionNotExistException
+ *  \brief Handling situation when StateAction being queried does not exist.
+ *
+ * Handling situations when StateAction being query does not exist.
+ * e.g. map[StateAction] throws out of range since StateAction does not exist.
  */
 class StateActionNotExistException : public exception {
  public:

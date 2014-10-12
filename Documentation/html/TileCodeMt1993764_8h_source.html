@@ -121,8 +121,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1TileCodeMt1993764.html#a0d8eee3e74ccf5587d1f376e9c54a33f">TileCodeMt1993764</a>(vector&lt;<a class="code" href="classAI_1_1Algorithm_1_1DimensionInfo.html">DimensionInfo&lt;FLOAT&gt;</a> &gt; dimensionalInfos,</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                    <span class="keywordtype">size_t</span> numTilings, <span class="keywordtype">size_t</span> sizeHint);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAI_1_1Algorithm_1_1TileCodeMt1993764.html#a8d3e8fd183947d9dcb19e63139ea0871">getFeatureVector</a>(<span class="keyword">const</span> STATE_CONT&amp; parameters,</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                                FEATURE_VECTOR&amp; fv);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAI_1_1Algorithm_1_1TileCodeMt1993764.html#a8d3e8fd183947d9dcb19e63139ea0871">getFeatureVector</a>(<span class="keyword">const</span> <a class="code" href="namespaceAI.html#aff63ec21d97dd5f086fddbc3103f5707">STATE_CONT</a>&amp; parameters,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                                <a class="code" href="namespaceAI.html#a23a39e1b301a5c1345fa508796940631">FEATURE_VECTOR</a>&amp; fv);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  std::mt19937_64 _prng;</div>
@@ -146,7 +146,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
 <div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1TileCodeMt1993764.html#a8d3e8fd183947d9dcb19e63139ea0871">   66</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classAI_1_1Algorithm_1_1TileCodeMt1993764.html#a8d3e8fd183947d9dcb19e63139ea0871">AI::Algorithm::TileCodeMt1993764::getFeatureVector</a>(</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">const</span> STATE_CONT&amp; parameters, FEATURE_VECTOR&amp; tilings) {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">const</span> <a class="code" href="namespaceAI.html#aff63ec21d97dd5f086fddbc3103f5707">STATE_CONT</a>&amp; parameters, <a class="code" href="namespaceAI.html#a23a39e1b301a5c1345fa508796940631">FEATURE_VECTOR</a>&amp; tilings) {</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  vector&lt;AI::INT&gt; tileComponents(this-&gt;_dimension + 1);</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; this-&gt;_numTilings; i++) {</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; this-&gt;_dimension; j++) {</div>
@@ -166,13 +166,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif // TIleCODEMT1993764_H_</span></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1TileCodeMt1993764_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1TileCodeMt1993764.html">AI::Algorithm::TileCodeMt1993764</a></div><div class="ttdef"><b>Definition:</b> TileCodeMt1993764.h:18</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1DimensionInfo_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1DimensionInfo.html">AI::Algorithm::DimensionInfo</a></div><div class="ttdef"><b>Definition:</b> DimensionInfo.h:22</div></div>
+<div class="ttc" id="namespaceAI_html_aff63ec21d97dd5f086fddbc3103f5707"><div class="ttname"><a href="namespaceAI.html#aff63ec21d97dd5f086fddbc3103f5707">AI::STATE_CONT</a></div><div class="ttdeci">std::vector&lt; FLOAT &gt; STATE_CONT</div><div class="ttdoc">State container. </div><div class="ttdef"><b>Definition:</b> GlobalHeader.h:33</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1TileCodeMt1993764_html_a0d8eee3e74ccf5587d1f376e9c54a33f"><div class="ttname"><a href="classAI_1_1Algorithm_1_1TileCodeMt1993764.html#a0d8eee3e74ccf5587d1f376e9c54a33f">AI::Algorithm::TileCodeMt1993764::TileCodeMt1993764</a></div><div class="ttdeci">TileCodeMt1993764(vector&lt; DimensionInfo&lt; FLOAT &gt; &gt; dimensionalInfos, size_t numTilings)</div><div class="ttdef"><b>Definition:</b> TileCodeMt1993764.h:52</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1TileCode_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1TileCode.html">AI::Algorithm::TileCode</a></div><div class="ttdef"><b>Definition:</b> TileCode.h:28</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1TileCodeMt1993764_html_a8d3e8fd183947d9dcb19e63139ea0871"><div class="ttname"><a href="classAI_1_1Algorithm_1_1TileCodeMt1993764.html#a8d3e8fd183947d9dcb19e63139ea0871">AI::Algorithm::TileCodeMt1993764::getFeatureVector</a></div><div class="ttdeci">virtual void getFeatureVector(const STATE_CONT &amp;parameters, FEATURE_VECTOR &amp;fv)</div><div class="ttdef"><b>Definition:</b> TileCodeMt1993764.h:66</div></div>
+<div class="ttc" id="namespaceAI_html_a23a39e1b301a5c1345fa508796940631"><div class="ttname"><a href="namespaceAI.html#a23a39e1b301a5c1345fa508796940631">AI::FEATURE_VECTOR</a></div><div class="ttdeci">std::vector&lt; UINT &gt; FEATURE_VECTOR</div><div class="ttdef"><b>Definition:</b> GlobalHeader.h:40</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 15:14:24 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 20:50:07 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

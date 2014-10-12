@@ -1,22 +1,5 @@
 var searchData=
 [
-  ['sarsa',['Sarsa',['../classAI_1_1Algorithm_1_1Sarsa.html#a02dae564a53ea2284a23d047a8998fca',1,'AI::Algorithm::Sarsa']]],
-  ['sarsaet',['SarsaET',['../classAI_1_1Algorithm_1_1SarsaET.html#aa934143376cc47c6e42e3ec67fb93eae',1,'AI::Algorithm::SarsaET']]],
-  ['secontroltpolicy',['seControltPolicy',['../classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1d26cb76c945a5312ce4ac4fdabc4d31',1,'AI::Algorithm::LearningAlgorithm']]],
-  ['setactionset',['setActionSet',['../classAI_1_1Actuator.html#adbe552dfd0cc9eaed2d27af34d9d6fa1',1,'AI::Actuator']]],
-  ['setdefaultstateactionvalue',['setDefaultStateActionValue',['../classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1da99bfa2de96f397a4ef07e53ab5697',1,'AI::Algorithm::LearningAlgorithm']]],
-  ['setdiscountrate',['setDiscountRate',['../classAI_1_1Algorithm_1_1ReinforcementLearning.html#a1fc1e11a3ddb4377c4d6813a95ce87f4',1,'AI::Algorithm::ReinforcementLearning']]],
-  ['setgeneralizationscale',['setGeneralizationScale',['../classAI_1_1Algorithm_1_1DimensionInfo.html#a53462f78d4d95d27ccb421f519b3112a',1,'AI::Algorithm::DimensionInfo']]],
-  ['setgreediness',['setGreediness',['../classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a2de58f47fa1663ff4718038f2b268295',1,'AI::Algorithm::Policy::EpsilonGreedy']]],
-  ['setgreedy',['setGreedy',['../classAI_1_1StateActionTransition.html#ac6b371a119dc22ecaa5cf53981c01317',1,'AI::StateActionTransition']]],
-  ['setgridcountideal',['SetGridCountIdeal',['../classAI_1_1Algorithm_1_1DimensionInfo.html#a44578552f80f0772396bdc0430059e9e',1,'AI::Algorithm::DimensionInfo']]],
-  ['setlambda',['setLambda',['../classAI_1_1Algorithm_1_1EligibilityTraces.html#ac52edaa0eeaf4446edb14f7b5415819f',1,'AI::Algorithm::EligibilityTraces']]],
-  ['setlearningpolicy',['setLearningPolicy',['../classAI_1_1Algorithm_1_1LearningAlgorithm.html#a826f61675ac11b699c4328c44cccdae5',1,'AI::Algorithm::LearningAlgorithm']]],
-  ['setlowerbound',['setLowerBound',['../classAI_1_1Algorithm_1_1DimensionInfo.html#adef1b2721242ef4ca4978a1ceb8d2474',1,'AI::Algorithm::DimensionInfo']]],
-  ['setnumtilings',['setNumTilings',['../classAI_1_1Algorithm_1_1TileCode.html#aad4bf93d21b47fe00c8e64957157dca1',1,'AI::Algorithm::TileCode']]],
-  ['setstepsize',['setStepSize',['../classAI_1_1Algorithm_1_1ReinforcementLearning.html#a04932645faa6c385e4c587f7f845b484',1,'AI::Algorithm::ReinforcementLearning::setStepSize()'],['../classAI_1_1StateActionTransition.html#a150cdd5fc4b6ec63c31ec59008241ce2',1,'AI::StateActionTransition::setStepSize()']]],
-  ['setupperbound',['setUpperBound',['../classAI_1_1Algorithm_1_1DimensionInfo.html#a9889cad59dddd038f7fbddbd2ac6ece4',1,'AI::Algorithm::DimensionInfo']]],
-  ['stateactionnotexistexception',['StateActionNotExistException',['../classAI_1_1StateActionNotExistException.html#abcba2ae2e7a93a728595704c3440e778',1,'AI::StateActionNotExistException']]],
-  ['stateactiontransition',['StateActionTransition',['../classAI_1_1StateActionTransition.html#a7c70bec4af58688f1e85d7c7d9a3b019',1,'AI::StateActionTransition']]],
-  ['stateinstateactionpairmap',['stateInStateActionPairMap',['../classAI_1_1StateActionPairContainer.html#a4da559c1dafe0c368a331c47aede0490',1,'AI::StateActionPairContainer']]]
+  ['postexecute',['postExecute',['../classAI_1_1Agent.html#ae93d7ac5e75646b0965f18fd9c6a1737',1,'AI::Agent']]],
+  ['preexecute',['preExecute',['../classAI_1_1Agent.html#a938963e5cbbd862402a4b815b9327093',1,'AI::Agent']]]
 ];

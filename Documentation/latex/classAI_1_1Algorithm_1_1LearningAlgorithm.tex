@@ -21,11 +21,11 @@ Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Learning\-Algorithm$<$ S, A $>$
 \item 
 \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a8fe54228193c0d7a28fba7de00441d7f}{Learning\-Algorithm} (\hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<$ S, A $>$ \&control\-Policy)
 \item 
-virtual void \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a7d216d791e558e15a73083af6257ed72}{update} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const S \&next\-State, const A\-I\-::\-F\-L\-O\-A\-T reward, const set$<$ A $>$ \&action\-Set)=0
+virtual void \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a7d216d791e558e15a73083af6257ed72}{update} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const S \&next\-State, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} reward, const set$<$ A $>$ \&action\-Set)=0
 \item 
 virtual const A \& \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_afeca4eded9bc0a02312ccbbfd05f8daa}{get\-Action} (const S \&state, const set$<$ A $>$ \&action\-Set)=0
 \item 
-virtual A\-I\-::\-F\-L\-O\-A\-T \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a1044b2558109e8dd3d3bf5bedb9723b5}{get\-State\-Action\-Value} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&state\-Action)=0
+virtual \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a1044b2558109e8dd3d3bf5bedb9723b5}{get\-State\-Action\-Value} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&state\-Action)=0
 \item 
 void \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a1d26cb76c945a5312ce4ac4fdabc4d31}{se\-Controlt\-Policy} (\hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<$ S, A $>$ \&policy)
 \item 
@@ -33,9 +33,9 @@ void \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a1d26cb76c945a5312ce4a
 \item 
 virtual void \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_aebe650b79f39ffd46ece7adb44ddaf60}{reset} ()
 \item 
-const A\-I\-::\-F\-L\-O\-A\-T \& \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_aafc85fe7b2ad9331ae41593784321641}{get\-Default\-State\-Action\-Value} () const 
+const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} \& \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_aafc85fe7b2ad9331ae41593784321641}{get\-Default\-State\-Action\-Value} () const 
 \item 
-void \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a1da99bfa2de96f397a4ef07e53ab5697}{set\-Default\-State\-Action\-Value} (const A\-I\-::\-F\-L\-O\-A\-T \&default\-State\-Action\-Value)
+void \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a1da99bfa2de96f397a4ef07e53ab5697}{set\-Default\-State\-Action\-Value} (const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} \&default\-State\-Action\-Value)
 \item 
 void \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a826f61675ac11b699c4328c44cccdae5}{set\-Learning\-Policy} (\hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<$ S, A $>$ \&policy)
 \item 
@@ -44,12 +44,12 @@ const \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-const A \& \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_ad5b5f6baa9c03f68427008abeeb35535}{\-\_\-get\-Learning\-Policy\-Action} (const map$<$ A, A\-I\-::\-F\-L\-O\-A\-T $>$ \&action\-Value\-Map, const set$<$ A $>$ \&action\-Set)
+const A \& \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_ad5b5f6baa9c03f68427008abeeb35535}{\-\_\-get\-Learning\-Policy\-Action} (const map$<$ A, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} $>$ \&action\-Value\-Map, const set$<$ A $>$ \&action\-Set)
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1LearningAlgorithm_ae3b8ccdc51ad2a8c1cc2ef9009258466}{A\-I\-::\-F\-L\-O\-A\-T \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_ae3b8ccdc51ad2a8c1cc2ef9009258466}{\-\_\-default\-State\-Action\-Value}}\label{classAI_1_1Algorithm_1_1LearningAlgorithm_ae3b8ccdc51ad2a8c1cc2ef9009258466}
+\hypertarget{classAI_1_1Algorithm_1_1LearningAlgorithm_ae3b8ccdc51ad2a8c1cc2ef9009258466}{\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_ae3b8ccdc51ad2a8c1cc2ef9009258466}{\-\_\-default\-State\-Action\-Value}}\label{classAI_1_1Algorithm_1_1LearningAlgorithm_ae3b8ccdc51ad2a8c1cc2ef9009258466}
 
 \begin{DoxyCompactList}\small\item\em Place holder for default state action value. \end{DoxyCompactList}\item 
 \hypertarget{classAI_1_1Algorithm_1_1LearningAlgorithm_ad74dbed6a7be0c699d42642b9968bf86}{\hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<$ S, A $>$ \& \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_ad74dbed6a7be0c699d42642b9968bf86}{\-\_\-control\-Policy}}\label{classAI_1_1Algorithm_1_1LearningAlgorithm_ad74dbed6a7be0c699d42642b9968bf86}
@@ -101,7 +101,7 @@ All learning algorithm, reinforcement, supervised, unsupervised inherit from thi
 \index{\-\_\-get\-Learning\-Policy\-Action@{\-\_\-get\-Learning\-Policy\-Action}!AI::Algorithm::LearningAlgorithm@{A\-I\-::\-Algorithm\-::\-Learning\-Algorithm}}
 \subsubsection[{\-\_\-get\-Learning\-Policy\-Action}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A$>$ const A \& {\bf A\-I\-::\-Algorithm\-::\-Learning\-Algorithm}$<$ S, A $>$\-::\-\_\-get\-Learning\-Policy\-Action (
 \begin{DoxyParamCaption}
-\item[{const map$<$ A, A\-I\-::\-F\-L\-O\-A\-T $>$ \&}]{action\-Value\-Map, }
+\item[{const map$<$ A, {\bf A\-I\-::\-F\-L\-O\-A\-T} $>$ \&}]{action\-Value\-Map, }
 \item[{const set$<$ A $>$ \&}]{action\-Set}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{classAI_1_1Algorithm_1_1LearningAlgorithm_ad5b5f6baa9c03f68427008abeeb35535}
@@ -139,7 +139,7 @@ current control policy
 \end{DoxyReturn}
 \hypertarget{classAI_1_1Algorithm_1_1LearningAlgorithm_aafc85fe7b2ad9331ae41593784321641}{\index{A\-I\-::\-Algorithm\-::\-Learning\-Algorithm@{A\-I\-::\-Algorithm\-::\-Learning\-Algorithm}!get\-Default\-State\-Action\-Value@{get\-Default\-State\-Action\-Value}}
 \index{get\-Default\-State\-Action\-Value@{get\-Default\-State\-Action\-Value}!AI::Algorithm::LearningAlgorithm@{A\-I\-::\-Algorithm\-::\-Learning\-Algorithm}}
-\subsubsection[{get\-Default\-State\-Action\-Value}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ const A\-I\-::\-F\-L\-O\-A\-T \& {\bf A\-I\-::\-Algorithm\-::\-Learning\-Algorithm}$<$ S, A $>$\-::get\-Default\-State\-Action\-Value (
+\subsubsection[{get\-Default\-State\-Action\-Value}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ const {\bf A\-I\-::\-F\-L\-O\-A\-T} \& {\bf A\-I\-::\-Algorithm\-::\-Learning\-Algorithm}$<$ S, A $>$\-::get\-Default\-State\-Action\-Value (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -159,7 +159,7 @@ current learning policy.
 \end{DoxyReturn}
 \hypertarget{classAI_1_1Algorithm_1_1LearningAlgorithm_a1044b2558109e8dd3d3bf5bedb9723b5}{\index{A\-I\-::\-Algorithm\-::\-Learning\-Algorithm@{A\-I\-::\-Algorithm\-::\-Learning\-Algorithm}!get\-State\-Action\-Value@{get\-State\-Action\-Value}}
 \index{get\-State\-Action\-Value@{get\-State\-Action\-Value}!AI::Algorithm::LearningAlgorithm@{A\-I\-::\-Algorithm\-::\-Learning\-Algorithm}}
-\subsubsection[{get\-State\-Action\-Value}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S, class A$>$ virtual A\-I\-::\-F\-L\-O\-A\-T {\bf A\-I\-::\-Algorithm\-::\-Learning\-Algorithm}$<$ S, A $>$\-::get\-State\-Action\-Value (
+\subsubsection[{get\-State\-Action\-Value}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S, class A$>$ virtual {\bf A\-I\-::\-F\-L\-O\-A\-T} {\bf A\-I\-::\-Algorithm\-::\-Learning\-Algorithm}$<$ S, A $>$\-::get\-State\-Action\-Value (
 \begin{DoxyParamCaption}
 \item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{state\-Action}
 \end{DoxyParamCaption}
@@ -203,7 +203,7 @@ Reimplemented in \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearningGD_ad6f
 \index{set\-Default\-State\-Action\-Value@{set\-Default\-State\-Action\-Value}!AI::Algorithm::LearningAlgorithm@{A\-I\-::\-Algorithm\-::\-Learning\-Algorithm}}
 \subsubsection[{set\-Default\-State\-Action\-Value}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-Algorithm\-::\-Learning\-Algorithm}$<$ S, A $>$\-::set\-Default\-State\-Action\-Value (
 \begin{DoxyParamCaption}
-\item[{const A\-I\-::\-F\-L\-O\-A\-T \&}]{default\-State\-Action\-Value}
+\item[{const {\bf A\-I\-::\-F\-L\-O\-A\-T} \&}]{default\-State\-Action\-Value}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAI_1_1Algorithm_1_1LearningAlgorithm_a1da99bfa2de96f397a4ef07e53ab5697}
 
@@ -229,7 +229,7 @@ Reimplemented in \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearningGD_ad6f
 \begin{DoxyParamCaption}
 \item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{current\-State\-Action, }
 \item[{const S \&}]{next\-State, }
-\item[{const A\-I\-::\-F\-L\-O\-A\-T}]{reward, }
+\item[{const {\bf A\-I\-::\-F\-L\-O\-A\-T}}]{reward, }
 \item[{const set$<$ A $>$ \&}]{action\-Set}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classAI_1_1Algorithm_1_1LearningAlgorithm_a7d216d791e558e15a73083af6257ed72}

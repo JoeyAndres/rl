@@ -103,42 +103,77 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">AI::StateActionPairContainer&lt; S, A &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Encapsulates the mapping of <a class="el" href="classAI_1_1StateAction.html" title="Encapsulates state action pair. ">StateAction</a> to their Value.  
+ <a href="classAI_1_1StateActionPairContainer.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="StateActionPairContainer_8h_source.html">StateActionPairContainer.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a12842518174d0af5fc89c7a86e766099"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1StateActionPairContainer.html#a12842518174d0af5fc89c7a86e766099">addState</a> (const S &amp;state, AI::FLOAT value, const set&lt; A &gt; &amp;actionSet)</td></tr>
+<tr class="memitem:a6b6a773f9ef9e474f879dea4de5d109b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1StateActionPairContainer.html#a6b6a773f9ef9e474f879dea4de5d109b">StateActionPairContainer</a> ()</td></tr>
+<tr class="separator:a6b6a773f9ef9e474f879dea4de5d109b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12842518174d0af5fc89c7a86e766099"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1StateActionPairContainer.html#a12842518174d0af5fc89c7a86e766099">addState</a> (const S &amp;state, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> value, const set&lt; A &gt; &amp;actionSet)</td></tr>
 <tr class="separator:a12842518174d0af5fc89c7a86e766099"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4c9faef1c7d4e35b11f95b8a84352ae"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1StateActionPairContainer.html#af4c9faef1c7d4e35b11f95b8a84352ae">addAction</a> (A &amp;action, AI::FLOAT value, const set&lt; S &gt; &amp;actionSet)</td></tr>
+<tr class="memitem:af4c9faef1c7d4e35b11f95b8a84352ae"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1StateActionPairContainer.html#af4c9faef1c7d4e35b11f95b8a84352ae">addAction</a> (A &amp;action, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> value, const set&lt; S &gt; &amp;actionSet)</td></tr>
 <tr class="separator:af4c9faef1c7d4e35b11f95b8a84352ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4da559c1dafe0c368a331c47aede0490"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1StateActionPairContainer.html#a4da559c1dafe0c368a331c47aede0490">stateInStateActionPairMap</a> (const S &amp;state, const set&lt; A &gt; &amp;actionSet) const </td></tr>
 <tr class="separator:a4da559c1dafe0c368a331c47aede0490"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3dccc9c82a2ec4130050c832e3da6c9"><td class="memItemLeft" align="right" valign="top">virtual const AI::FLOAT &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1StateActionPairContainer.html#aa3dccc9c82a2ec4130050c832e3da6c9">getStateActionValue</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;stateAction) const   throw (StateActionNotExistException)</td></tr>
+<tr class="memitem:aa3dccc9c82a2ec4130050c832e3da6c9"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1StateActionPairContainer.html#aa3dccc9c82a2ec4130050c832e3da6c9">getStateActionValue</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;stateAction) const   throw (StateActionNotExistException)</td></tr>
 <tr class="separator:aa3dccc9c82a2ec4130050c832e3da6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26fa5b9fd043865695e6c4adf97188d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26fa5b9fd043865695e6c4adf97188d5"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setStateActionValue</b> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;stateAction, AI::FLOAT value)  throw (StateActionNotExistException)</td></tr>
+<tr class="memitem:a26fa5b9fd043865695e6c4adf97188d5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1StateActionPairContainer.html#a26fa5b9fd043865695e6c4adf97188d5">setStateActionValue</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;stateAction, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> value)  throw (StateActionNotExistException)</td></tr>
 <tr class="separator:a26fa5b9fd043865695e6c4adf97188d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4dc529e9a2fa432e93fe4e4d083fce6e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4dc529e9a2fa432e93fe4e4d083fce6e"></a>
-const AI::FLOAT &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;stateAction) const </td></tr>
+<tr class="memitem:a4dc529e9a2fa432e93fe4e4d083fce6e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1StateActionPairContainer.html#a4dc529e9a2fa432e93fe4e4d083fce6e">operator[]</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;stateAction) const </td></tr>
 <tr class="separator:a4dc529e9a2fa432e93fe4e4d083fce6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb152cc2644ba6fad1da5476b746dd30"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abb152cc2644ba6fad1da5476b746dd30"></a>
-map&lt; <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt;<br class="typebreak"/>
-, AI::FLOAT &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> () const </td></tr>
+<tr class="memitem:abb152cc2644ba6fad1da5476b746dd30"><td class="memItemLeft" align="right" valign="top">map&lt; <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt;<br class="typebreak"/>
+, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1StateActionPairContainer.html#abb152cc2644ba6fad1da5476b746dd30">begin</a> () const </td></tr>
 <tr class="separator:abb152cc2644ba6fad1da5476b746dd30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36cb0d1278cd67b4a7b4967ef6740937"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36cb0d1278cd67b4a7b4967ef6740937"></a>
-map&lt; <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt;<br class="typebreak"/>
-, AI::FLOAT &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> () const </td></tr>
+<tr class="memitem:a36cb0d1278cd67b4a7b4967ef6740937"><td class="memItemLeft" align="right" valign="top">map&lt; <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt;<br class="typebreak"/>
+, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1StateActionPairContainer.html#a36cb0d1278cd67b4a7b4967ef6740937">end</a> () const </td></tr>
 <tr class="separator:a36cb0d1278cd67b4a7b4967ef6740937"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:afeb95c4cb5d37ce8f8fd1a2b3518211b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afeb95c4cb5d37ce8f8fd1a2b3518211b"></a>
 map&lt; <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt;<br class="typebreak"/>
-, AI::FLOAT &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_stateActionPairMap</b></td></tr>
+, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1StateActionPairContainer.html#afeb95c4cb5d37ce8f8fd1a2b3518211b">_stateActionPairMap</a></td></tr>
+<tr class="memdesc:afeb95c4cb5d37ce8f8fd1a2b3518211b"><td class="mdescLeft">&#160;</td><td class="mdescRight">state-action -&gt; value mapping. <br/></td></tr>
 <tr class="separator:afeb95c4cb5d37ce8f8fd1a2b3518211b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70b98a34845bd7744fa4e8b7c3163939"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a70b98a34845bd7744fa4e8b7c3163939"></a>
 boost::shared_mutex&#160;</td><td class="memItemRight" valign="bottom"><b>_stateActionPairMapMutex</b></td></tr>
 <tr class="separator:a70b98a34845bd7744fa4e8b7c3163939"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class S, class A&gt;<br/>
+class AI::StateActionPairContainer&lt; S, A &gt;</h3>
+
+<p>Encapsulates the mapping of <a class="el" href="classAI_1_1StateAction.html" title="Encapsulates state action pair. ">StateAction</a> to their Value. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">S</td><td>State data type. </td></tr>
+    <tr><td class="paramname">A</td><td>Action data type. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a6b6a773f9ef9e474f879dea4de5d109b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class S , class A &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAI_1_1StateActionPairContainer.html">AI::StateActionPairContainer</a>&lt; S, A &gt;::<a class="el" href="classAI_1_1StateActionPairContainer.html">StateActionPairContainer</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>no-arg constructor. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="af4c9faef1c7d4e35b11f95b8a84352ae"></a>
 <div class="memitem">
@@ -158,7 +193,7 @@ template&lt;class S , class A &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">AI::FLOAT&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td>
           <td class="paramname"><em>value</em>, </td>
         </tr>
         <tr>
@@ -209,7 +244,7 @@ template&lt;class S , class A &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">AI::FLOAT&#160;</td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td>
           <td class="paramname"><em>value</em>, </td>
         </tr>
         <tr>
@@ -243,6 +278,58 @@ template&lt;class S , class A &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="abb152cc2644ba6fad1da5476b746dd30"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class S , class A &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">map&lt; <a class="el" href="classAI_1_1StateAction.html">AI::StateAction</a>&lt; S, A &gt;, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &gt;::const_iterator <a class="el" href="classAI_1_1StateActionPairContainer.html">AI::StateActionPairContainer</a>&lt; S, A &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>begin iterator of state-action to value map. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a36cb0d1278cd67b4a7b4967ef6740937"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class S , class A &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">map&lt; <a class="el" href="classAI_1_1StateAction.html">AI::StateAction</a>&lt; S, A &gt;, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &gt;::const_iterator <a class="el" href="classAI_1_1StateActionPairContainer.html">AI::StateActionPairContainer</a>&lt; S, A &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>end iterator of state-action to value map. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="aa3dccc9c82a2ec4130050c832e3da6c9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -253,7 +340,7 @@ template&lt;class S , class A &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const AI::FLOAT &amp; <a class="el" href="classAI_1_1StateActionPairContainer.html">AI::StateActionPairContainer</a>&lt; S, A &gt;::getStateActionValue </td>
+          <td class="memname">const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &amp; <a class="el" href="classAI_1_1StateActionPairContainer.html">AI::StateActionPairContainer</a>&lt; S, A &gt;::getStateActionValue </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;&#160;</td>
           <td class="paramname"><em>stateAction</em></td><td>)</td>
@@ -282,6 +369,96 @@ template&lt;class S , class A &gt; </div>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">StateActionNotEistException</td><td>when stateAction does not exist. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4dc529e9a2fa432e93fe4e4d083fce6e"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class S , class A &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &amp; <a class="el" href="classAI_1_1StateActionPairContainer.html">AI::StateActionPairContainer</a>&lt; S, A &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;&#160;</td>
+          <td class="paramname"><em>stateAction</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Access state-action value via [] operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stateAction</td><td><a class="el" href="classAI_1_1StateActionPairContainer.html" title="Encapsulates the mapping of StateAction to their Value. ">StateActionPairContainer</a>[stateAction] </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classAI_1_1StateActionPairContainer.html" title="Encapsulates the mapping of StateAction to their Value. ">StateActionPairContainer</a>[stateAction] value. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a26fa5b9fd043865695e6c4adf97188d5"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class S , class A &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classAI_1_1StateActionPairContainer.html">AI::StateActionPairContainer</a>&lt; S, A &gt;::setStateActionValue </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;&#160;</td>
+          <td class="paramname"><em>stateAction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+        <tr>
+          <td align="right">throw </td><td>(</td><td colspan="2"><a class="el" href="classAI_1_1StateActionNotExistException.html">StateActionNotExistException</a></td>
+        </tr>
+        <tr>
+          <td align="right"></td><td>)</td><td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>\( map[stateAction] \Leftarrow value \). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stateAction</td><td>to set the value of. </td></tr>
+    <tr><td class="paramname">value</td><td>value of stateAction. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">StateActionNoExistException</td><td>stateAction given does not exist. </td></tr>
   </table>
   </dd>
 </dl>
@@ -337,7 +514,7 @@ template&lt;class S , class A &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 15:14:24 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 20:50:07 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['postexecute',['postExecute',['../classAI_1_1Agent.html#ae93d7ac5e75646b0965f18fd9c6a1737',1,'AI::Agent']]],
-  ['preexecute',['preExecute',['../classAI_1_1Agent.html#a938963e5cbbd862402a4b815b9327093',1,'AI::Agent']]]
+  ['learningalgorithm',['LearningAlgorithm',['../classAI_1_1Algorithm_1_1LearningAlgorithm.html#a8fe54228193c0d7a28fba7de00441d7f',1,'AI::Algorithm::LearningAlgorithm']]]
 ];

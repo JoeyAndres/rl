@@ -10,10 +10,10 @@ Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a892dd156f280dd375d7f248258531043}{{\bfseries Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P} (A\-I\-::\-F\-L\-O\-A\-T step\-Size, A\-I\-::\-F\-L\-O\-A\-T discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<$ S, A $>$ \&policy, A\-I\-::\-U\-I\-N\-T simulation\-Iteration\-Count, A\-I\-::\-F\-L\-O\-A\-T state\-Transition\-Greediness, A\-I\-::\-F\-L\-O\-A\-T state\-Transition\-Step\-Size)}\label{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a892dd156f280dd375d7f248258531043}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a892dd156f280dd375d7f248258531043}{{\bfseries Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P} (\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} step\-Size, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<$ S, A $>$ \&policy, \hyperlink{namespaceAI_ab6e14dc1e659854858a87e511f1439ec}{A\-I\-::\-U\-I\-N\-T} simulation\-Iteration\-Count, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} state\-Transition\-Greediness, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} state\-Transition\-Step\-Size)}\label{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a892dd156f280dd375d7f248258531043}
 
 \item 
-virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_aebff9b81db5bd2ae33bd3d6662539bc0}{back\-Up\-State\-Action\-Pair} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const F\-L\-O\-A\-T reward, const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&next\-State\-Action\-Pair)
+virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_aebff9b81db5bd2ae33bd3d6662539bc0}{back\-Up\-State\-Action\-Pair} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} reward, const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&next\-State\-Action\-Pair)
 \item 
 \hypertarget{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a145fa4fdba2289842a77c9d483a42ef2}{virtual A {\bfseries arg\-Max} (const S \&state, const set$<$ A $>$ \&action\-Set) const }\label{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a145fa4fdba2289842a77c9d483a42ef2}
 
@@ -27,19 +27,11 @@ virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_aebff9b81db5bd2ae3
 \subsubsection[{back\-Up\-State\-Action\-Pair}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P}$<$ S, A $>$\-::back\-Up\-State\-Action\-Pair (
 \begin{DoxyParamCaption}
 \item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{current\-State\-Action, }
-\item[{const F\-L\-O\-A\-T}]{reward, }
+\item[{const {\bf F\-L\-O\-A\-T}}]{reward, }
 \item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{next\-State\-Action\-Pair}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_aebff9b81db5bd2ae33bd3d6662539bc0}
-Acquire the value of the state action pair. Each algorithm group (rl, supervised, unsupervised), or specific algorithm (Q, \hyperlink{classAI_1_1Algorithm_1_1Sarsa}{Sarsa}, Gradient Descent) must implement. 
-\begin{DoxyParams}{Parameters}
-{\em state\-Action} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Value of state\-Action. Does the main back up for all Temporal difference\-: Q(\-S, A) $<$-\/ Q(\-S, A) + step\-Size$\ast$\mbox{[}R + max\-\_\-action(S', A') -\/ Q(\-S, A)\mbox{]} 
-\end{DoxyReturn}
-
+Does the main back up for all Temporal difference\-: Q(\-S, A) $<$-\/ Q(\-S, A) + step\-Size$\ast$\mbox{[}R + max\-\_\-action(S', A') -\/ Q(\-S, A)\mbox{]} 
 \begin{DoxyParams}{Parameters}
 {\em current\-State\-Action} & \\
 \hline

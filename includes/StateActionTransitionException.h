@@ -12,7 +12,11 @@
 #include <string>
 
 namespace AI {
+namespace Algorithm {
 
+/*! \class StateActionTransitionException
+ *  \brief exception when StateActionTransition does not exist.
+ */
 class StateActionTransitionException : public std::exception {
  public:
   StateActionTransitionException(std::string extraMsg);
@@ -22,7 +26,9 @@ class StateActionTransitionException : public std::exception {
  private:
   std::string _extramMsg;
 };
-}
+
+} /* Algorithm */
+} /* AI */
 
 #endif	/* STATEACTIONTRANSITIONEXCEPTION_H */
 

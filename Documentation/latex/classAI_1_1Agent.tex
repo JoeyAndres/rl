@@ -13,7 +13,7 @@ A class that represent an \hyperlink{namespaceAI}{A\-I} agent.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classAI_1_1Agent_a2cab0b2534dc40185a3e2f9a858e8023}{Agent} (\hyperlink{classAI_1_1SensorStatesAbstract}{Sensor\-States\-Abstract}$<$ S $>$ \&sensor\-Instance, \hyperlink{classAI_1_1Actuator}{Actuator}$<$ A $>$ \&actuator\-Instance, \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm}{Algorithm\-::\-Learning\-Algorithm}$<$ S, A $>$ \&learning\-Algorithm)
+\hyperlink{classAI_1_1Agent_aee53a91a44c5afa9a7af9113ba9edf2e}{Agent} (\hyperlink{classAI_1_1SensorBase}{Sensor\-Base}$<$ S $>$ \&sensor\-Instance, \hyperlink{classAI_1_1ActuatorBase}{Actuator\-Base}$<$ A $>$ \&actuator\-Instance, \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm}{Algorithm\-::\-Learning\-Algorithm}$<$ S, A $>$ \&learning\-Algorithm)
 \item 
 virtual void \hyperlink{classAI_1_1Agent_a938963e5cbbd862402a4b815b9327093}{pre\-Execute} ()
 \item 
@@ -21,9 +21,9 @@ virtual void \hyperlink{classAI_1_1Agent_a4c1fa5a86e2baa6510fb1448baff8b83}{exec
 \item 
 virtual bool \hyperlink{classAI_1_1Agent_a65523b33cc9ca3da9200550ecd0a90e0}{episode\-Done} ()
 \item 
-virtual F\-L\-O\-A\-T \hyperlink{classAI_1_1Agent_ae93d7ac5e75646b0965f18fd9c6a1737}{post\-Execute} ()
+virtual \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} \hyperlink{classAI_1_1Agent_ae93d7ac5e75646b0965f18fd9c6a1737}{post\-Execute} ()
 \item 
-F\-L\-O\-A\-T \hyperlink{classAI_1_1Agent_a86266ab330105f0eabda91d9706133de}{get\-Accumulative\-Reward} () const 
+\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} \hyperlink{classAI_1_1Agent_a86266ab330105f0eabda91d9706133de}{get\-Accumulative\-Reward} () const 
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -31,19 +31,19 @@ F\-L\-O\-A\-T \hyperlink{classAI_1_1Agent_a86266ab330105f0eabda91d9706133de}{get
 \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm}{Algorithm\-::\-Learning\-Algorithm}\\*
 $<$ S, A $>$ \& \hyperlink{classAI_1_1Agent_ae61529c109e21748dca77509b58f1f8e}{\-\_\-learning\-Algorithm}
 \item 
-\hypertarget{classAI_1_1Agent_a47f05ad26341cb3dd19790deab83b027}{\hyperlink{classAI_1_1SensorStatesAbstract}{Sensor\-States\-Abstract}$<$ S $>$ \& \hyperlink{classAI_1_1Agent_a47f05ad26341cb3dd19790deab83b027}{\-\_\-sensor\-Instance}}\label{classAI_1_1Agent_a47f05ad26341cb3dd19790deab83b027}
+\hypertarget{classAI_1_1Agent_a0f3b3a246bc3b2f8a833c628b3fa1b67}{\hyperlink{classAI_1_1SensorBase}{Sensor\-Base}$<$ S $>$ \& \hyperlink{classAI_1_1Agent_a0f3b3a246bc3b2f8a833c628b3fa1b67}{\-\_\-sensor\-Instance}}\label{classAI_1_1Agent_a0f3b3a246bc3b2f8a833c628b3fa1b67}
 
 \begin{DoxyCompactList}\small\item\em Aggregate a Sensor object. \end{DoxyCompactList}\item 
-\hypertarget{classAI_1_1Agent_a1a9517c181c1514ffa4f8df2bb68a5dc}{\hyperlink{classAI_1_1Actuator}{Actuator}$<$ A $>$ \& \hyperlink{classAI_1_1Agent_a1a9517c181c1514ffa4f8df2bb68a5dc}{\-\_\-actuator\-Instance}}\label{classAI_1_1Agent_a1a9517c181c1514ffa4f8df2bb68a5dc}
+\hypertarget{classAI_1_1Agent_af1cd837b1b9d626fee6bfc1b0cca4f33}{\hyperlink{classAI_1_1ActuatorBase}{Actuator\-Base}$<$ A $>$ \& \hyperlink{classAI_1_1Agent_af1cd837b1b9d626fee6bfc1b0cca4f33}{\-\_\-actuator\-Instance}}\label{classAI_1_1Agent_af1cd837b1b9d626fee6bfc1b0cca4f33}
 
-\begin{DoxyCompactList}\small\item\em Aggregate an \hyperlink{classAI_1_1Actuator}{Actuator} object. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Aggregate an Actuator object. \end{DoxyCompactList}\item 
 \hypertarget{classAI_1_1Agent_a3476836f8e24014e2d0e5bd3fcd06c4f}{S \hyperlink{classAI_1_1Agent_a3476836f8e24014e2d0e5bd3fcd06c4f}{\-\_\-current\-State}}\label{classAI_1_1Agent_a3476836f8e24014e2d0e5bd3fcd06c4f}
 
 \begin{DoxyCompactList}\small\item\em Keeps track of the current state. \end{DoxyCompactList}\item 
 \hypertarget{classAI_1_1Agent_a92741f4d9a5324c909e63ab330379411}{A \hyperlink{classAI_1_1Agent_a92741f4d9a5324c909e63ab330379411}{\-\_\-current\-Action}}\label{classAI_1_1Agent_a92741f4d9a5324c909e63ab330379411}
 
 \begin{DoxyCompactList}\small\item\em Keeps track of the current action. \end{DoxyCompactList}\item 
-F\-L\-O\-A\-T \hyperlink{classAI_1_1Agent_aa4c5b41816bb39212727186a4af1afec}{\-\_\-accumulative\-Reward}
+\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} \hyperlink{classAI_1_1Agent_aa4c5b41816bb39212727186a4af1afec}{\-\_\-accumulative\-Reward}
 \end{DoxyCompactItemize}
 
 
@@ -64,15 +64,15 @@ In Artificial Intelligence, \hyperlink{classAI_1_1Agent}{Agent} is the entity th
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classAI_1_1Agent_a2cab0b2534dc40185a3e2f9a858e8023}{\index{A\-I\-::\-Agent@{A\-I\-::\-Agent}!Agent@{Agent}}
+\hypertarget{classAI_1_1Agent_aee53a91a44c5afa9a7af9113ba9edf2e}{\index{A\-I\-::\-Agent@{A\-I\-::\-Agent}!Agent@{Agent}}
 \index{Agent@{Agent}!AI::Agent@{A\-I\-::\-Agent}}
 \subsubsection[{Agent}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-Agent}$<$ S, A $>$\-::{\bf Agent} (
 \begin{DoxyParamCaption}
-\item[{{\bf Sensor\-States\-Abstract}$<$ S $>$ \&}]{sensor\-Instance, }
-\item[{{\bf Actuator}$<$ A $>$ \&}]{actuator\-Instance, }
+\item[{{\bf Sensor\-Base}$<$ S $>$ \&}]{sensor\-Instance, }
+\item[{{\bf Actuator\-Base}$<$ A $>$ \&}]{actuator\-Instance, }
 \item[{{\bf Algorithm\-::\-Learning\-Algorithm}$<$ S, A $>$ \&}]{learning\-Algorithm}
 \end{DoxyParamCaption}
-)}}\label{classAI_1_1Agent_a2cab0b2534dc40185a3e2f9a858e8023}
+)}}\label{classAI_1_1Agent_aee53a91a44c5afa9a7af9113ba9edf2e}
 
 \begin{DoxyParams}{Parameters}
 {\em sensor\-Instance} & aggregate a sensor object. \\
@@ -104,7 +104,7 @@ true if episode is done.
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Agent_a4c1fa5a86e2baa6510fb1448baff8b83}
 Execute a single time step. \hypertarget{classAI_1_1Agent_a86266ab330105f0eabda91d9706133de}{\index{A\-I\-::\-Agent@{A\-I\-::\-Agent}!get\-Accumulative\-Reward@{get\-Accumulative\-Reward}}
 \index{get\-Accumulative\-Reward@{get\-Accumulative\-Reward}!AI::Agent@{A\-I\-::\-Agent}}
-\subsubsection[{get\-Accumulative\-Reward}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ A\-I\-::\-F\-L\-O\-A\-T {\bf A\-I\-::\-Agent}$<$ S, A $>$\-::get\-Accumulative\-Reward (
+\subsubsection[{get\-Accumulative\-Reward}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-F\-L\-O\-A\-T} {\bf A\-I\-::\-Agent}$<$ S, A $>$\-::get\-Accumulative\-Reward (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -114,7 +114,7 @@ Acquire the accumulated reward so far within the episode.
 \end{DoxyReturn}
 \hypertarget{classAI_1_1Agent_ae93d7ac5e75646b0965f18fd9c6a1737}{\index{A\-I\-::\-Agent@{A\-I\-::\-Agent}!post\-Execute@{post\-Execute}}
 \index{post\-Execute@{post\-Execute}!AI::Agent@{A\-I\-::\-Agent}}
-\subsubsection[{post\-Execute}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ A\-I\-::\-F\-L\-O\-A\-T {\bf A\-I\-::\-Agent}$<$ S, A $>$\-::post\-Execute (
+\subsubsection[{post\-Execute}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-F\-L\-O\-A\-T} {\bf A\-I\-::\-Agent}$<$ S, A $>$\-::post\-Execute (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -134,7 +134,7 @@ Prepare agent prior to start execution.
 \subsection{Member Data Documentation}
 \hypertarget{classAI_1_1Agent_aa4c5b41816bb39212727186a4af1afec}{\index{A\-I\-::\-Agent@{A\-I\-::\-Agent}!\-\_\-accumulative\-Reward@{\-\_\-accumulative\-Reward}}
 \index{\-\_\-accumulative\-Reward@{\-\_\-accumulative\-Reward}!AI::Agent@{A\-I\-::\-Agent}}
-\subsubsection[{\-\_\-accumulative\-Reward}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ F\-L\-O\-A\-T {\bf A\-I\-::\-Agent}$<$ S, A $>$\-::\-\_\-accumulative\-Reward\hspace{0.3cm}{\ttfamily [protected]}}}\label{classAI_1_1Agent_aa4c5b41816bb39212727186a4af1afec}
+\subsubsection[{\-\_\-accumulative\-Reward}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf F\-L\-O\-A\-T} {\bf A\-I\-::\-Agent}$<$ S, A $>$\-::\-\_\-accumulative\-Reward\hspace{0.3cm}{\ttfamily [protected]}}}\label{classAI_1_1Agent_aa4c5b41816bb39212727186a4af1afec}
 Keeps track of accumulation of reward during the span of the episode.\-Specifically, after the call of pre\-Execute, and after the call of post\-Execute. \hypertarget{classAI_1_1Agent_ae61529c109e21748dca77509b58f1f8e}{\index{A\-I\-::\-Agent@{A\-I\-::\-Agent}!\-\_\-learning\-Algorithm@{\-\_\-learning\-Algorithm}}
 \index{\-\_\-learning\-Algorithm@{\-\_\-learning\-Algorithm}!AI::Agent@{A\-I\-::\-Agent}}
 \subsubsection[{\-\_\-learning\-Algorithm}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-Agent}$<$ S, A $>$\-::\-\_\-learning\-Algorithm\hspace{0.3cm}{\ttfamily [protected]}}}\label{classAI_1_1Agent_ae61529c109e21748dca77509b58f1f8e}

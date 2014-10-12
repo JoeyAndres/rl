@@ -24,15 +24,16 @@
 using namespace std;
 
 namespace AI {
+namespace Algorithm {
 
-/**
- * StateTransition
- * <p> This module is represents the possible transition states. Every
- * call to StateTransition::update(state, reward), will increase the
- * value of its frequency and at the same time update the reward value.
- * Call to getNextState would then would return a state on the basis
- * of how likely it occurs. Call to getReward would return the reward
- * of the given state. </p>
+/*! \class StateActionTransition
+ *  \brief Used for <i>modeling</i> environment.
+ *
+ * This module is represents the possible transition states for some state. Every
+ * call to StateTransition::update(state, reward), will increase the value of its
+ * frequency and at the same time update the reward value. Call to getNextState
+ * would then would return a state on the basis of how likely it occurs. Call to
+ * getReward would return the reward of the given state.
  */
 template<class S>
 class StateActionTransition {
@@ -263,6 +264,8 @@ template<class S>
 AI::FLOAT StateActionTransition<S>::getGreedy() const {
   return _greedy;
 }
-}
+
+} /* Algorithm */
+} /* AI */
 
 #endif	/* STATEACTIONTRANSITION_H */

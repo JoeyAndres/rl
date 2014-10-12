@@ -8,7 +8,7 @@
 #include "StateActionTransitionException.h"
 
 namespace AI {
-
+namespace Algorithm {
 StateActionTransitionException::StateActionTransitionException(
     std::string extraMsg) {
   _extramMsg = extraMsg;
@@ -17,4 +17,6 @@ StateActionTransitionException::StateActionTransitionException(
 const char* StateActionTransitionException::what() const throw () {
   return _extramMsg.c_str();
 }
-}
+
+} /* Algorithm */
+} /* AI */

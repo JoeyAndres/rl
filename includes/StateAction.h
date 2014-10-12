@@ -9,10 +9,28 @@
 #define STATEACTION_H_
 
 namespace AI {
+
+/*! \class StateAction
+ *  \brief Encapsulates state action pair.
+ *  \tparam S data type of state.
+ *  \tparam A data type of action.
+ *
+ *  Encapsulates state action pair. This requires both S state and A action
+ *  data type to be comparable.
+ */
 template<class S, class A>
 class StateAction {
  public:
+  /**
+   * No-arg constructor.
+   */
   StateAction();
+
+  /**
+   * Constructor for state-action pair.
+   * @param state of state-action pair.
+   * @param action of state-action pair.
+   */
   StateAction(S state, A action);
 
   virtual bool operator<(const StateAction<S, A>& stateAction) const;
@@ -22,14 +40,29 @@ class StateAction {
   virtual bool operator==(const StateAction<S, A>& stateAction) const;
   virtual bool operator!=(const StateAction<S, A>& stateAction) const;
 
+  /**
+   * @return return state of state-action pair.
+   */
   const S& getState() const;
+
+  /**
+   * @return return action of state-action pair.
+   */
   const A& getAction() const;
+
+  /**
+   * @param state set the state of state-action pair.
+   */
   void setState(const S& state);
+
+  /**
+   * @param action set the action of state-action pair.
+   */
   void setAction(const A& action);
 
  protected:
-  S _state;
-  A _action;
+  S _state;  //!< State of state-action pair.
+  A _action;  //!< Action of state-action pair.
 };
 
 template<class S, class A>

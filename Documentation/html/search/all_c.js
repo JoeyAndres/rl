@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['qlearning',['QLearning',['../classAI_1_1Algorithm_1_1QLearning.html',1,'AI::Algorithm']]],
-  ['qlearningetgd',['QLearningETGD',['../classAI_1_1Algorithm_1_1QLearningETGD.html',1,'AI::Algorithm']]],
-  ['qlearningetwatkins',['QLearningETWatkins',['../classAI_1_1Algorithm_1_1QLearningETWatkins.html',1,'AI::Algorithm']]]
+  ['observable',['Observable',['../classObservable.html',1,'']]],
+  ['observer',['Observer',['../classObserver.html',1,'']]],
+  ['operator_5b_5d',['operator[]',['../classAI_1_1StateActionPairContainer.html#a4dc529e9a2fa432e93fe4e4d083fce6e',1,'AI::StateActionPairContainer']]]
 ];

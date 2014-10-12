@@ -17,8 +17,11 @@
 using namespace std;
 
 namespace AI {
-/**
- * StateActionPairValueComparison
+/*! \class StateActionPairValueComparison
+ *  \brief comparison object for std::map and other containers in need of comparison.
+ *  \tparam S State data type.
+ *  \tparam A Action data type.
+ *
  * Created as a comparison object for StateAction<S, A> and their corresponding
  * Value/Priority. This comparison object is mainly used in std::priority_queue.
  */
@@ -46,7 +49,8 @@ bool StateActionPairValueComparison<S, A>::operator()(
     return true;
   return false;
 }
-}
+
+} /* AI */
 
 #endif	/* STATEACTIONPAIRVALUECOMPARISON_H */
 

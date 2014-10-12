@@ -1,15 +1,18 @@
 var searchData=
 [
-  ['actuator',['Actuator',['../classAI_1_1Actuator.html',1,'AI']]],
-  ['actuator',['Actuator',['../classAI_1_1Actuator.html#abf654b2c2f911719c86e7c0369349f78',1,'AI::Actuator::Actuator()'],['../classAI_1_1Actuator.html#aa8a8289a0e6cf705deff59ab455b0315',1,'AI::Actuator::Actuator(set&lt; ActionData &gt; dataSet)']]],
-  ['actuator_3c_20a_20_3e',['Actuator&lt; A &gt;',['../classAI_1_1Actuator.html',1,'AI']]],
-  ['addaction',['addAction',['../classAI_1_1Actuator.html#a54a31d6d463013d54c7ec9e78c19f2ed',1,'AI::Actuator::addAction()'],['../classAI_1_1StateActionPairContainer.html#af4c9faef1c7d4e35b11f95b8a84352ae',1,'AI::StateActionPairContainer::addAction()']]],
+  ['action_5fcont',['ACTION_CONT',['../namespaceAI.html#a143ffd7216e2cf8fc6d92e4efdb647a7',1,'AI']]],
+  ['actuatorbase',['ActuatorBase',['../classAI_1_1ActuatorBase.html#aa58ed23d9f5821a20f7a0d3ce38a78fb',1,'AI::ActuatorBase::ActuatorBase()'],['../classAI_1_1ActuatorBase.html#a2f59e4f7afbaa20a5fcc9482661c7df2',1,'AI::ActuatorBase::ActuatorBase(set&lt; ActionData &gt; dataSet)']]],
+  ['actuatorbase',['ActuatorBase',['../classAI_1_1ActuatorBase.html',1,'AI']]],
+  ['actuatorbase_3c_20a_20_3e',['ActuatorBase&lt; A &gt;',['../classAI_1_1ActuatorBase.html',1,'AI']]],
+  ['addaction',['addAction',['../classAI_1_1ActuatorBase.html#acb2aab24c4489d4e084935eb6051ee50',1,'AI::ActuatorBase::addAction()'],['../classAI_1_1StateActionPairContainer.html#af4c9faef1c7d4e35b11f95b8a84352ae',1,'AI::StateActionPairContainer::addAction()']]],
+  ['addsensordata',['addSensorData',['../classAI_1_1SensorDiscrete.html#a9837a3640a687ea37d5f9900c3dcbcbc',1,'AI::SensorDiscrete']]],
   ['addstate',['addState',['../classAI_1_1StateActionPairContainer.html#a12842518174d0af5fc89c7a86e766099',1,'AI::StateActionPairContainer']]],
-  ['agent',['Agent',['../classAI_1_1Agent.html#a2cab0b2534dc40185a3e2f9a858e8023',1,'AI::Agent']]],
+  ['addterminalstate',['addTerminalState',['../classAI_1_1SensorDiscrete.html#aec690a03f58beb1755b70de98df7e0a2',1,'AI::SensorDiscrete']]],
+  ['agent',['Agent',['../classAI_1_1Agent.html#aee53a91a44c5afa9a7af9113ba9edf2e',1,'AI::Agent']]],
   ['agent',['Agent',['../classAI_1_1Agent.html',1,'AI']]],
   ['agentsl',['AgentSL',['../namespaceAI.html#acd3da5a0aa6fc3b0e9988d4a6251bdbd',1,'AI']]],
   ['ai',['AI',['../namespaceAI.html',1,'']]],
-  ['applyaction',['applyAction',['../classAI_1_1Actuator.html#a286216eeeda770be796192fe549e5a58',1,'AI::Actuator']]],
+  ['applyaction',['applyAction',['../classAI_1_1ActuatorBase.html#aecd4ee9cf0e33633c1c48028b4cb89a1',1,'AI::ActuatorBase']]],
   ['argmax',['argMax',['../classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a1a7489821592b81576e5bc8674fc43c3',1,'AI::Algorithm::Policy::EpsilonGreedy::argMax()'],['../classAI_1_1Algorithm_1_1ReinforcementLearning.html#ad1d8a8ebb47fb71a53b15b770795e286',1,'AI::Algorithm::ReinforcementLearning::argMax()']]],
   ['ai_20project_20documentation',['AI Project Documentation',['../index.html',1,'']]]
 ];

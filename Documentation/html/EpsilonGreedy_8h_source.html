@@ -123,7 +123,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
 <div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html">EpsilonGreedy</a> : <span class="keyword">public</span> <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy</a>&lt;S, A&gt; {</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html">EpsilonGreedy</a>(AI::FLOAT greediness);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html">EpsilonGreedy</a>(<a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> greediness);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keyword">virtual</span> ~<a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html">EpsilonGreedy</a>();</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keyword">const</span> A&amp; argMax(<span class="keyword">const</span> map&lt;A, AI::FLOAT&gt;&amp; actionValues,</div>
@@ -132,13 +132,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <span class="keyword">virtual</span> <span class="keyword">const</span> A&amp; getAction(<span class="keyword">const</span> map&lt;A, AI::FLOAT&gt;&amp; actionValues,</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                             <span class="keyword">const</span> set&lt;A&gt;&amp; actionSet);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordtype">void</span> setGreediness(AI::FLOAT greediness);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordtype">void</span> setGreediness(<a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> greediness);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  AI::FLOAT getGreediness() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> getGreediness() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  random_device _randomDevice;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  uniform_real_distribution&lt;AI::FLOAT&gt; _distribution;</div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a2726a82fb23e6960c24402a756fef356">   71</a></span>&#160;  AI::FLOAT <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a2726a82fb23e6960c24402a756fef356">_greediness</a>;  </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a2726a82fb23e6960c24402a756fef356">   71</a></span>&#160;  <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a2726a82fb23e6960c24402a756fef356">_greediness</a>;  </div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">typedef</span> <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html">EpsilonGreedy&lt;vector&lt;AI::FLOAT&gt;</a>, vector&lt;AI::FLOAT&gt; &gt; <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html">EpsilonGreedySL</a>;</div>
@@ -148,7 +148,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;} <span class="comment">/* AI */</span></div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#ab891821ceb3fee0f098ceefad9f5a076">   81</a></span>&#160;<a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#ab891821ceb3fee0f098ceefad9f5a076">AI::Algorithm::Policy::EpsilonGreedy&lt;S, A&gt;::EpsilonGreedy</a>(AI::FLOAT greediness)</div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#ab891821ceb3fee0f098ceefad9f5a076">   81</a></span>&#160;<a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#ab891821ceb3fee0f098ceefad9f5a076">AI::Algorithm::Policy::EpsilonGreedy&lt;S, A&gt;::EpsilonGreedy</a>(<a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> greediness)</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    : _greediness(greediness),</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;      _distribution(0.0F, 1.0F) {</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
@@ -160,7 +160,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
 <div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a00a2dde7f4df14fd046e034694184f65">   91</a></span>&#160;<span class="keyword">const</span> A&amp; <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a00a2dde7f4df14fd046e034694184f65">AI::Algorithm::Policy::EpsilonGreedy&lt;S, A&gt;::getAction</a>(</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">const</span> map&lt;A, AI::FLOAT&gt;&amp; actionValues, <span class="keyword">const</span> set&lt;A&gt;&amp; actionSet) {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keyword">const</span> AI::FLOAT&amp; r = _distribution(_randomDevice);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keyword">const</span> <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&amp; r = _distribution(_randomDevice);</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  <span class="keywordflow">if</span> (r &gt; _greediness) {</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    uniform_int_distribution&lt;AI::INT&gt; indexDistribution(0, actionSet.size());</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keyword">typename</span> set&lt;A&gt;::const_iterator it(actionSet.begin());</div>
@@ -186,17 +186,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
 <div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a2de58f47fa1663ff4718038f2b268295">  118</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a2de58f47fa1663ff4718038f2b268295">AI::Algorithm::Policy::EpsilonGreedy&lt;S, A&gt;::setGreediness</a>(</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    AI::FLOAT greediness) {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> greediness) {</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  this-&gt;_greediness = greediness;</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
-<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#aac2b63fbb3cf29eb8ea11f21d8d6185d">  124</a></span>&#160;AI::FLOAT <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#aac2b63fbb3cf29eb8ea11f21d8d6185d">AI::Algorithm::Policy::EpsilonGreedy&lt;S, A&gt;::getGreediness</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#aac2b63fbb3cf29eb8ea11f21d8d6185d">  124</a></span>&#160;<a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> <a class="code" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#aac2b63fbb3cf29eb8ea11f21d8d6185d">AI::Algorithm::Policy::EpsilonGreedy&lt;S, A&gt;::getGreediness</a>()<span class="keyword"> const </span>{</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  <span class="keywordflow">return</span> _greediness;</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* EPSILONGREEDY_H */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor"></span></div>
+<div class="ttc" id="namespaceAI_html_a41b74884a20833db653dded3918e05c3"><div class="ttname"><a href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a></div><div class="ttdeci">double FLOAT</div><div class="ttdoc">Default floating type. </div><div class="ttdef"><b>Definition:</b> GlobalHeader.h:23</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy_html_a2726a82fb23e6960c24402a756fef356"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a2726a82fb23e6960c24402a756fef356">AI::Algorithm::Policy::EpsilonGreedy::_greediness</a></div><div class="ttdeci">AI::FLOAT _greediness</div><div class="ttdoc">Probability of selecting a greedy action. </div><div class="ttdef"><b>Definition:</b> EpsilonGreedy.h:71</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html">AI::Algorithm::Policy::EpsilonGreedy</a></div><div class="ttdoc">Selects greedy action with probability greediness </div><div class="ttdef"><b>Definition:</b> EpsilonGreedy.h:36</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1Policy_1_1Policy_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">AI::Algorithm::Policy::Policy</a></div><div class="ttdoc">Base class for all Policy. </div><div class="ttdef"><b>Definition:</b> Policy.h:34</div></div>
@@ -208,7 +209,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 15:14:24 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 20:50:07 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

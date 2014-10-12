@@ -15,6 +15,9 @@ using namespace std;
 
 namespace AI {
 
+/*! \StateNotExistException
+ *  \brief exception when State does not exist.
+ */
 class StateNotExistException : exception {
  public:
   StateNotExistException(string extraMessage);

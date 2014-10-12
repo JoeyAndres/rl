@@ -120,27 +120,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1DynaQBase.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="classAI_1_1Algorithm_1_1DynaQBase.html">DynaQBase</a> {</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1DynaQBase.html">DynaQBase</a>(AI::UINT simulationIterationCount,</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            AI::FLOAT stateTransitionGreediness,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            AI::FLOAT stateTransitionStepSize);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1DynaQBase.html">DynaQBase</a>(<a class="code" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount,</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> backUpStateActionPair(</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;      <span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; currentStateAction, <span class="keyword">const</span> FLOAT reward,</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;      <span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; currentStateAction, <span class="keyword">const</span> <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">FLOAT</a> reward,</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;      <span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; nextStateActionPair) = 0;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keyword">virtual</span> A argMax(<span class="keyword">const</span> S&amp; state, <span class="keyword">const</span> set&lt;A&gt;&amp; actionSet) <span class="keyword">const</span> = 0;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> _updateModel(<span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; currentStateAction,</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                            <span class="keyword">const</span> S&amp; nextState, <span class="keyword">const</span> FLOAT reward);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                            <span class="keyword">const</span> S&amp; nextState, <span class="keyword">const</span> <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">FLOAT</a> reward);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> _addModelSafe(<span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; currentStateAction);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> _addModel(<span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; currentStateAction);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> _simulate(<span class="keyword">const</span> set&lt;A&gt;&amp; actionSet);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  AI::UINT _simulationIterationCount;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  map&lt;StateAction&lt;S, A&gt;, <a class="code" href="classAI_1_1StateActionTransition.html">StateActionTransition&lt;S&gt;</a> &gt; _model;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  AI::FLOAT _stateActionTransitionGreediness;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  AI::FLOAT _stateActionTransitionStepSize;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <a class="code" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> _simulationIterationCount;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  map&lt;StateAction&lt;S, A&gt;, <a class="code" href="classAI_1_1Algorithm_1_1StateActionTransition.html">StateActionTransition&lt;S&gt;</a> &gt; _model;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> _stateActionTransitionGreediness;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> _stateActionTransitionStepSize;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  boost::shared_mutex _generalLock;  <span class="comment">// General Lock.</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  boost::shared_mutex _modelLock;</div>
@@ -150,8 +150,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">inline</span> <a class="code" href="classAI_1_1Algorithm_1_1DynaQBase.html">AI::Algorithm::DynaQBase&lt;S, A&gt;::DynaQBase</a>(</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    AI::UINT simulationIterationCount, AI::FLOAT stateTransitionGreediness,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    AI::FLOAT stateTransitionStepSize)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness,</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    : _simulationIterationCount(simulationIterationCount),</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      _stateActionTransitionGreediness(stateTransitionGreediness),</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      _stateActionTransitionStepSize(stateTransitionStepSize) {</div>
@@ -160,7 +160,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">void</span> <a class="code" href="classAI_1_1Algorithm_1_1DynaQBase.html">AI::Algorithm::DynaQBase&lt;S, A&gt;::_updateModel</a>(</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">const</span> StateAction&lt;S, A&gt;&amp; currentStateAction, <span class="keyword">const</span> S&amp; nextState,</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">const</span> FLOAT reward) {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">const</span> <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">FLOAT</a> reward) {</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  boost::unique_lock &lt; boost::shared_mutex &gt; generalLock(_generalLock);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  boost::unique_lock &lt; boost::shared_mutex &gt; modellLock(_modelLock);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  _addModel(currentStateAction);</div>
@@ -190,7 +190,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="keywordflow">if</span> (_model.empty())</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keywordflow">for</span> (AI::UINT i = 0; i &lt; _simulationIterationCount; i++) {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keywordflow">for</span> (<a class="code" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> i = 0; i &lt; _simulationIterationCount; i++) {</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment">// Pick a random state in _model.</span></div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">typename</span> map&lt;StateAction&lt;S, A&gt;, StateActionTransition&lt;S&gt; &gt;::const_iterator item =</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        _model.begin();</div>
@@ -208,13 +208,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DYNAQBASE_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="namespaceAI_html_a41b74884a20833db653dded3918e05c3"><div class="ttname"><a href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a></div><div class="ttdeci">double FLOAT</div><div class="ttdoc">Default floating type. </div><div class="ttdef"><b>Definition:</b> GlobalHeader.h:23</div></div>
 <div class="ttc" id="classAI_1_1Algorithm_1_1DynaQBase_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1DynaQBase.html">AI::Algorithm::DynaQBase</a></div><div class="ttdef"><b>Definition:</b> DynaQBase.h:23</div></div>
-<div class="ttc" id="classAI_1_1StateActionTransition_html"><div class="ttname"><a href="classAI_1_1StateActionTransition.html">AI::StateActionTransition</a></div><div class="ttdef"><b>Definition:</b> StateActionTransition.h:38</div></div>
-<div class="ttc" id="classAI_1_1StateAction_html"><div class="ttname"><a href="classAI_1_1StateAction.html">AI::StateAction</a></div><div class="ttdef"><b>Definition:</b> StateAction.h:13</div></div>
+<div class="ttc" id="classAI_1_1Algorithm_1_1StateActionTransition_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1StateActionTransition.html">AI::Algorithm::StateActionTransition</a></div><div class="ttdoc">Used for modeling environment. </div><div class="ttdef"><b>Definition:</b> StateActionTransition.h:39</div></div>
+<div class="ttc" id="classAI_1_1StateAction_html"><div class="ttname"><a href="classAI_1_1StateAction.html">AI::StateAction</a></div><div class="ttdoc">Encapsulates state action pair. </div><div class="ttdef"><b>Definition:</b> StateAction.h:22</div></div>
+<div class="ttc" id="namespaceAI_html_ab6e14dc1e659854858a87e511f1439ec"><div class="ttname"><a href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a></div><div class="ttdeci">uint64_t UINT</div><div class="ttdoc">Default unsigned integer type. </div><div class="ttdef"><b>Definition:</b> GlobalHeader.h:24</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 15:14:24 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 20:50:07 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

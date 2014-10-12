@@ -8,6 +8,7 @@
 using std::vector;
 
 using namespace AI;
+using namespace AI::Algorithm;
 using namespace std;
 
 TEST(StateActionTransitionInitialization) {

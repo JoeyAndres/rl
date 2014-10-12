@@ -10,14 +10,13 @@
 
 #include <vector>
 
-#include "SensorContinous.h"
+#include "SensorBase.h"
 
 using namespace std;
 
 namespace AI {
-// TODO: Mkae SensorStatesContinous for Supervised Learners.
 class SensorMountainCar final :
-public SensorContinuous {
+public SensorBase<std::vector<AI::FLOAT> > {
   virtual vector<AI::FLOAT> getSensorState();
   virtual bool isState(const vector<AI::FLOAT>& state) const;
   virtual AI::FLOAT getReward(vector<AI::FLOAT>& sensorState)

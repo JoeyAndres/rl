@@ -116,7 +116,7 @@ Inheritance diagram for AI::Algorithm::LearningAlgorithm&lt; S, A &gt;:</div>
  <div class="center">
   <img src="classAI_1_1Algorithm_1_1LearningAlgorithm.png" usemap="#AI::Algorithm::LearningAlgorithm&lt; S, A &gt;_map" alt=""/>
   <map id="AI::Algorithm::LearningAlgorithm&lt; S, A &gt;_map" name="AI::Algorithm::LearningAlgorithm&lt; S, A &gt;_map">
-<area href="classAI_1_1Algorithm_1_1ReinforcementLearning.html" alt="AI::Algorithm::ReinforcementLearning&lt; S, A &gt;" shape="rect" coords="441,56,725,80"/>
+<area href="classAI_1_1Algorithm_1_1ReinforcementLearning.html" title="Abstract class for all Reinforcement learning algorithms. " alt="AI::Algorithm::ReinforcementLearning&lt; S, A &gt;" shape="rect" coords="441,56,725,80"/>
 <area href="classAI_1_1Algorithm_1_1DynaQCCRLCCMP.html" alt="AI::Algorithm::DynaQCCRLCCMP&lt; S, A &gt;" shape="rect" coords="0,112,284,136"/>
 <area href="classAI_1_1Algorithm_1_1DynaQRLMP.html" alt="AI::Algorithm::DynaQRLMP&lt; S, A &gt;" shape="rect" coords="294,112,578,136"/>
 <area href="classAI_1_1Algorithm_1_1QLearning.html" alt="AI::Algorithm::QLearning&lt; S, A &gt;" shape="rect" coords="588,112,872,136"/>
@@ -134,11 +134,11 @@ Inheritance diagram for AI::Algorithm::LearningAlgorithm&lt; S, A &gt;:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8fe54228193c0d7a28fba7de00441d7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a8fe54228193c0d7a28fba7de00441d7f">LearningAlgorithm</a> (<a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;controlPolicy)</td></tr>
 <tr class="separator:a8fe54228193c0d7a28fba7de00441d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d216d791e558e15a73083af6257ed72"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a7d216d791e558e15a73083af6257ed72">update</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const AI::FLOAT reward, const set&lt; A &gt; &amp;actionSet)=0</td></tr>
+<tr class="memitem:a7d216d791e558e15a73083af6257ed72"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a7d216d791e558e15a73083af6257ed72">update</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> reward, const set&lt; A &gt; &amp;actionSet)=0</td></tr>
 <tr class="separator:a7d216d791e558e15a73083af6257ed72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeca4eded9bc0a02312ccbbfd05f8daa"><td class="memItemLeft" align="right" valign="top">virtual const A &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#afeca4eded9bc0a02312ccbbfd05f8daa">getAction</a> (const S &amp;state, const set&lt; A &gt; &amp;actionSet)=0</td></tr>
 <tr class="separator:afeca4eded9bc0a02312ccbbfd05f8daa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1044b2558109e8dd3d3bf5bedb9723b5"><td class="memItemLeft" align="right" valign="top">virtual AI::FLOAT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1044b2558109e8dd3d3bf5bedb9723b5">getStateActionValue</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;stateAction)=0</td></tr>
+<tr class="memitem:a1044b2558109e8dd3d3bf5bedb9723b5"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1044b2558109e8dd3d3bf5bedb9723b5">getStateActionValue</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;stateAction)=0</td></tr>
 <tr class="separator:a1044b2558109e8dd3d3bf5bedb9723b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d26cb76c945a5312ce4ac4fdabc4d31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1d26cb76c945a5312ce4ac4fdabc4d31">seControltPolicy</a> (<a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;policy)</td></tr>
 <tr class="separator:a1d26cb76c945a5312ce4ac4fdabc4d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,9 +146,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab123635bc3d527052051c7f4c37a986c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebe650b79f39ffd46ece7adb44ddaf60"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#aebe650b79f39ffd46ece7adb44ddaf60">reset</a> ()</td></tr>
 <tr class="separator:aebe650b79f39ffd46ece7adb44ddaf60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafc85fe7b2ad9331ae41593784321641"><td class="memItemLeft" align="right" valign="top">const AI::FLOAT &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#aafc85fe7b2ad9331ae41593784321641">getDefaultStateActionValue</a> () const </td></tr>
+<tr class="memitem:aafc85fe7b2ad9331ae41593784321641"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#aafc85fe7b2ad9331ae41593784321641">getDefaultStateActionValue</a> () const </td></tr>
 <tr class="separator:aafc85fe7b2ad9331ae41593784321641"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1da99bfa2de96f397a4ef07e53ab5697"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1da99bfa2de96f397a4ef07e53ab5697">setDefaultStateActionValue</a> (const AI::FLOAT &amp;defaultStateActionValue)</td></tr>
+<tr class="memitem:a1da99bfa2de96f397a4ef07e53ab5697"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1da99bfa2de96f397a4ef07e53ab5697">setDefaultStateActionValue</a> (const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &amp;defaultStateActionValue)</td></tr>
 <tr class="separator:a1da99bfa2de96f397a4ef07e53ab5697"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a826f61675ac11b699c4328c44cccdae5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a826f61675ac11b699c4328c44cccdae5">setLearningPolicy</a> (<a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;policy)</td></tr>
 <tr class="separator:a826f61675ac11b699c4328c44cccdae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,13 +157,13 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ad5b5f6baa9c03f68427008abeeb35535"><td class="memItemLeft" align="right" valign="top">const A &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#ad5b5f6baa9c03f68427008abeeb35535">_getLearningPolicyAction</a> (const map&lt; A, AI::FLOAT &gt; &amp;actionValueMap, const set&lt; A &gt; &amp;actionSet)</td></tr>
+<tr class="memitem:ad5b5f6baa9c03f68427008abeeb35535"><td class="memItemLeft" align="right" valign="top">const A &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#ad5b5f6baa9c03f68427008abeeb35535">_getLearningPolicyAction</a> (const map&lt; A, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &gt; &amp;actionValueMap, const set&lt; A &gt; &amp;actionSet)</td></tr>
 <tr class="separator:ad5b5f6baa9c03f68427008abeeb35535"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ae3b8ccdc51ad2a8c1cc2ef9009258466"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3b8ccdc51ad2a8c1cc2ef9009258466"></a>
-AI::FLOAT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#ae3b8ccdc51ad2a8c1cc2ef9009258466">_defaultStateActionValue</a></td></tr>
+<a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#ae3b8ccdc51ad2a8c1cc2ef9009258466">_defaultStateActionValue</a></td></tr>
 <tr class="memdesc:ae3b8ccdc51ad2a8c1cc2ef9009258466"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place holder for default state action value. <br/></td></tr>
 <tr class="separator:ae3b8ccdc51ad2a8c1cc2ef9009258466"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad74dbed6a7be0c699d42642b9968bf86"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad74dbed6a7be0c699d42642b9968bf86"></a>
@@ -234,7 +234,7 @@ template&lt;class S , class A&gt; </div>
         <tr>
           <td class="memname">const A &amp; <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a>&lt; S, A &gt;::_getLearningPolicyAction </td>
           <td>(</td>
-          <td class="paramtype">const map&lt; A, AI::FLOAT &gt; &amp;&#160;</td>
+          <td class="paramtype">const map&lt; A, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>actionValueMap</em>, </td>
         </tr>
         <tr>
@@ -334,7 +334,7 @@ template&lt;class S , class A &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const AI::FLOAT &amp; <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a>&lt; S, A &gt;::getDefaultStateActionValue </td>
+          <td class="memname">const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &amp; <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a>&lt; S, A &gt;::getDefaultStateActionValue </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -386,7 +386,7 @@ template&lt;class S, class A&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual AI::FLOAT <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a>&lt; S, A &gt;::getStateActionValue </td>
+          <td class="memname">virtual <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a>&lt; S, A &gt;::getStateActionValue </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;&#160;</td>
           <td class="paramname"><em>stateAction</em></td><td>)</td>
@@ -476,7 +476,7 @@ template&lt;class S , class A &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm</a>&lt; S, A &gt;::setDefaultStateActionValue </td>
           <td>(</td>
-          <td class="paramtype">const AI::FLOAT &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &amp;&#160;</td>
           <td class="paramname"><em>defaultStateActionValue</em></td><td>)</td>
           <td></td>
         </tr>
@@ -552,7 +552,7 @@ template&lt;class S, class A&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const AI::FLOAT&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td>
           <td class="paramname"><em>reward</em>, </td>
         </tr>
         <tr>
@@ -580,7 +580,7 @@ template&lt;class S, class A&gt; </div>
     <tr><td class="paramname">currentAction</td><td></td></tr>
     <tr><td class="paramname">nextState</td><td></td></tr>
     <tr><td class="paramname">reward</td><td>reward of currentState and currentAction. </td></tr>
-    <tr><td class="paramname">stateAction</td><td>A map of <a class="el" href="classAI_1_1StateAction.html">StateAction</a> to Value. </td></tr>
+    <tr><td class="paramname">stateAction</td><td>A map of <a class="el" href="classAI_1_1StateAction.html" title="Encapsulates state action pair. ">StateAction</a> to Value. </td></tr>
     <tr><td class="paramname">actionSet</td><td>A set of all actions. </td></tr>
   </table>
   </dd>
@@ -597,7 +597,7 @@ template&lt;class S, class A&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 15:14:24 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 20:50:07 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

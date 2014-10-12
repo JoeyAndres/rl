@@ -67,14 +67,6 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
   virtual void setStepSize(AI::FLOAT stepSize);
 
   /**
-   * Acquire the value of the state action pair. Each algorithm group (rl,
-   * supervised, unsupervised), or specific algorithm (Q, Sarsa, Gradient Descent)
-   * must implement.
-   * @param stateAction
-   * @return Value of stateAction.
-   */
-  //virtual AI::FLOAT getStateActionValue(const StateAction<S, A>& stateAction) const;
-  /**
    * Does the main back up for all Temporal difference:
    * Q(S, A) <- Q(S, A) + stepSize*[R + max_action(S', A') - Q(S, A)]
    * @param currentStateAction

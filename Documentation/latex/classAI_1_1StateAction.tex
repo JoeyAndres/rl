@@ -1,11 +1,21 @@
 \hypertarget{classAI_1_1StateAction}{\section{A\-I\-:\-:State\-Action$<$ S, A $>$ Class Template Reference}
 \label{classAI_1_1StateAction}\index{A\-I\-::\-State\-Action$<$ S, A $>$@{A\-I\-::\-State\-Action$<$ S, A $>$}}
 }
+
+
+Encapsulates state action pair.  
+
+
+
+
+{\ttfamily \#include $<$State\-Action.\-h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1StateAction_ad2a25a219a6941a2e36b0783dd6c01cf}{{\bfseries State\-Action} (S state, A action)}\label{classAI_1_1StateAction_ad2a25a219a6941a2e36b0783dd6c01cf}
-
+\hyperlink{classAI_1_1StateAction_a0afd69cb1b7d577a1b8b51aedffc77bf}{State\-Action} ()
+\item 
+\hyperlink{classAI_1_1StateAction_ad2a25a219a6941a2e36b0783dd6c01cf}{State\-Action} (S state, A action)
 \item 
 \hypertarget{classAI_1_1StateAction_a8ba71340cc0993a198d9648ab7df8af8}{virtual bool {\bfseries operator$<$} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&state\-Action) const }\label{classAI_1_1StateAction_a8ba71340cc0993a198d9648ab7df8af8}
 
@@ -25,27 +35,109 @@
 \hypertarget{classAI_1_1StateAction_ad0e12e35055091f159f79a952e741f1e}{virtual bool {\bfseries operator!=} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&state\-Action) const }\label{classAI_1_1StateAction_ad0e12e35055091f159f79a952e741f1e}
 
 \item 
-\hypertarget{classAI_1_1StateAction_ac9bdee11a201a7fd87071ab64b2a9743}{const S \& {\bfseries get\-State} () const }\label{classAI_1_1StateAction_ac9bdee11a201a7fd87071ab64b2a9743}
-
+const S \& \hyperlink{classAI_1_1StateAction_ac9bdee11a201a7fd87071ab64b2a9743}{get\-State} () const 
 \item 
-\hypertarget{classAI_1_1StateAction_ae1cec3a09af9a8ca110857baa7727758}{const A \& {\bfseries get\-Action} () const }\label{classAI_1_1StateAction_ae1cec3a09af9a8ca110857baa7727758}
-
+const A \& \hyperlink{classAI_1_1StateAction_ae1cec3a09af9a8ca110857baa7727758}{get\-Action} () const 
 \item 
-\hypertarget{classAI_1_1StateAction_a6ae04532d8d228dc4eb128c8ca223ba4}{void {\bfseries set\-State} (const S \&state)}\label{classAI_1_1StateAction_a6ae04532d8d228dc4eb128c8ca223ba4}
-
+void \hyperlink{classAI_1_1StateAction_a6ae04532d8d228dc4eb128c8ca223ba4}{set\-State} (const S \&state)
 \item 
-\hypertarget{classAI_1_1StateAction_aa842cc33bf4d9cba87212a3a9fb94796}{void {\bfseries set\-Action} (const A \&action)}\label{classAI_1_1StateAction_aa842cc33bf4d9cba87212a3a9fb94796}
-
+void \hyperlink{classAI_1_1StateAction_aa842cc33bf4d9cba87212a3a9fb94796}{set\-Action} (const A \&action)
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1StateAction_a0e64eecf8347c051e20e1a015ef9960a}{S {\bfseries \-\_\-state}}\label{classAI_1_1StateAction_a0e64eecf8347c051e20e1a015ef9960a}
+\hypertarget{classAI_1_1StateAction_a0e64eecf8347c051e20e1a015ef9960a}{S \hyperlink{classAI_1_1StateAction_a0e64eecf8347c051e20e1a015ef9960a}{\-\_\-state}}\label{classAI_1_1StateAction_a0e64eecf8347c051e20e1a015ef9960a}
 
-\item 
-\hypertarget{classAI_1_1StateAction_a951975a1853e815c68bd7400f4f1d97a}{A {\bfseries \-\_\-action}}\label{classAI_1_1StateAction_a951975a1853e815c68bd7400f4f1d97a}
+\begin{DoxyCompactList}\small\item\em State of state-\/action pair. \end{DoxyCompactList}\item 
+\hypertarget{classAI_1_1StateAction_a951975a1853e815c68bd7400f4f1d97a}{A \hyperlink{classAI_1_1StateAction_a951975a1853e815c68bd7400f4f1d97a}{\-\_\-action}}\label{classAI_1_1StateAction_a951975a1853e815c68bd7400f4f1d97a}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Action of state-\/action pair. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class S, class A$>$class A\-I\-::\-State\-Action$<$ S, A $>$}
+
+Encapsulates state action pair. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em S} & data type of state. \\
+\hline
+{\em A} & data type of action.\\
+\hline
+\end{DoxyTemplParams}
+Encapsulates state action pair. This requires both S state and A action data type to be comparable. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAI_1_1StateAction_a0afd69cb1b7d577a1b8b51aedffc77bf}{\index{A\-I\-::\-State\-Action@{A\-I\-::\-State\-Action}!State\-Action@{State\-Action}}
+\index{State\-Action@{State\-Action}!AI::StateAction@{A\-I\-::\-State\-Action}}
+\subsubsection[{State\-Action}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S, class A$>$ {\bf A\-I\-::\-State\-Action}$<$ S, A $>$\-::{\bf State\-Action} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1StateAction_a0afd69cb1b7d577a1b8b51aedffc77bf}
+No-\/arg constructor. \hypertarget{classAI_1_1StateAction_ad2a25a219a6941a2e36b0783dd6c01cf}{\index{A\-I\-::\-State\-Action@{A\-I\-::\-State\-Action}!State\-Action@{State\-Action}}
+\index{State\-Action@{State\-Action}!AI::StateAction@{A\-I\-::\-State\-Action}}
+\subsubsection[{State\-Action}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-State\-Action}$<$ S, A $>$\-::{\bf State\-Action} (
+\begin{DoxyParamCaption}
+\item[{S}]{state, }
+\item[{A}]{action}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1StateAction_ad2a25a219a6941a2e36b0783dd6c01cf}
+Constructor for state-\/action pair. 
+\begin{DoxyParams}{Parameters}
+{\em state} & of state-\/action pair. \\
+\hline
+{\em action} & of state-\/action pair. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1StateAction_ae1cec3a09af9a8ca110857baa7727758}{\index{A\-I\-::\-State\-Action@{A\-I\-::\-State\-Action}!get\-Action@{get\-Action}}
+\index{get\-Action@{get\-Action}!AI::StateAction@{A\-I\-::\-State\-Action}}
+\subsubsection[{get\-Action}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ const A \& {\bf A\-I\-::\-State\-Action}$<$ S, A $>$\-::get\-Action (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classAI_1_1StateAction_ae1cec3a09af9a8ca110857baa7727758}
+\begin{DoxyReturn}{Returns}
+return action of state-\/action pair. 
+\end{DoxyReturn}
+\hypertarget{classAI_1_1StateAction_ac9bdee11a201a7fd87071ab64b2a9743}{\index{A\-I\-::\-State\-Action@{A\-I\-::\-State\-Action}!get\-State@{get\-State}}
+\index{get\-State@{get\-State}!AI::StateAction@{A\-I\-::\-State\-Action}}
+\subsubsection[{get\-State}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ const S \& {\bf A\-I\-::\-State\-Action}$<$ S, A $>$\-::get\-State (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classAI_1_1StateAction_ac9bdee11a201a7fd87071ab64b2a9743}
+\begin{DoxyReturn}{Returns}
+return state of state-\/action pair. 
+\end{DoxyReturn}
+\hypertarget{classAI_1_1StateAction_aa842cc33bf4d9cba87212a3a9fb94796}{\index{A\-I\-::\-State\-Action@{A\-I\-::\-State\-Action}!set\-Action@{set\-Action}}
+\index{set\-Action@{set\-Action}!AI::StateAction@{A\-I\-::\-State\-Action}}
+\subsubsection[{set\-Action}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-State\-Action}$<$ S, A $>$\-::set\-Action (
+\begin{DoxyParamCaption}
+\item[{const A \&}]{action}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1StateAction_aa842cc33bf4d9cba87212a3a9fb94796}
+
+\begin{DoxyParams}{Parameters}
+{\em action} & set the action of state-\/action pair. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1StateAction_a6ae04532d8d228dc4eb128c8ca223ba4}{\index{A\-I\-::\-State\-Action@{A\-I\-::\-State\-Action}!set\-State@{set\-State}}
+\index{set\-State@{set\-State}!AI::StateAction@{A\-I\-::\-State\-Action}}
+\subsubsection[{set\-State}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-State\-Action}$<$ S, A $>$\-::set\-State (
+\begin{DoxyParamCaption}
+\item[{const S \&}]{state}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1StateAction_a6ae04532d8d228dc4eb128c8ca223ba4}
+
+\begin{DoxyParams}{Parameters}
+{\em state} & set the state of state-\/action pair. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}

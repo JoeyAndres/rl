@@ -123,10 +123,10 @@ Inheritance diagram for AI::Algorithm::DynaQBase&lt; S, A &gt;:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a089f4024fab2f19179dea637b7f6c8ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a089f4024fab2f19179dea637b7f6c8ee"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DynaQBase</b> (AI::UINT simulationIterationCount, AI::FLOAT stateTransitionGreediness, AI::FLOAT stateTransitionStepSize)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>DynaQBase</b> (<a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
 <tr class="separator:a089f4024fab2f19179dea637b7f6c8ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d5777706e9c2be04ee1834ad593c795"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d5777706e9c2be04ee1834ad593c795"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>backUpStateActionPair</b> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const FLOAT reward, const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;nextStateActionPair)=0</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>backUpStateActionPair</b> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">FLOAT</a> reward, const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;nextStateActionPair)=0</td></tr>
 <tr class="separator:a0d5777706e9c2be04ee1834ad593c795"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32044f721ba4afbca5ea144b3f84135b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32044f721ba4afbca5ea144b3f84135b"></a>
 virtual A&#160;</td><td class="memItemRight" valign="bottom"><b>argMax</b> (const S &amp;state, const set&lt; A &gt; &amp;actionSet) const =0</td></tr>
@@ -135,7 +135,7 @@ virtual A&#160;</td><td class="memItemRight" valign="bottom"><b>argMax</b> (cons
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a4a45b9303a4b9e0cf93b9a5272739b35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a45b9303a4b9e0cf93b9a5272739b35"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_updateModel</b> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const FLOAT reward)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_updateModel</b> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">FLOAT</a> reward)</td></tr>
 <tr class="separator:a4a45b9303a4b9e0cf93b9a5272739b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0524b63604a75fd079b85a3a6e6ac93d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0524b63604a75fd079b85a3a6e6ac93d"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_addModelSafe</b> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction)</td></tr>
@@ -150,17 +150,17 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_simulate</b>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a3d375c3e01c7cc8a30c92109780adb9b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3d375c3e01c7cc8a30c92109780adb9b"></a>
-AI::UINT&#160;</td><td class="memItemRight" valign="bottom"><b>_simulationIterationCount</b></td></tr>
+<a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_simulationIterationCount</b></td></tr>
 <tr class="separator:a3d375c3e01c7cc8a30c92109780adb9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c9b96a2f0fa30d04d538b56ba008db4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c9b96a2f0fa30d04d538b56ba008db4"></a>
 map&lt; <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt;<br class="typebreak"/>
-, <a class="el" href="classAI_1_1StateActionTransition.html">StateActionTransition</a>&lt; S &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_model</b></td></tr>
+, <a class="el" href="classAI_1_1Algorithm_1_1StateActionTransition.html">StateActionTransition</a>&lt; S &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_model</b></td></tr>
 <tr class="separator:a1c9b96a2f0fa30d04d538b56ba008db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3f83dbeea191fc8bdcd518a2e54af97"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3f83dbeea191fc8bdcd518a2e54af97"></a>
-AI::FLOAT&#160;</td><td class="memItemRight" valign="bottom"><b>_stateActionTransitionGreediness</b></td></tr>
+<a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_stateActionTransitionGreediness</b></td></tr>
 <tr class="separator:ae3f83dbeea191fc8bdcd518a2e54af97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fd132ae0aeb356a891e5b81bf218338"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fd132ae0aeb356a891e5b81bf218338"></a>
-AI::FLOAT&#160;</td><td class="memItemRight" valign="bottom"><b>_stateActionTransitionStepSize</b></td></tr>
+<a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_stateActionTransitionStepSize</b></td></tr>
 <tr class="separator:a1fd132ae0aeb356a891e5b81bf218338"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc3615604882454399863291f73b8734"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc3615604882454399863291f73b8734"></a>
 boost::shared_mutex&#160;</td><td class="memItemRight" valign="bottom"><b>_generalLock</b></td></tr>
@@ -175,7 +175,7 @@ boost::shared_mutex&#160;</td><td class="memItemRight" valign="bottom"><b>_model
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 15:14:24 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 20:50:07 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

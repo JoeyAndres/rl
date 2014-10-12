@@ -14,9 +14,9 @@ Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Dyna\-Q$<$ S, A $>$\-:\begin{fi
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classAI_1_1Algorithm_1_1DynaQ_aa543816270f72b2c4ac1f77fb818f792}{Dyna\-Q} (A\-I\-::\-F\-L\-O\-A\-T step\-Size, A\-I\-::\-F\-L\-O\-A\-T discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<$ S, A $>$ \&policy, A\-I\-::\-U\-I\-N\-T simulation\-Iteration\-Count, A\-I\-::\-F\-L\-O\-A\-T state\-Transition\-Greediness, A\-I\-::\-F\-L\-O\-A\-T state\-Transition\-Step\-Size)
+\hyperlink{classAI_1_1Algorithm_1_1DynaQ_aa543816270f72b2c4ac1f77fb818f792}{Dyna\-Q} (\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} step\-Size, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<$ S, A $>$ \&policy, \hyperlink{namespaceAI_ab6e14dc1e659854858a87e511f1439ec}{A\-I\-::\-U\-I\-N\-T} simulation\-Iteration\-Count, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} state\-Transition\-Greediness, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} state\-Transition\-Step\-Size)
 \item 
-virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQ_a4542226b17db4ed8a2c5ec17d37dc42f}{update} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const S \&next\-State, const F\-L\-O\-A\-T reward, const set$<$ A $>$ \&action\-Set)
+virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQ_a4542226b17db4ed8a2c5ec17d37dc42f}{update} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const S \&next\-State, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} reward, const set$<$ A $>$ \&action\-Set)
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -29,7 +29,7 @@ virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQ_a4542226b17db4ed8a2c5ec17d
 The \hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} algorithm is a subclass of Reinforcement Algorithm. \hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} employs simulation\-Count for every update thus improving the conversion rate.
 
 \begin{DoxySeeAlso}{See Also}
-\hyperlink{classAI_1_1StateActionTransition}{State\-Action\-Transition} representing the models. 
+\hyperlink{classAI_1_1Algorithm_1_1StateActionTransition}{State\-Action\-Transition} representing the models. 
 \end{DoxySeeAlso}
 
 
@@ -38,12 +38,12 @@ The \hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} algorithm is a subclass o
 \index{Dyna\-Q@{Dyna\-Q}!AI::Algorithm::DynaQ@{A\-I\-::\-Algorithm\-::\-Dyna\-Q}}
 \subsubsection[{Dyna\-Q}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q}$<$ S, A $>$\-::{\bf Dyna\-Q} (
 \begin{DoxyParamCaption}
-\item[{A\-I\-::\-F\-L\-O\-A\-T}]{step\-Size, }
-\item[{A\-I\-::\-F\-L\-O\-A\-T}]{discount\-Rate, }
+\item[{{\bf A\-I\-::\-F\-L\-O\-A\-T}}]{step\-Size, }
+\item[{{\bf A\-I\-::\-F\-L\-O\-A\-T}}]{discount\-Rate, }
 \item[{{\bf Policy\-::\-Policy}$<$ S, A $>$ \&}]{policy, }
-\item[{A\-I\-::\-U\-I\-N\-T}]{simulation\-Iteration\-Count, }
-\item[{A\-I\-::\-F\-L\-O\-A\-T}]{state\-Transition\-Greediness, }
-\item[{A\-I\-::\-F\-L\-O\-A\-T}]{state\-Transition\-Step\-Size}
+\item[{{\bf A\-I\-::\-U\-I\-N\-T}}]{simulation\-Iteration\-Count, }
+\item[{{\bf A\-I\-::\-F\-L\-O\-A\-T}}]{state\-Transition\-Greediness, }
+\item[{{\bf A\-I\-::\-F\-L\-O\-A\-T}}]{state\-Transition\-Step\-Size}
 \end{DoxyParamCaption}
 )}}\label{classAI_1_1Algorithm_1_1DynaQ_aa543816270f72b2c4ac1f77fb818f792}
 
@@ -68,7 +68,7 @@ The \hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} algorithm is a subclass o
 \begin{DoxyParamCaption}
 \item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{current\-State\-Action, }
 \item[{const S \&}]{next\-State, }
-\item[{const F\-L\-O\-A\-T}]{reward, }
+\item[{const {\bf F\-L\-O\-A\-T}}]{reward, }
 \item[{const set$<$ A $>$ \&}]{action\-Set}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQ_a4542226b17db4ed8a2c5ec17d37dc42f}
