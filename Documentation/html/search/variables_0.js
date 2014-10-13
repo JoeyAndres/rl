@@ -8,10 +8,16 @@ var searchData=
   ['_5fcurrentstate',['_currentState',['../classAI_1_1Agent.html#a3476836f8e24014e2d0e5bd3fcd06c4f',1,'AI::Agent']]],
   ['_5fdefaultlearningpolicy',['_defaultLearningPolicy',['../classAI_1_1Algorithm_1_1LearningAlgorithm.html#ad9b3db3c2443e1a44803ec6d34887485',1,'AI::Algorithm::LearningAlgorithm']]],
   ['_5fdefaultstateactionvalue',['_defaultStateActionValue',['../classAI_1_1Algorithm_1_1LearningAlgorithm.html#ae3b8ccdc51ad2a8c1cc2ef9009258466',1,'AI::Algorithm::LearningAlgorithm']]],
+  ['_5fgenerallock',['_generalLock',['../classAI_1_1Algorithm_1_1DynaQBase.html#adc3615604882454399863291f73b8734',1,'AI::Algorithm::DynaQBase']]],
   ['_5fgreediness',['_greediness',['../classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a2726a82fb23e6960c24402a756fef356',1,'AI::Algorithm::Policy::EpsilonGreedy']]],
   ['_5flearningalgorithm',['_learningAlgorithm',['../classAI_1_1Agent.html#ae61529c109e21748dca77509b58f1f8e',1,'AI::Agent']]],
   ['_5flearningpolicy',['_learningPolicy',['../classAI_1_1Algorithm_1_1LearningAlgorithm.html#a603f2a2905636a150c0fb9946085837a',1,'AI::Algorithm::LearningAlgorithm']]],
+  ['_5fmodel',['_model',['../classAI_1_1Algorithm_1_1DynaQBase.html#a65878fdff793c8b4bef59bb128e19bd8',1,'AI::Algorithm::DynaQBase']]],
+  ['_5fmodellock',['_modelLock',['../classAI_1_1Algorithm_1_1DynaQBase.html#ab166bd02d02f17c76a7626372c649849',1,'AI::Algorithm::DynaQBase']]],
   ['_5fsensorinstance',['_sensorInstance',['../classAI_1_1Agent.html#a0f3b3a246bc3b2f8a833c628b3fa1b67',1,'AI::Agent']]],
+  ['_5fsimulationiterationcount',['_simulationIterationCount',['../classAI_1_1Algorithm_1_1DynaQBase.html#a3d375c3e01c7cc8a30c92109780adb9b',1,'AI::Algorithm::DynaQBase']]],
   ['_5fstate',['_state',['../classAI_1_1StateAction.html#a0e64eecf8347c051e20e1a015ef9960a',1,'AI::StateAction']]],
-  ['_5fstateactionpairmap',['_stateActionPairMap',['../classAI_1_1StateActionPairContainer.html#afeb95c4cb5d37ce8f8fd1a2b3518211b',1,'AI::StateActionPairContainer']]]
+  ['_5fstateactionpairmap',['_stateActionPairMap',['../classAI_1_1StateActionPairContainer.html#afeb95c4cb5d37ce8f8fd1a2b3518211b',1,'AI::StateActionPairContainer']]],
+  ['_5fstateactiontransitiongreediness',['_stateActionTransitionGreediness',['../classAI_1_1Algorithm_1_1DynaQBase.html#ae3f83dbeea191fc8bdcd518a2e54af97',1,'AI::Algorithm::DynaQBase']]],
+  ['_5fstateactiontransitionstepsize',['_stateActionTransitionStepSize',['../classAI_1_1Algorithm_1_1DynaQBase.html#a1fd132ae0aeb356a891e5b81bf218338',1,'AI::Algorithm::DynaQBase']]]
 ];

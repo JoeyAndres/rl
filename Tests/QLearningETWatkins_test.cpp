@@ -13,7 +13,7 @@
 #include "SensorRandomWalk.h"
 #include "ActuatorRandomWalk.h"
 #include "RandomWalkEnvironment.h"
-#include "QLearningETWatkins.h"
+#include "QLearningET.h"
 #include "EpsilonGreedy.h"
 #include "Softmax.h"
 
@@ -29,7 +29,7 @@ TEST(QLearningETWatkinsInitialization) {
   arw.addAction(L);
   arw.addAction(R);
   Algorithm::Policy::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
-  Algorithm::QLearningETWatkins<AI::INT, AI::INT> qlearningAlgorithm(0.1F, 0.9F,
+  Algorithm::QLearningET<AI::INT, AI::INT> qlearningAlgorithm(0.1F, 0.9F,
                                                                      policy,
                                                                      0.5);
 
@@ -58,7 +58,7 @@ TEST(QLearningETWatkinsSoftmax) {
   arw.addAction(L);
   arw.addAction(R);
   Algorithm::Policy::Softmax<AI::INT, AI::INT> policy(0.2F);
-  Algorithm::QLearningETWatkins<AI::INT, AI::INT> qlearningAlgorithm(0.1F, 0.9F,
+  Algorithm::QLearningET<AI::INT, AI::INT> qlearningAlgorithm(0.1F, 0.9F,
                                                                      policy,
                                                                      0.5);
 

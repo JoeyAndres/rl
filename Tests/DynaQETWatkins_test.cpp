@@ -15,7 +15,7 @@
 #include "SensorRandomWalk.h"
 #include "ActuatorRandomWalk.h"
 #include "RandomWalkEnvironment.h"
-#include "DynaQETWatkins.h"
+#include "DynaQET.h"
 #include "EpsilonGreedy.h"
 #include "Softmax.h"
 
@@ -31,7 +31,7 @@ TEST(DynaQInitialization) {
   arw.addAction(L);
   arw.addAction(R);
   Algorithm::Policy::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
-  Algorithm::DynaQETWatkins<AI::INT, AI::INT> dynaQAlgorithm(0.1F, 0.9F, policy,
+  Algorithm::DynaQET<AI::INT, AI::INT> dynaQAlgorithm(0.1F, 0.9F, policy,
                                                              100, 1.0F, 1.0F,
                                                              0.5F);
 
@@ -59,7 +59,7 @@ TEST(DynaQSoftmaxPolicy) {
   arw.addAction(L);
   arw.addAction(R);
   Algorithm::Policy::Softmax<AI::INT, AI::INT> policy(0.1F);
-  Algorithm::DynaQETWatkins<AI::INT, AI::INT> dynaQAlgorithm(0.1F, 0.9F, policy,
+  Algorithm::DynaQET<AI::INT, AI::INT> dynaQAlgorithm(0.1F, 0.9F, policy,
                                                              50, 1.0F, 1.0F,
                                                              0.5F);
 

@@ -20,19 +20,23 @@ using namespace std;
 namespace AI {
 namespace Algorithm {
 
-/**
- * EligibilityTraces
- * As opposed to ordinary Temporal Difference or whats called in the
- * literature as TD(0), eligibility traces TD(lambda) bridges the
- * gap between TD(0) and Monte Carlo methods. A huge lambda means
+/*! \class EligibilityTraces
+ *  \brief Uses eligibility traces to update state-value pairs. This enables for
+ *         fast convergence.
+ *  \tparam S State data type.
+ *  \tparam A Action data type.
+ *
+ * As opposed to ordinary Temporal Difference or what's called in the
+ * literature as TD(0), eligibility traces TD(\f$\lambda\f$) bridges the
+ * gap between TD(0) and Monte Carlo methods. A huge \f$\lambda\f$ means
  * basically back up ranging from terminal state to initial state.
- * Small lambda converges to TD(0).
+ * Small \f$\lambda\f$ converges to TD(0).
  *
  * Note that there is a performance penalty as result of having
  * to iterate all of state space.
  *
  * TODO: Make another parent class for all other eligibility trace algorithm that contains
- * a merge of RL and Eligibility traces. This way, we can syc some shit.
+ * a merge of RL and Eligibility traces. This way, we can sync some shit.
  *
  * TODO: Connect the reset() to resetEligibilityTraces() function that have yet to be made.
  */
@@ -46,7 +50,9 @@ class EligibilityTraces {
   EligibilityTraces(AI::FLOAT lambda);
 
   /**
-   * @param lambda
+   * @param lambda A huge \f$\lambda\f$ means
+   *                 basically back up ranging from terminal state to initial state.
+   *                 Small \f$\lambda\f$ converges to TD(0).
    */
   void setLambda(AI::FLOAT lambda);
 
@@ -56,6 +62,18 @@ class EligibilityTraces {
   AI::FLOAT getLambda() const;
 
  protected:
+
+  /**
+   * Iterate through all states and update each with respect to the their
+   * eligibility Trace.
+   *
+   * @param currentStateAction Current state-action pair.
+   * @param nextStateAction Next state-action pair.
+   * @param reward Reward for taking state-action pair.
+   * @param stateActionPairValueMap A state-action pair container.
+   * @param stepSize step size for the update.
+   * @param discountRate discount rate for the update.
+   */
   virtual void _updateEligibilityTraces(
       const StateAction<S, A>& currentStateAction,
       const StateAction<S, A>& nextStateAction, AI::FLOAT reward,
@@ -81,7 +99,7 @@ template<class S, class A>
 AI::FLOAT EligibilityTraces<S, A>::getLambda() const {
   return _lambda;
 }
-// todo: encapsulate eligibilitytraces map to prepare for concurrency.
+// todo: encapsulate eligibility traces map to prepare for concurrency.
 template<class S, class A>
 void EligibilityTraces<S, A>::_updateEligibilityTraces(
     const StateAction<S, A>& currentStateAction,
@@ -113,8 +131,8 @@ void EligibilityTraces<S, A>::_updateEligibilityTraces(
         * this->_eligibilityTraces[StateAction<S, A>(state, action)];
   }
 }
-}
-}
+} /* Algoirithm */
+} /* AI */
 
 #endif	/* REINFORCEMENTLEARNINGET_H */
 

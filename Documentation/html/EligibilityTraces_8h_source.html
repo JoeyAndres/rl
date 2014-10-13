@@ -118,82 +118,84 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span>AI {</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">namespace </span>Algorithm {</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1EligibilityTraces.html">   40</a></span>&#160;<span class="keyword">class </span><a class="code" href="classAI_1_1Algorithm_1_1EligibilityTraces.html">EligibilityTraces</a> {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1EligibilityTraces.html">EligibilityTraces</a>(<a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> lambda);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="keywordtype">void</span> setLambda(<a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> lambda);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> getLambda() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> _updateEligibilityTraces(</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;      <span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; currentStateAction,</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      <span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; nextStateAction, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> reward,</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      <a class="code" href="classAI_1_1StateActionPairContainer.html">StateActionPairContainer&lt;S, A&gt;</a>&amp; stateActionPairValueMap,</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> _lambda;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  map&lt;StateAction&lt;S, A&gt;, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&gt; _eligibilityTraces;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;};</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#a5ee88e5ac3059733c38a95dba54f677d">   71</a></span>&#160;<a class="code" href="classAI_1_1Algorithm_1_1EligibilityTraces.html">EligibilityTraces&lt;S, A&gt;::EligibilityTraces</a>(<a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> lambda)</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    : _lambda(lambda) {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#ac52edaa0eeaf4446edb14f7b5415819f">   76</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#ac52edaa0eeaf4446edb14f7b5415819f">EligibilityTraces&lt;S, A&gt;::setLambda</a>(<a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> lambda) {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  this-&gt;_lambda = lambda;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#aea9a2c36874a3df328efdf4077ea1c19">   81</a></span>&#160;<a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> <a class="code" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#aea9a2c36874a3df328efdf4077ea1c19">EligibilityTraces&lt;S, A&gt;::getLambda</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <span class="keywordflow">return</span> _lambda;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">// todo: encapsulate eligibilitytraces map to prepare for concurrency.</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keywordtype">void</span> <a class="code" href="classAI_1_1Algorithm_1_1EligibilityTraces.html">EligibilityTraces&lt;S, A&gt;::_updateEligibilityTraces</a>(</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; currentStateAction,</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; nextStateAction, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> reward,</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="classAI_1_1StateActionPairContainer.html">StateActionPairContainer&lt;S, A&gt;</a>&amp; stateActionPairValue, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize,</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate) {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> tdError = reward</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;      + discountRate</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;          * (reward + discountRate * stateActionPairValue[nextStateAction]</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;              - stateActionPairValue[currentStateAction]);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  _eligibilityTraces[currentStateAction] =</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;      _eligibilityTraces[currentStateAction] + 1;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> iter = stateActionPairValue.<a class="code" href="classAI_1_1StateActionPairContainer.html#abb152cc2644ba6fad1da5476b746dd30">begin</a>();</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;      iter != stateActionPairValue.<a class="code" href="classAI_1_1StateActionPairContainer.html#a36cb0d1278cd67b4a7b4967ef6740937">end</a>(); iter++) {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">const</span> S&amp; state = iter-&gt;first.getState();</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">const</span> A&amp; action = iter-&gt;first.getAction();</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> value = iter-&gt;second;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    stateActionPairValue.<a class="code" href="classAI_1_1StateActionPairContainer.html#a26fa5b9fd043865695e6c4adf97188d5">setStateActionValue</a>(</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>(state, action),</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        value</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            + stepSize * tdError</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                * this-&gt;_eligibilityTraces[<a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>(state, action)]);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    _eligibilityTraces[<a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>(state, action)] = discountRate</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        * this-&gt;_lambda</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        * this-&gt;_eligibilityTraces[<a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>(state, action)];</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  }</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* REINFORCEMENTLEARNINGET_H */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1EligibilityTraces.html">   44</a></span>&#160;<span class="keyword">class </span><a class="code" href="classAI_1_1Algorithm_1_1EligibilityTraces.html">EligibilityTraces</a> {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <a class="code" href="classAI_1_1Algorithm_1_1EligibilityTraces.html">EligibilityTraces</a>(<a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> lambda);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <span class="keywordtype">void</span> setLambda(<a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> lambda);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> getLambda() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> _updateEligibilityTraces(</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      <span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; currentStateAction,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      <span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; nextStateAction, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> reward,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;      <a class="code" href="classAI_1_1StateActionPairContainer.html">StateActionPairContainer&lt;S, A&gt;</a>&amp; stateActionPairValueMap,</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> _lambda;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  map&lt;StateAction&lt;S, A&gt;, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&gt; _eligibilityTraces;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;};</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#a5ee88e5ac3059733c38a95dba54f677d">   89</a></span>&#160;<a class="code" href="classAI_1_1Algorithm_1_1EligibilityTraces.html">EligibilityTraces&lt;S, A&gt;::EligibilityTraces</a>(<a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> lambda)</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    : _lambda(lambda) {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#ac52edaa0eeaf4446edb14f7b5415819f">   94</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#ac52edaa0eeaf4446edb14f7b5415819f">EligibilityTraces&lt;S, A&gt;::setLambda</a>(<a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> lambda) {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  this-&gt;_lambda = lambda;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#aea9a2c36874a3df328efdf4077ea1c19">   99</a></span>&#160;<a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> <a class="code" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#aea9a2c36874a3df328efdf4077ea1c19">EligibilityTraces&lt;S, A&gt;::getLambda</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keywordflow">return</span> _lambda;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">// todo: encapsulate eligibility traces map to prepare for concurrency.</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> S, <span class="keyword">class</span> A&gt;</div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#a354115a368dc58abcdbc9285ec2537df">  104</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#a354115a368dc58abcdbc9285ec2537df">EligibilityTraces&lt;S, A&gt;::_updateEligibilityTraces</a>(</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; currentStateAction,</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">const</span> <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>&amp; nextStateAction, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> reward,</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="classAI_1_1StateActionPairContainer.html">StateActionPairContainer&lt;S, A&gt;</a>&amp; stateActionPairValue, <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize,</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate) {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> tdError = reward</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;      + discountRate</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;          * (reward + discountRate * stateActionPairValue[nextStateAction]</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;              - stateActionPairValue[currentStateAction]);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  _eligibilityTraces[currentStateAction] =</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;      _eligibilityTraces[currentStateAction] + 1;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  <span class="keywordflow">for</span> (<span class="keyword">auto</span> iter = stateActionPairValue.<a class="code" href="classAI_1_1StateActionPairContainer.html#abb152cc2644ba6fad1da5476b746dd30">begin</a>();</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;      iter != stateActionPairValue.<a class="code" href="classAI_1_1StateActionPairContainer.html#a36cb0d1278cd67b4a7b4967ef6740937">end</a>(); iter++) {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keyword">const</span> S&amp; state = iter-&gt;first.getState();</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keyword">const</span> A&amp; action = iter-&gt;first.getAction();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> value = iter-&gt;second;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    stateActionPairValue.<a class="code" href="classAI_1_1StateActionPairContainer.html#a26fa5b9fd043865695e6c4adf97188d5">setStateActionValue</a>(</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>(state, action),</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        value</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            + stepSize * tdError</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                * this-&gt;_eligibilityTraces[<a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>(state, action)]);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    _eligibilityTraces[<a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>(state, action)] = discountRate</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        * this-&gt;_lambda</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        * this-&gt;_eligibilityTraces[<a class="code" href="classAI_1_1StateAction.html">StateAction&lt;S, A&gt;</a>(state, action)];</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;} <span class="comment">/* Algoirithm */</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;} <span class="comment">/* AI */</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* REINFORCEMENTLEARNINGET_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor"></span></div>
 <div class="ttc" id="namespaceAI_html_a41b74884a20833db653dded3918e05c3"><div class="ttname"><a href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a></div><div class="ttdeci">double FLOAT</div><div class="ttdoc">Default floating type. </div><div class="ttdef"><b>Definition:</b> GlobalHeader.h:23</div></div>
-<div class="ttc" id="classAI_1_1Algorithm_1_1EligibilityTraces_html_ac52edaa0eeaf4446edb14f7b5415819f"><div class="ttname"><a href="classAI_1_1Algorithm_1_1EligibilityTraces.html#ac52edaa0eeaf4446edb14f7b5415819f">AI::Algorithm::EligibilityTraces::setLambda</a></div><div class="ttdeci">void setLambda(AI::FLOAT lambda)</div><div class="ttdef"><b>Definition:</b> EligibilityTraces.h:76</div></div>
-<div class="ttc" id="classAI_1_1Algorithm_1_1EligibilityTraces_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1EligibilityTraces.html">AI::Algorithm::EligibilityTraces</a></div><div class="ttdef"><b>Definition:</b> EligibilityTraces.h:40</div></div>
-<div class="ttc" id="classAI_1_1Algorithm_1_1EligibilityTraces_html_aea9a2c36874a3df328efdf4077ea1c19"><div class="ttname"><a href="classAI_1_1Algorithm_1_1EligibilityTraces.html#aea9a2c36874a3df328efdf4077ea1c19">AI::Algorithm::EligibilityTraces::getLambda</a></div><div class="ttdeci">AI::FLOAT getLambda() const </div><div class="ttdef"><b>Definition:</b> EligibilityTraces.h:81</div></div>
+<div class="ttc" id="classAI_1_1Algorithm_1_1EligibilityTraces_html_ac52edaa0eeaf4446edb14f7b5415819f"><div class="ttname"><a href="classAI_1_1Algorithm_1_1EligibilityTraces.html#ac52edaa0eeaf4446edb14f7b5415819f">AI::Algorithm::EligibilityTraces::setLambda</a></div><div class="ttdeci">void setLambda(AI::FLOAT lambda)</div><div class="ttdef"><b>Definition:</b> EligibilityTraces.h:94</div></div>
+<div class="ttc" id="classAI_1_1Algorithm_1_1EligibilityTraces_html_a354115a368dc58abcdbc9285ec2537df"><div class="ttname"><a href="classAI_1_1Algorithm_1_1EligibilityTraces.html#a354115a368dc58abcdbc9285ec2537df">AI::Algorithm::EligibilityTraces::_updateEligibilityTraces</a></div><div class="ttdeci">virtual void _updateEligibilityTraces(const StateAction&lt; S, A &gt; &amp;currentStateAction, const StateAction&lt; S, A &gt; &amp;nextStateAction, AI::FLOAT reward, StateActionPairContainer&lt; S, A &gt; &amp;stateActionPairValueMap, AI::FLOAT stepSize, AI::FLOAT discountRate)</div><div class="ttdef"><b>Definition:</b> EligibilityTraces.h:104</div></div>
+<div class="ttc" id="classAI_1_1Algorithm_1_1EligibilityTraces_html"><div class="ttname"><a href="classAI_1_1Algorithm_1_1EligibilityTraces.html">AI::Algorithm::EligibilityTraces</a></div><div class="ttdoc">Uses eligibility traces to update state-value pairs. This enables for fast convergence. </div><div class="ttdef"><b>Definition:</b> EligibilityTraces.h:44</div></div>
+<div class="ttc" id="classAI_1_1Algorithm_1_1EligibilityTraces_html_aea9a2c36874a3df328efdf4077ea1c19"><div class="ttname"><a href="classAI_1_1Algorithm_1_1EligibilityTraces.html#aea9a2c36874a3df328efdf4077ea1c19">AI::Algorithm::EligibilityTraces::getLambda</a></div><div class="ttdeci">AI::FLOAT getLambda() const </div><div class="ttdef"><b>Definition:</b> EligibilityTraces.h:99</div></div>
 <div class="ttc" id="classAI_1_1StateActionPairContainer_html_a26fa5b9fd043865695e6c4adf97188d5"><div class="ttname"><a href="classAI_1_1StateActionPairContainer.html#a26fa5b9fd043865695e6c4adf97188d5">AI::StateActionPairContainer::setStateActionValue</a></div><div class="ttdeci">virtual void setStateActionValue(const StateAction&lt; S, A &gt; &amp;stateAction, AI::FLOAT value)</div><div class="ttdef"><b>Definition:</b> StateActionPairContainer.h:146</div></div>
 <div class="ttc" id="classAI_1_1StateActionPairContainer_html"><div class="ttname"><a href="classAI_1_1StateActionPairContainer.html">AI::StateActionPairContainer</a></div><div class="ttdoc">Encapsulates the mapping of StateAction to their Value. </div><div class="ttdef"><b>Definition:</b> StateActionPairContainer.h:33</div></div>
 <div class="ttc" id="classAI_1_1StateActionPairContainer_html_a36cb0d1278cd67b4a7b4967ef6740937"><div class="ttname"><a href="classAI_1_1StateActionPairContainer.html#a36cb0d1278cd67b4a7b4967ef6740937">AI::StateActionPairContainer::end</a></div><div class="ttdeci">map&lt; StateAction&lt; S, A &gt;, AI::FLOAT &gt;::const_iterator end() const </div><div class="ttdef"><b>Definition:</b> StateActionPairContainer.h:192</div></div>
@@ -202,7 +204,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 20:50:07 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 12 2014 23:09:52 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

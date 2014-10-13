@@ -103,6 +103,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html" title="DynaQ algorithm implementation. ">DynaQ</a> algorithm implementation.  
+ <a href="classAI_1_1Algorithm_1_1DynaQ.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="DynaQ_8h_source.html">DynaQ.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for AI::Algorithm::DynaQ&lt; S, A &gt;:</div>
@@ -110,12 +113,12 @@ Inheritance diagram for AI::Algorithm::DynaQ&lt; S, A &gt;:</div>
  <div class="center">
   <img src="classAI_1_1Algorithm_1_1DynaQ.png" usemap="#AI::Algorithm::DynaQ&lt; S, A &gt;_map" alt=""/>
   <map id="AI::Algorithm::DynaQ&lt; S, A &gt;_map" name="AI::Algorithm::DynaQ&lt; S, A &gt;_map">
-<area href="classAI_1_1Algorithm_1_1DynaQRLMP.html" alt="AI::Algorithm::DynaQRLMP&lt; S, A &gt;" shape="rect" coords="147,112,431,136"/>
+<area href="classAI_1_1Algorithm_1_1DynaQRLMP.html" title="Abstract class that represents the merge Point for DynaQBase and Reinforcement Learning. " alt="AI::Algorithm::DynaQRLMP&lt; S, A &gt;" shape="rect" coords="147,112,431,136"/>
 <area href="classAI_1_1Algorithm_1_1ReinforcementLearning.html" title="Abstract class for all Reinforcement learning algorithms. " alt="AI::Algorithm::ReinforcementLearning&lt; S, A &gt;" shape="rect" coords="0,56,284,80"/>
-<area href="classAI_1_1Algorithm_1_1DynaQBase.html" alt="AI::Algorithm::DynaQBase&lt; S, A &gt;" shape="rect" coords="294,56,578,80"/>
+<area href="classAI_1_1Algorithm_1_1DynaQBase.html" title="Abstract base class for DynaQ algorithms. " alt="AI::Algorithm::DynaQBase&lt; S, A &gt;" shape="rect" coords="294,56,578,80"/>
 <area href="classAI_1_1Algorithm_1_1LearningAlgorithm.html" title="Base class for all learning algorithms. " alt="AI::Algorithm::LearningAlgorithm&lt; S, A &gt;" shape="rect" coords="0,0,284,24"/>
-<area href="classAI_1_1Algorithm_1_1DynaQETWatkins.html" alt="AI::Algorithm::DynaQETWatkins&lt; S, A &gt;" shape="rect" coords="0,224,284,248"/>
-<area href="classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping.html" alt="AI::Algorithm::DynaQPrioritizeSweeping&lt; S, A &gt;" shape="rect" coords="294,224,578,248"/>
+<area href="classAI_1_1Algorithm_1_1DynaQET.html" title="Employs the simulation of DynaQ and eligibility traces. " alt="AI::Algorithm::DynaQET&lt; S, A &gt;" shape="rect" coords="0,224,284,248"/>
+<area href="classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping.html" title="DynaQ Prioritize sweeping implementation. " alt="AI::Algorithm::DynaQPrioritizeSweeping&lt; S, A &gt;" shape="rect" coords="294,224,578,248"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -126,14 +129,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4542226b17db4ed8a2c5ec17d37dc42f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html#a4542226b17db4ed8a2c5ec17d37dc42f">update</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">FLOAT</a> reward, const set&lt; A &gt; &amp;actionSet)</td></tr>
 <tr class="separator:a4542226b17db4ed8a2c5ec17d37dc42f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classAI_1_1Algorithm_1_1DynaQRLMP"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classAI_1_1Algorithm_1_1DynaQRLMP')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classAI_1_1Algorithm_1_1DynaQRLMP.html">AI::Algorithm::DynaQRLMP&lt; S, A &gt;</a></td></tr>
-<tr class="memitem:a79f36f74cf9de4649b07df5d46282598 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQRLMP"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79f36f74cf9de4649b07df5d46282598"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DynaQRLMP</b> (<a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate, <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;policy, <a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
+<tr class="memitem:a79f36f74cf9de4649b07df5d46282598 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQRLMP"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQRLMP.html#a79f36f74cf9de4649b07df5d46282598">DynaQRLMP</a> (<a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate, <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;policy, <a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
 <tr class="separator:a79f36f74cf9de4649b07df5d46282598 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQRLMP"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b3b5f3706744290b12c19f786e5e4e4 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQRLMP"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b3b5f3706744290b12c19f786e5e4e4"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>backUpStateActionPair</b> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> reward, const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;nextStateActionPair)</td></tr>
+<tr class="memitem:a7b3b5f3706744290b12c19f786e5e4e4 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQRLMP"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQRLMP.html#a7b3b5f3706744290b12c19f786e5e4e4">backUpStateActionPair</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> reward, const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;nextStateActionPair)</td></tr>
 <tr class="separator:a7b3b5f3706744290b12c19f786e5e4e4 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQRLMP"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57a8d01392c4a3699853f3aa623d9ebf inherit pub_methods_classAI_1_1Algorithm_1_1DynaQRLMP"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57a8d01392c4a3699853f3aa623d9ebf"></a>
-virtual A&#160;</td><td class="memItemRight" valign="bottom"><b>argMax</b> (const S &amp;state, const set&lt; A &gt; &amp;actionSet) const </td></tr>
+<tr class="memitem:a57a8d01392c4a3699853f3aa623d9ebf inherit pub_methods_classAI_1_1Algorithm_1_1DynaQRLMP"><td class="memItemLeft" align="right" valign="top">virtual A&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQRLMP.html#a57a8d01392c4a3699853f3aa623d9ebf">argMax</a> (const S &amp;state, const set&lt; A &gt; &amp;actionSet) const </td></tr>
 <tr class="separator:a57a8d01392c4a3699853f3aa623d9ebf inherit pub_methods_classAI_1_1Algorithm_1_1DynaQRLMP"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a></td></tr>
 <tr class="memitem:a4d182d91c68aef838b80843acd044b1e inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a4d182d91c68aef838b80843acd044b1e">ReinforcementLearning</a> (<a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate, <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;policy)</td></tr>
@@ -148,23 +148,19 @@ virtual A&#160;</td><td class="memItemRight" valign="bottom"><b>argMax</b> (cons
 <tr class="separator:a13e6c161a33644183d3d357971eeaaf5 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04932645faa6c385e4c587f7f845b484 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a04932645faa6c385e4c587f7f845b484">setStepSize</a> (<a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize)</td></tr>
 <tr class="separator:a04932645faa6c385e4c587f7f845b484 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb89c1734df6658a422af510b7c36377 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memItemLeft" align="right" valign="top">const A &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#acb89c1734df6658a422af510b7c36377">getAction</a> (const S &amp;currentState, const set&lt; A &gt; &amp;actionSet)</td></tr>
-<tr class="separator:acb89c1734df6658a422af510b7c36377 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f31822bf51b07d17b31d7683d7e25a2 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f31822bf51b07d17b31d7683d7e25a2"></a>
-const A &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getLearningAction</b> (const S &amp;currentState, const set&lt; A &gt; &amp;actionSet)</td></tr>
+<tr class="memitem:a9f31822bf51b07d17b31d7683d7e25a2 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memItemLeft" align="right" valign="top">const A &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a9f31822bf51b07d17b31d7683d7e25a2">getLearningAction</a> (const S &amp;currentState, const set&lt; A &gt; &amp;actionSet)</td></tr>
 <tr class="separator:a9f31822bf51b07d17b31d7683d7e25a2 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad078677d92b33df4ae7d3c78e040b766 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#ad078677d92b33df4ae7d3c78e040b766">getStateActionValue</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;stateAction)</td></tr>
 <tr class="separator:ad078677d92b33df4ae7d3c78e040b766 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d576410235e5099f153d21f20a8e5af inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d576410235e5099f153d21f20a8e5af"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setStateActionValue</b> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;stateAction, const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &amp;reward)</td></tr>
+<tr class="memitem:a5d576410235e5099f153d21f20a8e5af inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a5d576410235e5099f153d21f20a8e5af">setStateActionValue</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;stateAction, const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &amp;reward)</td></tr>
 <tr class="separator:a5d576410235e5099f153d21f20a8e5af inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b5fe1be9629bf5574d32ae4eeec33f5 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b5fe1be9629bf5574d32ae4eeec33f5"></a>
-const <a class="el" href="classAI_1_1StateActionPairContainer.html">StateActionPairContainer</a><br class="typebreak"/>
-&lt; S, A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getStateActionPairContainer</b> () const </td></tr>
+<tr class="memitem:a6b5fe1be9629bf5574d32ae4eeec33f5 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classAI_1_1StateActionPairContainer.html">StateActionPairContainer</a><br class="typebreak"/>
+&lt; S, A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a6b5fe1be9629bf5574d32ae4eeec33f5">getStateActionPairContainer</a> () const </td></tr>
 <tr class="separator:a6b5fe1be9629bf5574d32ae4eeec33f5 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad889f5f5949cac39d121f57e3027ad0c inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad889f5f5949cac39d121f57e3027ad0c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setStateActionPairContainer</b> (const <a class="el" href="classAI_1_1StateActionPairContainer.html">StateActionPairContainer</a>&lt; S, A &gt; &amp;stateActionPairContainer)</td></tr>
+<tr class="memitem:ad889f5f5949cac39d121f57e3027ad0c inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#ad889f5f5949cac39d121f57e3027ad0c">setStateActionPairContainer</a> (const <a class="el" href="classAI_1_1StateActionPairContainer.html">StateActionPairContainer</a>&lt; S, A &gt; &amp;stateActionPairContainer)</td></tr>
 <tr class="separator:ad889f5f5949cac39d121f57e3027ad0c inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb89c1734df6658a422af510b7c36377 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memItemLeft" align="right" valign="top">virtual const A &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#acb89c1734df6658a422af510b7c36377">getAction</a> (const S &amp;currentState, const set&lt; A &gt; &amp;actionSet)</td></tr>
+<tr class="separator:acb89c1734df6658a422af510b7c36377 inherit pub_methods_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classAI_1_1Algorithm_1_1LearningAlgorithm"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classAI_1_1Algorithm_1_1LearningAlgorithm')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm&lt; S, A &gt;</a></td></tr>
 <tr class="memitem:a8fe54228193c0d7a28fba7de00441d7f inherit pub_methods_classAI_1_1Algorithm_1_1LearningAlgorithm"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a8fe54228193c0d7a28fba7de00441d7f">LearningAlgorithm</a> (<a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;controlPolicy)</td></tr>
 <tr class="separator:a8fe54228193c0d7a28fba7de00441d7f inherit pub_methods_classAI_1_1Algorithm_1_1LearningAlgorithm"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -183,8 +179,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setStateActionPairCon
 <tr class="memitem:aac506aa1838ba12e2069c098d6faec16 inherit pub_methods_classAI_1_1Algorithm_1_1LearningAlgorithm"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#aac506aa1838ba12e2069c098d6faec16">getLearningPolicy</a> () const </td></tr>
 <tr class="separator:aac506aa1838ba12e2069c098d6faec16 inherit pub_methods_classAI_1_1Algorithm_1_1LearningAlgorithm"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classAI_1_1Algorithm_1_1DynaQBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classAI_1_1Algorithm_1_1DynaQBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html">AI::Algorithm::DynaQBase&lt; S, A &gt;</a></td></tr>
-<tr class="memitem:a089f4024fab2f19179dea637b7f6c8ee inherit pub_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a089f4024fab2f19179dea637b7f6c8ee"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DynaQBase</b> (<a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
+<tr class="memitem:a089f4024fab2f19179dea637b7f6c8ee inherit pub_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a089f4024fab2f19179dea637b7f6c8ee">DynaQBase</a> (<a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
 <tr class="separator:a089f4024fab2f19179dea637b7f6c8ee inherit pub_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
@@ -197,17 +192,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>_buildActionValueMap<
 <tr class="memitem:ad5b5f6baa9c03f68427008abeeb35535 inherit pro_methods_classAI_1_1Algorithm_1_1LearningAlgorithm"><td class="memItemLeft" align="right" valign="top">const A &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#ad5b5f6baa9c03f68427008abeeb35535">_getLearningPolicyAction</a> (const map&lt; A, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> &gt; &amp;actionValueMap, const set&lt; A &gt; &amp;actionSet)</td></tr>
 <tr class="separator:ad5b5f6baa9c03f68427008abeeb35535 inherit pro_methods_classAI_1_1Algorithm_1_1LearningAlgorithm"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classAI_1_1Algorithm_1_1DynaQBase')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html">AI::Algorithm::DynaQBase&lt; S, A &gt;</a></td></tr>
-<tr class="memitem:a4a45b9303a4b9e0cf93b9a5272739b35 inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a45b9303a4b9e0cf93b9a5272739b35"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_updateModel</b> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">FLOAT</a> reward)</td></tr>
+<tr class="memitem:a4a45b9303a4b9e0cf93b9a5272739b35 inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a4a45b9303a4b9e0cf93b9a5272739b35">_updateModel</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">FLOAT</a> reward)</td></tr>
 <tr class="separator:a4a45b9303a4b9e0cf93b9a5272739b35 inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0524b63604a75fd079b85a3a6e6ac93d inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0524b63604a75fd079b85a3a6e6ac93d"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_addModelSafe</b> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction)</td></tr>
+<tr class="memitem:a0524b63604a75fd079b85a3a6e6ac93d inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a0524b63604a75fd079b85a3a6e6ac93d">_addModelSafe</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction)</td></tr>
 <tr class="separator:a0524b63604a75fd079b85a3a6e6ac93d inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefe879b3103a6c4f46176d9fcb1a911d inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aefe879b3103a6c4f46176d9fcb1a911d"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_addModel</b> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction)</td></tr>
+<tr class="memitem:aefe879b3103a6c4f46176d9fcb1a911d inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#aefe879b3103a6c4f46176d9fcb1a911d">_addModel</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction)</td></tr>
 <tr class="separator:aefe879b3103a6c4f46176d9fcb1a911d inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae33343ea87f96ee3a2c2651bfd2cbcc5 inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae33343ea87f96ee3a2c2651bfd2cbcc5"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_simulate</b> (const set&lt; A &gt; &amp;actionSet)</td></tr>
+<tr class="memitem:ae33343ea87f96ee3a2c2651bfd2cbcc5 inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#ae33343ea87f96ee3a2c2651bfd2cbcc5">_simulate</a> (const set&lt; A &gt; &amp;actionSet)</td></tr>
 <tr class="separator:ae33343ea87f96ee3a2c2651bfd2cbcc5 inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classAI_1_1Algorithm_1_1ReinforcementLearning"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classAI_1_1Algorithm_1_1ReinforcementLearning')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a></td></tr>
 <tr class="memitem:ae8a4204e547054e55542e6f7de4b5dc1 inherit pro_attribs_classAI_1_1Algorithm_1_1ReinforcementLearning"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae8a4204e547054e55542e6f7de4b5dc1"></a>
@@ -245,24 +236,22 @@ boost::shared_mutex&#160;</td><td class="memItemRight" valign="bottom"><b>_disco
 <tr class="memdesc:a603f2a2905636a150c0fb9946085837a inherit pro_attribs_classAI_1_1Algorithm_1_1LearningAlgorithm"><td class="mdescLeft">&#160;</td><td class="mdescRight">Policy for action selection offline. <br/></td></tr>
 <tr class="separator:a603f2a2905636a150c0fb9946085837a inherit pro_attribs_classAI_1_1Algorithm_1_1LearningAlgorithm"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classAI_1_1Algorithm_1_1DynaQBase')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html">AI::Algorithm::DynaQBase&lt; S, A &gt;</a></td></tr>
-<tr class="memitem:a3d375c3e01c7cc8a30c92109780adb9b inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3d375c3e01c7cc8a30c92109780adb9b"></a>
-<a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_simulationIterationCount</b></td></tr>
+<tr class="memitem:a3d375c3e01c7cc8a30c92109780adb9b inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a3d375c3e01c7cc8a30c92109780adb9b">_simulationIterationCount</a></td></tr>
 <tr class="separator:a3d375c3e01c7cc8a30c92109780adb9b inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c9b96a2f0fa30d04d538b56ba008db4 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c9b96a2f0fa30d04d538b56ba008db4"></a>
-map&lt; <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt;<br class="typebreak"/>
-, <a class="el" href="classAI_1_1Algorithm_1_1StateActionTransition.html">StateActionTransition</a>&lt; S &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_model</b></td></tr>
-<tr class="separator:a1c9b96a2f0fa30d04d538b56ba008db4 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3f83dbeea191fc8bdcd518a2e54af97 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3f83dbeea191fc8bdcd518a2e54af97"></a>
-<a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_stateActionTransitionGreediness</b></td></tr>
+<tr class="memitem:a65878fdff793c8b4bef59bb128e19bd8 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top">map&lt; <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt;<br class="typebreak"/>
+, <a class="el" href="classAI_1_1Algorithm_1_1StateActionTransition.html">StateActionTransition</a>&lt; S &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a65878fdff793c8b4bef59bb128e19bd8">_model</a></td></tr>
+<tr class="separator:a65878fdff793c8b4bef59bb128e19bd8 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3f83dbeea191fc8bdcd518a2e54af97 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#ae3f83dbeea191fc8bdcd518a2e54af97">_stateActionTransitionGreediness</a></td></tr>
 <tr class="separator:ae3f83dbeea191fc8bdcd518a2e54af97 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fd132ae0aeb356a891e5b81bf218338 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fd132ae0aeb356a891e5b81bf218338"></a>
-<a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_stateActionTransitionStepSize</b></td></tr>
+<tr class="memitem:a1fd132ae0aeb356a891e5b81bf218338 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a1fd132ae0aeb356a891e5b81bf218338">_stateActionTransitionStepSize</a></td></tr>
 <tr class="separator:a1fd132ae0aeb356a891e5b81bf218338 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc3615604882454399863291f73b8734 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc3615604882454399863291f73b8734"></a>
-boost::shared_mutex&#160;</td><td class="memItemRight" valign="bottom"><b>_generalLock</b></td></tr>
+boost::shared_mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#adc3615604882454399863291f73b8734">_generalLock</a></td></tr>
+<tr class="memdesc:adc3615604882454399863291f73b8734 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutex lock for everything else that is not a model. <br/></td></tr>
 <tr class="separator:adc3615604882454399863291f73b8734 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab166bd02d02f17c76a7626372c649849 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab166bd02d02f17c76a7626372c649849"></a>
-boost::shared_mutex&#160;</td><td class="memItemRight" valign="bottom"><b>_modelLock</b></td></tr>
+boost::shared_mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#ab166bd02d02f17c76a7626372c649849">_modelLock</a></td></tr>
+<tr class="memdesc:ab166bd02d02f17c76a7626372c649849 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutex lock for model. <br/></td></tr>
 <tr class="separator:ab166bd02d02f17c76a7626372c649849 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_attribs_classAI_1_1Algorithm_1_1LearningAlgorithm"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_classAI_1_1Algorithm_1_1LearningAlgorithm')"><img src="closed.png" alt="-"/>&#160;Static Protected Attributes inherited from <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html">AI::Algorithm::LearningAlgorithm&lt; S, A &gt;</a></td></tr>
 <tr class="memitem:ad9b3db3c2443e1a44803ec6d34887485 inherit pro_static_attribs_classAI_1_1Algorithm_1_1LearningAlgorithm"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad9b3db3c2443e1a44803ec6d34887485"></a>
@@ -275,9 +264,15 @@ static <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html"
 <div class="textblock"><h3>template&lt;class S, class A&gt;<br/>
 class AI::Algorithm::DynaQ&lt; S, A &gt;</h3>
 
-<p><a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html">DynaQ</a> </p>
-<p>The <a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html">DynaQ</a> algorithm is a subclass of Reinforcement Algorithm. <a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html">DynaQ</a> employs simulationCount for every update thus improving the conversion rate.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classAI_1_1Algorithm_1_1StateActionTransition.html" title="Used for modeling environment. ">StateActionTransition</a> representing the models. </dd></dl>
+<p><a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html" title="DynaQ algorithm implementation. ">DynaQ</a> algorithm implementation. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">S</td><td>State data type. </td></tr>
+    <tr><td class="paramname">A</td><td>Action data type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p><a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html" title="DynaQ algorithm implementation. ">DynaQ</a> algorithm is a <a class="el" href="classAI_1_1Algorithm_1_1QLearning.html" title="Basic off-policy reinforcement learning algorithm. ">QLearning</a> algorithm that employs a <em>model</em> to "model" the environment. Thus, in every update, the algorithm can do \(n\) simulations, enabling faster convergence to "optimal" policy. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aa543816270f72b2c4ac1f77fb818f792"></a>
 <div class="memitem">
@@ -330,11 +325,12 @@ template&lt;class S , class A &gt; </div>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stepSize</td><td>range [0.0, 1.0]. High step size means faster learning, but less precise convergence. </td></tr>
-    <tr><td class="paramname">discountRate</td><td>range [0.0, 1.0]. High discount rate means more consideration of future events. </td></tr>
-    <tr><td class="paramname">simulationIterationCount</td><td>How many simulation per update. </td></tr>
-    <tr><td class="paramname">stateTransitionGreediness</td><td>High value means less likely to choose random action during simulation. </td></tr>
-    <tr><td class="paramname">stateTransitionStepSize</td><td>High value means faster learning in models but lower values means more accurate models. </td></tr>
+    <tr><td class="paramname">stepSize</td><td>range \([0.0, 1.0]\). High step size means faster learning, but less precise convergence. </td></tr>
+    <tr><td class="paramname">discountRate</td><td>range \([0.0, 1.0]\). High discount rate means more consideration of future events. </td></tr>
+    <tr><td class="paramname">policy</td><td>online policy, that is policy used for action selection. </td></tr>
+    <tr><td class="paramname">simulationIterationCount</td><td>number of simulations per update/backup. </td></tr>
+    <tr><td class="paramname">stateTransitionGreediness</td><td>greediness in selecting highest value model. </td></tr>
+    <tr><td class="paramname">stateTransitionStepSize</td><td>how fast does a model update a value of a state-action pair. </td></tr>
   </table>
   </dd>
 </dl>
@@ -390,20 +386,18 @@ template&lt;class S , class A &gt; </div>
 <p>Update the stateAction map. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">currentState</td><td></td></tr>
-    <tr><td class="paramname">currentAction</td><td></td></tr>
-    <tr><td class="paramname">nextState</td><td></td></tr>
-    <tr><td class="paramname">reward</td><td>reward of currentState and currentAction. </td></tr>
-    <tr><td class="paramname">stateAction</td><td>A map of <a class="el" href="classAI_1_1StateAction.html" title="Encapsulates state action pair. ">StateAction</a> to Value. </td></tr>
+    <tr><td class="paramname">currentState</td><td>currentState agent is in. </td></tr>
+    <tr><td class="paramname">currentAction</td><td>action taken by agent by being in currentState. </td></tr>
+    <tr><td class="paramname">nextState</td><td>nextState by taking currentAction in currentState. </td></tr>
+    <tr><td class="paramname">reward</td><td>reward of currentStateAction. </td></tr>
     <tr><td class="paramname">actionSet</td><td>A set of all actions. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>next action to be executed. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a25d7fa245a79e61061436dc0f1db90cb">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping.html#ad08b55f3cf927189dd31abf9fc1c2959">AI::Algorithm::DynaQPrioritizeSweeping&lt; S, A &gt;</a>, and <a class="el" href="classAI_1_1Algorithm_1_1DynaQETWatkins.html#aa4e40af0fd705cd5d1f7fd13834c57c6">AI::Algorithm::DynaQETWatkins&lt; S, A &gt;</a>.</p>
+<p>Reimplemented in <a class="el" href="classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping.html#ad08b55f3cf927189dd31abf9fc1c2959">AI::Algorithm::DynaQPrioritizeSweeping&lt; S, A &gt;</a>, and <a class="el" href="classAI_1_1Algorithm_1_1DynaQET.html#a53b0e06842fbb802acfa5384a84ad448">AI::Algorithm::DynaQET&lt; S, A &gt;</a>.</p>
 
 </div>
 </div>
@@ -413,7 +407,7 @@ template&lt;class S , class A &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 20:50:07 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 12 2014 23:09:52 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -1,6 +1,15 @@
 \hypertarget{classAI_1_1Algorithm_1_1DynaQBase}{\section{A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-Base$<$ S, A $>$ Class Template Reference}
 \label{classAI_1_1Algorithm_1_1DynaQBase}\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base$<$ S, A $>$@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base$<$ S, A $>$}}
 }
+
+
+Abstract base class for \hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} algorithms.  
+
+
+
+
+{\ttfamily \#include $<$Dyna\-Q\-Base.\-h$>$}
+
 Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-Base$<$ S, A $>$\-:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -10,53 +19,203 @@ Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-Base$<$ S, A $>$\-:\be
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a089f4024fab2f19179dea637b7f6c8ee}{{\bfseries Dyna\-Q\-Base} (\hyperlink{namespaceAI_ab6e14dc1e659854858a87e511f1439ec}{A\-I\-::\-U\-I\-N\-T} simulation\-Iteration\-Count, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} state\-Transition\-Greediness, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} state\-Transition\-Step\-Size)}\label{classAI_1_1Algorithm_1_1DynaQBase_a089f4024fab2f19179dea637b7f6c8ee}
-
-\item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a0d5777706e9c2be04ee1834ad593c795}{virtual void {\bfseries back\-Up\-State\-Action\-Pair} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} reward, const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&next\-State\-Action\-Pair)=0}\label{classAI_1_1Algorithm_1_1DynaQBase_a0d5777706e9c2be04ee1834ad593c795}
-
-\item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a32044f721ba4afbca5ea144b3f84135b}{virtual A {\bfseries arg\-Max} (const S \&state, const set$<$ A $>$ \&action\-Set) const =0}\label{classAI_1_1Algorithm_1_1DynaQBase_a32044f721ba4afbca5ea144b3f84135b}
-
+\hyperlink{classAI_1_1Algorithm_1_1DynaQBase_a089f4024fab2f19179dea637b7f6c8ee}{Dyna\-Q\-Base} (\hyperlink{namespaceAI_ab6e14dc1e659854858a87e511f1439ec}{A\-I\-::\-U\-I\-N\-T} simulation\-Iteration\-Count, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} state\-Transition\-Greediness, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} state\-Transition\-Step\-Size)
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a4a45b9303a4b9e0cf93b9a5272739b35}{virtual void {\bfseries \-\_\-update\-Model} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const S \&next\-State, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} reward)}\label{classAI_1_1Algorithm_1_1DynaQBase_a4a45b9303a4b9e0cf93b9a5272739b35}
-
+virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_a0d5777706e9c2be04ee1834ad593c795}{back\-Up\-State\-Action\-Pair} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} reward, const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&next\-State\-Action\-Pair)=0
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a0524b63604a75fd079b85a3a6e6ac93d}{virtual void {\bfseries \-\_\-add\-Model\-Safe} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action)}\label{classAI_1_1Algorithm_1_1DynaQBase_a0524b63604a75fd079b85a3a6e6ac93d}
-
+virtual A \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_a32044f721ba4afbca5ea144b3f84135b}{arg\-Max} (const S \&state, const set$<$ A $>$ \&action\-Set) const =0
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_aefe879b3103a6c4f46176d9fcb1a911d}{virtual void {\bfseries \-\_\-add\-Model} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action)}\label{classAI_1_1Algorithm_1_1DynaQBase_aefe879b3103a6c4f46176d9fcb1a911d}
-
+virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_a4a45b9303a4b9e0cf93b9a5272739b35}{\-\_\-update\-Model} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const S \&next\-State, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} reward)
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_ae33343ea87f96ee3a2c2651bfd2cbcc5}{virtual void {\bfseries \-\_\-simulate} (const set$<$ A $>$ \&action\-Set)}\label{classAI_1_1Algorithm_1_1DynaQBase_ae33343ea87f96ee3a2c2651bfd2cbcc5}
-
+virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_a0524b63604a75fd079b85a3a6e6ac93d}{\-\_\-add\-Model\-Safe} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action)
+\item 
+virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_aefe879b3103a6c4f46176d9fcb1a911d}{\-\_\-add\-Model} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action)
+\item 
+virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_ae33343ea87f96ee3a2c2651bfd2cbcc5}{\-\_\-simulate} (const set$<$ A $>$ \&action\-Set)
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a3d375c3e01c7cc8a30c92109780adb9b}{\hyperlink{namespaceAI_ab6e14dc1e659854858a87e511f1439ec}{A\-I\-::\-U\-I\-N\-T} {\bfseries \-\_\-simulation\-Iteration\-Count}}\label{classAI_1_1Algorithm_1_1DynaQBase_a3d375c3e01c7cc8a30c92109780adb9b}
-
+\hyperlink{namespaceAI_ab6e14dc1e659854858a87e511f1439ec}{A\-I\-::\-U\-I\-N\-T} \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_a3d375c3e01c7cc8a30c92109780adb9b}{\-\_\-simulation\-Iteration\-Count}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a1c9b96a2f0fa30d04d538b56ba008db4}{map$<$ \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$\\*
-, \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition}{State\-Action\-Transition}$<$ S $>$ $>$ {\bfseries \-\_\-model}}\label{classAI_1_1Algorithm_1_1DynaQBase_a1c9b96a2f0fa30d04d538b56ba008db4}
-
+map$<$ \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$\\*
+, \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition}{State\-Action\-Transition}$<$ S $>$ $>$ \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_a65878fdff793c8b4bef59bb128e19bd8}{\-\_\-model}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_ae3f83dbeea191fc8bdcd518a2e54af97}{\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} {\bfseries \-\_\-state\-Action\-Transition\-Greediness}}\label{classAI_1_1Algorithm_1_1DynaQBase_ae3f83dbeea191fc8bdcd518a2e54af97}
-
+\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_ae3f83dbeea191fc8bdcd518a2e54af97}{\-\_\-state\-Action\-Transition\-Greediness}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a1fd132ae0aeb356a891e5b81bf218338}{\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} {\bfseries \-\_\-state\-Action\-Transition\-Step\-Size}}\label{classAI_1_1Algorithm_1_1DynaQBase_a1fd132ae0aeb356a891e5b81bf218338}
-
+\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_a1fd132ae0aeb356a891e5b81bf218338}{\-\_\-state\-Action\-Transition\-Step\-Size}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_adc3615604882454399863291f73b8734}{boost\-::shared\-\_\-mutex {\bfseries \-\_\-general\-Lock}}\label{classAI_1_1Algorithm_1_1DynaQBase_adc3615604882454399863291f73b8734}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_adc3615604882454399863291f73b8734}{boost\-::shared\-\_\-mutex \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_adc3615604882454399863291f73b8734}{\-\_\-general\-Lock}}\label{classAI_1_1Algorithm_1_1DynaQBase_adc3615604882454399863291f73b8734}
 
-\item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_ab166bd02d02f17c76a7626372c649849}{boost\-::shared\-\_\-mutex {\bfseries \-\_\-model\-Lock}}\label{classAI_1_1Algorithm_1_1DynaQBase_ab166bd02d02f17c76a7626372c649849}
+\begin{DoxyCompactList}\small\item\em Mutex lock for everything else that is not a model. \end{DoxyCompactList}\item 
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_ab166bd02d02f17c76a7626372c649849}{boost\-::shared\-\_\-mutex \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_ab166bd02d02f17c76a7626372c649849}{\-\_\-model\-Lock}}\label{classAI_1_1Algorithm_1_1DynaQBase_ab166bd02d02f17c76a7626372c649849}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Mutex lock for model. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class S, class A$>$class A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base$<$ S, A $>$}
+
+Abstract base class for \hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} algorithms. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em S} & State data type. \\
+\hline
+{\em A} & Action data type.\\
+\hline
+\end{DoxyTemplParams}
+\hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} algorithm is a \hyperlink{classAI_1_1Algorithm_1_1QLearning}{Q\-Learning} algorithm that employs a {\itshape model} to \char`\"{}model\char`\"{} the environment. Thus, in every update, the algorithm can do $n$ simulations, enabling faster convergence to \char`\"{}optimal\char`\"{} policy. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a089f4024fab2f19179dea637b7f6c8ee}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}!Dyna\-Q\-Base@{Dyna\-Q\-Base}}
+\index{Dyna\-Q\-Base@{Dyna\-Q\-Base}!AI::Algorithm::DynaQBase@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}}
+\subsubsection[{Dyna\-Q\-Base}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}$<$ S, A $>$\-::{\bf Dyna\-Q\-Base} (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-I\-::\-U\-I\-N\-T}}]{simulation\-Iteration\-Count, }
+\item[{{\bf A\-I\-::\-F\-L\-O\-A\-T}}]{state\-Transition\-Greediness, }
+\item[{{\bf A\-I\-::\-F\-L\-O\-A\-T}}]{state\-Transition\-Step\-Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAI_1_1Algorithm_1_1DynaQBase_a089f4024fab2f19179dea637b7f6c8ee}
+
+\begin{DoxyParams}{Parameters}
+{\em simulation\-Iteration\-Count} & number of simulations per update/backup. \\
+\hline
+{\em state\-Transition\-Greediness} & greediness in selecting highest value model. \\
+\hline
+{\em state\-Transition\-Step\-Size} & how fast does a model update a value of a state-\/action pair. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_aefe879b3103a6c4f46176d9fcb1a911d}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}!\-\_\-add\-Model@{\-\_\-add\-Model}}
+\index{\-\_\-add\-Model@{\-\_\-add\-Model}!AI::Algorithm::DynaQBase@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}}
+\subsubsection[{\-\_\-add\-Model}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}$<$ S, A $>$\-::\-\_\-add\-Model (
+\begin{DoxyParamCaption}
+\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{current\-State\-Action}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQBase_aefe879b3103a6c4f46176d9fcb1a911d}
+Adds new state\-Action pair to the model without mutex lock. 
+\begin{DoxyParams}{Parameters}
+{\em current\-State\-Action} & state-\/action pair to be added. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a0524b63604a75fd079b85a3a6e6ac93d}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}!\-\_\-add\-Model\-Safe@{\-\_\-add\-Model\-Safe}}
+\index{\-\_\-add\-Model\-Safe@{\-\_\-add\-Model\-Safe}!AI::Algorithm::DynaQBase@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}}
+\subsubsection[{\-\_\-add\-Model\-Safe}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}$<$ S, A $>$\-::\-\_\-add\-Model\-Safe (
+\begin{DoxyParamCaption}
+\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{current\-State\-Action}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQBase_a0524b63604a75fd079b85a3a6e6ac93d}
+Adds new state\-Action pair to the model with mutex lock. 
+\begin{DoxyParams}{Parameters}
+{\em current\-State\-Action} & state-\/action pair to be added. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_ae33343ea87f96ee3a2c2651bfd2cbcc5}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}!\-\_\-simulate@{\-\_\-simulate}}
+\index{\-\_\-simulate@{\-\_\-simulate}!AI::Algorithm::DynaQBase@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}}
+\subsubsection[{\-\_\-simulate}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}$<$ S, A $>$\-::\-\_\-simulate (
+\begin{DoxyParamCaption}
+\item[{const set$<$ A $>$ \&}]{action\-Set}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQBase_ae33343ea87f96ee3a2c2651bfd2cbcc5}
+Performs simulation \-\_\-simulation\-Iteration\-Count times. 
+\begin{DoxyParams}{Parameters}
+{\em action\-Set} & set of actions of agent. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classAI_1_1Algorithm_1_1DynaQCCBase_adc1bb07bb9025dc0c2963ded741b43a2}{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-Base$<$ S, A $>$}.
+
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a4a45b9303a4b9e0cf93b9a5272739b35}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}!\-\_\-update\-Model@{\-\_\-update\-Model}}
+\index{\-\_\-update\-Model@{\-\_\-update\-Model}!AI::Algorithm::DynaQBase@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}}
+\subsubsection[{\-\_\-update\-Model}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}$<$ S, A $>$\-::\-\_\-update\-Model (
+\begin{DoxyParamCaption}
+\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{current\-State\-Action, }
+\item[{const S \&}]{next\-State, }
+\item[{const {\bf F\-L\-O\-A\-T}}]{reward}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQBase_a4a45b9303a4b9e0cf93b9a5272739b35}
+Update the state\-Action map. 
+\begin{DoxyParams}{Parameters}
+{\em current\-State} & current\-State agent is in. \\
+\hline
+{\em current\-Action} & action taken by agent by being in current\-State. \\
+\hline
+{\em next\-State} & next\-State by taking current\-Action in current\-State. \\
+\hline
+{\em reward} & reward of current\-State\-Action. \\
+\hline
+{\em action\-Set} & A set of all actions. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a32044f721ba4afbca5ea144b3f84135b}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}!arg\-Max@{arg\-Max}}
+\index{arg\-Max@{arg\-Max}!AI::Algorithm::DynaQBase@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}}
+\subsubsection[{arg\-Max}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ virtual A {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}$<$ S, A $>$\-::arg\-Max (
+\begin{DoxyParamCaption}
+\item[{const S \&}]{state, }
+\item[{const set$<$ A $>$ \&}]{action\-Set}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQBase_a32044f721ba4afbca5ea144b3f84135b}
+Note that this is just a place-\/holder, since this will be aggregate arg\-Max implementations in children. Returns the action that will most \char`\"{}likely\char`\"{} gives the highest reward from the current state. 
+\begin{DoxyParams}{Parameters}
+{\em state} & the state to apply the arg\-Max to. \\
+\hline
+{\em state\-Action} & map of \hyperlink{classAI_1_1StateAction}{State\-Action} to value. \\
+\hline
+{\em action\-Set} & a set of possible actions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the action that will \char`\"{}likely\char`\"{} gives the highest reward. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classAI_1_1Algorithm_1_1DynaQRLMP_a57a8d01392c4a3699853f3aa623d9ebf}{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P$<$ S, A $>$}, and \hyperlink{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a145fa4fdba2289842a77c9d483a42ef2}{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P$<$ S, A $>$}.
+
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a0d5777706e9c2be04ee1834ad593c795}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}!back\-Up\-State\-Action\-Pair@{back\-Up\-State\-Action\-Pair}}
+\index{back\-Up\-State\-Action\-Pair@{back\-Up\-State\-Action\-Pair}!AI::Algorithm::DynaQBase@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}}
+\subsubsection[{back\-Up\-State\-Action\-Pair}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ virtual void {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}$<$ S, A $>$\-::back\-Up\-State\-Action\-Pair (
+\begin{DoxyParamCaption}
+\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{current\-State\-Action, }
+\item[{const {\bf F\-L\-O\-A\-T}}]{reward, }
+\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{next\-State\-Action\-Pair}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQBase_a0d5777706e9c2be04ee1834ad593c795}
+Note that this is just a place-\/holder, since this will be aggregate backup implementations in children. $ Q[S, A] \leftarrow Q[S, A] + \alpha\times [R + \gamma \times max_{A'}Q[S', A'] - Q[S, A] ]$ 
+\begin{DoxyParams}{Parameters}
+{\em current\-State\-Action} & $(S, A)$, current state-\/action pair. \\
+\hline
+{\em reward} & $R$, reward after $(S, A)$. \\
+\hline
+{\em next\-State\-Action\-Pair} & $(S', A')$, next state-\/action pair. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classAI_1_1Algorithm_1_1DynaQRLMP_a7b3b5f3706744290b12c19f786e5e4e4}{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P$<$ S, A $>$}, and \hyperlink{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_aebff9b81db5bd2ae33bd3d6662539bc0}{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P$<$ S, A $>$}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a65878fdff793c8b4bef59bb128e19bd8}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}!\-\_\-model@{\-\_\-model}}
+\index{\-\_\-model@{\-\_\-model}!AI::Algorithm::DynaQBase@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}}
+\subsubsection[{\-\_\-model}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}$<$ S, A $>$\-::\-\_\-model\hspace{0.3cm}{\ttfamily [protected]}}}\label{classAI_1_1Algorithm_1_1DynaQBase_a65878fdff793c8b4bef59bb128e19bd8}
+These are where model is stored. Specifically, for each state-\/action pair, and their possible transistion states, encapsulated by \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition}{State\-Action\-Transition} class. \hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a3d375c3e01c7cc8a30c92109780adb9b}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}!\-\_\-simulation\-Iteration\-Count@{\-\_\-simulation\-Iteration\-Count}}
+\index{\-\_\-simulation\-Iteration\-Count@{\-\_\-simulation\-Iteration\-Count}!AI::Algorithm::DynaQBase@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}}
+\subsubsection[{\-\_\-simulation\-Iteration\-Count}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-U\-I\-N\-T} {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}$<$ S, A $>$\-::\-\_\-simulation\-Iteration\-Count\hspace{0.3cm}{\ttfamily [protected]}}}\label{classAI_1_1Algorithm_1_1DynaQBase_a3d375c3e01c7cc8a30c92109780adb9b}
+Number of simulation, the higher the value the faster the convergence, but the slower each time step takes. \hypertarget{classAI_1_1Algorithm_1_1DynaQBase_ae3f83dbeea191fc8bdcd518a2e54af97}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}!\-\_\-state\-Action\-Transition\-Greediness@{\-\_\-state\-Action\-Transition\-Greediness}}
+\index{\-\_\-state\-Action\-Transition\-Greediness@{\-\_\-state\-Action\-Transition\-Greediness}!AI::Algorithm::DynaQBase@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}}
+\subsubsection[{\-\_\-state\-Action\-Transition\-Greediness}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-F\-L\-O\-A\-T} {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}$<$ S, A $>$\-::\-\_\-state\-Action\-Transition\-Greediness\hspace{0.3cm}{\ttfamily [protected]}}}\label{classAI_1_1Algorithm_1_1DynaQBase_ae3f83dbeea191fc8bdcd518a2e54af97}
+How likely does the model picks an action that will generate highest value given a state. \hypertarget{classAI_1_1Algorithm_1_1DynaQBase_a1fd132ae0aeb356a891e5b81bf218338}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}!\-\_\-state\-Action\-Transition\-Step\-Size@{\-\_\-state\-Action\-Transition\-Step\-Size}}
+\index{\-\_\-state\-Action\-Transition\-Step\-Size@{\-\_\-state\-Action\-Transition\-Step\-Size}!AI::Algorithm::DynaQBase@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}}
+\subsubsection[{\-\_\-state\-Action\-Transition\-Step\-Size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-F\-L\-O\-A\-T} {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base}$<$ S, A $>$\-::\-\_\-state\-Action\-Transition\-Step\-Size\hspace{0.3cm}{\ttfamily [protected]}}}\label{classAI_1_1Algorithm_1_1DynaQBase_a1fd132ae0aeb356a891e5b81bf218338}
+How fast does the model increment the state-\/action value. 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 

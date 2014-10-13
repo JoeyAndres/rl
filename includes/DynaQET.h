@@ -22,31 +22,39 @@ using namespace std;
 namespace AI {
 namespace Algorithm {
 
-/**
- * DynaQETWatkins
- * <p>The DynaQETWatkins algorithm is a subclass of Reinforcement Algorithm.
- * DynaQETWatkins employs simulationCount for every update thus improving
- * the conversion rate.</p>
+/*! \class DynaQET
+ *  \brief Employs the simulation of DynaQ and eligibility traces.
  *
- * @see StateActionTransition representing the models.
+ * Like DynaQ, it does \f$n\f$ simlations per update, but after than performs eligibility traces.
  *
  * @see DynaQ
  * @see EligibilityTraces
  */
 template<class S, class A>
-class DynaQETWatkins final: public DynaQ<S, A>, public EligibilityTraces<S, A> {
+class DynaQET final: public DynaQ<S, A>, public EligibilityTraces<S, A> {
  public:
   /**
-   * @param stepSize range [0.0, 1.0]. High step size means faster learning, but less precise convergence.
-   * @param discountRate range [0.0, 1.0]. High discount rate means more consideration of future events.
-   * @param simulationIterationCount How many simulation per update.
-   * @param stateTransitionGreediness High value means less likely to choose random action during simulation.
-   * @param stateTransitionStepSize High value means faster learning in models but lower values means more accurate models.
+   * @param stepSize range \f$[0.0, 1.0]\f$. High step size means faster learning, but
+   * less precise convergence.
+   * @param discountRate range \f$[0.0, 1.0]\f$. High discount rate means more
+   * consideration of future events.
+   * @param policy online policy, that is policy used for action selection.
+   * @param simulationIterationCount number of simulations per update/backup.
+   * @param stateTransitionGreediness greediness in selecting highest value model.
+   * @param stateTransitionStepSize how fast does a model update a value of a
+   *                                state-action pair.
+   * @param lambda huge \f$\lambda\f$ means
+   *                 basically back up ranging from terminal state to initial state.
+   *                 Small \f$\lambda\f$ converges to TD(0).
    */
-  DynaQETWatkins(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                 Policy::Policy<S, A>& policy, AI::UINT simulationIterationCount,
+  DynaQET(AI::FLOAT stepSize, AI::FLOAT discountRate,
+                 Policy::Policy<S, A>& policy,
+                 AI::UINT simulationIterationCount,
                  AI::FLOAT stateTransitionGreediness,
                  AI::FLOAT stateTransitionStepSize, AI::FLOAT lambda);
+
+ public:
+  // Inherited.
 
   virtual void update(const StateAction<S, A>& currentStateAction,
                       const S& nextState,
@@ -55,7 +63,7 @@ class DynaQETWatkins final: public DynaQ<S, A>, public EligibilityTraces<S, A> {
 };
 
 template<class S, class A>
-DynaQETWatkins<S, A>::DynaQETWatkins(AI::FLOAT stepSize, AI::FLOAT discountRate,
+DynaQET<S, A>::DynaQET(AI::FLOAT stepSize, AI::FLOAT discountRate,
                                      Policy::Policy<S, A>& policy,
                                      AI::UINT simulationIterationCount,
                                      AI::FLOAT stateTransitionGreediness,
@@ -67,11 +75,10 @@ DynaQETWatkins<S, A>::DynaQETWatkins(AI::FLOAT stepSize, AI::FLOAT discountRate,
 }
 
 template<class S, class A>
-void DynaQETWatkins<S, A>::update(const StateAction<S, A>& currentStateAction,
+void DynaQET<S, A>::update(const StateAction<S, A>& currentStateAction,
                                   const S& nextState, const AI::FLOAT reward,
                                   const set<A>& actionSet) {
-  ReinforcementLearning<S, A>::update(currentStateAction, nextState, reward,
-                                      actionSet);
+  DynaQ<S, A>::update(currentStateAction, nextState, reward, actionSet);
 
   EligibilityTraces<S, A>::_eligibilityTraces.insert(
       std::pair<StateAction<S, A>, AI::FLOAT>(currentStateAction, 0.0F));

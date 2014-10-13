@@ -249,7 +249,7 @@ static <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html"
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Acquire the value of the state action pair. Each algorithm group (rl, supervised, unsupervised), or specific algorithm (Q, <a class="el" href="classAI_1_1Algorithm_1_1Sarsa.html">Sarsa</a>, Gradient Descent) must implement. </p>
+<p>Acquire the value of the state action pair. Each algorithm group (rl, supervised, unsupervised), or specific algorithm (Q, <a class="el" href="classAI_1_1Algorithm_1_1Sarsa.html" title="Basic on-policy reinforcement learning algorithm. ">Sarsa</a>, Gradient Descent) must implement. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">stateAction</td><td></td></tr>
@@ -334,16 +334,14 @@ static <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html"
 <p>Update the stateAction map. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">currentState</td><td></td></tr>
-    <tr><td class="paramname">currentAction</td><td></td></tr>
-    <tr><td class="paramname">nextState</td><td></td></tr>
-    <tr><td class="paramname">reward</td><td>reward of currentState and currentAction. </td></tr>
-    <tr><td class="paramname">stateAction</td><td>A map of <a class="el" href="classAI_1_1StateAction.html" title="Encapsulates state action pair. ">StateAction</a> to Value. </td></tr>
+    <tr><td class="paramname">currentState</td><td>currentState agent is in. </td></tr>
+    <tr><td class="paramname">currentAction</td><td>action taken by agent by being in currentState. </td></tr>
+    <tr><td class="paramname">nextState</td><td>nextState by taking currentAction in currentState. </td></tr>
+    <tr><td class="paramname">reward</td><td>reward of currentStateAction. </td></tr>
     <tr><td class="paramname">actionSet</td><td>A set of all actions. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>next action to be executed. </dd></dl>
 
 <p>Implements <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a7d216d791e558e15a73083af6257ed72">AI::Algorithm::LearningAlgorithm&lt; vector&lt; FLOAT &gt;, vector&lt; FLOAT &gt; &gt;</a>.</p>
 
@@ -355,7 +353,7 @@ static <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html"
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 20:50:08 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 12 2014 23:09:52 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

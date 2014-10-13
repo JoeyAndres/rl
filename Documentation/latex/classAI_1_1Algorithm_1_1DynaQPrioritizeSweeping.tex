@@ -3,6 +3,11 @@
 }
 
 
+\hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} Prioritize sweeping implementation.  
+
+
+
+
 {\ttfamily \#include $<$Dyna\-Q\-Prioritized\-Sweeping.\-h$>$}
 
 Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-Prioritize\-Sweeping$<$ S, A $>$\-:\begin{figure}[H]
@@ -46,18 +51,20 @@ $<$ S, A $>$ $>$ {\bfseries \-\_\-priority\-Queue}}\label{classAI_1_1Algorithm_1
 \subsection{Detailed Description}
 \subsubsection*{template$<$class S, class A$>$class A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Prioritize\-Sweeping$<$ S, A $>$}
 
-\hyperlink{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping}{Dyna\-Q\-Prioritize\-Sweeping} 
+\hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} Prioritize sweeping implementation. 
 
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em S} & State data type. \\
+\hline
+{\em A} & Action data type.\\
+\hline
+\end{DoxyTemplParams}
 Prioritize Sweeping only backs up states that factor the most to achieving the goal during simulation. This way convergence is achieve faster. Very useful in large state spaces.
 
 \begin{DoxyNote}{Note}
-This is currently very slow. An update is being cultivated.
+This is currently very slow. An update is being cultivated. 
 \end{DoxyNote}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{classAI_1_1Algorithm_1_1StateActionTransition}{State\-Action\-Transition} representing the models.
-
-\hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} 
-\end{DoxySeeAlso}
 
 
 \subsection{Constructor \& Destructor Documentation}
@@ -76,15 +83,19 @@ This is currently very slow. An update is being cultivated.
 )}}\label{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_ac1b32e8772e967a3bb74ac34708e4dfe}
 
 \begin{DoxyParams}{Parameters}
-{\em step\-Size} & range \mbox{[}0.\-0, 1.\-0\mbox{]}. High step size means faster learning, but less precise convergence. \\
+{\em step\-Size} & range $[0.0, 1.0]$. High step size means faster learning, but less precise convergence. \\
 \hline
-{\em discount\-Rate} & range \mbox{[}0.\-0, 1.\-0\mbox{]}. High discount rate means more consideration of future events. \\
+{\em discount\-Rate} & range $[0.0, 1.0]$. High discount rate means more consideration of future events. \\
 \hline
-{\em simulation\-Iteration\-Count} & How many simulation per update. \\
+{\em policy} & online policy, that is policy used for action selection. \\
 \hline
-{\em state\-Transition\-Greediness} & High value means less likely to choose random action during simulation. \\
+{\em simulation\-Iteration\-Count} & number of simulations per update/backup. \\
 \hline
-{\em state\-Transition\-Step\-Size} & High value means faster learning in models but lower values means more accurate models. \\
+{\em state\-Transition\-Greediness} & greediness in selecting highest value model. \\
+\hline
+{\em state\-Transition\-Step\-Size} & how fast does a model update a value of a state-\/action pair. \\
+\hline
+{\em priority\-Threshold} & range $[0.0, 1.0]$, a low value means don't sweep too far back. A high priority means sweep far back. \\
 \hline
 \end{DoxyParams}
 
@@ -102,22 +113,17 @@ This is currently very slow. An update is being cultivated.
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping_ad08b55f3cf927189dd31abf9fc1c2959}
 Update the state\-Action map. 
 \begin{DoxyParams}{Parameters}
-{\em current\-State} & \\
+{\em current\-State} & current\-State agent is in. \\
 \hline
-{\em current\-Action} & \\
+{\em current\-Action} & action taken by agent by being in current\-State. \\
 \hline
-{\em next\-State} & \\
+{\em next\-State} & next\-State by taking current\-Action in current\-State. \\
 \hline
-{\em reward} & reward of current\-State and current\-Action. \\
-\hline
-{\em state\-Action} & A map of \hyperlink{classAI_1_1StateAction}{State\-Action} to Value. \\
+{\em reward} & reward of current\-State\-Action. \\
 \hline
 {\em action\-Set} & A set of all actions. \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-next action to be executed. 
-\end{DoxyReturn}
 
 
 Reimplemented from \hyperlink{classAI_1_1Algorithm_1_1DynaQ_a4542226b17db4ed8a2c5ec17d37dc42f}{A\-I\-::\-Algorithm\-::\-Dyna\-Q$<$ S, A $>$}.

@@ -13,6 +13,6 @@ var searchData=
   ['agentsl',['AgentSL',['../namespaceAI.html#acd3da5a0aa6fc3b0e9988d4a6251bdbd',1,'AI']]],
   ['ai',['AI',['../namespaceAI.html',1,'']]],
   ['applyaction',['applyAction',['../classAI_1_1ActuatorBase.html#aecd4ee9cf0e33633c1c48028b4cb89a1',1,'AI::ActuatorBase']]],
-  ['argmax',['argMax',['../classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a1a7489821592b81576e5bc8674fc43c3',1,'AI::Algorithm::Policy::EpsilonGreedy::argMax()'],['../classAI_1_1Algorithm_1_1ReinforcementLearning.html#ad1d8a8ebb47fb71a53b15b770795e286',1,'AI::Algorithm::ReinforcementLearning::argMax()']]],
+  ['argmax',['argMax',['../classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a1a7489821592b81576e5bc8674fc43c3',1,'AI::Algorithm::Policy::EpsilonGreedy::argMax()'],['../classAI_1_1Algorithm_1_1DynaQBase.html#a32044f721ba4afbca5ea144b3f84135b',1,'AI::Algorithm::DynaQBase::argMax()'],['../classAI_1_1Algorithm_1_1DynaQCCRLCCMP.html#a145fa4fdba2289842a77c9d483a42ef2',1,'AI::Algorithm::DynaQCCRLCCMP::argMax()'],['../classAI_1_1Algorithm_1_1DynaQRLMP.html#a57a8d01392c4a3699853f3aa623d9ebf',1,'AI::Algorithm::DynaQRLMP::argMax()'],['../classAI_1_1Algorithm_1_1ReinforcementLearning.html#ad1d8a8ebb47fb71a53b15b770795e286',1,'AI::Algorithm::ReinforcementLearning::argMax()']]],
   ['ai_20project_20documentation',['AI Project Documentation',['../index.html',1,'']]]
 ];

@@ -26,17 +26,16 @@ using namespace std;
 namespace AI {
 namespace Algorithm {
 
-/**
- * DynaQPrioritizeSweeping
- * <p>Prioritize Sweeping only backs up states that factor the most to
- * achieving the goal during simulation. This way convergence is achieve
- * faster. Very useful in large state spaces.</p>
+/*! \DynaQPrioritizeSweeping
+ *  \brief DynaQ Prioritize sweeping implementation.
+ *  \tparam S State data type.
+ *  \tparam A Action data type.
+ *
+ *  Prioritize Sweeping only backs up states that factor the most to
+ *  achieving the goal during simulation. This way convergence is achieve
+ *  faster. Very useful in large state spaces.
  *
  * @note This is currently very slow. An update is being cultivated.
- *
- * @see StateActionTransition representing the models.
- *
- * @see DynaQ
  */
 template<class S, class A>
 class DynaQPrioritizeSweeping final: public DynaQ<S, A> {

@@ -21,35 +21,37 @@ using std::map;
 namespace AI {
 namespace Algorithm {
 
-/**
- * QLearning
- * <p>
- * An implementation of TD(0) that employs Off-Policy TD Control. Meaning
- * different policy is used for approximating q* and action-selection.
- * </p>
+/*! \class QLearning
+ *  \brief Basic off-policy reinforcement learning algorithm.
+ *  \tparam S State data type.
+ *  \tparam A Action data type.
+ *
+ *  Different policy is used for learning and action selection.
+ *  Note that default offline/learning policy is EpsilonGreedy
  */
 template<class S, class A>
 class QLearning : public ReinforcementLearning<S, A> {
  public:
+  /**
+   * @param stepSize range \f$[0.0, 1.0]\f$. High step size means faster learning, but
+   * less precise convergence.
+   * @param discountRate range \f$[0.0, 1.0]\f$. High discount rate means more
+   * consideration of future events.
+   * @param policy online policy, that is policy used for action selection.
+   */
   QLearning(AI::FLOAT stepSize, AI::FLOAT discountRate,
             Policy::Policy<S, A>& policy);
 
-  /**
-   * Update the stateAction map.
-   * @param currentState
-   * @param currentAction
-   * @param nextState
-   * @param currentStateActionValue Value of currentState and currentAction.
-   * @param stateAction A map of StateAction to Value.
-   * @param actionSet A set of all actions.
-   * @return next action to be executed.
-   */
   virtual void update(const StateAction<S, A>& currentStateAction,
                       const S& nextState, const AI::FLOAT reward,
                       const set<A>& actionSet);
- private:
-
 };
+
+template<class S, class A>
+QLearning<S, A>::QLearning(AI::FLOAT stepSize, AI::FLOAT discountRate,
+                           Policy::Policy<S, A>& policy)
+    : ReinforcementLearning<S, A>(stepSize, discountRate, policy) {
+}
 
 template<class S, class A>
 void QLearning<S, A>::update(const StateAction<S, A>& currentStateAction,
@@ -57,8 +59,8 @@ void QLearning<S, A>::update(const StateAction<S, A>& currentStateAction,
                              const set<A>& actionSet) {
   ReinforcementLearning<S, A>::update(currentStateAction, nextState, reward,
                                       actionSet);
-  // Note: this algorithm is in pg. 145 of Sutton and Barto 2nd edition.
 
+  // Note: this algorithm is in pg. 145 of Sutton and Barto 2nd edition.
   // Q(S, A) <- Q(S, A) + α[ R + γ max a Q(S' , a) − Q(S, A)]
   const A& nextAction = this->getLearningAction(nextState, actionSet);
 
@@ -66,11 +68,6 @@ void QLearning<S, A>::update(const StateAction<S, A>& currentStateAction,
                               StateAction<S, A>(nextState, nextAction));
 }
 
-template<class S, class A>
-QLearning<S, A>::QLearning(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                           Policy::Policy<S, A>& policy)
-    : ReinforcementLearning<S, A>(stepSize, discountRate, policy) {
-}
 } /* Algorithm */
 } /* AI */
 

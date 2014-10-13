@@ -22,28 +22,23 @@ using std::map;
 namespace AI {
 namespace Algorithm {
 
-/**
- * QLearningETWatkins
- * @see QLearning
- * @see EligibilityTraces
+/*! \class QLearningET
+ *  \brief Like QLearning in that it uses different policy for learning and action
+ *         selection. Each iteration, it updates all other states via eligibility
+ *         traces, making for faster convergence.
+ *  \tparam S State data type.
+ *  \tparam A Action data type.
  */
 template<class S, class A>
-class QLearningETWatkins final: public EligibilityTraces<S, A>,
+class QLearningET final: public EligibilityTraces<S, A>,
     public QLearning<S, A> {
  public:
-  QLearningETWatkins(AI::FLOAT stepSize, AI::FLOAT discountRate,
+  QLearningET(AI::FLOAT stepSize, AI::FLOAT discountRate,
                      Policy::Policy<S, A>& policy, AI::FLOAT lambda);
 
-  /**
-   * Update the stateAction map.
-   * @param currentState
-   * @param currentAction
-   * @param nextState
-   * @param currentStateActionValue Value of currentState and currentAction.
-   * @param stateAction A map of StateAction to Value.
-   * @param actionSet A set of all actions.
-   * @return next action to be executed.
-   */
+public:
+  // Inherited.
+
   virtual void update(const StateAction<S, A>& currentStateAction,
                       const S& nextState,
                       const AI::FLOAT currentStateActionValue,
@@ -53,7 +48,7 @@ class QLearningETWatkins final: public EligibilityTraces<S, A>,
 };
 
 template<class S, class A>
-void QLearningETWatkins<S, A>::update(
+void QLearningET<S, A>::update(
     const StateAction<S, A>& currentStateAction, const S& nextState,
     const AI::FLOAT reward, const set<A>& actionSet) {
   ReinforcementLearning<S, A>::update(currentStateAction, nextState, reward,
@@ -69,7 +64,7 @@ void QLearningETWatkins<S, A>::update(
 }
 
 template<class S, class A>
-QLearningETWatkins<S, A>::QLearningETWatkins(AI::FLOAT stepSize,
+QLearningET<S, A>::QLearningET(AI::FLOAT stepSize,
                                              AI::FLOAT discountRate,
                                              Policy::Policy<S, A>& policy,
                                              AI::FLOAT lambda)

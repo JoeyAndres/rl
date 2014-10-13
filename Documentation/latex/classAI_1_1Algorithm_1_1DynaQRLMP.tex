@@ -1,6 +1,15 @@
 \hypertarget{classAI_1_1Algorithm_1_1DynaQRLMP}{\section{A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-R\-L\-M\-P$<$ S, A $>$ Class Template Reference}
 \label{classAI_1_1Algorithm_1_1DynaQRLMP}\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P$<$ S, A $>$@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P$<$ S, A $>$}}
 }
+
+
+Abstract class that represents the merge Point for \hyperlink{classAI_1_1Algorithm_1_1DynaQBase}{Dyna\-Q\-Base} and Reinforcement Learning.  
+
+
+
+
+{\ttfamily \#include $<$Dyna\-Q\-R\-L\-M\-P.\-h$>$}
+
 Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-R\-L\-M\-P$<$ S, A $>$\-:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -10,16 +19,106 @@ Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-R\-L\-M\-P$<$ S, A $>$
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQRLMP_a79f36f74cf9de4649b07df5d46282598}{{\bfseries Dyna\-Q\-R\-L\-M\-P} (\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} step\-Size, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<$ S, A $>$ \&policy, \hyperlink{namespaceAI_ab6e14dc1e659854858a87e511f1439ec}{A\-I\-::\-U\-I\-N\-T} simulation\-Iteration\-Count, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} state\-Transition\-Greediness, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} state\-Transition\-Step\-Size)}\label{classAI_1_1Algorithm_1_1DynaQRLMP_a79f36f74cf9de4649b07df5d46282598}
-
+\hyperlink{classAI_1_1Algorithm_1_1DynaQRLMP_a79f36f74cf9de4649b07df5d46282598}{Dyna\-Q\-R\-L\-M\-P} (\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} step\-Size, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<$ S, A $>$ \&policy, \hyperlink{namespaceAI_ab6e14dc1e659854858a87e511f1439ec}{A\-I\-::\-U\-I\-N\-T} simulation\-Iteration\-Count, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} state\-Transition\-Greediness, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} state\-Transition\-Step\-Size)
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQRLMP_a7b3b5f3706744290b12c19f786e5e4e4}{virtual void {\bfseries back\-Up\-State\-Action\-Pair} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} reward, const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&next\-State\-Action\-Pair)}\label{classAI_1_1Algorithm_1_1DynaQRLMP_a7b3b5f3706744290b12c19f786e5e4e4}
-
+virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQRLMP_a7b3b5f3706744290b12c19f786e5e4e4}{back\-Up\-State\-Action\-Pair} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} reward, const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&next\-State\-Action\-Pair)
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQRLMP_a57a8d01392c4a3699853f3aa623d9ebf}{virtual A {\bfseries arg\-Max} (const S \&state, const set$<$ A $>$ \&action\-Set) const }\label{classAI_1_1Algorithm_1_1DynaQRLMP_a57a8d01392c4a3699853f3aa623d9ebf}
-
+virtual A \hyperlink{classAI_1_1Algorithm_1_1DynaQRLMP_a57a8d01392c4a3699853f3aa623d9ebf}{arg\-Max} (const S \&state, const set$<$ A $>$ \&action\-Set) const 
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class S, class A$>$class A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P$<$ S, A $>$}
+
+Abstract class that represents the merge Point for \hyperlink{classAI_1_1Algorithm_1_1DynaQBase}{Dyna\-Q\-Base} and Reinforcement Learning. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em S} & State data type. \\
+\hline
+{\em A} & Action data type.\\
+\hline
+\end{DoxyTemplParams}
+This class is still so \hyperlink{classAI_1_1Algorithm_1_1DynaQBase}{Dyna\-Q\-Base} aggregate Reinforcement Learning functions. Note that although {\bfseries \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_a32044f721ba4afbca5ea144b3f84135b}{Dyna\-Q\-Base\-::arg\-Max}} and {\bfseries \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_a0d5777706e9c2be04ee1834ad593c795}{Dyna\-Q\-Base\-::back\-Up\-State\-Action\-Pair}} are used, they both aggregate \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearning_ad1d8a8ebb47fb71a53b15b770795e286}{Reinforcement\-Learning\-::arg\-Max} and \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearning_aa45b49ec954f6934df4d541b70076bd6}{Reinforcement\-Learning\-::back\-Up\-State\-Action\-Pair}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQRLMP_a79f36f74cf9de4649b07df5d46282598}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P}!Dyna\-Q\-R\-L\-M\-P@{Dyna\-Q\-R\-L\-M\-P}}
+\index{Dyna\-Q\-R\-L\-M\-P@{Dyna\-Q\-R\-L\-M\-P}!AI::Algorithm::DynaQRLMP@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P}}
+\subsubsection[{Dyna\-Q\-R\-L\-M\-P}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P}$<$ S, A $>$\-::{\bf Dyna\-Q\-R\-L\-M\-P} (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-I\-::\-F\-L\-O\-A\-T}}]{step\-Size, }
+\item[{{\bf A\-I\-::\-F\-L\-O\-A\-T}}]{discount\-Rate, }
+\item[{{\bf Policy\-::\-Policy}$<$ S, A $>$ \&}]{policy, }
+\item[{{\bf A\-I\-::\-U\-I\-N\-T}}]{simulation\-Iteration\-Count, }
+\item[{{\bf A\-I\-::\-F\-L\-O\-A\-T}}]{state\-Transition\-Greediness, }
+\item[{{\bf A\-I\-::\-F\-L\-O\-A\-T}}]{state\-Transition\-Step\-Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAI_1_1Algorithm_1_1DynaQRLMP_a79f36f74cf9de4649b07df5d46282598}
+
+\begin{DoxyParams}{Parameters}
+{\em step\-Size} & range $[0.0, 1.0]$. High step size means faster learning, but less precise convergence. \\
+\hline
+{\em discount\-Rate} & range $[0.0, 1.0]$. High discount rate means more consideration of future events. \\
+\hline
+{\em policy} & online policy, that is policy used for action selection. \\
+\hline
+{\em simulation\-Iteration\-Count} & number of simulations per update/backup. \\
+\hline
+{\em state\-Transition\-Greediness} & greediness in selecting highest value model. \\
+\hline
+{\em state\-Transition\-Step\-Size} & how fast does a model update a value of a state-\/action pair. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQRLMP_a57a8d01392c4a3699853f3aa623d9ebf}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P}!arg\-Max@{arg\-Max}}
+\index{arg\-Max@{arg\-Max}!AI::Algorithm::DynaQRLMP@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P}}
+\subsubsection[{arg\-Max}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ A {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P}$<$ S, A $>$\-::arg\-Max (
+\begin{DoxyParamCaption}
+\item[{const S \&}]{state, }
+\item[{const set$<$ A $>$ \&}]{action\-Set}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQRLMP_a57a8d01392c4a3699853f3aa623d9ebf}
+Returns the action that will most \char`\"{}likely\char`\"{} gives the highest reward from the current state. 
+\begin{DoxyParams}{Parameters}
+{\em state} & the state to apply the arg\-Max to. \\
+\hline
+{\em state\-Action} & map of \hyperlink{classAI_1_1StateAction}{State\-Action} to value. \\
+\hline
+{\em action\-Set} & a set of possible actions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the action that will \char`\"{}likely\char`\"{} gives the highest reward. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_a32044f721ba4afbca5ea144b3f84135b}{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base$<$ S, A $>$}.
+
+\hypertarget{classAI_1_1Algorithm_1_1DynaQRLMP_a7b3b5f3706744290b12c19f786e5e4e4}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P}!back\-Up\-State\-Action\-Pair@{back\-Up\-State\-Action\-Pair}}
+\index{back\-Up\-State\-Action\-Pair@{back\-Up\-State\-Action\-Pair}!AI::Algorithm::DynaQRLMP@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P}}
+\subsubsection[{back\-Up\-State\-Action\-Pair}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-R\-L\-M\-P}$<$ S, A $>$\-::back\-Up\-State\-Action\-Pair (
+\begin{DoxyParamCaption}
+\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{current\-State\-Action, }
+\item[{const {\bf A\-I\-::\-F\-L\-O\-A\-T}}]{reward, }
+\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{next\-State\-Action\-Pair}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQRLMP_a7b3b5f3706744290b12c19f786e5e4e4}
+Does the main back up for all Temporal difference\-: $ Q[S, A] \leftarrow Q[S, A] + \alpha\times [R + \gamma \times max_{A'}Q[S', A'] - Q[S, A] ]$ 
+\begin{DoxyParams}{Parameters}
+{\em current\-State\-Action} & $(S, A)$, current state-\/action pair. \\
+\hline
+{\em reward} & $R$, reward after $(S, A)$. \\
+\hline
+{\em next\-State\-Action\-Pair} & $(S', A')$, next state-\/action pair. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_a0d5777706e9c2be04ee1834ad593c795}{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base$<$ S, A $>$}.
+
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}

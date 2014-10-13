@@ -95,6 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_l"><span>l</span></a></li>
       <li><a href="#index_o"><span>o</span></a></li>
       <li><a href="#index_p"><span>p</span></a></li>
+      <li><a href="#index_q"><span>q</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
       <li><a href="#index_t"><span>t</span></a></li>
@@ -129,6 +130,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>_actuatorInstance
 : <a class="el" href="classAI_1_1Agent.html#af1cd837b1b9d626fee6bfc1b0cca4f33">AI::Agent&lt; S, A &gt;</a>
 </li>
+<li>_addModel()
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#aefe879b3103a6c4f46176d9fcb1a911d">AI::Algorithm::DynaQBase&lt; S, A &gt;</a>
+</li>
+<li>_addModelSafe()
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a0524b63604a75fd079b85a3a6e6ac93d">AI::Algorithm::DynaQBase&lt; S, A &gt;</a>
+</li>
 <li>_controlPolicy
 : <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#ad74dbed6a7be0c699d42642b9968bf86">AI::Algorithm::LearningAlgorithm&lt; S, A &gt;</a>
 </li>
@@ -144,6 +151,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>_defaultStateActionValue
 : <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#ae3b8ccdc51ad2a8c1cc2ef9009258466">AI::Algorithm::LearningAlgorithm&lt; S, A &gt;</a>
 </li>
+<li>_generalLock
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#adc3615604882454399863291f73b8734">AI::Algorithm::DynaQBase&lt; S, A &gt;</a>
+</li>
 <li>_getLearningPolicyAction()
 : <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#ad5b5f6baa9c03f68427008abeeb35535">AI::Algorithm::LearningAlgorithm&lt; S, A &gt;</a>
 </li>
@@ -156,14 +166,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>_learningPolicy
 : <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a603f2a2905636a150c0fb9946085837a">AI::Algorithm::LearningAlgorithm&lt; S, A &gt;</a>
 </li>
+<li>_model
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a65878fdff793c8b4bef59bb128e19bd8">AI::Algorithm::DynaQBase&lt; S, A &gt;</a>
+</li>
+<li>_modelLock
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#ab166bd02d02f17c76a7626372c649849">AI::Algorithm::DynaQBase&lt; S, A &gt;</a>
+</li>
 <li>_sensorInstance
 : <a class="el" href="classAI_1_1Agent.html#a0f3b3a246bc3b2f8a833c628b3fa1b67">AI::Agent&lt; S, A &gt;</a>
+</li>
+<li>_simulate()
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#ae33343ea87f96ee3a2c2651bfd2cbcc5">AI::Algorithm::DynaQBase&lt; S, A &gt;</a>
+, <a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html#adc1bb07bb9025dc0c2963ded741b43a2">AI::Algorithm::DynaQCCBase&lt; S, A &gt;</a>
+</li>
+<li>_simulationIterationCount
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a3d375c3e01c7cc8a30c92109780adb9b">AI::Algorithm::DynaQBase&lt; S, A &gt;</a>
 </li>
 <li>_state
 : <a class="el" href="classAI_1_1StateAction.html#a0e64eecf8347c051e20e1a015ef9960a">AI::StateAction&lt; S, A &gt;</a>
 </li>
 <li>_stateActionPairMap
 : <a class="el" href="classAI_1_1StateActionPairContainer.html#afeb95c4cb5d37ce8f8fd1a2b3518211b">AI::StateActionPairContainer&lt; S, A &gt;</a>
+</li>
+<li>_stateActionTransitionGreediness
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#ae3f83dbeea191fc8bdcd518a2e54af97">AI::Algorithm::DynaQBase&lt; S, A &gt;</a>
+</li>
+<li>_stateActionTransitionStepSize
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a1fd132ae0aeb356a891e5b81bf218338">AI::Algorithm::DynaQBase&lt; S, A &gt;</a>
+</li>
+<li>_updateEligibilityTraces()
+: <a class="el" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#a354115a368dc58abcdbc9285ec2537df">AI::Algorithm::EligibilityTraces&lt; S, A &gt;</a>
+</li>
+<li>_updateModel()
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a4a45b9303a4b9e0cf93b9a5272739b35">AI::Algorithm::DynaQBase&lt; S, A &gt;</a>
 </li>
 </ul>
 
@@ -192,7 +227,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classAI_1_1ActuatorBase.html#aecd4ee9cf0e33633c1c48028b4cb89a1">AI::ActuatorBase&lt; ActionData &gt;</a>
 </li>
 <li>argMax()
-: <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a1a7489821592b81576e5bc8674fc43c3">AI::Algorithm::Policy::EpsilonGreedy&lt; S, A &gt;</a>
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a32044f721ba4afbca5ea144b3f84135b">AI::Algorithm::DynaQBase&lt; S, A &gt;</a>
+, <a class="el" href="classAI_1_1Algorithm_1_1DynaQCCRLCCMP.html#a145fa4fdba2289842a77c9d483a42ef2">AI::Algorithm::DynaQCCRLCCMP&lt; S, A &gt;</a>
+, <a class="el" href="classAI_1_1Algorithm_1_1DynaQRLMP.html#a57a8d01392c4a3699853f3aa623d9ebf">AI::Algorithm::DynaQRLMP&lt; S, A &gt;</a>
+, <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html#a1a7489821592b81576e5bc8674fc43c3">AI::Algorithm::Policy::EpsilonGreedy&lt; S, A &gt;</a>
 , <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#ad1d8a8ebb47fb71a53b15b770795e286">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a>
 </li>
 </ul>
@@ -200,7 +238,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_b"></a>- b -</h3><ul>
 <li>backUpStateActionPair()
-: <a class="el" href="classAI_1_1Algorithm_1_1DynaQCCRLCCMP.html#aebff9b81db5bd2ae33bd3d6662539bc0">AI::Algorithm::DynaQCCRLCCMP&lt; S, A &gt;</a>
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a0d5777706e9c2be04ee1834ad593c795">AI::Algorithm::DynaQBase&lt; S, A &gt;</a>
+, <a class="el" href="classAI_1_1Algorithm_1_1DynaQCCRLCCMP.html#aebff9b81db5bd2ae33bd3d6662539bc0">AI::Algorithm::DynaQCCRLCCMP&lt; S, A &gt;</a>
+, <a class="el" href="classAI_1_1Algorithm_1_1DynaQRLMP.html#a7b3b5f3706744290b12c19f786e5e4e4">AI::Algorithm::DynaQRLMP&lt; S, A &gt;</a>
 , <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#aa45b49ec954f6934df4d541b70076bd6">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a>
 </li>
 <li>begin()
@@ -216,11 +256,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>DynaQ()
 : <a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html#aa543816270f72b2c4ac1f77fb818f792">AI::Algorithm::DynaQ&lt; S, A &gt;</a>
 </li>
-<li>DynaQETWatkins()
-: <a class="el" href="classAI_1_1Algorithm_1_1DynaQETWatkins.html#a0601ab5adb8ba7d0d94d93b6194528c9">AI::Algorithm::DynaQETWatkins&lt; S, A &gt;</a>
+<li>DynaQBase()
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a089f4024fab2f19179dea637b7f6c8ee">AI::Algorithm::DynaQBase&lt; S, A &gt;</a>
+</li>
+<li>DynaQET()
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQET.html#a019b0f19851056777310084939f0b3a1">AI::Algorithm::DynaQET&lt; S, A &gt;</a>
 </li>
 <li>DynaQPrioritizeSweeping()
 : <a class="el" href="classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping.html#ac1b32e8772e967a3bb74ac34708e4dfe">AI::Algorithm::DynaQPrioritizeSweeping&lt; S, A &gt;</a>
+</li>
+<li>DynaQRLMP()
+: <a class="el" href="classAI_1_1Algorithm_1_1DynaQRLMP.html#a79f36f74cf9de4649b07df5d46282598">AI::Algorithm::DynaQRLMP&lt; S, A &gt;</a>
 </li>
 </ul>
 
@@ -298,6 +344,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>getLambda()
 : <a class="el" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#aea9a2c36874a3df328efdf4077ea1c19">AI::Algorithm::EligibilityTraces&lt; S, A &gt;</a>
 </li>
+<li>getLearningAction()
+: <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a9f31822bf51b07d17b31d7683d7e25a2">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a>
+</li>
 <li>getLearningPolicy()
 : <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#aac506aa1838ba12e2069c098d6faec16">AI::Algorithm::LearningAlgorithm&lt; S, A &gt;</a>
 </li>
@@ -333,6 +382,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>getState()
 : <a class="el" href="classAI_1_1StateAction.html#ac9bdee11a201a7fd87071ab64b2a9743">AI::StateAction&lt; S, A &gt;</a>
+</li>
+<li>getStateActionPairContainer()
+: <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a6b5fe1be9629bf5574d32ae4eeec33f5">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a>
 </li>
 <li>getStateActionValue()
 : <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a1044b2558109e8dd3d3bf5bedb9723b5">AI::Algorithm::LearningAlgorithm&lt; S, A &gt;</a>
@@ -402,6 +454,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 
 
+<h3><a class="anchor" id="index_q"></a>- q -</h3><ul>
+<li>QLearning()
+: <a class="el" href="classAI_1_1Algorithm_1_1QLearning.html#a182fd44ac6cd6b2474615ce7b98667ce">AI::Algorithm::QLearning&lt; S, A &gt;</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
 <li>ReinforcementLearning()
 : <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a4d182d91c68aef838b80843acd044b1e">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a>
@@ -462,8 +521,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>setState()
 : <a class="el" href="classAI_1_1StateAction.html#a6ae04532d8d228dc4eb128c8ca223ba4">AI::StateAction&lt; S, A &gt;</a>
 </li>
+<li>setStateActionPairContainer()
+: <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#ad889f5f5949cac39d121f57e3027ad0c">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a>
+</li>
 <li>setStateActionValue()
-: <a class="el" href="classAI_1_1StateActionPairContainer.html#a26fa5b9fd043865695e6c4adf97188d5">AI::StateActionPairContainer&lt; S, A &gt;</a>
+: <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a5d576410235e5099f153d21f20a8e5af">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a>
+, <a class="el" href="classAI_1_1StateActionPairContainer.html#a26fa5b9fd043865695e6c4adf97188d5">AI::StateActionPairContainer&lt; S, A &gt;</a>
 </li>
 <li>setStepSize()
 : <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a04932645faa6c385e4c587f7f845b484">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a>
@@ -473,7 +536,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classAI_1_1Algorithm_1_1DimensionInfo.html#a9889cad59dddd038f7fbddbd2ac6ece4">AI::Algorithm::DimensionInfo&lt; D &gt;</a>
 </li>
 <li>StateAction()
-: <a class="el" href="classAI_1_1StateAction.html#ad2a25a219a6941a2e36b0783dd6c01cf">AI::StateAction&lt; S, A &gt;</a>
+: <a class="el" href="classAI_1_1StateAction.html#a0afd69cb1b7d577a1b8b51aedffc77bf">AI::StateAction&lt; S, A &gt;</a>
 </li>
 <li>StateActionNotExistException()
 : <a class="el" href="classAI_1_1StateActionNotExistException.html#abcba2ae2e7a93a728595704c3440e778">AI::StateActionNotExistException</a>
@@ -498,10 +561,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classAI_1_1Algorithm_1_1TileCodeCorrect.html#a4347bf107c7d252ce0e080be0e134313">AI::Algorithm::TileCodeCorrect</a>
 </li>
 <li>TileCodeMt1993764()
-: <a class="el" href="classAI_1_1Algorithm_1_1TileCodeMt1993764.html#a6062251f25cab695518db0fda5f97dc6">AI::Algorithm::TileCodeMt1993764</a>
+: <a class="el" href="classAI_1_1Algorithm_1_1TileCodeMt1993764.html#a0d8eee3e74ccf5587d1f376e9c54a33f">AI::Algorithm::TileCodeMt1993764</a>
 </li>
 <li>TileCodeSuperFastHash()
-: <a class="el" href="classAI_1_1Algorithm_1_1TileCodeSuperFastHash.html#a724f6d6f40f0f8f2e4d4692eb3f6c09f">AI::Algorithm::TileCodeSuperFastHash</a>
+: <a class="el" href="classAI_1_1Algorithm_1_1TileCodeSuperFastHash.html#a7538ed36cf8ae0a15ff4c902a335266b">AI::Algorithm::TileCodeSuperFastHash</a>
 </li>
 </ul>
 
@@ -510,11 +573,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>update()
 : <a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html#a4542226b17db4ed8a2c5ec17d37dc42f">AI::Algorithm::DynaQ&lt; S, A &gt;</a>
 , <a class="el" href="classAI_1_1Algorithm_1_1DynaQCC.html#ae23b8f0afbb9fc5024aef9ce720c9b84">AI::Algorithm::DynaQCC&lt; S, A &gt;</a>
-, <a class="el" href="classAI_1_1Algorithm_1_1DynaQETWatkins.html#aa4e40af0fd705cd5d1f7fd13834c57c6">AI::Algorithm::DynaQETWatkins&lt; S, A &gt;</a>
+, <a class="el" href="classAI_1_1Algorithm_1_1DynaQET.html#a53b0e06842fbb802acfa5384a84ad448">AI::Algorithm::DynaQET&lt; S, A &gt;</a>
 , <a class="el" href="classAI_1_1Algorithm_1_1DynaQPrioritizeSweeping.html#ad08b55f3cf927189dd31abf9fc1c2959">AI::Algorithm::DynaQPrioritizeSweeping&lt; S, A &gt;</a>
 , <a class="el" href="classAI_1_1Algorithm_1_1LearningAlgorithm.html#a7d216d791e558e15a73083af6257ed72">AI::Algorithm::LearningAlgorithm&lt; S, A &gt;</a>
 , <a class="el" href="classAI_1_1Algorithm_1_1QLearning.html#a042e1987ce21a94f59603c4cb1eeed82">AI::Algorithm::QLearning&lt; S, A &gt;</a>
-, <a class="el" href="classAI_1_1Algorithm_1_1QLearningETWatkins.html#a5cbad8c16dfbf6fe72c85fe5c8c4e273">AI::Algorithm::QLearningETWatkins&lt; S, A &gt;</a>
+, <a class="el" href="classAI_1_1Algorithm_1_1QLearningET.html#a9a245dcb3ca8f26b37e5a6daa6d4a898">AI::Algorithm::QLearningET&lt; S, A &gt;</a>
 , <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearning.html#a25d7fa245a79e61061436dc0f1db90cb">AI::Algorithm::ReinforcementLearning&lt; S, A &gt;</a>
 , <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearningGD.html#afca8d60ac090dec611f3834c0e8872c0">AI::Algorithm::ReinforcementLearningGD</a>
 , <a class="el" href="classAI_1_1Algorithm_1_1Sarsa.html#ae1d62478d3e31cace3fb594e05f83d1c">AI::Algorithm::Sarsa&lt; S, A &gt;</a>
@@ -525,7 +588,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 20:50:08 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 12 2014 23:09:55 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -31,22 +31,17 @@ virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQCC_ae23b8f0afbb9fc5024aef9c
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQCC_ae23b8f0afbb9fc5024aef9ce720c9b84}
 Update the state\-Action map. 
 \begin{DoxyParams}{Parameters}
-{\em current\-State} & \\
+{\em current\-State} & current\-State agent is in. \\
 \hline
-{\em current\-Action} & \\
+{\em current\-Action} & action taken by agent by being in current\-State. \\
 \hline
-{\em next\-State} & \\
+{\em next\-State} & next\-State by taking current\-Action in current\-State. \\
 \hline
-{\em reward} & reward of current\-State and current\-Action. \\
-\hline
-{\em state\-Action} & A map of \hyperlink{classAI_1_1StateAction}{State\-Action} to Value. \\
+{\em reward} & reward of current\-State\-Action. \\
 \hline
 {\em action\-Set} & A set of all actions. \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-next action to be executed. 
-\end{DoxyReturn}
 
 
 Reimplemented from \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearning_a25d7fa245a79e61061436dc0f1db90cb}{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning$<$ S, A $>$}.

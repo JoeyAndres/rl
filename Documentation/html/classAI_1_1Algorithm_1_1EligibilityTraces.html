@@ -105,6 +105,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Uses eligibility traces to update state-value pairs. This enables for fast convergence.  
+ <a href="classAI_1_1Algorithm_1_1EligibilityTraces.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="EligibilityTraces_8h_source.html">EligibilityTraces.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for AI::Algorithm::EligibilityTraces&lt; S, A &gt;:</div>
@@ -112,9 +115,9 @@ Inheritance diagram for AI::Algorithm::EligibilityTraces&lt; S, A &gt;:</div>
  <div class="center">
   <img src="classAI_1_1Algorithm_1_1EligibilityTraces.png" usemap="#AI::Algorithm::EligibilityTraces&lt; S, A &gt;_map" alt=""/>
   <map id="AI::Algorithm::EligibilityTraces&lt; S, A &gt;_map" name="AI::Algorithm::EligibilityTraces&lt; S, A &gt;_map">
-<area href="classAI_1_1Algorithm_1_1DynaQETWatkins.html" alt="AI::Algorithm::DynaQETWatkins&lt; S, A &gt;" shape="rect" coords="0,56,257,80"/>
-<area href="classAI_1_1Algorithm_1_1QLearningETWatkins.html" alt="AI::Algorithm::QLearningETWatkins&lt; S, A &gt;" shape="rect" coords="267,56,524,80"/>
-<area href="classAI_1_1Algorithm_1_1SarsaET.html" alt="AI::Algorithm::SarsaET&lt; S, A &gt;" shape="rect" coords="534,56,791,80"/>
+<area href="classAI_1_1Algorithm_1_1DynaQET.html" title="Employs the simulation of DynaQ and eligibility traces. " alt="AI::Algorithm::DynaQET&lt; S, A &gt;" shape="rect" coords="0,56,228,80"/>
+<area href="classAI_1_1Algorithm_1_1QLearningET.html" title="Like QLearning in that it uses different policy for learning and action selection. Each iteration, it updates all other states via eligibility traces, making for faster convergence. " alt="AI::Algorithm::QLearningET&lt; S, A &gt;" shape="rect" coords="238,56,466,80"/>
+<area href="classAI_1_1Algorithm_1_1SarsaET.html" title="Like Sarsa in that it uses the same policy for learning and action selection. Each iteration..." alt="AI::Algorithm::SarsaET&lt; S, A &gt;" shape="rect" coords="476,56,704,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -129,8 +132,7 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a354115a368dc58abcdbc9285ec2537df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a354115a368dc58abcdbc9285ec2537df"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_updateEligibilityTraces</b> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;nextStateAction, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> reward, <a class="el" href="classAI_1_1StateActionPairContainer.html">StateActionPairContainer</a>&lt; S, A &gt; &amp;stateActionPairValueMap, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate)</td></tr>
+<tr class="memitem:a354115a368dc58abcdbc9285ec2537df"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1EligibilityTraces.html#a354115a368dc58abcdbc9285ec2537df">_updateEligibilityTraces</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;nextStateAction, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> reward, <a class="el" href="classAI_1_1StateActionPairContainer.html">StateActionPairContainer</a>&lt; S, A &gt; &amp;stateActionPairValueMap, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate)</td></tr>
 <tr class="separator:a354115a368dc58abcdbc9285ec2537df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -147,9 +149,17 @@ map&lt; <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, 
 <div class="textblock"><h3>template&lt;class S, class A&gt;<br/>
 class AI::Algorithm::EligibilityTraces&lt; S, A &gt;</h3>
 
-<p><a class="el" href="classAI_1_1Algorithm_1_1EligibilityTraces.html">EligibilityTraces</a> As opposed to ordinary Temporal Difference or whats called in the literature as TD(0), eligibility traces TD(lambda) bridges the gap between TD(0) and Monte Carlo methods. A huge lambda means basically back up ranging from terminal state to initial state. Small lambda converges to TD(0).</p>
+<p>Uses eligibility traces to update state-value pairs. This enables for fast convergence. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">S</td><td>State data type. </td></tr>
+    <tr><td class="paramname">A</td><td>Action data type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>As opposed to ordinary Temporal Difference or what's called in the literature as TD(0), eligibility traces TD( \(\lambda\)) bridges the gap between TD(0) and Monte Carlo methods. A huge \(\lambda\) means basically back up ranging from terminal state to initial state. Small \(\lambda\) converges to TD(0).</p>
 <p>Note that there is a performance penalty as result of having to iterate all of state space.</p>
-<p>TODO: Make another parent class for all other eligibility trace algorithm that contains a merge of RL and Eligibility traces. This way, we can syc some shit.</p>
+<p>TODO: Make another parent class for all other eligibility trace algorithm that contains a merge of RL and Eligibility traces. This way, we can sync some shit.</p>
 <p>TODO: Connect the reset() to resetEligibilityTraces() function that have yet to be made. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a5ee88e5ac3059733c38a95dba54f677d"></a>
@@ -177,6 +187,78 @@ template&lt;class S , class A &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a354115a368dc58abcdbc9285ec2537df"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class S , class A &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classAI_1_1Algorithm_1_1EligibilityTraces.html">AI::Algorithm::EligibilityTraces</a>&lt; S, A &gt;::_updateEligibilityTraces </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;&#160;</td>
+          <td class="paramname"><em>currentStateAction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;&#160;</td>
+          <td class="paramname"><em>nextStateAction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td>
+          <td class="paramname"><em>reward</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAI_1_1StateActionPairContainer.html">StateActionPairContainer</a>&lt; S, A &gt; &amp;&#160;</td>
+          <td class="paramname"><em>stateActionPairValueMap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td>
+          <td class="paramname"><em>stepSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td>
+          <td class="paramname"><em>discountRate</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Iterate through all states and update each with respect to the their eligibility Trace.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">currentStateAction</td><td>Current state-action pair. </td></tr>
+    <tr><td class="paramname">nextStateAction</td><td>Next state-action pair. </td></tr>
+    <tr><td class="paramname">reward</td><td>Reward for taking state-action pair. </td></tr>
+    <tr><td class="paramname">stateActionPairValueMap</td><td>A state-action pair container. </td></tr>
+    <tr><td class="paramname">stepSize</td><td>step size for the update. </td></tr>
+    <tr><td class="paramname">discountRate</td><td>discount rate for the update. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="aea9a2c36874a3df328efdf4077ea1c19"></a>
 <div class="memitem">
 <div class="memproto">
@@ -212,7 +294,7 @@ template&lt;class S , class A &gt; </div>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lambda</td><td></td></tr>
+    <tr><td class="paramname">lambda</td><td>A huge \(\lambda\) means basically back up ranging from terminal state to initial state. Small \(\lambda\) converges to TD(0). </td></tr>
   </table>
   </dd>
 </dl>
@@ -225,7 +307,7 @@ template&lt;class S , class A &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 20:50:07 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 12 2014 23:09:52 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

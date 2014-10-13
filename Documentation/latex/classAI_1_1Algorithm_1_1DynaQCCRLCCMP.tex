@@ -15,13 +15,36 @@ Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P
 \item 
 virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_aebff9b81db5bd2ae33bd3d6662539bc0}{back\-Up\-State\-Action\-Pair} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} reward, const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&next\-State\-Action\-Pair)
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a145fa4fdba2289842a77c9d483a42ef2}{virtual A {\bfseries arg\-Max} (const S \&state, const set$<$ A $>$ \&action\-Set) const }\label{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a145fa4fdba2289842a77c9d483a42ef2}
-
+virtual A \hyperlink{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a145fa4fdba2289842a77c9d483a42ef2}{arg\-Max} (const S \&state, const set$<$ A $>$ \&action\-Set) const 
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a145fa4fdba2289842a77c9d483a42ef2}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P}!arg\-Max@{arg\-Max}}
+\index{arg\-Max@{arg\-Max}!AI::Algorithm::DynaQCCRLCCMP@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P}}
+\subsubsection[{arg\-Max}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ A {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P}$<$ S, A $>$\-::arg\-Max (
+\begin{DoxyParamCaption}
+\item[{const S \&}]{state, }
+\item[{const set$<$ A $>$ \&}]{action\-Set}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_a145fa4fdba2289842a77c9d483a42ef2}
+Note that this is just a place-\/holder, since this will be aggregate arg\-Max implementations in children. Returns the action that will most \char`\"{}likely\char`\"{} gives the highest reward from the current state. 
+\begin{DoxyParams}{Parameters}
+{\em state} & the state to apply the arg\-Max to. \\
+\hline
+{\em state\-Action} & map of \hyperlink{classAI_1_1StateAction}{State\-Action} to value. \\
+\hline
+{\em action\-Set} & a set of possible actions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the action that will \char`\"{}likely\char`\"{} gives the highest reward. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classAI_1_1Algorithm_1_1DynaQBase_a32044f721ba4afbca5ea144b3f84135b}{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-Base$<$ S, A $>$}.
+
 \hypertarget{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_aebff9b81db5bd2ae33bd3d6662539bc0}{\index{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P}!back\-Up\-State\-Action\-Pair@{back\-Up\-State\-Action\-Pair}}
 \index{back\-Up\-State\-Action\-Pair@{back\-Up\-State\-Action\-Pair}!AI::Algorithm::DynaQCCRLCCMP@{A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P}}
 \subsubsection[{back\-Up\-State\-Action\-Pair}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-Algorithm\-::\-Dyna\-Q\-C\-C\-R\-L\-C\-C\-M\-P}$<$ S, A $>$\-::back\-Up\-State\-Action\-Pair (
@@ -31,17 +54,13 @@ virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_aebff9b81db5bd2ae3
 \item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{next\-State\-Action\-Pair}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQCCRLCCMP_aebff9b81db5bd2ae33bd3d6662539bc0}
-Does the main back up for all Temporal difference\-: Q(\-S, A) $<$-\/ Q(\-S, A) + step\-Size$\ast$\mbox{[}R + max\-\_\-action(S', A') -\/ Q(\-S, A)\mbox{]} 
+Does the main back up for all Temporal difference\-: $ Q[S, A] \leftarrow Q[S, A] + \alpha\times [R + \gamma \times max_{A'}Q[S', A'] - Q[S, A] ]$ 
 \begin{DoxyParams}{Parameters}
-{\em current\-State\-Action} & \\
+{\em current\-State\-Action} & $(S, A)$, current state-\/action pair. \\
 \hline
-{\em current\-State\-Action\-Value} & \\
+{\em reward} & $R$, reward after $(S, A)$. \\
 \hline
-{\em next\-State} & \\
-\hline
-{\em next\-Action} & \\
-\hline
-{\em state\-Action\-Pair\-Value\-Map} & \\
+{\em next\-State\-Action\-Pair} & $(S', A')$, next state-\/action pair. \\
 \hline
 \end{DoxyParams}
 

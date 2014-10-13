@@ -94,22 +94,17 @@ Reimplemented from \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_aebe650b
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_afca8d60ac090dec611f3834c0e8872c0}
 Update the state\-Action map. 
 \begin{DoxyParams}{Parameters}
-{\em current\-State} & \\
+{\em current\-State} & current\-State agent is in. \\
 \hline
-{\em current\-Action} & \\
+{\em current\-Action} & action taken by agent by being in current\-State. \\
 \hline
-{\em next\-State} & \\
+{\em next\-State} & next\-State by taking current\-Action in current\-State. \\
 \hline
-{\em reward} & reward of current\-State and current\-Action. \\
-\hline
-{\em state\-Action} & A map of \hyperlink{classAI_1_1StateAction}{State\-Action} to Value. \\
+{\em reward} & reward of current\-State\-Action. \\
 \hline
 {\em action\-Set} & A set of all actions. \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-next action to be executed. 
-\end{DoxyReturn}
 
 
 Implements \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a7d216d791e558e15a73083af6257ed72}{A\-I\-::\-Algorithm\-::\-Learning\-Algorithm$<$ vector$<$ F\-L\-O\-A\-T $>$, vector$<$ F\-L\-O\-A\-T $>$ $>$}.

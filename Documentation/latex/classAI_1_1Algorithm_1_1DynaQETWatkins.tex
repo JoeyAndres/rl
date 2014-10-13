@@ -3,6 +3,11 @@
 }
 
 
+Employs the simulation of \hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} plus eligibility traces.  
+
+
+
+
 {\ttfamily \#include $<$Dyna\-Q\-E\-T\-Watkins.\-h$>$}
 
 Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Dyna\-Q\-E\-T\-Watkins$<$ S, A $>$\-:\begin{figure}[H]
@@ -24,13 +29,11 @@ virtual void \hyperlink{classAI_1_1Algorithm_1_1DynaQETWatkins_aa4e40af0fd705cd5
 \subsection{Detailed Description}
 \subsubsection*{template$<$class S, class A$>$class A\-I\-::\-Algorithm\-::\-Dyna\-Q\-E\-T\-Watkins$<$ S, A $>$}
 
-\hyperlink{classAI_1_1Algorithm_1_1DynaQETWatkins}{Dyna\-Q\-E\-T\-Watkins} 
+Employs the simulation of \hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} plus eligibility traces. 
 
-The \hyperlink{classAI_1_1Algorithm_1_1DynaQETWatkins}{Dyna\-Q\-E\-T\-Watkins} algorithm is a subclass of Reinforcement Algorithm. \hyperlink{classAI_1_1Algorithm_1_1DynaQETWatkins}{Dyna\-Q\-E\-T\-Watkins} employs simulation\-Count for every update thus improving the conversion rate.
+Like \hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q}, it does $n$ simlations per update, but after than performs eligibility traces.
 
 \begin{DoxySeeAlso}{See Also}
-\hyperlink{classAI_1_1Algorithm_1_1StateActionTransition}{State\-Action\-Transition} representing the models.
-
 \hyperlink{classAI_1_1Algorithm_1_1DynaQ}{Dyna\-Q} 
 
 \hyperlink{classAI_1_1Algorithm_1_1EligibilityTraces}{Eligibility\-Traces} 
@@ -53,15 +56,19 @@ The \hyperlink{classAI_1_1Algorithm_1_1DynaQETWatkins}{Dyna\-Q\-E\-T\-Watkins} a
 )}}\label{classAI_1_1Algorithm_1_1DynaQETWatkins_a0601ab5adb8ba7d0d94d93b6194528c9}
 
 \begin{DoxyParams}{Parameters}
-{\em step\-Size} & range \mbox{[}0.\-0, 1.\-0\mbox{]}. High step size means faster learning, but less precise convergence. \\
+{\em step\-Size} & range $[0.0, 1.0]$. High step size means faster learning, but less precise convergence. \\
 \hline
-{\em discount\-Rate} & range \mbox{[}0.\-0, 1.\-0\mbox{]}. High discount rate means more consideration of future events. \\
+{\em discount\-Rate} & range $[0.0, 1.0]$. High discount rate means more consideration of future events. \\
 \hline
-{\em simulation\-Iteration\-Count} & How many simulation per update. \\
+{\em policy} & online policy, that is policy used for action selection. \\
 \hline
-{\em state\-Transition\-Greediness} & High value means less likely to choose random action during simulation. \\
+{\em simulation\-Iteration\-Count} & number of simulations per update/backup. \\
 \hline
-{\em state\-Transition\-Step\-Size} & High value means faster learning in models but lower values means more accurate models. \\
+{\em state\-Transition\-Greediness} & greediness in selecting highest value model. \\
+\hline
+{\em state\-Transition\-Step\-Size} & how fast does a model update a value of a state-\/action pair. \\
+\hline
+{\em lambda} & huge $\lambda$ means basically back up ranging from terminal state to initial state. Small $\lambda$ converges to T\-D(0). \\
 \hline
 \end{DoxyParams}
 
@@ -79,22 +86,17 @@ The \hyperlink{classAI_1_1Algorithm_1_1DynaQETWatkins}{Dyna\-Q\-E\-T\-Watkins} a
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1DynaQETWatkins_aa4e40af0fd705cd5d1f7fd13834c57c6}
 Update the state\-Action map. 
 \begin{DoxyParams}{Parameters}
-{\em current\-State} & \\
+{\em current\-State} & current\-State agent is in. \\
 \hline
-{\em current\-Action} & \\
+{\em current\-Action} & action taken by agent by being in current\-State. \\
 \hline
-{\em next\-State} & \\
+{\em next\-State} & next\-State by taking current\-Action in current\-State. \\
 \hline
-{\em reward} & reward of current\-State and current\-Action. \\
-\hline
-{\em state\-Action} & A map of \hyperlink{classAI_1_1StateAction}{State\-Action} to Value. \\
+{\em reward} & reward of current\-State\-Action. \\
 \hline
 {\em action\-Set} & A set of all actions. \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-next action to be executed. 
-\end{DoxyReturn}
 
 
 Reimplemented from \hyperlink{classAI_1_1Algorithm_1_1DynaQ_a4542226b17db4ed8a2c5ec17d37dc42f}{A\-I\-::\-Algorithm\-::\-Dyna\-Q$<$ S, A $>$}.
