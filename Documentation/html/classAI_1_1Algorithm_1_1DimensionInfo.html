@@ -102,6 +102,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">AI::Algorithm::DimensionInfo&lt; D &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Encapsulate tile code dimension.  
+ <a href="classAI_1_1Algorithm_1_1DimensionInfo.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="DimensionInfo_8h_source.html">DimensionInfo.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -133,7 +138,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a53462f78d4d95d27ccb421f519b3112a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DimensionInfo.html#a53462f78d4d95d27ccb421f519b3112a">setGeneralizationScale</a> (<a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> generalization)</td></tr>
 <tr class="separator:a53462f78d4d95d27ccb421f519b3112a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename D = AI::FLOAT&gt;<br/>
+class AI::Algorithm::DimensionInfo&lt; D &gt;</h3>
+
+<p>Encapsulate tile code dimension. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">D</td><td><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3" title="Default floating type. ">AI::FLOAT</a> and <a class="el" href="namespaceAI.html">AI</a>:INT.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Encapsulate tile code dimension information.</p>
+<p>TODO: Update other variables in methods. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a81474f419c3763f3de2833c8edb378c4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -165,13 +183,13 @@ template&lt;typename D &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p><a class="el" href="classAI_1_1Algorithm_1_1DimensionInfo.html">DimensionInfo</a> consist of range [a, b] and gridCount. Higher grid count means more precision, less grid count means more generalization. </p>
+<p><a class="el" href="classAI_1_1Algorithm_1_1DimensionInfo.html" title="Encapsulate tile code dimension. ">DimensionInfo</a> consist of range [a, b] and gridCount. Higher grid count means more precision, less grid count means more generalization. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lowerRange</td><td>a in [a, b] </td></tr>
-    <tr><td class="paramname">higherRange</td><td>b in [a , b] </td></tr>
+    <tr><td class="paramname">lowerRange</td><td>a in \([a, b]\) </td></tr>
+    <tr><td class="paramname">higherRange</td><td>b in \([a , b]\) </td></tr>
     <tr><td class="paramname">gridCount</td><td>High value means more precision, less means more generalization. </td></tr>
-    <tr><td class="paramname">generalizationscale</td><td>scales the generalization. Greater than 1 means exagerated, (0, 1), otherwise, reduced influence. </td></tr>
+    <tr><td class="paramname">generalizationScale</td><td>scales the generalization. Greater than 1 means exaggerated, \([0, 1]\), otherwise, reduced influence. </td></tr>
   </table>
   </dd>
 </dl>
@@ -247,7 +265,7 @@ template&lt;typename D &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>a in range [a, b]. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a in range \([a, b]\). </dd></dl>
 
 </div>
 </div>
@@ -283,7 +301,7 @@ template&lt;typename D &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Acquire the difference in range [a, b]. Or |b-a|. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Acquire the difference in range \([a, b]\). Or \(|b-a|\). </dd></dl>
 
 </div>
 </div>
@@ -301,7 +319,7 @@ template&lt;typename D &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>b in range [a, b]/ </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>b in range \([a, b]\) </dd></dl>
 
 </div>
 </div>
@@ -371,7 +389,7 @@ template&lt;typename D &gt; </div>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lowerBound</td><td>to set a in range [a, b]. </td></tr>
+    <tr><td class="paramname">lowerBound</td><td>to set a in range \([a, b]\). </td></tr>
   </table>
   </dd>
 </dl>
@@ -395,7 +413,7 @@ template&lt;typename D &gt; </div>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">upperBound</td><td>to set b in range [a, b]. </td></tr>
+    <tr><td class="paramname">upperBound</td><td>to set b in range \([a, b]\). </td></tr>
   </table>
   </dd>
 </dl>
@@ -408,7 +426,7 @@ template&lt;typename D &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 13 2014 16:20:55 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 13 2014 16:50:26 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

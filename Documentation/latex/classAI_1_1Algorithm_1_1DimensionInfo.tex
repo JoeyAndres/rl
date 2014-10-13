@@ -1,6 +1,15 @@
 \hypertarget{classAI_1_1Algorithm_1_1DimensionInfo}{\section{A\-I\-:\-:Algorithm\-:\-:Dimension\-Info$<$ D $>$ Class Template Reference}
 \label{classAI_1_1Algorithm_1_1DimensionInfo}\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info$<$ D $>$@{A\-I\-::\-Algorithm\-::\-Dimension\-Info$<$ D $>$}}
 }
+
+
+Encapsulate tile code dimension.  
+
+
+
+
+{\ttfamily \#include $<$Dimension\-Info.\-h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -33,6 +42,20 @@ void \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo_a53462f78d4d95d27ccb421f51
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename D = A\-I\-::\-F\-L\-O\-A\-T$>$class A\-I\-::\-Algorithm\-::\-Dimension\-Info$<$ D $>$}
+
+Encapsulate tile code dimension. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em D} & \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} and \hyperlink{namespaceAI}{A\-I}\-:I\-N\-T.\\
+\hline
+\end{DoxyTemplParams}
+Encapsulate tile code dimension information.
+
+T\-O\-D\-O\-: Update other variables in methods. 
+
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a81474f419c3763f3de2833c8edb378c4}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!Dimension\-Info@{Dimension\-Info}}
 \index{Dimension\-Info@{Dimension\-Info}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
@@ -45,13 +68,13 @@ void \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo_a53462f78d4d95d27ccb421f51
 )}}\label{classAI_1_1Algorithm_1_1DimensionInfo_a81474f419c3763f3de2833c8edb378c4}
 \hyperlink{classAI_1_1Algorithm_1_1DimensionInfo}{Dimension\-Info} consist of range \mbox{[}a, b\mbox{]} and grid\-Count. Higher grid count means more precision, less grid count means more generalization. 
 \begin{DoxyParams}{Parameters}
-{\em lower\-Range} & a in \mbox{[}a, b\mbox{]} \\
+{\em lower\-Range} & a in $[a, b]$ \\
 \hline
-{\em higher\-Range} & b in \mbox{[}a , b\mbox{]} \\
+{\em higher\-Range} & b in $[a , b]$ \\
 \hline
 {\em grid\-Count} & High value means more precision, less means more generalization. \\
 \hline
-{\em generalizationscale} & scales the generalization. Greater than 1 means exagerated, (0, 1), otherwise, reduced influence. \\
+{\em generalization\-Scale} & scales the generalization. Greater than 1 means exaggerated, $[0, 1]$, otherwise, reduced influence. \\
 \hline
 \end{DoxyParams}
 
@@ -95,7 +118,7 @@ usually grid\-Count + 1.
 \end{DoxyParamCaption}
 )}}\label{classAI_1_1Algorithm_1_1DimensionInfo_a21bdf660f342425445db64a1dea1fc2f}
 \begin{DoxyReturn}{Returns}
-a in range \mbox{[}a, b\mbox{]}. 
+a in range $[a, b]$. 
 \end{DoxyReturn}
 \hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a20db996bd27cf32c94fa1365546bde98}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!Get\-Offsets@{Get\-Offsets}}
 \index{Get\-Offsets@{Get\-Offsets}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
@@ -115,7 +138,7 @@ range/grid\-Count. Divide this with number of tilings when used for acquiring fe
 \end{DoxyParamCaption}
 ) const}}\label{classAI_1_1Algorithm_1_1DimensionInfo_ac00dab53a32a43aca17dcb48d8109436}
 \begin{DoxyReturn}{Returns}
-Acquire the difference in range \mbox{[}a, b\mbox{]}. Or $\vert$b-\/a$\vert$. 
+Acquire the difference in range $[a, b]$. Or $|b-a|$. 
 \end{DoxyReturn}
 \hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a01eab7ae14a0653b6042afc93ec988c5}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!get\-Upper\-Bound@{get\-Upper\-Bound}}
 \index{get\-Upper\-Bound@{get\-Upper\-Bound}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
@@ -125,7 +148,7 @@ Acquire the difference in range \mbox{[}a, b\mbox{]}. Or $\vert$b-\/a$\vert$.
 \end{DoxyParamCaption}
 )}}\label{classAI_1_1Algorithm_1_1DimensionInfo_a01eab7ae14a0653b6042afc93ec988c5}
 \begin{DoxyReturn}{Returns}
-b in range \mbox{[}a, b\mbox{]}/ 
+b in range $[a, b]$ 
 \end{DoxyReturn}
 \hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a53462f78d4d95d27ccb421f519b3112a}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!set\-Generalization\-Scale@{set\-Generalization\-Scale}}
 \index{set\-Generalization\-Scale@{set\-Generalization\-Scale}!AI::Algorithm::DimensionInfo@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}}
@@ -160,7 +183,7 @@ Changes the grid\-Count.
 )}}\label{classAI_1_1Algorithm_1_1DimensionInfo_adef1b2721242ef4ca4978a1ceb8d2474}
 
 \begin{DoxyParams}{Parameters}
-{\em lower\-Bound} & to set a in range \mbox{[}a, b\mbox{]}. \\
+{\em lower\-Bound} & to set a in range $[a, b]$. \\
 \hline
 \end{DoxyParams}
 \hypertarget{classAI_1_1Algorithm_1_1DimensionInfo_a9889cad59dddd038f7fbddbd2ac6ece4}{\index{A\-I\-::\-Algorithm\-::\-Dimension\-Info@{A\-I\-::\-Algorithm\-::\-Dimension\-Info}!set\-Upper\-Bound@{set\-Upper\-Bound}}
@@ -172,7 +195,7 @@ Changes the grid\-Count.
 )}}\label{classAI_1_1Algorithm_1_1DimensionInfo_a9889cad59dddd038f7fbddbd2ac6ece4}
 
 \begin{DoxyParams}{Parameters}
-{\em upper\-Bound} & to set b in range \mbox{[}a, b\mbox{]}. \\
+{\em upper\-Bound} & to set b in range $[a, b]$. \\
 \hline
 \end{DoxyParams}
 
