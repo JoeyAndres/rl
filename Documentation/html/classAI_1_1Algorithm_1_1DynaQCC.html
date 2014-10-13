@@ -102,14 +102,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">AI::Algorithm::DynaQCC&lt; S, A &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html" title="DynaQ algorithm implementation. ">DynaQ</a> that performs simulation concurrently.  
+ <a href="classAI_1_1Algorithm_1_1DynaQCC.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="DynaQCC_8h_source.html">DynaQCC.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for AI::Algorithm::DynaQCC&lt; S, A &gt;:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classAI_1_1Algorithm_1_1DynaQCC.png" usemap="#AI::Algorithm::DynaQCC&lt; S, A &gt;_map" alt=""/>
   <map id="AI::Algorithm::DynaQCC&lt; S, A &gt;_map" name="AI::Algorithm::DynaQCC&lt; S, A &gt;_map">
-<area href="classAI_1_1Algorithm_1_1DynaQCCRLCCMP.html" alt="AI::Algorithm::DynaQCCRLCCMP&lt; S, A &gt;" shape="rect" coords="140,112,410,136"/>
-<area href="classAI_1_1Algorithm_1_1DynaQCCBase.html" alt="AI::Algorithm::DynaQCCBase&lt; S, A &gt;" shape="rect" coords="0,56,270,80"/>
+<area href="classAI_1_1Algorithm_1_1DynaQCCRLCCMP.html" title="Abstract/Base class for DynaQCC algorithm. " alt="AI::Algorithm::DynaQCCRLCCMP&lt; S, A &gt;" shape="rect" coords="140,112,410,136"/>
+<area href="classAI_1_1Algorithm_1_1DynaQCCBase.html" title="Base class for DynaQ with concurrency for simulation. " alt="AI::Algorithm::DynaQCCBase&lt; S, A &gt;" shape="rect" coords="0,56,270,80"/>
 <area href="classAI_1_1Algorithm_1_1ReinforcementLearning.html" title="Abstract class for all Reinforcement learning algorithms. " alt="AI::Algorithm::ReinforcementLearning&lt; S, A &gt;" shape="rect" coords="280,56,550,80"/>
 <area href="classAI_1_1Algorithm_1_1DynaQBase.html" title="Abstract base class for DynaQ algorithms. " alt="AI::Algorithm::DynaQBase&lt; S, A &gt;" shape="rect" coords="0,0,270,24"/>
 <area href="classAI_1_1Algorithm_1_1LearningAlgorithm.html" title="Base class for all learning algorithms. " alt="AI::Algorithm::LearningAlgorithm&lt; S, A &gt;" shape="rect" coords="280,0,550,24"/>
@@ -118,23 +123,24 @@ Inheritance diagram for AI::Algorithm::DynaQCC&lt; S, A &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aab347f88243e3690cbc856347ed37378"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab347f88243e3690cbc856347ed37378"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DynaQCC</b> (<a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate, <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;policy, <a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
+<tr class="memitem:aab347f88243e3690cbc856347ed37378"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCC.html#aab347f88243e3690cbc856347ed37378">DynaQCC</a> (<a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate, <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;policy, <a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
 <tr class="separator:aab347f88243e3690cbc856347ed37378"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae23b8f0afbb9fc5024aef9ce720c9b84"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCC.html#ae23b8f0afbb9fc5024aef9ce720c9b84">update</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">FLOAT</a> reward, const set&lt; A &gt; &amp;actionSet)</td></tr>
 <tr class="separator:ae23b8f0afbb9fc5024aef9ce720c9b84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classAI_1_1Algorithm_1_1DynaQCCRLCCMP"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classAI_1_1Algorithm_1_1DynaQCCRLCCMP')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classAI_1_1Algorithm_1_1DynaQCCRLCCMP.html">AI::Algorithm::DynaQCCRLCCMP&lt; S, A &gt;</a></td></tr>
-<tr class="memitem:a892dd156f280dd375d7f248258531043 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQCCRLCCMP"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a892dd156f280dd375d7f248258531043"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DynaQCCRLCCMP</b> (<a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate, <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;policy, <a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
+<tr class="memitem:a892dd156f280dd375d7f248258531043 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQCCRLCCMP"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCCRLCCMP.html#a892dd156f280dd375d7f248258531043">DynaQCCRLCCMP</a> (<a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stepSize, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> discountRate, <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;policy, <a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
 <tr class="separator:a892dd156f280dd375d7f248258531043 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQCCRLCCMP"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebff9b81db5bd2ae33bd3d6662539bc0 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQCCRLCCMP"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCCRLCCMP.html#aebff9b81db5bd2ae33bd3d6662539bc0">backUpStateActionPair</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">FLOAT</a> reward, const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;nextStateActionPair)</td></tr>
 <tr class="separator:aebff9b81db5bd2ae33bd3d6662539bc0 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQCCRLCCMP"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a145fa4fdba2289842a77c9d483a42ef2 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQCCRLCCMP"><td class="memItemLeft" align="right" valign="top">virtual A&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCCRLCCMP.html#a145fa4fdba2289842a77c9d483a42ef2">argMax</a> (const S &amp;state, const set&lt; A &gt; &amp;actionSet) const </td></tr>
 <tr class="separator:a145fa4fdba2289842a77c9d483a42ef2 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQCCRLCCMP"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classAI_1_1Algorithm_1_1DynaQCCBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html">AI::Algorithm::DynaQCCBase&lt; S, A &gt;</a></td></tr>
-<tr class="memitem:acd1924d5f560d9a7298e442dfa33716a inherit pub_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd1924d5f560d9a7298e442dfa33716a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DynaQCCBase</b> (<a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
+<tr class="memitem:acd1924d5f560d9a7298e442dfa33716a inherit pub_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html#acd1924d5f560d9a7298e442dfa33716a">DynaQCCBase</a> (<a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
 <tr class="separator:acd1924d5f560d9a7298e442dfa33716a inherit pub_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56e5d7ee46d67400f9e2411e801f93d2 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html#a56e5d7ee46d67400f9e2411e801f93d2">_threadWorker</a> (const set&lt; A &gt; &amp;actionSet, <a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> localSimulationSteps)</td></tr>
+<tr class="separator:a56e5d7ee46d67400f9e2411e801f93d2 inherit pub_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeff65821d73179f84390892d8a2b0d3c inherit pub_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html#aeff65821d73179f84390892d8a2b0d3c">_updateDistribution</a> ()</td></tr>
+<tr class="separator:aeff65821d73179f84390892d8a2b0d3c inherit pub_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classAI_1_1Algorithm_1_1DynaQBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classAI_1_1Algorithm_1_1DynaQBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html">AI::Algorithm::DynaQBase&lt; S, A &gt;</a></td></tr>
 <tr class="memitem:a089f4024fab2f19179dea637b7f6c8ee inherit pub_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a089f4024fab2f19179dea637b7f6c8ee">DynaQBase</a> (<a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
 <tr class="separator:a089f4024fab2f19179dea637b7f6c8ee inherit pub_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,12 +193,6 @@ Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classAI_1_1Algorithm_1_1DynaQCCBase')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html">AI::Algorithm::DynaQCCBase&lt; S, A &gt;</a></td></tr>
 <tr class="memitem:adc1bb07bb9025dc0c2963ded741b43a2 inherit pro_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html#adc1bb07bb9025dc0c2963ded741b43a2">_simulate</a> (const set&lt; A &gt; &amp;actionSet)</td></tr>
 <tr class="separator:adc1bb07bb9025dc0c2963ded741b43a2 inherit pro_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56e5d7ee46d67400f9e2411e801f93d2 inherit pro_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56e5d7ee46d67400f9e2411e801f93d2"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_threadWorker</b> (const set&lt; A &gt; &amp;actionSet, <a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> localSimulationSteps)</td></tr>
-<tr class="separator:a56e5d7ee46d67400f9e2411e801f93d2 inherit pro_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeff65821d73179f84390892d8a2b0d3c inherit pro_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeff65821d73179f84390892d8a2b0d3c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>_updateDistribution</b> ()</td></tr>
-<tr class="separator:aeff65821d73179f84390892d8a2b0d3c inherit pro_methods_classAI_1_1Algorithm_1_1DynaQCCBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classAI_1_1Algorithm_1_1DynaQBase')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html">AI::Algorithm::DynaQBase&lt; S, A &gt;</a></td></tr>
 <tr class="memitem:a4a45b9303a4b9e0cf93b9a5272739b35 inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a4a45b9303a4b9e0cf93b9a5272739b35">_updateModel</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const S &amp;nextState, const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">FLOAT</a> reward)</td></tr>
 <tr class="separator:a4a45b9303a4b9e0cf93b9a5272739b35 inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -275,6 +275,91 @@ static <a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1EpsilonGreedy.html"
 <tr class="memdesc:ad9b3db3c2443e1a44803ec6d34887485 inherit pro_static_attribs_classAI_1_1Algorithm_1_1LearningAlgorithm"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default offline policy. <br/></td></tr>
 <tr class="separator:ad9b3db3c2443e1a44803ec6d34887485 inherit pro_static_attribs_classAI_1_1Algorithm_1_1LearningAlgorithm"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class S, class A&gt;<br/>
+class AI::Algorithm::DynaQCC&lt; S, A &gt;</h3>
+
+<p><a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html" title="DynaQ algorithm implementation. ">DynaQ</a> that performs simulation concurrently. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">S</td><td>State data type. </td></tr>
+    <tr><td class="paramname">A</td><td>Action data type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p><a class="el" href="classAI_1_1Algorithm_1_1DynaQCC.html" title="DynaQ that performs simulation concurrently. ">DynaQCC</a> must only be used when state space is large to take advantage of multi-threading. If state space is in order of thousands or more, <a class="el" href="classAI_1_1Algorithm_1_1ReinforcementLearningGD.html">ReinforcementLearningGD</a> might should be used. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aab347f88243e3690cbc856347ed37378"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class S , class A &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCC.html">AI::Algorithm::DynaQCC</a>&lt; S, A &gt;::<a class="el" href="classAI_1_1Algorithm_1_1DynaQCC.html">DynaQCC</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td>
+          <td class="paramname"><em>stepSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td>
+          <td class="paramname"><em>discountRate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAI_1_1Algorithm_1_1Policy_1_1Policy.html">Policy::Policy</a>&lt; S, A &gt; &amp;&#160;</td>
+          <td class="paramname"><em>policy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a>&#160;</td>
+          <td class="paramname"><em>simulationIterationCount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td>
+          <td class="paramname"><em>stateTransitionGreediness</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td>
+          <td class="paramname"><em>stateTransitionStepSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stepSize</td><td>range \([0.0, 1.0]\)j. High step size means faster learning, but less precise convergence. </td></tr>
+    <tr><td class="paramname">discountRate</td><td>range \([0.0, 1.0]\). High discount rate means more consideration of future events. </td></tr>
+    <tr><td class="paramname">policy</td><td>online policy, that is policy used for action selection. </td></tr>
+    <tr><td class="paramname">simulationIterationCount</td><td>number of simulations per update/backup. </td></tr>
+    <tr><td class="paramname">stateTransitionGreediness</td><td>greediness in selecting highest value model. </td></tr>
+    <tr><td class="paramname">stateTransitionStepSize</td><td>how fast does a model update a value of a state-action pair. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ae23b8f0afbb9fc5024aef9ce720c9b84"></a>
 <div class="memitem">
@@ -343,7 +428,7 @@ template&lt;class S , class A &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 12 2014 23:09:52 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 13 2014 16:20:55 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

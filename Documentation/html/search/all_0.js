@@ -24,6 +24,8 @@ var searchData=
   ['_5fstateactionpairmap',['_stateActionPairMap',['../classAI_1_1StateActionPairContainer.html#afeb95c4cb5d37ce8f8fd1a2b3518211b',1,'AI::StateActionPairContainer']]],
   ['_5fstateactiontransitiongreediness',['_stateActionTransitionGreediness',['../classAI_1_1Algorithm_1_1DynaQBase.html#ae3f83dbeea191fc8bdcd518a2e54af97',1,'AI::Algorithm::DynaQBase']]],
   ['_5fstateactiontransitionstepsize',['_stateActionTransitionStepSize',['../classAI_1_1Algorithm_1_1DynaQBase.html#a1fd132ae0aeb356a891e5b81bf218338',1,'AI::Algorithm::DynaQBase']]],
+  ['_5fthreadworker',['_threadWorker',['../classAI_1_1Algorithm_1_1DynaQCCBase.html#a56e5d7ee46d67400f9e2411e801f93d2',1,'AI::Algorithm::DynaQCCBase']]],
+  ['_5fupdatedistribution',['_updateDistribution',['../classAI_1_1Algorithm_1_1DynaQCCBase.html#aeff65821d73179f84390892d8a2b0d3c',1,'AI::Algorithm::DynaQCCBase']]],
   ['_5fupdateeligibilitytraces',['_updateEligibilityTraces',['../classAI_1_1Algorithm_1_1EligibilityTraces.html#a354115a368dc58abcdbc9285ec2537df',1,'AI::Algorithm::EligibilityTraces']]],
   ['_5fupdatemodel',['_updateModel',['../classAI_1_1Algorithm_1_1DynaQBase.html#a4a45b9303a4b9e0cf93b9a5272739b35',1,'AI::Algorithm::DynaQBase']]]
 ];

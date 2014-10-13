@@ -104,6 +104,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">AI::Algorithm::DynaQCCBase&lt; S, A &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Base class for <a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html" title="DynaQ algorithm implementation. ">DynaQ</a> with concurrency for simulation.  
+ <a href="classAI_1_1Algorithm_1_1DynaQCCBase.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="DynaQCCBase_8h_source.html">DynaQCCBase.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for AI::Algorithm::DynaQCCBase&lt; S, A &gt;:</div>
 <div class="dyncontent">
@@ -111,16 +116,19 @@ Inheritance diagram for AI::Algorithm::DynaQCCBase&lt; S, A &gt;:</div>
   <img src="classAI_1_1Algorithm_1_1DynaQCCBase.png" usemap="#AI::Algorithm::DynaQCCBase&lt; S, A &gt;_map" alt=""/>
   <map id="AI::Algorithm::DynaQCCBase&lt; S, A &gt;_map" name="AI::Algorithm::DynaQCCBase&lt; S, A &gt;_map">
 <area href="classAI_1_1Algorithm_1_1DynaQBase.html" title="Abstract base class for DynaQ algorithms. " alt="AI::Algorithm::DynaQBase&lt; S, A &gt;" shape="rect" coords="0,0,249,24"/>
-<area href="classAI_1_1Algorithm_1_1DynaQCCRLCCMP.html" alt="AI::Algorithm::DynaQCCRLCCMP&lt; S, A &gt;" shape="rect" coords="0,112,249,136"/>
-<area href="classAI_1_1Algorithm_1_1DynaQCC.html" alt="AI::Algorithm::DynaQCC&lt; S, A &gt;" shape="rect" coords="0,168,249,192"/>
+<area href="classAI_1_1Algorithm_1_1DynaQCCRLCCMP.html" title="Abstract/Base class for DynaQCC algorithm. " alt="AI::Algorithm::DynaQCCRLCCMP&lt; S, A &gt;" shape="rect" coords="0,112,249,136"/>
+<area href="classAI_1_1Algorithm_1_1DynaQCC.html" title="DynaQ that performs simulation concurrently. " alt="AI::Algorithm::DynaQCC&lt; S, A &gt;" shape="rect" coords="0,168,249,192"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acd1924d5f560d9a7298e442dfa33716a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd1924d5f560d9a7298e442dfa33716a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DynaQCCBase</b> (<a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
+<tr class="memitem:acd1924d5f560d9a7298e442dfa33716a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html#acd1924d5f560d9a7298e442dfa33716a">DynaQCCBase</a> (<a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
 <tr class="separator:acd1924d5f560d9a7298e442dfa33716a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56e5d7ee46d67400f9e2411e801f93d2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html#a56e5d7ee46d67400f9e2411e801f93d2">_threadWorker</a> (const set&lt; A &gt; &amp;actionSet, <a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> localSimulationSteps)</td></tr>
+<tr class="separator:a56e5d7ee46d67400f9e2411e801f93d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeff65821d73179f84390892d8a2b0d3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html#aeff65821d73179f84390892d8a2b0d3c">_updateDistribution</a> ()</td></tr>
+<tr class="separator:aeff65821d73179f84390892d8a2b0d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classAI_1_1Algorithm_1_1DynaQBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classAI_1_1Algorithm_1_1DynaQBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html">AI::Algorithm::DynaQBase&lt; S, A &gt;</a></td></tr>
 <tr class="memitem:a089f4024fab2f19179dea637b7f6c8ee inherit pub_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a089f4024fab2f19179dea637b7f6c8ee">DynaQBase</a> (<a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> simulationIterationCount, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionGreediness, <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a> stateTransitionStepSize)</td></tr>
 <tr class="separator:a089f4024fab2f19179dea637b7f6c8ee inherit pub_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,12 +137,6 @@ Public Member Functions</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:adc1bb07bb9025dc0c2963ded741b43a2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html#adc1bb07bb9025dc0c2963ded741b43a2">_simulate</a> (const set&lt; A &gt; &amp;actionSet)</td></tr>
 <tr class="separator:adc1bb07bb9025dc0c2963ded741b43a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56e5d7ee46d67400f9e2411e801f93d2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56e5d7ee46d67400f9e2411e801f93d2"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>_threadWorker</b> (const set&lt; A &gt; &amp;actionSet, <a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a> localSimulationSteps)</td></tr>
-<tr class="separator:a56e5d7ee46d67400f9e2411e801f93d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeff65821d73179f84390892d8a2b0d3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeff65821d73179f84390892d8a2b0d3c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>_updateDistribution</b> ()</td></tr>
-<tr class="separator:aeff65821d73179f84390892d8a2b0d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classAI_1_1Algorithm_1_1DynaQBase')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html">AI::Algorithm::DynaQBase&lt; S, A &gt;</a></td></tr>
 <tr class="memitem:a0d5777706e9c2be04ee1834ad593c795 inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAI_1_1Algorithm_1_1DynaQBase.html#a0d5777706e9c2be04ee1834ad593c795">backUpStateActionPair</a> (const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;currentStateAction, const <a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">FLOAT</a> reward, const <a class="el" href="classAI_1_1StateAction.html">StateAction</a>&lt; S, A &gt; &amp;nextStateActionPair)=0</td></tr>
 <tr class="separator:a0d5777706e9c2be04ee1834ad593c795 inherit pro_methods_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,6 +177,69 @@ boost::shared_mutex&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <tr class="memdesc:ab166bd02d02f17c76a7626372c649849 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutex lock for model. <br/></td></tr>
 <tr class="separator:ab166bd02d02f17c76a7626372c649849 inherit pro_attribs_classAI_1_1Algorithm_1_1DynaQBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class S, class A&gt;<br/>
+class AI::Algorithm::DynaQCCBase&lt; S, A &gt;</h3>
+
+<p>Base class for <a class="el" href="classAI_1_1Algorithm_1_1DynaQ.html" title="DynaQ algorithm implementation. ">DynaQ</a> with concurrency for simulation. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">S</td><td>State data type. </td></tr>
+    <tr><td class="paramname">A</td><td>Action data type. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="acd1924d5f560d9a7298e442dfa33716a"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class S , class A &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html">AI::Algorithm::DynaQCCBase</a>&lt; S, A &gt;::<a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html">DynaQCCBase</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a>&#160;</td>
+          <td class="paramname"><em>simulationIterationCount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td>
+          <td class="paramname"><em>stateTransitionGreediness</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#a41b74884a20833db653dded3918e05c3">AI::FLOAT</a>&#160;</td>
+          <td class="paramname"><em>stateTransitionStepSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">simulationIterationCount</td><td>number of simulations per update/backup. </td></tr>
+    <tr><td class="paramname">stateTransitionGreediness</td><td>greediness in selecting highest value model. </td></tr>
+    <tr><td class="paramname">stateTransitionStepSize</td><td>how fast does a model update a value of a state-action pair. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="adc1bb07bb9025dc0c2963ded741b43a2"></a>
 <div class="memitem">
@@ -211,13 +276,75 @@ template&lt;class S , class A &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a56e5d7ee46d67400f9e2411e801f93d2"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class S , class A &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html">AI::Algorithm::DynaQCCBase</a>&lt; S, A &gt;::_threadWorker </td>
+          <td>(</td>
+          <td class="paramtype">const set&lt; A &gt; &amp;&#160;</td>
+          <td class="paramname"><em>actionSet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceAI.html#ab6e14dc1e659854858a87e511f1439ec">AI::UINT</a>&#160;</td>
+          <td class="paramname"><em>localSimulationSteps</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Where simulation is called via new thread. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actionSet</td><td>set of actions. </td></tr>
+    <tr><td class="paramname">localSimulationSteps</td><td>How many simulation steps dedicated to this thread. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aeff65821d73179f84390892d8a2b0d3c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class S , class A &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classAI_1_1Algorithm_1_1DynaQCCBase.html">AI::Algorithm::DynaQCCBase</a>&lt; S, A &gt;::_updateDistribution </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>When adding a new state-action value to the model, make sure to update distribution. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Algorithms/ReinforcementLearning/<a class="el" href="DynaQCCBase_8h_source.html">DynaQCCBase.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 12 2014 23:09:52 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 13 2014 16:20:55 for AI Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
