@@ -25,10 +25,18 @@ template<typename FLOAT = AI::FLOAT>
 using actionVector = vector<FLOAT>;
 
 /*! \class GradientDescent
- *  \brief
+ *  \brief Early implementation of Gradient Descent specialized for Tile Coding.
+ *
+ *  This is still an early implementation of Gradient Descent,
  */
 class GradientDescent {
  public:
+  /**
+   * @param tileCode Type of tile coding.
+   * @param stepSize Step size for gradient descent.
+   * @param discountRate discount rate for gradient descent.
+   * @param lambda How influential is current state-action to ther state-action.
+   */
   GradientDescent(TileCode& tileCode, AI::FLOAT stepSize,
                   AI::FLOAT discountRate, AI::FLOAT lambda);
 
@@ -51,38 +59,101 @@ class GradientDescent {
    */
   FLOAT getValueFromFeatureVector(const FEATURE_VECTOR& fv) const;
 
+  /**
+   * @param parameters parameters.
+   * @param fv feature vector output. Feature vector are samples taken around
+   *           the parameters in the n-dimension tilecde.
+   */
   void getFeatureVector(const vector<FLOAT>& parameters,
                         FEATURE_VECTOR& fv) const;
+
+  /**
+   * Increase the eligibility traces of a given feature vector.
+   * @param fv feature vector.
+   */
   void incrementEligibilityTraces(const FEATURE_VECTOR& fv);
+
+  /**
+   * Replace the eligibility traces for each feature vector by 1.0F.
+   * @param fv feature vector.
+   */
   void replaceEligibilityTraces(const FEATURE_VECTOR& fv);
+
+  /**
+   * Decrease each eligibility traces by eligibility traces and discount rate $(\lambda)$
+   */
+  virtual void decreaseEligibilityTraces();
+
+  /**
+   * Make all eligibility trace to 0.0F.
+   */
+ void resetEligibilityTraces();
+
+  /**
+   * @param stateVector vector of states.
+   * @param av action vector.
+   * @param nextState next state vector.
+   * @param reward reward for going to takeing av in sateVector.
+   * @param actionSet Set of action vector.
+   */
   void updateWeights(const vector<FLOAT>& stateVector,
                      const actionVector<FLOAT>& av,
                      const vector<FLOAT>& nextState, const FLOAT reward,
                      const set<actionVector<FLOAT> >& actionSet);
+
+  /**
+   * @param currentStateVector array of current states.
+   * @param currentActionVector array of action taken to get to currentStateVector..
+   * @param nextStateVector array of next states.
+   * @param nextAction array of next action taken to get to nextStateVector.
+   * @param reward reward for taking nextAction.
+   */
   void updateWeights(const vector<FLOAT>& currentStateVector,
                      const actionVector<FLOAT>& currentActionVector,
                      const vector<FLOAT>& nextStateVector,
                      const vector<FLOAT>& nextAction, const FLOAT reward);
+
+  /**
+   * @param currentStateVector array of current states.
+   * @param actionVector action taken to get to nextStateVector.
+   * @param nextStateVector array of next states.
+   * @param reward reward for taking nextAction.
+   */
   void updateWeights(const vector<FLOAT>& currentStateVector,
                      const actionVector<FLOAT>& currentActionVector,
                      const vector<FLOAT>& nextStateVector,
                      const FLOAT nextActionValue, const FLOAT reward);
-  void resetEligibilityTraces();
+
+  /**
+   * @param actionSet set of actions.
+   * @param param array of current state.
+   * @param actionVectorValueMap state-action to value mapping to be returned.
+   */
   void buildActionValues(
       const set<actionVector<FLOAT> >& actionSet, const vector<FLOAT>& param,
       map<actionVector<FLOAT>, FLOAT>& actionVectorValueMap) const;
+
+  /**
+   * @param actionValueMap state-action to value mapping.
+   * @return value.
+   */
   FLOAT getMaxValue(
       const map<actionVector<FLOAT>, FLOAT>& actionValueMap) const;
 
-  virtual void decreaseEligibilityTraces();
+  /**
+   * Update weights with tderror.
+   * @param tdError
+   */
   virtual void backUpWeights(FLOAT tdError);
+
  protected:
-  TileCode& _tileCode;
-  vector<FLOAT> _w;
-  vector<AI::FLOAT> _e;
-  AI::FLOAT _stepSize;
-  AI::FLOAT _discountRate;
-  AI::FLOAT _lambda;
+  TileCode& _tileCode;  //!< Tile Code.
+  vector<FLOAT> _w;  //!< Vector of weights.
+  vector<AI::FLOAT> _e;  //!< Vector of eligibility traces.
+  AI::FLOAT _stepSize;  //!< Step Size of the weight update.
+  AI::FLOAT _discountRate;  //!< Discount rate, mix with _lambda on how past states
+                            //!< influence current.
+  AI::FLOAT _lambda;  //!< lambda, mix with _lambda on how past states influence current.
 };
 
 GradientDescent::GradientDescent(TileCode& tileCode, AI::FLOAT stepSize,
