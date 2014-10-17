@@ -114,7 +114,7 @@ class looped_task_func {
     if (m_function) {
       if (m_break_s > 0 || m_break_ns > 0) {  // Sleep some time before first execution
         xtime xt;
-        xtime_get(&xt, TIME_UTC);
+        xtime_get(&xt, TIME_UTC_);
         xt.nsec += m_break_ns;
         xt.sec += m_break_s;
         thread::sleep(xt);
@@ -123,7 +123,7 @@ class looped_task_func {
       while (m_function()) {
         if (m_break_s > 0 || m_break_ns > 0) {
           xtime xt;
-          xtime_get(&xt, TIME_UTC);
+          xtime_get(&xt, TIME_UTC_);
           xt.nsec += m_break_ns;
           xt.sec += m_break_s;
           thread::sleep(xt);

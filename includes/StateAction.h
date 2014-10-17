@@ -33,6 +33,12 @@ class StateAction {
    */
   StateAction(S state, A action);
 
+  /**
+   * Copy Constructor.
+   * @param sa state-action pair to copy.
+   */
+  StateAction(const StateAction& sa);
+
   virtual bool operator<(const StateAction<S, A>& stateAction) const;
   virtual bool operator>(const StateAction<S, A>& stateAction) const;
   virtual bool operator<=(const StateAction<S, A>& stateAction) const;
@@ -69,6 +75,12 @@ template<class S, class A>
 StateAction<S, A>::StateAction(S state, A action) {
   _state = state;
   _action = action;
+}
+
+template<class S, class A>
+StateAction<S, A>::StateAction(const StateAction& sa){
+  _state = sa._state;
+  _action = sa._action;
 }
 
 template<class S, class A>

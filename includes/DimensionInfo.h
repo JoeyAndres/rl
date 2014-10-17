@@ -18,6 +18,14 @@ using namespace std;
 namespace AI {
 namespace Algorithm {
 
+/*! \DimensionInfo
+ *  \brief Encapsulate tile code dimension.
+ *  \tparam D AI::FLOAT and AI:INT.
+ *
+ *  Encapsulate tile code dimension information.
+ *
+ *  TODO: Update other variables in methods.
+ */
 template<typename D = AI::FLOAT>
 class DimensionInfo {
  public:
@@ -25,12 +33,12 @@ class DimensionInfo {
    * DimensionInfo consist of range [a, b] and gridCount. Higher
    * grid count means more precision, less grid count means more
    * generalization.
-   * @param lowerRange a in [a, b]
-   * @param higherRange b in [a , b]
+   * @param lowerRange a in \f$[a, b]\f$
+   * @param higherRange b in \f$[a , b]\f$
    * @param gridCount High value means more precision, less means
    * more generalization.
-   * @param generalizationscale scales the generalization.
-   *   Greater than 1 means exagerated, (0, 1), otherwise,
+   * @param generalizationScale scales the generalization.
+   *   Greater than 1 means exaggerated, \f$[0, 1]\f$, otherwise,
    *   reduced influence.
    */
   DimensionInfo(D lowerRange, D higherRange, AI::UINT gridCount);
@@ -41,78 +49,69 @@ class DimensionInfo {
    * @return range/gridCount. Divide this with number of tilings
    * when used for acquiring feature vector to get the real increment.
    */
-  D
-  GetOffsets() const;
+  D GetOffsets() const;
 
   /**
    * @return usually gridCount + 1.
    */
-  AI::UINT
-  GetGridCountReal() const;
+  AI::UINT GetGridCountReal() const;
 
   /**
    * Changes the gridCount.
    * @param gridCountIdeal new gridCount value.
    */
-  void
-  SetGridCountIdeal(AI::UINT gridCountIdeal);
+  void SetGridCountIdeal(AI::UINT gridCountIdeal);
 
   /**
    * @return gridCount.
    */
-  AI::UINT
-  GetGridCountIdeal() const;
+  AI::UINT GetGridCountIdeal() const;
 
   /**
-   * @return Acquire the difference in range [a, b]. Or |b-a|.
+   * @return Acquire the difference in range \f$[a, b]\f$. Or \f$|b-a|\f$.
    */
-  AI::FLOAT
-  GetRangeDifference() const;
+  AI::FLOAT GetRangeDifference() const;
 
   /**
-   * @param upperBound to set b in range [a, b].
+   * @param upperBound to set b in range \f$[a, b]\f$.
    */
-  void
-  setUpperBound(D upperBound);
+  void setUpperBound(D upperBound);
 
   /**
-   * @param lowerBound to set a in range [a, b].
+   * @param lowerBound to set a in range \f$[a, b]\f$.
    */
-  void
-  setLowerBound(D lowerBound);
+  void setLowerBound(D lowerBound);
 
   /**
-   * @return b in range [a, b]/
+   * @return b in range \f$[a, b]\f$
    */
-  D
-  getUpperBound();
+  D getUpperBound();
 
   /**
-   * @return a in range [a, b].
+   * @return a in range \f$[a, b]\f$.
    */
-  D
-  getLowerBound();
+  D getLowerBound();
 
   /**
    * @return the generalization amount.
    */
-  AI::FLOAT
-  getGeneralizationScale() const;
+  AI::FLOAT getGeneralizationScale() const;
 
   /**
    * @param generalization scales the generalization.
    * Greater than 1 means exagerated, (0, 1), otherwise,
    * reduced influence.
    */
-  void
-  setGeneralizationScale(AI::FLOAT generalization);
+  void setGeneralizationScale(AI::FLOAT generalization);
 
  private:
-  std::pair<D, D> _range;
-  D _rangeDifference;
-  AI::UINT _gridCountIdeal;
-  AI::UINT _gridCountReal;
-  D _offsets;
+  std::pair<D, D> _range;  //!< Pair of lower and upper range of the domain.
+  D _rangeDifference;  //!< Different of the range.
+  AI::UINT _gridCountIdeal;  //!< How many equally distanced sample points do
+                             //!< we take from domain.
+  AI::UINT _gridCountReal;  //!< _gridCountIdeal+1.  This factors how
+                            //!< implementation handles 1 more grid.
+  D _offsets; //!< _rangeDifference/_gridCountIdeal.
 
   AI::FLOAT _generalizationScale;
 };

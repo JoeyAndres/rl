@@ -12,16 +12,38 @@
 
 namespace AI {
 namespace Algorithm {
+
+/*! \class DynaQCCRLCCMP
+ *  \brief Abstract/Base class for DynaQCC algorithm.
+ *  \tparam S State data type.
+ *  \tparam A Action data type.
+ *
+ * Merge point for DynaQCC and Reinforcement Learning.
+ */
 template<class S, class A>
 class DynaQCCRLCCMP : public DynaQCCBase<S, A>, public ReinforcementLearning<S,
     A> {
   using DynaQCCBase<S, A>::argMax;
   using DynaQCCBase<S, A>::backUpStateActionPair;
  public:
+  /**
+   * @param stepSize range \f$[0.0, 1.0]\f$j. High step size means faster learning, but
+   *        less precise convergence.
+   * @param discountRate range \f$[0.0, 1.0]\f$. High discount rate means more
+   *        consideration of future events.
+   * @param policy online policy, that is policy used for action selection.
+   * @param simulationIterationCount number of simulations per update/backup.
+   * @param stateTransitionGreediness greediness in selecting highest value model.
+   * @param stateTransitionStepSize how fast does a model update a value of a
+   *        state-action pair.
+   */
   DynaQCCRLCCMP(AI::FLOAT stepSize, AI::FLOAT discountRate,
                 Policy::Policy<S, A>& policy, AI::UINT simulationIterationCount,
                 AI::FLOAT stateTransitionGreediness,
                 AI::FLOAT stateTransitionStepSize);
+
+public:
+  // Inheritance.
 
   virtual void backUpStateActionPair(
       const StateAction<S, A>& currentStateAction, const FLOAT reward,

@@ -20,9 +20,13 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
+
 template<typename FLOAT = AI::FLOAT>
 using actionVector = vector<FLOAT>;
 
+/*! \class GradientDescent
+ *  \brief
+ */
 class GradientDescent {
  public:
   GradientDescent(TileCode& tileCode, AI::FLOAT stepSize,

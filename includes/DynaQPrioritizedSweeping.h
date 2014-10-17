@@ -43,11 +43,17 @@ class DynaQPrioritizeSweeping final: public DynaQ<S, A> {
 
  public:
   /**
-   * @param stepSize range [0.0, 1.0]. High step size means faster learning, but less precise convergence.
-   * @param discountRate range [0.0, 1.0]. High discount rate means more consideration of future events.
-   * @param simulationIterationCount How many simulation per update.
-   * @param stateTransitionGreediness High value means less likely to choose random action during simulation.
-   * @param stateTransitionStepSize High value means faster learning in models but lower values means more accurate models.
+   * @param stepSize range \f$[0.0, 1.0]\f$. High step size means faster learning, but
+   * less precise convergence.
+   * @param discountRate range \f$[0.0, 1.0]\f$. High discount rate means more
+   * consideration of future events.
+   * @param policy online policy, that is policy used for action selection.
+   * @param simulationIterationCount number of simulations per update/backup.
+   * @param stateTransitionGreediness greediness in selecting highest value model.
+   * @param stateTransitionStepSize how fast does a model update a value of a
+   *                                state-action pair.
+   * @param priorityThreshold range \f$[0.0, 1.0]\f$, a low value means don't sweep
+   *                          too far back. A high priority means sweep far back.
    */
   DynaQPrioritizeSweeping(AI::FLOAT stepSize, AI::FLOAT discountRate,
                           Policy::Policy<S, A>& policy,
@@ -55,6 +61,9 @@ class DynaQPrioritizeSweeping final: public DynaQ<S, A> {
                           AI::FLOAT stateTransitionGreediness,
                           AI::FLOAT stateTransitionStepSize,
                           AI::FLOAT priorityThreshold);
+
+ public:
+  // inherited.
 
   virtual void update(const StateAction<S, A>& currentStateAction,
                       const S& nextState, const AI::FLOAT reward,

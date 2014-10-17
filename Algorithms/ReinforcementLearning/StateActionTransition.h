@@ -51,6 +51,12 @@ class StateActionTransition {
   StateActionTransition(const AI::FLOAT greedy, const AI::FLOAT stepSize);
 
   /**
+   * Copy-constructor.
+   * @param sat StateActionTransition to copy.
+   */
+  StateActionTransition(const StateActionTransition& sat);
+
+  /**
    * By adding a new state, this updates the information of all other states.
    * Frequency of all state, not nextState will decrease and frequency of
    * nextState will increase. The reward will update the value of the nextState.
@@ -125,10 +131,19 @@ StateActionTransition<S>::StateActionTransition(const AI::FLOAT greedy,
 }
 
 template<class S>
+StateActionTransition<S>::StateActionTransition(
+    const StateActionTransition& sat)
+    : _greedy(sat._greedy),
+      _stepSize(sat._stepSize),
+      _stateActionTransitionFrequency(sat._stateActionTransitionFrequency),
+      _stateActionTransitionReward(sat._stateActionTransitionReward) {
+}
+
+template<class S>
 void StateActionTransition<S>::update(const S& nextState,
                                       const AI::FLOAT reward) {
-  boost::unique_lock < boost::shared_mutex > rewardLock(_rewardMutex);
-  boost::unique_lock < boost::shared_mutex > frequencyLock(_frequencyMutex);
+  boost::unique_lock<boost::shared_mutex> rewardLock(_rewardMutex);
+  boost::unique_lock<boost::shared_mutex> frequencyLock(_frequencyMutex);
 
   _stateActionTransitionFrequency.insert(
       std::pair<S, AI::FLOAT>(nextState, 0.0F));
@@ -165,7 +180,7 @@ void StateActionTransition<S>::update(const S& nextState,
 template<class S>
 AI::FLOAT StateActionTransition<S>::getReward(const S& state) const
     throw (StateActionTransitionException) {
-  boost::shared_lock < boost::shared_mutex > rewardLock(_rewardMutex);
+  boost::shared_lock<boost::shared_mutex> rewardLock(_rewardMutex);
   StateActionTransitionException exception(
       "StateActionTransition<S, AI::FLOAT>::getReward(const S& state): state not yet added.");
   if (_findState(state) == false) {
@@ -177,7 +192,7 @@ AI::FLOAT StateActionTransition<S>::getReward(const S& state) const
 
 template<class S>
 bool StateActionTransition<S>::_findState(const S& state) const {
-  boost::shared_lock < boost::shared_mutex > rewardLock(_rewardMutex);
+  boost::shared_lock<boost::shared_mutex> rewardLock(_rewardMutex);
   bool found = _stateActionTransitionFrequency.find(state)
       != _stateActionTransitionFrequency.end();
   return found;
@@ -186,7 +201,7 @@ bool StateActionTransition<S>::_findState(const S& state) const {
 template<class S>
 const S& StateActionTransition<S>::getNextState() const
     throw (StateActionTransitionException) {
-  boost::shared_lock < boost::shared_mutex > frequencyLock(_frequencyMutex);
+  boost::shared_lock<boost::shared_mutex> frequencyLock(_frequencyMutex);
   StateActionTransitionException exception(
       "StateActionTransition<S, AI::FLOAT>::getNextState(): nextStates are empty.");
   if (_stateActionTransitionFrequency.size() == 0) {
