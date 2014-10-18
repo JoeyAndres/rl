@@ -1,16 +1,16 @@
-\hypertarget{classAI_1_1Algorithm_1_1QLearningET}{\section{A\-I\-:\-:Algorithm\-:\-:Q\-Learning\-E\-T$<$ S, A $>$ Class Template Reference}
-\label{classAI_1_1Algorithm_1_1QLearningET}\index{A\-I\-::\-Algorithm\-::\-Q\-Learning\-E\-T$<$ S, A $>$@{A\-I\-::\-Algorithm\-::\-Q\-Learning\-E\-T$<$ S, A $>$}}
+\hypertarget{classAI_1_1Algorithm_1_1QLearningET}{\section{A\+I\+:\+:Algorithm\+:\+:Q\+Learning\+E\+T$<$ S, A $>$ Class Template Reference}
+\label{classAI_1_1Algorithm_1_1QLearningET}\index{A\+I\+::\+Algorithm\+::\+Q\+Learning\+E\+T$<$ S, A $>$@{A\+I\+::\+Algorithm\+::\+Q\+Learning\+E\+T$<$ S, A $>$}}
 }
 
 
-Like \hyperlink{classAI_1_1Algorithm_1_1QLearning}{Q\-Learning} in that it uses different policy for learning and action selection. Each iteration, it updates all other states via eligibility traces, making for faster convergence.  
+Like \hyperlink{classAI_1_1Algorithm_1_1QLearning}{Q\+Learning} in that it uses different policy for learning and action selection. Each iteration, it updates all other states via eligibility traces, making for faster convergence.  
 
 
 
 
-{\ttfamily \#include $<$Q\-Learning\-E\-T.\-h$>$}
+{\ttfamily \#include $<$Q\+Learning\+E\+T.\+h$>$}
 
-Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Q\-Learning\-E\-T$<$ S, A $>$\-:\begin{figure}[H]
+Inheritance diagram for A\+I\+:\+:Algorithm\+:\+:Q\+Learning\+E\+T$<$ S, A $>$\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=4.000000cm]{classAI_1_1Algorithm_1_1QLearningET}
@@ -19,18 +19,18 @@ Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Q\-Learning\-E\-T$<$ S, A $>$\-
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1QLearningET_ae1c5b2ba1a680bb8bd2cfaa64dc41e91}{{\bfseries Q\-Learning\-E\-T} (\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} step\-Size, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} discount\-Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<$ S, A $>$ \&policy, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} lambda)}\label{classAI_1_1Algorithm_1_1QLearningET_ae1c5b2ba1a680bb8bd2cfaa64dc41e91}
+\hypertarget{classAI_1_1Algorithm_1_1QLearningET_ae1c5b2ba1a680bb8bd2cfaa64dc41e91}{{\bfseries Q\+Learning\+E\+T} (\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} step\+Size, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} discount\+Rate, \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\+::\+Policy}$<$ S, A $>$ \&policy, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} lambda)}\label{classAI_1_1Algorithm_1_1QLearningET_ae1c5b2ba1a680bb8bd2cfaa64dc41e91}
 
 \item 
-virtual void \hyperlink{classAI_1_1Algorithm_1_1QLearningET_a9a245dcb3ca8f26b37e5a6daa6d4a898}{update} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ S, A $>$ \&current\-State\-Action, const S \&next\-State, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} current\-State\-Action\-Value, const set$<$ A $>$ \&action\-Set)
+virtual void \hyperlink{classAI_1_1Algorithm_1_1QLearningET_a9a245dcb3ca8f26b37e5a6daa6d4a898}{update} (const \hyperlink{classAI_1_1StateAction}{State\+Action}$<$ S, A $>$ \&current\+State\+Action, const S \&next\+State, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} current\+State\+Action\+Value, const set$<$ A $>$ \&action\+Set)
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class S, class A$>$class A\-I\-::\-Algorithm\-::\-Q\-Learning\-E\-T$<$ S, A $>$}
+\subsubsection*{template$<$class S, class A$>$class A\+I\+::\+Algorithm\+::\+Q\+Learning\+E\+T$<$ S, A $>$}
 
-Like \hyperlink{classAI_1_1Algorithm_1_1QLearning}{Q\-Learning} in that it uses different policy for learning and action selection. Each iteration, it updates all other states via eligibility traces, making for faster convergence. 
+Like \hyperlink{classAI_1_1Algorithm_1_1QLearning}{Q\+Learning} in that it uses different policy for learning and action selection. Each iteration, it updates all other states via eligibility traces, making for faster convergence. 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
@@ -42,35 +42,35 @@ Like \hyperlink{classAI_1_1Algorithm_1_1QLearning}{Q\-Learning} in that it uses 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classAI_1_1Algorithm_1_1QLearningET_a9a245dcb3ca8f26b37e5a6daa6d4a898}{\index{A\-I\-::\-Algorithm\-::\-Q\-Learning\-E\-T@{A\-I\-::\-Algorithm\-::\-Q\-Learning\-E\-T}!update@{update}}
-\index{update@{update}!AI::Algorithm::QLearningET@{A\-I\-::\-Algorithm\-::\-Q\-Learning\-E\-T}}
-\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\-I\-::\-Algorithm\-::\-Q\-Learning\-E\-T}$<$ S, A $>$\-::update (
+\hypertarget{classAI_1_1Algorithm_1_1QLearningET_a9a245dcb3ca8f26b37e5a6daa6d4a898}{\index{A\+I\+::\+Algorithm\+::\+Q\+Learning\+E\+T@{A\+I\+::\+Algorithm\+::\+Q\+Learning\+E\+T}!update@{update}}
+\index{update@{update}!A\+I\+::\+Algorithm\+::\+Q\+Learning\+E\+T@{A\+I\+::\+Algorithm\+::\+Q\+Learning\+E\+T}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S , class A $>$ void {\bf A\+I\+::\+Algorithm\+::\+Q\+Learning\+E\+T}$<$ S, A $>$\+::update (
 \begin{DoxyParamCaption}
-\item[{const {\bf State\-Action}$<$ S, A $>$ \&}]{current\-State\-Action, }
-\item[{const S \&}]{next\-State, }
-\item[{const {\bf A\-I\-::\-F\-L\-O\-A\-T}}]{reward, }
-\item[{const set$<$ A $>$ \&}]{action\-Set}
+\item[{const {\bf State\+Action}$<$ S, A $>$ \&}]{current\+State\+Action, }
+\item[{const S \&}]{next\+State, }
+\item[{const {\bf A\+I\+::\+F\+L\+O\+A\+T}}]{reward, }
+\item[{const set$<$ A $>$ \&}]{action\+Set}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1QLearningET_a9a245dcb3ca8f26b37e5a6daa6d4a898}
-Update the state\-Action map. 
+Update the state\+Action map. 
 \begin{DoxyParams}{Parameters}
-{\em current\-State} & current\-State agent is in. \\
+{\em current\+State} & current\+State agent is in. \\
 \hline
-{\em current\-Action} & action taken by agent by being in current\-State. \\
+{\em current\+Action} & action taken by agent by being in current\+State. \\
 \hline
-{\em next\-State} & next\-State by taking current\-Action in current\-State. \\
+{\em next\+State} & next\+State by taking current\+Action in current\+State. \\
 \hline
-{\em reward} & reward of current\-State\-Action. \\
+{\em reward} & reward of current\+State\+Action. \\
 \hline
-{\em action\-Set} & A set of all actions. \\
+{\em action\+Set} & A set of all actions. \\
 \hline
 \end{DoxyParams}
 
 
-Reimplemented from \hyperlink{classAI_1_1Algorithm_1_1QLearning_a042e1987ce21a94f59603c4cb1eeed82}{A\-I\-::\-Algorithm\-::\-Q\-Learning$<$ S, A $>$}.
+Reimplemented from \hyperlink{classAI_1_1Algorithm_1_1QLearning_a042e1987ce21a94f59603c4cb1eeed82}{A\+I\+::\+Algorithm\+::\+Q\+Learning$<$ S, A $>$}.
 
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Algorithms/\-Reinforcement\-Learning/Q\-Learning\-E\-T.\-h\end{DoxyCompactItemize}
+Algorithms/\+Reinforcement\+Learning/Q\+Learning\+E\+T.\+h\end{DoxyCompactItemize}

@@ -12,6 +12,11 @@
 
 namespace AI {
 namespace Algorithm {
+
+/*! \class QLearningETGD
+ *  \brief Gradient Descent with QLearning implementation (Separate control
+ *         and learning policy).
+ */
 class QLearningETGD : public ReinforcementLearningGD {
  public:
   QLearningETGD(TileCode& tileCode, AI::FLOAT stepSize, AI::FLOAT discountRate,

@@ -21,14 +21,18 @@ namespace AI {
 namespace Algorithm {
 namespace Hash {
 
-/**
- * Encapsulates the output of the murmur hash. uint64_t hashVal[2] is
- * the the array being encapsulated since output of murmur3 hash is 128 bit.
+/*! \struct HashMurmur3Out
+ *  \brief Encapsulates the output of the murmur hash.
+ *  Encapsulates the output of the murmur hash. uint64_t hashVal[2] is
+ *  the the array being encapsulated since output of murmur3 hash is 128 bit.
  */
 struct HashMurmur3Out {
   uint64_t hashVal[2];
 };
 
+/*! \class Murmur3
+ *  \brief Murmur3 hash encapsulated.
+ */
 class Murmur3 : public HashInterface<HashMurmur3Out> {
  public:
   virtual HashMurmur3Out hash(const AI::BYTE *const byteArray, size_t len);

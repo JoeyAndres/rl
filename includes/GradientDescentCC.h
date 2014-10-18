@@ -20,11 +20,18 @@ using namespace boost::threadpool;
 
 namespace AI {
 namespace Algorithm {
+
+/*! \class GradientDescentCC
+ *  \brief Just an experimental concurrent version of Gradient Descent. This is not recommended to
+ *  be utilize yet since Work in Progress.
+ */
 class GradientDescentCC : public GradientDescent {
  public:
   GradientDescentCC(TileCode& tileCode, AI::FLOAT stepSize,
                     AI::FLOAT discountRate, AI::FLOAT lambda);
 
+ public:
+  // Inherited.
   virtual void decreaseEligibilityTraces();
   virtual void backUpWeights(FLOAT tdError);
 

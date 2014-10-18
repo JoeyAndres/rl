@@ -20,6 +20,10 @@ namespace AI {
 namespace Algorithm {
 namespace Hash {
 
+/*! \class HashInterface
+ *  \brief Interface for all hash encapsulation.
+ *  \tparam RET return data type.
+ */
 template <class RET>
 class HashInterface {
  public:

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['dimensioninfo',['DimensionInfo',['../classAI_1_1Algorithm_1_1DimensionInfo.html',1,'AI::Algorithm']]],
+  ['dynamicprogramming',['DynamicProgramming',['../classAI_1_1Algorithm_1_1DynamicProgramming.html',1,'AI::Algorithm']]],
   ['dynaq',['DynaQ',['../classAI_1_1Algorithm_1_1DynaQ.html',1,'AI::Algorithm']]],
   ['dynaqbase',['DynaQBase',['../classAI_1_1Algorithm_1_1DynaQBase.html',1,'AI::Algorithm']]],
   ['dynaqcc',['DynaQCC',['../classAI_1_1Algorithm_1_1DynaQCC.html',1,'AI::Algorithm']]],

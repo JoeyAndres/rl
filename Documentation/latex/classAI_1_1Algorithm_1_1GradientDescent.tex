@@ -1,7 +1,16 @@
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent}{\section{A\-I\-:\-:Algorithm\-:\-:Gradient\-Descent Class Reference}
-\label{classAI_1_1Algorithm_1_1GradientDescent}\index{A\-I\-::\-Algorithm\-::\-Gradient\-Descent@{A\-I\-::\-Algorithm\-::\-Gradient\-Descent}}
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent}{\section{A\+I\+:\+:Algorithm\+:\+:Gradient\+Descent Class Reference}
+\label{classAI_1_1Algorithm_1_1GradientDescent}\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
 }
-Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Gradient\-Descent\-:\begin{figure}[H]
+
+
+Early implementation of Gradient Descent specialized for Tile Coding.  
+
+
+
+
+{\ttfamily \#include $<$Gradient\+Descent.\+h$>$}
+
+Inheritance diagram for A\+I\+:\+:Algorithm\+:\+:Gradient\+Descent\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2.000000cm]{classAI_1_1Algorithm_1_1GradientDescent}
@@ -10,75 +19,166 @@ Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Gradient\-Descent\-:\begin{figu
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a8432f6a139bfac60422558841e6b79ad}{{\bfseries Gradient\-Descent} (\hyperlink{classAI_1_1Algorithm_1_1TileCode}{Tile\-Code} \&tile\-Code, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} step\-Size, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} discount\-Rate, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} lambda)}\label{classAI_1_1Algorithm_1_1GradientDescent_a8432f6a139bfac60422558841e6b79ad}
-
+\hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a8432f6a139bfac60422558841e6b79ad}{Gradient\+Descent} (\hyperlink{classAI_1_1Algorithm_1_1TileCode}{Tile\+Code} \&tile\+Code, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} step\+Size, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} discount\+Rate, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} lambda)
 \item 
-size\-\_\-t \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a04a6c7f4c2e0046dd70b2cfd98322971}{get\-Size} () const 
+size\+\_\+t \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a04a6c7f4c2e0046dd70b2cfd98322971}{get\+Size} () const 
 \item 
-\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a8dcc60ebf28babbe120fe7b20334380f}{get\-Value\-From\-Parameters} (const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&parameters) const 
+\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a8dcc60ebf28babbe120fe7b20334380f}{get\+Value\+From\+Parameters} (const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&parameters) const 
 \item 
-\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a19111aa6a83836a2e12e623e4004c4d3}{get\-Value\-From\-Feature\-Vector} (const \hyperlink{namespaceAI_a23a39e1b301a5c1345fa508796940631}{F\-E\-A\-T\-U\-R\-E\-\_\-\-V\-E\-C\-T\-O\-R} \&fv) const 
+\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a19111aa6a83836a2e12e623e4004c4d3}{get\+Value\+From\+Feature\+Vector} (const \hyperlink{namespaceAI_a23a39e1b301a5c1345fa508796940631}{F\+E\+A\+T\+U\+R\+E\+\_\+\+V\+E\+C\+T\+O\+R} \&fv) const 
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a6a625b771afbda36509c2b38843825bf}{void {\bfseries get\-Feature\-Vector} (const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&parameters, \hyperlink{namespaceAI_a23a39e1b301a5c1345fa508796940631}{F\-E\-A\-T\-U\-R\-E\-\_\-\-V\-E\-C\-T\-O\-R} \&fv) const }\label{classAI_1_1Algorithm_1_1GradientDescent_a6a625b771afbda36509c2b38843825bf}
-
+void \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a6a625b771afbda36509c2b38843825bf}{get\+Feature\+Vector} (const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&parameters, \hyperlink{namespaceAI_a23a39e1b301a5c1345fa508796940631}{F\+E\+A\+T\+U\+R\+E\+\_\+\+V\+E\+C\+T\+O\+R} \&fv) const 
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a68b6d1772a25ce2d6d98cfd3ab697b02}{void {\bfseries increment\-Eligibility\-Traces} (const \hyperlink{namespaceAI_a23a39e1b301a5c1345fa508796940631}{F\-E\-A\-T\-U\-R\-E\-\_\-\-V\-E\-C\-T\-O\-R} \&fv)}\label{classAI_1_1Algorithm_1_1GradientDescent_a68b6d1772a25ce2d6d98cfd3ab697b02}
-
+void \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a68b6d1772a25ce2d6d98cfd3ab697b02}{increment\+Eligibility\+Traces} (const \hyperlink{namespaceAI_a23a39e1b301a5c1345fa508796940631}{F\+E\+A\+T\+U\+R\+E\+\_\+\+V\+E\+C\+T\+O\+R} \&fv)
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_ae0038bf21f9576cfa0d24a942f0a6c5a}{void {\bfseries replace\-Eligibility\-Traces} (const \hyperlink{namespaceAI_a23a39e1b301a5c1345fa508796940631}{F\-E\-A\-T\-U\-R\-E\-\_\-\-V\-E\-C\-T\-O\-R} \&fv)}\label{classAI_1_1Algorithm_1_1GradientDescent_ae0038bf21f9576cfa0d24a942f0a6c5a}
-
+void \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_ae0038bf21f9576cfa0d24a942f0a6c5a}{replace\+Eligibility\+Traces} (const \hyperlink{namespaceAI_a23a39e1b301a5c1345fa508796940631}{F\+E\+A\+T\+U\+R\+E\+\_\+\+V\+E\+C\+T\+O\+R} \&fv)
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a80faa3771790c726f20f2edff4ad8ff5}{void {\bfseries update\-Weights} (const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&state\-Vector, const action\-Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&av, const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&next\-State, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} reward, const set$<$ action\-Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ $>$ \&action\-Set)}\label{classAI_1_1Algorithm_1_1GradientDescent_a80faa3771790c726f20f2edff4ad8ff5}
-
+virtual void \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a5c5ae472417bc016fdd185875614359d}{decrease\+Eligibility\+Traces} ()
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_ab9193530a8d9c61f38707c5a3fc995eb}{void {\bfseries update\-Weights} (const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&current\-State\-Vector, const action\-Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&current\-Action\-Vector, const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&next\-State\-Vector, const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&next\-Action, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} reward)}\label{classAI_1_1Algorithm_1_1GradientDescent_ab9193530a8d9c61f38707c5a3fc995eb}
-
+void \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a2ce6e2bbfc5b4d821d02f454c0e3c8c5}{reset\+Eligibility\+Traces} ()
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a353e283f916955efd47a830425583210}{void {\bfseries update\-Weights} (const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&current\-State\-Vector, const action\-Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&current\-Action\-Vector, const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&next\-State\-Vector, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} next\-Action\-Value, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} reward)}\label{classAI_1_1Algorithm_1_1GradientDescent_a353e283f916955efd47a830425583210}
-
+void \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a80faa3771790c726f20f2edff4ad8ff5}{update\+Weights} (const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&state\+Vector, const action\+Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&av, const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&next\+State, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} reward, const set$<$ action\+Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ $>$ \&action\+Set)
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a2ce6e2bbfc5b4d821d02f454c0e3c8c5}{void {\bfseries reset\-Eligibility\-Traces} ()}\label{classAI_1_1Algorithm_1_1GradientDescent_a2ce6e2bbfc5b4d821d02f454c0e3c8c5}
-
+void \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_ab9193530a8d9c61f38707c5a3fc995eb}{update\+Weights} (const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&current\+State\+Vector, const action\+Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&current\+Action\+Vector, const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&next\+State\+Vector, const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&next\+Action, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} reward)
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a7f58c9d3f1c760d5e4d1f9546abb1bec}{void {\bfseries build\-Action\-Values} (const set$<$ action\-Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ $>$ \&action\-Set, const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&param, map$<$ action\-Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&action\-Vector\-Value\-Map) const }\label{classAI_1_1Algorithm_1_1GradientDescent_a7f58c9d3f1c760d5e4d1f9546abb1bec}
-
+void \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a353e283f916955efd47a830425583210}{update\+Weights} (const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&current\+State\+Vector, const action\+Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&current\+Action\+Vector, const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&next\+State\+Vector, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} next\+Action\+Value, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} reward)
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a651b2804acf14aaebdf461d39cd970eb}{\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} {\bfseries get\-Max\-Value} (const map$<$ action\-Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&action\-Value\-Map) const }\label{classAI_1_1Algorithm_1_1GradientDescent_a651b2804acf14aaebdf461d39cd970eb}
-
+void \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a7f58c9d3f1c760d5e4d1f9546abb1bec}{build\+Action\+Values} (const set$<$ action\+Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ $>$ \&action\+Set, const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&param, map$<$ action\+Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&action\+Vector\+Value\+Map) const 
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a5c5ae472417bc016fdd185875614359d}{virtual void {\bfseries decrease\-Eligibility\-Traces} ()}\label{classAI_1_1Algorithm_1_1GradientDescent_a5c5ae472417bc016fdd185875614359d}
-
+\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a651b2804acf14aaebdf461d39cd970eb}{get\+Max\+Value} (const map$<$ action\+Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&action\+Value\+Map) const 
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a49b556716f8ca93c088b10f4432a3688}{virtual void {\bfseries back\-Up\-Weights} (\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} td\-Error)}\label{classAI_1_1Algorithm_1_1GradientDescent_a49b556716f8ca93c088b10f4432a3688}
-
+virtual void \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a49b556716f8ca93c088b10f4432a3688}{back\+Up\+Weights} (\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} td\+Error)
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a483b6e1985c4a85a59929e137bc0b559}{\hyperlink{classAI_1_1Algorithm_1_1TileCode}{Tile\-Code} \& {\bfseries \-\_\-tile\-Code}}\label{classAI_1_1Algorithm_1_1GradientDescent_a483b6e1985c4a85a59929e137bc0b559}
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a483b6e1985c4a85a59929e137bc0b559}{\hyperlink{classAI_1_1Algorithm_1_1TileCode}{Tile\+Code} \& \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a483b6e1985c4a85a59929e137bc0b559}{\+\_\+tile\+Code}}\label{classAI_1_1Algorithm_1_1GradientDescent_a483b6e1985c4a85a59929e137bc0b559}
 
+\begin{DoxyCompactList}\small\item\em Tile Code. \end{DoxyCompactList}\item 
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_ae4eecab645d2f7e8b245d5a25d7b7e63}{vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_ae4eecab645d2f7e8b245d5a25d7b7e63}{\+\_\+w}}\label{classAI_1_1Algorithm_1_1GradientDescent_ae4eecab645d2f7e8b245d5a25d7b7e63}
+
+\begin{DoxyCompactList}\small\item\em Vector of weights. \end{DoxyCompactList}\item 
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_ac759083fba7ad9ef41a7b27d1d946eaf}{vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} $>$ \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_ac759083fba7ad9ef41a7b27d1d946eaf}{\+\_\+e}}\label{classAI_1_1Algorithm_1_1GradientDescent_ac759083fba7ad9ef41a7b27d1d946eaf}
+
+\begin{DoxyCompactList}\small\item\em Vector of eligibility traces. \end{DoxyCompactList}\item 
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a6869d80a15d5a841ae4e64ded72a6618}{\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a6869d80a15d5a841ae4e64ded72a6618}{\+\_\+step\+Size}}\label{classAI_1_1Algorithm_1_1GradientDescent_a6869d80a15d5a841ae4e64ded72a6618}
+
+\begin{DoxyCompactList}\small\item\em Step Size of the weight update. \end{DoxyCompactList}\item 
+\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a4667068a5810028bef4e4eb0138da297}{\+\_\+discount\+Rate}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_ae4eecab645d2f7e8b245d5a25d7b7e63}{vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ {\bfseries \-\_\-w}}\label{classAI_1_1Algorithm_1_1GradientDescent_ae4eecab645d2f7e8b245d5a25d7b7e63}
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a1babda7cbad2a946ffdc2eaec8507fa5}{\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a1babda7cbad2a946ffdc2eaec8507fa5}{\+\_\+lambda}}\label{classAI_1_1Algorithm_1_1GradientDescent_a1babda7cbad2a946ffdc2eaec8507fa5}
 
-\item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_ac759083fba7ad9ef41a7b27d1d946eaf}{vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} $>$ {\bfseries \-\_\-e}}\label{classAI_1_1Algorithm_1_1GradientDescent_ac759083fba7ad9ef41a7b27d1d946eaf}
+\begin{DoxyCompactList}\small\item\em lambda, mix with \+\_\+lambda on how past states influence current. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-\item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a6869d80a15d5a841ae4e64ded72a6618}{\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} {\bfseries \-\_\-step\-Size}}\label{classAI_1_1Algorithm_1_1GradientDescent_a6869d80a15d5a841ae4e64ded72a6618}
 
-\item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a4667068a5810028bef4e4eb0138da297}{\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} {\bfseries \-\_\-discount\-Rate}}\label{classAI_1_1Algorithm_1_1GradientDescent_a4667068a5810028bef4e4eb0138da297}
+\subsection{Detailed Description}
+Early implementation of Gradient Descent specialized for Tile Coding. 
 
-\item 
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a1babda7cbad2a946ffdc2eaec8507fa5}{\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} {\bfseries \-\_\-lambda}}\label{classAI_1_1Algorithm_1_1GradientDescent_a1babda7cbad2a946ffdc2eaec8507fa5}
+This is still an early implementation of Gradient Descent, 
 
-\end{DoxyCompactItemize}
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a8432f6a139bfac60422558841e6b79ad}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!Gradient\+Descent@{Gradient\+Descent}}
+\index{Gradient\+Descent@{Gradient\+Descent}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{Gradient\+Descent}]{\setlength{\rightskip}{0pt plus 5cm}A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::\+Gradient\+Descent (
+\begin{DoxyParamCaption}
+\item[{{\bf Tile\+Code} \&}]{tile\+Code, }
+\item[{{\bf A\+I\+::\+F\+L\+O\+A\+T}}]{step\+Size, }
+\item[{{\bf A\+I\+::\+F\+L\+O\+A\+T}}]{discount\+Rate, }
+\item[{{\bf A\+I\+::\+F\+L\+O\+A\+T}}]{lambda}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Algorithm_1_1GradientDescent_a8432f6a139bfac60422558841e6b79ad}
+
+\begin{DoxyParams}{Parameters}
+{\em tile\+Code} & Type of tile coding. \\
+\hline
+{\em step\+Size} & Step size for gradient descent. \\
+\hline
+{\em discount\+Rate} & discount rate for gradient descent. \\
+\hline
+{\em lambda} & How influential is current state-\/action to ther state-\/action. \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a04a6c7f4c2e0046dd70b2cfd98322971}{\index{A\-I\-::\-Algorithm\-::\-Gradient\-Descent@{A\-I\-::\-Algorithm\-::\-Gradient\-Descent}!get\-Size@{get\-Size}}
-\index{get\-Size@{get\-Size}!AI::Algorithm::GradientDescent@{A\-I\-::\-Algorithm\-::\-Gradient\-Descent}}
-\subsubsection[{get\-Size}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t A\-I\-::\-Algorithm\-::\-Gradient\-Descent\-::get\-Size (
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a49b556716f8ca93c088b10f4432a3688}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!back\+Up\+Weights@{back\+Up\+Weights}}
+\index{back\+Up\+Weights@{back\+Up\+Weights}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{back\+Up\+Weights}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::back\+Up\+Weights (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+L\+O\+A\+T}}]{td\+Error}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1GradientDescent_a49b556716f8ca93c088b10f4432a3688}
+Update weights with tderror. 
+\begin{DoxyParams}{Parameters}
+{\em td\+Error} & \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classAI_1_1Algorithm_1_1GradientDescentCC_a990c4b429edd9583e0e0a56be43faad8}{A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+C\+C}.
+
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a7f58c9d3f1c760d5e4d1f9546abb1bec}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!build\+Action\+Values@{build\+Action\+Values}}
+\index{build\+Action\+Values@{build\+Action\+Values}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{build\+Action\+Values}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::build\+Action\+Values (
+\begin{DoxyParamCaption}
+\item[{const set$<$ action\+Vector$<$ {\bf F\+L\+O\+A\+T} $>$ $>$ \&}]{action\+Set, }
+\item[{const vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{param, }
+\item[{map$<$ action\+Vector$<$ {\bf F\+L\+O\+A\+T} $>$, {\bf F\+L\+O\+A\+T} $>$ \&}]{action\+Vector\+Value\+Map}
+\end{DoxyParamCaption}
+) const}}\label{classAI_1_1Algorithm_1_1GradientDescent_a7f58c9d3f1c760d5e4d1f9546abb1bec}
+
+\begin{DoxyParams}{Parameters}
+{\em action\+Set} & set of actions. \\
+\hline
+{\em param} & array of current state. \\
+\hline
+{\em action\+Vector\+Value\+Map} & state-\/action to value mapping to be returned. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a5c5ae472417bc016fdd185875614359d}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!decrease\+Eligibility\+Traces@{decrease\+Eligibility\+Traces}}
+\index{decrease\+Eligibility\+Traces@{decrease\+Eligibility\+Traces}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{decrease\+Eligibility\+Traces}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::decrease\+Eligibility\+Traces (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1GradientDescent_a5c5ae472417bc016fdd185875614359d}
+Decrease each eligibility traces by eligibility traces and discount rate \$()\$ 
+
+Reimplemented in \hyperlink{classAI_1_1Algorithm_1_1GradientDescentCC_a5cd9bd033e8556b4961370da3298cfce}{A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+C\+C}.
+
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a6a625b771afbda36509c2b38843825bf}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!get\+Feature\+Vector@{get\+Feature\+Vector}}
+\index{get\+Feature\+Vector@{get\+Feature\+Vector}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{get\+Feature\+Vector}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::get\+Feature\+Vector (
+\begin{DoxyParamCaption}
+\item[{const vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{parameters, }
+\item[{{\bf F\+E\+A\+T\+U\+R\+E\+\_\+\+V\+E\+C\+T\+O\+R} \&}]{fv}
+\end{DoxyParamCaption}
+) const}}\label{classAI_1_1Algorithm_1_1GradientDescent_a6a625b771afbda36509c2b38843825bf}
+
+\begin{DoxyParams}{Parameters}
+{\em parameters} & parameters. \\
+\hline
+{\em fv} & feature vector output. Feature vector are samples taken around the parameters in the n-\/dimension tilecde. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a651b2804acf14aaebdf461d39cd970eb}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!get\+Max\+Value@{get\+Max\+Value}}
+\index{get\+Max\+Value@{get\+Max\+Value}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{get\+Max\+Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+L\+O\+A\+T} A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::get\+Max\+Value (
+\begin{DoxyParamCaption}
+\item[{const map$<$ action\+Vector$<$ {\bf F\+L\+O\+A\+T} $>$, {\bf F\+L\+O\+A\+T} $>$ \&}]{action\+Value\+Map}
+\end{DoxyParamCaption}
+) const}}\label{classAI_1_1Algorithm_1_1GradientDescent_a651b2804acf14aaebdf461d39cd970eb}
+
+\begin{DoxyParams}{Parameters}
+{\em action\+Value\+Map} & state-\/action to value mapping. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value. 
+\end{DoxyReturn}
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a04a6c7f4c2e0046dd70b2cfd98322971}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{get\+Size}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::get\+Size (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -86,26 +186,26 @@ size\-\_\-t \hyperlink{classAI_1_1Algorithm_1_1GradientDescent_a04a6c7f4c2e0046d
 \begin{DoxyReturn}{Returns}
 Size of both weight vector and traces vector. 
 \end{DoxyReturn}
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a19111aa6a83836a2e12e623e4004c4d3}{\index{A\-I\-::\-Algorithm\-::\-Gradient\-Descent@{A\-I\-::\-Algorithm\-::\-Gradient\-Descent}!get\-Value\-From\-Feature\-Vector@{get\-Value\-From\-Feature\-Vector}}
-\index{get\-Value\-From\-Feature\-Vector@{get\-Value\-From\-Feature\-Vector}!AI::Algorithm::GradientDescent@{A\-I\-::\-Algorithm\-::\-Gradient\-Descent}}
-\subsubsection[{get\-Value\-From\-Feature\-Vector}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-L\-O\-A\-T} A\-I\-::\-Algorithm\-::\-Gradient\-Descent\-::get\-Value\-From\-Feature\-Vector (
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a19111aa6a83836a2e12e623e4004c4d3}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!get\+Value\+From\+Feature\+Vector@{get\+Value\+From\+Feature\+Vector}}
+\index{get\+Value\+From\+Feature\+Vector@{get\+Value\+From\+Feature\+Vector}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{get\+Value\+From\+Feature\+Vector}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+L\+O\+A\+T} A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::get\+Value\+From\+Feature\+Vector (
 \begin{DoxyParamCaption}
-\item[{const {\bf F\-E\-A\-T\-U\-R\-E\-\_\-\-V\-E\-C\-T\-O\-R} \&}]{fv}
+\item[{const {\bf F\+E\+A\+T\+U\+R\+E\+\_\+\+V\+E\+C\+T\+O\+R} \&}]{fv}
 \end{DoxyParamCaption}
 ) const}}\label{classAI_1_1Algorithm_1_1GradientDescent_a19111aa6a83836a2e12e623e4004c4d3}
 Get the value of the parameters in the real space. 
 \begin{DoxyParams}{Parameters}
-{\em feature\-Vector} & \\
+{\em feature\+Vector} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 corresponding value. 
 \end{DoxyReturn}
-\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a8dcc60ebf28babbe120fe7b20334380f}{\index{A\-I\-::\-Algorithm\-::\-Gradient\-Descent@{A\-I\-::\-Algorithm\-::\-Gradient\-Descent}!get\-Value\-From\-Parameters@{get\-Value\-From\-Parameters}}
-\index{get\-Value\-From\-Parameters@{get\-Value\-From\-Parameters}!AI::Algorithm::GradientDescent@{A\-I\-::\-Algorithm\-::\-Gradient\-Descent}}
-\subsubsection[{get\-Value\-From\-Parameters}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-L\-O\-A\-T} A\-I\-::\-Algorithm\-::\-Gradient\-Descent\-::get\-Value\-From\-Parameters (
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a8dcc60ebf28babbe120fe7b20334380f}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!get\+Value\+From\+Parameters@{get\+Value\+From\+Parameters}}
+\index{get\+Value\+From\+Parameters@{get\+Value\+From\+Parameters}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{get\+Value\+From\+Parameters}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+L\+O\+A\+T} A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::get\+Value\+From\+Parameters (
 \begin{DoxyParamCaption}
-\item[{const vector$<$ {\bf F\-L\-O\-A\-T} $>$ \&}]{parameters}
+\item[{const vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{parameters}
 \end{DoxyParamCaption}
 ) const}}\label{classAI_1_1Algorithm_1_1GradientDescent_a8dcc60ebf28babbe120fe7b20334380f}
 Get the value of the parameters in the real space. 
@@ -116,8 +216,115 @@ Get the value of the parameters in the real space.
 \begin{DoxyReturn}{Returns}
 corresponding value. 
 \end{DoxyReturn}
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a68b6d1772a25ce2d6d98cfd3ab697b02}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!increment\+Eligibility\+Traces@{increment\+Eligibility\+Traces}}
+\index{increment\+Eligibility\+Traces@{increment\+Eligibility\+Traces}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{increment\+Eligibility\+Traces}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::increment\+Eligibility\+Traces (
+\begin{DoxyParamCaption}
+\item[{const {\bf F\+E\+A\+T\+U\+R\+E\+\_\+\+V\+E\+C\+T\+O\+R} \&}]{fv}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Algorithm_1_1GradientDescent_a68b6d1772a25ce2d6d98cfd3ab697b02}
+Increase the eligibility traces of a given feature vector. 
+\begin{DoxyParams}{Parameters}
+{\em fv} & feature vector. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_ae0038bf21f9576cfa0d24a942f0a6c5a}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!replace\+Eligibility\+Traces@{replace\+Eligibility\+Traces}}
+\index{replace\+Eligibility\+Traces@{replace\+Eligibility\+Traces}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{replace\+Eligibility\+Traces}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::replace\+Eligibility\+Traces (
+\begin{DoxyParamCaption}
+\item[{const {\bf F\+E\+A\+T\+U\+R\+E\+\_\+\+V\+E\+C\+T\+O\+R} \&}]{fv}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Algorithm_1_1GradientDescent_ae0038bf21f9576cfa0d24a942f0a6c5a}
+Replace the eligibility traces for each feature vector by 1.\+0\+F. 
+\begin{DoxyParams}{Parameters}
+{\em fv} & feature vector. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a2ce6e2bbfc5b4d821d02f454c0e3c8c5}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!reset\+Eligibility\+Traces@{reset\+Eligibility\+Traces}}
+\index{reset\+Eligibility\+Traces@{reset\+Eligibility\+Traces}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{reset\+Eligibility\+Traces}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::reset\+Eligibility\+Traces (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAI_1_1Algorithm_1_1GradientDescent_a2ce6e2bbfc5b4d821d02f454c0e3c8c5}
+Make all eligibility trace to 0.\+0\+F. \hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a80faa3771790c726f20f2edff4ad8ff5}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!update\+Weights@{update\+Weights}}
+\index{update\+Weights@{update\+Weights}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{update\+Weights}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::update\+Weights (
+\begin{DoxyParamCaption}
+\item[{const vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{state\+Vector, }
+\item[{const action\+Vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{av, }
+\item[{const vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{next\+State, }
+\item[{const {\bf F\+L\+O\+A\+T}}]{reward, }
+\item[{const set$<$ action\+Vector$<$ {\bf F\+L\+O\+A\+T} $>$ $>$ \&}]{action\+Set}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Algorithm_1_1GradientDescent_a80faa3771790c726f20f2edff4ad8ff5}
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Vector} & vector of states. \\
+\hline
+{\em av} & action vector. \\
+\hline
+{\em next\+State} & next state vector. \\
+\hline
+{\em reward} & reward for going to takeing av in sate\+Vector. \\
+\hline
+{\em action\+Set} & Set of action vector. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_ab9193530a8d9c61f38707c5a3fc995eb}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!update\+Weights@{update\+Weights}}
+\index{update\+Weights@{update\+Weights}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{update\+Weights}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::update\+Weights (
+\begin{DoxyParamCaption}
+\item[{const vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{current\+State\+Vector, }
+\item[{const action\+Vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{current\+Action\+Vector, }
+\item[{const vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{next\+State\+Vector, }
+\item[{const vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{next\+Action, }
+\item[{const {\bf F\+L\+O\+A\+T}}]{reward}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAI_1_1Algorithm_1_1GradientDescent_ab9193530a8d9c61f38707c5a3fc995eb}
+
+\begin{DoxyParams}{Parameters}
+{\em current\+State\+Vector} & array of current states. \\
+\hline
+{\em current\+Action\+Vector} & array of action taken to get to current\+State\+Vector.. \\
+\hline
+{\em next\+State\+Vector} & array of next states. \\
+\hline
+{\em next\+Action} & array of next action taken to get to next\+State\+Vector. \\
+\hline
+{\em reward} & reward for taking next\+Action. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a353e283f916955efd47a830425583210}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!update\+Weights@{update\+Weights}}
+\index{update\+Weights@{update\+Weights}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{update\+Weights}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::update\+Weights (
+\begin{DoxyParamCaption}
+\item[{const vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{current\+State\+Vector, }
+\item[{const action\+Vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{current\+Action\+Vector, }
+\item[{const vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{next\+State\+Vector, }
+\item[{const {\bf F\+L\+O\+A\+T}}]{next\+Action\+Value, }
+\item[{const {\bf F\+L\+O\+A\+T}}]{reward}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAI_1_1Algorithm_1_1GradientDescent_a353e283f916955efd47a830425583210}
+
+\begin{DoxyParams}{Parameters}
+{\em current\+State\+Vector} & array of current states. \\
+\hline
+{\em action\+Vector} & action taken to get to next\+State\+Vector. \\
+\hline
+{\em next\+State\+Vector} & array of next states. \\
+\hline
+{\em reward} & reward for taking next\+Action. \\
+\hline
+\end{DoxyParams}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\subsection{Member Data Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1GradientDescent_a4667068a5810028bef4e4eb0138da297}{\index{A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}!\+\_\+discount\+Rate@{\+\_\+discount\+Rate}}
+\index{\+\_\+discount\+Rate@{\+\_\+discount\+Rate}!A\+I\+::\+Algorithm\+::\+Gradient\+Descent@{A\+I\+::\+Algorithm\+::\+Gradient\+Descent}}
+\subsubsection[{\+\_\+discount\+Rate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+I\+::\+F\+L\+O\+A\+T} A\+I\+::\+Algorithm\+::\+Gradient\+Descent\+::\+\_\+discount\+Rate\hspace{0.3cm}{\ttfamily [protected]}}}\label{classAI_1_1Algorithm_1_1GradientDescent_a4667068a5810028bef4e4eb0138da297}
+Discount rate, mix with \+\_\+lambda on how past states influence current. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Algorithms/\-Supervised\-Learning/Gradient\-Descent.\-h\end{DoxyCompactItemize}
+Algorithms/\+Supervised\+Learning/Gradient\+Descent.\+h\end{DoxyCompactItemize}

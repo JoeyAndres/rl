@@ -13,6 +13,10 @@
 
 namespace AI {
 namespace Algorithm {
+
+/*! \class TileCodeMurMur
+ *  \brief Tile Code using MurMur3 hash.
+ */
 class TileCodeMurMur : public TileCode {
  public:
   TileCodeMurMur(vector<DimensionInfo<FLOAT> > dimensionalInfos,
@@ -21,11 +25,6 @@ class TileCodeMurMur : public TileCode {
   TileCodeMurMur(vector<DimensionInfo<FLOAT> > dimensionalInfos,
                  size_t numTilings, size_t sizeHint);
 
-  /**
-   * Hashed the parameter in Real space to a Natural space [0, infinity).
-   * @param parameters
-   * @return Vector of discretize index.
-   */
   virtual void getFeatureVector(const STATE_CONT& parameters,
                                 FEATURE_VECTOR& fv);
 };

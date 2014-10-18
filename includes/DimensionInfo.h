@@ -113,7 +113,7 @@ class DimensionInfo {
                             //!< implementation handles 1 more grid.
   D _offsets; //!< _rangeDifference/_gridCountIdeal.
 
-  AI::FLOAT _generalizationScale;
+  AI::FLOAT _generalizationScale; //!< How far do we deviate from the sample.
 };
 
 template<typename D>

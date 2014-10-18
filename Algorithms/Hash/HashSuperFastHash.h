@@ -16,6 +16,9 @@ namespace AI {
 namespace Algorithm {
 namespace Hash {
 
+/*! \class SuperFastHash
+ *  \brief SuperFastHash implementation encapsulated.
+ */
 class SuperFastHash : public HashInterface<AI::INT> {
  public:
   virtual AI::INT hash(const AI::BYTE *const byteArray, size_t len);

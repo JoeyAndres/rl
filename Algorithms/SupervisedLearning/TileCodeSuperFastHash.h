@@ -14,9 +14,8 @@
 
 namespace AI {
 namespace Algorithm {
-/**
- * TileCoding with Superfast hash.
- * Superfast hash created by Paul Hsieh.
+/*! \class TileCodeSuperFastHash
+ *  \brief Tile Code using SuperFastHash.
  */
 class TileCodeSuperFastHash : public TileCode {
  public:

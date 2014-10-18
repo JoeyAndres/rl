@@ -13,7 +13,7 @@ var indexSectionsWithContent =
   3: "_abdeghilopqrstu",
   4: "_",
   5: "abfisu",
-  6: "ad"
+  6: "adt"
 };
 
 var indexSectionNames =

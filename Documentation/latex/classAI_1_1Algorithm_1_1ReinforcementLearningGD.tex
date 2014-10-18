@@ -1,7 +1,16 @@
-\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD}{\section{A\-I\-:\-:Algorithm\-:\-:Reinforcement\-Learning\-G\-D Class Reference}
-\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD}\index{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D@{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D}}
+\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD}{\section{A\+I\+:\+:Algorithm\+:\+:Reinforcement\+Learning\+G\+D Class Reference}
+\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD}\index{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}}
 }
-Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Reinforcement\-Learning\-G\-D\-:\begin{figure}[H]
+
+
+Gradient descent implementation of Reinforcement Learning.  
+
+
+
+
+{\ttfamily \#include $<$Reinforcement\+Learning\+G\+D.\+h$>$}
+
+Inheritance diagram for A\+I\+:\+:Algorithm\+:\+:Reinforcement\+Learning\+G\+D\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=1.931035cm]{classAI_1_1Algorithm_1_1ReinforcementLearningGD}
@@ -10,107 +19,175 @@ Inheritance diagram for A\-I\-:\-:Algorithm\-:\-:Reinforcement\-Learning\-G\-D\-
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a51985e4bd95a874482c4cc378b0fc86e}{{\bfseries Reinforcement\-Learning\-G\-D} (\hyperlink{classAI_1_1Algorithm_1_1TileCode}{Tile\-Code} \&tile\-Code, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} step\-Size, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} discount\-Rate, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} lambda, \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\-::\-Policy}$<$ vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$, vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ $>$ \&policy)}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a51985e4bd95a874482c4cc378b0fc86e}
-
+\hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a51985e4bd95a874482c4cc378b0fc86e}{Reinforcement\+Learning\+G\+D} (\hyperlink{classAI_1_1Algorithm_1_1TileCode}{Tile\+Code} \&tile\+Code, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} step\+Size, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} discount\+Rate, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} lambda, \hyperlink{classAI_1_1Algorithm_1_1Policy_1_1Policy}{Policy\+::\+Policy}$<$ vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$, vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ $>$ \&policy)
 \item 
-virtual void \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearningGD_afca8d60ac090dec611f3834c0e8872c0}{update} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$, vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ $>$ \&current\-State\-Action, const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&next\-State\-Vector, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} reward, const set$<$ vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ $>$ \&action\-Set)
+virtual void \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearningGD_afca8d60ac090dec611f3834c0e8872c0}{update} (const \hyperlink{classAI_1_1StateAction}{State\+Action}$<$ vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$, vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ $>$ \&current\+State\+Action, const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&next\+State\+Vector, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} reward, const set$<$ vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ $>$ \&action\+Set)
 \item 
-virtual const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \& \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a97a8fe122f39d0b47a9df496502c2555}{get\-Action} (const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&state, const set$<$ vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ $>$ \&action\-Set)
+virtual const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \& \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a97a8fe122f39d0b47a9df496502c2555}{get\+Action} (const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&state, const set$<$ vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ $>$ \&action\+Set)
 \item 
-virtual \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a937edc4d2b11025bccbd450163155660}{get\-State\-Action\-Value} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$, vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ $>$ \&state\-Action)
+virtual \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a937edc4d2b11025bccbd450163155660}{get\+State\+Action\+Value} (const \hyperlink{classAI_1_1StateAction}{State\+Action}$<$ vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$, vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ $>$ \&state\+Action)
 \item 
 virtual void \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearningGD_ad6f2fa8bc762d6760e9c61a132ccd098}{reset} ()
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_ae03c74aee807bbf220c7e330666e3318}{\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} {\bfseries \-\_\-get\-State\-Action\-Value} (const \hyperlink{classAI_1_1StateAction}{State\-Action}$<$ vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$, vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ $>$ \&state\-Action)}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_ae03c74aee807bbf220c7e330666e3318}
-
+\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearningGD_ae03c74aee807bbf220c7e330666e3318}{\+\_\+get\+State\+Action\+Value} (const \hyperlink{classAI_1_1StateAction}{State\+Action}$<$ vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$, vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ $>$ \&state\+Action)
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a37eb184f5219dce30af3f60f1835999e}{void {\bfseries \-\_\-build\-Action\-Values} (const set$<$ vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ $>$ \&action\-Set, const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&next\-State, map$<$ action\-Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\-L\-O\-A\-T} $>$ \&action\-Value\-Map)}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a37eb184f5219dce30af3f60f1835999e}
-
+void \hyperlink{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a37eb184f5219dce30af3f60f1835999e}{\+\_\+build\+Action\+Values} (const set$<$ vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ $>$ \&action\+Set, const vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&next\+State, map$<$ action\+Vector$<$ \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$, \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{F\+L\+O\+A\+T} $>$ \&action\+Value\+Map)
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a881c614b3deb26f39683386a72b76dda}{\hyperlink{classAI_1_1Algorithm_1_1GradientDescent}{Gradient\-Descent} {\bfseries \-\_\-gradient\-Descent}}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a881c614b3deb26f39683386a72b76dda}
+\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a881c614b3deb26f39683386a72b76dda}{\hyperlink{classAI_1_1Algorithm_1_1GradientDescent}{Gradient\+Descent} {\bfseries \+\_\+gradient\+Descent}}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a881c614b3deb26f39683386a72b76dda}
 
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
-\subsection{Member Function Documentation}
-\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a97a8fe122f39d0b47a9df496502c2555}{\index{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D@{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D}!get\-Action@{get\-Action}}
-\index{get\-Action@{get\-Action}!AI::Algorithm::ReinforcementLearningGD@{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D}}
-\subsubsection[{get\-Action}]{\setlength{\rightskip}{0pt plus 5cm}const vector$<$ {\bf F\-L\-O\-A\-T} $>$ \& A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D\-::get\-Action (
-\begin{DoxyParamCaption}
-\item[{const vector$<$ {\bf F\-L\-O\-A\-T} $>$ \&}]{state, }
-\item[{const set$<$ vector$<$ {\bf F\-L\-O\-A\-T} $>$ $>$ \&}]{action\-Set}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a97a8fe122f39d0b47a9df496502c2555}
-A policy that varies between algorithms. 
+\subsection{Detailed Description}
+Gradient descent implementation of Reinforcement Learning. 
 
-Implements \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_afeca4eded9bc0a02312ccbbfd05f8daa}{A\-I\-::\-Algorithm\-::\-Learning\-Algorithm$<$ vector$<$ F\-L\-O\-A\-T $>$, vector$<$ F\-L\-O\-A\-T $>$ $>$}.
-
-\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a937edc4d2b11025bccbd450163155660}{\index{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D@{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D}!get\-State\-Action\-Value@{get\-State\-Action\-Value}}
-\index{get\-State\-Action\-Value@{get\-State\-Action\-Value}!AI::Algorithm::ReinforcementLearningGD@{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D}}
-\subsubsection[{get\-State\-Action\-Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-L\-O\-A\-T} A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D\-::get\-State\-Action\-Value (
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a51985e4bd95a874482c4cc378b0fc86e}{\index{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}!Reinforcement\+Learning\+G\+D@{Reinforcement\+Learning\+G\+D}}
+\index{Reinforcement\+Learning\+G\+D@{Reinforcement\+Learning\+G\+D}!A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}}
+\subsubsection[{Reinforcement\+Learning\+G\+D}]{\setlength{\rightskip}{0pt plus 5cm}A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D\+::\+Reinforcement\+Learning\+G\+D (
 \begin{DoxyParamCaption}
-\item[{const {\bf State\-Action}$<$ vector$<$ {\bf F\-L\-O\-A\-T} $>$, vector$<$ {\bf F\-L\-O\-A\-T} $>$ $>$ \&}]{state\-Action}
+\item[{{\bf Tile\+Code} \&}]{tile\+Code, }
+\item[{{\bf A\+I\+::\+F\+L\+O\+A\+T}}]{step\+Size, }
+\item[{{\bf A\+I\+::\+F\+L\+O\+A\+T}}]{discount\+Rate, }
+\item[{{\bf A\+I\+::\+F\+L\+O\+A\+T}}]{lambda, }
+\item[{{\bf Policy\+::\+Policy}$<$ vector$<$ {\bf F\+L\+O\+A\+T} $>$, vector$<$ {\bf F\+L\+O\+A\+T} $>$ $>$ \&}]{policy}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a937edc4d2b11025bccbd450163155660}
-Acquire the value of the state action pair. Each algorithm group (rl, supervised, unsupervised), or specific algorithm (Q, \hyperlink{classAI_1_1Algorithm_1_1Sarsa}{Sarsa}, Gradient Descent) must implement. 
+)}}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a51985e4bd95a874482c4cc378b0fc86e}
+
 \begin{DoxyParams}{Parameters}
-{\em state\-Action} & \\
+{\em tile\+Code} & tile\+Code implementation to be aggregated. \\
+\hline
+{\em step\+Size} & step size indicates how fast increment to a new estimates occur. Too big will be fast but will likely cause overestimate. Too low will be slow but will likely cause more precise estimates. \\
+\hline
+{\em discount\+Rate} & How much current state influence future states. \\
+\hline
+{\em lambda} & How much current state influence future states (multiplied with discount rate). \\
+\hline
+{\em policy} & Control policy. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a37eb184f5219dce30af3f60f1835999e}{\index{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}!\+\_\+build\+Action\+Values@{\+\_\+build\+Action\+Values}}
+\index{\+\_\+build\+Action\+Values@{\+\_\+build\+Action\+Values}!A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}}
+\subsubsection[{\+\_\+build\+Action\+Values}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D\+::\+\_\+build\+Action\+Values (
+\begin{DoxyParamCaption}
+\item[{const set$<$ vector$<$ {\bf F\+L\+O\+A\+T} $>$ $>$ \&}]{action\+Set, }
+\item[{const vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{next\+State, }
+\item[{map$<$ action\+Vector$<$ {\bf F\+L\+O\+A\+T} $>$, {\bf F\+L\+O\+A\+T} $>$ \&}]{action\+Value\+Map}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a37eb184f5219dce30af3f60f1835999e}
+
+\begin{DoxyParams}{Parameters}
+{\em action\+Set} & set of possible actions. \\
+\hline
+{\em next\+State} & state, action just got applied. \\
+\hline
+{\em action\+Value\+Map} & mapping of value for every action. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_ae03c74aee807bbf220c7e330666e3318}{\index{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}!\+\_\+get\+State\+Action\+Value@{\+\_\+get\+State\+Action\+Value}}
+\index{\+\_\+get\+State\+Action\+Value@{\+\_\+get\+State\+Action\+Value}!A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}}
+\subsubsection[{\+\_\+get\+State\+Action\+Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+L\+O\+A\+T} A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D\+::\+\_\+get\+State\+Action\+Value (
+\begin{DoxyParamCaption}
+\item[{const {\bf State\+Action}$<$ vector$<$ {\bf F\+L\+O\+A\+T} $>$, vector$<$ {\bf F\+L\+O\+A\+T} $>$ $>$ \&}]{state\+Action}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_ae03c74aee807bbf220c7e330666e3318}
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Action} & State-\/action pair to determine value of. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Value of state\-Action. 
+value of state-\/actio pair. 
+\end{DoxyReturn}
+\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a97a8fe122f39d0b47a9df496502c2555}{\index{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}!get\+Action@{get\+Action}}
+\index{get\+Action@{get\+Action}!A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}}
+\subsubsection[{get\+Action}]{\setlength{\rightskip}{0pt plus 5cm}const vector$<$ {\bf F\+L\+O\+A\+T} $>$ \& A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D\+::get\+Action (
+\begin{DoxyParamCaption}
+\item[{const vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{state, }
+\item[{const set$<$ vector$<$ {\bf F\+L\+O\+A\+T} $>$ $>$ \&}]{action\+Set}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a97a8fe122f39d0b47a9df496502c2555}
+
+\begin{DoxyParams}{Parameters}
+{\em state} & State to take action to. \\
+\hline
+{\em action\+Set} & Set of possible actions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Action determined by Control Policy. 
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a1044b2558109e8dd3d3bf5bedb9723b5}{A\-I\-::\-Algorithm\-::\-Learning\-Algorithm$<$ vector$<$ F\-L\-O\-A\-T $>$, vector$<$ F\-L\-O\-A\-T $>$ $>$}.
+Implements \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_afeca4eded9bc0a02312ccbbfd05f8daa}{A\+I\+::\+Algorithm\+::\+Learning\+Algorithm$<$ vector$<$ F\+L\+O\+A\+T $>$, vector$<$ F\+L\+O\+A\+T $>$ $>$}.
 
-\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_ad6f2fa8bc762d6760e9c61a132ccd098}{\index{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D@{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D}!reset@{reset}}
-\index{reset@{reset}!AI::Algorithm::ReinforcementLearningGD@{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D}}
-\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}void A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D\-::reset (
+\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a937edc4d2b11025bccbd450163155660}{\index{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}!get\+State\+Action\+Value@{get\+State\+Action\+Value}}
+\index{get\+State\+Action\+Value@{get\+State\+Action\+Value}!A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}}
+\subsubsection[{get\+State\+Action\+Value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+L\+O\+A\+T} A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D\+::get\+State\+Action\+Value (
+\begin{DoxyParamCaption}
+\item[{const {\bf State\+Action}$<$ vector$<$ {\bf F\+L\+O\+A\+T} $>$, vector$<$ {\bf F\+L\+O\+A\+T} $>$ $>$ \&}]{state\+Action}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_a937edc4d2b11025bccbd450163155660}
+
+\begin{DoxyParams}{Parameters}
+{\em state\+Action} & State-\/action pair to determine value of. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value of state-\/actio pair. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a1044b2558109e8dd3d3bf5bedb9723b5}{A\+I\+::\+Algorithm\+::\+Learning\+Algorithm$<$ vector$<$ F\+L\+O\+A\+T $>$, vector$<$ F\+L\+O\+A\+T $>$ $>$}.
+
+\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_ad6f2fa8bc762d6760e9c61a132ccd098}{\index{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}!reset@{reset}}
+\index{reset@{reset}!A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D\+::reset (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_ad6f2fa8bc762d6760e9c61a132ccd098}
-Reset anything prior to running episode. 
+Reset routine for an algorithm for every episode. 
 
-Reimplemented from \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_aebe650b79f39ffd46ece7adb44ddaf60}{A\-I\-::\-Algorithm\-::\-Learning\-Algorithm$<$ vector$<$ F\-L\-O\-A\-T $>$, vector$<$ F\-L\-O\-A\-T $>$ $>$}.
+Reimplemented from \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_aebe650b79f39ffd46ece7adb44ddaf60}{A\+I\+::\+Algorithm\+::\+Learning\+Algorithm$<$ vector$<$ F\+L\+O\+A\+T $>$, vector$<$ F\+L\+O\+A\+T $>$ $>$}.
 
-\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_afca8d60ac090dec611f3834c0e8872c0}{\index{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D@{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D}!update@{update}}
-\index{update@{update}!AI::Algorithm::ReinforcementLearningGD@{A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D}}
-\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void A\-I\-::\-Algorithm\-::\-Reinforcement\-Learning\-G\-D\-::update (
+\hypertarget{classAI_1_1Algorithm_1_1ReinforcementLearningGD_afca8d60ac090dec611f3834c0e8872c0}{\index{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}!update@{update}}
+\index{update@{update}!A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D@{A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void A\+I\+::\+Algorithm\+::\+Reinforcement\+Learning\+G\+D\+::update (
 \begin{DoxyParamCaption}
-\item[{const {\bf State\-Action}$<$ vector$<$ {\bf F\-L\-O\-A\-T} $>$, vector$<$ {\bf F\-L\-O\-A\-T} $>$ $>$ \&}]{current\-State\-Action, }
-\item[{const vector$<$ {\bf F\-L\-O\-A\-T} $>$ \&}]{next\-State, }
-\item[{const {\bf F\-L\-O\-A\-T}}]{reward, }
-\item[{const set$<$ vector$<$ {\bf F\-L\-O\-A\-T} $>$ $>$ \&}]{action\-Set}
+\item[{const {\bf State\+Action}$<$ vector$<$ {\bf F\+L\+O\+A\+T} $>$, vector$<$ {\bf F\+L\+O\+A\+T} $>$ $>$ \&}]{current\+State\+Action, }
+\item[{const vector$<$ {\bf F\+L\+O\+A\+T} $>$ \&}]{next\+State\+Vector, }
+\item[{const {\bf F\+L\+O\+A\+T}}]{reward, }
+\item[{const set$<$ vector$<$ {\bf F\+L\+O\+A\+T} $>$ $>$ \&}]{action\+Set}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1ReinforcementLearningGD_afca8d60ac090dec611f3834c0e8872c0}
-Update the state\-Action map. 
+
 \begin{DoxyParams}{Parameters}
-{\em current\-State} & current\-State agent is in. \\
+{\em current\+State\+Action} & current state-\/action vector to apply. \\
 \hline
-{\em current\-Action} & action taken by agent by being in current\-State. \\
+{\em next\+State\+Vector} & resulting state by taking state-\/action pair above. \\
 \hline
-{\em next\-State} & next\-State by taking current\-Action in current\-State. \\
+{\em reward} & reward for going to next\+State\+Vector from current\+State. \\
 \hline
-{\em reward} & reward of current\-State\-Action. \\
-\hline
-{\em action\-Set} & A set of all actions. \\
+{\em action\+Set} & set of possible actions. \\
 \hline
 \end{DoxyParams}
 
 
-Implements \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a7d216d791e558e15a73083af6257ed72}{A\-I\-::\-Algorithm\-::\-Learning\-Algorithm$<$ vector$<$ F\-L\-O\-A\-T $>$, vector$<$ F\-L\-O\-A\-T $>$ $>$}.
+Implements \hyperlink{classAI_1_1Algorithm_1_1LearningAlgorithm_a7d216d791e558e15a73083af6257ed72}{A\+I\+::\+Algorithm\+::\+Learning\+Algorithm$<$ vector$<$ F\+L\+O\+A\+T $>$, vector$<$ F\+L\+O\+A\+T $>$ $>$}.
 
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Algorithms/\-Supervised\-Learning/Reinforcement\-Learning\-G\-D.\-h\end{DoxyCompactItemize}
+Algorithms/\+Supervised\+Learning/Reinforcement\+Learning\+G\+D.\+h\end{DoxyCompactItemize}

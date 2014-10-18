@@ -21,6 +21,9 @@ namespace AI {
 namespace Algorithm {
 namespace Hash{
 
+/*! \class UNH
+ *  \brief UNH implementation encapsulation.
+ */
 class UNH : public HashInterface<AI::INT> {
  public:
   virtual AI::INT hash(const AI::BYTE *const byteArray, size_t len);

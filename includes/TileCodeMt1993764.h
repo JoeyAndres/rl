@@ -15,6 +15,9 @@
 namespace AI {
 namespace Algorithm {
 
+/*! \class TileCodeMt1993764
+ *  \brief Tile Code using Mt1993764 hash.2
+ */
 class TileCodeMt1993764 : public TileCode {
  public:
   /**

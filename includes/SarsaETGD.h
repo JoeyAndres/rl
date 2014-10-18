@@ -22,6 +22,10 @@ using namespace std;
 namespace AI {
 namespace Algorithm {
 
+/*! \class SarsaETGD
+ *  \brief Gradient Descent with Sarsa implementation (the same policy for
+ *         learning and action selection).
+ */
 class SarsaETGD final: public ReinforcementLearningGD {
  public:
   SarsaETGD(TileCode& tileCode, AI::FLOAT stepSize, AI::FLOAT discountRate,

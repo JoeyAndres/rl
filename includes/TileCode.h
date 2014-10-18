@@ -25,6 +25,12 @@ using namespace std;
 namespace AI {
 namespace Algorithm {
 
+/*! \class TileCode
+ *  \brief Base object encapsulate tile coding.
+ *
+ *  For an in-dept explaination of Tile Coding, see
+ *  <a href="tileCoding.html">Tile Coding</a>
+ */
 class TileCode {
  public:
   /**
@@ -37,7 +43,7 @@ class TileCode {
   /**
    * Hashed the parameter in Real space to a Natural space [0, infinity).
    * @param parameters
-   * @return Vector of discretize index.
+   * @return Vector of "discretize" index.
    */
   virtual void getFeatureVector(const STATE_CONT& parameters,
                                 FEATURE_VECTOR& fv) = 0;
@@ -53,7 +59,7 @@ class TileCode {
   void setNumTilings(size_t numTilings);
 
   /**
-   * @return number of tilings.
+   * @return number of tiling.
    */
   size_t getNumTilings() const;
 
@@ -66,30 +72,43 @@ class TileCode {
    */
   size_t getDimension() const;
 
- public:
-  // Static functions.
-  static void displayGnuPlot(const TileCode& tileCode);
  protected:
+  /**
+   * @return Number of possible grid points.
+   */
   size_t _calculateSizeCache();
+
+  /**
+   * @param param
+   * @param tilingIndex
+   * @param dimensionIndex
+   * @return
+   */
   size_t _paramToGridValue(AI::FLOAT param, size_t tilingIndex,
                            size_t dimensionIndex);
 
  protected:
-  size_t _dimension;
-  size_t _numTilings;
-  vector<DimensionInfo<FLOAT> > _dimensionalInfos;
+  size_t _dimension;  //!< How many dimension.
+  size_t _numTilings;  //!< How many tilings/also known as sample.
+  vector<DimensionInfo<FLOAT> > _dimensionalInfos;  //!< Contains information for each dimension.
   std::random_device _randomDevice;
   std::default_random_engine _pseudoRNG;
 
-  // This implementation is in response to massive performance drop due
-  // unnecessary recalculation of size. Note to update this when possible.
+  /*! \var _sizeCache
+   *
+   *  This implementation is in response to massive performance drop due
+   *  unnecessary recalculation of size. Note to update this when possible.
+   */
   size_t _sizeCache;
 
-  // To avoid recalculating randomness, this aid the consistency of sample.
-  // One might say, that its not a real sample if the offsets are precomputed,
-  // and he is right. The problem though is that doing it randomly(pseudo or otherwise)
-  // would require ALOT more #tilings to achieve consistency. This alleviates us from
-  // that problem and still have a reasonable generalization.
+  /*! \var _randomOffsets
+   *
+   * To avoid recalculating randomness, this aid the consistency of sample.
+   * One might say, that its not a real sample if the offsets are pre-computed,
+   * and he is right. The problem though is that doing it randomly(pseudo or otherwise)
+   * would require ALOT more number tiling to achieve consistency. This alleviates us from
+   * that problem and still have a reasonable generalization.
+   */
   vector<vector<AI::FLOAT> > _randomOffsets;
 };
 

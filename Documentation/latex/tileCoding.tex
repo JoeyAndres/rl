@@ -1,0 +1,18 @@
+\hypertarget{tileCoding_section01}{}\section{Coarse Coding}\label{tileCoding_section01}
+Suppose we have a two-\/dimensional state-\/action space more generally called {\itshape feature}. Each dimension is in Real Domain $\mathbb{R}$. Since its in Real Domain $\mathbb{R}$, its continuous and thus harder to represent it with individual state-\/action pair. Consider for example a state-\/space in domain $[0.0, 1.0]$. How would the state-\/action space be represented? It could be in 0.\+1 increment giving us $10\times 10$ state space or 0.\+2 increment, giving us $5\times 5$ state space. How would we generalize between intermediate points? All of these problems are addressed by Coarse Coding.
+
+Coarse Coding allows us to handle the division into finite state space as well generalization around intermediate states (since continuous, there's infinite intermediate states). Suppose one of the state space is $x$ and $y$.
+
+
+
+In the image above, the state space have circles scattered around them. For $x$, all the circles that intersect $x$ are generalized, this includes $y$. The bigger the radius of the circle, the bigger the generalization. This is Coarse Coding.\hypertarget{tileCoding_section02}{}\section{Tile Coding}\label{tileCoding_section02}
+Tile Coding is a type of Coarse Coding. For a given state-\/space or {\itshape feature}, we create a number of copies, called {\itshape tiling}. For easier computation and elaboration, grid-\/like {\itshape tilings} are used. For example for a 1 dimensional state and 1 dimensional action, the state-\/action space will be 2 dimensional. This will be represented via the following,
+
+
+
+For each state-\/action pair, it is represented by a vertex. One could say that the state and action are divided into 5 state space. Each square, represent immediate states known as a {\itshape tile} of the {\itshape tiling} grid. {\itshape Tilings}, represent a number of {\itshape tiling} offseted by different amount. The number of {\itshape tiling} determines the resolution of final estimate (Quality of estimate). Compared with the example in Coarse Coding, the randomized tiling is considered the random placement of circles. This is elaborated by the image,
+
+
+
+By default, the length of the generalization is the 1 tile away. For example, for a state in coordinate (0,0) in the example above, the generalization limit is (0.\+99, 99), (0.\+0, 0.\+99), (0.\+99, 0.\+0) boundaries.\hypertarget{tileCoding_section03}{}\section{Implementation Example}\label{tileCoding_section03}
+Work In Progress. 

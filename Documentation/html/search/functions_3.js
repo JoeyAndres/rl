@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['decreaseeligibilitytraces',['decreaseEligibilityTraces',['../classAI_1_1Algorithm_1_1GradientDescent.html#a5c5ae472417bc016fdd185875614359d',1,'AI::Algorithm::GradientDescent::decreaseEligibilityTraces()'],['../classAI_1_1Algorithm_1_1GradientDescentCC.html#a5cd9bd033e8556b4961370da3298cfce',1,'AI::Algorithm::GradientDescentCC::decreaseEligibilityTraces()']]],
   ['dimensioninfo',['DimensionInfo',['../classAI_1_1Algorithm_1_1DimensionInfo.html#a81474f419c3763f3de2833c8edb378c4',1,'AI::Algorithm::DimensionInfo']]],
   ['dynaq',['DynaQ',['../classAI_1_1Algorithm_1_1DynaQ.html#aa543816270f72b2c4ac1f77fb818f792',1,'AI::Algorithm::DynaQ']]],
   ['dynaqbase',['DynaQBase',['../classAI_1_1Algorithm_1_1DynaQBase.html#a089f4024fab2f19179dea637b7f6c8ee',1,'AI::Algorithm::DynaQBase']]],

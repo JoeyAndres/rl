@@ -15,6 +15,10 @@
 
 namespace AI {
 namespace Algorithm {
+
+/*! \class TileCodeUNH
+ *  \brief Tile Code using University New Hampshire hash, or UNH.
+ */
 class TileCodeUNH : public TileCode {
  public:
   TileCodeUNH(vector<DimensionInfo<FLOAT> > dimensionalInfos,

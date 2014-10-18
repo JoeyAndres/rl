@@ -28,7 +28,8 @@ namespace Algorithm {
 /*! \class TileCode
  *  \brief Base object encapsulate tile coding.
  *
- *  A <b>feature</b> is an area in which a sample point
+ *  For an in-dept explaination of Tile Coding, see
+ *  <a href="tileCoding.html">Tile Coding</a>
  */
 class TileCode {
  public:

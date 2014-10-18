@@ -1,5 +1,5 @@
-\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition}{\section{A\-I\-:\-:Algorithm\-:\-:State\-Action\-Transition$<$ S $>$ Class Template Reference}
-\label{classAI_1_1Algorithm_1_1StateActionTransition}\index{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition$<$ S $>$@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition$<$ S $>$}}
+\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition}{\section{A\+I\+:\+:Algorithm\+:\+:State\+Action\+Transition$<$ S $>$ Class Template Reference}
+\label{classAI_1_1Algorithm_1_1StateActionTransition}\index{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition$<$ S $>$@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition$<$ S $>$}}
 }
 
 
@@ -8,60 +8,74 @@ Used for {\itshape modeling} environment.
 
 
 
-{\ttfamily \#include $<$State\-Action\-Transition.\-h$>$}
+{\ttfamily \#include $<$State\+Action\+Transition.\+h$>$}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_a0ff25726bd2c09a8d712de3fa66e541e}{State\-Action\-Transition} (const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} greedy, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} step\-Size)
+\hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_a0ff25726bd2c09a8d712de3fa66e541e}{State\+Action\+Transition} (const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} greedy, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} step\+Size)
 \item 
-virtual void \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_a2e9b2a001f4199950f58429206a201e9}{update} (const S \&next\-State, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} reward)
+\hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_a0b8cbca426faed815fc8389f08fe6b2c}{State\+Action\+Transition} (const \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition}{State\+Action\+Transition} \&sat)
 \item 
-virtual \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_a73143dd7a80b3fb58ed0be0bb2962cd5}{get\-Reward} (const S \&state) const   throw (\-State\-Action\-Transition\-Exception)
+virtual void \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_a2e9b2a001f4199950f58429206a201e9}{update} (const S \&next\+State, const \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} reward)
 \item 
-virtual const S \& \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_a6f01c803796976ee877ac254a5698146}{get\-Next\-State} () const   throw (\-State\-Action\-Transition\-Exception)
+virtual \hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_a73143dd7a80b3fb58ed0be0bb2962cd5}{get\+Reward} (const S \&state) const   throw (\+State\+Action\+Transition\+Exception)
 \item 
-size\-\_\-t \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_ae55f6b156e658e97688974ecad7cbcd1}{get\-Size} () const 
+virtual const S \& \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_a6f01c803796976ee877ac254a5698146}{get\+Next\+State} () const   throw (\+State\+Action\+Transition\+Exception)
 \item 
-void \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_a50a3623dd0251375be981b3ac661df7d}{set\-Step\-Size} (\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} step\-Size)
+size\+\_\+t \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_ae55f6b156e658e97688974ecad7cbcd1}{get\+Size} () const 
 \item 
-\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_ab0b343006fd9e43d986f4fcef9dee088}{get\-Step\-Size} () const 
+void \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_a50a3623dd0251375be981b3ac661df7d}{set\+Step\+Size} (\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} step\+Size)
 \item 
-void \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_af3fa54d2864692a5a55d4b9c1052349b}{set\-Greedy} (\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} greedy)
+\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_ab0b343006fd9e43d986f4fcef9dee088}{get\+Step\+Size} () const 
 \item 
-\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\-I\-::\-F\-L\-O\-A\-T} \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_ad0afc4d202431930ab10c0514fd606dd}{get\-Greedy} () const 
+void \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_af3fa54d2864692a5a55d4b9c1052349b}{set\+Greedy} (\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} greedy)
+\item 
+\hyperlink{namespaceAI_a41b74884a20833db653dded3918e05c3}{A\+I\+::\+F\+L\+O\+A\+T} \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_ad0afc4d202431930ab10c0514fd606dd}{get\+Greedy} () const 
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$class S$>$class A\-I\-::\-Algorithm\-::\-State\-Action\-Transition$<$ S $>$}
+\subsubsection*{template$<$class S$>$class A\+I\+::\+Algorithm\+::\+State\+Action\+Transition$<$ S $>$}
 
 Used for {\itshape modeling} environment. 
 
-This module is represents the possible transition states for some state. Every call to State\-Transition\-::update(state, reward), will increase the value of its frequency and at the same time update the reward value. Call to get\-Next\-State would then would return a state on the basis of how likely it occurs. Call to get\-Reward would return the reward of the given state. 
+This module is represents the possible transition states for some state. Every call to State\+Transition\+::update(state, reward), will increase the value of its frequency and at the same time update the reward value. Call to get\+Next\+State would then would return a state on the basis of how likely it occurs. Call to get\+Reward would return the reward of the given state. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_a0ff25726bd2c09a8d712de3fa66e541e}{\index{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}!State\-Action\-Transition@{State\-Action\-Transition}}
-\index{State\-Action\-Transition@{State\-Action\-Transition}!AI::Algorithm::StateActionTransition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}}
-\subsubsection[{State\-Action\-Transition}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ {\bf A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}$<$ S $>$\-::{\bf State\-Action\-Transition} (
+\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_a0ff25726bd2c09a8d712de3fa66e541e}{\index{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}!State\+Action\+Transition@{State\+Action\+Transition}}
+\index{State\+Action\+Transition@{State\+Action\+Transition}!A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}}
+\subsubsection[{State\+Action\+Transition}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ {\bf A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}$<$ S $>$\+::{\bf State\+Action\+Transition} (
 \begin{DoxyParamCaption}
-\item[{const {\bf A\-I\-::\-F\-L\-O\-A\-T}}]{greedy, }
-\item[{const {\bf A\-I\-::\-F\-L\-O\-A\-T}}]{step\-Size}
+\item[{const {\bf A\+I\+::\+F\+L\+O\+A\+T}}]{greedy, }
+\item[{const {\bf A\+I\+::\+F\+L\+O\+A\+T}}]{step\+Size}
 \end{DoxyParamCaption}
 )}}\label{classAI_1_1Algorithm_1_1StateActionTransition_a0ff25726bd2c09a8d712de3fa66e541e}
 
 \begin{DoxyParams}{Parameters}
-{\em greedy} & determines how random is \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_a6f01c803796976ee877ac254a5698146}{get\-Next\-State()} is. A value of 1.\-0 means get\-Next\-State returns based on current likelihood of a state occuring (not random). With 0.\-0, it will not rely on the likelihood of state and return a random nextstate. \\
+{\em greedy} & determines how random is \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition_a6f01c803796976ee877ac254a5698146}{get\+Next\+State()} is. A value of 1.\+0 means get\+Next\+State returns based on current likelihood of a state occuring (not random). With 0.\+0, it will not rely on the likelihood of state and return a random nextstate. \\
 \hline
-{\em step\-Size} & determines how the frequency is updated. A low value yields to a more accurate model of the environment but slower in learning environment. A value of 1.\-0 yields to forgeting the frequency information of all other transition states, suitable for deterministic environment. \\
+{\em step\+Size} & determines how the frequency is updated. A low value yields to a more accurate model of the environment but slower in learning environment. A value of 1.\+0 yields to forgeting the frequency information of all other transition states, suitable for deterministic environment. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_a0b8cbca426faed815fc8389f08fe6b2c}{\index{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}!State\+Action\+Transition@{State\+Action\+Transition}}
+\index{State\+Action\+Transition@{State\+Action\+Transition}!A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}}
+\subsubsection[{State\+Action\+Transition}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ {\bf A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}$<$ S $>$\+::{\bf State\+Action\+Transition} (
+\begin{DoxyParamCaption}
+\item[{const {\bf State\+Action\+Transition}$<$ S $>$ \&}]{sat}
+\end{DoxyParamCaption}
+)}}\label{classAI_1_1Algorithm_1_1StateActionTransition_a0b8cbca426faed815fc8389f08fe6b2c}
+Copy-\/constructor. 
+\begin{DoxyParams}{Parameters}
+{\em sat} & \hyperlink{classAI_1_1Algorithm_1_1StateActionTransition}{State\+Action\+Transition} to copy. \\
 \hline
 \end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_ad0afc4d202431930ab10c0514fd606dd}{\index{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}!get\-Greedy@{get\-Greedy}}
-\index{get\-Greedy@{get\-Greedy}!AI::Algorithm::StateActionTransition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}}
-\subsubsection[{get\-Greedy}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ {\bf A\-I\-::\-F\-L\-O\-A\-T} {\bf A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}$<$ S $>$\-::get\-Greedy (
+\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_ad0afc4d202431930ab10c0514fd606dd}{\index{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}!get\+Greedy@{get\+Greedy}}
+\index{get\+Greedy@{get\+Greedy}!A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}}
+\subsubsection[{get\+Greedy}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ {\bf A\+I\+::\+F\+L\+O\+A\+T} {\bf A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}$<$ S $>$\+::get\+Greedy (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -69,28 +83,28 @@ This module is represents the possible transition states for some state. Every c
 \begin{DoxyReturn}{Returns}
 current greediness. 
 \end{DoxyReturn}
-\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_a6f01c803796976ee877ac254a5698146}{\index{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}!get\-Next\-State@{get\-Next\-State}}
-\index{get\-Next\-State@{get\-Next\-State}!AI::Algorithm::StateActionTransition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}}
-\subsubsection[{get\-Next\-State}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ const S \& {\bf A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}$<$ S $>$\-::get\-Next\-State (
+\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_a6f01c803796976ee877ac254a5698146}{\index{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}!get\+Next\+State@{get\+Next\+State}}
+\index{get\+Next\+State@{get\+Next\+State}!A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}}
+\subsubsection[{get\+Next\+State}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ const S \& {\bf A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}$<$ S $>$\+::get\+Next\+State (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const throw  {\bf State\-Action\-Transition\-Exception}) \hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1StateActionTransition_a6f01c803796976ee877ac254a5698146}
+) const throw  {\bf State\+Action\+Transition\+Exception}) \hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1StateActionTransition_a6f01c803796976ee877ac254a5698146}
 \begin{DoxyReturn}{Returns}
 the possible next state based on its value. Bigger value, better chance of occuring. 
 \end{DoxyReturn}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em \hyperlink{classAI_1_1Algorithm_1_1StateActionTransitionException}{State\-Action\-Transition\-Exception}} & when given state don't exist. \\
+{\em \hyperlink{classAI_1_1Algorithm_1_1StateActionTransitionException}{State\+Action\+Transition\+Exception}} & when given state don't exist. \\
 \hline
 \end{DoxyExceptions}
-\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_a73143dd7a80b3fb58ed0be0bb2962cd5}{\index{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}!get\-Reward@{get\-Reward}}
-\index{get\-Reward@{get\-Reward}!AI::Algorithm::StateActionTransition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}}
-\subsubsection[{get\-Reward}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ {\bf A\-I\-::\-F\-L\-O\-A\-T} {\bf A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}$<$ S $>$\-::get\-Reward (
+\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_a73143dd7a80b3fb58ed0be0bb2962cd5}{\index{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}!get\+Reward@{get\+Reward}}
+\index{get\+Reward@{get\+Reward}!A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}}
+\subsubsection[{get\+Reward}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ {\bf A\+I\+::\+F\+L\+O\+A\+T} {\bf A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}$<$ S $>$\+::get\+Reward (
 \begin{DoxyParamCaption}
 \item[{const S \&}]{state}
 \end{DoxyParamCaption}
-) const throw  {\bf State\-Action\-Transition\-Exception}) \hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1StateActionTransition_a73143dd7a80b3fb58ed0be0bb2962cd5}
+) const throw  {\bf State\+Action\+Transition\+Exception}) \hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1StateActionTransition_a73143dd7a80b3fb58ed0be0bb2962cd5}
 Given a state returns its latest reward info. 
 \begin{DoxyParams}{Parameters}
 {\em state} & to be queried of reward. \\
@@ -101,12 +115,12 @@ reward of the state.
 \end{DoxyReturn}
 
 \begin{DoxyExceptions}{Exceptions}
-{\em \hyperlink{classAI_1_1Algorithm_1_1StateActionTransitionException}{State\-Action\-Transition\-Exception}} & when given state don't exist. \\
+{\em \hyperlink{classAI_1_1Algorithm_1_1StateActionTransitionException}{State\+Action\+Transition\+Exception}} & when given state don't exist. \\
 \hline
 \end{DoxyExceptions}
-\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_ae55f6b156e658e97688974ecad7cbcd1}{\index{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}!get\-Size@{get\-Size}}
-\index{get\-Size@{get\-Size}!AI::Algorithm::StateActionTransition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}}
-\subsubsection[{get\-Size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ size\-\_\-t {\bf A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}$<$ S $>$\-::get\-Size (
+\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_ae55f6b156e658e97688974ecad7cbcd1}{\index{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}}
+\subsubsection[{get\+Size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ size\+\_\+t {\bf A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}$<$ S $>$\+::get\+Size (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -114,9 +128,9 @@ reward of the state.
 \begin{DoxyReturn}{Returns}
 the number of transition states. 
 \end{DoxyReturn}
-\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_ab0b343006fd9e43d986f4fcef9dee088}{\index{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}!get\-Step\-Size@{get\-Step\-Size}}
-\index{get\-Step\-Size@{get\-Step\-Size}!AI::Algorithm::StateActionTransition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}}
-\subsubsection[{get\-Step\-Size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ {\bf A\-I\-::\-F\-L\-O\-A\-T} {\bf A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}$<$ S $>$\-::get\-Step\-Size (
+\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_ab0b343006fd9e43d986f4fcef9dee088}{\index{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}!get\+Step\+Size@{get\+Step\+Size}}
+\index{get\+Step\+Size@{get\+Step\+Size}!A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}}
+\subsubsection[{get\+Step\+Size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ {\bf A\+I\+::\+F\+L\+O\+A\+T} {\bf A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}$<$ S $>$\+::get\+Step\+Size (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -124,11 +138,11 @@ the number of transition states.
 \begin{DoxyReturn}{Returns}
 current step size. 
 \end{DoxyReturn}
-\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_af3fa54d2864692a5a55d4b9c1052349b}{\index{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}!set\-Greedy@{set\-Greedy}}
-\index{set\-Greedy@{set\-Greedy}!AI::Algorithm::StateActionTransition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}}
-\subsubsection[{set\-Greedy}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ void {\bf A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}$<$ S $>$\-::set\-Greedy (
+\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_af3fa54d2864692a5a55d4b9c1052349b}{\index{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}!set\+Greedy@{set\+Greedy}}
+\index{set\+Greedy@{set\+Greedy}!A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}}
+\subsubsection[{set\+Greedy}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ void {\bf A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}$<$ S $>$\+::set\+Greedy (
 \begin{DoxyParamCaption}
-\item[{{\bf A\-I\-::\-F\-L\-O\-A\-T}}]{greedy}
+\item[{{\bf A\+I\+::\+F\+L\+O\+A\+T}}]{greedy}
 \end{DoxyParamCaption}
 )}}\label{classAI_1_1Algorithm_1_1StateActionTransition_af3fa54d2864692a5a55d4b9c1052349b}
 
@@ -136,35 +150,35 @@ current step size.
 {\em greedy} & change the greediness of the current state transition. \\
 \hline
 \end{DoxyParams}
-\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_a50a3623dd0251375be981b3ac661df7d}{\index{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}!set\-Step\-Size@{set\-Step\-Size}}
-\index{set\-Step\-Size@{set\-Step\-Size}!AI::Algorithm::StateActionTransition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}}
-\subsubsection[{set\-Step\-Size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ void {\bf A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}$<$ S $>$\-::set\-Step\-Size (
+\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_a50a3623dd0251375be981b3ac661df7d}{\index{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}!set\+Step\+Size@{set\+Step\+Size}}
+\index{set\+Step\+Size@{set\+Step\+Size}!A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}}
+\subsubsection[{set\+Step\+Size}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ void {\bf A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}$<$ S $>$\+::set\+Step\+Size (
 \begin{DoxyParamCaption}
-\item[{{\bf A\-I\-::\-F\-L\-O\-A\-T}}]{step\-Size}
+\item[{{\bf A\+I\+::\+F\+L\+O\+A\+T}}]{step\+Size}
 \end{DoxyParamCaption}
 )}}\label{classAI_1_1Algorithm_1_1StateActionTransition_a50a3623dd0251375be981b3ac661df7d}
 
 \begin{DoxyParams}{Parameters}
-{\em step\-Size} & change the current step size. \\
+{\em step\+Size} & change the current step size. \\
 \hline
 \end{DoxyParams}
-\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_a2e9b2a001f4199950f58429206a201e9}{\index{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}!update@{update}}
-\index{update@{update}!AI::Algorithm::StateActionTransition@{A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}}
-\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ void {\bf A\-I\-::\-Algorithm\-::\-State\-Action\-Transition}$<$ S $>$\-::update (
+\hypertarget{classAI_1_1Algorithm_1_1StateActionTransition_a2e9b2a001f4199950f58429206a201e9}{\index{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}!update@{update}}
+\index{update@{update}!A\+I\+::\+Algorithm\+::\+State\+Action\+Transition@{A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class S $>$ void {\bf A\+I\+::\+Algorithm\+::\+State\+Action\+Transition}$<$ S $>$\+::update (
 \begin{DoxyParamCaption}
-\item[{const S \&}]{next\-State, }
-\item[{const {\bf A\-I\-::\-F\-L\-O\-A\-T}}]{reward}
+\item[{const S \&}]{next\+State, }
+\item[{const {\bf A\+I\+::\+F\+L\+O\+A\+T}}]{reward}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAI_1_1Algorithm_1_1StateActionTransition_a2e9b2a001f4199950f58429206a201e9}
-By adding a new state, this updates the information of all other states. Frequency of all state, not next\-State will decrease and frequency of next\-State will increase. The reward will update the value of the next\-State. 
+By adding a new state, this updates the information of all other states. Frequency of all state, not next\+State will decrease and frequency of next\+State will increase. The reward will update the value of the next\+State. 
 \begin{DoxyParams}{Parameters}
-{\em next\-State} & to be added or increased frequency value and update reward value. \\
+{\em next\+State} & to be added or increased frequency value and update reward value. \\
 \hline
-{\em reward} & to update the value of the next\-State. \\
+{\em reward} & to update the value of the next\+State. \\
 \hline
 \end{DoxyParams}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Algorithms/\-Reinforcement\-Learning/State\-Action\-Transition.\-h\end{DoxyCompactItemize}
+Algorithms/\+Reinforcement\+Learning/State\+Action\+Transition.\+h\end{DoxyCompactItemize}
