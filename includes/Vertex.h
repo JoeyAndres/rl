@@ -19,6 +19,10 @@ class Vertex {
 
   const T* getData() const;
   void setData(T data);
+
+  bool operator<(const Vertex<T>& vertex) const;
+  bool operator>(const Vertex<T>& vertex) const;
+
  private:
   T _data;
 };
@@ -40,6 +44,16 @@ const T* Vertex<T>::getData() const {
 template<class T>
 void Vertex<T>::setData(T data) {
   _data = data;
+}
+
+template<class T>
+bool Vertex<T>::operator<(const Vertex<T>& vertex) const{
+  return _data < vertex._data;
+}
+
+template<class T>
+bool Vertex<T>::operator>(const Vertex<T>& vertex) const{
+  return _data > vertex._data;
 }
 
 } /* namespace Algorithm */

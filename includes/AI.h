@@ -15,6 +15,8 @@
 #include "SuperFastHash.h"
 #include "MurmurHash3.h"
 #include "UNH.h"
+#include "Graph.h"
+#include "DFS.h"
 #include "Vertex.h"
 #include "Edge.h"
 #include "LearningAlgorithm.h"
