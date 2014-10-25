@@ -1,6 +1,7 @@
 # C/C++ ignore list.
 *.o
 *~
+*_test[^\.]
 
 # Eclipse Ignore
 RemoteSystemsTempFiles/

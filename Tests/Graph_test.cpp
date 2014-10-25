@@ -64,7 +64,7 @@ TEST(Graph01) {
     cout << *(v.getData()) << endl;
   }
 
-  for(const Algorithm::Vertex<int>& v  : graph.getVertices()){
+  for(const Algorithm::Vertex<int>& v  : gaph.getVertices()){
     cout << *(v.getData()) << endl;
   }
 }
