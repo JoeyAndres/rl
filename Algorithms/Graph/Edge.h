@@ -16,7 +16,7 @@ namespace Algorithm {
 template<class V>
 class Edge {
  public:
-  Edge(Vertex<V> v1, Vertex<V> v2);
+  Edge(Vertex<V>& v1, Vertex<V>& v2);
   virtual ~Edge();
 
   const Vertex<V>* getV1() const;
@@ -28,12 +28,12 @@ class Edge {
   bool operator<(const Edge<V>& vertex) const;
 
  private:
-  Vertex<V> _v1;  //!< Vertex 1.
-  Vertex<V> _v2;  //!< Vertex 2.
+  Vertex<V>& _v1;  //!< Vertex 1.
+  Vertex<V>& _v2;  //!< Vertex 2.
 };
 
 template<class V>
-Edge<V>::Edge(Vertex<V> v1, Vertex<V> v2)
+Edge<V>::Edge(Vertex<V>& v1, Vertex<V>& v2)
     : _v1(v1),
       _v2(v2) {
 }
@@ -63,16 +63,16 @@ void Edge<V>::Edge::setV2(const Vertex<V>& v) {
 }
 
 template<class V>
-bool Edge<V>::operator<(const Edge<V>& vertex) const{
-  if(_v1 < vertex._v1){
+bool Edge<V>::operator<(const Edge<V>& vertex) const {
+  if (_v1 < vertex._v1) {
     return true;
-  }else if(_v1 > vertex._v1){
+  } else if (_v1 > vertex._v1) {
     return false;
   }
 
-  if(_v2 < vertex._v2){
+  if (_v2 < vertex._v2) {
     return true;
-  }else{
+  } else {
     return false;
   }
 }

@@ -25,26 +25,32 @@ class Graph {
   Graph(set<Edge<D> > edgeSet);
   virtual ~Graph();
 
-  const set<Vertex<D> >& operator[](const Vertex<D>& v) const;
-  const set<Vertex<D> >& getAdjacentLists(const Vertex<D>& v) const;
+  const set<const Vertex<D>*> operator[](const Vertex<D>& v) const;
+  const set<const Vertex<D>*> getAdjacentLists(const Vertex<D>& v) const;
 
-  set<Vertex<D> >& operator[](const Vertex<D>& v);
-  set<Vertex<D> >& getAdjacentLists(const Vertex<D>& v);
+  set<const Vertex<D>*> operator[](const Vertex<D>& v);
+  set<const Vertex<D>*> getAdjacentLists(const Vertex<D>& v);
 
-  const set<Vertex<D> > getVertices() const;
-  set<Vertex<D> > getVertices();
+  const set<const Vertex<D>*> getVertices() const;
+  set<const Vertex<D>*> getVertices();
  private:
-  map<Vertex<D>, set<Vertex<D> > > _adjacencyLists;
+  map<const Vertex<D>*, set<const Vertex<D>*> > _adjacencyLists;
 };
 
 template<class D>
 Graph<D>::Graph(set<Edge<D> > edgeSet) {
   for (const Edge<D>& e : edgeSet) {
     _adjacencyLists.insert(
-        std::pair<Vertex<D>, set<Vertex<D> > >((*e.getV1()),
-                                               set<Vertex<D> >()));
-    set<Vertex<D> >& list = this->_adjacencyLists[(*e.getV1())];
-    list.insert((*e.getV2()));
+        std::pair<const Vertex<D>*, set<const Vertex<D>*> >(
+            e.getV1(), set<const Vertex<D>*>()));
+    set<const Vertex<D>*>& list01 = this->_adjacencyLists[e.getV1()];
+    list01.insert(e.getV2());
+
+    _adjacencyLists.insert(
+        std::pair<const Vertex<D>*, set<const Vertex<D>*> >(
+            e.getV2(), set<const Vertex<D>*>()));
+    set<const Vertex<D>*>& list02 = this->_adjacencyLists[e.getV2()];
+    list02.insert(e.getV1());
   }
 }
 
@@ -53,31 +59,52 @@ Graph<D>::~Graph() {
 }
 
 template<class D>
-const set<Vertex<D> >& Graph<D>::operator[](const Vertex<D>& v) const {
-  return _adjacencyLists[v];
+const set<const Vertex<D>*> Graph<D>::operator[](const Vertex<D>& v) const {
+  try {
+    _adjacencyLists[&v];
+  } catch (exception& except) {
+    return set<const Vertex<D>*>();
+  }
+  return _adjacencyLists[&v];
 }
 
 template<class D>
-const set<Vertex<D> >& Graph<D>::getAdjacentLists(const Vertex<D>& v) const {
-  return _adjacencyLists[v];
+const set<const Vertex<D>*> Graph<D>::getAdjacentLists(
+    const Vertex<D>& v) const {
+  try {
+    _adjacencyLists[&v];
+  } catch (exception& except) {
+    return set<const Vertex<D>*>();
+  }
+  return _adjacencyLists[&v];
 }
 
 template<class D>
-set<Vertex<D> >& Graph<D>::operator[](const Vertex<D>& v) {
-  return _adjacencyLists[v];
+set<const Vertex<D>*> Graph<D>::operator[](const Vertex<D>& v) {
+  try {
+    _adjacencyLists[&v];
+  } catch (exception& except) {
+    return set<const Vertex<D>*>();
+  }
+  return _adjacencyLists[&v];
 }
 
 template<class D>
-set<Vertex<D> >& Graph<D>::getAdjacentLists(const Vertex<D>& v) {
-  return _adjacencyLists[v];
+set<const Vertex<D>*> Graph<D>::getAdjacentLists(const Vertex<D>& v) {
+  try {
+    _adjacencyLists[&v];
+  } catch (exception& except) {
+    return set<const Vertex<D>*>();
+  }
+  return _adjacencyLists[&v];
 }
 
 template<class D>
-const set<Vertex<D> > Graph<D>::getVertices() const {
-  set<Vertex<D> > vertices;
-  for (const std::pair<Vertex<D>, set<Vertex<D> > >& pair : _adjacencyLists) {
+const set<const Vertex<D>*> Graph<D>::getVertices() const {
+  set<const Vertex<D>*> vertices;
+  for (const std::pair<const Vertex<D>*, set<const Vertex<D>*> >& pair : _adjacencyLists) {
     vertices.insert(pair.first);
-    for (const Vertex<D>& v : pair.second) {
+    for (const Vertex<D>* v : pair.second) {
       vertices.insert(v);
     }
   }
@@ -86,11 +113,11 @@ const set<Vertex<D> > Graph<D>::getVertices() const {
 }
 
 template<class D>
-set<Vertex<D> > Graph<D>::getVertices(){
-  set<Vertex<D> > vertices;
-  for (const std::pair<Vertex<D>, set<Vertex<D> > >& pair : _adjacencyLists) {
+set<const Vertex<D>*> Graph<D>::getVertices() {
+  set<const Vertex<D>*> vertices;
+  for (const std::pair<const Vertex<D>*, set<const Vertex<D>*> >& pair : _adjacencyLists) {
     vertices.insert(pair.first);
-    for (const Vertex<D>& v : pair.second) {
+    for (const Vertex<D>* v : pair.second) {
       vertices.insert(v);
     }
   }

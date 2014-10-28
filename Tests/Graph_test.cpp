@@ -20,6 +20,7 @@
 #include "Vertex.h"
 #include "Edge.h"
 #include "Graph.h"
+#include "DFS.h"
 
 using namespace AI;
 using namespace std;
@@ -47,6 +48,8 @@ TEST(Graph01) {
   Algorithm::Vertex<int> vertex03(3);
   Algorithm::Vertex<int> vertex04(4);
   Algorithm::Vertex<int> vertex05(5);
+  Algorithm::Vertex<int> vertex06(6);
+  Algorithm::Vertex<int> vertex07(7);
 
  set<Algorithm::Edge<int> > edgeSet = {
     Algorithm::Edge<int> (vertex01, vertex02),
@@ -55,18 +58,23 @@ TEST(Graph01) {
     Algorithm::Edge<int> (vertex02, vertex03),
     Algorithm::Edge<int> (vertex02, vertex05),
     Algorithm::Edge<int> (vertex03, vertex05),
-    Algorithm::Edge<int> (vertex03, vertex01)
+    Algorithm::Edge<int> (vertex03, vertex01),
+    Algorithm::Edge<int> (vertex02, vertex06),
+    Algorithm::Edge<int> (vertex02, vertex07),
   };
 
   Algorithm::Graph<int> graph(edgeSet);
 
-  for(const Algorithm::Vertex<int>& v : graph[vertex01]){
-    cout << *(v.getData()) << endl;
+  /*for(const Algorithm::Vertex<int>* v : graph[vertex01]){
+    cout << *(v->getData()) << endl;
+  }*/
+
+  for(const Algorithm::Vertex<int>* v  : graph.getVertices()){
+    cout << *(v->getData()) << endl;
   }
 
-  for(const Algorithm::Vertex<int>& v  : gaph.getVertices()){
-    cout << *(v.getData()) << endl;
-  }
+  Algorithm::DFS<int> dfs(graph);
+  dfs.search();
 }
 
 int main(void) {
