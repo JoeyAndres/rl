@@ -1,6 +1,6 @@
-CXX=g++ -O3
+CXX=clang++-3.5 -O3
 #CXXFLAGS=-Wall -std=c++11 -Wextra -Wshadow
-CXXFLAGS=-std=c++11
+CXXFLAGS=-std=c++14
 CPPFLAGS=
 
 INCLUDE_PATHS = -I. -I./Algorithms -I./Tests -I./Tests/RandomWalkTests \
@@ -12,7 +12,7 @@ INCLUDE_PATHS = -I. -I./Algorithms -I./Tests -I./Tests/RandomWalkTests \
 LIBRARY_PATHS = -L. -L./UnitTest++
 AI_LIB_PATH := ./lib/libAI.a
 
-LIBRARY = -lpthread -lUnitTest++ -lboost_atomic -lrt -lboost_system -lboost_thread
+LIBRARY = -lpthread -lUnitTest++ -lboost_system
 
 #$(patsubst %.cpp,%,$(wildcard Tests/SupervisedLearningTest/*_test.cpp))
 TEST_OBJECT := $(patsubst %.cpp,%,$(wildcard Tests/*_test.cpp))	

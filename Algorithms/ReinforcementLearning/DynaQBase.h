@@ -11,7 +11,7 @@
 #include <map>
 #include <utility>
 #include <tuple>
-#include <boost/thread/shared_mutex.hpp>
+#include <shared_mutex>
 
 #include "StateActionTransition.h"
 
@@ -114,8 +114,8 @@ class DynaQBase {
   AI::FLOAT _stateActionTransitionStepSize;  //!< How fast does the model increment the
                                              //!< state-action value.
 
-  boost::shared_mutex _generalLock;  //!< Mutex lock for everything else that is not a model.
-  boost::shared_mutex _modelLock;  //!< Mutex lock for model.
+  std::shared_timed_mutex _generalLock;  //!< Mutex lock for everything else that is not a model.
+  std::shared_timed_mutex _modelLock;  //!< Mutex lock for model.
 };
 } /* namespace Algorithm */
 } /* namespace AI */
@@ -133,8 +133,8 @@ template<class S, class A>
 void AI::Algorithm::DynaQBase<S, A>::_updateModel(
     const StateAction<S, A>& currentStateAction, const S& nextState,
     const FLOAT reward) {
-  boost::unique_lock<boost::shared_mutex> generalLock(_generalLock);
-  boost::unique_lock<boost::shared_mutex> modellLock(_modelLock);
+  std::unique_lock<std::shared_timed_mutex> generalLock(_generalLock);
+  std::unique_lock<std::shared_timed_mutex> modellLock(_modelLock);
   _addModel(currentStateAction);
   StateActionTransition<S> &st = _model.at(currentStateAction);
   st.update(nextState, reward);
@@ -143,7 +143,7 @@ void AI::Algorithm::DynaQBase<S, A>::_updateModel(
 template<class S, class A>
 void AI::Algorithm::DynaQBase<S, A>::_addModelSafe(
     const StateAction<S, A>& currentStateAction) {
-  boost::unique_lock<boost::shared_mutex> modellLock(_modelLock);
+  std::unique_lock<std::shared_timed_mutex> modellLock(_modelLock);
   _addModel(currentStateAction);
 }
 

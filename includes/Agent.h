@@ -121,6 +121,10 @@ AI::Agent<S, A>::Agent(SensorBase<S>& sensorInstance,
       _actuatorInstance(actuatorInstance),
       _learningAlgorithm(learningAlgorithm),
       _accumulativeReward(0.0F) {
+
+  _currentState = _sensorInstance.getSensorState();
+  _currentAction = _learningAlgorithm.getAction(
+        _currentState, _actuatorInstance.getActionSet());
 }
 
 template<class S, class A>
@@ -134,7 +138,7 @@ template<class S, class A>
 void AI::Agent<S, A>::preExecute() {
   _currentState = _getCurrentState();
   _currentAction = _learningAlgorithm.getAction(
-      _currentState, _actuatorInstance.getActionSet());
+        _currentState, _actuatorInstance.getActionSet());
   _learningAlgorithm.reset();
   _accumulativeReward = 0.0F;
 }

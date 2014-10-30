@@ -12,7 +12,7 @@
 #include <set>
 #include <map>
 #include <iostream>
-#include <boost/thread/shared_mutex.hpp>
+#include <shared_mutex>
 
 #include "StateAction.h"
 #include "LearningAlgorithm.h"
@@ -134,10 +134,10 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
   AI::FLOAT _discountRate;
   StateActionPairContainer<S, A> _stateActionPairContainer;
 
-  mutable boost::shared_mutex _generalLock;  // General Lock.
-  mutable boost::shared_mutex _containerLock;
-  mutable boost::shared_mutex _stepSizeLock;
-  mutable boost::shared_mutex _discountRateLock;
+  mutable std::shared_timed_mutex _generalLock;  // General Lock.
+  mutable std::shared_timed_mutex _containerLock;
+  mutable std::shared_timed_mutex _stepSizeLock;
+  mutable std::shared_timed_mutex _discountRateLock;
 };
 } /* namespace Algorithm */
 } /* namespace AI */
@@ -247,7 +247,7 @@ template<class S, class A>
 void AI::Algorithm::ReinforcementLearning<S, A>::backUpStateActionPair(
     const StateAction<S, A>& currentStateAction, const AI::FLOAT reward,
     const StateAction<S, A>& nextStateActionPair) {
-  boost::unique_lock<boost::shared_mutex> containerLock(_containerLock);
+  std::unique_lock<std::shared_timed_mutex> containerLock(_containerLock);
 
   // Next state-action value (nSAV) and current state-action value (cSAV).
   AI::FLOAT nSAV = getStateActionValue(nextStateActionPair);

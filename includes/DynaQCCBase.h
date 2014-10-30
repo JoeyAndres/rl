@@ -13,7 +13,7 @@
 #include <cstdint>
 #include <random>
 #include <vector>
-#include <boost/thread.hpp>
+#include <thread>
 
 #include "DynaQBase.h"
 #include "StateActionTransition.h"
@@ -84,16 +84,16 @@ void AI::Algorithm::DynaQCCBase<S, A>::_updateDistribution() {
 template<class S, class A>
 inline void AI::Algorithm::DynaQCCBase<S, A>::_simulate(
     const set<A>& actionSet) {
-  std::vector<boost::thread> threadVector;
+  std::vector<std::thread> threadVector;
   AI::UINT localSimulationSteps = this->_simulationIterationCount / 12;
   _updateDistribution();
   for (AI::INT i = 0; i < 12; i++) {
     threadVector.push_back(
-        boost::thread(&DynaQCCBase<S, A>::_threadWorker, this, actionSet,
+        std::thread(&DynaQCCBase<S, A>::_threadWorker, this, actionSet,
                       localSimulationSteps));
   }
 
-  for (boost::thread& t : threadVector) {
+  for (std::thread& t : threadVector) {
     t.join();
   }
   threadVector.clear();

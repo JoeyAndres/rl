@@ -10,7 +10,7 @@
 
 #include "GlobalHeader.h"
 
-#include <boost/thread.hpp>
+#include <thread>
 #include <cstdint>
 
 #include "threadpool.hpp"
@@ -63,13 +63,13 @@ inline void AI::Algorithm::GradientDescentCC::decreaseEligibilityTraces() {
   AI::UINT startingi = 0;
   for (AI::UINT i = 0; i < _maxThreads; i++) {
     _threadPool.schedule(
-        boost::bind(&GradientDescentCC::_decreaseEligibilityTracesWorker, this,
+        std::bind(&GradientDescentCC::_decreaseEligibilityTracesWorker, this,
                     startingi, localIteration));
     startingi += localIteration;
   }
   if (remainderIteration > 0) {
     _threadPool.schedule(
-        boost::bind(&GradientDescentCC::_decreaseEligibilityTracesWorker, this,
+        std::bind(&GradientDescentCC::_decreaseEligibilityTracesWorker, this,
                     startingi, remainderIteration));
   }
 
@@ -82,13 +82,13 @@ inline void AI::Algorithm::GradientDescentCC::backUpWeights(FLOAT tdError) {
   AI::UINT startingi = 0;
   for (AI::UINT i = 0; i < _maxThreads; i++) {
     _threadPool.schedule(
-        boost::bind(&GradientDescentCC::_backUpWeightsWorker, this, tdError,
+        std::bind(&GradientDescentCC::_backUpWeightsWorker, this, tdError,
                     startingi, localIteration));
     startingi += localIteration;
   }
   if (remainderIteration > 0) {
     _threadPool.schedule(
-        boost::bind(&GradientDescentCC::_backUpWeightsWorker, this, tdError,
+        std::bind(&GradientDescentCC::_backUpWeightsWorker, this, tdError,
                     startingi, remainderIteration));
   }
 

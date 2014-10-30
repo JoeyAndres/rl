@@ -9,6 +9,7 @@
 #include "Vertex.h"
 #include "Edge.h"
 #include "DynamicProgramming.h"
+#include "ReinforcementLearning.h"
 #include "DynaQCCBase.h"
 #include "StateActionTransition.h"
 #include "DynaQBase.h"
@@ -26,4 +27,5 @@
 #include "SarsaETGD.h"
 #include "StateActionPairContainer.h"
 #include "StateActionNotExistException.h"
+#include "Agent.h"
 #include "StateAction.h"
