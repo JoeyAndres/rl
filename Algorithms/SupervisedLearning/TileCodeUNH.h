@@ -52,7 +52,7 @@ class TileCodeUNH : public TileCode {
 inline AI::Algorithm::TileCodeUNH::TileCodeUNH(
     vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings)
     : TileCode(dimensionalInfos, numTilings) {
-  _normalization = vector < AI::FLOAT > (this->_dimension);
+  _normalization = vector < AI::FLOAT > (this->getDimension());
 
   for (size_t i = 0; i < this->_dimensionalInfos.size(); i++) {
     _normalization[i] = this->_numTilings
@@ -68,7 +68,7 @@ inline AI::Algorithm::TileCodeUNH::TileCodeUNH(
     this->_sizeCache = sizeHint;
   }
 
-  _normalization = vector < AI::FLOAT > (this->_dimension);
+  _normalization = vector < AI::FLOAT > (this->getDimension());
 
   for (size_t i = 0; i < this->_dimensionalInfos.size(); i++) {
     _normalization[i] = this->_numTilings
@@ -79,25 +79,25 @@ inline AI::Algorithm::TileCodeUNH::TileCodeUNH(
 
 inline void AI::Algorithm::TileCodeUNH::getFeatureVector(
     const STATE_CONT& parameters, FEATURE_VECTOR& tilings) {
-  assert(this->_dimension == parameters.size());
+  assert(this->getDimension() == parameters.size());
 
-  vector<AI::UINT> base(this->_dimension, 0);
-  vector<AI::INT> qStates(this->_dimension);
-  for (size_t i = 0; i < this->_dimension; i++) {
+  vector<AI::UINT> base(this->getDimension(), 0);
+  vector<AI::INT> qStates(this->getDimension());
+  for (size_t i = 0; i < this->getDimension(); i++) {
     // Note to floor since casting to integer is not consistent
     // with negative number. Casting is always a number toward zero.
     qStates[i] = floor(parameters[i] * _normalization[i]);
   }
 
   for (size_t i = 0; i < this->_numTilings; i++) {
-    vector<AI::INT> tileComponents(this->_dimension + 1);
+    vector<AI::INT> tileComponents(this->getDimension() + 1);
 
-    for (size_t j = 0; j < this->_dimension; j++) {
+    for (size_t j = 0; j < this->getDimension(); j++) {
       tileComponents[j] = qStates[j]
           - mod(qStates[j] - base[j], this->_numTilings);
       base[j] += 1 + (j * 2);
     }
-    tileComponents[this->_dimension] = i;
+    tileComponents[this->getDimension()] = i;
     AI::Algorithm::Hash::UNH hashAlg;
     tilings.push_back(hashAlg.hash((AI::BYTE*)&tileComponents[0], this->_sizeCache));
   }

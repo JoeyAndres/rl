@@ -319,11 +319,6 @@ void GradientDescent::buildActionValues(
     }
 
     actionVectorValueMap[av] = getValueFromParameters(paramCopy);
-
-    for (const FLOAT& a : av) {
-      (void) a;
-      paramCopy.pop_back();
-    }
   }
 }
 

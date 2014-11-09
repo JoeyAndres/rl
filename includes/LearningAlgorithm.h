@@ -51,14 +51,13 @@ class LearningAlgorithm {
                       const set<A>& actionSet) = 0;
 
   /**
-   * A policy that varies between algorithms.
+   * @param state the state to take the action to.
+   * @param actionSet set of possible actions.
+   * @return action based on control policy and current state.
    */
   virtual const A& getAction(const S& state, const set<A>& actionSet) = 0;
 
   /**
-   * Acquire the value of the state action pair. Each algorithm group (rl,
-   * supervised, unsupervised), or specific algorithm (Q, Sarsa, Gradient Descent)
-   * must implement.
    * @param stateAction
    * @return Value of stateAction.
    */
@@ -68,7 +67,7 @@ class LearningAlgorithm {
   /**
    * @param policy to set the current control policy with.
    */
-  void seControltPolicy(Policy::Policy<S, A>& policy);
+  void setControltPolicy(Policy::Policy<S, A>& policy);
 
   /**
    * @return current control policy
@@ -131,7 +130,7 @@ LearningAlgorithm<S, A>::LearningAlgorithm(Policy::Policy<S, A>& controlPolicy)
 }
 
 template<class S, class A>
-void LearningAlgorithm<S, A>::seControltPolicy(Policy::Policy<S, A>& policy) {
+void LearningAlgorithm<S, A>::setControltPolicy(Policy::Policy<S, A>& policy) {
   this->_controlPolicy = policy;
 }
 
@@ -165,7 +164,8 @@ inline void AI::Algorithm::LearningAlgorithm<S, A>::setLearningPolicy(
 }
 
 template<class S, class A>
-inline const AI::Algorithm::Policy::Policy<S, A>& AI::Algorithm::LearningAlgorithm<S, A>::getLearningPolicy() const {
+inline const AI::Algorithm::Policy::Policy<S, A>& AI::Algorithm::LearningAlgorithm<
+    S, A>::getLearningPolicy() const {
   return _learningPolicy;
 }
 

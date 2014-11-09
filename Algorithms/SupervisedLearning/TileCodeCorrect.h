@@ -54,18 +54,19 @@ inline AI::Algorithm::TileCodeCorrect::TileCodeCorrect(
 inline void AI::Algorithm::TileCodeCorrect::getFeatureVector(
     const STATE_CONT& parameters, FEATURE_VECTOR& fv
     ) {
-  assert(this->_dimension == parameters.size());
+  cout << this->getDimension() << " " << parameters.size() << endl;
+  assert(this->getDimension() == parameters.size());
 
-  vector<AI::INT> tileComponents(this->_dimension + 1);
   for (AI::INT i = 0; i < this->_numTilings; i++) {
-    for (size_t j = 0; j < this->_dimension; j++) {
+    vector<AI::INT> tileComponents(this->getDimension() + 1);
+    for (size_t j = 0; j < this->getDimension(); j++) {
       tileComponents[j] = this->_paramToGridValue(parameters[j], i, j);
     }
 
     // x1 + x2*x1.gridSize + x3*x1.gridSize*x2.gridSize + ...
     size_t hashedIndex = 0;
     size_t tileComponentMultiplier = 1;
-    for (size_t j = 0; j < this->_dimension; j++) {
+    for (size_t j = 0; j < this->getDimension(); j++) {
       hashedIndex += tileComponents[j] * tileComponentMultiplier;
       tileComponentMultiplier *= this->_dimensionalInfos[j].GetGridCountReal();
     }

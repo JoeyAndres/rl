@@ -48,16 +48,16 @@ inline AI::Algorithm::TileCodeMurMur::TileCodeMurMur(
 
 inline void AI::Algorithm::TileCodeMurMur::getFeatureVector(
     const STATE_CONT& parameters, FEATURE_VECTOR& tilings) {
-  assert(this->_dimension == parameters.size());
+  assert(this->getDimension() == parameters.size());
 
-  vector<AI::INT> tileComponents(this->_dimension + 1);
+  vector<AI::INT> tileComponents(this->getDimension() + 1);
   for (AI::INT i = 0; i < this->_numTilings; i++) {
-    for (size_t j = 0; j < this->_dimension; j++) {
+    for (size_t j = 0; j < this->getDimension(); j++) {
       tileComponents[j] = this->_paramToGridValue(parameters[j], i, j);
     }
 
     // Add a unique number_tiling identifier.
-    tileComponents[this->_dimension] = i;
+    tileComponents[this->getDimension()] = i;
 
     AI::Algorithm::Hash::Murmur3 _hashAlg;
     AI::Algorithm::Hash::HashMurmur3Out hash = _hashAlg.hash(

@@ -68,14 +68,14 @@ inline AI::Algorithm::TileCodeMt1993764::TileCodeMt1993764(
 
 inline void AI::Algorithm::TileCodeMt1993764::getFeatureVector(
     const STATE_CONT& parameters, FEATURE_VECTOR& tilings) {
-  vector<AI::INT> tileComponents(this->_dimension + 1);
+  vector<AI::INT> tileComponents(this->getDimension() + 1);
   for (size_t i = 0; i < this->_numTilings; i++) {
-    for (size_t j = 0; j < this->_dimension; j++) {
+    for (size_t j = 0; j < this->getDimension(); j++) {
       tileComponents[j] = this->_paramToGridValue(parameters[j], i, j);
     }
 
 // Add a unique number_tiling identifier.
-    tileComponents[this->_dimension] = i;
+    tileComponents[this->getDimension()] = i;
 
     std::seed_seq seed1(tileComponents.begin(), tileComponents.end());
     _prng.seed(seed1);

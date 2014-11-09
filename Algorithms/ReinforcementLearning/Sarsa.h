@@ -56,6 +56,7 @@ Sarsa<S, A>::Sarsa(AI::FLOAT stepSize, AI::FLOAT discountRate,
   this->setLearningPolicy(policy);
 }
 
+// TODO: Make setLearningPolicy and setPolicy the same.
 template<class S, class A>
 void Sarsa<S, A>::update(const StateAction<S, A>& currentStateAction,
                          const S& nextState, const AI::FLOAT reward,

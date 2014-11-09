@@ -43,7 +43,7 @@ class TileCode {
   /**
    * Hashed the parameter in Real space to a Natural space [0, infinity).
    * @param parameters
-   * @return Vector of "discretize" index.
+   * @param Vector of "discretize" index.
    */
   virtual void getFeatureVector(const STATE_CONT& parameters,
                                 FEATURE_VECTOR& fv) = 0;
@@ -88,7 +88,6 @@ class TileCode {
                            size_t dimensionIndex);
 
  protected:
-  size_t _dimension;  //!< How many dimension.
   size_t _numTilings;  //!< How many tilings/also known as sample.
   vector<DimensionInfo<FLOAT> > _dimensionalInfos;  //!< Contains information for each dimension.
   std::random_device _randomDevice;
@@ -117,7 +116,6 @@ TileCode::TileCode(vector<DimensionInfo<FLOAT> > dimensionalInfos,
   assert(numTilings > 0);
 
   _dimensionalInfos = dimensionalInfos;
-  _dimension = dimensionalInfos.size();
   _numTilings = numTilings;
 
   // Calculate the size.
@@ -127,7 +125,7 @@ TileCode::TileCode(vector<DimensionInfo<FLOAT> > dimensionalInfos,
   std::uniform_real_distribution<AI::FLOAT> distribution(0, 1.0F);
   for (size_t i = 0; i < _numTilings; i++) {
     _randomOffsets.push_back(vector<AI::FLOAT>());
-    for (size_t j = 0; j < _dimension; j++) {
+    for (size_t j = 0; j < this->getDimension(); j++) {
       _randomOffsets[i].push_back(
           distribution(_pseudoRNG) * _dimensionalInfos[j].GetOffsets()
               * _dimensionalInfos[j].getGeneralizationScale());
@@ -137,6 +135,9 @@ TileCode::TileCode(vector<DimensionInfo<FLOAT> > dimensionalInfos,
 
 void TileCode::setNumTilings(size_t numTilings) {
   this->_numTilings = numTilings;
+
+  // Update size cache.
+  _sizeCache = _calculateSizeCache();
 }
 
 size_t TileCode::getNumTilings() const {
@@ -144,7 +145,7 @@ size_t TileCode::getNumTilings() const {
 }
 
 size_t TileCode::getDimension() const {
-  return _dimension;
+  return _dimensionalInfos.size();
 }
 
 size_t TileCode::getSize() const {

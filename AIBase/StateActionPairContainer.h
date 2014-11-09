@@ -40,7 +40,6 @@ class StateActionPairContainer {
 
   /**
    * Adds a new state. Note that in order to avoid overwriting
-   * @see stateInStateActionPairMap().
    * @param state State to be added.
    * @param value Value of the state to be added.
    * @param actionArray

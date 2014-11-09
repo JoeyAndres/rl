@@ -106,13 +106,8 @@ class DimensionInfo {
 
  private:
   std::pair<D, D> _range;  //!< Pair of lower and upper range of the domain.
-  D _rangeDifference;  //!< Different of the range.
   AI::UINT _gridCountIdeal;  //!< How many equally distanced sample points do
                              //!< we take from domain.
-  AI::UINT _gridCountReal;  //!< _gridCountIdeal+1.  This factors how
-                            //!< implementation handles 1 more grid.
-  D _offsets; //!< _rangeDifference/_gridCountIdeal.
-
   AI::FLOAT _generalizationScale; //!< How far do we deviate from the sample.
 };
 
@@ -120,10 +115,7 @@ template<typename D>
 DimensionInfo<D>::DimensionInfo(D lowerRange, D higherRange,
                                 AI::UINT gridCount) {
   _range = std::pair<D, D>(lowerRange, higherRange);
-  _rangeDifference = abs(_range.first - _range.second);
   _gridCountIdeal = gridCount;
-  _gridCountReal = _gridCountIdeal + 1;
-  _offsets = (_rangeDifference / _gridCountIdeal);
   _generalizationScale = 1.0F;
 }
 
@@ -131,21 +123,18 @@ template<typename D>
 DimensionInfo<D>::DimensionInfo(D lowerRange, D higherRange, AI::UINT gridCount,
                                 AI::FLOAT generalizationScale) {
   _range = std::pair<D, D>(lowerRange, higherRange);
-  _rangeDifference = abs(_range.first - _range.second);
   _gridCountIdeal = gridCount;
-  _gridCountReal = _gridCountIdeal + 1;
-  _offsets = (_rangeDifference / _gridCountIdeal);
   _generalizationScale = generalizationScale;
 }
 
 template<typename D>
 D DimensionInfo<D>::GetOffsets() const {
-  return _offsets;
+  return (this->GetRangeDifference() / _gridCountIdeal);
 }
 
 template<typename D>
 AI::UINT DimensionInfo<D>::GetGridCountReal() const {
-  return _gridCountReal;
+  return _gridCountIdeal + 1;
 }
 
 template<typename D>
@@ -160,7 +149,7 @@ AI::UINT DimensionInfo<D>::GetGridCountIdeal() const {
 
 template<typename D>
 AI::FLOAT DimensionInfo<D>::GetRangeDifference() const {
-  return _rangeDifference;
+  return abs(_range.first - _range.second);
 }
 
 template<typename D>

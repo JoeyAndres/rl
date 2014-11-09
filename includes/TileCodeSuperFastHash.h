@@ -65,14 +65,14 @@ inline AI::Algorithm::TileCodeSuperFastHash::TileCodeSuperFastHash(
 
 inline void AI::Algorithm::TileCodeSuperFastHash::getFeatureVector(
     const STATE_CONT& parameters, FEATURE_VECTOR& tilings) {
-  vector<AI::INT> tileComponents(this->_dimension + 1);
+  vector<AI::INT> tileComponents(this->getDimension() + 1);
   for (size_t i = 0; i < this->_numTilings; i++) {
-    for (size_t j = 0; j < this->_dimension; j++) {
+    for (size_t j = 0; j < this->getDimension(); j++) {
       tileComponents[j] = this->_paramToGridValue(parameters[j], i, j);
     }
 
 // Add a unique number_tiling identifier.
-    tileComponents[this->_dimension] = i;
+    tileComponents[this->getDimension()] = i;
 
     AI::Algorithm::Hash::SuperFastHash hashAlg;
     AI::UINT hashVal = hashAlg.hash(

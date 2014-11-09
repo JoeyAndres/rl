@@ -1,6 +1,6 @@
 CXX=clang++-3.5 -O3
 #CXXFLAGS=-Wall -std=c++11 -Wextra -Wshadow
-CXXFLAGS=-std=c++14
+CXXFLAGS=-std=c++14 -Wunused
 CPPFLAGS=
 
 INCLUDE_PATHS = -I. -I./Algorithms -I./Tests -I./Tests/RandomWalkTests \

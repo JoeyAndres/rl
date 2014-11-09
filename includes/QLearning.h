@@ -60,7 +60,7 @@ void QLearning<S, A>::update(const StateAction<S, A>& currentStateAction,
   ReinforcementLearning<S, A>::update(currentStateAction, nextState, reward,
                                       actionSet);
 
-  // Note: this algorithm is in pg. 145 of Sutton and Barto 2nd edition.
+  // Note: this algorithm is in pg. 145 of Sutton Barto 2nd edition.
   // Q(S, A) <- Q(S, A) + α[ R + γ max a Q(S' , a) − Q(S, A)]
   const A& nextAction = this->getLearningAction(nextState, actionSet);
 

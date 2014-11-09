@@ -76,7 +76,7 @@ template<class S, class A>
 void AI::Algorithm::DynaQ<S, A>::update(
     const StateAction<S, A>& currentStateAction, const S& nextState,
     const FLOAT reward, const set<A>& actionSet) {
-  ReinforcementLearning<S, A>::update(currentStateAction, nextState, reward,
+  DynaQRLMP<S, A>::update(currentStateAction, nextState, reward,
                                       actionSet);
   A nextAction = this->getLearningAction(nextState, actionSet);
   this->backUpStateActionPair(currentStateAction, reward,
