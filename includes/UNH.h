@@ -12,8 +12,8 @@
 
 namespace AI {
 namespace Algorithm {
-namespace Hash{
-namespace Implementation{
+namespace Hash {
+namespace Implementation {
 
 /**
  * Hash function from University New Hampshire CMAC program.

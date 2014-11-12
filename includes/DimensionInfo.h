@@ -108,7 +108,7 @@ class DimensionInfo {
   std::pair<D, D> _range;  //!< Pair of lower and upper range of the domain.
   AI::UINT _gridCountIdeal;  //!< How many equally distanced sample points do
                              //!< we take from domain.
-  AI::FLOAT _generalizationScale; //!< How far do we deviate from the sample.
+  AI::FLOAT _generalizationScale;  //!< How far do we deviate from the sample.
 };
 
 template<typename D>

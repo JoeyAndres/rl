@@ -26,10 +26,10 @@ typedef unsigned __int64 uint64_t;
 
 //-----------------------------------------------------------------------------
 
-namespace AI{
-namespace Algorithm{
-namespace Hash{
-namespace Implementation{
+namespace AI {
+namespace Algorithm {
+namespace Hash {
+namespace Implementation {
 
 void MurmurHash3_x86_32(const void * key, int len, uint32_t seed, void * out);
 

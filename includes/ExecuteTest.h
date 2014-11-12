@@ -20,11 +20,11 @@ void ExecuteTest(T& testObject, TestDetails const& details) {
 #ifdef UNITTEST_POSIX
     UNITTEST_THROW_SIGNALS
 #endif
-    testObject.RunImpl();
+testObject    .RunImpl();
   } catch (AssertException const& e) {
     CurrentTest::Results()->OnTestFailure(
         TestDetails(details.testName, details.suiteName, e.Filename(),
-                    e.LineNumber()),
+            e.LineNumber()),
         e.what());
   } catch (std::exception const& e) {
     MemoryOutStream stream;
@@ -32,7 +32,7 @@ void ExecuteTest(T& testObject, TestDetails const& details) {
     CurrentTest::Results()->OnTestFailure(details, stream.GetText());
   } catch (...) {
     CurrentTest::Results()->OnTestFailure(details,
-                                          "Unhandled exception: Crash!");
+        "Unhandled exception: Crash!");
   }
 }
 

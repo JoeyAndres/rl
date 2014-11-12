@@ -1,0 +1,58 @@
+clang++-3.5 -O3 -std=c++14 -Wunused -c  -L. -L./UnitTest++ -I. -I./UnitTest++	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./includes src/SuperFastHash.cpp -o \
+src/SuperFastHash.o -lpthread -lUnitTest++ -lboost_system
+clang: warning: -lpthread: 'linker' input unused
+clang: warning: -lUnitTest++: 'linker' input unused
+clang: warning: -lboost_system: 'linker' input unused
+clang: warning: argument unused during compilation: '-L.'
+clang: warning: argument unused during compilation: '-L./UnitTest++'
+clang++-3.5 -O3 -std=c++14 -Wunused -c  -L. -L./UnitTest++ -I. -I./UnitTest++	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./includes src/MurmurHash3.cpp -o \
+src/MurmurHash3.o -lpthread -lUnitTest++ -lboost_system
+clang: warning: -lpthread: 'linker' input unused
+clang: warning: -lUnitTest++: 'linker' input unused
+clang: warning: -lboost_system: 'linker' input unused
+clang: warning: argument unused during compilation: '-L.'
+clang: warning: argument unused during compilation: '-L./UnitTest++'
+clang++-3.5 -O3 -std=c++14 -Wunused -c  -L. -L./UnitTest++ -I. -I./UnitTest++	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./includes src/HashSuperFastHash.cpp -o \
+src/HashSuperFastHash.o -lpthread -lUnitTest++ -lboost_system
+clang: warning: -lpthread: 'linker' input unused
+clang: warning: -lUnitTest++: 'linker' input unused
+clang: warning: -lboost_system: 'linker' input unused
+clang: warning: argument unused during compilation: '-L.'
+clang: warning: argument unused during compilation: '-L./UnitTest++'
+clang++-3.5 -O3 -std=c++14 -Wunused -c  -L. -L./UnitTest++ -I. -I./UnitTest++	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./includes src/HashUNH.cpp -o \
+src/HashUNH.o -lpthread -lUnitTest++ -lboost_system
+clang: warning: -lpthread: 'linker' input unused
+clang: warning: -lUnitTest++: 'linker' input unused
+clang: warning: -lboost_system: 'linker' input unused
+clang: warning: argument unused during compilation: '-L.'
+clang: warning: argument unused during compilation: '-L./UnitTest++'
+clang++-3.5 -O3 -std=c++14 -Wunused -c  -L. -L./UnitTest++ -I. -I./UnitTest++	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./includes src/HashMurmur3.cpp -o \
+src/HashMurmur3.o -lpthread -lUnitTest++ -lboost_system
+clang: warning: -lpthread: 'linker' input unused
+clang: warning: -lUnitTest++: 'linker' input unused
+clang: warning: -lboost_system: 'linker' input unused
+clang: warning: argument unused during compilation: '-L.'
+clang: warning: argument unused during compilation: '-L./UnitTest++'
+clang++-3.5 -O3 -std=c++14 -Wunused -c  -L. -L./UnitTest++ -I. -I./UnitTest++	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./includes src/UNH.cpp -o \
+src/UNH.o -lpthread -lUnitTest++ -lboost_system
+clang: warning: -lpthread: 'linker' input unused
+clang: warning: -lUnitTest++: 'linker' input unused
+clang: warning: -lboost_system: 'linker' input unused
+clang: warning: argument unused during compilation: '-L.'
+clang: warning: argument unused during compilation: '-L./UnitTest++'
+clang++-3.5 -O3 -std=c++14 -Wunused -c  -L. -L./UnitTest++ -I. -I./UnitTest++	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./includes src/xxhash.cpp -o \
+src/xxhash.o -lpthread -lUnitTest++ -lboost_system
+clang: warning: -lpthread: 'linker' input unused
+clang: warning: -lUnitTest++: 'linker' input unused
+clang: warning: -lboost_system: 'linker' input unused
+clang: warning: argument unused during compilation: '-L.'
+clang: warning: argument unused during compilation: '-L./UnitTest++'
+ar rvs ./lib/libAI.a src/SuperFastHash.o src/MurmurHash3.o src/HashSuperFastHash.o src/HashUNH.o src/HashMurmur3.o src/UNH.o src/xxhash.o
+ar: creating ./lib/libAI.a
+a - src/SuperFastHash.o
+a - src/MurmurHash3.o
+a - src/HashSuperFastHash.o
+a - src/HashUNH.o
+a - src/HashMurmur3.o
+a - src/UNH.o
+a - src/xxhash.o

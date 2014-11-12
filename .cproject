@@ -42,6 +42,22 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<folderInfo id="cdt.managedbuild.toolchain.gnu.base.92938782.1184241689" name="/" resourcePath="includes">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.base.1356617461" name="cdt.managedbuild.toolchain.gnu.base" superClass="cdt.managedbuild.toolchain.gnu.base" unusedChildren="">
+							<tool id="cdt.managedbuild.tool.gnu.archiver.base.1978425364" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.1144796350"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.1241295174" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base.17383649">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1309769117" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.compiler.base.358268426" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.base.394404076">
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.389628773" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.linker.base.607228419" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.base.1522570070"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.1125367870" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base.1411520671"/>
+							<tool id="cdt.managedbuild.tool.gnu.assembler.base.1365250112" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.base.780269048">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.23219217" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
 					<sourceEntries>
 						<entry excluding="Core" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
@@ -89,4 +105,5 @@
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>
+	<storageModule moduleId="refreshScope"/>
 </cproject>

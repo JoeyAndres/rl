@@ -52,7 +52,7 @@ class TileCodeUNH : public TileCode {
 inline AI::Algorithm::TileCodeUNH::TileCodeUNH(
     vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings)
     : TileCode(dimensionalInfos, numTilings) {
-  _normalization = vector < AI::FLOAT > (this->getDimension());
+  _normalization = vector<AI::FLOAT>(this->getDimension());
 
   for (size_t i = 0; i < this->_dimensionalInfos.size(); i++) {
     _normalization[i] = this->_numTilings
@@ -68,7 +68,7 @@ inline AI::Algorithm::TileCodeUNH::TileCodeUNH(
     this->_sizeCache = sizeHint;
   }
 
-  _normalization = vector < AI::FLOAT > (this->getDimension());
+  _normalization = vector<AI::FLOAT>(this->getDimension());
 
   for (size_t i = 0; i < this->_dimensionalInfos.size(); i++) {
     _normalization[i] = this->_numTilings
@@ -99,7 +99,8 @@ inline void AI::Algorithm::TileCodeUNH::getFeatureVector(
     }
     tileComponents[this->getDimension()] = i;
     AI::Algorithm::Hash::UNH hashAlg;
-    tilings.push_back(hashAlg.hash((AI::BYTE*)&tileComponents[0], this->_sizeCache));
+    tilings.push_back(
+        hashAlg.hash((AI::BYTE*) &tileComponents[0], this->_sizeCache));
   }
 }
 

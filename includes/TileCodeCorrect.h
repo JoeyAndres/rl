@@ -52,8 +52,7 @@ inline AI::Algorithm::TileCodeCorrect::TileCodeCorrect(
 }
 
 inline void AI::Algorithm::TileCodeCorrect::getFeatureVector(
-    const STATE_CONT& parameters, FEATURE_VECTOR& fv
-    ) {
+    const STATE_CONT& parameters, FEATURE_VECTOR& fv) {
   assert(this->getDimension() == parameters.size());
 
   for (AI::INT i = 0; i < this->_numTilings; i++) {
@@ -61,7 +60,6 @@ inline void AI::Algorithm::TileCodeCorrect::getFeatureVector(
     for (size_t j = 0; j < this->getDimension(); j++) {
       tileComponents[j] = this->_paramToGridValue(parameters[j], i, j);
     }
-
 
     // x1 + x2*x1.gridSize + x3*x1.gridSize*x2.gridSize + ...
     size_t hashedIndex = 0;

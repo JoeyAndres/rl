@@ -95,10 +95,10 @@ class Agent {
   S _currentState;  //!< Keeps track of the current state.
   A _currentAction;  //!< Keeps track of the current action.
 
-  FLOAT _accumulativeReward; //!< Keeps track of accumulation of reward during
-                             //!< the span of the episode.Specifically, after
-                             //!< the call of preExecute, and after the call of
-                             //!< postExecute.
+  FLOAT _accumulativeReward;  //!< Keeps track of accumulation of reward during
+                              //!< the span of the episode.Specifically, after
+                              //!< the call of preExecute, and after the call of
+                              //!< postExecute.
 };
 
 /*! \typedef AgentSL
@@ -124,7 +124,7 @@ AI::Agent<S, A>::Agent(SensorBase<S>& sensorInstance,
 
   _currentState = _sensorInstance.getSensorState();
   _currentAction = _learningAlgorithm.getAction(
-        _currentState, _actuatorInstance.getActionSet());
+      _currentState, _actuatorInstance.getActionSet());
 }
 
 template<class S, class A>
@@ -138,7 +138,7 @@ template<class S, class A>
 void AI::Agent<S, A>::preExecute() {
   _currentState = _getCurrentState();
   _currentAction = _learningAlgorithm.getAction(
-        _currentState, _actuatorInstance.getActionSet());
+      _currentState, _actuatorInstance.getActionSet());
   _learningAlgorithm.reset();
   _accumulativeReward = 0.0F;
 }

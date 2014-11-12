@@ -47,12 +47,12 @@ void Vertex<T>::setData(T data) {
 }
 
 template<class T>
-bool Vertex<T>::operator<(const Vertex<T>& vertex) const{
+bool Vertex<T>::operator<(const Vertex<T>& vertex) const {
   return _data < vertex._data;
 }
 
 template<class T>
-bool Vertex<T>::operator>(const Vertex<T>& vertex) const{
+bool Vertex<T>::operator>(const Vertex<T>& vertex) const {
   return _data > vertex._data;
 }
 

@@ -70,7 +70,7 @@ void DFS<D>::traverse(const Vertex<D>* startingVertex) {
 
   previsit(startingVertex);
   for (const Vertex<D>* v : _graph.getAdjacentLists(*startingVertex)) {
-    if(_visited[v] == false){
+    if (_visited[v] == false) {
       traverse(v);
     }
   }

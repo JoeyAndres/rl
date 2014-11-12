@@ -41,8 +41,8 @@ class DynaQRLMP : public ReinforcementLearning<S, A>, public DynaQBase<S, A> {
    * @param stateTransitionStepSize how fast does a model update a value of a
    *                                state-action pair.
    */
-  DynaQRLMP(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy,
-            AI::UINT simulationIterationCount,
+  DynaQRLMP(AI::FLOAT stepSize, AI::FLOAT discountRate,
+            Policy::Policy<S, A>& policy, AI::UINT simulationIterationCount,
             AI::FLOAT stateTransitionGreediness,
             AI::FLOAT stateTransitionStepSize);
 

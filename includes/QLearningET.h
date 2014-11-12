@@ -30,13 +30,12 @@ namespace Algorithm {
  *  \tparam A Action data type.
  */
 template<class S, class A>
-class QLearningET final: public EligibilityTraces<S, A>,
-    public QLearning<S, A> {
+class QLearningET final: public EligibilityTraces<S, A>, public QLearning<S, A> {
  public:
   QLearningET(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                     Policy::Policy<S, A>& policy, AI::FLOAT lambda);
+              Policy::Policy<S, A>& policy, AI::FLOAT lambda);
 
-public:
+ public:
   // Inherited.
 
   virtual void update(const StateAction<S, A>& currentStateAction,
@@ -48,9 +47,9 @@ public:
 };
 
 template<class S, class A>
-void QLearningET<S, A>::update(
-    const StateAction<S, A>& currentStateAction, const S& nextState,
-    const AI::FLOAT reward, const set<A>& actionSet) {
+void QLearningET<S, A>::update(const StateAction<S, A>& currentStateAction,
+                               const S& nextState, const AI::FLOAT reward,
+                               const set<A>& actionSet) {
   ReinforcementLearning<S, A>::update(currentStateAction, nextState, reward,
                                       actionSet);
   EligibilityTraces<S, A>::_eligibilityTraces.insert(
@@ -64,10 +63,8 @@ void QLearningET<S, A>::update(
 }
 
 template<class S, class A>
-QLearningET<S, A>::QLearningET(AI::FLOAT stepSize,
-                                             AI::FLOAT discountRate,
-                                             Policy::Policy<S, A>& policy,
-                                             AI::FLOAT lambda)
+QLearningET<S, A>::QLearningET(AI::FLOAT stepSize, AI::FLOAT discountRate,
+                               Policy::Policy<S, A>& policy, AI::FLOAT lambda)
     : EligibilityTraces<S, A>(lambda),
       QLearning<S, A>(stepSize, discountRate, policy) {
 }

@@ -26,11 +26,9 @@ class QLearningETGD : public ReinforcementLearningGD {
 } /* namespace Algorithm */
 } /* namespace AI */
 
-inline AI::Algorithm::QLearningETGD::QLearningETGD(TileCode& tileCode,
-                                                   AI::FLOAT stepSize,
-                                                   AI::FLOAT discountRate,
-                                                   AI::FLOAT lambda,
-                                                   Policy::PolicySL& controlPolicy)
+inline AI::Algorithm::QLearningETGD::QLearningETGD(
+    TileCode& tileCode, AI::FLOAT stepSize, AI::FLOAT discountRate,
+    AI::FLOAT lambda, Policy::PolicySL& controlPolicy)
     : ReinforcementLearningGD(tileCode, stepSize, discountRate, lambda,
                               controlPolicy) {
 }

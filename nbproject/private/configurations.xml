@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="build">
+      </df>
+      <df name="Documentation">
+        <df name="html">
+          <df name="search">
+          </df>
+        </df>
+        <df name="latex">
+        </df>
+      </df>
+      <df name="Image">
+        <df name="Documentation">
+        </df>
+      </df>
+      <df name="includes">
+        <in>ActuatorBase.h</in>
+        <in>ActuatorMountainCar.h</in>
+        <in>ActuatorRandomWalk.h</in>
+        <in>Agent.h</in>
+        <in>DFS.h</in>
+        <in>DimensionInfo.h</in>
+        <in>DynaQ.h</in>
+        <in>DynaQBase.h</in>
+        <in>DynaQET.h</in>
+        <in>DynaQPlus.h</in>
+        <in>DynaQPrioritizedSweeping.h</in>
+        <in>DynaQRLMP.h</in>
+        <in>DynamicProgramming.h</in>
+        <in>Edge.h</in>
+        <in>EligibilityTraces.h</in>
+        <in>EpsilonGreedy.h</in>
+        <in>ExecuteTest.h</in>
+        <in>GlobalHeader.h</in>
+        <in>GradientDescent.h</in>
+        <in>Graph.h</in>
+        <in>HashInterface.h</in>
+        <in>HashMurmur3.h</in>
+        <in>HashSuperFastHash.h</in>
+        <in>HashUNH.h</in>
+        <in>LearningAlgorithm.h</in>
+        <in>MurmurHash3.h</in>
+        <in>NDimensionalVector.h</in>
+        <in>Observable.h</in>
+        <in>Observer.h</in>
+        <in>Policy.h</in>
+        <in>QLearning.h</in>
+        <in>QLearningET.h</in>
+        <in>QLearningETGD.h</in>
+        <in>ReinforcementLearning.h</in>
+        <in>ReinforcementLearningGD.h</in>
+        <in>Sarsa.h</in>
+        <in>SarsaET.h</in>
+        <in>SarsaETGD.h</in>
+        <in>SensorBase.h</in>
+        <in>SensorDiscrete.h</in>
+        <in>SensorMountainCar.h</in>
+        <in>SensorRandomWalk.h</in>
+        <in>SignalTranslator.h</in>
+        <in>Softmax.h</in>
+        <in>StateAction.h</in>
+        <in>StateActionNotExistException.h</in>
+        <in>StateActionPairContainer.h</in>
+        <in>StateActionPairValueComparison.h</in>
+        <in>StateActionTransition.h</in>
+        <in>StateActionTransitionException.h</in>
+        <in>StateNotExistException.h</in>
+        <in>SuperFastHash.h</in>
+        <in>TileCode.h</in>
+        <in>TileCodeCorrect.h</in>
+        <in>TileCodeMt1993764.h</in>
+        <in>TileCodeMurMur.h</in>
+        <in>TileCodeSuperFastHash.h</in>
+        <in>TileCodeUNH.h</in>
+        <in>UNH.h</in>
+        <in>Vertex.h</in>
+        <in>utility.h</in>
+        <in>xxhash.h</in>
+      </df>
+      <df name="lib">
+      </df>
+      <df name="src">
+        <in>HashMurmur3.cpp</in>
+        <in>HashSuperFastHash.cpp</in>
+        <in>HashUNH.cpp</in>
+        <in>MurmurHash3.cpp</in>
+        <in>SuperFastHash.cpp</in>
+        <in>UNH.cpp</in>
+        <in>xxhash.cpp</in>
+      </df>
+      <df name="test">
+        <in>ActuatorMountainCar.cpp</in>
+        <in>ActuatorMountainCar.h</in>
+        <in>ActuatorRandomWalk.cpp</in>
+        <in>ActuatorRandomWalk.h</in>
+        <in>DynaQETWatkins_test.cpp</in>
+        <in>DynaQPrioritizedSweeping_test.cpp</in>
+        <in>DynaQ_test.cpp</in>
+        <in>Graph_test.cpp</in>
+        <in>MountainCarEnvironment.cpp</in>
+        <in>MountainCarEnvironment.h</in>
+        <in>QLearningETGD_test.cpp</in>
+        <in>QLearningETWatkins_test.cpp</in>
+        <in>QLearning_test.cpp</in>
+        <in>RandomWalkEnvironment.cpp</in>
+        <in>RandomWalkEnvironment.h</in>
+        <in>SarsaETGD_test.cpp</in>
+        <in>SarsaET_test.cpp</in>
+        <in>Sarsa_test.cpp</in>
+        <in>SensorMountainCar.cpp</in>
+        <in>SensorMountainCar.h</in>
+        <in>SensorRandomWalk.cpp</in>
+        <in>SensorRandomWalk.h</in>
+        <in>Softmax_test.cpp</in>
+        <in>StateActionTransition_test.cpp</in>
+        <in>StateAction_test.cpp</in>
+        <in>TileCode_test.cpp</in>
+      </df>
+      <df name="UnitTest++">
+        <df name="docs">
+        </df>
+        <df name="src">
+          <df name="Posix">
+            <in>SignalTranslator.cpp</in>
+            <in>SignalTranslator.h</in>
+            <in>TimeHelpers.cpp</in>
+            <in>TimeHelpers.h</in>
+          </df>
+          <df name="tests">
+            <in>Main.cpp</in>
+            <in>RecordingReporter.h</in>
+            <in>ScopedCurrentTest.h</in>
+            <in>TestAssertHandler.cpp</in>
+            <in>TestCheckMacros.cpp</in>
+            <in>TestChecks.cpp</in>
+            <in>TestCurrentTest.cpp</in>
+            <in>TestDeferredTestReporter.cpp</in>
+            <in>TestMemoryOutStream.cpp</in>
+            <in>TestTest.cpp</in>
+            <in>TestTestList.cpp</in>
+            <in>TestTestMacros.cpp</in>
+            <in>TestTestResults.cpp</in>
+            <in>TestTestRunner.cpp</in>
+            <in>TestTestSuite.cpp</in>
+            <in>TestTimeConstraint.cpp</in>
+            <in>TestTimeConstraintMacro.cpp</in>
+            <in>TestUnitTest++.cpp</in>
+            <in>TestXmlTestReporter.cpp</in>
+          </df>
+          <df name="Win32">
+            <in>TimeHelpers.cpp</in>
+            <in>TimeHelpers.h</in>
+          </df>
+          <in>AssertException.cpp</in>
+          <in>AssertException.h</in>
+          <in>CheckMacros.h</in>
+          <in>Checks.cpp</in>
+          <in>Checks.h</in>
+          <in>Config.h</in>
+          <in>CurrentTest.cpp</in>
+          <in>CurrentTest.h</in>
+          <in>DeferredTestReporter.cpp</in>
+          <in>DeferredTestReporter.h</in>
+          <in>DeferredTestResult.cpp</in>
+          <in>DeferredTestResult.h</in>
+          <in>ExecuteTest.h</in>
+          <in>MemoryOutStream.cpp</in>
+          <in>MemoryOutStream.h</in>
+          <in>ReportAssert.cpp</in>
+          <in>ReportAssert.h</in>
+          <in>Test.cpp</in>
+          <in>Test.h</in>
+          <in>TestDetails.cpp</in>
+          <in>TestDetails.h</in>
+          <in>TestList.cpp</in>
+          <in>TestList.h</in>
+          <in>TestMacros.h</in>
+          <in>TestReporter.cpp</in>
+          <in>TestReporter.h</in>
+          <in>TestReporterStdout.cpp</in>
+          <in>TestReporterStdout.h</in>
+          <in>TestResults.cpp</in>
+          <in>TestResults.h</in>
+          <in>TestRunner.cpp</in>
+          <in>TestRunner.h</in>
+          <in>TestSuite.h</in>
+          <in>TimeConstraint.cpp</in>
+          <in>TimeConstraint.h</in>
+          <in>TimeHelpers.h</in>
+          <in>UnitTest++.h</in>
+          <in>XmlTestReporter.cpp</in>
+          <in>XmlTestReporter.h</in>
+        </df>
+      </df>
+      <in>DefinitionDoc.h</in>
+      <in>IndexDoc.h</in>
+    </df>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <platform>2</platform>
+      </toolsSet>
+      <compile>
+        <compiledirpicklist>
+          <compiledirpicklistitem>.</compiledirpicklistitem>
+          <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
+        </compiledirpicklist>
+        <compiledir>${AUTO_FOLDER}</compiledir>
+        <compilecommandpicklist>
+          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
+          <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
+        </compilecommandpicklist>
+        <compilecommand>${AUTO_COMPILE}</compilecommand>
+      </compile>
+      <dbx_gdbdebugger version="1">
+        <gdb_pathmaps>
+        </gdb_pathmaps>
+        <gdb_interceptlist>
+          <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
+        </gdb_interceptlist>
+        <gdb_options>
+          <DebugOptions>
+          </DebugOptions>
+        </gdb_options>
+        <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
+      </dbx_gdbdebugger>
+      <nativedebugger version="1">
+        <engine>gdb</engine>
+      </nativedebugger>
+      <runprofile version="9">
+        <runcommandpicklist>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+        </runcommandpicklist>
+        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <rundir>.</rundir>
+        <buildfirst>false</buildfirst>
+        <terminal-type>0</terminal-type>
+        <remove-instrumentation>0</remove-instrumentation>
+        <environment>
+        </environment>
+      </runprofile>
+    </conf>
+  </confs>
+</configurationDescriptor>

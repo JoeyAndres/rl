@@ -11,7 +11,6 @@
 #include "ActuatorBase.h"
 #include "GlobalHeader.h"
 
-
 namespace AI {
 
 template<class ActionData>

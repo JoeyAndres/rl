@@ -42,9 +42,9 @@ class SarsaET final: public EligibilityTraces<S, A>, public Sarsa<S, A> {
    *                 basically back up ranging from terminal state to initial state.
    *                 Small \f$\lambda\f$ converges to TD(0).
    */
-  SarsaET(AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy,
-          AI::FLOAT lambda);
-public:
+  SarsaET(AI::FLOAT stepSize, AI::FLOAT discountRate,
+          Policy::Policy<S, A>& policy, AI::FLOAT lambda);
+ public:
   // Inherited.
 
   virtual void update(const StateAction<S, A>& currentStateAction,

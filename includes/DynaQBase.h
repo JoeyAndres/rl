@@ -133,8 +133,8 @@ template<class S, class A>
 void AI::Algorithm::DynaQBase<S, A>::_updateModel(
     const StateAction<S, A>& currentStateAction, const S& nextState,
     const FLOAT reward) {
-  std::unique_lock<std::shared_timed_mutex> generalLock(_generalLock);
-  std::unique_lock<std::shared_timed_mutex> modellLock(_modelLock);
+  std::unique_lock < std::shared_timed_mutex > generalLock(_generalLock);
+  std::unique_lock < std::shared_timed_mutex > modellLock(_modelLock);
   _addModel(currentStateAction);
   StateActionTransition<S> &st = _model.at(currentStateAction);
   st.update(nextState, reward);
@@ -143,7 +143,7 @@ void AI::Algorithm::DynaQBase<S, A>::_updateModel(
 template<class S, class A>
 void AI::Algorithm::DynaQBase<S, A>::_addModelSafe(
     const StateAction<S, A>& currentStateAction) {
-  std::unique_lock<std::shared_timed_mutex> modellLock(_modelLock);
+  std::unique_lock < std::shared_timed_mutex > modellLock(_modelLock);
   _addModel(currentStateAction);
 }
 

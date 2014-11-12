@@ -78,7 +78,7 @@ StateAction<S, A>::StateAction(S state, A action) {
 }
 
 template<class S, class A>
-StateAction<S, A>::StateAction(const StateAction& sa){
+StateAction<S, A>::StateAction(const StateAction& sa) {
   _state = sa._state;
   _action = sa._action;
 }

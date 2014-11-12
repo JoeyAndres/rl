@@ -14,13 +14,13 @@ namespace Algorithm {
 /*! \class DynamicProgramming
  *  \brief Base class for dynamic programming.
  */
-class DynamicProgramming{
+class DynamicProgramming {
  public:
 
  private:
 };
 
-} // Algorithm
-} // AI
+}  // Algorithm
+}  // AI
 
 #endif /* ALGORITHMS_DYNAMICPROGRAMMING_DYNAMICPROGRAMMING_H_ */

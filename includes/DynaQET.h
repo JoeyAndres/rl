@@ -48,10 +48,9 @@ class DynaQET final: public DynaQ<S, A>, public EligibilityTraces<S, A> {
    *                 Small \f$\lambda\f$ converges to TD(0).
    */
   DynaQET(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                 Policy::Policy<S, A>& policy,
-                 AI::UINT simulationIterationCount,
-                 AI::FLOAT stateTransitionGreediness,
-                 AI::FLOAT stateTransitionStepSize, AI::FLOAT lambda);
+          Policy::Policy<S, A>& policy, AI::UINT simulationIterationCount,
+          AI::FLOAT stateTransitionGreediness,
+          AI::FLOAT stateTransitionStepSize, AI::FLOAT lambda);
 
  public:
   // Inherited.
@@ -64,11 +63,10 @@ class DynaQET final: public DynaQ<S, A>, public EligibilityTraces<S, A> {
 
 template<class S, class A>
 DynaQET<S, A>::DynaQET(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                                     Policy::Policy<S, A>& policy,
-                                     AI::UINT simulationIterationCount,
-                                     AI::FLOAT stateTransitionGreediness,
-                                     AI::FLOAT stateTransitionStepSize,
-                                     AI::FLOAT lambda)
+                       Policy::Policy<S, A>& policy,
+                       AI::UINT simulationIterationCount,
+                       AI::FLOAT stateTransitionGreediness,
+                       AI::FLOAT stateTransitionStepSize, AI::FLOAT lambda)
     : DynaQ<S, A>(stepSize, discountRate, policy, simulationIterationCount,
                   stateTransitionGreediness, stateTransitionStepSize),
       EligibilityTraces<S, A>(lambda) {
@@ -76,8 +74,8 @@ DynaQET<S, A>::DynaQET(AI::FLOAT stepSize, AI::FLOAT discountRate,
 
 template<class S, class A>
 void DynaQET<S, A>::update(const StateAction<S, A>& currentStateAction,
-                                  const S& nextState, const AI::FLOAT reward,
-                                  const set<A>& actionSet) {
+                           const S& nextState, const AI::FLOAT reward,
+                           const set<A>& actionSet) {
   DynaQ<S, A>::update(currentStateAction, nextState, reward, actionSet);
 
   EligibilityTraces<S, A>::_eligibilityTraces.insert(

@@ -35,7 +35,7 @@ struct HashMurmur3Out {
  */
 class Murmur3 : public HashInterface<HashMurmur3Out> {
  public:
-  virtual HashMurmur3Out hash(const AI::BYTE *const byteArray, size_t len);
+  virtual HashMurmur3Out hash(const AI::BYTE * const byteArray, size_t len);
   virtual HashMurmur3Out hash(const vector<AI::BYTE>& byteArray);
 };
 

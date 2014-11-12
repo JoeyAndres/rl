@@ -35,9 +35,9 @@ class ReinforcementLearningGD : public LearningAlgorithm<vector<FLOAT>,
    * @param lambda How much current state influence future states (multiplied with discount rate).
    * @param policy Control policy.
    */
-  ReinforcementLearningGD(TileCode& tileCode, AI::FLOAT stepSize,
-                          AI::FLOAT discountRate, AI::FLOAT lambda,
-                          Policy::Policy<vector<FLOAT>, vector<FLOAT> >& policy);
+  ReinforcementLearningGD(
+      TileCode& tileCode, AI::FLOAT stepSize, AI::FLOAT discountRate,
+      AI::FLOAT lambda, Policy::Policy<vector<FLOAT>, vector<FLOAT> >& policy);
 
   /**
    * @param currentStateAction current state-action vector to apply.

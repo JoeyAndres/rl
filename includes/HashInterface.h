@@ -24,7 +24,7 @@ namespace Hash {
  *  \brief Interface for all hash encapsulation.
  *  \tparam RET return data type.
  */
-template <class RET>
+template<class RET>
 class HashInterface {
  public:
   /**
@@ -32,7 +32,7 @@ class HashInterface {
    * @param len
    * @return h(byteArray)
    */
-  virtual RET hash(const AI::BYTE *const byteArray, size_t len) = 0;
+  virtual RET hash(const AI::BYTE * const byteArray, size_t len) = 0;
   virtual RET hash(const vector<AI::BYTE>& byteArray) = 0;
 };
 

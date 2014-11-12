@@ -63,10 +63,10 @@
 extern "C" {
 #endif
 
-namespace AI{
-namespace Algorithm{
-namespace Hash{
-namespace Implementation{
+namespace AI {
+namespace Algorithm {
+namespace Hash {
+namespace Implementation {
 //****************************
 // Type
 //****************************

@@ -247,7 +247,7 @@ template<class S, class A>
 void AI::Algorithm::ReinforcementLearning<S, A>::backUpStateActionPair(
     const StateAction<S, A>& currentStateAction, const AI::FLOAT reward,
     const StateAction<S, A>& nextStateActionPair) {
-  std::unique_lock<std::shared_timed_mutex> containerLock(_containerLock);
+  std::unique_lock < std::shared_timed_mutex > containerLock(_containerLock);
 
   // Next state-action value (nSAV) and current state-action value (cSAV).
   AI::FLOAT nSAV = getStateActionValue(nextStateActionPair);
