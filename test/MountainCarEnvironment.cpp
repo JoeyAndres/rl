@@ -5,11 +5,12 @@
  *      Author: jandres
  */
 
+#include "../test/MountainCarEnvironment.h"
+
 #include <cassert>
 #include <cmath>
 #include <iostream>
 
-#include "MountainCarEnvironment.h"
 
 using namespace std;
 

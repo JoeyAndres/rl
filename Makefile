@@ -11,16 +11,10 @@ LIBRARY = -lpthread -lUnitTest++ -lboost_system
 
 
 OBJECT := $(patsubst %.cpp,%.o,$(wildcard src/*.cpp))
-TEST := $(patsubst %.cpp,%.o,$(wildcard Tests/*.cpp))
+TEST := $(patsubst %.cpp,%.o,$(wildcard test/*.cpp))
 
 # Compile tests and create library.
 all: $(OBJECT) $(TEST) lib
-
-runF-%:%
-	./$^ --output_format=XML --log_level=test_suite > $(^)-report.xml	
-
-run-%:%
-	./$^
 
 $(TEST_OBJECT): $(OBJECT)
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LIBRARY_PATHS) $(INCLUDE_PATHS) $^ -o \
