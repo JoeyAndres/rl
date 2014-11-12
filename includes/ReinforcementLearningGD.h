@@ -14,7 +14,6 @@
 #include <map>
 
 #include "GradientDescent.h"
-#include "GradientDescentCC.h"
 #include "StateAction.h"
 #include "LearningAlgorithm.h"
 
@@ -114,6 +113,7 @@ inline void ReinforcementLearningGD::update(
   _buildActionValues(actionSet, nextStateVector, actionValueMap);
   const vector<FLOAT>& nextAction = this->_getLearningPolicyAction(
       actionValueMap, actionSet);
+
   _gradientDescent.updateWeights(currentStateAction.getState(),
                                  currentStateAction.getAction(),
                                  nextStateVector, actionValueMap[nextAction],

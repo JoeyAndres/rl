@@ -45,7 +45,7 @@ TEST(SarsaETGDInitialization) {
       dimensionalInfo
           + sizeof(dimensionalInfo) / sizeof(DimensionInfo<AI::FLOAT> ));
   dimensionalInfoVector[2].setGeneralizationScale(0.0F);
-  TileCodeCorrect tileCode(dimensionalInfoVector, 8);
+  TileCodeCorrect tileCode(dimensionalInfoVector, 6);
   Policy::EpsilonGreedySL policy(1.0F);
   SarsaETGD sarsa(tileCode, 0.1F, 1.0F, 0.9F, policy);
   SensorMountainCar smc;
@@ -90,10 +90,8 @@ TEST(SarsaETGDMountainCar01) {
       agent.execute();
     }
     cout << iterationCount << endl;
-    //cout << ".";
     agent.postExecute();
   }
-  cout << endl;
   CHECK(iterationCount < 300);
 }
 

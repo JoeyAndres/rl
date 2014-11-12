@@ -16,7 +16,6 @@
 #include "ActuatorRandomWalk.h"
 #include "RandomWalkEnvironment.h"
 #include "DynaQ.h"
-#include "DynaQCC.h"
 #include "EpsilonGreedy.h"
 #include "Softmax.h"
 
@@ -66,36 +65,6 @@ TEST(DynaQSoftmaxPolicy) {
 
   AI::INT iterationCount = 0;
   for (AI::INT i = 0; i < 10; i++) {
-    RandomWalkEnvironment& instance = RandomWalkEnvironment::getInstance();
-    instance.reset();
-    iterationCount = 0;
-    agent.preExecute();
-    while (!agent.episodeDone()) {
-      iterationCount++;
-      agent.execute();
-    }
-#ifdef TEST_PRINT
-    cout << iterationCount << endl;
-#endif
-    agent.postExecute();
-  }
-  CHECK(iterationCount == 2);
-}
-
-TEST(DynaQMultithreading) {
-  SensorRandomWalk<AI::INT> srw;
-  srw.addTerminalState(T);
-  ActuatorRandomWalk<AI::INT> arw;
-  arw.addAction(L);
-  arw.addAction(R);
-  Algorithm::Policy::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
-  Algorithm::DynaQCC<AI::INT, AI::INT> dynaQCCAlgorithm(0.1F, 0.9F, policy,
-                                                        1200, 1.0F, 1.0F);
-
-  Agent<AI::INT, AI::INT> agent(srw, arw, dynaQCCAlgorithm);
-
-  AI::INT iterationCount = 0;
-  for (AI::INT i = 0; i < 100; i++) {
     RandomWalkEnvironment& instance = RandomWalkEnvironment::getInstance();
     instance.reset();
     iterationCount = 0;

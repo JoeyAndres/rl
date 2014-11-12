@@ -5,7 +5,7 @@
  *      Author: jandres
  */
 
-#include "../Implementation/SuperFastHash.h"
+#include "SuperFastHash.h"
 #include <cstdlib>
 
 #undef get16bits

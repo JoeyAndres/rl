@@ -36,11 +36,11 @@ AI::FLOAT AI::MountainCarEnvironment::applyAction(AI::INT act) {
   }
 
   act = act - 1;
-  AI::FLOAT reward = -1;
+  AI::FLOAT reward = -1.0F;
   if (act == 0) {
-    reward = -1;
+    reward = -1.0F;
   } else {
-    reward = -2;
+    reward = -2.0F;
   }
 
   _currentState[VEL] +=

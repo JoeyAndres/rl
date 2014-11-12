@@ -167,12 +167,9 @@ size_t TileCode::_calculateSizeCache() {
 
 inline size_t AI::Algorithm::TileCode::_paramToGridValue(
     AI::FLOAT param, size_t tilingIndex, size_t dimensionIndex) {
-  return ((param
-      + _randomOffsets[tilingIndex][dimensionIndex]
-          * this->_dimensionalInfos[dimensionIndex].getGeneralizationScale()
-      - this->_dimensionalInfos[dimensionIndex].getLowerBound())
-      * this->_dimensionalInfos[dimensionIndex].GetGridCountIdeal())
-      / this->_dimensionalInfos[dimensionIndex].GetRangeDifference();
+  return ((param + _randomOffsets[tilingIndex][dimensionIndex] * this->_dimensionalInfos[dimensionIndex].getGeneralizationScale() - this->_dimensionalInfos[dimensionIndex].getLowerBound()) *
+        this->_dimensionalInfos[dimensionIndex].GetGridCountIdeal()) /
+        this->_dimensionalInfos[dimensionIndex].GetRangeDifference();
 }
 
 #endif	/* TILECODE_H */

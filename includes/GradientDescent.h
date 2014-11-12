@@ -87,7 +87,7 @@ class GradientDescent {
   /**
    * Make all eligibility trace to 0.0F.
    */
- void resetEligibilityTraces();
+  void resetEligibilityTraces();
 
   /**
    * @param stateVector vector of states.
@@ -163,8 +163,8 @@ GradientDescent::GradientDescent(TileCode& tileCode, AI::FLOAT stepSize,
   _discountRate = discountRate;
   _lambda = lambda;
 
-  _e = vector < AI::FLOAT > (getSize(), 0);
-  _w = vector < FLOAT > (getSize(), 0);
+  _e = vector<AI::FLOAT>(getSize(), 0);
+  _w = vector<FLOAT>(getSize(), 0);
 }
 
 size_t AI::Algorithm::GradientDescent::getSize() const {
@@ -319,6 +319,11 @@ void GradientDescent::buildActionValues(
     }
 
     actionVectorValueMap[av] = getValueFromParameters(paramCopy);
+
+    for (const FLOAT& a : av) {
+      (void) a;
+      paramCopy.pop_back();
+    }
   }
 }
 
