@@ -3,7 +3,7 @@ CXX=clang++-3.5 -O3
 CXXFLAGS=-std=c++14 -Wunused
 CPPFLAGS=
 
-INCLUDE_PATHS = -I. -I./UnitTest++	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./include
+INCLUDE_PATHS = -I. -I./UnitTest++	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./include -I./test
 LIBRARY_PATHS = -L. -L./UnitTest++
 AI_LIB_PATH := ./lib/libAI.a
 
@@ -11,14 +11,14 @@ LIBRARY = -lpthread -lUnitTest++ -lboost_system
 
 
 OBJECT := $(patsubst %.cpp,%.o,$(wildcard src/*.cpp))
-TEST := $(patsubst %.cpp,%.o,$(wildcard test/*.cpp))
+TEST := $(patsubst test/%.cpp, %,$(wildcard test/*.cpp))
 
 # Compile tests and create library.
 all: $(OBJECT) $(TEST) lib
 
-$(TEST_OBJECT): $(OBJECT)
+$(TEST): $(OBJECT)
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LIBRARY_PATHS) $(INCLUDE_PATHS) $^ -o \
-	$@ $@.cpp  $(LIBRARY)
+	./build/$@ 	./test/$@.cpp  $(LIBRARY)
 
 lib: $(OBJECT)
 	ar rvs $(AI_LIB_PATH) $^
@@ -28,4 +28,5 @@ lib: $(OBJECT)
 	$@ $(LIBRARY)
 
 clean:
-	rm -f $(OBJECT) $(TEST_OBJECT) $(AI_LIB_PATH)
+	rm -rf $(OBJECT)  $(AI_LIB_PATH)
+	$(foreach var,$(TEST), rm -rf ./build/$(var);)

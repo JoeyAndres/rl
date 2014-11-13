@@ -62,6 +62,12 @@ class Agent {
   virtual void execute();
 
   /**
+   * Executed after epiosde.
+   * @return Accumulated reward during the episode.
+   */
+  virtual FLOAT postExecute();
+
+  /**
    * @return true if episode is done.
    */
   virtual bool episodeDone();
@@ -70,9 +76,7 @@ class Agent {
    * Does clean up routines after reaching terminal state.
    * @return Cummulative reward.
    */
-  virtual FLOAT postExecute();
-
-  /**
+    /**
    * @return Acquire the accumulated reward so far within the episode.
    */
   FLOAT getAccumulativeReward() const;

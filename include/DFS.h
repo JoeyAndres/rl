@@ -11,7 +11,7 @@
 #include <map>
 #include <set>
 
-#include "Graph.h"
+#include "GraphDirected.h"
 
 using namespace std;
 
@@ -21,7 +21,7 @@ namespace Algorithm {
 template<class D>
 class DFS {
  public:
-  DFS(Graph<D>& graph);
+  DFS(GraphDirected<D>& graph);
   virtual ~DFS();
 
   void search();
@@ -31,12 +31,12 @@ class DFS {
 
   void reset();
  private:
-  Graph<D>& _graph;
+  GraphDirected<D>& _graph;
   map<const Vertex<D>*, bool> _visited;
 };
 
 template<class D>
-DFS<D>::DFS(Graph<D>& graph)
+DFS<D>::DFS(GraphDirected<D>& graph)
     : _graph(graph) {
   reset();
 }

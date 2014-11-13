@@ -20,25 +20,7 @@ namespace AI {
  *  \tparam ActionData Action data type.
  *
  * Base class and interface for all actuator objects. One can override
- * or extend virtual functions here to direct output to environment. For
- * example, consider a line following robot example.
- *
- * ### Example:
- *
- * Supposed there is a line following that takes an input from front sensors,
- * and two motors. Actuator class is concerned with the two motors. One can then
- * create a class by inheriting from Actuator,
- *
- * \code{.cpp}
- * class LineFollowing : public Actuator<std::pair<AI::FLOAT, AI::FLOAT> > {
- *    LineFollowing(set<std::pair<AI::FLOAT, AI::FLOAT> > dataSet);  // Old constructor.
- *    LineFollowing(AI::FLOAT lowerSpeed, AI::FLOAT upperSpeed);  // New constructor.
- *    virtual void applyAction(const std::pair<AI::FLOAT, AI::FLOAT>& action);
- * }
- * \endcode
- *
- * The overridden applyAction is the method responsible for communicating directly to motor
- * drivers, where speed of each motor is given in pairs of two floats.
+ * or extend virtual functions here to direct output to environment.
  */
 template<class ActionData>
 class ActuatorBase {

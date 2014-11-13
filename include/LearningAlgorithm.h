@@ -1,12 +1,11 @@
 /*
- * SearchAlgorithm.h
+ * LearningAlgorithm.h
  *
  *  Created on: May 31, 2014
  *      Author: jandres
  */
 
-#ifndef SEARCHALGORITHM_H_
-#define SEARCHALGORITHM_H_
+#pragma once
 
 #include "GlobalHeader.h"
 
@@ -174,5 +173,3 @@ inline const A& AI::Algorithm::LearningAlgorithm<S, A>::_getLearningPolicyAction
     const map<A, AI::FLOAT>& actionValueMap, const set<A>& actionSet) {
   return _learningPolicy.getAction(actionValueMap, actionSet);
 }
-
-#endif /* SEARCHALGORITHM_H_ */

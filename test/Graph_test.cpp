@@ -19,7 +19,7 @@
 #include "UnitTest++.h"
 #include "Vertex.h"
 #include "Edge.h"
-#include "Graph.h"
+#include "GraphDirected.h"
 #include "DFS.h"
 
 using namespace AI;
@@ -63,11 +63,7 @@ TEST(Graph01) {
     Algorithm::Edge<int> (vertex02, vertex07),
   };
 
-  Algorithm::Graph<int> graph(edgeSet);
-
-  /*for(const Algorithm::Vertex<int>* v : graph[vertex01]){
-    cout << *(v->getData()) << endl;
-  }*/
+  Algorithm::GraphDirected<int> graph(edgeSet);
 
   for(const Algorithm::Vertex<int>* v  : graph.getVertices()){
     cout << *(v->getData()) << endl;
