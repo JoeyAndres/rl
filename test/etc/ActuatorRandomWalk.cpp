@@ -5,9 +5,8 @@
  *      Author: jandres
  */
 
-#include "../test/ActuatorRandomWalk.h"
-
-#include "../test/RandomWalkEnvironment.h"
+#include "ActuatorRandomWalk.h"
+#include "RandomWalkEnvironment.h"
 
 namespace AI {
 

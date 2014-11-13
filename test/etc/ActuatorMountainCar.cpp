@@ -5,12 +5,11 @@
  *      Author: jandres
  */
 
-#include "../test/ActuatorMountainCar.h"
-
 #include <cmath>
 #include <iostream>
 
-#include "../test/MountainCarEnvironment.h"
+#include "ActuatorMountainCar.h"
+#include "MountainCarEnvironment.h"
 
 using namespace std;
 

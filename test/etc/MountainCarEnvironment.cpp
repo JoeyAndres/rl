@@ -5,12 +5,11 @@
  *      Author: jandres
  */
 
-#include "../test/MountainCarEnvironment.h"
-
 #include <cassert>
 #include <cmath>
 #include <iostream>
 
+#include "MountainCarEnvironment.h"
 
 using namespace std;
 
@@ -37,11 +36,11 @@ AI::FLOAT AI::MountainCarEnvironment::applyAction(AI::INT act) {
   }
 
   act = act - 1;
-  AI::FLOAT reward = -1.0F;
+  AI::FLOAT reward = -1;
   if (act == 0) {
-    reward = -1.0F;
+    reward = -1;
   } else {
-    reward = -2.0F;
+    reward = -2;
   }
 
   _currentState[VEL] +=

@@ -5,12 +5,11 @@
  *      Author: jandres
  */
 
-#include "../test/SensorMountainCar.h"
-
 #include <vector>
 #include <iostream>
 
-#include "../test/MountainCarEnvironment.h"
+#include "SensorMountainCar.h"
+#include "MountainCarEnvironment.h"
 
 using namespace std;
 

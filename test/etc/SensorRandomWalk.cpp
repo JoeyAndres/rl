@@ -1,6 +1,5 @@
-#include "../test/SensorRandomWalk.h"
-
-#include "../test/RandomWalkEnvironment.h"
+#include "SensorRandomWalk.h"
+#include "RandomWalkEnvironment.h"
 
 AI::INT AI::SensorRandomWalk<AI::INT>::getSensorState() {
   RandomWalkEnvironment& rwe = RandomWalkEnvironment::getInstance();

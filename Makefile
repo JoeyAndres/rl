@@ -3,30 +3,45 @@ CXX=clang++-3.5 -O3
 CXXFLAGS=-std=c++14 -Wunused
 CPPFLAGS=
 
-INCLUDE_PATHS = -I. -I./UnitTest++	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./include -I./test
+INCLUDE_PATHS = -I. -I./UnitTest++	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./include -I./test -I./test/etc
 LIBRARY_PATHS = -L. -L./UnitTest++
 AI_LIB_PATH := ./lib/libAI.a
 
 LIBRARY = -lpthread -lUnitTest++ -lboost_system
 
 
-OBJECT := $(patsubst %.cpp,%.o,$(wildcard src/*.cpp))
-TEST := $(patsubst test/%.cpp, %,$(wildcard test/*.cpp))
+OBJECT := $(patsubst src/%.cpp,build/%.o,$(wildcard src/*.cpp))
+TEST_OBJECT := $(patsubst test/etc/%.cpp,build/%.o,$(wildcard test/etc/*.cpp))
+TEST_EXEC := $(patsubst test/%.cpp, %,$(wildcard test/*.cpp))
 
 # Compile tests and create library.
-all: $(OBJECT) $(TEST) lib
+all: object test_object test lib
 
-$(TEST): $(OBJECT)
+object: $(OBJECT)
+
+test_object: $(TEST_OBJECT)
+
+test: $(TEST_EXEC)
+
+$(TEST_EXEC): $(OBJECT) $(TEST_OBJECT)
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LIBRARY_PATHS) $(INCLUDE_PATHS) $^ -o \
-	./build/$@ 	./test/$@.cpp  $(LIBRARY)
+	./build/exec/$@ ./test/$@.cpp  $(LIBRARY)
 
 lib: $(OBJECT)
 	ar rvs $(AI_LIB_PATH) $^
 
-.cpp.o:
+build/%.o:src/%.cpp
 	$(CXX) $(CXXFLAGS) -c $(CPPFLAGS) $(LIBRARY_PATHS) $(INCLUDE_PATHS) $^ -o \
 	$@ $(LIBRARY)
+	
+build/%.o:test/etc/%.cpp
+	$(CXX) $(CXXFLAGS) -c $(CPPFLAGS) $(LIBRARY_PATHS) $(INCLUDE_PATHS) $^ -o \
+	$@ $(LIBRARY)
+	
+run-test:	
+	$(foreach var,$(TEST_EXEC), echo $(var) && ./build/exec/$(var))
 
 clean:
-	rm -rf $(OBJECT)  $(AI_LIB_PATH)
-	$(foreach var,$(TEST), rm -rf ./build/$(var);)
+	rm -rf $(OBJECT)  $(AI_LIB_PATH) $(OBJECT) $(TEST_OBJECT)
+	$(foreach var,$(TEST_EXEC),rm -rf build/exec/$(var))
+	
