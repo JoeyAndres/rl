@@ -21,6 +21,7 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
+namespace SL {
 
 /*! \class SarsaETGD
  *  \brief Gradient Descent with Sarsa implementation (the same policy for
@@ -32,15 +33,17 @@ class SarsaETGD final: public ReinforcementLearningGD {
             AI::FLOAT lambda,
             Policy::Policy<vector<FLOAT>, vector<FLOAT> >& policy);
 };
-} /* namespace Algorithm */
-} /* namespace AI */
 
-AI::Algorithm::SarsaETGD::SarsaETGD(
+SarsaETGD::SarsaETGD(
     TileCode& tileCode, AI::FLOAT stepSize, AI::FLOAT discountRate,
     AI::FLOAT lambda, Policy::Policy<vector<FLOAT>, vector<FLOAT> >& policy)
     : ReinforcementLearningGD(tileCode, stepSize, discountRate, lambda, policy) {
   this->setLearningPolicy(policy);
 }
+
+} // namespace SL
+} /* namespace Algorithm */
+} /* namespace AI */
 
 #endif	/* SARSAETGD_H */
 

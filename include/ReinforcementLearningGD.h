@@ -19,6 +19,7 @@
 
 namespace AI {
 namespace Algorithm {
+namespace SL {
 
 /*! \class ReinforcementLearningGD
  *  \brief Gradient descent implementation of Reinforcement Learning.
@@ -147,6 +148,7 @@ void ReinforcementLearningGD::reset() {
   _gradientDescent.resetEligibilityTraces();
 }
 
+} // namespace SL
 } /* namespace Algorithm */
 } /* namespace AI */
 
