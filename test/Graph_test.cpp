@@ -53,22 +53,18 @@ TEST(Graph01) {
   Algorithm::Graph::Vertex<int> vertex06(6);
   Algorithm::Graph::Vertex<int> vertex07(7);
 
-  set<Algorithm::Graph::Vertex<int> > vertexSet = {
-      vertex01, vertex02, vertex03, vertex04, vertex05,
-      vertex06, vertex07, vertex07
-  };
+  set<Algorithm::Graph::Vertex<int> > vertexSet = { vertex01, vertex02,
+      vertex03, vertex04, vertex05, vertex06, vertex07, vertex07 };
 
-  set<Algorithm::Graph::Edge<int> > edgeSet = {
-      Algorithm::Graph::Edge<int>(vertex01, vertex02),
-      Algorithm::Graph::Edge<int>(vertex01, vertex03),
-      Algorithm::Graph::Edge<int>(vertex01, vertex04),
-      Algorithm::Graph::Edge<int>(vertex02, vertex03),
-      Algorithm::Graph::Edge<int>(vertex02, vertex05),
-      Algorithm::Graph::Edge<int>(vertex03, vertex05),
-      Algorithm::Graph::Edge<int>(vertex03, vertex01),
-      Algorithm::Graph::Edge<int>(vertex02, vertex06),
-      Algorithm::Graph::Edge<int>(vertex02, vertex07),
-  };
+  set<Algorithm::Graph::Edge<int> > edgeSet = { Algorithm::Graph::Edge<int>(
+      vertex01, vertex02), Algorithm::Graph::Edge<int>(vertex01, vertex03),
+      Algorithm::Graph::Edge<int>(vertex01, vertex04), Algorithm::Graph::Edge<
+          int>(vertex02, vertex03), Algorithm::Graph::Edge<int>(vertex02,
+                                                                vertex05),
+      Algorithm::Graph::Edge<int>(vertex03, vertex05), Algorithm::Graph::Edge<
+          int>(vertex03, vertex01), Algorithm::Graph::Edge<int>(vertex02,
+                                                                vertex06),
+      Algorithm::Graph::Edge<int>(vertex02, vertex07), };
 
   Algorithm::Graph::GraphDirected<int> graph(edgeSet);
   Algorithm::Graph::GraphUndirected<int> dGraph(edgeSet);
@@ -77,8 +73,13 @@ TEST(Graph01) {
     CHECK(vertexSet.find(*v) != vertexSet.end());
   }
 
+  cout << "Directed Graph BFS" << endl;
   Algorithm::Graph::BFS<int> bfs(graph);
   bfs.search(vertex01);
+
+  cout << "Undirected Graph BFS" << endl;
+  Algorithm::Graph::BFS<int> dBfs(dGraph);
+  dBfs.search(vertex01);
 
   cout << "Directed Graph DFS" << endl;
   Algorithm::Graph::DFS<int> dfs(graph);
