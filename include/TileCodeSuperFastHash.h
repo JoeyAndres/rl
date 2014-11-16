@@ -14,6 +14,7 @@
 
 namespace AI {
 namespace Algorithm {
+namespace SL {
 /*! \class TileCodeSuperFastHash
  *  \brief Tile Code using SuperFastHash.
  */
@@ -45,16 +46,12 @@ class TileCodeSuperFastHash : public TileCode {
                                 FEATURE_VECTOR& fv);
 };
 
-}
-/* namespace Algorithm */
-} /* namespace AI */
-
-inline AI::Algorithm::TileCodeSuperFastHash::TileCodeSuperFastHash(
+inline TileCodeSuperFastHash::TileCodeSuperFastHash(
     vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings)
     : TileCode(dimensionalInfos, numTilings) {
 }
 
-inline AI::Algorithm::TileCodeSuperFastHash::TileCodeSuperFastHash(
+inline TileCodeSuperFastHash::TileCodeSuperFastHash(
     vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings,
     size_t sizeHint)
     : TileCode(dimensionalInfos, numTilings) {
@@ -63,7 +60,7 @@ inline AI::Algorithm::TileCodeSuperFastHash::TileCodeSuperFastHash(
   }
 }
 
-inline void AI::Algorithm::TileCodeSuperFastHash::getFeatureVector(
+inline void TileCodeSuperFastHash::getFeatureVector(
     const STATE_CONT& parameters, FEATURE_VECTOR& tilings) {
   vector<AI::INT> tileComponents(this->getDimension() + 1);
   for (size_t i = 0; i < this->_numTilings; i++) {
@@ -81,5 +78,9 @@ inline void AI::Algorithm::TileCodeSuperFastHash::getFeatureVector(
     tilings.push_back(hashVal % this->_sizeCache);
   }
 }
+
+} // namespace SL
+} /* namespace Algorithm */
+} /* namespace AI */
 
 #endif /* TileCode */

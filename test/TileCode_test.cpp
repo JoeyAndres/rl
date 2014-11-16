@@ -19,6 +19,7 @@
 
 using namespace AI;
 using namespace AI::Algorithm;
+using namespace AI::Algorithm::SL;
 using namespace std::chrono;
 using namespace std;
 

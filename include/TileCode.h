@@ -24,6 +24,7 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
+namespace SL {
 
 /*! \class TileCode
  *  \brief Base object encapsulate tile coding.
@@ -162,10 +163,7 @@ size_t TileCode::_calculateSizeCache() {
   return size;
 }
 
-}
-}
-
-inline size_t AI::Algorithm::TileCode::_paramToGridValue(
+inline size_t TileCode::_paramToGridValue(
     AI::FLOAT param, size_t tilingIndex, size_t dimensionIndex) {
   return ((param
       + _randomOffsets[tilingIndex][dimensionIndex]
@@ -174,5 +172,9 @@ inline size_t AI::Algorithm::TileCode::_paramToGridValue(
       * this->_dimensionalInfos[dimensionIndex].GetGridCountIdeal())
       / this->_dimensionalInfos[dimensionIndex].GetRangeDifference();
 }
+
+}  // namespace SL
+}  // namespace Algorithm
+}  // namespace AI
 
 #endif	/* TILECODE_H */

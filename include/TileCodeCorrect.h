@@ -18,6 +18,7 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
+namespace SL {
 
 /*! \class TileCodeCorrect
  *  \brief The recommend implementation of Tile Coding for medium size state-space.
@@ -43,15 +44,12 @@ class TileCodeCorrect : public TileCode {
 
 };
 
-} /* namespace Algorithm */
-} /* namespace AI */
-
-inline AI::Algorithm::TileCodeCorrect::TileCodeCorrect(
+inline TileCodeCorrect::TileCodeCorrect(
     vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings)
     : TileCode(dimensionalInfos, numTilings) {
 }
 
-inline void AI::Algorithm::TileCodeCorrect::getFeatureVector(
+inline void TileCodeCorrect::getFeatureVector(
     const STATE_CONT& parameters, FEATURE_VECTOR& fv) {
   assert(this->getDimension() == parameters.size());
 
@@ -73,5 +71,9 @@ inline void AI::Algorithm::TileCodeCorrect::getFeatureVector(
     fv.push_back(hashedIndex);
   }
 }
+
+} // namespace SL
+} /* namespace Algorithm */
+} /* namespace AI */
 
 #endif /* TILECODECORRECT_H_ */

@@ -13,6 +13,7 @@
 
 namespace AI {
 namespace Algorithm {
+namespace SL {
 
 /*! \class TileCodeMurMur
  *  \brief Tile Code using MurMur3 hash.
@@ -29,15 +30,12 @@ class TileCodeMurMur : public TileCode {
                                 FEATURE_VECTOR& fv);
 };
 
-} /* namespace Algorithm */
-} /* namespace AI */
-
-inline AI::Algorithm::TileCodeMurMur::TileCodeMurMur(
+inline TileCodeMurMur::TileCodeMurMur(
     vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings)
     : TileCode(dimensionalInfos, numTilings) {
 }
 
-inline AI::Algorithm::TileCodeMurMur::TileCodeMurMur(
+inline TileCodeMurMur::TileCodeMurMur(
     vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings,
     size_t sizeHint)
     : TileCode(dimensionalInfos, numTilings) {
@@ -46,7 +44,7 @@ inline AI::Algorithm::TileCodeMurMur::TileCodeMurMur(
   }
 }
 
-inline void AI::Algorithm::TileCodeMurMur::getFeatureVector(
+inline void TileCodeMurMur::getFeatureVector(
     const STATE_CONT& parameters, FEATURE_VECTOR& tilings) {
   assert(this->getDimension() == parameters.size());
 
@@ -68,5 +66,9 @@ inline void AI::Algorithm::TileCodeMurMur::getFeatureVector(
     tilings.push_back(hash.hashVal[0] % this->_sizeCache);
   }
 }
+
+} // namespace SL
+} /* namespace Algorithm */
+} /* namespace AI */
 
 #endif /* TILECODEMURMUR_H_ */

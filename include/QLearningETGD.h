@@ -12,6 +12,7 @@
 
 namespace AI {
 namespace Algorithm {
+namespace SL {
 
 /*! \class QLearningETGD
  *  \brief Gradient Descent with QLearning implementation (Separate control
@@ -23,14 +24,15 @@ class QLearningETGD : public ReinforcementLearningGD {
                 AI::FLOAT lambda, Policy::PolicySL& controlPolicy);
 };
 
-} /* namespace Algorithm */
-} /* namespace AI */
-
-inline AI::Algorithm::QLearningETGD::QLearningETGD(
+inline QLearningETGD::QLearningETGD(
     TileCode& tileCode, AI::FLOAT stepSize, AI::FLOAT discountRate,
     AI::FLOAT lambda, Policy::PolicySL& controlPolicy)
     : ReinforcementLearningGD(tileCode, stepSize, discountRate, lambda,
                               controlPolicy) {
 }
+
+} // namespace SL
+} /* namespace Algorithm */
+} /* namespace AI */
 
 #endif /* QLEARNINGETGD_H_ */

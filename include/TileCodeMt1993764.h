@@ -14,6 +14,7 @@
 
 namespace AI {
 namespace Algorithm {
+namespace SL {
 
 /*! \class TileCodeMt1993764
  *  \brief Tile Code using Mt1993764 hash.2
@@ -49,15 +50,12 @@ class TileCodeMt1993764 : public TileCode {
   std::mt19937_64 _prng;
 };
 
-} /* namespace Algorithm */
-} /* namespace AI */
-
-inline AI::Algorithm::TileCodeMt1993764::TileCodeMt1993764(
+inline TileCodeMt1993764::TileCodeMt1993764(
     vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings)
     : TileCode(dimensionalInfos, numTilings) {
 }
 
-inline AI::Algorithm::TileCodeMt1993764::TileCodeMt1993764(
+inline TileCodeMt1993764::TileCodeMt1993764(
     vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings,
     size_t sizeHint)
     : TileCode(dimensionalInfos, numTilings) {
@@ -66,7 +64,7 @@ inline AI::Algorithm::TileCodeMt1993764::TileCodeMt1993764(
   }
 }
 
-inline void AI::Algorithm::TileCodeMt1993764::getFeatureVector(
+inline void TileCodeMt1993764::getFeatureVector(
     const STATE_CONT& parameters, FEATURE_VECTOR& tilings) {
   vector<AI::INT> tileComponents(this->getDimension() + 1);
   for (size_t i = 0; i < this->_numTilings; i++) {
@@ -83,5 +81,9 @@ inline void AI::Algorithm::TileCodeMt1993764::getFeatureVector(
     tilings.push_back(_prng() % this->_sizeCache);
   }
 }
+
+} // namespace SL
+} /* namespace Algorithm */
+} /* namespace AI */
 
 #endif // TIleCODEMT1993764_H_

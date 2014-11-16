@@ -15,6 +15,7 @@
 
 namespace AI {
 namespace Algorithm {
+namespace SL {
 
 /*! \class TileCodeUNH
  *  \brief Tile Code using University New Hampshire hash, or UNH.
@@ -46,10 +47,7 @@ class TileCodeUNH : public TileCode {
   vector<AI::FLOAT> _normalization;
 };
 
-} /* namespace Algorithm */
-} /* namespace AI */
-
-inline AI::Algorithm::TileCodeUNH::TileCodeUNH(
+TileCodeUNH::TileCodeUNH(
     vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings)
     : TileCode(dimensionalInfos, numTilings) {
   _normalization = vector<AI::FLOAT>(this->getDimension());
@@ -60,7 +58,7 @@ inline AI::Algorithm::TileCodeUNH::TileCodeUNH(
   }
 }
 
-inline AI::Algorithm::TileCodeUNH::TileCodeUNH(
+TileCodeUNH::TileCodeUNH(
     vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings,
     size_t sizeHint)
     : TileCode(dimensionalInfos, numTilings) {
@@ -77,7 +75,7 @@ inline AI::Algorithm::TileCodeUNH::TileCodeUNH(
 
 }
 
-inline void AI::Algorithm::TileCodeUNH::getFeatureVector(
+void TileCodeUNH::getFeatureVector(
     const STATE_CONT& parameters, FEATURE_VECTOR& tilings) {
   assert(this->getDimension() == parameters.size());
 
@@ -103,5 +101,9 @@ inline void AI::Algorithm::TileCodeUNH::getFeatureVector(
         hashAlg.hash((AI::BYTE*) &tileComponents[0], this->_sizeCache));
   }
 }
+
+} // namespace SL
+} /* namespace Algorithm */
+} /* namespace AI */
 
 #endif /* TILECODEUNH_H_ */

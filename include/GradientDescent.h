@@ -20,6 +20,7 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
+namespace SL {
 
 template<typename FLOAT = AI::FLOAT>
 using actionVector = vector<FLOAT>;
@@ -167,7 +168,7 @@ GradientDescent::GradientDescent(TileCode& tileCode, AI::FLOAT stepSize,
   _w = vector<FLOAT>(getSize(), 0);
 }
 
-size_t AI::Algorithm::GradientDescent::getSize() const {
+size_t GradientDescent::getSize() const {
   return _tileCode.getSize();
 }
 
@@ -344,6 +345,8 @@ FLOAT GradientDescent::getMaxValue(
 
   return maxValue;
 }
+
+} // namespace SL
 } /* namespace Algorithm */
 } /* namespace AI */
 
