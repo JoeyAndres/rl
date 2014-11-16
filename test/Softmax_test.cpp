@@ -15,7 +15,6 @@ TEST(SoftmaxInitialization) {
   Policy::Softmax<AI::INT, AI::INT> policy(0.9F);
 
   AI::INT dummyState(1);
-
   AI::INT action01(1);
   AI::INT action02(2);
   AI::INT action03(3);

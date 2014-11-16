@@ -709,7 +709,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RNlNI2rJEeSwocnC524XtA"/>
           </children>
           <element xmi:type="uml:Model" href="model.uml#_RNiJ0GrJEeSwocnC524XtA"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RNkmEWrJEeSwocnC524XtA" x="338" y="-323" width="454" height="318"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RNkmEWrJEeSwocnC524XtA" x="338" y="-323" width="454" height="315"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_FmRSIGrREeSVkMDaYrVWBw" type="3024" fillColor="15128749">
           <children xmi:type="notation:DecorationNode" xmi:id="_FmR5MGrREeSVkMDaYrVWBw" type="5052"/>

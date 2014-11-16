@@ -32,8 +32,7 @@ TEST(DynaQInitialization) {
   arw.addAction(R);
   Algorithm::Policy::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
   Algorithm::RL::DynaQET<AI::INT, AI::INT> dynaQAlgorithm(0.1F, 0.9F, policy,
-                                                          50, 1.0F, 1.0F,
-                                                          0.5F);
+                                                          50, 1.0F, 1.0F, 0.5F);
 
   Agent<AI::INT, AI::INT> agent(srw, arw, dynaQAlgorithm);
 
