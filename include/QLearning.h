@@ -20,6 +20,7 @@ using std::map;
 
 namespace AI {
 namespace Algorithm {
+namespace RL {
 
 /*! \class QLearning
  *  \brief Basic off-policy reinforcement learning algorithm.
@@ -68,6 +69,7 @@ void QLearning<S, A>::update(const StateAction<S, A>& currentStateAction,
                               StateAction<S, A>(nextState, nextAction));
 }
 
+} /* QLearning */
 } /* Algorithm */
 } /* AI */
 

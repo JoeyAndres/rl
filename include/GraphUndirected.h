@@ -30,7 +30,6 @@ class GraphUndirected : public GraphDirected {
 template<class D>
 GraphUndirected<D>::GraphUndirected(set<Edge<D> > edgeSet)
     : GraphDirected<D>(set < Edge<D> > edgeSet) {
-  for
 }
 
 } /* namespace Algorithm */

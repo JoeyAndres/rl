@@ -89,7 +89,6 @@ TEST(SarsaETGDMountainCar01) {
       iterationCount++;
       agent.execute();
     }
-    cout << iterationCount << endl;
     agent.postExecute();
   }
   CHECK(iterationCount < 300);

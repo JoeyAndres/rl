@@ -23,6 +23,7 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
+namespace RL {
 
 /*! \class DynaQ
  *  \brief DynaQ algorithm implementation.
@@ -59,11 +60,8 @@ class DynaQ : public DynaQRLMP<S, A> {
                       const set<A>& actionSet);
 };
 
-} /* namespace Algorithm */
-} /* namespace AI */
-
 template<class S, class A>
-AI::Algorithm::DynaQ<S, A>::DynaQ(AI::FLOAT stepSize, AI::FLOAT discountRate,
+DynaQ<S, A>::DynaQ(AI::FLOAT stepSize, AI::FLOAT discountRate,
                                   Policy::Policy<S, A>& policy,
                                   AI::UINT simulationIterationCount,
                                   AI::FLOAT stateTransitionGreediness,
@@ -73,7 +71,7 @@ AI::Algorithm::DynaQ<S, A>::DynaQ(AI::FLOAT stepSize, AI::FLOAT discountRate,
 }
 
 template<class S, class A>
-void AI::Algorithm::DynaQ<S, A>::update(
+void AI::Algorithm::RL::DynaQ<S, A>::update(
     const StateAction<S, A>& currentStateAction, const S& nextState,
     const FLOAT reward, const set<A>& actionSet) {
   DynaQRLMP<S, A>::update(currentStateAction, nextState, reward, actionSet);
@@ -87,6 +85,10 @@ void AI::Algorithm::DynaQ<S, A>::update(
 // Simulation.
   this->_simulate(actionSet);
 }
+
+} // namespace RL
+} /* namespace Algorithm */
+} /* namespace AI */
 
 #endif	/* DYNAQ_H */
 

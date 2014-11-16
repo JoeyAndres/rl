@@ -25,6 +25,7 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
+namespace RL {
 
 /*! \DynaQPrioritizeSweeping
  *  \brief DynaQ Prioritize sweeping implementation.
@@ -174,6 +175,8 @@ void DynaQPrioritizeSweeping<S, A>::update(
   // Repeat n times while priority queue is not empty.
   _prioritySweep(actionSet);
 }
+
+} // namespace RL
 } /* namespace Algorithm */
 } /* namespace AI */
 #endif	/* DYNAQ_H */

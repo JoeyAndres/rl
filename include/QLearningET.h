@@ -21,6 +21,7 @@ using std::map;
 
 namespace AI {
 namespace Algorithm {
+namespace RL {
 
 /*! \class QLearningET
  *  \brief Like QLearning in that it uses different policy for learning and action
@@ -68,8 +69,10 @@ QLearningET<S, A>::QLearningET(AI::FLOAT stepSize, AI::FLOAT discountRate,
     : EligibilityTraces<S, A>(lambda),
       QLearning<S, A>(stepSize, discountRate, policy) {
 }
-}
-}
+
+} // namespace RL
+} // namespace Algorithm
+} // namespace AI
 
 #endif	/* QLEARNINGETWATKINS_H */
 

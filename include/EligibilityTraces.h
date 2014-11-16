@@ -19,6 +19,7 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
+namespace RL {
 
 /*! \class EligibilityTraces
  *  \brief Uses eligibility traces to update state-value pairs. This enables for
@@ -131,6 +132,8 @@ void EligibilityTraces<S, A>::_updateEligibilityTraces(
         * this->_eligibilityTraces[StateAction<S, A>(state, action)];
   }
 }
+
+} /* EligibilityTrace */
 } /* Algoirithm */
 } /* AI */
 

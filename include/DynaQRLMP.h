@@ -13,6 +13,7 @@
 
 namespace AI {
 namespace Algorithm {
+namespace RL {
 
 /*! \class DynaQRLMP
  *  \brief Abstract class that represents the merge Point for DynaQBase and
@@ -72,11 +73,8 @@ class DynaQRLMP : public ReinforcementLearning<S, A>, public DynaQBase<S, A> {
   virtual A argMax(const S& state, const set<A>& actionSet) const;
 };
 
-} /* namespace Algorithm */
-} /* namespace AI */
-
 template<class S, class A>
-inline AI::Algorithm::DynaQRLMP<S, A>::DynaQRLMP(
+inline DynaQRLMP<S, A>::DynaQRLMP(
     AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy,
     AI::UINT simulationIterationCount, AI::FLOAT stateTransitionGreediness,
     AI::FLOAT stateTransitionStepSize)
@@ -86,7 +84,7 @@ inline AI::Algorithm::DynaQRLMP<S, A>::DynaQRLMP(
 }
 
 template<class S, class A>
-inline void AI::Algorithm::DynaQRLMP<S, A>::backUpStateActionPair(
+inline void DynaQRLMP<S, A>::backUpStateActionPair(
     const StateAction<S, A>& currentStateAction, const AI::FLOAT reward,
     const StateAction<S, A>& nextStateActionPair) {
   ReinforcementLearning<S, A>::backUpStateActionPair(currentStateAction, reward,
@@ -94,9 +92,13 @@ inline void AI::Algorithm::DynaQRLMP<S, A>::backUpStateActionPair(
 }
 
 template<class S, class A>
-inline A AI::Algorithm::DynaQRLMP<S, A>::argMax(const S& state,
+inline A DynaQRLMP<S, A>::argMax(const S& state,
                                                 const set<A>& actionSet) const {
   return ReinforcementLearning<S, A>::argMax(state, actionSet);
 }
+
+} // namespace RL
+} /* namespace Algorithm */
+} /* namespace AI */
 
 #endif /* DYNAQRLMP_H_ */

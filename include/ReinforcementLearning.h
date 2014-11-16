@@ -23,6 +23,7 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
+namespace RL {
 
 /*! \class ReinforcementLearning
  *  \brief Abstract class for all Reinforcement learning algorithms.
@@ -139,11 +140,9 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
   mutable std::shared_timed_mutex _stepSizeLock;
   mutable std::shared_timed_mutex _discountRateLock;
 };
-} /* namespace Algorithm */
-} /* namespace AI */
 
 template<class S, class A>
-AI::Algorithm::ReinforcementLearning<S, A>::ReinforcementLearning(
+ReinforcementLearning<S, A>::ReinforcementLearning(
     AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy)
     : LearningAlgorithm<S, A>(policy) {
   _stepSize = stepSize;
@@ -151,7 +150,7 @@ AI::Algorithm::ReinforcementLearning<S, A>::ReinforcementLearning(
 }
 
 template<class S, class A>
-A AI::Algorithm::ReinforcementLearning<S, A>::argMax(
+A ReinforcementLearning<S, A>::argMax(
     const S& state, const set<A>& actionSet) const {
   A greedAct = *(actionSet.begin());
   AI::FLOAT currentValue = this->_stateActionPairContainer[StateAction<S, A>(
@@ -168,47 +167,47 @@ A AI::Algorithm::ReinforcementLearning<S, A>::argMax(
 }
 
 template<class S, class A>
-inline AI::FLOAT AI::Algorithm::ReinforcementLearning<S, A>::getDiscountRate() const {
+inline AI::FLOAT ReinforcementLearning<S, A>::getDiscountRate() const {
   return _discountRate;
 }
 
 template<class S, class A>
-inline void AI::Algorithm::ReinforcementLearning<S, A>::setDiscountRate(
+inline void ReinforcementLearning<S, A>::setDiscountRate(
     AI::FLOAT discountRate) {
   _discountRate = discountRate;
 }
 
 template<class S, class A>
-inline AI::FLOAT AI::Algorithm::ReinforcementLearning<S, A>::getStepSize() const {
+inline AI::FLOAT ReinforcementLearning<S, A>::getStepSize() const {
   return _stepSize;
 }
 
 template<class S, class A>
-inline void AI::Algorithm::ReinforcementLearning<S, A>::setStepSize(
+inline void ReinforcementLearning<S, A>::setStepSize(
     AI::FLOAT stepSize) {
   _stepSize = stepSize;
 }
 
 template<class S, class A>
-inline const AI::StateActionPairContainer<S, A>& AI::Algorithm::ReinforcementLearning<
+inline const StateActionPairContainer<S, A>& ReinforcementLearning<
     S, A>::getStateActionPairContainer() const {
   return _stateActionPairContainer;
 }
 
 template<class S, class A>
-inline void AI::Algorithm::ReinforcementLearning<S, A>::setStateActionPairContainer(
+inline void ReinforcementLearning<S, A>::setStateActionPairContainer(
     const StateActionPairContainer<S, A>& stateActionPairContainer) {
   _stateActionPairContainer = stateActionPairContainer;
 }
 
 template<class S, class A>
-inline void AI::Algorithm::ReinforcementLearning<S, A>::setStateActionValue(
+inline void ReinforcementLearning<S, A>::setStateActionValue(
     const StateAction<S, A>& stateAction, const AI::FLOAT& reward) {
   _stateActionPairContainer.setStateActionValue(stateAction, reward);
 }
 
 template<class S, class A>
-inline const A& AI::Algorithm::ReinforcementLearning<S, A>::getLearningAction(
+inline const A& ReinforcementLearning<S, A>::getLearningAction(
     const S& currentState, const set<A>& actionSet) {
   _stateActionPairContainer.addState(currentState,
                                      this->_defaultStateActionValue, actionSet);
@@ -218,7 +217,7 @@ inline const A& AI::Algorithm::ReinforcementLearning<S, A>::getLearningAction(
 }
 
 template<class S, class A>
-void AI::Algorithm::ReinforcementLearning<S, A>::_buildActionValueMap(
+void ReinforcementLearning<S, A>::_buildActionValueMap(
     const set<A>& actionSet, const S& currentState,
     map<A, AI::FLOAT>& actionValueMap) {
   for (const A& action : actionSet) {
@@ -228,7 +227,7 @@ void AI::Algorithm::ReinforcementLearning<S, A>::_buildActionValueMap(
 }
 
 template<class S, class A>
-const A& AI::Algorithm::ReinforcementLearning<S, A>::getAction(
+const A& ReinforcementLearning<S, A>::getAction(
     const S& currentState, const set<A>& actionSet) {
   _stateActionPairContainer.addState(currentState,
                                      this->_defaultStateActionValue, actionSet);
@@ -238,13 +237,13 @@ const A& AI::Algorithm::ReinforcementLearning<S, A>::getAction(
 }
 
 template<class S, class A>
-AI::FLOAT AI::Algorithm::ReinforcementLearning<S, A>::getStateActionValue(
+AI::FLOAT ReinforcementLearning<S, A>::getStateActionValue(
     const StateAction<S, A>& stateAction) {
   return _stateActionPairContainer.getStateActionValue(stateAction);
 }
 
 template<class S, class A>
-void AI::Algorithm::ReinforcementLearning<S, A>::backUpStateActionPair(
+void ReinforcementLearning<S, A>::backUpStateActionPair(
     const StateAction<S, A>& currentStateAction, const AI::FLOAT reward,
     const StateAction<S, A>& nextStateActionPair) {
   std::unique_lock < std::shared_timed_mutex > containerLock(_containerLock);
@@ -260,7 +259,7 @@ void AI::Algorithm::ReinforcementLearning<S, A>::backUpStateActionPair(
 }
 
 template<class S, class A>
-void AI::Algorithm::ReinforcementLearning<S, A>::update(
+void ReinforcementLearning<S, A>::update(
     const StateAction<S, A>& currentStateAction, const S& nextState,
     const AI::FLOAT reward, const set<A>& actionSet) {
   (void) reward;
@@ -269,5 +268,9 @@ void AI::Algorithm::ReinforcementLearning<S, A>::update(
   _stateActionPairContainer.addState(nextState, this->_defaultStateActionValue,
                                      actionSet);
 }
+
+} /* namespace RL */
+} /* namespace Algorithm */
+} /* namespace AI */
 
 #endif /* REINFORCEMENTLEARNING_H_ */

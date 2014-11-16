@@ -38,7 +38,7 @@ build/%.o:test/etc/%.cpp
 	$(CXX) $(CXXFLAGS) -c $(CPPFLAGS) $(LIBRARY_PATHS) $(INCLUDE_PATHS) $^ -o \
 	$@ $(LIBRARY)
 	
-run-test:	
+run-test:
 	$(foreach var,$(TEST_EXEC), echo $(var) && ./build/exec/$(var))
 
 clean:

@@ -21,6 +21,7 @@ using std::map;
 
 namespace AI {
 namespace Algorithm {
+namespace RL {
 
 /*! \class SarsaET
  *  \brief Like Sarsa in that it uses the same policy for learning and action
@@ -75,6 +76,7 @@ SarsaET<S, A>::SarsaET(AI::FLOAT stepSize, AI::FLOAT discountRate,
       Sarsa<S, A>(stepSize, discountRate, policy) {
 }
 
+} /* SarsaET */
 } /* Algorithm */
 } /* AI */
 

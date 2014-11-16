@@ -20,6 +20,7 @@ using std::map;
 
 namespace AI {
 namespace Algorithm {
+namespace RL {
 
 /*! \class Sarsa
  *  \brief Basic on-policy reinforcement learning algorithm.
@@ -68,6 +69,7 @@ void Sarsa<S, A>::update(const StateAction<S, A>& currentStateAction,
                               StateAction<S, A>(nextState, nextAction));
 }
 
+} /* Sarsa */
 } /* Algorithm */
 } /* namespace AI */
 

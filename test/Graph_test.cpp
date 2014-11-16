@@ -51,21 +51,17 @@ TEST(Graph01) {
   Algorithm::Vertex<int> vertex06(6);
   Algorithm::Vertex<int> vertex07(7);
 
- set<Algorithm::Edge<int> > edgeSet = {
-    Algorithm::Edge<int> (vertex01, vertex02),
-    Algorithm::Edge<int> (vertex01, vertex03),
-    Algorithm::Edge<int> (vertex01, vertex04),
-    Algorithm::Edge<int> (vertex02, vertex03),
-    Algorithm::Edge<int> (vertex02, vertex05),
-    Algorithm::Edge<int> (vertex03, vertex05),
-    Algorithm::Edge<int> (vertex03, vertex01),
-    Algorithm::Edge<int> (vertex02, vertex06),
-    Algorithm::Edge<int> (vertex02, vertex07),
-  };
+  set<Algorithm::Edge<int> > edgeSet =
+      { Algorithm::Edge<int>(vertex01, vertex02), Algorithm::Edge<int>(
+          vertex01, vertex03), Algorithm::Edge<int>(vertex01, vertex04),
+          Algorithm::Edge<int>(vertex02, vertex03), Algorithm::Edge<int>(
+              vertex02, vertex05), Algorithm::Edge<int>(vertex03, vertex05),
+          Algorithm::Edge<int>(vertex03, vertex01), Algorithm::Edge<int>(
+              vertex02, vertex06), Algorithm::Edge<int>(vertex02, vertex07), };
 
   Algorithm::GraphDirected<int> graph(edgeSet);
 
-  for(const Algorithm::Vertex<int>* v  : graph.getVertices()){
+  for (const Algorithm::Vertex<int>* v : graph.getVertices()) {
     cout << *(v->getData()) << endl;
   }
 

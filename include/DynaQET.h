@@ -21,6 +21,7 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
+namespace RL {
 
 /*! \class DynaQET
  *  \brief Employs the simulation of DynaQ and eligibility traces.
@@ -93,7 +94,9 @@ void DynaQET<S, A>::update(const StateAction<S, A>& currentStateAction,
   // Simulation.
   this->_simulate(actionSet);
 }
-} /* namespace Algorithm */
-} /* namespace AI */
+
+} // namespace RL
+} // namespace Algorithm
+} // namespace AI
 #endif	/* DYNAQETWATKINS_H */
 

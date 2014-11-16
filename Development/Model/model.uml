@@ -85,7 +85,7 @@
         <generalization xmi:type="uml:Generalization" xmi:id="_yzVJ0GrLEeSwocnC524XtA" general="_j8V84GrKEeSwocnC524XtA"/>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Model" xmi:id="_CA7VYGrMEeSwocnC524XtA" name="Supervised Learning">
+    <packagedElement xmi:type="uml:Model" xmi:id="_CA7VYGrMEeSwocnC524XtA" name="SL">
       <packagedElement xmi:type="uml:Class" xmi:id="_H3DbQGrMEeSwocnC524XtA" name="ReinforcementLearningGD">
         <generalization xmi:type="uml:Generalization" xmi:id="_MdmIkGrMEeSwocnC524XtA" general="_xUZVYGrFEeSwocnC524XtA"/>
       </packagedElement>

@@ -28,7 +28,8 @@ TEST(QLearningInitialization) {
   arw.addAction(L);
   arw.addAction(R);
   Algorithm::Policy::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
-  Algorithm::QLearning<AI::INT, AI::INT> qlearningAlgorithm(0.1F, 0.9F, policy);
+  Algorithm::RL::QLearning<AI::INT, AI::INT> qlearningAlgorithm(0.1F, 0.9F,
+                                                                policy);
 
   Agent<AI::INT, AI::INT> agent(srw, arw, qlearningAlgorithm);
 
@@ -45,7 +46,7 @@ TEST(QLearningInitialization) {
     }
     agent.postExecute();
   }
-  CHECK(iterationCount == 2);
+  CHECK(iterationCount <= 2);
 }
 
 int main(void) {

@@ -19,6 +19,7 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
+namespace RL {
 
 /*! \class DynaQBase
  *  \brief Abstract base class for DynaQ algorithms.
@@ -117,11 +118,9 @@ class DynaQBase {
   std::shared_timed_mutex _generalLock;  //!< Mutex lock for everything else that is not a model.
   std::shared_timed_mutex _modelLock;  //!< Mutex lock for model.
 };
-} /* namespace Algorithm */
-} /* namespace AI */
 
 template<class S, class A>
-inline AI::Algorithm::DynaQBase<S, A>::DynaQBase(
+inline DynaQBase<S, A>::DynaQBase(
     AI::UINT simulationIterationCount, AI::FLOAT stateTransitionGreediness,
     AI::FLOAT stateTransitionStepSize)
     : _simulationIterationCount(simulationIterationCount),
@@ -130,7 +129,7 @@ inline AI::Algorithm::DynaQBase<S, A>::DynaQBase(
 }
 
 template<class S, class A>
-void AI::Algorithm::DynaQBase<S, A>::_updateModel(
+void DynaQBase<S, A>::_updateModel(
     const StateAction<S, A>& currentStateAction, const S& nextState,
     const FLOAT reward) {
   std::unique_lock < std::shared_timed_mutex > generalLock(_generalLock);
@@ -141,14 +140,14 @@ void AI::Algorithm::DynaQBase<S, A>::_updateModel(
 }
 
 template<class S, class A>
-void AI::Algorithm::DynaQBase<S, A>::_addModelSafe(
+void DynaQBase<S, A>::_addModelSafe(
     const StateAction<S, A>& currentStateAction) {
   std::unique_lock < std::shared_timed_mutex > modellLock(_modelLock);
   _addModel(currentStateAction);
 }
 
 template<class S, class A>
-inline void AI::Algorithm::DynaQBase<S, A>::_addModel(
+inline void DynaQBase<S, A>::_addModel(
     const StateAction<S, A>& currentStateAction) {
   _model.emplace(
       std::piecewise_construct,
@@ -158,7 +157,7 @@ inline void AI::Algorithm::DynaQBase<S, A>::_addModel(
 }
 
 template<class S, class A>
-void AI::Algorithm::DynaQBase<S, A>::_simulate(const set<A>& actionSet) {
+void DynaQBase<S, A>::_simulate(const set<A>& actionSet) {
   if (_model.empty())
     return;
 
@@ -178,5 +177,9 @@ void AI::Algorithm::DynaQBase<S, A>::_simulate(const set<A>& actionSet) {
                           StateAction<S, A>(transState, nextAction));
   }
 }
+
+} /* namespace RL */
+} /* namespace Algorithm */
+} /* namespace AI */
 
 #endif /* DYNAQBASE_H_ */
