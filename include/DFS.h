@@ -17,6 +17,7 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
+namespace Graph {
 
 template<class D>
 class DFS {
@@ -87,7 +88,8 @@ void DFS<D>::postvisit(const Vertex<D>* startingVertex) {
   cout << "Post: " << *(startingVertex->getData()) << endl;
 }
 
-}  // Algorithm.
-}  // AI.
+}  // namespace Graph
+}  // namespace Algorithm.
+}  // namespace AI.
 
 #endif /* ALGORITHMS_GRAPH_DFS_H_ */

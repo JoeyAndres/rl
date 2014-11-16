@@ -217,40 +217,37 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9uwG02rREeSVkMDaYrVWBw" value="1"/>
         </ownedEnd>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_NDyXIGrSEeSVkMDaYrVWBw" name="DFS">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_R7RqhGrSEeSVkMDaYrVWBw" name="graph" type="_dOI7UGrREeSVkMDaYrVWBw" association="_R7Rqg2rSEeSVkMDaYrVWBw">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_R7RqhWrSEeSVkMDaYrVWBw" value="1"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_R7RqhmrSEeSVkMDaYrVWBw" value="1"/>
-        </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_PpyJAGrSEeSVkMDaYrVWBw" name="BFS">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_Se6jFGrSEeSVkMDaYrVWBw" name="graph" type="_dOI7UGrREeSVkMDaYrVWBw" association="_Se6jE2rSEeSVkMDaYrVWBw">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Se6jFWrSEeSVkMDaYrVWBw" value="1"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Se6jFmrSEeSVkMDaYrVWBw" value="1"/>
-        </ownedAttribute>
-      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_NDyXIGrSEeSVkMDaYrVWBw" name="DFS"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_PpyJAGrSEeSVkMDaYrVWBw" name="BFS"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_R7Rqg2rSEeSVkMDaYrVWBw" memberEnd="_R7RqhGrSEeSVkMDaYrVWBw _R7RqgGrSEeSVkMDaYrVWBw">
-        <ownedEnd xmi:type="uml:Property" xmi:id="_R7RqgGrSEeSVkMDaYrVWBw" name="dFS" type="_NDyXIGrSEeSVkMDaYrVWBw" aggregation="shared" association="_R7Rqg2rSEeSVkMDaYrVWBw">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_R7RqgGrSEeSVkMDaYrVWBw" name="dFS" type="_NDyXIGrSEeSVkMDaYrVWBw" association="_R7Rqg2rSEeSVkMDaYrVWBw">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_R7RqgWrSEeSVkMDaYrVWBw" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_R7RqgmrSEeSVkMDaYrVWBw" value="1"/>
         </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_R7RqhGrSEeSVkMDaYrVWBw" name="graph" type="_dOI7UGrREeSVkMDaYrVWBw" aggregation="shared" association="_R7Rqg2rSEeSVkMDaYrVWBw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_R7RqhWrSEeSVkMDaYrVWBw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_R7RqhmrSEeSVkMDaYrVWBw" value="1"/>
+        </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_Se6jE2rSEeSVkMDaYrVWBw" memberEnd="_Se6jFGrSEeSVkMDaYrVWBw _Se6jEGrSEeSVkMDaYrVWBw">
-        <ownedEnd xmi:type="uml:Property" xmi:id="_Se6jEGrSEeSVkMDaYrVWBw" name="bFS" type="_PpyJAGrSEeSVkMDaYrVWBw" aggregation="shared" association="_Se6jE2rSEeSVkMDaYrVWBw">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_Se6jEGrSEeSVkMDaYrVWBw" name="bFS" type="_PpyJAGrSEeSVkMDaYrVWBw" association="_Se6jE2rSEeSVkMDaYrVWBw">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Se6jEWrSEeSVkMDaYrVWBw" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Se6jEmrSEeSVkMDaYrVWBw" value="1"/>
         </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_Se6jFGrSEeSVkMDaYrVWBw" name="graph" type="_dOI7UGrREeSVkMDaYrVWBw" aggregation="shared" association="_Se6jE2rSEeSVkMDaYrVWBw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Se6jFWrSEeSVkMDaYrVWBw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Se6jFmrSEeSVkMDaYrVWBw" value="1"/>
+        </ownedEnd>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_qAUX4GrSEeSVkMDaYrVWBw" name="Linearize">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_BBBTYGrTEeSVkMDaYrVWBw" name="graph" type="_dOI7UGrREeSVkMDaYrVWBw" association="_BBChgGrTEeSVkMDaYrVWBw">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BBBTYWrTEeSVkMDaYrVWBw" value="1"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BBBTYmrTEeSVkMDaYrVWBw" value="1"/>
-        </ownedAttribute>
-      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qAUX4GrSEeSVkMDaYrVWBw" name="Linearize"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_BBChgGrTEeSVkMDaYrVWBw" memberEnd="_BBChgWrTEeSVkMDaYrVWBw _BBBTYGrTEeSVkMDaYrVWBw">
-        <ownedEnd xmi:type="uml:Property" xmi:id="_BBChgWrTEeSVkMDaYrVWBw" name="linearize" type="_qAUX4GrSEeSVkMDaYrVWBw" aggregation="shared" association="_BBChgGrTEeSVkMDaYrVWBw">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_BBChgWrTEeSVkMDaYrVWBw" name="linearize" type="_qAUX4GrSEeSVkMDaYrVWBw" association="_BBChgGrTEeSVkMDaYrVWBw">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BBChgmrTEeSVkMDaYrVWBw" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BBChg2rTEeSVkMDaYrVWBw" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_BBBTYGrTEeSVkMDaYrVWBw" name="graph" type="_dOI7UGrREeSVkMDaYrVWBw" aggregation="shared" association="_BBChgGrTEeSVkMDaYrVWBw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BBBTYWrTEeSVkMDaYrVWBw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BBBTYmrTEeSVkMDaYrVWBw" value="1"/>
         </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_QfqysGrTEeSVkMDaYrVWBw" name="GraphUndirected">

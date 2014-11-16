@@ -18,6 +18,7 @@ using namespace std;
 
 namespace AI {
 namespace Algorithm {
+namespace Graph {
 
 template<class D>
 class GraphDirected {
@@ -26,10 +27,10 @@ class GraphDirected {
   virtual ~GraphDirected();
 
   const set<const Vertex<D>*> operator[](const Vertex<D>& v) const;
-  const set<const Vertex<D>*> getAdjacentLists(const Vertex<D>& v) const;
+  virtual const set<const Vertex<D>*> getAdjacentLists(const Vertex<D>& v) const;
 
   set<const Vertex<D>*> operator[](const Vertex<D>& v);
-  set<const Vertex<D>*> getAdjacentLists(const Vertex<D>& v);
+  virtual set<const Vertex<D>*> getAdjacentLists(const Vertex<D>& v);
 
   const set<const Vertex<D>*> getVertices() const;
   set<const Vertex<D>*> getVertices();
@@ -46,12 +47,6 @@ GraphDirected<D>::GraphDirected(set<Edge<D> >& edgeSet) {
   for (const Edge<D>& e : edgeSet) {
     // Add e[0] -> (e[0], v), v in V.
     addEdge(e);
-
-    // Add e[1] -> (e[1], v), v in V.
-    Vertex<D> v1 = *(e.getV2());
-    Vertex<D> v2 = *(e.getV1());
-
-    addEdge(Edge<D>(v1, v2));
   }
 }
 
@@ -62,33 +57,23 @@ GraphDirected<D>::~GraphDirected() {
 template<class D>
 const set<const Vertex<D>*> GraphDirected<D>::operator[](
     const Vertex<D>& v) const {
-  try {
-    _adjacencyLists[&v];
-  } catch (exception& except) {
-    return set<const Vertex<D>*>();
-  }
-  return _adjacencyLists[&v];
+  return getAdjacentLists(v);
 }
 
 template<class D>
 const set<const Vertex<D>*> GraphDirected<D>::getAdjacentLists(
     const Vertex<D>& v) const {
   try {
-    _adjacencyLists[&v];
+    _adjacencyLists.at(&v);
   } catch (exception& except) {
     return set<const Vertex<D>*>();
   }
-  return _adjacencyLists[&v];
+  return _adjacencyLists.at(&v);
 }
 
 template<class D>
 set<const Vertex<D>*> GraphDirected<D>::operator[](const Vertex<D>& v) {
-  try {
-    _adjacencyLists[&v];
-  } catch (exception& except) {
-    return set<const Vertex<D>*>();
-  }
-  return _adjacencyLists[&v];
+  return getAdjacentLists(v);
 }
 
 template<class D>
@@ -104,26 +89,24 @@ set<const Vertex<D>*> GraphDirected<D>::getAdjacentLists(const Vertex<D>& v) {
 template<class D>
 const set<const Vertex<D>*> GraphDirected<D>::getVertices() const {
   set<const Vertex<D>*> vertices;
-  for (const std::pair<const Vertex<D>*, set<const Vertex<D>*> >& pair : _adjacencyLists) {
-    vertices.insert(pair.first);
-    for (const Vertex<D>* v : pair.second) {
+  for (const std::pair<const Vertex<D>*, set<const Vertex<D>*> >& p : _adjacencyLists) {
+    vertices.insert(p.first);
+    for (const Vertex<D>* v : p.second) {
       vertices.insert(v);
     }
   }
-
   return vertices;
 }
 
 template<class D>
 set<const Vertex<D>*> GraphDirected<D>::getVertices() {
   set<const Vertex<D>*> vertices;
-  for (const std::pair<const Vertex<D>*, set<const Vertex<D>*> >& pair : _adjacencyLists) {
-    vertices.insert(pair.first);
-    for (const Vertex<D>* v : pair.second) {
+  for (const std::pair<const Vertex<D>*, set<const Vertex<D>*> >& p : _adjacencyLists) {
+    vertices.insert(p.first);
+    for (const Vertex<D>* v : p.second) {
       vertices.insert(v);
     }
   }
-
   return vertices;
 }
 
@@ -135,6 +118,7 @@ void GraphDirected<D>::addEdge(const Edge<D>& edge) {
   _adjacencyLists[edge.getV1()].insert(edge.getV2());
 }
 
+}  // namespace Graph
 } /* namespace Algorithm */
 } /* namespace AI */
 

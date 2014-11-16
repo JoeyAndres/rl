@@ -20,13 +20,15 @@
 #include "Vertex.h"
 #include "Edge.h"
 #include "GraphDirected.h"
+#include "GraphUndirected.h"
 #include "DFS.h"
+#include "BFS.h"
 
 using namespace AI;
 using namespace std;
 
 TEST(VertexTest01) {
-  Algorithm::Vertex<int> vertex01(10);
+  Algorithm::Graph::Vertex<int> vertex01(10);
   CHECK((*vertex01.getData()) == 10);
 
   vertex01.setData(20);
@@ -34,39 +36,57 @@ TEST(VertexTest01) {
 }
 
 TEST(EdgeTest01) {
-  Algorithm::Vertex<int> vertex01(10);
-  Algorithm::Vertex<int> vertex02(20);
-  Algorithm::Edge<int> edge01(vertex01, vertex02);
+  Algorithm::Graph::Vertex<int> vertex01(10);
+  Algorithm::Graph::Vertex<int> vertex02(20);
+  Algorithm::Graph::Edge<int> edge01(vertex01, vertex02);
 
   CHECK((*(edge01.getV1()->getData())) == 10);
   CHECK((*(edge01.getV2()->getData())) == 20);
 }
 
 TEST(Graph01) {
-  Algorithm::Vertex<int> vertex01(1);
-  Algorithm::Vertex<int> vertex02(2);
-  Algorithm::Vertex<int> vertex03(3);
-  Algorithm::Vertex<int> vertex04(4);
-  Algorithm::Vertex<int> vertex05(5);
-  Algorithm::Vertex<int> vertex06(6);
-  Algorithm::Vertex<int> vertex07(7);
+  Algorithm::Graph::Vertex<int> vertex01(1);
+  Algorithm::Graph::Vertex<int> vertex02(2);
+  Algorithm::Graph::Vertex<int> vertex03(3);
+  Algorithm::Graph::Vertex<int> vertex04(4);
+  Algorithm::Graph::Vertex<int> vertex05(5);
+  Algorithm::Graph::Vertex<int> vertex06(6);
+  Algorithm::Graph::Vertex<int> vertex07(7);
 
-  set<Algorithm::Edge<int> > edgeSet =
-      { Algorithm::Edge<int>(vertex01, vertex02), Algorithm::Edge<int>(
-          vertex01, vertex03), Algorithm::Edge<int>(vertex01, vertex04),
-          Algorithm::Edge<int>(vertex02, vertex03), Algorithm::Edge<int>(
-              vertex02, vertex05), Algorithm::Edge<int>(vertex03, vertex05),
-          Algorithm::Edge<int>(vertex03, vertex01), Algorithm::Edge<int>(
-              vertex02, vertex06), Algorithm::Edge<int>(vertex02, vertex07), };
+  set<Algorithm::Graph::Vertex<int> > vertexSet = {
+      vertex01, vertex02, vertex03, vertex04, vertex05,
+      vertex06, vertex07, vertex07
+  };
 
-  Algorithm::GraphDirected<int> graph(edgeSet);
+  set<Algorithm::Graph::Edge<int> > edgeSet = {
+      Algorithm::Graph::Edge<int>(vertex01, vertex02),
+      Algorithm::Graph::Edge<int>(vertex01, vertex03),
+      Algorithm::Graph::Edge<int>(vertex01, vertex04),
+      Algorithm::Graph::Edge<int>(vertex02, vertex03),
+      Algorithm::Graph::Edge<int>(vertex02, vertex05),
+      Algorithm::Graph::Edge<int>(vertex03, vertex05),
+      Algorithm::Graph::Edge<int>(vertex03, vertex01),
+      Algorithm::Graph::Edge<int>(vertex02, vertex06),
+      Algorithm::Graph::Edge<int>(vertex02, vertex07),
+  };
 
-  for (const Algorithm::Vertex<int>* v : graph.getVertices()) {
-    cout << *(v->getData()) << endl;
+  Algorithm::Graph::GraphDirected<int> graph(edgeSet);
+  Algorithm::Graph::GraphUndirected<int> dGraph(edgeSet);
+
+  for (const Algorithm::Graph::Vertex<int>* v : graph.getVertices()) {
+    CHECK(vertexSet.find(*v) != vertexSet.end());
   }
 
-  Algorithm::DFS<int> dfs(graph);
+  Algorithm::Graph::BFS<int> bfs(graph);
+  bfs.search(vertex01);
+
+  cout << "Directed Graph DFS" << endl;
+  Algorithm::Graph::DFS<int> dfs(graph);
   dfs.search();
+
+  cout << "Undirected Graph DFS" << endl;
+  Algorithm::Graph::DFS<int> dfsD(dGraph);
+  dfsD.search();
 }
 
 int main(void) {

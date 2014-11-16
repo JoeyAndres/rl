@@ -10,6 +10,7 @@
 
 namespace AI {
 namespace Algorithm {
+namespace Graph {
 
 template<class T>
 class Vertex {
@@ -56,6 +57,7 @@ bool Vertex<T>::operator>(const Vertex<T>& vertex) const {
   return _data > vertex._data;
 }
 
+} // namespace Graph
 } /* namespace Algorithm */
 } /* namespace AI */
 

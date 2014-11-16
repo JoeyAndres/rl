@@ -12,6 +12,7 @@
 
 namespace AI {
 namespace Algorithm {
+namespace Graph {
 
 template<class V>
 class Edge {
@@ -77,6 +78,7 @@ bool Edge<V>::operator<(const Edge<V>& vertex) const {
   }
 }
 
+} // namespace Graph
 } /* namespace Algorithm */
 } /* namespace AI */
 
