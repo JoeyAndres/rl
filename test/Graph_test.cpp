@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <set>
+#include <map>
 #include <iostream>
 
 #include "UnitTest++.h"
@@ -78,23 +79,31 @@ TEST(Graph01) {
   }
 
   cout << "Directed Graph BFS" << endl;
-  Algorithm::Graph::BFS<int> bfs(graph);
-  bfs.search(vertex01);
+  Algorithm::Graph::BFS<int> bfs;
+  bfs.search(graph, vertex01);
 
-  //cout << "Undirected Graph BFS" << endl;
-  //Algorithm::Graph::BFS<int> dBfs(dGraph);
-  //dBfs.search(vertex01);
+  cout << "Undirected Graph BFS" << endl;
+  Algorithm::Graph::BFS<int> dBfs;
+  dBfs.search(dGraph, vertex01);
 
   cout << "Undirected Graph DFS" << endl;
   Algorithm::Graph::DFS<int> dfs;
-  dfs.search(graph, NULL, NULL);
+  dfs.search(graph);
+  map<const AI::Algorithm::Graph::Vertex<int>*, AI::UINT> preNumber;
+  map<const AI::Algorithm::Graph::Vertex<int>*, AI::UINT> postNumber;
+  dfs.search(graph, vertex02, preNumber, postNumber);
+  cout << "Post Num" << endl;
+  for(auto  p : postNumber){
+    cout << *(p.first->getData()) << ": " << p.second << ", ";
+  }
+  cout << endl;
 
   cout << "Directed Graph DFS" << endl;
-  dfs.search(dGraph, NULL, NULL);
+  dfs.search(dGraph);
 
-  //cout << "Linearize DGraph DFS" << endl;
-  //Algorithm::Graph::Linearize<int> lin(dGraph);
-  //lin.linearize();
+  cout << "Linearize DGraph DFS" << endl;
+  Algorithm::Graph::Linearize<int> lin;
+  lin.linearize(graph);
 }
 
 int main(void) {

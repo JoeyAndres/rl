@@ -23,51 +23,40 @@ namespace Graph {
 template<class D>
 class BFS {
  public:
-  BFS(GraphDirected<D>& graph);
+  BFS();
   virtual ~BFS();
-
-  void search(const Vertex<D>& vertex);
-
-  void reset();
-
+  void search(GraphDirected<D>& graph, const Vertex<D>& vertex);  
   void visit(const Vertex<D>& vertex);
- private:
-  GraphDirected<D>& _graph;
-  queue<const Vertex<D>*> _queue;
-  map<const Vertex<D>*, bool> _visited;
 };
 
 template<class D>
-BFS<D>::BFS(GraphDirected<D>& graph)
-    : _graph(graph) {
-  reset();
+BFS<D>::BFS(){
 }
 
 template<class D>
 BFS<D>::~BFS() {
 }
 
-template<class D>
-void BFS<D>::reset() {
-  set<const Vertex<D>*> vertexSet = _graph.getVertices();
-  for (const Vertex<D>* v : vertexSet) {
-    _visited[v] = false;
+template<class D>    
+void BFS<D>::search(GraphDirected<D>& graph, const Vertex<D>& startingVertex){
+  queue<const Vertex<D>*> q;
+  map<const Vertex<D>*, bool> visited;
+
+  // Initialize visited.
+  for(const Vertex<D>* v : graph.getVertices()){
+    visited[v] = false;
   }
-}
+  
+  q.push(&startingVertex);
 
-template<class D>
-void BFS<D>::search(const Vertex<D>& vertex) {
-  reset();
-  _queue.push(&vertex);
-
-  while(_queue.empty() == false){
-    const Vertex<D>* v = _queue.front();
-    _queue.pop();
-    _visited[v] = true;
-    for (const Vertex<D>* neighbour : _graph.getAdjacentLists(*v)) {
-      if(_visited[neighbour] == false){
+  while(q.empty() == false){
+    const Vertex<D>* v = q.front();
+    q.pop();
+    visited[v] = true;
+    for (const Vertex<D>* neighbour : graph.getAdjacentLists(*v)) {
+      if(visited[neighbour] == false){
         visit(*neighbour);
-        _queue.push(neighbour);
+        q.push (neighbour);
       }
     }
   }

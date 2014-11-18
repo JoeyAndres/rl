@@ -21,19 +21,18 @@ namespace Graph {
 template<class D>
 class Linearize {
  public:
-  Linearize(GraphDirected<D>& graph);
+  Linearize();
   virtual ~Linearize();
 
-  void linearize();
+  vector<const Vertex<D>*> linearize(GraphDirected<D>& graph, Vertex<D>& startingVertex) const;
+  vector<const Vertex<D>*> linearize(GraphDirected<D>& graph) const;
 
  protected:
-  vector<const Vertex<D>*> _linearOrdered;
   DFS<D> _dfs;
 };
 
 template<class D>
-Linearize<D>::Linearize(GraphDirected<D>& graph)
-    : _dfs(graph) {
+Linearize<D>::Linearize(){
 }
 
 template<class D>
@@ -41,22 +40,33 @@ Linearize<D>::~Linearize() {
 }
 
 template<class D>
-void Linearize<D>::linearize() {
-  _dfs.search();
+vector<const Vertex<D>*> Linearize<D>::linearize(GraphDirected<D>& graph) const{
+  map<const Vertex<D>*, AI::UINT> pre;
+  map<const Vertex<D>*, AI::UINT> post;
+  _dfs.search(graph, pre, post);
 
-  const GraphDirected<D>& g = _dfs.getGraph();
-  const set<const Vertex<D>*> vertices = g.getVertices();
-
-  map<AI::UINT, const Vertex<D>*> reversePostOrderMap;
-  for(const Vertex<D>* pV : vertices){
-    reversePostOrderMap[_dfs.getPostNumber(pV)] = pV;
+  vector<const Vertex<D>*> linearOrderVertices;
+  for(const Vertex<D>* v : graph.getVertices()){
+    linearOrderVertices.push_back(v);
   }
 
-  for(typename map<AI::UINT, const Vertex<D>*>::const_iterator iter = reversePostOrderMap.begin();
-      iter != reversePostOrderMap.end(); iter++){
-    _linearOrdered.push_back(iter->second);
-  }
+  return linearOrderVertices;
 }
+
+template<class D>
+vector<const Vertex<D>*> Linearize<D>::linearize(GraphDirected<D>& graph, Vertex<D>& startingVertex) const{
+  map<const Vertex<D>*, AI::UINT> pre;
+  map<const Vertex<D>*, AI::UINT> post;
+  _dfs.search(graph, startingVertex, pre, post);
+
+  vector<const Vertex<D>*> linearOrderVertices;
+  for(const Vertex<D>* v : graph.getVertices()){
+    linearOrderVertices.push_back(v);
+  }
+
+  return linearOrderVertices;
+}
+
 
 } /* namespace Graph */
 } /* namespace Algorithm */
