@@ -5,13 +5,6 @@
  *      Author: jandres
  */
 
-/*
- * Sarsa_test.cpp
- *
- *  Created on: May 31, 2014
- *      Author: jandres
- */
-
 #include <vector>
 #include <set>
 #include <iostream>
@@ -54,21 +47,31 @@ TEST(Graph01) {
   Algorithm::Graph::Vertex<int> vertex06(6);
   Algorithm::Graph::Vertex<int> vertex07(7);
 
-  set<Algorithm::Graph::Vertex<int> > vertexSet = { vertex01, vertex02,
-      vertex03, vertex04, vertex05, vertex06, vertex07, vertex07 };
+  set<Algorithm::Graph::Vertex<int> > vertexSet = { 
+    vertex01, 
+    vertex02,
+    vertex03, 
+    vertex04, 
+    vertex05, 
+    vertex06, 
+    vertex07, 
+    vertex07 
+  };
 
-  set<Algorithm::Graph::Edge<int> > edgeSet = { Algorithm::Graph::Edge<int>(
-      vertex01, vertex02), Algorithm::Graph::Edge<int>(vertex01, vertex03),
-      Algorithm::Graph::Edge<int>(vertex01, vertex04), Algorithm::Graph::Edge<
-          int>(vertex02, vertex03), Algorithm::Graph::Edge<int>(vertex02,
-                                                                vertex05),
-      Algorithm::Graph::Edge<int>(vertex03, vertex05), Algorithm::Graph::Edge<
-          int>(vertex03, vertex01), Algorithm::Graph::Edge<int>(vertex02,
-                                                                vertex06),
-      Algorithm::Graph::Edge<int>(vertex02, vertex07), };
+  set<Algorithm::Graph::Edge<int> > edgeSet = { 
+    Algorithm::Graph::Edge<int>(vertex01, vertex02), 
+    Algorithm::Graph::Edge<int>(vertex01, vertex03),
+    Algorithm::Graph::Edge<int>(vertex01, vertex04), 
+    Algorithm::Graph::Edge<int>(vertex02, vertex03), 
+    Algorithm::Graph::Edge<int>(vertex02, vertex05),
+    Algorithm::Graph::Edge<int>(vertex03, vertex05), 
+    Algorithm::Graph::Edge<int>(vertex03, vertex01),
+    Algorithm::Graph::Edge<int>(vertex02, vertex06),
+    Algorithm::Graph::Edge<int>(vertex02, vertex07), 
+  };
 
-  Algorithm::Graph::GraphDirected<int> graph(edgeSet);
-  Algorithm::Graph::GraphUndirected<int> dGraph(edgeSet);
+  Algorithm::Graph::GraphDirected<int> dGraph(edgeSet);
+  Algorithm::Graph::GraphUndirected<int> graph(edgeSet);
 
   for (const Algorithm::Graph::Vertex<int>* v : graph.getVertices()) {
     CHECK(vertexSet.find(*v) != vertexSet.end());
@@ -78,21 +81,20 @@ TEST(Graph01) {
   Algorithm::Graph::BFS<int> bfs(graph);
   bfs.search(vertex01);
 
-  cout << "Undirected Graph BFS" << endl;
-  Algorithm::Graph::BFS<int> dBfs(dGraph);
-  dBfs.search(vertex01);
-
-  cout << "Directed Graph DFS" << endl;
-  Algorithm::Graph::DFS<int> dfs(graph);
-  dfs.search();
+  //cout << "Undirected Graph BFS" << endl;
+  //Algorithm::Graph::BFS<int> dBfs(dGraph);
+  //dBfs.search(vertex01);
 
   cout << "Undirected Graph DFS" << endl;
-  Algorithm::Graph::DFS<int> dfsD(dGraph);
-  dfsD.search();
+  Algorithm::Graph::DFS<int> dfs;
+  dfs.search(graph, NULL, NULL);
 
-  cout << "Linearize DGraph DFS" << endl;
-  Algorithm::Graph::Linearize<int> lin(dGraph);
-  lin.linearize();
+  cout << "Directed Graph DFS" << endl;
+  dfs.search(dGraph, NULL, NULL);
+
+  //cout << "Linearize DGraph DFS" << endl;
+  //Algorithm::Graph::Linearize<int> lin(dGraph);
+  //lin.linearize();
 }
 
 int main(void) {
