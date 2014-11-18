@@ -23,6 +23,7 @@
 #include "GraphUndirected.h"
 #include "DFS.h"
 #include "BFS.h"
+#include "Linearize.h"
 
 using namespace AI;
 using namespace std;
@@ -88,6 +89,10 @@ TEST(Graph01) {
   cout << "Undirected Graph DFS" << endl;
   Algorithm::Graph::DFS<int> dfsD(dGraph);
   dfsD.search();
+
+  cout << "Linearize DGraph DFS" << endl;
+  Algorithm::Graph::Linearize<int> lin(dGraph);
+  lin.linearize();
 }
 
 int main(void) {

@@ -8,6 +8,8 @@
 #ifndef ALGORITHMS_GRAPH_DFS_H_
 #define ALGORITHMS_GRAPH_DFS_H_
 
+#include "GlobalHeader.h"
+
 #include <map>
 #include <set>
 
@@ -27,18 +29,39 @@ class DFS {
 
   void search();
   virtual void traverse(const Vertex<D>* startingVertex);
-  virtual void previsit(const Vertex<D>* startingVertex);
-  virtual void postvisit(const Vertex<D>* startingVertex);
+  virtual void previsit(const Vertex<D>* vertex);
+  virtual void postvisit(const Vertex<D>* vertex);
+
+  /**
+   * @param vertex
+   * @return prenumber.
+   */
+  AI::UINT getPreNumber(const Vertex<D>* vertex) const;
+
+  /**
+   * @param vertex
+   * @return postnumber.
+   */
+  AI::UINT getPostNumber(const Vertex<D>* vertex) const;
 
   void reset();
+
+  /**
+   * @return Corresponding graph.
+   */
+  const GraphDirected<D>& getGraph() const;
  private:
   GraphDirected<D>& _graph;
   map<const Vertex<D>*, bool> _visited;
+  map<const Vertex<D>*, AI::UINT> _preNumber;
+  map<const Vertex<D>*, AI::UINT> _postNumber;
+  AI::UINT _ctr;
 };
 
 template<class D>
 DFS<D>::DFS(GraphDirected<D>& graph)
     : _graph(graph) {
+  _ctr = 0;
   reset();
 }
 
@@ -48,10 +71,13 @@ DFS<D>::~DFS() {
 
 template<class D>
 void DFS<D>::reset() {
+  _ctr = 0;
   set<const Vertex<D>*> vertexSet = _graph.getVertices();
   for (const Vertex<D>* v : vertexSet) {
     _visited[v] = false;
   }
+  _preNumber.clear();
+  _postNumber.clear();
 }
 
 template<class D>
@@ -79,13 +105,28 @@ void DFS<D>::traverse(const Vertex<D>* startingVertex) {
 }
 
 template<class D>
-void DFS<D>::previsit(const Vertex<D>* startingVertex) {
-  cout << "Pre: " << *(startingVertex->getData()) << endl;
+void DFS<D>::previsit(const Vertex<D>* vertex) {
+  _preNumber[vertex] = _ctr++;
 }
 
 template<class D>
-void DFS<D>::postvisit(const Vertex<D>* startingVertex) {
-  cout << "Post: " << *(startingVertex->getData()) << endl;
+void DFS<D>::postvisit(const Vertex<D>* vertex) {
+  _postNumber[vertex] = _ctr++  ;
+}
+
+template<class D>
+AI::UINT DFS<D>::getPreNumber(const Vertex<D>* vertex) const{
+  return _preNumber.at(vertex);
+}
+
+template<class D>
+AI::UINT DFS<D>::getPostNumber(const Vertex<D>* vertex) const{
+  return _postNumber.at(vertex);
+}
+
+template<class D>
+const GraphDirected<D>& DFS<D>::getGraph() const{
+  return _graph;
 }
 
 }  // namespace Graph

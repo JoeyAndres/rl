@@ -291,6 +291,9 @@
     <packagedElement xmi:type="uml:Model" xmi:id="_RPsFUG2PEeSac59wUGz0eA" name="DP">
       <packagedElement xmi:type="uml:Class" xmi:id="_WEppIG2PEeSac59wUGz0eA" name="DynamicProgramming"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_nrj3AG3zEeSGfJ56Bsj53A" name="LP">
+      <packagedElement xmi:type="uml:Class" xmi:id="_tjvLUG3zEeSGfJ56Bsj53A" name="LinearProgramming"/>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Model" xmi:id="_AxVcIGrUEeSVkMDaYrVWBw" name="Utility"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_nye8cGrUEeSVkMDaYrVWBw" name="Environment"/>
