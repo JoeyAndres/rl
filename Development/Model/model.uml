@@ -257,9 +257,13 @@
         </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qAUX4GrSEeSVkMDaYrVWBw" name="Linearize">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_of4OUG2PEeSac59wUGz0eA" name="dynamicProgramming" type="_WEppIG2PEeSac59wUGz0eA" association="_of5ccG2PEeSac59wUGz0eA">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_of4OUG2PEeSac59wUGz0eA" name="dynamicProgramming">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_of4OUW2PEeSac59wUGz0eA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_of4OUm2PEeSac59wUGz0eA" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="__PwyIG-pEeSjmOWoK2JqvQ" name="linearProgramming" type="_tjvLUG3zEeSGfJ56Bsj53A" association="__PyAQG-pEeSjmOWoK2JqvQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__PwyIW-pEeSjmOWoK2JqvQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__PwyIm-pEeSjmOWoK2JqvQ" value="1"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_BBChgGrTEeSVkMDaYrVWBw" memberEnd="_BBChgWrTEeSVkMDaYrVWBw _BBBTYGrTEeSVkMDaYrVWBw">
@@ -275,21 +279,18 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_QfqysGrTEeSVkMDaYrVWBw" name="GraphUndirected">
         <generalization xmi:type="uml:Generalization" xmi:id="_cmxHYGrTEeSVkMDaYrVWBw" general="_dOI7UGrREeSVkMDaYrVWBw"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_of5ccG2PEeSac59wUGz0eA" memberEnd="_of5ccW2PEeSac59wUGz0eA _of4OUG2PEeSac59wUGz0eA">
-        <ownedEnd xmi:type="uml:Property" xmi:id="_of5ccW2PEeSac59wUGz0eA" name="linearize" type="_qAUX4GrSEeSVkMDaYrVWBw" aggregation="shared" association="_of5ccG2PEeSac59wUGz0eA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_of5ccm2PEeSac59wUGz0eA" value="1"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_of5cc22PEeSac59wUGz0eA" value="1"/>
-        </ownedEnd>
-      </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_8mCEQG2PEeSac59wUGz0eA" memberEnd="_8mCEQW2PEeSac59wUGz0eA _8mBdMG2PEeSac59wUGz0eA">
         <ownedEnd xmi:type="uml:Property" xmi:id="_8mCEQW2PEeSac59wUGz0eA" name="dFS" type="_NDyXIGrSEeSVkMDaYrVWBw" aggregation="composite" association="_8mCEQG2PEeSac59wUGz0eA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8mCEQm2PEeSac59wUGz0eA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8mCEQ22PEeSac59wUGz0eA" value="1"/>
         </ownedEnd>
       </packagedElement>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Model" xmi:id="_RPsFUG2PEeSac59wUGz0eA" name="DP">
-      <packagedElement xmi:type="uml:Class" xmi:id="_WEppIG2PEeSac59wUGz0eA" name="DynamicProgramming"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="__PyAQG-pEeSjmOWoK2JqvQ" memberEnd="__PyAQW-pEeSjmOWoK2JqvQ __PwyIG-pEeSjmOWoK2JqvQ">
+        <ownedEnd xmi:type="uml:Property" xmi:id="__PyAQW-pEeSjmOWoK2JqvQ" name="linearize" type="_qAUX4GrSEeSVkMDaYrVWBw" aggregation="composite" association="__PyAQG-pEeSjmOWoK2JqvQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__PyAQm-pEeSjmOWoK2JqvQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__PyAQ2-pEeSjmOWoK2JqvQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Model" xmi:id="_nrj3AG3zEeSGfJ56Bsj53A" name="LP">
       <packagedElement xmi:type="uml:Class" xmi:id="_tjvLUG3zEeSGfJ56Bsj53A" name="LinearProgramming"/>
