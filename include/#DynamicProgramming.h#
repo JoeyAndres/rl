@@ -10,16 +10,18 @@
 
 namespace AI {
 namespace Algorithm {
+namespace DP{
 
 /*! \class DynamicProgramming
  *  \brief Base class for dynamic programming.
  */
 class DynamicProgramming {
  public:
-
+  
  private:
 };
 
+}  // DP
 }  // Algorithm
 }  // AI
 

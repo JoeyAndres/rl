@@ -41,30 +41,42 @@ class DFS {
 
   void search(GraphDirected<D>& graph, const Vertex<D>& startingVertex) const;
   
-  virtual void traverse(GraphDirected<D>& graph,
+  virtual void traverse(const GraphDirected<D>& graph,
                         map<const Vertex<D>*, bool>& visited,
                         const Vertex<D>& startingVertex,
                         AI::UINT& ctr,
                         map<const Vertex<D>*, AI::UINT>& preNumber, 
                         map<const Vertex<D>*, AI::UINT>& postNumber) const;
   
-  virtual void traverse(GraphDirected<D>& graph,
+  virtual void traverse(const GraphDirected<D>& graph,
                         map<const Vertex<D>*, bool>& visited,
                         const Vertex<D>& startingVertex) const;
  
-  virtual void previsit(GraphDirected<D>& graph, 
+  virtual void previsit(const GraphDirected<D>& graph, 
                         map<const Vertex<D>*, bool>& visited,
                         const Vertex<D>& vertex,
                         AI::UINT& ctr,
                         map<const Vertex<D>*, AI::UINT>& preNumber,
                         map<const Vertex<D>*, AI::UINT>& postNumber) const;
-  virtual void postvisit(GraphDirected<D>& graph,
+  virtual void postvisit(const GraphDirected<D>& graph,
                          map<const Vertex<D>*, bool>& visited,
                          const Vertex<D>& vertex,
                          AI::UINT& ctr,
                          map<const Vertex<D>*, AI::UINT>& preNumber,
                          map<const Vertex<D>*, AI::UINT>& postNumber) const;
   virtual void visit(const Vertex<D>* vertex);
+
+ private:
+  void _initializeVisited(const GraphDirected<D>& graph,
+                          map<const Vertex<D> *, bool>& visited) const;
+
+  void _traverseAllVertices(const GraphDirected<D>& graph,
+                            map<const Vertex<D> *, bool>& visited) const;
+  void _traverseAllVertices(const GraphDirected<D>& graph,
+                            map<const Vertex<D> *, bool>& visited,
+                            AI::UINT& ctr,
+                            map<const Vertex<D>*, AI::UINT>& preNumber,
+                            map<const Vertex<D>*, AI::UINT>& postNumber) const;                            
 };
 
 template<class D>
@@ -77,38 +89,23 @@ template<class D>
 void DFS<D>::search(GraphDirected<D>& graph,
                     map<const Vertex<D>*, AI::UINT>& preNumber,
                     map<const Vertex<D>*, AI::UINT>& postNumber) const{
-  AI::UINT ctr = 0;
-
   // Initialize visited map.
   map<const Vertex<D>*, bool> visited;
-  for(const Vertex<D>* v : graph.getVertices()){
-    visited[v] = false;
-    postNumber[v] = 0;
-    preNumber[v] = 0;
-  }
-	
+  _initializeVisited(graph, visited);
+  
   // Try traversing to each vertex.
-  for(const Vertex<D>* v : graph.getVertices()){
-    if(visited[v] == false){
-      traverse(graph, visited, *v, ctr, preNumber, postNumber);
-    }
-  }
+  AI::UINT ctr = 0;
+  _traverseAllVertices(graph, visited, ctr, preNumber, postNumber);
 }
 
 template<class D>
 void DFS<D>::search(GraphDirected<D>& graph) const{
   // Initialize visited map.
   map<const Vertex<D>*, bool> visited;
-  for(const Vertex<D>* v : graph.getVertices()){
-    visited[v] = false;
-  }
+  _initializeVisited(graph, visited);
 	
   // Try traversing to each vertex.
-  for(const Vertex<D>* v : graph.getVertices()){
-    if(visited[v] == false){
-      traverse(graph, visited, *v);
-    }
-  }
+  _traverseAllVertices(graph, visited);
 }
 
 template<class D>
@@ -116,52 +113,38 @@ void DFS<D>::search(GraphDirected<D>& graph,
                     const Vertex<D>& startingVertex,
                     map<const Vertex<D>*, AI::UINT>& preNumber,
                     map<const Vertex<D>*, AI::UINT>& postNumber) const{
-  AI::UINT ctr = 0;
-
   // Initialize visited map.
   map<const Vertex<D>*, bool> visited;
-  for(const Vertex<D>* v : graph.getVertices()){
-    visited[v] = false;
-    postNumber[v] = 0;
-    preNumber[v] = 0;
-  }
+  _initializeVisited(graph, visited);
+
+  AI::UINT ctr = 0;
 
   // Traverse startingVertex.
   traverse(graph, visited, startingVertex, ctr, preNumber, postNumber);
 	
   // Try traversing to each vertex.
-  for(const Vertex<D>* v : graph.getVertices()){
-    if(visited[v] == false){
-      traverse(graph, visited, *v, ctr, preNumber, postNumber);
-    }
-  }
+  _traverseAllVertices(graph, visited, ctr, preNumber, postNumber);
 }
 
 template<class D>
 void DFS<D>::search(GraphDirected<D>& graph, const Vertex<D>& startingVertex) const{
   // Initialize visited map.
   map<const Vertex<D>*, bool> visited;
-  for(const Vertex<D>* v : graph.getVertices()){
-    visited[v] = false;
-  }
+  _initializeVisited(visited, graph);
 
   // Traverse startingVertex.
   traverse(graph, visited, startingVertex);
 	
   // Try traversing to each vertex.
-  for(const Vertex<D>* v : graph.getVertices()){
-    if(visited[v] == false){
-      traverse(graph, visited, *v);
-    }
-  }
+  _traverseAllVertices(graph, visited);
 }
       
 template<class D>
-void DFS<D>::traverse(GraphDirected<D>& graph, 
+void DFS<D>::traverse(const GraphDirected<D>& graph,
                       map<const Vertex<D>*, bool>& visited,
                       const Vertex<D>& startingVertex,
                       AI::UINT& ctr,
-                      map<const Vertex<D>*, AI::UINT>& preNumber, 
+                      map<const Vertex<D>*, AI::UINT>& preNumber,
                       map<const Vertex<D>*, AI::UINT>& postNumber) const{
   stack<const Vertex<D>*> s;
   s.push(&startingVertex);
@@ -192,7 +175,7 @@ void DFS<D>::traverse(GraphDirected<D>& graph,
 }
 
 template<class D>
-void DFS<D>::traverse(GraphDirected<D>& graph, 
+void DFS<D>::traverse(const GraphDirected<D>& graph, 
                       map<const Vertex<D>*, bool>& visited,
                       const Vertex<D>& startingVertex) const{
   stack<const Vertex<D>*> s;
@@ -207,22 +190,21 @@ void DFS<D>::traverse(GraphDirected<D>& graph,
       if(visited[neighbour] == false){        
         s.push(neighbour);
       }
-    }	  
+    }
   }
 }
 
 template<class D>
-void DFS<D>::previsit(GraphDirected<D>& graph, 
+void DFS<D>::previsit(const GraphDirected<D>& graph, 
                       map<const Vertex<D>*, bool>& visited,
                       const Vertex<D>& vertex,
                       AI::UINT& ctr,
                       map<const Vertex<D>*, AI::UINT>& preNumber,
                       map<const Vertex<D>*, AI::UINT>& postNumber) const{
-  
 }
 
 template<class D>
-void DFS<D>::postvisit(GraphDirected<D>& graph,
+void DFS<D>::postvisit(const GraphDirected<D>& graph,
                        map<const Vertex<D>*, bool>& visited,
                        const Vertex<D>& vertex,
                        AI::UINT& ctr,
@@ -233,6 +215,37 @@ void DFS<D>::postvisit(GraphDirected<D>& graph,
 
 template<class D>
 void DFS<D>::visit(const Vertex<D>* vertex){
+}
+
+template<class D>
+void DFS<D>::_initializeVisited(const GraphDirected<D>& graph,
+                                map<const Vertex<D> *, bool>& visited) const{                            
+  for (const Vertex<D>* v : graph.getVertices()) {
+    visited[v] = false;
+  }
+}
+
+template<class D>
+void DFS<D>::_traverseAllVertices(const GraphDirected<D>& graph,
+                                  map<const Vertex<D> *, bool>& visited) const{
+  for(const Vertex<D>* v : graph.getVertices()){
+    if(visited[v] == false){
+      traverse(graph, visited, *v);
+    }
+  }
+}
+
+template<class D>
+void DFS<D>::_traverseAllVertices(const GraphDirected<D>& graph,
+                                  map<const Vertex<D> *, bool>& visited,
+                                  AI::UINT& ctr,
+                                  map<const Vertex<D>*, AI::UINT>& preNumber,
+                                  map<const Vertex<D>*, AI::UINT>& postNumber) const{
+  for(const Vertex<D>* v : graph.getVertices()){
+    if(visited[v] == false){
+      traverse(graph, visited, *v, ctr, preNumber, postNumber);
+    }
+  }
 }
 
 }  // namespace Graph
