@@ -19,7 +19,7 @@
 #include "QLearningETGD.h"
 #include "EpsilonGreedy.h"
 #include "SensorMountainCar.h"
-#include "ActuatorMountainCar.h"
+#include "ActuatorBase.h"
 #include "MountainCarEnvironment.h"
 #include "TileCodeCorrect.h"
 #include "TileCodeMurMur.h"
@@ -33,54 +33,32 @@ using namespace AI::Algorithm::SL;
 using namespace std::chrono;
 using namespace std;
 
-TEST(SarsaETGDInitialization) {
-  DimensionInfo<AI::FLOAT> dimensionalInfo[] = { DimensionInfo<AI::FLOAT>(-1.2F,
-                                                                          0.5F,
-                                                                          10),
-      DimensionInfo<AI::FLOAT>(-0.07F, 0.07F, 10), DimensionInfo<AI::FLOAT>(
-          0.0F, 2.0F, 3), };
-
-  vector<DimensionInfo<AI::FLOAT> > dimensionalInfoVector(
-      dimensionalInfo,
-      dimensionalInfo
-          + sizeof(dimensionalInfo) / sizeof(DimensionInfo<AI::FLOAT> ));
-  dimensionalInfoVector[2].setGeneralizationScale(0.0F);
-  TileCodeCorrect tileCode(dimensionalInfoVector, 8);
-  Policy::EpsilonGreedySL policy(1.0F);
-  QLearningETGD qlearning(tileCode, 0.1F, 1.0F, 0.9F, policy);
-  SensorMountainCar smc;
-  ActuatorMountainCar amc;
-  amc.addAction(vector < AI::FLOAT > (1, 0));
-  amc.addAction(vector < AI::FLOAT > (1, 1));
-  amc.addAction(vector < AI::FLOAT > (1, 2));
-  AgentSL<AI::FLOAT> agent(smc, amc, qlearning);
-}
-
 TEST(SarsaETGDMountainCar01) {
-  DimensionInfo<AI::FLOAT> dimensionalInfo[] = { DimensionInfo<AI::FLOAT>(-1.2F,
-                                                                          0.5F,
-                                                                          10),
-      DimensionInfo<AI::FLOAT>(-0.07F, 0.07F, 10), DimensionInfo<AI::FLOAT>(
-          0.0F, 2.0F, 3), };
+    DimensionInfo<AI::FLOAT> dimensionalInfo[] = {
+    DimensionInfo<AI::FLOAT>(-1.2F, 0.5F, 10),
+    DimensionInfo<AI::FLOAT>(-0.07F, 0.07F, 10),
+    DimensionInfo<AI::FLOAT>(0.0F, 2.0F, 3),
+  };
 
   vector<DimensionInfo<AI::FLOAT> > dimensionalInfoVector(
       dimensionalInfo,
       dimensionalInfo
-          + sizeof(dimensionalInfo) / sizeof(DimensionInfo<AI::FLOAT> ));
+      + sizeof(dimensionalInfo) / sizeof(DimensionInfo<AI::FLOAT> ));
+  
   dimensionalInfoVector[2].setGeneralizationScale(0.0F);
   TileCodeCorrect tileCode(dimensionalInfoVector, 8);
   Policy::EpsilonGreedySL policy(1.0F);
-  QLearningETGD qlearning(tileCode, 0.1F, 1.0F, 0.9F, policy);
-  SensorMountainCar smc;
-  ActuatorMountainCar amc;
-  amc.addAction(vector < AI::FLOAT > (1, 0));
+  QLearningETGD qLearning(tileCode, 0.1F, 1.0F, 0.9F, policy);
+  MountainCarEnvironment mce;
+  SensorMountainCar smc(mce);
+  ActuatorBase<AI::STATE_CONT, AI::ACTION_CONT > amc(mce);
+  amc.addAction(vector <AI::FLOAT > (1, 0));
   amc.addAction(vector < AI::FLOAT > (1, 1));
   amc.addAction(vector < AI::FLOAT > (1, 2));
-  AgentSL<AI::FLOAT> agent(smc, amc, qlearning);
+  AgentSL<AI::FLOAT> agent(smc, amc, qLearning);
 
   AI::INT iterationCount = 0;
-  for (AI::INT i = 0; i < 1000; i++) {
-    MountainCarEnvironment& mce = MountainCarEnvironment::getInstance();
+  for (AI::INT i = 0; i < 1000; i++) {    
     mce.reset();
 
     iterationCount = 0;

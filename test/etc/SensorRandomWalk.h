@@ -12,17 +12,9 @@
 
 namespace AI {
 
-template<class SensorData>
-class SensorRandomWalk final : public SensorDiscrete<SensorData> {
-  virtual SensorData getSensorState() = 0;
-};
-
-template<>
-class SensorRandomWalk<AI::INT> final : public SensorDiscrete<AI::INT> {
+class SensorRandomWalk final : public SensorDiscrete<AI::INT, AI::INT> {
  public:
-  virtual AI::INT getSensorState();
-  virtual AI::FLOAT getReward(AI::INT& sensorState)
-      throw (StateNotExistException);
+  SensorRandomWalk(Environment<AI::INT, AI::INT>& env);
 };
 } /* namespace AI */
 

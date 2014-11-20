@@ -13,11 +13,13 @@
 
 using std::set;
 
+#include "Environment.h"
+
 namespace AI {
 
 /*! \class ActuatorBase
  *  \brief Base class and interface for all Actuator objects.
- *  \tparam ActionData Action data type.
+ *  \tparam A Action data type.
  *
  * Base class and interface for all actuator objects. One can override
  * or extend virtual functions here to direct output to environment. For
@@ -40,70 +42,75 @@ namespace AI {
  * The overridden applyAction is the method responsible for communicating directly to motor
  * drivers, where speed of each motor is given in pairs of two floats.
  */
-template<class ActionData>
+template<class S, class A>
 class ActuatorBase {
  public:
   /**
    * no-arg constructor. Use this if action set is added later.
    * @deprecated
    */
-  ActuatorBase();
+  ActuatorBase(Environment<S, A>& env);
 
   /**
    * Constructor for when actions (or some actions) are known.
    * @param dataSet Set of actions.
    */
-  ActuatorBase(set<ActionData> dataSet);
+  ActuatorBase(Environment<S, A>& env, set<A> dataSet);
 
   /**
-   * Virtual function to be overloaded.
-   *
-   * @see Actuator Documentation for example.
-   *
+   * @see Actuator Documentation for example.  
    * @param action to be applied to environment.
    */
-  virtual void applyAction(const ActionData& action) = 0;
+  virtual void applyAction(const A& action);
 
   /**
    * @return set of actions.
    */
-  const set<ActionData>& getActionSet() const;
+  const set<A>& getActionSet() const;
 
   /**
-   * @param data ActionData to be added.
+   * @param data A to be added.
    */
-  void addAction(const ActionData& data);
+  void addAction(const A& data);
 
   /**
    * @param dataSet replace the action set with a new one.
    */
-  void setActionSet(set<ActionData> dataSet);
+  void setActionSet(set<A> dataSet);
  private:
-  set<ActionData> _actionData;  //!< A set of possible action to be applied to
-                                //!< the environment.
+  set<A> _actionData;  //!< A set of possible action to be applied to
+                       //!< the environment.
+  Environment<S, A>& _env; //!< Aggregate environment.
 };
 
-template<class ActionData>
-AI::ActuatorBase<ActionData>::ActuatorBase() {
+template<class S, class A>
+AI::ActuatorBase<S, A>::ActuatorBase(Environment<S, A>& env) :
+    _env(env){
 }
 
-template<class ActionData>
-AI::ActuatorBase<ActionData>::ActuatorBase(set<ActionData> dataSet) {
+template<class S, class A>
+AI::ActuatorBase<S, A>::ActuatorBase(Environment<S, A>& env, set<A> dataSet) :
+    _env(env){
   _actionData = dataSet;
 }
 
-template<class ActionData>
-void AI::ActuatorBase<ActionData>::addAction(const ActionData& data) {
+template<class S, class A>
+void AI::ActuatorBase<S, A>::applyAction(const A& action){
+  _env.applyAction(action);
+}
+
+template<class S, class A>
+void AI::ActuatorBase<S, A>::addAction(const A& data) {
   _actionData.insert(data);
 }
 
-template<class ActionData>
-const set<ActionData>& AI::ActuatorBase<ActionData>::getActionSet() const {
+template<class S, class A>
+const set<A>& AI::ActuatorBase<S, A>::getActionSet() const {
   return _actionData;
 }
 
-template<class ActionData>
-void AI::ActuatorBase<ActionData>::setActionSet(set<ActionData> dataSet) {
+template<class S, class A>
+void AI::ActuatorBase<S, A>::setActionSet(set<A> dataSet) {
   _actionData = dataSet;
 }
 

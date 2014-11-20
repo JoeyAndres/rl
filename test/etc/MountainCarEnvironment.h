@@ -12,6 +12,8 @@
 
 #include <vector>
 
+#include "Environment.h"
+
 using namespace std;
 
 #define POS 0
@@ -19,19 +21,19 @@ using namespace std;
 
 namespace AI {
 
-class MountainCarEnvironment {
- private:
+class MountainCarEnvironment :
+      public Environment<STATE_CONT, ACTION_CONT>{
+ public:
   MountainCarEnvironment();
- public:
-  static MountainCarEnvironment& getInstance();
 
-  void reset();
-
-  AI::FLOAT applyAction(AI::INT Action);
-  const vector<AI::FLOAT>& getCurrentState() const;
+  // Overloaded methods.
+  virtual const STATE_CONT& getLastObservedState() const;
+  virtual AI::FLOAT getLastObservedReward() const;
+  virtual AI::FLOAT applyAction(const ACTION_CONT& Action);
+  virtual void reset();
+  
  private:
-  vector<AI::FLOAT> _currentState;
- public:
+  STATE_CONT _currentState;
   AI::FLOAT _currentReward;
 };
 

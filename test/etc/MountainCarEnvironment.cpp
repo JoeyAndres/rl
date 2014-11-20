@@ -13,14 +13,12 @@
 
 using namespace std;
 
-AI::MountainCarEnvironment::MountainCarEnvironment() {
-  _currentState = vector < AI::FLOAT > (2, 0);
-  _currentReward = 0.0F;
-}
+namespace AI{
 
-AI::MountainCarEnvironment& AI::MountainCarEnvironment::getInstance() {
-  static MountainCarEnvironment staticInstance;
-  return staticInstance;
+AI::MountainCarEnvironment::MountainCarEnvironment() :
+    AI::Environment<STATE_CONT, ACTION_CONT>(){
+  _currentState = STATE_CONT(2, 0);
+  _currentReward = 0.0F;
 }
 
 void AI::MountainCarEnvironment::reset() {
@@ -29,22 +27,22 @@ void AI::MountainCarEnvironment::reset() {
   _currentReward = 0.0F;
 }
 
-AI::FLOAT AI::MountainCarEnvironment::applyAction(AI::INT act) {
-  if (act < 0 || act > 2) {
+AI::FLOAT AI::MountainCarEnvironment::applyAction(const ACTION_CONT& act) {
+  if (act[0] < 0 || act[0] > 2) {
     cout << "Illegal" << endl;
     assert(false && "Action Set recognized.");
   }
 
-  act = act - 1;
+  AI::INT copyAct = act[0] - 1;
   AI::FLOAT reward = -1;
-  if (act == 0) {
+  if (copyAct == 0) {
     reward = -1;
   } else {
     reward = -2;
   }
-
+  
   _currentState[VEL] +=
-      (0.001F * act - 0.0025F * cos(3.0F * _currentState[POS]));
+      (0.001F * copyAct - 0.0025F * cos(3.0F * _currentState[POS]));
 
   if (_currentState[VEL] < -0.07F)
     _currentState[VEL] = -0.07F;
@@ -65,7 +63,12 @@ AI::FLOAT AI::MountainCarEnvironment::applyAction(AI::INT act) {
   return reward;
 }
 
-const vector<AI::FLOAT>& AI::MountainCarEnvironment::getCurrentState() const {
+const STATE_CONT& AI::MountainCarEnvironment::getLastObservedState() const {
   return _currentState;
 }
 
+AI::FLOAT AI::MountainCarEnvironment::getLastObservedReward() const{
+  return _currentReward;
+}
+
+} // AI

@@ -9,7 +9,8 @@
 
 namespace AI {
 
-RandomWalkEnvironment::RandomWalkEnvironment() {
+RandomWalkEnvironment::RandomWalkEnvironment() :
+    Environment<AI::INT, AI::INT>(){
   this->_currentState = B;
   _env[AI::StateAction<AI::INT, AI::INT>(A, L)] = T;
   _env[AI::StateAction<AI::INT, AI::INT>(A, R)] = B;
@@ -25,17 +26,20 @@ void RandomWalkEnvironment::reset() {
   _currentState = B;
 }
 
-RandomWalkEnvironment& RandomWalkEnvironment::getInstance() {
-  static RandomWalkEnvironment instance;
-  return instance;
-}
-
-void RandomWalkEnvironment::applyAction(AI::INT Action) {
+AI::FLOAT RandomWalkEnvironment::applyAction(const AI::INT& Action) {
   _currentState = _env[StateAction<AI::INT, AI::INT>(_currentState, Action)];
+  return getLastObservedReward();
 }
 
-AI::INT RandomWalkEnvironment::getCurrentState() const {
+const AI::INT& RandomWalkEnvironment::getLastObservedState() const {
   return _currentState;
+}
+
+AI::FLOAT RandomWalkEnvironment::getLastObservedReward() const{
+  if (_currentState == T) {
+    return 0;
+  }
+  return -1;  
 }
 
 } /* namespace AI */

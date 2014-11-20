@@ -11,7 +11,7 @@
 #include "UnitTest++.h"
 #include "Agent.h"
 #include "SensorRandomWalk.h"
-#include "ActuatorRandomWalk.h"
+#include "ActuatorBase.h"
 #include "RandomWalkEnvironment.h"
 #include "QLearning.h"
 #include "EpsilonGreedy.h"
@@ -19,24 +19,25 @@
 using std::vector;
 
 using namespace AI;
+using namespace AI::Algorithm;
+using namespace AI::Algorithm::RL;
 using namespace std;
 
 TEST(QLearningInitialization) {
-  SensorRandomWalk<AI::INT> srw;
+  RandomWalkEnvironment rwEnv;
+  SensorRandomWalk srw(rwEnv);
   srw.addTerminalState(T);
-  ActuatorRandomWalk<AI::INT> arw;
+  ActuatorBase<AI::INT, AI::INT>arw(rwEnv);
   arw.addAction(L);
   arw.addAction(R);
-  Algorithm::Policy::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
-  Algorithm::RL::QLearning<AI::INT, AI::INT> qlearningAlgorithm(0.1F, 0.9F,
-                                                                policy);
+  Policy::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
+  QLearning<AI::INT, AI::INT> qlearningAlgorithm(0.1F, 0.9F, policy);
 
   Agent<AI::INT, AI::INT> agent(srw, arw, qlearningAlgorithm);
 
   AI::INT iterationCount = 0;
   for (AI::INT i = 0; i < 100; i++) {
-    RandomWalkEnvironment& instance = RandomWalkEnvironment::getInstance();
-    instance.reset();
+    rwEnv.reset();
 
     iterationCount = 0;
     agent.preExecute();

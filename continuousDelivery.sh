@@ -1,5 +1,5 @@
 while true; do
-    $(inotifywait -e attrib,moved_to,create ./include)
+    inotifywait -e modify,delete,moved_to ./include/ --exclude \#
     make
     make run-test
 done

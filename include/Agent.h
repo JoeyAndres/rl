@@ -48,7 +48,7 @@ class Agent {
    * @param actuatorInstance aggregate an actuator object.
    * @param learningAlgorithm aggregate a Learning algorithm
    */
-  Agent(SensorBase<S>& sensorInstance, ActuatorBase<A>& actuatorInstance,
+  Agent(SensorBase<S, A>& sensorInstance, ActuatorBase<S, A>& actuatorInstance,
         Algorithm::LearningAlgorithm<S, A>& learningAlgorithm);
 
   /**
@@ -89,8 +89,8 @@ class Agent {
    */
   Algorithm::LearningAlgorithm<S, A>& _learningAlgorithm;
 
-  SensorBase<S>& _sensorInstance;  //!< Aggregate a Sensor object.
-  ActuatorBase<A>& _actuatorInstance;  //!< Aggregate an Actuator object.
+  SensorBase<S, A>& _sensorInstance;  //!< Aggregate a Sensor object.
+  ActuatorBase<S, A>& _actuatorInstance;  //!< Aggregate an Actuator object.
 
   S _currentState;  //!< Keeps track of the current state.
   A _currentAction;  //!< Keeps track of the current action.
@@ -114,8 +114,8 @@ using AgentSL = Agent<vector<D>, vector<D>>;
 } /* namespace AI */
 
 template<class S, class A>
-AI::Agent<S, A>::Agent(SensorBase<S>& sensorInstance,
-                       ActuatorBase<A>& actuatorInstance,
+AI::Agent<S, A>::Agent(SensorBase<S, A>& sensorInstance,
+                       ActuatorBase<S, A>& actuatorInstance,
                        Algorithm::LearningAlgorithm<S, A>& learningAlgorithm)
     : _sensorInstance(sensorInstance),
       _actuatorInstance(actuatorInstance),
@@ -147,7 +147,7 @@ template<class S, class A>
 void AI::Agent<S, A>::execute() {
   _actuatorInstance.applyAction(_currentAction);
   S nextState = _getCurrentState();
-  FLOAT reward = _sensorInstance.getReward(_currentState);
+  FLOAT reward = _sensorInstance.getLastObservedReward();
 
   // Accumulate reward.
   _accumulativeReward += reward;

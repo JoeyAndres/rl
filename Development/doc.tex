@@ -10,9 +10,25 @@
 
 \section*{Todo}
 \begin{easylist}
+  & \texttt{11/19/2014} Ammending the Environment Module.
+  && Modify the Sensor modules. There are some problems such as unused methods in base class for right reasons.
+  && Make SensorBase more agnostic, e.g. shed isState function, since this is of no use when the domain of the state is undetermined.
+  \\
+  && ActuatorBase should also be ammended to capture the problem.
+  && As to the tests. Fuck them all. Rewrite the tests so it can be used as an example to the API users.
+  \\ 
+  && Change template for both actuator and Sensor to $<S, A>$.
+  \\
+  && Actuators don't need to be overrided for most cased due to Environment, so delete all of them if needed.
+  &&& ActuatorRandomWalk
+\end{easylist}
+
+\section*{Tests}
+\begin{easylist}
 & RandomWalk $\square$
 & MountainCar $\square$
-& Poker $\boxtimes$
+& Poker $\square$
+& Pole Balancing $\square$
 \end{easylist}
 
 \section*{Log}
