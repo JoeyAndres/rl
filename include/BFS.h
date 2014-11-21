@@ -2,7 +2,7 @@
  * BFS.h
  *
  *  Created on: Nov 15, 2014
- *      Author: jandres
+ *      Author: Joey Andres
  */
 
 #ifndef INCLUDE_BFS_H_
