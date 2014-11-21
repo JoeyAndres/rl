@@ -15,7 +15,7 @@
 #include "SarsaET.h"
 #include "Agent.h"
 #include "SensorRandomWalk.h"
-#include "ActuatorRandomWalk.h"
+#include "ActuatorBase.h"
 #include "RandomWalkEnvironment.h"
 #include "EpsilonGreedy.h"
 
@@ -25,9 +25,10 @@ using namespace AI;
 using namespace std;
 
 TEST(SarsaInitialization) {
-  SensorRandomWalk<AI::INT> srw;
+  RandomWalkEnvironment rwe;
+  SensorRandomWalk srw(rwe);
   srw.addTerminalState(T);
-  ActuatorRandomWalk<AI::INT> arw;
+  ActuatorBase<AI::INT, AI::INT> arw(rwe);
   arw.addAction(L);
   arw.addAction(R);
   Algorithm::Policy::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
@@ -38,8 +39,7 @@ TEST(SarsaInitialization) {
 
   AI::INT iterationCount = 0;
   for (AI::INT i = 0; i < 100; i++) {
-    RandomWalkEnvironment& instance = RandomWalkEnvironment::getInstance();
-    instance.reset();
+    rwe.reset();
 
     iterationCount = 0;
     agent.preExecute();

@@ -11,7 +11,7 @@
 #include "UnitTest++.h"
 #include "Agent.h"
 #include "SensorRandomWalk.h"
-#include "ActuatorRandomWalk.h"
+#include "ActuatorBase.h"
 #include "RandomWalkEnvironment.h"
 #include "QLearningET.h"
 #include "EpsilonGreedy.h"
@@ -23,9 +23,10 @@ using namespace AI;
 using namespace std;
 
 TEST(QLearningETWatkinsInitialization) {
-  SensorRandomWalk<AI::INT> srw;
+  RandomWalkEnvironment rwe;
+  SensorRandomWalk srw(rwe);
   srw.addTerminalState(T);
-  ActuatorRandomWalk<AI::INT> arw;
+  ActuatorBase<AI::INT, AI::INT> arw(rwe);
   arw.addAction(L);
   arw.addAction(R);
   Algorithm::Policy::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
@@ -36,36 +37,7 @@ TEST(QLearningETWatkinsInitialization) {
 
   AI::INT iterationCount = 0;
   for (AI::INT i = 0; i < 100; i++) {
-    RandomWalkEnvironment& instance = RandomWalkEnvironment::getInstance();
-    instance.reset();
-
-    iterationCount = 0;
-    agent.preExecute();
-    while (!agent.episodeDone()) {
-      iterationCount++;
-      agent.execute();
-    }
-    agent.postExecute();
-  }
-  CHECK(iterationCount <= 2);
-}
-
-TEST(QLearningETWatkinsSoftmax) {
-  SensorRandomWalk<AI::INT> srw;
-  srw.addTerminalState(T);
-  ActuatorRandomWalk<AI::INT> arw;
-  arw.addAction(L);
-  arw.addAction(R);
-  Algorithm::Policy::Softmax<AI::INT, AI::INT> policy(0.2F);
-  Algorithm::RL::QLearningET<AI::INT, AI::INT> qlearningAlgorithm(0.1F, 0.9F,
-                                                                  policy, 0.5);
-
-  Agent<AI::INT, AI::INT> agent(srw, arw, qlearningAlgorithm);
-
-  AI::INT iterationCount = 0;
-  for (AI::INT i = 0; i < 100; i++) {
-    RandomWalkEnvironment& instance = RandomWalkEnvironment::getInstance();
-    instance.reset();
+    rwe.reset();
 
     iterationCount = 0;
     agent.preExecute();
