@@ -83,6 +83,8 @@ class ActuatorBase {
   Environment<S, A>& _env; //!< Aggregate environment.
 };
 
+typedef ActuatorBase<STATE_CONT, ACTION_CONT> ActuatorSL;
+
 template<class S, class A>
 AI::ActuatorBase<S, A>::ActuatorBase(Environment<S, A>& env) :
     _env(env){

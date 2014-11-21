@@ -20,23 +20,22 @@ namespace SL {
  */
 class TileCodeMurMur : public TileCode {
  public:
-  TileCodeMurMur(vector<DimensionInfo<FLOAT> > dimensionalInfos,
+  TileCodeMurMur(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
                  size_t numTilings);
 
-  TileCodeMurMur(vector<DimensionInfo<FLOAT> > dimensionalInfos,
+  TileCodeMurMur(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
                  size_t numTilings, size_t sizeHint);
 
-  virtual void getFeatureVector(const STATE_CONT& parameters,
-                                FEATURE_VECTOR& fv);
+  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters);
 };
 
-inline TileCodeMurMur::TileCodeMurMur(
-    vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings)
+inline TileCodeMurMur::TileCodeMurMur(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
+                                      size_t numTilings)
     : TileCode(dimensionalInfos, numTilings) {
 }
 
-inline TileCodeMurMur::TileCodeMurMur(
-    vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings,
+inline TileCodeMurMur::TileCodeMurMur(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
+                                      size_t numTilings,
     size_t sizeHint)
     : TileCode(dimensionalInfos, numTilings) {
   if (sizeHint > this->_sizeCache) {
@@ -44,9 +43,10 @@ inline TileCodeMurMur::TileCodeMurMur(
   }
 }
 
-inline void TileCodeMurMur::getFeatureVector(
-    const STATE_CONT& parameters, FEATURE_VECTOR& tilings) {
+inline FEATURE_VECTOR TileCodeMurMur::getFeatureVector(
+    const STATE_CONT& parameters) {
   assert(this->getDimension() == parameters.size());
+  FEATURE_VECTOR fv;
 
   vector<AI::INT> tileComponents(this->getDimension() + 1);
   for (AI::INT i = 0; i < this->_numTilings; i++) {
@@ -61,10 +61,11 @@ inline void TileCodeMurMur::getFeatureVector(
     AI::Algorithm::Hash::HashMurmur3Out hash = _hashAlg.hash(
         (AI::BYTE*) tileComponents.data(),
         tileComponents.size() * sizeof(AI::INT));
-    //AI::Algorithm::getHashVal(tileComponents, hash);
 
-    tilings.push_back(hash.hashVal[0] % this->_sizeCache);
+    fv.push_back(hash.hashVal[0] % this->_sizeCache);
   }
+  
+  return fv;
 }
 
 } // namespace SL

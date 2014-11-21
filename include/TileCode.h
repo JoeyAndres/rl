@@ -39,15 +39,14 @@ class TileCode {
    * @param numTilings The higher the value, the more accurate is the
    * 			generalization.
    */
-  TileCode(vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings);
+  TileCode(vector<DimensionInfo<FLOAT> >& dimensionalInfos, size_t numTilings);
 
   /**
    * Hashed the parameter in Real space to a Natural space [0, infinity).
    * @param parameters
    * @param Vector of "discretize" index.
    */
-  virtual void getFeatureVector(const STATE_CONT& parameters,
-                                FEATURE_VECTOR& fv) = 0;
+  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters) = 0;
 
   /**
    * @return size of the weight vector.
@@ -90,7 +89,7 @@ class TileCode {
 
  protected:
   size_t _numTilings;  //!< How many tilings/also known as sample.
-  vector<DimensionInfo<FLOAT> > _dimensionalInfos;  //!< Contains information for each dimension.
+  vector<DimensionInfo<FLOAT> >& _dimensionalInfos;  //!< Contains information for each dimension.
   std::random_device _randomDevice;
   std::default_random_engine _pseudoRNG;
 
@@ -112,11 +111,9 @@ class TileCode {
   vector<vector<AI::FLOAT> > _randomOffsets;
 };
 
-TileCode::TileCode(vector<DimensionInfo<FLOAT> > dimensionalInfos,
-                   size_t numTilings) {
-  assert(numTilings > 0);
-
-  _dimensionalInfos = dimensionalInfos;
+TileCode::TileCode(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
+                   size_t numTilings) : _dimensionalInfos(dimensionalInfos){
+  assert(numTilings > 0);  
   _numTilings = numTilings;
 
   // Calculate the size.

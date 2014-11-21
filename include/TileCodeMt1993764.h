@@ -25,7 +25,7 @@ class TileCodeMt1993764 : public TileCode {
    * @param dimensionalInfos
    * @param numTilings
    */
-  TileCodeMt1993764(vector<DimensionInfo<FLOAT> > dimensionalInfos,
+  TileCodeMt1993764(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
                     size_t numTilings);
 
   /**
@@ -35,7 +35,7 @@ class TileCodeMt1993764 : public TileCode {
    * will be used instead. The bigger the sizeHint, the less likely is the collision
    * during hashing.
    */
-  TileCodeMt1993764(vector<DimensionInfo<FLOAT> > dimensionalInfos,
+  TileCodeMt1993764(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
                     size_t numTilings, size_t sizeHint);
 
   /**
@@ -43,20 +43,19 @@ class TileCodeMt1993764 : public TileCode {
    * @param parameters
    * @return Vector of discretize index.
    */
-  virtual void getFeatureVector(const STATE_CONT& parameters,
-                                FEATURE_VECTOR& fv);
+  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters);
 
  protected:
   std::mt19937_64 _prng;
 };
 
 inline TileCodeMt1993764::TileCodeMt1993764(
-    vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings)
+    vector<DimensionInfo<FLOAT> >& dimensionalInfos, size_t numTilings)
     : TileCode(dimensionalInfos, numTilings) {
 }
 
 inline TileCodeMt1993764::TileCodeMt1993764(
-    vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings,
+    vector<DimensionInfo<FLOAT> >& dimensionalInfos, size_t numTilings,
     size_t sizeHint)
     : TileCode(dimensionalInfos, numTilings) {
   if (sizeHint > this->_sizeCache) {
@@ -64,9 +63,11 @@ inline TileCodeMt1993764::TileCodeMt1993764(
   }
 }
 
-inline void TileCodeMt1993764::getFeatureVector(
-    const STATE_CONT& parameters, FEATURE_VECTOR& tilings) {
+inline FEATURE_VECTOR TileCodeMt1993764::getFeatureVector(
+    const STATE_CONT& parameters) {
   vector<AI::INT> tileComponents(this->getDimension() + 1);
+  FEATURE_VECTOR fv;
+  
   for (size_t i = 0; i < this->_numTilings; i++) {
     for (size_t j = 0; j < this->getDimension(); j++) {
       tileComponents[j] = this->_paramToGridValue(parameters[j], i, j);
@@ -78,8 +79,10 @@ inline void TileCodeMt1993764::getFeatureVector(
     std::seed_seq seed1(tileComponents.begin(), tileComponents.end());
     _prng.seed(seed1);
 
-    tilings.push_back(_prng() % this->_sizeCache);
+    fv.push_back(_prng() % this->_sizeCache);
   }
+
+  return fv;
 }
 
 } // namespace SL

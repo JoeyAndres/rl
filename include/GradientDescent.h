@@ -65,8 +65,7 @@ class GradientDescent {
    * @param fv feature vector output. Feature vector are samples taken around
    *           the parameters in the n-dimension tilecde.
    */
-  void getFeatureVector(const vector<FLOAT>& parameters,
-                        FEATURE_VECTOR& fv) const;
+  FEATURE_VECTOR getFeatureVector(const vector<FLOAT>& parameters) const;
 
   /**
    * Increase the eligibility traces of a given feature vector.
@@ -174,8 +173,7 @@ size_t GradientDescent::getSize() const {
 
 FLOAT GradientDescent::getValueFromParameters(
     const vector<FLOAT>& parameters) const {
-  FEATURE_VECTOR fv;
-  _tileCode.getFeatureVector(parameters, fv);
+  FEATURE_VECTOR fv = _tileCode.getFeatureVector(parameters);
 
   return getValueFromFeatureVector(fv);
 }
@@ -223,8 +221,7 @@ void GradientDescent::updateWeights(
     stateVectorCopy.push_back(action);
   }
 
-  FEATURE_VECTOR fv;
-  getFeatureVector(stateVectorCopy, fv);
+  FEATURE_VECTOR fv = getFeatureVector(stateVectorCopy);
   incrementEligibilityTraces(fv);
 
   FLOAT tdError = reward + _discountRate * maxValue
@@ -250,8 +247,7 @@ inline void GradientDescent::updateWeights(
     currentStateVectorCopy.push_back(action);
   }
 
-  FEATURE_VECTOR currentStateFv;
-  getFeatureVector(currentStateVectorCopy, currentStateFv);
+  FEATURE_VECTOR currentStateFv = getFeatureVector(currentStateVectorCopy);
   incrementEligibilityTraces(currentStateFv);
 
   vector<FLOAT> nextStateVectorCopy = nextStateVector;
@@ -259,8 +255,7 @@ inline void GradientDescent::updateWeights(
     nextStateVectorCopy.push_back(action);
   }
 
-  FEATURE_VECTOR nextStateFv;
-  getFeatureVector(nextStateVectorCopy, nextStateFv);
+  FEATURE_VECTOR nextStateFv = getFeatureVector(nextStateVectorCopy);
 
   FLOAT tdError = reward
       + _discountRate * getValueFromFeatureVector(nextStateFv)
@@ -292,8 +287,7 @@ inline void GradientDescent::updateWeights(
     currentStateVectorCopy.push_back(action);
   }
 
-  FEATURE_VECTOR currentStateFv;
-  getFeatureVector(currentStateVectorCopy, currentStateFv);
+  FEATURE_VECTOR currentStateFv = getFeatureVector(currentStateVectorCopy);
   incrementEligibilityTraces(currentStateFv);
 
   FLOAT tdError = reward + _discountRate * nextActionValue
@@ -304,9 +298,8 @@ inline void GradientDescent::updateWeights(
   decreaseEligibilityTraces();
 }
 
-void GradientDescent::getFeatureVector(const vector<FLOAT>& parameters,
-                                       FEATURE_VECTOR& fv) const {
-  _tileCode.getFeatureVector(parameters, fv);
+FEATURE_VECTOR GradientDescent::getFeatureVector(const vector<FLOAT>& parameters) const {
+  return _tileCode.getFeatureVector(parameters);
 }
 
 void GradientDescent::buildActionValues(

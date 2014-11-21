@@ -1,5 +1,5 @@
 /*
- * Sarsa_test.cpp
+ * SarsaETGD_test.cpp
  *
  *  Created on: May 31, 2014
  *      Author: jandres
@@ -35,18 +35,12 @@ using namespace std::chrono;
 using namespace std;
 
 TEST(SarsaETGDMountainCar01) {
-  DimensionInfo<AI::FLOAT> dimensionalInfo[] = {
+  vector<DimensionInfo<AI::FLOAT> > dimensionalInfoVector = {
     DimensionInfo<AI::FLOAT>(-1.2F, 0.5F, 10),
     DimensionInfo<AI::FLOAT>(-0.07F, 0.07F, 10),
-    DimensionInfo<AI::FLOAT>(0.0F, 2.0F, 3),
+    DimensionInfo<AI::FLOAT>(0.0F, 2.0F, 3, 0.0F),
   };
-
-  vector<DimensionInfo<AI::FLOAT> > dimensionalInfoVector(
-      dimensionalInfo,
-      dimensionalInfo
-      + sizeof(dimensionalInfo) / sizeof(DimensionInfo<AI::FLOAT> ));
   
-  dimensionalInfoVector[2].setGeneralizationScale(0.0F);
   TileCodeCorrect tileCode(dimensionalInfoVector, 8);
   Policy::EpsilonGreedySL policy(1.0F);
   SarsaETGD sarsa(tileCode, 0.1F, 1.0F, 0.9F, policy);

@@ -29,7 +29,8 @@ namespace SL {
  */
 class SarsaETGD final: public ReinforcementLearningGD {
  public:
-  SarsaETGD(TileCode& tileCode, AI::FLOAT stepSize, AI::FLOAT discountRate,
+  SarsaETGD(TileCode& tileCode, AI::FLOAT stepSize,
+            AI::FLOAT discountRate,
             AI::FLOAT lambda,
             Policy::Policy<vector<FLOAT>, vector<FLOAT> >& policy);
 };

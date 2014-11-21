@@ -36,23 +36,23 @@ class TileCodeCorrect : public TileCode {
    * @param numTilings The higher the value, the more accurate is the
    * 			generalization.
    */
-  TileCodeCorrect(vector<DimensionInfo<FLOAT> > dimensionalInfos,
+  TileCodeCorrect(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
                   size_t numTilings);
 
-  virtual void getFeatureVector(const STATE_CONT& parameters,
-                                FEATURE_VECTOR& fv);
-
+  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters);
+  
 };
 
-inline TileCodeCorrect::TileCodeCorrect(
-    vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings)
+inline TileCodeCorrect::TileCodeCorrect(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
+                                        size_t numTilings)
     : TileCode(dimensionalInfos, numTilings) {
 }
 
-inline void TileCodeCorrect::getFeatureVector(
-    const STATE_CONT& parameters, FEATURE_VECTOR& fv) {
-  assert(this->getDimension() == parameters.size());
-
+inline FEATURE_VECTOR TileCodeCorrect::getFeatureVector(
+    const STATE_CONT& parameters) {
+  assert(this->getDimension() == parameters.size());  
+  FEATURE_VECTOR fv;
+  
   for (AI::INT i = 0; i < this->_numTilings; i++) {
     vector<AI::INT> tileComponents(this->getDimension());
     for (size_t j = 0; j < this->getDimension(); j++) {
@@ -70,10 +70,12 @@ inline void TileCodeCorrect::getFeatureVector(
     hashedIndex += tileComponentMultiplier * i;
     fv.push_back(hashedIndex);
   }
+
+  return fv;
 }
 
 } // namespace SL
-} /* namespace Algorithm */
-} /* namespace AI */
+} // namespace Algorithm
+} // namespace AI
 
 #endif /* TILECODECORRECT_H_ */

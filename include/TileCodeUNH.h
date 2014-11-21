@@ -33,8 +33,7 @@ class TileCodeUNH : public TileCode {
    * @param parameters
    * @return Vector of discretize index.
    */
-  virtual void getFeatureVector(const STATE_CONT& parameters,
-                                FEATURE_VECTOR& fv);
+  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters);
 
   size_t mod(size_t n, size_t k) {
     return (n >= 0) ? n % k : k - 1 - ((-n - 1) % k);
@@ -75,9 +74,10 @@ TileCodeUNH::TileCodeUNH(
 
 }
 
-void TileCodeUNH::getFeatureVector(
-    const STATE_CONT& parameters, FEATURE_VECTOR& tilings) {
+FEATURE_VECTOR TileCodeUNH::getFeatureVector(
+    const STATE_CONT& parameters) {
   assert(this->getDimension() == parameters.size());
+  FEATURE_VECTOR fv;
 
   vector<AI::UINT> base(this->getDimension(), 0);
   vector<AI::INT> qStates(this->getDimension());
@@ -97,9 +97,11 @@ void TileCodeUNH::getFeatureVector(
     }
     tileComponents[this->getDimension()] = i;
     AI::Algorithm::Hash::UNH hashAlg;
-    tilings.push_back(
+    fv.push_back(
         hashAlg.hash((AI::BYTE*) &tileComponents[0], this->_sizeCache));
   }
+
+  return fv;
 }
 
 } // namespace SL

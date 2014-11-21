@@ -24,7 +24,7 @@ class TileCodeSuperFastHash : public TileCode {
    * @param dimensionalInfos
    * @param numTilings
    */
-  TileCodeSuperFastHash(vector<DimensionInfo<FLOAT> > dimensionalInfos,
+  TileCodeSuperFastHash(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
                         size_t numTilings);
 
   /**
@@ -34,7 +34,7 @@ class TileCodeSuperFastHash : public TileCode {
    * will be used instead. The bigger the sizeHint, the less likely is the collision
    * during hashing.
    */
-  TileCodeSuperFastHash(vector<DimensionInfo<FLOAT> > dimensionalInfos,
+  TileCodeSuperFastHash(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
                         size_t numTilings, size_t sizeHint);
 
   /**
@@ -42,17 +42,16 @@ class TileCodeSuperFastHash : public TileCode {
    * @param parameters
    * @return Vector of discretize index.
    */
-  virtual void getFeatureVector(const STATE_CONT& parameters,
-                                FEATURE_VECTOR& fv);
+  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters);
 };
 
-inline TileCodeSuperFastHash::TileCodeSuperFastHash(
-    vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings)
+inline TileCodeSuperFastHash::TileCodeSuperFastHash(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
+                                                    size_t numTilings)
     : TileCode(dimensionalInfos, numTilings) {
 }
 
-inline TileCodeSuperFastHash::TileCodeSuperFastHash(
-    vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings,
+inline TileCodeSuperFastHash::TileCodeSuperFastHash(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
+                                                    size_t numTilings,
     size_t sizeHint)
     : TileCode(dimensionalInfos, numTilings) {
   if (sizeHint > this->_sizeCache) {
@@ -60,9 +59,11 @@ inline TileCodeSuperFastHash::TileCodeSuperFastHash(
   }
 }
 
-inline void TileCodeSuperFastHash::getFeatureVector(
-    const STATE_CONT& parameters, FEATURE_VECTOR& tilings) {
+inline FEATURE_VECTOR TileCodeSuperFastHash::getFeatureVector(
+    const STATE_CONT& parameters) {
   vector<AI::INT> tileComponents(this->getDimension() + 1);
+  FEATURE_VECTOR fv;
+  
   for (size_t i = 0; i < this->_numTilings; i++) {
     for (size_t j = 0; j < this->getDimension(); j++) {
       tileComponents[j] = this->_paramToGridValue(parameters[j], i, j);
@@ -75,8 +76,11 @@ inline void TileCodeSuperFastHash::getFeatureVector(
     AI::UINT hashVal = hashAlg.hash(
         (AI::BYTE*) &tileComponents[0],
         tileComponents.size() * sizeof(tileComponents[0]));
-    tilings.push_back(hashVal % this->_sizeCache);
+    
+    fv.push_back(hashVal % this->_sizeCache);
   }
+
+  return fv;
 }
 
 } // namespace SL
