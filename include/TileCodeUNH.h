@@ -40,8 +40,6 @@ class TileCodeUNH : public TileCode {
   }
 
  protected:
-
- protected:
   // Optimization parameters.
   vector<AI::FLOAT> _normalization;
 };

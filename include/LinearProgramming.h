@@ -8,6 +8,14 @@ namespace AI{
 namespace Algorithm{
 namespace LP{
 
+class LinearProgramming{
+ public:
+  LinearProgramming();
+
+ protected:
+  
+};
+
 }  // LP
 }  // Algorithm
 }  // LP

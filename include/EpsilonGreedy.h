@@ -105,9 +105,11 @@ template<class S, class A>
 const A& AI::Algorithm::Policy::EpsilonGreedy<S, A>::argMax(
     const map<A, AI::FLOAT>& actionValues, const set<A>& actionSet) const {
   auto maxActionIter = actionSet.begin();
-  for (auto iter = actionSet.begin(); iter != actionSet.end(); iter++) {
-    if (actionValues.at(*iter) > actionValues.at(*maxActionIter)) {
+  AI::FLOAT maxVal = actionValues.at(*maxActionIter);
+  for (auto iter = actionSet.begin(); iter != actionSet.end(); ++iter) {
+    if (actionValues.at(*iter) > maxVal) {
       maxActionIter = iter;
+      maxVal = actionValues.at(*maxActionIter);
     }
   }
 

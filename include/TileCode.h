@@ -126,7 +126,7 @@ TileCode::TileCode(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
     for (size_t j = 0; j < this->getDimension(); j++) {
       _randomOffsets[i].push_back(
           distribution(_pseudoRNG) * _dimensionalInfos[j].GetOffsets()
-              * _dimensionalInfos[j].getGeneralizationScale());
+          * _dimensionalInfos[j].getGeneralizationScale());
     }
   }
 }
@@ -163,10 +163,10 @@ size_t TileCode::_calculateSizeCache() {
 inline size_t TileCode::_paramToGridValue(
     AI::FLOAT param, size_t tilingIndex, size_t dimensionIndex) {
   return ((param
-      + _randomOffsets[tilingIndex][dimensionIndex]
-          * this->_dimensionalInfos[dimensionIndex].getGeneralizationScale()
-      - this->_dimensionalInfos[dimensionIndex].getLowerBound())
-      * this->_dimensionalInfos[dimensionIndex].GetGridCountIdeal())
+           + _randomOffsets[tilingIndex][dimensionIndex]
+           * this->_dimensionalInfos[dimensionIndex].getGeneralizationScale()
+           - this->_dimensionalInfos[dimensionIndex].getLowerBound())
+          * this->_dimensionalInfos[dimensionIndex].GetGridCountIdeal())
       / this->_dimensionalInfos[dimensionIndex].GetRangeDifference();
 }
 

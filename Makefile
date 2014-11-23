@@ -1,5 +1,4 @@
-CXX=clang++-3.5 -O3
-#CXXFLAGS=-Wall -std=c++11 -Wextra -Wshadow
+CXX=g++ -O3
 CXXFLAGS=-std=c++14 -Wunused
 CPPFLAGS=
 

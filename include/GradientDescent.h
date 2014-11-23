@@ -69,6 +69,7 @@ class GradientDescent {
 
   /**
    * Increase the eligibility traces of a given feature vector.
+   * Note: This is loads faster than replace elibility traces.
    * @param fv feature vector.
    */
   void incrementEligibilityTraces(const FEATURE_VECTOR& fv);
@@ -88,30 +89,6 @@ class GradientDescent {
    * Make all eligibility trace to 0.0F.
    */
   void resetEligibilityTraces();
-
-  /**
-   * @param stateVector vector of states.
-   * @param av action vector.
-   * @param nextState next state vector.
-   * @param reward reward for going to takeing av in sateVector.
-   * @param actionSet Set of action vector.
-   */
-  void updateWeights(const vector<FLOAT>& stateVector,
-                     const actionVector<FLOAT>& av,
-                     const vector<FLOAT>& nextState, const FLOAT reward,
-                     const set<actionVector<FLOAT> >& actionSet);
-
-  /**
-   * @param currentStateVector array of current states.
-   * @param currentActionVector array of action taken to get to currentStateVector..
-   * @param nextStateVector array of next states.
-   * @param nextAction array of next action taken to get to nextStateVector.
-   * @param reward reward for taking nextAction.
-   */
-  void updateWeights(const vector<FLOAT>& currentStateVector,
-                     const actionVector<FLOAT>& currentActionVector,
-                     const vector<FLOAT>& nextStateVector,
-                     const vector<FLOAT>& nextAction, const FLOAT reward);
 
   /**
    * @param currentStateVector array of current states.
@@ -148,11 +125,11 @@ class GradientDescent {
 
  protected:
   TileCode& _tileCode;  //!< Tile Code.
-  vector<FLOAT> _w;  //!< Vector of weights.
+  vector<AI::FLOAT> _w;  //!< Vector of weights.
   vector<AI::FLOAT> _e;  //!< Vector of eligibility traces.
   AI::FLOAT _stepSize;  //!< Step Size of the weight update.
   AI::FLOAT _discountRate;  //!< Discount rate, mix with _lambda on how past states
-                            //!< influence current.
+  //!< influence current.
   AI::FLOAT _lambda;  //!< lambda, mix with _lambda on how past states influence current.
 };
 
@@ -173,7 +150,7 @@ size_t GradientDescent::getSize() const {
 
 FLOAT GradientDescent::getValueFromParameters(
     const vector<FLOAT>& parameters) const {
-  FEATURE_VECTOR fv = _tileCode.getFeatureVector(parameters);
+  FEATURE_VECTOR fv = std::move(_tileCode.getFeatureVector(parameters));
 
   return getValueFromFeatureVector(fv);
 }
@@ -184,7 +161,9 @@ FLOAT GradientDescent::getValueFromFeatureVector(
   for (AI::UINT f : fv) {
     sum += _w[f];
   }
-  sum /= fv.size();
+
+  // Optimize Out.
+  //sum /= fv.size();
 
   return sum;
 }
@@ -203,81 +182,19 @@ void GradientDescent::replaceEligibilityTraces(const FEATURE_VECTOR& fv) {
 
 void GradientDescent::decreaseEligibilityTraces() {
   AI::FLOAT multiplier = _discountRate * _lambda;
-  for (size_t i = 0; i < getSize(); i++) {
-    _e[i] = multiplier * _e[i];
+  for (size_t i = 0; i < getSize(); ++i) {
+    _e[i] *= multiplier;
   }
-}
-
-void GradientDescent::updateWeights(
-    const vector<FLOAT>& stateVector, const actionVector<FLOAT>& av,
-    const vector<FLOAT>& nextState, const FLOAT reward,
-    const set<actionVector<FLOAT> >& actionSet) {
-  map<actionVector<FLOAT>, FLOAT> actionValueMap;
-  buildActionValues(actionSet, nextState, actionValueMap);
-  FLOAT maxValue = getMaxValue(actionValueMap);
-
-  vector<FLOAT> stateVectorCopy = stateVector;
-  for (const FLOAT& action : av) {
-    stateVectorCopy.push_back(action);
-  }
-
-  FEATURE_VECTOR fv = getFeatureVector(stateVectorCopy);
-  incrementEligibilityTraces(fv);
-
-  FLOAT tdError = reward + _discountRate * maxValue
-      - getValueFromFeatureVector(fv);
-
-  AI::FLOAT multiplier = _stepSize * tdError;
-  for (size_t i = 0; i < getSize(); i++) {
-    _w[i] += multiplier * _e[i];
-  }
-
-  // Decrease traces.
-  decreaseEligibilityTraces();
-}
-
-inline void GradientDescent::updateWeights(
-    const vector<FLOAT>& currentStateVector,
-    const actionVector<FLOAT>& currentActionVector,
-    const vector<FLOAT>& nextStateVector, const vector<FLOAT>& nextActionVector,
-    const FLOAT reward) {
-
-  vector<FLOAT> currentStateVectorCopy = currentStateVector;
-  for (const FLOAT& action : currentActionVector) {
-    currentStateVectorCopy.push_back(action);
-  }
-
-  FEATURE_VECTOR currentStateFv = getFeatureVector(currentStateVectorCopy);
-  incrementEligibilityTraces(currentStateFv);
-
-  vector<FLOAT> nextStateVectorCopy = nextStateVector;
-  for (const FLOAT& action : nextActionVector) {
-    nextStateVectorCopy.push_back(action);
-  }
-
-  FEATURE_VECTOR nextStateFv = getFeatureVector(nextStateVectorCopy);
-
-  FLOAT tdError = reward
-      + _discountRate * getValueFromFeatureVector(nextStateFv)
-      - getValueFromFeatureVector(currentStateFv);
-
-  AI::FLOAT multiplier = _stepSize * tdError;
-  for (size_t i = 0; i < getSize(); i++) {
-    _w[i] += multiplier * _e[i];
-  }
-
-  // Decrease traces.
-  decreaseEligibilityTraces();
 }
 
 void GradientDescent::backUpWeights(FLOAT tdError) {
   AI::FLOAT multiplier = _stepSize * tdError;
-  for (size_t i = 0; i < getSize(); i++) {
+  for (size_t i = 0; i < getSize(); ++i) {
     _w[i] += multiplier * _e[i];
   }
 }
 
-inline void GradientDescent::updateWeights(
+void GradientDescent::updateWeights(
     const vector<FLOAT>& currentStateVector,
     const actionVector<FLOAT>& currentActionVector,
     const vector<FLOAT>& nextStateVector, const FLOAT nextActionValue,
@@ -287,7 +204,7 @@ inline void GradientDescent::updateWeights(
     currentStateVectorCopy.push_back(action);
   }
 
-  FEATURE_VECTOR currentStateFv = getFeatureVector(currentStateVectorCopy);
+  FEATURE_VECTOR currentStateFv = std::move(getFeatureVector(currentStateVectorCopy));
   incrementEligibilityTraces(currentStateFv);
 
   FLOAT tdError = reward + _discountRate * nextActionValue
@@ -304,20 +221,15 @@ FEATURE_VECTOR GradientDescent::getFeatureVector(const vector<FLOAT>& parameters
 
 void GradientDescent::buildActionValues(
     const set<actionVector<FLOAT> >& actionSet, const vector<FLOAT>& param,
-    map<actionVector<FLOAT>, FLOAT>& actionVectorValueMap) const {
-  vector<FLOAT> paramCopy = param;
+    map<actionVector<FLOAT>, FLOAT>& actionVectorValueMap) const {  
 
   for (const actionVector<FLOAT>& av : actionSet) {
+    vector<FLOAT> paramCopy = param;
     for (const FLOAT& a : av) {
       paramCopy.push_back(a);
     }
 
     actionVectorValueMap[av] = getValueFromParameters(paramCopy);
-
-    for (const FLOAT& a : av) {
-      (void) a;
-      paramCopy.pop_back();
-    }
   }
 }
 
@@ -330,7 +242,7 @@ FLOAT GradientDescent::getMaxValue(
   // Get max action.
   FLOAT maxValue = actionValueMap.begin()->second;
   for (auto iter = actionValueMap.begin(); iter != actionValueMap.end();
-      iter++) {
+       ++iter) {
     if (iter->second > maxValue) {
       maxValue = iter->second;
     }
