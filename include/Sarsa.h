@@ -64,7 +64,7 @@ void Sarsa<S, A>::update(const StateAction<S, A>& currentStateAction,
                          const set<A>& actionSet) {
   ReinforcementLearning<S, A>::update(currentStateAction, nextState, reward,
                                       actionSet);
-  const A& nextAction = this->getAction(nextState, actionSet);
+  A nextAction = this->getAction(nextState, actionSet);
   this->backUpStateActionPair(currentStateAction, reward,
                               StateAction<S, A>(nextState, nextAction));
 }

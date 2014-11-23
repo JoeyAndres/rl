@@ -54,7 +54,7 @@ class LearningAlgorithm {
    * @param actionSet set of possible actions.
    * @return action based on control policy and current state.
    */
-  virtual const A& getAction(const S& state, const set<A>& actionSet) = 0;
+  virtual A getAction(const S& state, const set<A>& actionSet) = 0;
 
   /**
    * @param stateAction
@@ -105,7 +105,7 @@ class LearningAlgorithm {
    * @param actionSet current action set.
    * @return action selected by learning policy.
    */
-  const A& _getLearningPolicyAction(const map<A, AI::FLOAT>& actionValueMap,
+    A _getLearningPolicyAction(const map<A, AI::FLOAT>& actionValueMap,
                                     const set<A>& actionSet);
 
  protected:
@@ -140,7 +140,6 @@ Policy::Policy<S, A>& LearningAlgorithm<S, A>::getControlPolicy() {
 
 template<class S, class A>
 void LearningAlgorithm<S, A>::reset() {
-
 }
 
 template<class S, class A>
@@ -169,7 +168,7 @@ inline const AI::Algorithm::Policy::Policy<S, A>& AI::Algorithm::LearningAlgorit
 }
 
 template<class S, class A>
-inline const A& AI::Algorithm::LearningAlgorithm<S, A>::_getLearningPolicyAction(
+inline A AI::Algorithm::LearningAlgorithm<S, A>::_getLearningPolicyAction(
     const map<A, AI::FLOAT>& actionValueMap, const set<A>& actionSet) {
   return _learningPolicy.getAction(actionValueMap, actionSet);
 }

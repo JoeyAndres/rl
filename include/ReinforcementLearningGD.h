@@ -56,8 +56,8 @@ class ReinforcementLearningGD : public LearningAlgorithm<vector<FLOAT>,
    * @param actionSet Set of possible actions.
    * @return Action determined by Control Policy.
    */
-  virtual const vector<FLOAT>& getAction(const vector<FLOAT>& state,
-                                         const set<vector<FLOAT> >& actionSet);
+  virtual vector<FLOAT> getAction(const vector<FLOAT>& state,
+                                  const set<vector<FLOAT> >& actionSet);
 
   /**
    * @param stateAction State-action pair to determine value of.
@@ -121,7 +121,7 @@ inline void ReinforcementLearningGD::update(
                                  reward);
 }
 
-const vector<FLOAT>& ReinforcementLearningGD::getAction(
+vector<FLOAT> ReinforcementLearningGD::getAction(
     const vector<FLOAT>& state, const set<vector<FLOAT> >& actionSet) {
   map<actionVector<FLOAT>, FLOAT> actionValueMap;
   _buildActionValues(actionSet, state, actionValueMap);

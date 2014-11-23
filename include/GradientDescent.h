@@ -108,14 +108,14 @@ class GradientDescent {
    */
   void buildActionValues(
       const set<actionVector<FLOAT> >& actionSet, const vector<FLOAT>& param,
-      map<actionVector<FLOAT>, FLOAT>& actionVectorValueMap) const;
+      map<ACTION_CONT, FLOAT>& actionVectorValueMap) const;
 
   /**
    * @param actionValueMap state-action to value mapping.
    * @return value.
    */
   FLOAT getMaxValue(
-      const map<actionVector<FLOAT>, FLOAT>& actionValueMap) const;
+      const map<ACTION_CONT, FLOAT>& actionValueMap) const;
 
   /**
    * Update weights with tderror.
@@ -221,13 +221,11 @@ FEATURE_VECTOR GradientDescent::getFeatureVector(const vector<FLOAT>& parameters
 
 void GradientDescent::buildActionValues(
     const set<actionVector<FLOAT> >& actionSet, const vector<FLOAT>& param,
-    map<actionVector<FLOAT>, FLOAT>& actionVectorValueMap) const {  
-
+    map<ACTION_CONT, FLOAT>& actionVectorValueMap) const {
   for (const actionVector<FLOAT>& av : actionSet) {
     vector<FLOAT> paramCopy = param;
-    for (const FLOAT& a : av) {
+    for (const FLOAT& a : av)
       paramCopy.push_back(a);
-    }
 
     actionVectorValueMap[av] = getValueFromParameters(paramCopy);
   }
@@ -238,7 +236,7 @@ inline void GradientDescent::resetEligibilityTraces() {
 }
 
 FLOAT GradientDescent::getMaxValue(
-    const map<actionVector<FLOAT>, FLOAT>& actionValueMap) const {
+    const map<ACTION_CONT, FLOAT>& actionValueMap) const {
   // Get max action.
   FLOAT maxValue = actionValueMap.begin()->second;
   for (auto iter = actionValueMap.begin(); iter != actionValueMap.end();

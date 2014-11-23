@@ -79,10 +79,10 @@ void AI::Algorithm::RL::DynaQ<S, A>::update(
   this->backUpStateActionPair(currentStateAction, reward,
                               StateAction<S, A>(nextState, nextAction));
 
-// Update model.
+  // Update model.
   this->_updateModel(currentStateAction, nextState, reward);
 
-// Simulation.
+  // Simulation.
   this->_simulate(actionSet);
 }
 

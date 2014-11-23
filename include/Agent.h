@@ -129,16 +129,14 @@ AI::Agent<S, A>::Agent(SensorBase<S, A>& sensorInstance,
 
 template<class S, class A>
 S AI::Agent<S, A>::_getCurrentState() {
-  S state = _sensorInstance.getSensorState();
-
-  return state;
+  return _sensorInstance.getSensorState();;
 }
 
 template<class S, class A>
 void AI::Agent<S, A>::preExecute() {
-  _currentState = _getCurrentState();
-  _currentAction = _learningAlgorithm.getAction(
-        _currentState, _actuatorInstance.getActionSet());
+  _currentState = std::move(_getCurrentState());
+  _currentAction = std::move(_learningAlgorithm.getAction(
+        _currentState, _actuatorInstance.getActionSet()));
   _learningAlgorithm.reset();
   _accumulativeReward = 0.0F;
 }
@@ -146,7 +144,7 @@ void AI::Agent<S, A>::preExecute() {
 template<class S, class A>
 void AI::Agent<S, A>::execute() {
   _actuatorInstance.applyAction(_currentAction);
-  S nextState = _getCurrentState();
+  S nextState = std::move(_getCurrentState());
   FLOAT reward = _sensorInstance.getLastObservedReward();
 
   // Accumulate reward.
@@ -159,8 +157,8 @@ void AI::Agent<S, A>::execute() {
 
   // Get the action from the algorithm.
   // Note the algorithm will retrieve from controlPolicy.
-  _currentAction = _learningAlgorithm.getAction(
-      nextState, _actuatorInstance.getActionSet());
+  _currentAction = std::move(_learningAlgorithm.getAction(
+      nextState, _actuatorInstance.getActionSet()));
 
   // Update current state.
   _currentState = nextState;

@@ -92,7 +92,7 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
    * @param actionSet Set of actions.
    * @return Action with respect to learning/offline policy.
    */
-  const A& getLearningAction(const S& currentState, const set<A>& actionSet);
+  A getLearningAction(const S& currentState, const set<A>& actionSet);
 
   /**
    * @param stateAction to acquire a value of.
@@ -125,7 +125,7 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
   virtual void update(const StateAction<S, A>& currentStateAction,
                       const S& nextState, const AI::FLOAT reward,
                       const set<A>& actionSet);
-  virtual const A& getAction(const S& currentState, const set<A>& actionSet);
+  virtual A getAction(const S& currentState, const set<A>& actionSet);
 
  protected:
   void _buildActionValueMap(const set<A>& actionSet, const S& currentState,
@@ -207,7 +207,7 @@ inline void ReinforcementLearning<S, A>::setStateActionValue(
 }
 
 template<class S, class A>
-inline const A& ReinforcementLearning<S, A>::getLearningAction(
+inline A ReinforcementLearning<S, A>::getLearningAction(
     const S& currentState, const set<A>& actionSet) {
   _stateActionPairContainer.addState(currentState,
                                      this->_defaultStateActionValue, actionSet);
@@ -227,7 +227,7 @@ void ReinforcementLearning<S, A>::_buildActionValueMap(
 }
 
 template<class S, class A>
-const A& ReinforcementLearning<S, A>::getAction(
+A ReinforcementLearning<S, A>::getAction(
     const S& currentState, const set<A>& actionSet) {
   _stateActionPairContainer.addState(currentState,
                                      this->_defaultStateActionValue, actionSet);
