@@ -51,9 +51,10 @@ class Softmax : public Policy<S, A> {
  public:
   Softmax(AI::FLOAT temperature);
 
-  virtual const A& getAction(const map<A, AI::FLOAT>& actionValues,
+  virtual A getAction(const map<A, AI::FLOAT>& actionValues,
                              const set<A>& actionSet);
-
+  virtual A getAction(const map<A, AI::FLOAT>& actionValues,
+                      const set<A>& actionSet, const A& maxAction);
  private:
   std::random_device _randomDevice;
   std::uniform_real_distribution<AI::FLOAT> _distribution;
@@ -76,7 +77,7 @@ AI::Algorithm::Policy::Softmax<S, A>::Softmax(AI::FLOAT temperature)
 }
 
 template<class S, class A>
-const A& AI::Algorithm::Policy::Softmax<S, A>::getAction(
+A AI::Algorithm::Policy::Softmax<S, A>::getAction(
     const map<A, AI::FLOAT>& actionValues, const set<A>& actionSet) {
   // Acquire E(i=1...n) e^(Q(i)/temp)
   AI::FLOAT sum = 0.0F;
@@ -111,6 +112,12 @@ const A& AI::Algorithm::Policy::Softmax<S, A>::getAction(
   }
 
   assert(false);
+}
+
+template<class S, class A>
+A AI::Algorithm::Policy::Softmax<S, A>::getAction(const map<A, AI::FLOAT>& actionValues,
+                                   const set<A>& actionSet, const A& maxAction){
+  return getAction(actionValues, actionSet);
 }
 
 #endif	/* SOFTMAX_H */

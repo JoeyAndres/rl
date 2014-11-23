@@ -89,6 +89,11 @@ class ReinforcementLearningGD : public LearningAlgorithm<vector<FLOAT>,
                           const vector<FLOAT>& nextState,
                           map<actionVector<FLOAT>, FLOAT>& actionValueMap);
 
+  void _buildActionValues(const set<vector<FLOAT> >& actionSet,
+                          const vector<FLOAT>& nextState,
+                          map<actionVector<FLOAT>, FLOAT>& actionValueMap,
+                          ACTION_CONT& action);
+
  protected:
   GradientDescent _gradientDescent;
 };
@@ -106,14 +111,22 @@ void ReinforcementLearningGD::_buildActionValues(
   _gradientDescent.buildActionValues(actionSet, nextState, actionValueMap);
 }
 
+void ReinforcementLearningGD::_buildActionValues(
+    const set<vector<FLOAT> >& actionSet, const vector<FLOAT>& nextState,
+    map<actionVector<FLOAT>, FLOAT>& actionValueMap,
+    ACTION_CONT& action) {
+  _gradientDescent.buildActionValues(actionSet, nextState, actionValueMap, action);
+}
+
 inline void ReinforcementLearningGD::update(
     const StateAction<vector<FLOAT>, vector<FLOAT> >& currentStateAction,
     const vector<FLOAT>& nextStateVector, const FLOAT reward,
     const set<vector<FLOAT> >& actionSet) {
   map<actionVector<FLOAT>, FLOAT> actionValueMap;
-  _buildActionValues(actionSet, nextStateVector, actionValueMap);
+  ACTION_CONT maxAction;
+  _buildActionValues(actionSet, nextStateVector, actionValueMap, maxAction);
   const vector<FLOAT>& nextAction = this->_getLearningPolicyAction(
-      actionValueMap, actionSet);
+      actionValueMap, actionSet, maxAction);
 
   _gradientDescent.updateWeights(currentStateAction.getState(),
                                  currentStateAction.getAction(),
@@ -124,10 +137,9 @@ inline void ReinforcementLearningGD::update(
 vector<FLOAT> ReinforcementLearningGD::getAction(
     const vector<FLOAT>& state, const set<vector<FLOAT> >& actionSet) {
   map<actionVector<FLOAT>, FLOAT> actionValueMap;
-  _buildActionValues(actionSet, state, actionValueMap);
-  const vector<FLOAT>& nextAction = this->_learningPolicy.getAction(
-      actionValueMap, actionSet);
-  return nextAction;
+  ACTION_CONT maxAction;
+  _buildActionValues(actionSet, state, actionValueMap, maxAction);
+  return this->_learningPolicy.getAction(actionValueMap, actionSet, maxAction);
 }
 
 FLOAT ReinforcementLearningGD::getStateActionValue(

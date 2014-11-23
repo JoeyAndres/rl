@@ -109,6 +109,10 @@ class GradientDescent {
   void buildActionValues(
       const set<actionVector<FLOAT> >& actionSet, const vector<FLOAT>& param,
       map<ACTION_CONT, FLOAT>& actionVectorValueMap) const;
+  void buildActionValues(
+      const set<actionVector<FLOAT> >& actionSet, const vector<FLOAT>& param,
+      map<ACTION_CONT, FLOAT>& actionVectorValueMap,
+      ACTION_CONT& maxAction) const;
 
   /**
    * @param actionValueMap state-action to value mapping.
@@ -217,6 +221,34 @@ void GradientDescent::updateWeights(
 
 FEATURE_VECTOR GradientDescent::getFeatureVector(const vector<FLOAT>& parameters) const {
   return _tileCode.getFeatureVector(parameters);
+}
+
+void GradientDescent::buildActionValues(
+    const set<actionVector<FLOAT> >& actionSet, const vector<FLOAT>& param,
+    map<ACTION_CONT, FLOAT>& actionVectorValueMap,
+    ACTION_CONT& actions) const {
+  set<ACTION_CONT>::const_iterator maxIter = actionSet.begin();  
+  vector<FLOAT> pc = param;
+  for (const FLOAT& a : *maxIter)
+    pc.push_back(a);
+  FLOAT maxVal = getValueFromParameters(pc);
+
+  set<ACTION_CONT>::const_iterator iter = maxIter;
+  for (;  iter != actionSet.end(); ++iter) {    
+    vector<FLOAT> paramCopy;
+    paramCopy.reserve(param.size() + (*iter).size());
+    paramCopy.insert(paramCopy.end(), param.begin(), param.end());
+    paramCopy.insert(paramCopy.end(), (*iter).begin(), (*iter).end());
+
+    FLOAT value = getValueFromParameters(paramCopy);
+    actionVectorValueMap[*iter] = value;
+    if(maxVal < value){
+      maxVal = value;
+      maxIter = iter;
+    }
+  }
+
+  actions = *maxIter;
 }
 
 void GradientDescent::buildActionValues(

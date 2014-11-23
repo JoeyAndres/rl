@@ -11,7 +11,7 @@
 #include "GlobalHeader.h"
 
 #include <random>
-#include <random>
+#include <iostream>
 
 #include "Policy.h"
 #include "StateAction.h"
@@ -50,11 +50,14 @@ class EpsilonGreedy : public Policy<S, A> {
    * @param actionSet a set of possible actions.
    * @return the action that will "likely" gives the highest reward.
    */
-  const A& argMax(const map<A, AI::FLOAT>& actionValues,
+  A argMax(const map<A, AI::FLOAT>& actionValues,
                   const set<A>& actionSet) const;
 
-  virtual const A& getAction(const map<A, AI::FLOAT>& actionValues,
+  virtual A getAction(const map<A, AI::FLOAT>& actionValues,
                              const set<A>& actionSet);
+
+  virtual A getAction(const map<A, AI::FLOAT>& actionValues,
+                      const set<A>& actionSet, const A& maxAction);
 
   /**
    * @param greediness
@@ -88,7 +91,7 @@ AI::Algorithm::Policy::EpsilonGreedy<S, A>::~EpsilonGreedy() {
 }
 
 template<class S, class A>
-const A& AI::Algorithm::Policy::EpsilonGreedy<S, A>::getAction(
+A AI::Algorithm::Policy::EpsilonGreedy<S, A>::getAction(
     const map<A, AI::FLOAT>& actionValues, const set<A>& actionSet) {
   const AI::FLOAT& r = _distribution(_randomDevice);
   if (r > _greediness) {
@@ -102,7 +105,22 @@ const A& AI::Algorithm::Policy::EpsilonGreedy<S, A>::getAction(
 }
 
 template<class S, class A>
-const A& AI::Algorithm::Policy::EpsilonGreedy<S, A>::argMax(
+A AI::Algorithm::Policy::EpsilonGreedy<S, A>::getAction(const map<A, AI::FLOAT>& actionValues,
+                                                        const set<A>& actionSet, const A& maxAction){
+  if(_greediness == 1.0F) return maxAction;
+  const AI::FLOAT& r = _distribution(_randomDevice);
+  if (r > _greediness) {
+    uniform_int_distribution<AI::INT> indexDistribution(0, actionSet.size());
+    typename set<A>::const_iterator it(actionSet.begin());
+    advance(it, indexDistribution(_randomDevice));
+    return (*it);
+  } else {
+    return maxAction;
+  }
+}
+
+template<class S, class A>
+A AI::Algorithm::Policy::EpsilonGreedy<S, A>::argMax(
     const map<A, AI::FLOAT>& actionValues, const set<A>& actionSet) const {
   auto maxActionIter = actionSet.begin();
   AI::FLOAT maxVal = actionValues.at(*maxActionIter);

@@ -109,7 +109,6 @@ class LearningAlgorithm {
                                const set<A>& actionSet);
   A _getLearningPolicyAction(const map<A, AI::FLOAT>& actionValueMap,
                              const set<A>& actionSet, ACTION_CONT& action);
-
  protected:
   AI::FLOAT _defaultStateActionValue;  //!< Place holder for default state action value.
   Policy::Policy<S, A>& _controlPolicy;  //!< Policy for action selection online.

@@ -42,8 +42,21 @@ class Policy {
    * @return <b>action</b> given a mapping of actions and their value and a
    *         set of actions.
    */
-  virtual const A& getAction(const map<A, AI::FLOAT>& actionValues,
+  virtual A getAction(const map<A, AI::FLOAT>& actionValues,
                              const set<A>& actionSet) = 0;
+
+    /**
+   * Returns <b>action</b> given a mapping of actions and their value and a
+   * set of actions.
+   *
+   * @param actionValues a mapping of actions to their corresponding value.
+   * @param actionSet set of actions.
+   * @param action with maximum value.
+   * @return <b>action</b> given a mapping of actions and their value and a
+   *         set of actions.
+   */
+  virtual A getAction(const map<A, AI::FLOAT>& actionValues,
+                      const set<A>& actionSet, const A& maxAction) = 0;
  private:
 
 };
