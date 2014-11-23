@@ -186,15 +186,16 @@ void GradientDescent::replaceEligibilityTraces(const FEATURE_VECTOR& fv) {
 
 void GradientDescent::decreaseEligibilityTraces() {
   AI::FLOAT multiplier = _discountRate * _lambda;
-  for (size_t i = 0; i < getSize(); ++i) {
-    _e[i] *= multiplier;
+  for (auto& e : _e) {
+    e *= multiplier;
   }
 }
 
 void GradientDescent::backUpWeights(FLOAT tdError) {
   AI::FLOAT multiplier = _stepSize * tdError;
-  for (size_t i = 0; i < getSize(); ++i) {
-    _w[i] += multiplier * _e[i];
+  UINT i = -1;  // -1 so I can use prefix, which is faster.
+  for (auto& w : _w){
+    w += multiplier * _e[++i];
   }
 }
 
@@ -203,10 +204,15 @@ void GradientDescent::updateWeights(
     const actionVector<FLOAT>& currentActionVector,
     const vector<FLOAT>& nextStateVector, const FLOAT nextActionValue,
     const FLOAT reward) {
-  vector<FLOAT> currentStateVectorCopy = currentStateVector;
-  for (const FLOAT& action : currentActionVector) {
-    currentStateVectorCopy.push_back(action);
-  }
+  vector<FLOAT> currentStateVectorCopy;
+  currentStateVectorCopy.reserve(currentStateVector.size() +
+                                 currentActionVector.size());
+  currentStateVectorCopy.insert(currentStateVectorCopy.end(),
+                                currentStateVector.begin(),
+                                currentStateVector.end());
+  currentStateVectorCopy.insert(currentStateVectorCopy.end(),
+                                currentActionVector.begin(),
+                                currentActionVector.end());
 
   FEATURE_VECTOR currentStateFv = std::move(getFeatureVector(currentStateVectorCopy));
   incrementEligibilityTraces(currentStateFv);
@@ -227,19 +233,22 @@ void GradientDescent::buildActionValues(
     const set<actionVector<FLOAT> >& actionSet, const vector<FLOAT>& param,
     map<ACTION_CONT, FLOAT>& actionVectorValueMap,
     ACTION_CONT& actions) const {
-  set<ACTION_CONT>::const_iterator maxIter = actionSet.begin();  
-  vector<FLOAT> pc = param;
-  for (const FLOAT& a : *maxIter)
-    pc.push_back(a);
+  set<ACTION_CONT>::const_iterator maxIter = actionSet.begin();
+  vector<FLOAT> pc;
+  pc.reserve(param.size() + (*maxIter).size());
+  pc.insert(pc.end(), param.begin(), param.end());
+  pc.insert(pc.end(), (*maxIter).begin(), (*maxIter).end());
   FLOAT maxVal = getValueFromParameters(pc);
+  actionVectorValueMap[*maxIter] = maxVal;
 
   set<ACTION_CONT>::const_iterator iter = maxIter;
-  for (;  iter != actionSet.end(); ++iter) {    
+  iter++;
+  for (;  iter != actionSet.end(); ++iter) {
     vector<FLOAT> paramCopy;
     paramCopy.reserve(param.size() + (*iter).size());
     paramCopy.insert(paramCopy.end(), param.begin(), param.end());
     paramCopy.insert(paramCopy.end(), (*iter).begin(), (*iter).end());
-
+    
     FLOAT value = getValueFromParameters(paramCopy);
     actionVectorValueMap[*iter] = value;
     if(maxVal < value){
@@ -247,7 +256,6 @@ void GradientDescent::buildActionValues(
       maxIter = iter;
     }
   }
-
   actions = *maxIter;
 }
 
@@ -255,9 +263,10 @@ void GradientDescent::buildActionValues(
     const set<actionVector<FLOAT> >& actionSet, const vector<FLOAT>& param,
     map<ACTION_CONT, FLOAT>& actionVectorValueMap) const {
   for (const actionVector<FLOAT>& av : actionSet) {
-    vector<FLOAT> paramCopy = param;
-    for (const FLOAT& a : av)
-      paramCopy.push_back(a);
+    vector<FLOAT> paramCopy;
+    paramCopy.reserve(param.size() + av.size());
+    paramCopy.insert(paramCopy.end(), param.begin(), param.end());
+    paramCopy.insert(paramCopy.end(), av.begin(), av.end());
 
     actionVectorValueMap[av] = getValueFromParameters(paramCopy);
   }

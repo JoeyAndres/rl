@@ -51,6 +51,16 @@
 & 11/22/2014
 && Optimization is implemented. SarsaETGD\_test from 2.5-3s to 1.7s.
 && A faster way is possible by taking advantage of buildActionValues and produce max value as well.
+&& Another optimization. 1.7s to 1.19s. HUGE improvements.
+&& By modifying loops and some simple loop unrolling, I've managed to optimize further from 1.19s to 0.97s. I will stop optimization for now. I don't see any more imporovements. And very unlikely that I'll find one in the future.
+\end{easylist}
+
+\section{Vocabulary:}
+\begin{easylist}
+  & Generalization: In tile coding, samples are taken around grid points. By default, the radius of influence is 1.0. If more thatn 1.0, radius of influence is bigger.
+  & Control Policy: Policy for selecting action online.
+  & Learning Policy: Policy for selection action offline.
+  & 
 \end{easylist}
 
 \end{document}

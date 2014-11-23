@@ -54,7 +54,7 @@ class EpsilonGreedy : public Policy<S, A> {
                   const set<A>& actionSet) const;
 
   virtual A getAction(const map<A, AI::FLOAT>& actionValues,
-                             const set<A>& actionSet);
+                      const set<A>& actionSet);
 
   virtual A getAction(const map<A, AI::FLOAT>& actionValues,
                       const set<A>& actionSet, const A& maxAction);
@@ -93,6 +93,7 @@ AI::Algorithm::Policy::EpsilonGreedy<S, A>::~EpsilonGreedy() {
 template<class S, class A>
 A AI::Algorithm::Policy::EpsilonGreedy<S, A>::getAction(
     const map<A, AI::FLOAT>& actionValues, const set<A>& actionSet) {
+  if(_greediness==1.0F) return argMax(actionValues, actionSet);
   const AI::FLOAT& r = _distribution(_randomDevice);
   if (r > _greediness) {
     uniform_int_distribution<AI::INT> indexDistribution(0, actionSet.size());
@@ -105,8 +106,9 @@ A AI::Algorithm::Policy::EpsilonGreedy<S, A>::getAction(
 }
 
 template<class S, class A>
-A AI::Algorithm::Policy::EpsilonGreedy<S, A>::getAction(const map<A, AI::FLOAT>& actionValues,
-                                                        const set<A>& actionSet, const A& maxAction){
+A AI::Algorithm::Policy::EpsilonGreedy<S, A>::getAction(
+    const map<A, AI::FLOAT>& actionValues,
+    const set<A>& actionSet, const A& maxAction){
   if(_greediness == 1.0F) return maxAction;
   const AI::FLOAT& r = _distribution(_randomDevice);
   if (r > _greediness) {

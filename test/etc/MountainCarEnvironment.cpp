@@ -28,10 +28,10 @@ void AI::MountainCarEnvironment::reset() {
 }
 
 AI::FLOAT AI::MountainCarEnvironment::applyAction(const ACTION_CONT& act) {
-  if (act[0] < 0 || act[0] > 2) {
+  /*if (act[0] < 0 || act[0] > 2) {
     cout << "Illegal" << endl;
     assert(false && "Action Set recognized.");
-  }
+    }*/
 
   AI::INT copyAct = act[0] - 1;
   AI::FLOAT reward = -1;
