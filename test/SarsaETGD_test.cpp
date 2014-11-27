@@ -53,7 +53,7 @@ TEST(SarsaETGDMountainCar01) {
   AgentSL<AI::FLOAT> agent(smc, amc, sarsa);
 
   AI::INT iterationCount = 0;
-  for (AI::INT i = 0; i < 1000; i++) {    
+  for (AI::INT i = 0; i < 5000; i++) {    
     mce.reset();
 
     iterationCount = 0;
