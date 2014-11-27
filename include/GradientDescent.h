@@ -83,7 +83,7 @@ class GradientDescent {
   /**
    * Decrease each eligibility traces by eligibility traces and discount rate $(\lambda)$
    */
-  virtual void decreaseEligibilityTraces();
+  void decreaseEligibilityTraces();
 
   /**
    * Make all eligibility trace to 0.0F.
@@ -148,20 +148,20 @@ GradientDescent::GradientDescent(TileCode& tileCode, AI::FLOAT stepSize,
   _w = vector<FLOAT>(getSize(), 0);
 }
 
-size_t GradientDescent::getSize() const {
+inline size_t GradientDescent::getSize() const {
   return _tileCode.getSize();
 }
 
-FLOAT GradientDescent::getValueFromParameters(
+inline FLOAT GradientDescent::getValueFromParameters(
     const vector<FLOAT>& parameters) const {
   FEATURE_VECTOR fv = std::move(_tileCode.getFeatureVector(parameters));
 
   return getValueFromFeatureVector(fv);
 }
 
-FLOAT GradientDescent::getValueFromFeatureVector(
+inline FLOAT GradientDescent::getValueFromFeatureVector(
     const FEATURE_VECTOR& fv) const {
-  AI::FLOAT sum = 0.0F;
+  register AI::FLOAT sum = 0.0F;
   for (AI::UINT f : fv) {
     sum += _w[f];
   }
@@ -172,34 +172,34 @@ FLOAT GradientDescent::getValueFromFeatureVector(
   return sum;
 }
 
-void GradientDescent::incrementEligibilityTraces(const FEATURE_VECTOR& fv) {
+inline void GradientDescent::incrementEligibilityTraces(const FEATURE_VECTOR& fv) {
   for (AI::INT f : fv) {
     _e[f] += 1.0F;
   }
 }
 
-void GradientDescent::replaceEligibilityTraces(const FEATURE_VECTOR& fv) {
+inline void GradientDescent::replaceEligibilityTraces(const FEATURE_VECTOR& fv) {
   for (AI::INT f : fv) {
     _e[f] = 1.0F;
   }
 }
 
-void GradientDescent::decreaseEligibilityTraces() {
+inline void GradientDescent::decreaseEligibilityTraces() {
   AI::FLOAT multiplier = _discountRate * _lambda;
   for (auto& e : _e) {
     e *= multiplier;
   }
 }
 
-void GradientDescent::backUpWeights(FLOAT tdError) {
-  AI::FLOAT multiplier = _stepSize * tdError;
-  UINT i = -1;  // -1 so I can use prefix, which is faster.
+inline void GradientDescent::backUpWeights(FLOAT tdError) {
+  register AI::FLOAT multiplier = _stepSize * tdError;
+  register UINT i = 0;  // -1 so I can use prefix, which is faster.
   for (auto& w : _w){
-    w += multiplier * _e[++i];
+    w += multiplier * _e[i++];
   }
 }
 
-void GradientDescent::updateWeights(
+inline void GradientDescent::updateWeights(
     const vector<FLOAT>& currentStateVector,
     const actionVector<FLOAT>& currentActionVector,
     const vector<FLOAT>& nextStateVector, const FLOAT nextActionValue,
@@ -225,11 +225,11 @@ void GradientDescent::updateWeights(
   decreaseEligibilityTraces();
 }
 
-FEATURE_VECTOR GradientDescent::getFeatureVector(const vector<FLOAT>& parameters) const {
+inline FEATURE_VECTOR GradientDescent::getFeatureVector(const vector<FLOAT>& parameters) const {
   return _tileCode.getFeatureVector(parameters);
 }
 
-void GradientDescent::buildActionValues(
+inline void GradientDescent::buildActionValues(
     const set<actionVector<FLOAT> >& actionSet, const vector<FLOAT>& param,
     map<ACTION_CONT, FLOAT>& actionVectorValueMap,
     ACTION_CONT& actions) const {
@@ -259,7 +259,7 @@ void GradientDescent::buildActionValues(
   actions = *maxIter;
 }
 
-void GradientDescent::buildActionValues(
+inline void GradientDescent::buildActionValues(
     const set<actionVector<FLOAT> >& actionSet, const vector<FLOAT>& param,
     map<ACTION_CONT, FLOAT>& actionVectorValueMap) const {
   for (const actionVector<FLOAT>& av : actionSet) {
@@ -276,7 +276,7 @@ inline void GradientDescent::resetEligibilityTraces() {
   std::fill(_e.begin(), _e.end(), 0);
 }
 
-FLOAT GradientDescent::getMaxValue(
+inline FLOAT GradientDescent::getMaxValue(
     const map<ACTION_CONT, FLOAT>& actionValueMap) const {
   // Get max action.
   FLOAT maxValue = actionValueMap.begin()->second;

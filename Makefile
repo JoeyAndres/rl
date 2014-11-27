@@ -1,12 +1,12 @@
 CXX=g++ -O3
 CXXFLAGS=-std=c++14 -Wunused
-CPPFLAGS=
+CPPFLAGS=-m64
 
 INCLUDE_PATHS = -I. -I./UnitTest++	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./include -I./test -I./test/etc
 LIBRARY_PATHS = -L. -L./UnitTest++
 AI_LIB_PATH := ./lib/libAI.a
 
-LIBRARY = -lpthread -lUnitTest++ -lboost_system
+LIBRARY = -lpthread -lUnitTest++ -lboost_system -larmadillo
 
 
 OBJECT := $(patsubst src/%.cpp,build/%.o,$(wildcard src/*.cpp))
@@ -32,15 +32,14 @@ lib: $(OBJECT)
 build/%.o:src/%.cpp
 	$(CXX) $(CXXFLAGS) -c $(CPPFLAGS) $(LIBRARY_PATHS) $(INCLUDE_PATHS) $^ -o \
 	$@ $(LIBRARY)
-	
+
 build/%.o:test/etc/%.cpp
 	$(CXX) $(CXXFLAGS) -c $(CPPFLAGS) $(LIBRARY_PATHS) $(INCLUDE_PATHS) $^ -o \
 	$@ $(LIBRARY)
-	
+
 run-test:
 	$(foreach var,$(TEST_EXEC), echo $(var) && ./build/exec/$(var))
 
 clean:
 	rm -rf $(OBJECT)  $(AI_LIB_PATH) $(OBJECT) $(TEST_OBJECT)
 	$(foreach var,$(TEST_EXEC),rm -rf build/exec/$(var))
-	

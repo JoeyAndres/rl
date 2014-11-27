@@ -32,12 +32,13 @@
   \\
   & \texttt{11/22/2014} 
   && I'm on the $2^{nd}$ chapter of Linear Programming book. I have an inefficient idea on how to find all extreme points (basically, its a disgusting ${n \choose m}$, $n$ is the number of columns and $m$ is the number of rows). I'm sure the second chapter will have a better approach to this.
-  && I'm also currently working on my own graphics library for a lot of reason. (opengl game, windowing system, testbed). This will also serve as a testbed for the tests here.
+  && I'm also currently working on my own graphics library for a lot of reason. (opengl game, windowing system, testbed). This will also serve as a testbed for the tests here.  
 \end{easylist}
 
 \section*{Pre-Requesite}
 \begin{easylist}
   & boost-1-55
+  & lapack, lapack-devel, lapack-dev, lblas
   & 
 \end{easylist}
 
@@ -53,6 +54,8 @@
 && A faster way is possible by taking advantage of buildActionValues and produce max value as well.
 && Another optimization. 1.7s to 1.19s. HUGE improvements.
 && By modifying loops and some simple loop unrolling, I've managed to optimize further from 1.19s to 0.97s. I will stop optimization for now. I don't see any more imporovements. And very unlikely that I'll find one in the future.
+& 11/26/2014
+&& I finnished reading the LP simplex chapter. I started implementing. I need to be more precise on my design, rereading will also help solidify the concepts.
 \end{easylist}
 
 \section{Vocabulary:}

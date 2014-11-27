@@ -17,7 +17,7 @@ using std::set;
 
 namespace AI {
 
-/*! \class ActuatorBase
+/*! \class
  *  \brief Base class and interface for all Actuator objects.
  *  \tparam A Action data type.
  *
