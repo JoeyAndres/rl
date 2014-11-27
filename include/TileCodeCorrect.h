@@ -9,6 +9,7 @@
 #define TILECODECORRECT_H_
 
 #include <vector>
+#include <map>
 #include <random>
 #include <cmath>
 
@@ -40,37 +41,40 @@ class TileCodeCorrect : public TileCode {
                   size_t numTilings);
 
   virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters);
-  
+
+ protected:
+  vector<vector<UINT> > _tileComponentMultiplier;
 };
 
 inline TileCodeCorrect::TileCodeCorrect(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
                                         size_t numTilings)
     : TileCode(dimensionalInfos, numTilings) {
+  for(UINT i = 0; i < this->_numTilings; i++){
+    int mult = 1;
+    _tileComponentMultiplier.push_back(vector<UINT>());
+    for(UINT j = 0; j < this->getDimension(); j++){
+      _tileComponentMultiplier[i].push_back(mult*(i+1));
+      mult *= this->_dimensionalInfos[j].GetGridCountReal();
+    }
+  }
 }
 
 inline FEATURE_VECTOR TileCodeCorrect::getFeatureVector(
     const STATE_CONT& parameters) {
   assert(this->getDimension() == parameters.size());  
   FEATURE_VECTOR fv;
+  fv.resize(this->_numTilings);
   
   for (AI::INT i = 0; i < this->_numTilings; i++) {
-    vector<AI::INT> tileComponents(this->getDimension());
-    for (size_t j = 0; j < this->getDimension(); j++) {
-      tileComponents[j] = this->_paramToGridValue(parameters[j], i, j);
-    }
-
     // x1 + x2*x1.gridSize + x3*x1.gridSize*x2.gridSize + ...
     size_t hashedIndex = 0;
-    size_t tileComponentMultiplier = 1;
     for (size_t j = 0; j < this->getDimension(); j++) {
-      hashedIndex += tileComponents[j] * tileComponentMultiplier;
-      tileComponentMultiplier *= this->_dimensionalInfos[j].GetGridCountReal();
+      hashedIndex += this->_paramToGridValue(parameters[j], i, j) * _tileComponentMultiplier[0][j];
     }
 
-    hashedIndex += tileComponentMultiplier * i;
-    fv.push_back(hashedIndex);
+    hashedIndex += _tileComponentMultiplier[i][this->getDimension()-1];
+    fv[i] = (hashedIndex);
   }
-
   return fv;
 }
 

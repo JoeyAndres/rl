@@ -13,6 +13,7 @@
 #include <set>
 #include <vector>
 #include <iostream>
+#include <ammintrin.h> // Define SSE4 intrinsic functions
 
 #include "TileCode.h"
 
@@ -161,8 +162,9 @@ inline FLOAT GradientDescent::getValueFromParameters(
 
 inline FLOAT GradientDescent::getValueFromFeatureVector(
     const FEATURE_VECTOR& fv) const {
-  register AI::FLOAT sum = 0.0F;
-  for (AI::UINT f : fv) {
+  AI::FLOAT sum = 0.0F;
+
+  for(auto f : fv){
     sum += _w[f];
   }
 
@@ -174,29 +176,39 @@ inline FLOAT GradientDescent::getValueFromFeatureVector(
 
 inline void GradientDescent::incrementEligibilityTraces(const FEATURE_VECTOR& fv) {
   for (AI::INT f : fv) {
-    _e[f] += 1.0F;
+    _e[f]++;
   }
 }
 
 inline void GradientDescent::replaceEligibilityTraces(const FEATURE_VECTOR& fv) {
   for (AI::INT f : fv) {
-    _e[f] = 1.0F;
+    _e[f] = 1;
   }
 }
 
 inline void GradientDescent::decreaseEligibilityTraces() {
   AI::FLOAT multiplier = _discountRate * _lambda;
-  for (auto& e : _e) {
-    e *= multiplier;
+  __m128d multSSE = _mm_set_pd(multiplier, multiplier);
+  __m128d* eSSE = (__m128d*)_e.data();
+  size_t n = _e.size()>>1;
+  for (UINT i = 0; i < n; i++){    
+    eSSE[i] = _mm_mul_pd(multSSE, eSSE[i]);
   }
+
+  // Assumed that the tilecode ensure that _w.size() or _e.size() is even.
 }
 
 inline void GradientDescent::backUpWeights(FLOAT tdError) {
-  register AI::FLOAT multiplier = _stepSize * tdError;
-  register UINT i = 0;  // -1 so I can use prefix, which is faster.
-  for (auto& w : _w){
-    w += multiplier * _e[i++];
+  AI::FLOAT multiplier = _stepSize * tdError;
+  __m128d multSSE = _mm_set_pd(multiplier, multiplier);
+  __m128d* eSSE = (__m128d*)_e.data();
+  __m128d* wSSE = (__m128d*)_w.data();
+  size_t n = _w.size()>>1;
+  for (UINT i = 0; i < n; i++){
+    wSSE[i] = _mm_add_pd(wSSE[i],_mm_mul_pd(multSSE, eSSE[i]));
   }
+
+  // Assumed that the tilecode ensure that _w.size() or _e.size() is even.
 }
 
 inline void GradientDescent::updateWeights(

@@ -109,6 +109,20 @@ class TileCode {
    * that problem and still have a reasonable generalization.
    */
   vector<vector<AI::FLOAT> > _randomOffsets;
+
+  /*! \var _rodi
+   *
+   * _rodi stands for _randomOffsets[tilingIndex][dimIndex]*_dimensionalInfos[dimensionIndex].getGeneralizationScale() -
+   *     this->_dimensionalInfos[dimensionIndex].getLowerBound())*_dimensionalInfos[dimensionIndex].GetGridCountIdeal()/
+   *     _dimensionIndex[j].GetRangeDifference();
+   * Setting up this constants avoid recalculations later.
+   **/
+  vector<vector<AI::FLOAT> > _rodiMinusdiLBDivdiGGCIDivdiGRD;
+
+  /*! \var 
+   * this->_dimensionalInfos[j].GetGridCountIdeal()/_dimensionalInfos[j].GetRangeDifference();
+   */
+  vector<AI::FLOAT> _diGGCIDivdiGRD;
 };
 
 TileCode::TileCode(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
@@ -128,6 +142,20 @@ TileCode::TileCode(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
           distribution(_pseudoRNG) * _dimensionalInfos[j].GetOffsets()
           * _dimensionalInfos[j].getGeneralizationScale());
     }
+  }
+
+  // Calculate _rodi
+  for (size_t i = 0; i < _numTilings; i++) {
+    _rodiMinusdiLBDivdiGGCIDivdiGRD.push_back(vector<AI::FLOAT>());
+    for (size_t j = 0; j < this->getDimension(); j++) {
+      _rodiMinusdiLBDivdiGGCIDivdiGRD[i].push_back(((_randomOffsets[i][j] * this->_dimensionalInfos[j].getGeneralizationScale() -
+                                             this->_dimensionalInfos[j].getLowerBound())*this->_dimensionalInfos[j].GetGridCountIdeal())
+                                           /this->_dimensionalInfos[j].GetRangeDifference());
+    }
+  }
+
+  for (size_t j = 0; j < this->getDimension(); j++) {
+    _diGGCIDivdiGRD.push_back(this->_dimensionalInfos[j].GetGridCountIdeal()/this->_dimensionalInfos[j].GetRangeDifference());
   }
 }
 
@@ -157,17 +185,19 @@ size_t TileCode::_calculateSizeCache() {
     size *= di.GetGridCountReal();
   }
   size *= _numTilings;
-  return size;
+  if(size % 2 == 0)
+    return size;
+  else
+    return size+1;
 }
 
 inline size_t TileCode::_paramToGridValue(
     AI::FLOAT param, size_t tilingIndex, size_t dimensionIndex) {
-  return ((param
-           + _randomOffsets[tilingIndex][dimensionIndex]
-           * this->_dimensionalInfos[dimensionIndex].getGeneralizationScale()
-           - this->_dimensionalInfos[dimensionIndex].getLowerBound())
-          * this->_dimensionalInfos[dimensionIndex].GetGridCountIdeal())
-      / this->_dimensionalInfos[dimensionIndex].GetRangeDifference();
+  /*return ((param +
+           _randomOffsets[tilingIndex][dimensionIndex] * this->_dimensionalInfos[dimensionIndex].getGeneralizationScale() -
+           this->_dimensionalInfos[dimensionIndex].getLowerBound()) * this->_dimensionalInfos[dimensionIndex].GetGridCountIdeal())
+           / this->_dimensionalInfos[dimensionIndex].GetRangeDifference();*/
+  return param*_diGGCIDivdiGRD[dimensionIndex] + _rodiMinusdiLBDivdiGGCIDivdiGRD[tilingIndex][dimensionIndex];
 }
 
 }  // namespace SL

@@ -1,8 +1,8 @@
 CXX=g++ -O3
 CXXFLAGS=-std=c++14 -Wunused
-CPPFLAGS=-m64
+CPPFLAGS=-m64 -msse4a -ffast-math
 
-INCLUDE_PATHS = -I. -I./UnitTest++	-I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./include -I./test -I./test/etc
+INCLUDE_PATHS = -I. -I./UnitTest++ -I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./include -I./test -I./test/etc
 LIBRARY_PATHS = -L. -L./UnitTest++
 AI_LIB_PATH := ./lib/libAI.a
 
