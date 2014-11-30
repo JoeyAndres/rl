@@ -45,15 +45,15 @@ class Environment {
 };
 
 template <class S, class A>
-Environment<S, A>::Environment(){
+inline Environment<S, A>::Environment(){
 }
 
 template <class S, class A>
-Environment<S, A>::~Environment(){
+inline Environment<S, A>::~Environment(){
 }
 
 template <class S, class A>
-void Environment<S, A>::reset(){
+inline void Environment<S, A>::reset(){
 }
 
 } /* namespace AI */

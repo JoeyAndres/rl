@@ -5,8 +5,8 @@
  * Created on June 8, 2014, 8:28 AM
  */
 
-#ifndef TILECODE_H
-#define	TILECODE_H
+#ifndef _TILE_CODE_H_
+#define _TILE_CODE_H_
 
 #include "GlobalHeader.h"  // Removes assertions.
 
@@ -125,7 +125,7 @@ class TileCode {
   vector<AI::FLOAT> _diGGCIDivdiGRD;
 };
 
-TileCode::TileCode(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
+inline TileCode::TileCode(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
                    size_t numTilings) : _dimensionalInfos(dimensionalInfos){
   assert(numTilings > 0);  
   _numTilings = numTilings;
@@ -159,26 +159,26 @@ TileCode::TileCode(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
   }
 }
 
-void TileCode::setNumTilings(size_t numTilings) {
+inline void TileCode::setNumTilings(size_t numTilings) {
   this->_numTilings = numTilings;
 
   // Update size cache.
   _sizeCache = _calculateSizeCache();
 }
 
-size_t TileCode::getNumTilings() const {
+inline size_t TileCode::getNumTilings() const {
   return _numTilings;
 }
 
-size_t TileCode::getDimension() const {
+inline size_t TileCode::getDimension() const {
   return _dimensionalInfos.size();
 }
 
-size_t TileCode::getSize() const {
+inline size_t TileCode::getSize() const {
   return _sizeCache;
 }
 
-size_t TileCode::_calculateSizeCache() {
+inline size_t TileCode::_calculateSizeCache() {
   // Calculate the size.
   AI::UINT size = 1;
   for (const DimensionInfo<FLOAT>& di : _dimensionalInfos) {
@@ -204,4 +204,4 @@ inline size_t TileCode::_paramToGridValue(
 }  // namespace Algorithm
 }  // namespace AI
 
-#endif	/* TILECODE_H */
+#endif // _TILE_CODE_H_
