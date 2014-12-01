@@ -11,14 +11,6 @@ namespace SL {
 TileCodeCorrect::TileCodeCorrect(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
                                         size_t numTilings)
     : TileCode(dimensionalInfos, numTilings) {
-  for(UINT i = 0; i < this->_numTilings; i++){
-    int mult = 1;
-    _tileComponentMultiplier.push_back(vector<UINT>());
-    for(UINT j = 0; j < this->getDimension(); j++){
-      _tileComponentMultiplier[i].push_back(mult*(i+1));
-      mult *= this->_dimensionalInfos[j].GetGridCountReal();
-    }
-  }
 }
 
 FEATURE_VECTOR TileCodeCorrect::getFeatureVector(
@@ -30,15 +22,18 @@ FEATURE_VECTOR TileCodeCorrect::getFeatureVector(
   for (AI::INT i = 0; i < this->_numTilings; i++) {
     // x1 + x2*x1.gridSize + x3*x1.gridSize*x2.gridSize + ...
     size_t hashedIndex = 0;
+    size_t mult = 1;
     for (size_t j = 0; j < this->getDimension(); j++) {
-      hashedIndex += this->_paramToGridValue(parameters[j], i, j) * _tileComponentMultiplier[0][j];
+      hashedIndex += this->_paramToGridValue(parameters[j], i, j) * mult;
+      mult *= this->_dimensionalInfos[j].GetGridCountReal();
     }
 
-    hashedIndex += _tileComponentMultiplier[i][this->getDimension()-1];
-    fv[i] = (hashedIndex);
+    hashedIndex += mult * i;
+    fv[i] = hashedIndex;
   }
   return fv;
 }
+
 } // namespace SL
 } // namespace Algorithm
 } // namespace AI

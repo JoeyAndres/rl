@@ -94,9 +94,9 @@ build/%.o: src/intrinsic/%.cpp
 	$(CXX) $(CXXFLAGS) -c $(CPPFLAGS) $(CPP_INTRINSIC_FLAG) $(INCLUDE_PATHS) $^ -o $@
 
 # Executable
-build/exec/%:test/%.cpp
+build/exec/%:test/%.cpp $(OBJECT) $(TEST_OBJECT) $(INTRINSIC_OBJECT)
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(INCLUDE_PATHS) $(OBJECT)  \
-	$(TEST_OBJECT) $(INTRINSIC_OBJECT) $^ -o $@ $(LIBRARY_PATHS) $(LIBRARY)
+	$(TEST_OBJECT) $(INTRINSIC_OBJECT) $< -o $@ $(LIBRARY_PATHS) $(LIBRARY)
 
 run-test:
 	$(foreach var,$(TEST_EXEC), echo $(var) && ./build/exec/$(var))

@@ -59,8 +59,7 @@ size_t TileCode::_calculateSizeCache() {
   // Add paddings
 #ifdef MMX
   // MMX is 64bits, same as AI::DOUBLE.
-#elif defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || \
-  defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
+#elif defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
   size += size%2;
 #elif AVX
   size += size%4;

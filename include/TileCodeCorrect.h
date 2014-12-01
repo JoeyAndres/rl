@@ -42,8 +42,6 @@ class TileCodeCorrect : public TileCode {
 
   virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters);
 
- protected:
-  vector<vector<UINT> > _tileComponentMultiplier;
 };
 
 } // namespace SL

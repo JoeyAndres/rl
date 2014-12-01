@@ -135,6 +135,7 @@ class GradientDescent {
 
   // Optimization.
   AI::FLOAT _discountRateTimesLambda;
+  AI::FLOAT* _discountRateTimesLambdaArray;
 };
 
 } // namespace SL

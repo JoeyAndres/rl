@@ -43,17 +43,17 @@ TEST(SarsaETGDMountainCar01) {
   
   TileCodeCorrect tileCode(dimensionalInfoVector, 8);
   Policy::EpsilonGreedySL policy(1.0F);
-  SarsaETGD sarsa(tileCode, 0.1F, 1.0F, 0.9F, policy);
+  SarsaETGD sarsa(tileCode, 0.1F, 1.0F, 0.70F, policy);
   MountainCarEnvironment mce;
   SensorMountainCar smc(mce);
   ActuatorBase<AI::STATE_CONT, AI::ACTION_CONT > amc(mce);
   amc.addAction(vector <AI::FLOAT > (1, 0));
-  amc.addAction(vector < AI::FLOAT > (1, 1));
-  amc.addAction(vector < AI::FLOAT > (1, 2));
+  amc.addAction(vector <AI::FLOAT > (1, 1));
+  amc.addAction(vector <AI::FLOAT > (1, 2));
   AgentSL<AI::FLOAT> agent(smc, amc, sarsa);
 
   AI::INT iterationCount = 0;
-  for (AI::INT i = 0; i < 5000; i++) {    
+  for (AI::INT i = 0; i < 5000; i++) {
     mce.reset();
 
     iterationCount = 0;
@@ -62,6 +62,7 @@ TEST(SarsaETGDMountainCar01) {
       iterationCount++;
       agent.execute();
     }
+    cout << "Episode :" << i << ", Iteration Count:" <<  iterationCount << endl;
     agent.postExecute();
   }
   CHECK(iterationCount < 300);

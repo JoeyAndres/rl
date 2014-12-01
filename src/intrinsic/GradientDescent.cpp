@@ -2,12 +2,6 @@
  * GradientDescent.cpp
  */
 
-#ifdef __WIN32__
-#include <intrin.h>
-#else
-#include <x86intrin.h>
-#endif
-
 #include <iostream>
 
 #include "GradientDescent.h"
@@ -26,18 +20,37 @@ GradientDescent::GradientDescent(TileCode& tileCode, AI::FLOAT stepSize,
   _lambda = lambda;
   _discountRateTimesLambda = _discountRate*_lambda;
 
-#ifdef NO_INTRINSIC
+#if defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
+  _discountRateTimesLambdaArray = (AI::FLOAT*)aligned_alloc(128, 2*sizeof(AI::FLOAT));
+  _discountRateTimesLambdaArray[0] = _discountRateTimesLambda;
+  _discountRateTimesLambdaArray[1] = _discountRateTimesLambda;
+#elif AVX
+  _discountRateTimesLambdaArray = (AI::FLOAT*)aligned_alloc(128, 4*sizeof(AI::FLOAT));
+  _discountRateTimesLambdaArray[0] = _discountRateTimesLambda;
+  _discountRateTimesLambdaArray[1] = _discountRateTimesLambda;
+  _discountRateTimesLambdaArray[2] = _discountRateTimesLambda;
+  _discountRateTimesLambdaArray[3] = _discountRateTimesLambda;
+#elif NO_INTRINSIC
+  _discountRateTimesLambdaArray = &_discountRateTimesLambda;
+#endif
+  
+#ifdef defined(NO_INTRINSIC) || defined(MMX)
   _e = (AI::FLOAT*)malloc(getSize()*sizeof(AI::FLOAT));  
   _w = (AI::FLOAT*)malloc(getSize()*sizeof(AI::FLOAT));  
 #else // With intrinsic.
-  _e = (AI::FLOAT*)aligned_alloc(64, getSize()*sizeof(AI::FLOAT));
-  _w = (AI::FLOAT*)aligned_alloc(64, getSize()*sizeof(AI::FLOAT));
+  _e = (AI::FLOAT*)aligned_alloc(128, getSize()*sizeof(AI::FLOAT));
+  _w = (AI::FLOAT*)aligned_alloc(128, getSize()*sizeof(AI::FLOAT));
 #endif
   std::fill(_e, _e + getSize(), 0);
   std::fill(_w, _w + getSize(), 0);
 }
 
 GradientDescent::~GradientDescent(){
+#if !(defined(NO_INTRINSIC) || defined(MMX))
+  delete[] _discountRateTimesLambdaArray;
+  _discountRateTimesLambda = NULL;
+#endif
+  
   if(_e){ free(_e); _e = NULL; }
   if(_w){ free(_w); _w = NULL; }
 }
@@ -76,35 +89,34 @@ void GradientDescent::replaceEligibilityTraces(const FEATURE_VECTOR& fv) {
   }
 }
 
-void GradientDescent::decreaseEligibilityTraces() {
-#ifdef defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || \
-  defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
-  __m128d multSSE = _mm_set_pd(_discountRateTimesLambda, _discountRateTimesLambda);
+void GradientDescent::decreaseEligibilityTraces() {  
+#if defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
+  __m128d* multSSE = (__m128d*)_discountRateTimesLambdaArray;
   __m128d* eSSE = (__m128d*)_e;
   size_t n = getSize()>>1;
   for (UINT i = 0; i < n; i++){
-    eSSE[i] = _mm_mul_pd(multSSE, eSSE[i]);
+    eSSE[i] = _mm_mul_pd(*multSSE, eSSE[i]);
   }
 #elif AVX
-  __m256d multSSE = _mm256_set_pd(_discountRateTimesLambda, _discountRateTimesLambda,
-      _discountRateTimesLambda, _discountRateTimesLambda);
+  __m256d* multSSE = (__m256d*) _discountRateTimesLambdaArray;
   __m256d* eSSE = (__m256d*)_e;
   size_t n = getSize()>>2;
   for (UINT i = 0; i < n; i++){
-    eSSE[i] = _mm256_mul_pd(multSSE, eSSE[i]);
+    eSSE[i] = _mm256_mul_pd(*multSSE, eSSE[i]);
   }
 #elif defined(NO_INTRINSIC) || defined(MMX)
   size_t n = getSize();
   for (UINT i = 0; i < n; i++){
     _e[i] *= _discountRateTimesLambda;
   }
+#else
+  cout << "Error: Intrinsic Preprocessor, not recognized" << endl;
 #endif  // Intrinsic definition test.
 }
 
 void GradientDescent::backUpWeights(FLOAT tdError) {
   AI::FLOAT multiplier = _stepSize * tdError;
-#ifdef defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || \
-  defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
+#if defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
   __m128d multSSE = _mm_set_pd(multiplier, multiplier);
   __m128d* eSSE = (__m128d*)_e;
   __m128d* wSSE = (__m128d*)_w;
@@ -124,7 +136,9 @@ void GradientDescent::backUpWeights(FLOAT tdError) {
   size_t n = getSize();
   for (UINT i = 0; i < n-1; i++){
     _w[i] += multiplier*_e[i];
-  }  
+  }
+#else
+  cout << "Error: Intrinsic Preprocessor, not recognized" << endl;
 #endif  // Intrinsic definition test.
 }
 
