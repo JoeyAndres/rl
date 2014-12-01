@@ -35,7 +35,7 @@ default: default_dummy build
 default_dummy:
 	$(eval CPP_INTRINSIC_FLAG+=$(NO_INTRINSIC))
 
-x86_64-mmx: x86_64_mmx_dummy build
+x86_64_mmx: x86_64_mmx_dummy build
 x86_64_mmx_dummy:
 	$(eval CPP_INTRINSIC_FLAG+=$(MMX_FLAG))
 
@@ -47,19 +47,19 @@ x86_64_sse2: x86_64_sse2_dummy build
 x86_64_sse2_dummy:
 	$(eval CPP_INTRINSIC_FLAG+=$(SSE2_FLAG))
 
-x86-64-sse3: x86_64_sse3_dummy build
+x86-64_sse3: x86_64_sse3_dummy build
 x86_64_sse3_dummy:
 	$(eval CPP_INTRINSIC_FLAG+=$(SSE3_FLAG))
 
-x86-64-sse4: x86_64_sse4_dummy build
+x86-64_sse4: x86_64_sse4_dummy build
 x86_64_sse4_dummy:
 	$(eval CPP_INTRINSIC_FLAG+=$(SSE4_FLAG))
 
-x86-64-sse4_1: x86_64_sse4_1_dummy build
+x86-64_sse4_1: x86_64_sse4_1_dummy build
 x86_64_sse4_1_dummy:
 	$(eval CPP_INTRINSIC_FLAG+=$(SSE4_1_FLAG))
 
-x86-64-sse4_2: x86_64_sse4_2_dummy build
+x86-64_sse4_2: x86_64_sse4_2_dummy build
 x86_64_sse4_2_dummy:
 	$(eval CPP_INTRINSIC_FLAG+=$(SSE4_2_FLAG)) 	
 
