@@ -4,7 +4,6 @@
 
 #include "TileCode.h"
 
-
 namespace AI {
 namespace Algorithm {
 namespace SL {
@@ -54,11 +53,20 @@ size_t TileCode::_calculateSizeCache() {
   for (const DimensionInfo<FLOAT>& di : _dimensionalInfos) {
     size *= di.GetGridCountReal();
   }
+
   size *= _numTilings;
-  if(size % 2 == 0)
-    return size;
-  else
-    return size+1;
+
+  // Add paddings
+#ifdef MMX
+  // MMX is 64bits, same as AI::DOUBLE.
+#elif defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || \
+  defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
+  size += size%2;
+#elif AVX
+  size += size%4;
+#elif NO_INTRINSIC
+#endif
+  return size;
 }
 
 size_t TileCode::_paramToGridValue(

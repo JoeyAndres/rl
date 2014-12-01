@@ -1,7 +1,19 @@
 CXX=g++ -O3
 CXXFLAGS=-std=c++14 -Wunused
 CPPFLAGS=
-CPP_INTRINSIC_FLAG=-msse4a -ffast-math -DSSE4
+CPP_INTRINSIC_FLAG:=-ffast-math
+
+# INTRINSICS EXTRA FLAGS
+NO_INTRINSIC=-DNO_INTRINSIC
+MMX_FLAG= -mmmx -DMMX
+SSE_FLAG= -msse -DSSE
+SSE2_FLAG= -msse2 -DSSE2
+SSE3_FLAG= -msse3 -DSSE3
+SSE4_FLAG= -msse4 -DSSE4
+SSE4_1_FLAG= -msse4.1 -DSSE4_1
+SSE4_2_FLAG= -msse4.2 -DSSE4_2
+SSE4A_FLAG= -msse4a -DSSE4A
+AVX_FLAG= -mavx -DAVX
 
 INCLUDE_PATHS = -I. -I./UnitTest++ -I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./include -I./test -I./test/etc
 LIBRARY_PATHS = -L. -L./UnitTest++
@@ -15,8 +27,52 @@ OBJECT := $(patsubst src/%.cpp,build/%.o,$(wildcard src/*.cpp))
 TEST_OBJECT := $(patsubst test/etc/%.cpp,build/%.o,$(wildcard test/etc/*.cpp))
 TEST_EXEC := $(patsubst test/%.cpp, build/exec/%,$(wildcard test/*.cpp))
 
-# Compile tests and create library.
-all: object test lib
+.PHONY: x86-64-mmx x86-64-sse x86-64-sse2 x86-64-sse3 x86-64-sse4 x86-64-sse4_1 \
+	x86-64-sse4_2 x86-64-sse4a x86-64-sse4a-dummy x86-64-avx object clean
+
+# Compile tests and create library.#############################################
+default: default_dummy build
+default_dummy:
+	$(eval CPP_INTRINSIC_FLAG+=$(NO_INTRINSIC))
+
+x86_64-mmx: x86_64_mmx_dummy build
+x86_64_mmx_dummy:
+	$(eval CPP_INTRINSIC_FLAG+=$(MMX_FLAG))
+
+x86_64_sse: x86_64_sse_dummy build
+x86_64_sse_dummy:
+	$(eval CPP_INTRINSIC_FLAG+=$(SSE_FLAG))
+
+x86_64_sse2: x86_64_sse2_dummy build
+x86_64_sse2_dummy:
+	$(eval CPP_INTRINSIC_FLAG+=$(SSE2_FLAG))
+
+x86-64-sse3: x86_64_sse3_dummy build
+x86_64_sse3_dummy:
+	$(eval CPP_INTRINSIC_FLAG+=$(SSE3_FLAG))
+
+x86-64-sse4: x86_64_sse4_dummy build
+x86_64_sse4_dummy:
+	$(eval CPP_INTRINSIC_FLAG+=$(SSE4_FLAG))
+
+x86-64-sse4_1: x86_64_sse4_1_dummy build
+x86_64_sse4_1_dummy:
+	$(eval CPP_INTRINSIC_FLAG+=$(SSE4_1_FLAG))
+
+x86-64-sse4_2: x86_64_sse4_2_dummy build
+x86_64_sse4_2_dummy:
+	$(eval CPP_INTRINSIC_FLAG+=$(SSE4_2_FLAG)) 	
+
+x86_64_sse4a: x86_64_sse4a_dummy build
+x86_64_sse4a_dummy:
+	$(eval CPP_INTRINSIC_FLAG+=$(SSE4A_FLAG))
+
+x86_64_avx: x86_64_avx_dummy build
+x86_64_avx_dummy:
+	$(eval CPP_INTRINSIC_FLAG+=$(AVX_FLAG))
+#END_OF_INTRINSIC_TARGETS#######################################################
+
+build: object test
 
 object: $(OBJECT) $(TEST_OBJECT) $(INTRINSIC_OBJECT)
 
@@ -46,5 +102,4 @@ run-test:
 	$(foreach var,$(TEST_EXEC), echo $(var) && ./build/exec/$(var))
 
 clean:
-	rm -rf $(OBJECT)  $(AI_LIB_PATH) $(OBJECT) $(TEST_OBJECT) $(INTRINSIC_OBJECT)
-	$(foreach var,$(TEST_EXEC),rm -rf build/exec/$(var))
+	rm -rf $(OBJECT)  $(AI_LIB_PATH) $(OBJECT) $(TEST_OBJECT) $(INTRINSIC_OBJECT) $(TEST_EXEC)

@@ -9,7 +9,6 @@
 #endif
 
 #include <iostream>
-#include <cstdlib>
 
 #include "GradientDescent.h"
 
@@ -25,9 +24,15 @@ GradientDescent::GradientDescent(TileCode& tileCode, AI::FLOAT stepSize,
   _stepSize = stepSize / _tileCode.getNumTilings();
   _discountRate = discountRate;
   _lambda = lambda;
+  _discountRateTimesLambda = _discountRate*_lambda;
 
+#ifdef NO_INTRINSIC
+  _e = (AI::FLOAT*)malloc(getSize()*sizeof(AI::FLOAT));  
+  _w = (AI::FLOAT*)malloc(getSize()*sizeof(AI::FLOAT));  
+#else // With intrinsic.
   _e = (AI::FLOAT*)aligned_alloc(16, getSize()*sizeof(AI::FLOAT));
   _w = (AI::FLOAT*)aligned_alloc(16, getSize()*sizeof(AI::FLOAT));
+#endif
   std::fill(_e, _e + getSize(), 0);
   std::fill(_w, _w + getSize(), 0);
 }
@@ -72,29 +77,55 @@ void GradientDescent::replaceEligibilityTraces(const FEATURE_VECTOR& fv) {
 }
 
 void GradientDescent::decreaseEligibilityTraces() {
-  AI::FLOAT multiplier = _discountRate * _lambda;
-  __m128d multSSE = _mm_set_pd(multiplier, multiplier);
+#ifdef defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || \
+  defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
+  __m128d multSSE = _mm_set_pd(_discountRateTimesLambda, _discountRateTimesLambda);
   __m128d* eSSE = (__m128d*)_e;
   size_t n = getSize()>>1;
   for (UINT i = 0; i < n; i++){
     eSSE[i] = _mm_mul_pd(multSSE, eSSE[i]);
   }
-
-  // Assumed that the tilecode ensure that _w.size() or _e.size() is even.
+#elif AVX
+  __m256d multSSE = _mm256_set_pd(_discountRateTimesLambda, _discountRateTimesLambda,
+      _discountRateTimesLambda, _discountRateTimesLambda);
+  __m256d* eSSE = (__m256d*)_e;
+  size_t n = getSize()>>2;
+  for (UINT i = 0; i < n; i++){
+    eSSE[i] = _mm256_mul_pd(multSSE, eSSE[i]);
+  }
+#elif defined(NO_INTRINSIC) || defined(MMX)
+  size_t n = getSize();
+  for (UINT i = 0; i < n; i++){
+    _e[i] *= _discountRateTimesLambda;
+  }
+#endif  // Intrinsic definition test.
 }
 
 void GradientDescent::backUpWeights(FLOAT tdError) {
   AI::FLOAT multiplier = _stepSize * tdError;
+#ifdef defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || \
+  defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
   __m128d multSSE = _mm_set_pd(multiplier, multiplier);
   __m128d* eSSE = (__m128d*)_e;
   __m128d* wSSE = (__m128d*)_w;
   size_t n = getSize()>>1;
   for (UINT i = 0; i < n; i++){
-    cout << i << endl;
     wSSE[i] = _mm_add_pd(wSSE[i],_mm_mul_pd(multSSE, eSSE[i]));
   }
-
-  // Assumed that the tilecode ensure that _w.size() or _e.size() is even.
+#elif AVX
+  __m256d multSSE = _mm256_set_pd(multiplier, multiplier, multiplier, multiplier);
+  __m256d* eSSE = (__m256d*)_e;
+  __m256d* wSSE = (__m256d*)_w;
+  size_t n = getSize()>>2;
+  for (UINT i = 0; i < n; i++){
+    wSSE[i] = _mm256_add_pd(wSSE[i],_mm256_mul_pd(multSSE, eSSE[i]));
+  }
+#elif defined(NO_INTRINSIC) || defined(MMX)
+  size_t n = getSize();
+  for (UINT i = 0; i < n-1; i++){
+    _w[i] += multiplier*_e[i];
+  }  
+#endif  // Intrinsic definition test.
 }
 
 void GradientDescent::updateWeights(
@@ -129,8 +160,7 @@ FEATURE_VECTOR GradientDescent::getFeatureVector(const vector<FLOAT>& parameters
 
 void GradientDescent::buildActionValues(
     const set<ACTION_CONT >& actionSet, const vector<FLOAT>& param,
-    map<ACTION_CONT, FLOAT>& actionVectorValueMap,
-    ACTION_CONT& actions) const {
+    map<ACTION_CONT, FLOAT>& actionVectorValueMap, ACTION_CONT& actions) const {
   set<ACTION_CONT>::const_iterator maxIter = actionSet.begin();
   vector<FLOAT> pc;
   pc.reserve(param.size() + (*maxIter).size());
