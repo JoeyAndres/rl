@@ -30,8 +30,8 @@ GradientDescent::GradientDescent(TileCode& tileCode, AI::FLOAT stepSize,
   _e = (AI::FLOAT*)malloc(getSize()*sizeof(AI::FLOAT));  
   _w = (AI::FLOAT*)malloc(getSize()*sizeof(AI::FLOAT));  
 #else // With intrinsic.
-  _e = (AI::FLOAT*)aligned_alloc(16, getSize()*sizeof(AI::FLOAT));
-  _w = (AI::FLOAT*)aligned_alloc(16, getSize()*sizeof(AI::FLOAT));
+  _e = (AI::FLOAT*)aligned_alloc(64, getSize()*sizeof(AI::FLOAT));
+  _w = (AI::FLOAT*)aligned_alloc(64, getSize()*sizeof(AI::FLOAT));
 #endif
   std::fill(_e, _e + getSize(), 0);
   std::fill(_w, _w + getSize(), 0);
