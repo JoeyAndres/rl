@@ -11,7 +11,6 @@
 #include "GlobalHeader.h"  // Removes assertions.
 
 #include <cstdint>
-#include <iostream>
 #include <random>
 #include <stdarg.h>
 #include <vector>
@@ -109,96 +108,7 @@ class TileCode {
    * that problem and still have a reasonable generalization.
    */
   vector<vector<AI::FLOAT> > _randomOffsets;
-
-  /*! \var _rodi
-   *
-   * _rodi stands for _randomOffsets[tilingIndex][dimIndex]*_dimensionalInfos[dimensionIndex].getGeneralizationScale() -
-   *     this->_dimensionalInfos[dimensionIndex].getLowerBound())*_dimensionalInfos[dimensionIndex].GetGridCountIdeal()/
-   *     _dimensionIndex[j].GetRangeDifference();
-   * Setting up this constants avoid recalculations later.
-   **/
-  vector<vector<AI::FLOAT> > _rodiMinusdiLBDivdiGGCIDivdiGRD;
-
-  /*! \var 
-   * this->_dimensionalInfos[j].GetGridCountIdeal()/_dimensionalInfos[j].GetRangeDifference();
-   */
-  vector<AI::FLOAT> _diGGCIDivdiGRD;
 };
-
-inline TileCode::TileCode(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
-                   size_t numTilings) : _dimensionalInfos(dimensionalInfos){
-  assert(numTilings > 0);  
-  _numTilings = numTilings;
-
-  // Calculate the size.
-  _sizeCache = _calculateSizeCache();
-
-  // Calculate random offsets.
-  std::uniform_real_distribution<AI::FLOAT> distribution(0, 1.0F);
-  for (size_t i = 0; i < _numTilings; i++) {
-    _randomOffsets.push_back(vector<AI::FLOAT>());
-    for (size_t j = 0; j < this->getDimension(); j++) {
-      _randomOffsets[i].push_back(
-          distribution(_pseudoRNG) * _dimensionalInfos[j].GetOffsets()
-          * _dimensionalInfos[j].getGeneralizationScale());
-    }
-  }
-
-  // Calculate _rodi
-  for (size_t i = 0; i < _numTilings; i++) {
-    _rodiMinusdiLBDivdiGGCIDivdiGRD.push_back(vector<AI::FLOAT>());
-    for (size_t j = 0; j < this->getDimension(); j++) {
-      _rodiMinusdiLBDivdiGGCIDivdiGRD[i].push_back(((_randomOffsets[i][j] * this->_dimensionalInfos[j].getGeneralizationScale() -
-                                             this->_dimensionalInfos[j].getLowerBound())*this->_dimensionalInfos[j].GetGridCountIdeal())
-                                           /this->_dimensionalInfos[j].GetRangeDifference());
-    }
-  }
-
-  for (size_t j = 0; j < this->getDimension(); j++) {
-    _diGGCIDivdiGRD.push_back(this->_dimensionalInfos[j].GetGridCountIdeal()/this->_dimensionalInfos[j].GetRangeDifference());
-  }
-}
-
-inline void TileCode::setNumTilings(size_t numTilings) {
-  this->_numTilings = numTilings;
-
-  // Update size cache.
-  _sizeCache = _calculateSizeCache();
-}
-
-inline size_t TileCode::getNumTilings() const {
-  return _numTilings;
-}
-
-inline size_t TileCode::getDimension() const {
-  return _dimensionalInfos.size();
-}
-
-inline size_t TileCode::getSize() const {
-  return _sizeCache;
-}
-
-inline size_t TileCode::_calculateSizeCache() {
-  // Calculate the size.
-  AI::UINT size = 1;
-  for (const DimensionInfo<FLOAT>& di : _dimensionalInfos) {
-    size *= di.GetGridCountReal();
-  }
-  size *= _numTilings;
-  if(size % 2 == 0)
-    return size;
-  else
-    return size+1;
-}
-
-inline size_t TileCode::_paramToGridValue(
-    AI::FLOAT param, size_t tilingIndex, size_t dimensionIndex) {
-  /*return ((param +
-           _randomOffsets[tilingIndex][dimensionIndex] * this->_dimensionalInfos[dimensionIndex].getGeneralizationScale() -
-           this->_dimensionalInfos[dimensionIndex].getLowerBound()) * this->_dimensionalInfos[dimensionIndex].GetGridCountIdeal())
-           / this->_dimensionalInfos[dimensionIndex].GetRangeDifference();*/
-  return param*_diGGCIDivdiGRD[dimensionIndex] + _rodiMinusdiLBDivdiGGCIDivdiGRD[tilingIndex][dimensionIndex];
-}
 
 }  // namespace SL
 }  // namespace Algorithm

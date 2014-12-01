@@ -13,6 +13,8 @@
 
 #include "GradientDescent.h"
 
+using namespace std;
+
 namespace AI {
 namespace Algorithm {
 namespace SL {
@@ -59,7 +61,7 @@ FLOAT GradientDescent::getValueFromFeatureVector(
 
 void GradientDescent::incrementEligibilityTraces(const FEATURE_VECTOR& fv) {
   for (AI::INT f : fv) {
-    _e[f]++;
+    ++_e[f];
   }
 }
 
@@ -88,6 +90,7 @@ void GradientDescent::backUpWeights(FLOAT tdError) {
   __m128d* wSSE = (__m128d*)_w;
   size_t n = getSize()>>1;
   for (UINT i = 0; i < n; i++){
+    cout << i << endl;
     wSSE[i] = _mm_add_pd(wSSE[i],_mm_mul_pd(multSSE, eSSE[i]));
   }
 

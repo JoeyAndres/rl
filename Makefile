@@ -1,7 +1,7 @@
 CXX=g++ -O3
 CXXFLAGS=-std=c++14 -Wunused
 CPPFLAGS=
-CPP_INTRINSIC_FLAG=-msse4a -ffast-math
+CPP_INTRINSIC_FLAG=-msse4a -ffast-math -DSSE4
 
 INCLUDE_PATHS = -I. -I./UnitTest++ -I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./include -I./test -I./test/etc
 LIBRARY_PATHS = -L. -L./UnitTest++
@@ -10,9 +10,8 @@ LIBRARY = -lpthread -lUnitTest++ -lboost_system -larmadillo
 
 FILTER_OUT = $(foreach v,$(2),$(if $(findstring $(1),$(v)),,$(v)))
 
-INTRINSIC_OBJECT := build/GradientDescent.o
-TEMP_OBJECT := $(patsubst src/%.cpp,build/%.o,$(wildcard src/*.cpp))
-OBJECT := $(call FILTER_OUT,$(INTRINSIC_OBJECT), $(TEMP_OBJECT))
+INTRINSIC_OBJECT := $(patsubst src/intrinsic/%.cpp,build/%.o,$(wildcard src/intrinsic/*.cpp))
+OBJECT := $(patsubst src/%.cpp,build/%.o,$(wildcard src/*.cpp))
 TEST_OBJECT := $(patsubst test/etc/%.cpp,build/%.o,$(wildcard test/etc/*.cpp))
 TEST_EXEC := $(patsubst test/%.cpp, build/exec/%,$(wildcard test/*.cpp))
 
@@ -23,18 +22,22 @@ object: $(OBJECT) $(TEST_OBJECT) $(INTRINSIC_OBJECT)
 
 test: $(TEST_EXEC)
 
-lib: $(OBJECT)
+lib: $(OBJECT) $(INTRINSIC_OBJECT)
 	ar rvs $(AI_LIB_PATH) $^
 
+# Other objects
 build/%.o:src/%.cpp
 	$(CXX) $(CXXFLAGS) -c $(CPPFLAGS) $(INCLUDE_PATHS) $^ -o $@
 
+# Test objects
 build/%.o:test/etc/%.cpp
 	$(CXX) $(CXXFLAGS) -c $(CPPFLAGS) $(INCLUDE_PATHS) $^ -o $@
 
-build/GradientDescent.o: src/GradientDescent.cpp
+# Intrinsic objects
+build/%.o: src/intrinsic/%.cpp
 	$(CXX) $(CXXFLAGS) -c $(CPPFLAGS) $(CPP_INTRINSIC_FLAG) $(INCLUDE_PATHS) $^ -o $@
 
+# Executable
 build/exec/%:test/%.cpp
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(INCLUDE_PATHS) $(OBJECT)  \
 	$(TEST_OBJECT) $(INTRINSIC_OBJECT) $^ -o $@ $(LIBRARY_PATHS) $(LIBRARY)
