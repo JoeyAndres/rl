@@ -8,6 +8,8 @@
 #ifndef INCLUDE_ENVIRONMENT_H_
 #define INCLUDE_ENVIRONMENT_H_
 
+#include "GlobalHeader.h"
+
 namespace AI {
 
 template <class S, class A>

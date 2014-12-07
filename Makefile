@@ -27,9 +27,6 @@ OBJECT := $(patsubst src/%.cpp,build/%.o,$(wildcard src/*.cpp))
 TEST_OBJECT := $(patsubst test/etc/%.cpp,build/%.o,$(wildcard test/etc/*.cpp))
 TEST_EXEC := $(patsubst test/%.cpp, build/exec/%,$(wildcard test/*.cpp))
 
-.PHONY: x86-64-mmx x86-64-sse x86-64-sse2 x86-64-sse3 x86-64-sse4 x86-64-sse4_1 \
-	x86-64-sse4_2 x86-64-sse4a x86-64-sse4a-dummy x86-64-avx object clean
-
 # Compile tests and create library.#############################################
 default: default_dummy build
 default_dummy:

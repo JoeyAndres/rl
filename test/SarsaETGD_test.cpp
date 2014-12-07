@@ -36,12 +36,12 @@ using namespace std;
 
 TEST(SarsaETGDMountainCar01) {
   vector<DimensionInfo<AI::FLOAT> > dimensionalInfoVector = {
-    DimensionInfo<AI::FLOAT>(-1.2F, 0.5F, 10),
-    DimensionInfo<AI::FLOAT>(-0.07F, 0.07F, 10),
+    DimensionInfo<AI::FLOAT>(-1.2F, 0.5F, 50),
+    DimensionInfo<AI::FLOAT>(-0.07F, 0.07F, 50),
     DimensionInfo<AI::FLOAT>(0.0F, 2.0F, 3, 0.0F),
   };
   
-  TileCodeCorrect tileCode(dimensionalInfoVector, 8);
+  TileCodeCorrect tileCode(dimensionalInfoVector, 30);
   Policy::EpsilonGreedySL policy(1.0F);
   SarsaETGD sarsa(tileCode, 0.1F, 1.0F, 0.70F, policy);
   MountainCarEnvironment mce;

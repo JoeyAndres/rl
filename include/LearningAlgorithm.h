@@ -12,6 +12,7 @@
 #include <map>
 #include <set>
 #include <memory>
+#include <string>
 
 #include "StateAction.h"
 #include "EpsilonGreedy.h"
@@ -98,6 +99,16 @@ class LearningAlgorithm {
    */
   const Policy::Policy<S, A> & getLearningPolicy() const;
 
+  /**
+   * @file
+   */
+  void serialize(const string& file);
+
+  /**
+   * @file 
+   */
+  void deSerialize(const string& file);
+
  protected:
   /**
    * Returns the action selected by learning policy given action values from some state.
@@ -154,30 +165,42 @@ inline void LearningAlgorithm<S, A>::setDefaultStateActionValue(
     const AI::FLOAT& defaultStateActionValue) {
   _defaultStateActionValue = defaultStateActionValue;
 }
-} /* namespace Algorithm */
-} /* namespace AI */
 
 template<class S, class A>
-inline void AI::Algorithm::LearningAlgorithm<S, A>::setLearningPolicy(
+inline void LearningAlgorithm<S, A>::setLearningPolicy(
     Policy::Policy<S, A>& policy) {
   _learningPolicy = policy;
 }
 
 template<class S, class A>
-inline const AI::Algorithm::Policy::Policy<S, A>& AI::Algorithm::LearningAlgorithm<
+inline const Policy::Policy<S, A>& AI::Algorithm::LearningAlgorithm<
     S, A>::getLearningPolicy() const {
   return _learningPolicy;
 }
 
 template<class S, class A>
-inline A AI::Algorithm::LearningAlgorithm<S, A>::_getLearningPolicyAction(
+inline A LearningAlgorithm<S, A>::_getLearningPolicyAction(
     const map<A, AI::FLOAT>& actionValueMap, const set<A>& actionSet) {
   return _learningPolicy.getAction(actionValueMap, actionSet);
 }
 
 template<class S, class A>
-inline A AI::Algorithm::LearningAlgorithm<S, A>::_getLearningPolicyAction(
+inline A LearningAlgorithm<S, A>::_getLearningPolicyAction(
     const map<A, AI::FLOAT>& actionValueMap, const set<A>& actionSet,
     ACTION_CONT& action) {
   return _learningPolicy.getAction(actionValueMap, actionSet, action);
 }
+
+template<class S, class A>
+inline void LearningAlgorithm<S, A>::serialize(const string& file){
+  
+}
+
+
+template<class S, class A>
+inline void LearningAlgorithm<S, A>::deSerialize(const string& file){
+  
+}
+
+} /* namespace Algorithm */
+} /* namespace AI */
