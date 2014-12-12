@@ -123,8 +123,8 @@ class LearningAlgorithm {
 
  protected:
   AI::FLOAT _defaultStateActionValue;  //!< Place holder for default state action value.
-  Policy::Policy<S, A>& _controlPolicy;  //!< Policy for action selection online.
-  Policy::Policy<S, A>& _learningPolicy;  //!< Policy for action selection offline.
+  Policy::Policy<S, A>* _controlPolicy;  //!< Policy for action selection online.
+  Policy::Policy<S, A>* _learningPolicy;  //!< Policy for action selection offline.
 
  protected:
   static Policy::EpsilonGreedy<S, A> _defaultLearningPolicy;  //!< Default offline policy.
@@ -136,19 +136,19 @@ Policy::EpsilonGreedy<S, A> LearningAlgorithm<S, A>::_defaultLearningPolicy(
 
 template<class S, class A>
 LearningAlgorithm<S, A>::LearningAlgorithm(Policy::Policy<S, A>& controlPolicy)
-    : _controlPolicy(controlPolicy),
-      _learningPolicy(_defaultLearningPolicy) {
+    : _controlPolicy(&controlPolicy),
+      _learningPolicy(&_defaultLearningPolicy) {
   _defaultStateActionValue = AI::FLOAT();
 }
 
 template<class S, class A>
 void LearningAlgorithm<S, A>::setControltPolicy(Policy::Policy<S, A>& policy) {
-  this->_controlPolicy = policy;
+  this->_controlPolicy = &policy;
 }
 
 template<class S, class A>
 Policy::Policy<S, A>& LearningAlgorithm<S, A>::getControlPolicy() {
-  return _controlPolicy;
+  return *_controlPolicy;
 }
 
 template<class S, class A>
@@ -163,32 +163,32 @@ inline const AI::FLOAT& LearningAlgorithm<S, A>::getDefaultStateActionValue() co
 template<class S, class A>
 inline void LearningAlgorithm<S, A>::setDefaultStateActionValue(
     const AI::FLOAT& defaultStateActionValue) {
-  _defaultStateActionValue = defaultStateActionValue;
+  _defaultStateActionValue = &defaultStateActionValue;
 }
 
 template<class S, class A>
 inline void LearningAlgorithm<S, A>::setLearningPolicy(
     Policy::Policy<S, A>& policy) {
-  _learningPolicy = policy;
+  _learningPolicy = &policy;
 }
 
 template<class S, class A>
 inline const Policy::Policy<S, A>& AI::Algorithm::LearningAlgorithm<
     S, A>::getLearningPolicy() const {
-  return _learningPolicy;
+  return *_learningPolicy;
 }
 
 template<class S, class A>
 inline A LearningAlgorithm<S, A>::_getLearningPolicyAction(
     const map<A, AI::FLOAT>& actionValueMap, const set<A>& actionSet) {
-  return _learningPolicy.getAction(actionValueMap, actionSet);
+  return _learningPolicy->getAction(actionValueMap, actionSet);
 }
 
 template<class S, class A>
 inline A LearningAlgorithm<S, A>::_getLearningPolicyAction(
     const map<A, AI::FLOAT>& actionValueMap, const set<A>& actionSet,
     ACTION_CONT& action) {
-  return _learningPolicy.getAction(actionValueMap, actionSet, action);
+  return _learningPolicy->getAction(actionValueMap, actionSet, action);
 }
 
 template<class S, class A>

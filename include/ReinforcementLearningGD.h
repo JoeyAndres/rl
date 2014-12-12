@@ -83,15 +83,12 @@ class ReinforcementLearningGD : public LearningAlgorithm<STATE_CONT, ACTION_CONT
    * @param actionSet set of possible actions.
    * @param nextState state, action just got applied.
    * @param actionValueMap mapping of value for every action.
+   * @param action of the highest value. This avoid recomputation later.
    */
-  void _buildActionValues(const set<ACTION_CONT >& actionSet,
-                          const STATE_CONT& nextState,
-                          map<ACTION_CONT, FLOAT>& actionValueMap);
-
   void _buildActionValues(const set<ACTION_CONT >& actionSet,
                           const vector<FLOAT>& nextState,
                           map<ACTION_CONT, FLOAT>& actionValueMap,
-                          ACTION_CONT& action);
+                          ACTION_CONT& maxAction);
 
  protected:
   GradientDescent _gradientDescent;
@@ -102,12 +99,6 @@ ReinforcementLearningGD::ReinforcementLearningGD(
     AI::FLOAT lambda, Policy::Policy<STATE_CONT, ACTION_CONT >& policy)
     : LearningAlgorithm<STATE_CONT, ACTION_CONT >(policy),
       _gradientDescent(tileCode, stepSize, discountRate, lambda) {
-}
-
-void ReinforcementLearningGD::_buildActionValues(
-    const set<ACTION_CONT >& actionSet, const STATE_CONT& nextState,
-    map<ACTION_CONT, FLOAT>& actionValueMap) {
-  _gradientDescent.buildActionValues(actionSet, nextState, actionValueMap);
 }
 
 void ReinforcementLearningGD::_buildActionValues(
@@ -138,7 +129,7 @@ ACTION_CONT ReinforcementLearningGD::getAction(
   map<ACTION_CONT, FLOAT> actionValueMap;
   ACTION_CONT maxAction;
   _buildActionValues(actionSet, state, actionValueMap, maxAction);
-  return this->_learningPolicy.getAction(actionValueMap, actionSet, maxAction);
+  return this->_learningPolicy->getAction(actionValueMap, actionSet, maxAction);
 }
 
 FLOAT ReinforcementLearningGD::getStateActionValue(

@@ -233,7 +233,7 @@ A ReinforcementLearning<S, A>::getAction(
                                      this->_defaultStateActionValue, actionSet);
   map<A, AI::FLOAT> actionValueMap;
   _buildActionValueMap(actionSet, currentState, actionValueMap);
-  return this->_controlPolicy.getAction(actionValueMap, actionSet);
+  return this->_controlPolicy->getAction(actionValueMap, actionSet);
 }
 
 template<class S, class A>

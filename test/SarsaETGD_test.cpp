@@ -36,12 +36,12 @@ using namespace std;
 
 TEST(SarsaETGDMountainCar01) {
   vector<DimensionInfo<AI::FLOAT> > dimensionalInfoVector = {
-    DimensionInfo<AI::FLOAT>(-1.2F, 0.5F, 50),
-    DimensionInfo<AI::FLOAT>(-0.07F, 0.07F, 50),
+    DimensionInfo<AI::FLOAT>(-1.2F, 0.5F, 7),
+    DimensionInfo<AI::FLOAT>(-0.07F, 0.07F, 7),
     DimensionInfo<AI::FLOAT>(0.0F, 2.0F, 3, 0.0F),
   };
   
-  TileCodeCorrect tileCode(dimensionalInfoVector, 30);
+  TileCodeCorrect tileCode(dimensionalInfoVector, 8);
   Policy::EpsilonGreedySL policy(1.0F);
   SarsaETGD sarsa(tileCode, 0.1F, 1.0F, 0.70F, policy);
   MountainCarEnvironment mce;
@@ -51,11 +51,11 @@ TEST(SarsaETGDMountainCar01) {
   amc.addAction(vector <AI::FLOAT > (1, 1));
   amc.addAction(vector <AI::FLOAT > (1, 2));
   AgentSL<AI::FLOAT> agent(smc, amc, sarsa);
-
+  
   AI::INT iterationCount = 0;
   for (AI::INT i = 0; i < 5000; i++) {
     mce.reset();
-
+    
     iterationCount = 0;
     agent.preExecute();
     while (!agent.episodeDone()) {

@@ -34,7 +34,7 @@ GradientDescent::GradientDescent(TileCode& tileCode, AI::FLOAT stepSize,
   _discountRateTimesLambdaArray = &_discountRateTimesLambda;
 #endif
   
-#ifdef defined(NO_INTRINSIC) || defined(MMX)
+#if defined(NO_INTRINSIC) || defined(MMX)
   _e = (AI::FLOAT*)malloc(getSize()*sizeof(AI::FLOAT));  
   _w = (AI::FLOAT*)malloc(getSize()*sizeof(AI::FLOAT));  
 #else // With intrinsic.
@@ -94,23 +94,23 @@ void GradientDescent::decreaseEligibilityTraces() {
   __m128d* multSSE = (__m128d*)_discountRateTimesLambdaArray;
   __m128d* eSSE = (__m128d*)_e;
   size_t n = getSize()>>1;
-  for (UINT i = 0; i < n; i++){
+  for (size_t i = 0; i < n; i++){
     eSSE[i] = _mm_mul_pd(*multSSE, eSSE[i]);
   }
 #elif AVX
   __m256d* multSSE = (__m256d*) _discountRateTimesLambdaArray;
   __m256d* eSSE = (__m256d*)_e;
   size_t n = getSize()>>2;
-  for (UINT i = 0; i < n; i++){
+  for (size_t i = 0; i < n; i++){
     eSSE[i] = _mm256_mul_pd(*multSSE, eSSE[i]);
   }
 #elif defined(NO_INTRINSIC) || defined(MMX)
   size_t n = getSize();
-  for (UINT i = 0; i < n; i++){
+  for (size_t i = 0; i < n; i++){
     _e[i] *= _discountRateTimesLambda;
   }
 #else
-  cout << "Error: Intrinsic Preprocessor, not recognized" << endl;
+#error Error: Intrinsic Preprocessor, not recognized
 #endif  // Intrinsic definition test.
 }
 
@@ -121,7 +121,7 @@ void GradientDescent::backUpWeights(FLOAT tdError) {
   __m128d* eSSE = (__m128d*)_e;
   __m128d* wSSE = (__m128d*)_w;
   size_t n = getSize()>>1;
-  for (UINT i = 0; i < n; i++){
+  for (size_t i = 0; i < n; i++){
     wSSE[i] = _mm_add_pd(wSSE[i],_mm_mul_pd(multSSE, eSSE[i]));
   }
 #elif AVX
@@ -129,12 +129,12 @@ void GradientDescent::backUpWeights(FLOAT tdError) {
   __m256d* eSSE = (__m256d*)_e;
   __m256d* wSSE = (__m256d*)_w;
   size_t n = getSize()>>2;
-  for (UINT i = 0; i < n; i++){
+  for (size_t i = 0; i < n; i++){
     wSSE[i] = _mm256_add_pd(wSSE[i],_mm256_mul_pd(multSSE, eSSE[i]));
   }
 #elif defined(NO_INTRINSIC) || defined(MMX)
   size_t n = getSize();
-  for (UINT i = 0; i < n-1; i++){
+  for (size_t i = 0; i < n-1; i++){
     _w[i] += multiplier*_e[i];
   }
 #else
@@ -201,21 +201,24 @@ void GradientDescent::buildActionValues(
   actions = *maxIter;
 }
 
-void GradientDescent::buildActionValues(
-    const set<ACTION_CONT >& actionSet, const vector<FLOAT>& param,
-    map<ACTION_CONT, FLOAT>& actionVectorValueMap) const {
-  for (const ACTION_CONT& av : actionSet) {
-    vector<FLOAT> paramCopy;
-    paramCopy.reserve(param.size() + av.size());
-    paramCopy.insert(paramCopy.end(), param.begin(), param.end());
-    paramCopy.insert(paramCopy.end(), av.begin(), av.end());
-
-    actionVectorValueMap[av] = getValueFromParameters(paramCopy);
-  }
-}
-
 void GradientDescent::resetEligibilityTraces() {
+#if defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
+  __m128d* eSSE = (__m128d*)_e;
+  size_t n = getSize()>>1;
+  for (size_t i = 0; i < n; i++){
+    eSSE[i] = _mm_set_pd(0.0F, 0.0F);
+  }
+#elif AVX
+  __m256d* eSSE = (__m256d*)_e;
+  size_t n = getSize()>>2;
+  for (size_t i = 0; i < n; i++){
+    eSSE[i] = _mm_set_pd(0.0F, 0.0F, 0.0F, 0.0F);
+  }
+#elif defined(NO_INTRINSIC) || defined(MMX)
   std::fill(_e, _e + getSize(), 0);
+#else
+#error Error: Intrinsic Preprocessor, not recognized.
+#endif  // Intrinsic definition test.  
 }
 
 FLOAT GradientDescent::getMaxValue(

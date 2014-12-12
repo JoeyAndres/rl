@@ -102,10 +102,8 @@ class GradientDescent {
    * @param actionSet set of actions.
    * @param param array of current state.
    * @param actionVectorValueMap state-action to value mapping to be returned.
+   * @param maxAction max action calculated while building action value map.
    */
-  void buildActionValues(
-      const set<ACTION_CONT>& actionSet, const vector<FLOAT>& param,
-      map<ACTION_CONT, FLOAT>& actionVectorValueMap) const;
   void buildActionValues(
       const set<ACTION_CONT>& actionSet, const vector<FLOAT>& param,
       map<ACTION_CONT, FLOAT>& actionVectorValueMap,
