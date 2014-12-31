@@ -1,4 +1,0 @@
-/home/jandres/CompScie/AIProjectv2/build/src/intrinsic/CMakeFiles/aiproject2Intrinsic.dir
-/home/jandres/CompScie/AIProjectv2/build/src/CMakeFiles/aiproject2NoIntrinsic.dir
-/home/jandres/CompScie/AIProjectv2/build/test/src/CMakeFiles/aiproject2Test.dir
-/home/jandres/CompScie/AIProjectv2/build/test/CMakeFiles/test.dir

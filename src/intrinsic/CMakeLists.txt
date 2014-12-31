@@ -35,5 +35,5 @@ else()
 endif()
 
 # Sources
-file(GLOB SRC_FILES "*.cpp")
-add_library(aiproject2Intrinsic OBJECT ${SRC_FILES})
+file(GLOB SRC_INT_FILES "*.cpp")
+add_library(aiproject2Intrinsic OBJECT ${SRC_INT_FILES})

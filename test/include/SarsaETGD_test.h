@@ -6,8 +6,6 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 
-#include "SarsaETGD_test.h"
-
 class SarsaETGD_test : public CppUnit::TestFixture{
   CPPUNIT_TEST_SUITE(SarsaETGD_test);
   CPPUNIT_TEST(episodeTest);
