@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++14  -g    CMakeFiles/test.dir/AIProject_testRunner.cpp.o  -o test -rdynamic -lcppunit -larmadillo -lpthread -lboost_system src/libaiproject2Test.a 

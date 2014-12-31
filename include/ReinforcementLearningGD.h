@@ -5,8 +5,7 @@
  *      Author: jandres
  */
 
-#ifndef REINFORCEMENTLEARNINGGD_H_
-#define REINFORCEMENTLEARNINGGD_H_
+#pragma once
 
 #include "GlobalHeader.h"
 
@@ -153,5 +152,3 @@ void ReinforcementLearningGD::reset() {
 } // namespace SL
 } /* namespace Algorithm */
 } /* namespace AI */
-
-#endif /* REINFORCEMENTLEARNINGGD_H_ */

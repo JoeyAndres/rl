@@ -15,10 +15,10 @@ SSE4_2_FLAG= -msse4.2 -DSSE4_2
 SSE4A_FLAG= -msse4a -DSSE4A
 AVX_FLAG= -mavx -DAVX
 
-INCLUDE_PATHS = -I. -I./UnitTest++ -I./UnitTest++/src -I./UnitTest++/src/Posix -I./UnitTest++/Win32 -I./include -I./test -I./test/etc
-LIBRARY_PATHS = -L. -L./UnitTest++
+INCLUDE_PATHS = -I.  -I./include -I./test -I./test/etc
+LIBRARY_PATHS = -L.
 AI_LIB_PATH := ./lib/libAI.a
-LIBRARY = -lpthread -lUnitTest++ -lboost_system -larmadillo
+LIBRARY = -lpthread -lcppunit -lboost_system -larmadillo
 
 FILTER_OUT = $(foreach v,$(2),$(if $(findstring $(1),$(v)),,$(v)))
 
