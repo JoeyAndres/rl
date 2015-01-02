@@ -50,17 +50,10 @@ void SarsaETGD_test::episodeTest(){
   AgentSL<AI::FLOAT> agent(smc, amc, sarsa);
   
   AI::INT iterationCount = 0;
-  for (AI::INT i = 0; i < 5000; i++) {
+  for (AI::INT i = 0; i < 1000; i++) {
     mce.reset();
     
-    iterationCount = 0;
-    agent.preExecute();
-    while (!agent.episodeDone()) {
-      iterationCount++;
-      agent.execute();
-    }
-    cout << "Episode :" << i << ", Iteration Count:" <<  iterationCount << endl;
-    agent.postExecute();
+    iterationCount = agent.executeEpisode();
   }
-  CPPUNIT_ASSERT(iterationCount < 300);
+  CPPUNIT_ASSERT(iterationCount < 100);
 }

@@ -62,6 +62,14 @@ class Agent {
   virtual void execute();
 
   /**
+   * Execute many timesteps until end of episode.
+   * @param maxIter maximum iteration.
+   * @return number of iteration to acheive the task.
+   * @throw MaxIterationException maximum iteration in an episode is hit.
+   */
+  virtual size_t executeEpisode(UINT maxIter=MAX_EPISODES);
+
+  /**
    * @return true if episode is done.
    */
   virtual bool episodeDone();
@@ -162,6 +170,17 @@ void AI::Agent<S, A>::execute() {
 
   // Update current state.
   _currentState = nextState;
+}
+
+template<class S, class A>
+size_t AI::Agent<S, A>::executeEpisode(UINT maxIter){
+  preExecute();
+  UINT i = 0;
+  for(; i < maxIter && episodeDone() == false; i++){
+    execute();
+  }
+  postExecute();
+  return i;
 }
 
 template<class S, class A>

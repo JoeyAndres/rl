@@ -196,7 +196,6 @@ inline void LearningAlgorithm<S, A>::serialize(const string& file){
   
 }
 
-
 template<class S, class A>
 inline void LearningAlgorithm<S, A>::deSerialize(const string& file){
   

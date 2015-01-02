@@ -13,6 +13,7 @@
 #include <map>
 #include <vector>
 #include <cstdlib>
+#include <x86intrin.h>
 
 #include "TileCode.h"
 
@@ -23,7 +24,7 @@ namespace Algorithm {
 namespace SL {
 
 /*! \class GradientDescent
- *  \brief Early implementation of Gradient Descent specialized for Tile Coding. 
+ *  \brief Early implementation of Gradient Descent specialized for Tile Coding.
  */
 class GradientDescent {
  public:
@@ -137,7 +138,7 @@ class GradientDescent {
 };
 
 } // namespace SL
-} /* namespace Algorithm */
-} /* namespace AI */
+} // namespace Algorithm
+} // namespace AI
 
 #endif // _GRADIENT_DESCENT_H_

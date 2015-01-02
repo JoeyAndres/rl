@@ -120,7 +120,7 @@ void GradientDescent::backUpWeights(FLOAT tdError) {
   __m128d multSSE = _mm_set_pd(multiplier, multiplier);
   __m128d* eSSE = (__m128d*)_e;
   __m128d* wSSE = (__m128d*)_w;
-  size_t n = getSize()>>1;
+  size_t n = getSize()/2;
   for (size_t i = 0; i < n; i++){
     wSSE[i] = _mm_add_pd(wSSE[i],_mm_mul_pd(multSSE, eSSE[i]));
   }
@@ -128,7 +128,7 @@ void GradientDescent::backUpWeights(FLOAT tdError) {
   __m256d multSSE = _mm256_set_pd(multiplier, multiplier, multiplier, multiplier);
   __m256d* eSSE = (__m256d*)_e;
   __m256d* wSSE = (__m256d*)_w;
-  size_t n = getSize()>>2;
+  size_t n = getSize()/4;
   for (size_t i = 0; i < n; i++){
     wSSE[i] = _mm256_add_pd(wSSE[i],_mm256_mul_pd(multSSE, eSSE[i]));
   }
@@ -204,15 +204,15 @@ void GradientDescent::buildActionValues(
 void GradientDescent::resetEligibilityTraces() {
 #if defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
   __m128d* eSSE = (__m128d*)_e;
-  size_t n = getSize()>>1;
+  size_t n = getSize()/2;
   for (size_t i = 0; i < n; i++){
     eSSE[i] = _mm_set_pd(0.0F, 0.0F);
   }
 #elif AVX
   __m256d* eSSE = (__m256d*)_e;
-  size_t n = getSize()>>2;
+  size_t n = getSize()/4;
   for (size_t i = 0; i < n; i++){
-    eSSE[i] = _mm_set_pd(0.0F, 0.0F, 0.0F, 0.0F);
+    eSSE[i] = _mm256_set_pd(0.0F, 0.0F, 0.0F, 0.0F);
   }
 #elif defined(NO_INTRINSIC) || defined(MMX)
   std::fill(_e, _e + getSize(), 0);

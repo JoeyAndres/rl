@@ -5,3 +5,4 @@
 
 # Eclipse Ignore
 RemoteSystemsTempFiles/
+build/
