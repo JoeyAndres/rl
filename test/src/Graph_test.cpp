@@ -76,30 +76,25 @@ void Graph_test::graphTest(){
     CPPUNIT_ASSERT(vertexSet.find(*v) != vertexSet.end());
   }
 
-  cout << "Directed Graph BFS" << endl;
   Algorithm::Graph::BFS<int> bfs;
   bfs.search(graph, vertex01);
 
-  cout << "Undirected Graph BFS" << endl;
   Algorithm::Graph::BFS<int> dBfs;
   dBfs.search(dGraph, vertex01);
 
-  cout << "Undirected Graph DFS" << endl;
   Algorithm::Graph::DFS<int> dfs;
   dfs.search(graph);
   map<const AI::Algorithm::Graph::Vertex<int>*, AI::UINT> preNumber;
   map<const AI::Algorithm::Graph::Vertex<int>*, AI::UINT> postNumber;
   dfs.search(graph, vertex02, preNumber, postNumber);
-  cout << "Post Num" << endl;
+
   for(auto  p : postNumber){
     cout << *(p.first->getData()) << ": " << p.second << ", ";
   }
   cout << endl;
 
-  cout << "Directed Graph DFS" << endl;
   dfs.search(dGraph);
-
-  cout << "Linearize DGraph DFS" << endl;
+  
   Algorithm::Graph::Linearize<int> lin;
   lin.linearize(graph);
 }

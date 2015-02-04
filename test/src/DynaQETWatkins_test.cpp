@@ -37,13 +37,8 @@ void DynaQETWatkins_test::episodeTest(){
   AI::INT iterationCount = 0;
   for (AI::INT i = 0; i < 10; i++) {
     rwe.reset();
-    iterationCount = 0;
-    agent.preExecute();
-    while (!agent.episodeDone()) {
-      iterationCount++;
-      agent.execute();
-    }
-    agent.postExecute();
+    
+    iterationCount = agent.executeEpisode();
   }
   CPPUNIT_ASSERT(iterationCount <= 2);
 }

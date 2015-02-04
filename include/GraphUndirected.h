@@ -25,8 +25,7 @@ namespace AI {
 	GraphUndirected(set<Edge<D> >& edgeSet);
 	virtual ~GraphUndirected();
 
-	virtual const set<const Vertex<D>*> getAdjacentLists(
-							     const Vertex<D>& v) const;
+	virtual const set<const Vertex<D>*> getAdjacentLists(const Vertex<D>& v) const;
 	virtual set<const Vertex<D>*> getAdjacentLists(const Vertex<D>& v);
 
 	void rAddEdge(const Edge<D>& edge);

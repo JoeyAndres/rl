@@ -45,12 +45,10 @@ class SarsaET final: public EligibilityTraces<S, A>, public Sarsa<S, A> {
    */
   SarsaET(AI::FLOAT stepSize, AI::FLOAT discountRate,
           Policy::Policy<S, A>& policy, AI::FLOAT lambda);
- public:
-  // Inherited.
-
+  
   virtual void update(const StateAction<S, A>& currentStateAction,
                       const S& nextState, const AI::FLOAT reward,
-                      const set<A>& actionSet);
+                      const set<A>& actionSet) override;
 };
 
 template<class S, class A>

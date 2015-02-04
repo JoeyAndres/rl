@@ -2,9 +2,7 @@
  * Agent.h
  *
  *  Created on: May 30, 2014
- *      Author: jandres
- *
- * TODO: Use template Specialization on Agent<S, A=AI::FLOAT/AI::INT/float/etc/etc>
+ *      Author: Joey Andres
  */
 
 #ifndef AGENT_H_

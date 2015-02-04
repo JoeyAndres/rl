@@ -35,9 +35,9 @@ GradientDescent::GradientDescent(TileCode& tileCode, AI::FLOAT stepSize,
 #endif
   
 #if defined(NO_INTRINSIC) || defined(MMX)
-  _e = (AI::FLOAT*)malloc(getSize()*sizeof(AI::FLOAT));  
-  _w = (AI::FLOAT*)malloc(getSize()*sizeof(AI::FLOAT));  
-#else // With intrinsic.
+  _e = (AI::FLOAT*)malloc(getSize()*sizeof(AI::FLOAT));
+  _w = (AI::FLOAT*)malloc(getSize()*sizeof(AI::FLOAT));
+#else // Without intrinsic.
   _e = (AI::FLOAT*)aligned_alloc(128, getSize()*sizeof(AI::FLOAT));
   _w = (AI::FLOAT*)aligned_alloc(128, getSize()*sizeof(AI::FLOAT));
 #endif
@@ -225,8 +225,7 @@ FLOAT GradientDescent::getMaxValue(
     const map<ACTION_CONT, FLOAT>& actionValueMap) const {
   // Get max action.
   FLOAT maxValue = actionValueMap.begin()->second;
-  for (auto iter = actionValueMap.begin(); iter != actionValueMap.end();
-       ++iter) {
+  for (auto iter = actionValueMap.begin(); iter != actionValueMap.end(); ++iter) {
     if (iter->second > maxValue) {
       maxValue = iter->second;
     }

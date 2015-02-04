@@ -22,7 +22,7 @@ class Edge {
 
   const Vertex<V>* getV1() const;
   const Vertex<V>* getV2() const;
-
+  
   void setV1(const Vertex<V>& v);
   void setV2(const Vertex<V>& v);
 

@@ -63,12 +63,9 @@ class DynaQPrioritizeSweeping final: public DynaQ<S, A> {
                           AI::FLOAT stateTransitionStepSize,
                           AI::FLOAT priorityThreshold);
 
- public:
-  // inherited.
-
   virtual void update(const StateAction<S, A>& currentStateAction,
                       const S& nextState, const AI::FLOAT reward,
-                      const set<A>& actionSet);
+                      const set<A>& actionSet) override;
 
  protected:
   void _prioritySweep(const set<A>& actionSet);

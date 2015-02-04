@@ -50,15 +50,13 @@ class EpsilonGreedy : public Policy<S, A> {
    * @param actionSet a set of possible actions.
    * @return the action that will "likely" gives the highest reward.
    */
-  A argMax(const map<A, AI::FLOAT>& actionValues,
-                  const set<A>& actionSet) const;
+  A argMax(const map<A, AI::FLOAT>& actionValues, const set<A>& actionSet) const;
 
-  virtual A getAction(const map<A, AI::FLOAT>& actionValues,
-                      const set<A>& actionSet);
+  virtual A getAction(const map<A, AI::FLOAT>& actionValues, const set<A>& actionSet);
 
-  virtual A getAction(const map<A, AI::FLOAT>& actionValues,
-                      const set<A>& actionSet, const A& maxAction);
-
+  virtual A getAction(const map<A, AI::FLOAT>& actionValues, const set<A>& actionSet,
+                      const A& maxAction);
+  
   /**
    * @param greediness
    */

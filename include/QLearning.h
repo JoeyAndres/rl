@@ -45,7 +45,7 @@ class QLearning : public ReinforcementLearning<S, A> {
 
   virtual void update(const StateAction<S, A>& currentStateAction,
                       const S& nextState, const AI::FLOAT reward,
-                      const set<A>& actionSet);
+                      const set<A>& actionSet) override;
 };
 
 template<class S, class A>

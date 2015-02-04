@@ -27,7 +27,7 @@ class Environment {
    * @return last observed state.
    */
   virtual const S& getLastObservedState() const = 0;
-
+  
   /**
    * @return last observed reward.
    */

@@ -37,13 +37,7 @@ void QLearningETWatkins_test::episodeTest(){
   for (AI::INT i = 0; i < 100; i++) {
     rwe.reset();
 
-    iterationCount = 0;
-    agent.preExecute();
-    while (!agent.episodeDone()) {
-      iterationCount++;
-      agent.execute();
-    }
-    agent.postExecute();
+    iterationCount = agent.executeEpisode();
   }
   CPPUNIT_ASSERT(iterationCount <= 2);
 }

@@ -52,12 +52,9 @@ class DynaQ : public DynaQRLMP<S, A> {
         Policy::Policy<S, A>& policy, AI::UINT simulationIterationCount,
         AI::FLOAT stateTransitionGreediness, AI::FLOAT stateTransitionStepSize);
 
- public:
-  // Inherited.
-
   virtual void update(const StateAction<S, A>& currentStateAction,
                       const S& nextState, const FLOAT reward,
-                      const set<A>& actionSet);
+                      const set<A>& actionSet) override;
 };
 
 template<class S, class A>

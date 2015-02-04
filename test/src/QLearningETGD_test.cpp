@@ -31,40 +31,48 @@ using namespace std::chrono;
 using namespace std;
 
 void QLearningETGD_test::episodeTest(){
-  DimensionInfo<AI::FLOAT> dimensionalInfo[] = {
-    DimensionInfo<AI::FLOAT>(-1.2F, 0.5F, 10),
-    DimensionInfo<AI::FLOAT>(-0.07F, 0.07F, 10),
-    DimensionInfo<AI::FLOAT>(0.0F, 2.0F, 3),
-  };
+  vector<DimensionInfo<AI::FLOAT> > dimensionalInfoVector({
+      DimensionInfo<AI::FLOAT>(-1.2F, 0.5F, 10),  // This is the y axis position.
+      DimensionInfo<AI::FLOAT>(-0.07F, 0.07F, 10),  // This is the velocity.
+      DimensionInfo<AI::FLOAT>(0.0F, 2.0F, 3, 0.0F)});  // Actions will be treated discretely.
 
-  vector<DimensionInfo<AI::FLOAT> > dimensionalInfoVector(
-      dimensionalInfo,
-      dimensionalInfo +
-      sizeof(dimensionalInfo) / sizeof(DimensionInfo<AI::FLOAT> ));
-  
-  dimensionalInfoVector[2].setGeneralizationScale(0.0F);
+  // Now that we have the domain information, we feed these to TileCode* object
+  // to create a multi-dimensional grid.
   TileCodeCorrect tileCode(dimensionalInfoVector, 8);
+
+  // We will be using the greedy policy for both offline and online policy.
   Policy::EpsilonGreedySL policy(1.0F);
+
+  // We will be using Q-Learning Gradient Descent for learning algorithm.
   QLearningETGD qLearning(tileCode, 0.1F, 1.0F, 0.9F, policy);
-  MountainCarEnvironment mce;
-  SensorMountainCar smc(mce);
+
+  // Instantiate the environment that represent that represent our environment.
+  MountainCarEnvironment mce;  
+
+  SensorMountainCar smc(mce);  // Instantiate the sensor of our agent.
+
+  // Instantiate the Actuator of our robot, which is "gas pedal".
   ActuatorBase<AI::STATE_CONT, AI::ACTION_CONT > amc(mce);
+
+  // Initialize the possible actions. 
   amc.addAction(vector <AI::FLOAT > (1, 0));
   amc.addAction(vector < AI::FLOAT > (1, 1));
   amc.addAction(vector < AI::FLOAT > (1, 2));
+
+  // Initialize the Agent with the Sensor, Actuator and Learning algorithm.
   AgentSL<AI::FLOAT> agent(smc, amc, qLearning);
 
+  // Execute 1000 episodes.
   AI::INT iterationCount = 0;
-  for (AI::INT i = 0; i < 1000; i++) {    
+  for (AI::INT i = 0; i < 100; i++) {    
     mce.reset();
 
-    iterationCount = 0;
-    agent.preExecute();
-    while (!agent.episodeDone()) {
-      iterationCount++;
-      agent.execute();
-    }
-    agent.postExecute();
+    iterationCount = agent.executeEpisode();
+    //#ifdef DEBUG_OUT
+    cout << iterationCount << endl;
+    //#endif
   }
-  CPPUNIT_ASSERT(iterationCount < 300);
+
+  // We should've optimize for less than 100 iteration per episode when.
+  CPPUNIT_ASSERT(iterationCount < 100);
 }

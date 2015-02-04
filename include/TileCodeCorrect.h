@@ -40,7 +40,7 @@ class TileCodeCorrect : public TileCode {
   TileCodeCorrect(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
                   size_t numTilings);
 
-  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters);
+  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters) override;
 
 };
 

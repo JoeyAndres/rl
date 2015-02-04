@@ -44,9 +44,9 @@ void SarsaETGD_test::episodeTest(){
   MountainCarEnvironment mce;
   SensorMountainCar smc(mce);
   ActuatorBase<AI::STATE_CONT, AI::ACTION_CONT > amc(mce);
-  amc.addAction(vector <AI::FLOAT > (1, 0));
-  amc.addAction(vector <AI::FLOAT > (1, 1));
-  amc.addAction(vector <AI::FLOAT > (1, 2));
+  amc.addAction(vector<AI::FLOAT> (1, 0));
+  amc.addAction(vector<AI::FLOAT> (1, 1));
+  amc.addAction(vector<AI::FLOAT> (1, 2));
   AgentSL<AI::FLOAT> agent(smc, amc, sarsa);
   
   AI::INT iterationCount = 0;
@@ -54,6 +54,7 @@ void SarsaETGD_test::episodeTest(){
     mce.reset();
     
     iterationCount = agent.executeEpisode();
+    //cout << iterationCount << endl;
   }
   CPPUNIT_ASSERT(iterationCount < 100);
 }

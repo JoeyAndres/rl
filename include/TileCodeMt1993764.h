@@ -5,8 +5,7 @@
  *      Author: jandres
  */
 
-#ifndef TIleCODEMT1993764_H_
-#define TIleCODEMT1993764_H_
+#pragma once
 
 #include <random>
 
@@ -25,8 +24,7 @@ class TileCodeMt1993764 : public TileCode {
    * @param dimensionalInfos
    * @param numTilings
    */
-  TileCodeMt1993764(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
-                    size_t numTilings);
+  TileCodeMt1993764(vector<DimensionInfo<FLOAT> >& dimensionalInfos, size_t numTilings);
 
   /**
    * @param dimensionalInfos
@@ -43,50 +41,12 @@ class TileCodeMt1993764 : public TileCode {
    * @param parameters
    * @return Vector of discretize index.
    */
-  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters);
+  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters) override;
 
  protected:
   std::mt19937_64 _prng;
 };
 
-inline TileCodeMt1993764::TileCodeMt1993764(
-    vector<DimensionInfo<FLOAT> >& dimensionalInfos, size_t numTilings)
-    : TileCode(dimensionalInfos, numTilings) {
-}
-
-inline TileCodeMt1993764::TileCodeMt1993764(
-    vector<DimensionInfo<FLOAT> >& dimensionalInfos, size_t numTilings,
-    size_t sizeHint)
-    : TileCode(dimensionalInfos, numTilings) {
-  if (sizeHint > this->_sizeCache) {
-    this->_sizeCache = sizeHint;
-  }
-}
-
-inline FEATURE_VECTOR TileCodeMt1993764::getFeatureVector(
-    const STATE_CONT& parameters) {
-  vector<AI::INT> tileComponents(this->getDimension() + 1);
-  FEATURE_VECTOR fv;
-  
-  for (size_t i = 0; i < this->_numTilings; i++) {
-    for (size_t j = 0; j < this->getDimension(); j++) {
-      tileComponents[j] = this->_paramToGridValue(parameters[j], i, j);
-    }
-
-// Add a unique number_tiling identifier.
-    tileComponents[this->getDimension()] = i;
-
-    std::seed_seq seed1(tileComponents.begin(), tileComponents.end());
-    _prng.seed(seed1);
-
-    fv.push_back(_prng() % this->_sizeCache);
-  }
-
-  return fv;
-}
-
 } // namespace SL
-} /* namespace Algorithm */
-} /* namespace AI */
-
-#endif // TIleCODEMT1993764_H_
+} // namespace Algorithm
+} // namespace AI

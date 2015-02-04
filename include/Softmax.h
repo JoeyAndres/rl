@@ -52,9 +52,9 @@ class Softmax : public Policy<S, A> {
   Softmax(AI::FLOAT temperature);
 
   virtual A getAction(const map<A, AI::FLOAT>& actionValues,
-                             const set<A>& actionSet);
+                             const set<A>& actionSet) override;
   virtual A getAction(const map<A, AI::FLOAT>& actionValues,
-                      const set<A>& actionSet, const A& maxAction);
+                      const set<A>& actionSet, const A& maxAction) override;
  private:
   std::random_device _randomDevice;
   std::uniform_real_distribution<AI::FLOAT> _distribution;
