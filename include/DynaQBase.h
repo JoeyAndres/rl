@@ -11,7 +11,6 @@
 #include <map>
 #include <utility>
 #include <tuple>
-#include <shared_mutex>
 
 #include "StateActionTransition.h"
 
@@ -114,9 +113,6 @@ class DynaQBase {
                                                //!< value given a state.
   AI::FLOAT _stateActionTransitionStepSize;  //!< How fast does the model increment the
                                              //!< state-action value.
-
-  std::shared_timed_mutex _generalLock;  //!< Mutex lock for everything else that is not a model.
-  std::shared_timed_mutex _modelLock;  //!< Mutex lock for model.
 };
 
 template<class S, class A>
@@ -132,8 +128,7 @@ template<class S, class A>
 void DynaQBase<S, A>::_updateModel(
     const StateAction<S, A>& currentStateAction, const S& nextState,
     const FLOAT reward) {
-  std::unique_lock < std::shared_timed_mutex > generalLock(_generalLock);
-  std::unique_lock < std::shared_timed_mutex > modellLock(_modelLock);
+  
   _addModel(currentStateAction);
   StateActionTransition<S> &st = _model.at(currentStateAction);
   st.update(nextState, reward);
@@ -142,7 +137,7 @@ void DynaQBase<S, A>::_updateModel(
 template<class S, class A>
 void DynaQBase<S, A>::_addModelSafe(
     const StateAction<S, A>& currentStateAction) {
-  std::unique_lock < std::shared_timed_mutex > modellLock(_modelLock);
+  
   _addModel(currentStateAction);
 }
 

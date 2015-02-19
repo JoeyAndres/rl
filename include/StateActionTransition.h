@@ -16,7 +16,6 @@
 #include <algorithm>
 #include <iostream>
 #include <random>
-#include <shared_mutex>
 
 #include "QLearning.h"
 #include "StateActionTransitionException.h"
@@ -119,8 +118,6 @@ class StateActionTransition {
   AI::FLOAT _stepSize;
 
   mutable std::random_device _randomDevice;
-  mutable std::shared_timed_mutex _frequencyMutex;
-  mutable std::shared_timed_mutex _rewardMutex;
 };
 
 template<class S>
@@ -142,9 +139,6 @@ StateActionTransition<S>::StateActionTransition(
 template<class S>
 void StateActionTransition<S>::update(const S& nextState,
                                       const AI::FLOAT reward) {
-  std::unique_lock < std::shared_timed_mutex > rewardLock(_rewardMutex);
-  std::unique_lock < std::shared_timed_mutex > frequencyLock(_frequencyMutex);
-
   _stateActionTransitionFrequency.insert(
       std::pair<S, AI::FLOAT>(nextState, 0.0F));
   _stateActionTransitionReward.insert(
@@ -179,8 +173,7 @@ void StateActionTransition<S>::update(const S& nextState,
 
 template<class S>
 AI::FLOAT StateActionTransition<S>::getReward(const S& state) const
-    throw (StateActionTransitionException) {
-  std::shared_lock < std::shared_timed_mutex > rewardLock(_rewardMutex);
+    throw (StateActionTransitionException) {  
   StateActionTransitionException exception(
       "StateActionTransition<S, AI::FLOAT>::getReward(const S& state): state not yet added.");
   if (_findState(state) == false) {
@@ -192,7 +185,6 @@ AI::FLOAT StateActionTransition<S>::getReward(const S& state) const
 
 template<class S>
 bool StateActionTransition<S>::_findState(const S& state) const {
-  std::shared_lock < std::shared_timed_mutex > rewardLock(_rewardMutex);
   bool found = _stateActionTransitionFrequency.find(state)
       != _stateActionTransitionFrequency.end();
   return found;
@@ -201,7 +193,6 @@ bool StateActionTransition<S>::_findState(const S& state) const {
 template<class S>
 const S& StateActionTransition<S>::getNextState() const
     throw (StateActionTransitionException) {
-  std::shared_lock < std::shared_timed_mutex > frequencyLock(_frequencyMutex);
   StateActionTransitionException exception(
       "StateActionTransition<S, AI::FLOAT>::getNextState(): nextStates are empty.");
   if (_stateActionTransitionFrequency.size() == 0) {

@@ -15,7 +15,6 @@
 #include <algorithm>
 #include <iostream>
 #include <mutex>
-#include <shared_mutex>
 
 #include "StateAction.h"
 #include "Observer.h"
@@ -100,7 +99,6 @@ class StateActionPairContainer {
 
  protected:
   map<StateAction<S, A>, AI::FLOAT> _stateActionPairMap;  //!< state-action -> value mapping.
-  mutable std::shared_timed_mutex _stateActionPairMapMutex;
 };
 
 template<class S, class A>
@@ -110,7 +108,6 @@ StateActionPairContainer<S, A>::StateActionPairContainer() {
 template<class S, class A>
 void StateActionPairContainer<S, A>::addState(const S& state, AI::FLOAT value,
                                               const set<A>& actionSet) {
-  std::unique_lock<std::shared_timed_mutex> saLock(_stateActionPairMapMutex);
   for (const A& action : actionSet) {
     _stateActionPairMap.insert(
         std::pair<StateAction<S, A>, AI::FLOAT>(
@@ -121,7 +118,6 @@ void StateActionPairContainer<S, A>::addState(const S& state, AI::FLOAT value,
 template<class S, class A>
 void StateActionPairContainer<S, A>::addAction(A& action, AI::FLOAT value,
                                                const set<S>& stateSet) {
-  std::unique_lock<std::shared_timed_mutex> saLock(_stateActionPairMapMutex);
   for (const S& state : stateSet) {
     _stateActionPairMap.insert(
         std::pair<StateAction<S, A>, AI::FLOAT>(
@@ -129,12 +125,9 @@ void StateActionPairContainer<S, A>::addAction(A& action, AI::FLOAT value,
   }
 }
 
-// TODO: Due to the elimination of AI::FLOAT reward, get rid of the third paramter EVERYWHERE.
-
 template<class S, class A>
 bool StateActionPairContainer<S, A>::stateInStateActionPairMap(
     const S& state, const set<A>& actionSet) const {
-  std::shared_lock<std::shared_timed_mutex> saLock(_stateActionPairMapMutex);
   const A& sampleAction = *(actionSet.begin());
   bool rv = _stateActionPairMap.find(StateAction<S, A>(state, sampleAction))
       != _stateActionPairMap.end();
@@ -146,7 +139,6 @@ template<class S, class A>
 inline void AI::StateActionPairContainer<S, A>::setStateActionValue(
     const StateAction<S, A>& stateAction, AI::FLOAT value)
         throw (StateActionNotExistException) {
-  std::unique_lock<std::shared_timed_mutex> saLock(_stateActionPairMapMutex);
   try {
     _stateActionPairMap.at(stateAction);
   } catch (const std::out_of_range& oor) {
@@ -163,7 +155,6 @@ template<class S, class A>
 inline const AI::FLOAT& AI::StateActionPairContainer<S, A>::getStateActionValue(
     const StateAction<S, A>& stateAction) const
         throw (StateActionNotExistException) {
-  std::shared_lock<std::shared_timed_mutex> saLock(_stateActionPairMapMutex);
   try {
     return _stateActionPairMap.at(stateAction);
   } catch (const std::out_of_range& oor) {
@@ -183,14 +174,12 @@ inline const AI::FLOAT& AI::StateActionPairContainer<S, A>::operator [](
 template<class S, class A>
 inline typename map<AI::StateAction<S, A>, AI::FLOAT>::const_iterator AI::StateActionPairContainer<
     S, A>::begin() const {
-  std::shared_lock<std::shared_timed_mutex> saLock(_stateActionPairMapMutex);
   return _stateActionPairMap.begin();
 }
 
 template<class S, class A>
 inline typename map<AI::StateAction<S, A>, AI::FLOAT>::const_iterator AI::StateActionPairContainer<
     S, A>::end() const {
-  std::shared_lock<std::shared_timed_mutex> saLock(_stateActionPairMapMutex);
   return _stateActionPairMap.end();
 }
 

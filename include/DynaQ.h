@@ -11,8 +11,6 @@
 #include <cstdint>
 #include <set>
 #include <map>
-#include <thread>
-#include <mutex>
 
 #include "StateAction.h"
 #include "StateActionTransition.h"

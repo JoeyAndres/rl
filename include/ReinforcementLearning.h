@@ -12,7 +12,6 @@
 #include <set>
 #include <map>
 #include <iostream>
-#include <shared_mutex>
 
 #include "StateAction.h"
 #include "LearningAlgorithm.h"
@@ -134,11 +133,6 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
   AI::FLOAT _stepSize;
   AI::FLOAT _discountRate;
   StateActionPairContainer<S, A> _stateActionPairContainer;
-
-  mutable std::shared_timed_mutex _generalLock;  // General Lock.
-  mutable std::shared_timed_mutex _containerLock;
-  mutable std::shared_timed_mutex _stepSizeLock;
-  mutable std::shared_timed_mutex _discountRateLock;
 };
 
 template<class S, class A>
@@ -246,8 +240,6 @@ template<class S, class A>
 void ReinforcementLearning<S, A>::backUpStateActionPair(
     const StateAction<S, A>& currentStateAction, const AI::FLOAT reward,
     const StateAction<S, A>& nextStateActionPair) {
-  std::unique_lock < std::shared_timed_mutex > containerLock(_containerLock);
-
   // Next state-action value (nSAV) and current state-action value (cSAV).
   AI::FLOAT nSAV = getStateActionValue(nextStateActionPair);
   AI::FLOAT cSAV = getStateActionValue(currentStateAction);
