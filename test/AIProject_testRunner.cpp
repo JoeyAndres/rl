@@ -18,6 +18,7 @@
 #include "Sarsa_test.h"
 #include "StateActionTransition_test.h"
 #include "TileCode_test.h"
+#include "HillClimbing_test.h"
 
 int main(int argc, char** args){
   CppUnit::TextUi::TestRunner runner;
@@ -35,6 +36,7 @@ int main(int argc, char** args){
   runner.addTest(Sarsa_test::suite());
   runner.addTest(StateActionTransition_test::suite());
   runner.addTest(TileCode_test::suite());
+  runner.addTest(HillClimbing_test::suite());
   runner.run();
   return 0;
 }

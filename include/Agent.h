@@ -5,8 +5,7 @@
  *      Author: Joey Andres
  */
 
-#ifndef AGENT_H_
-#define AGENT_H_
+#pragma once
 
 #include "GlobalHeader.h"
 
@@ -195,5 +194,3 @@ template<class S, class A>
 inline AI::FLOAT AI::Agent<S, A>::getAccumulativeReward() const {
   return _accumulativeReward;
 }
-
-#endif /* AGENT_H_ */

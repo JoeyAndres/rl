@@ -80,10 +80,6 @@ void StateActionTransition_test::transitionUpdateTest(){
     }
   }
 
-  cout << endl << "Environment Changed" << endl;
-  cout << "State01 occurence count: " << state01OccurenceCount << endl;
-  cout << "State02 occurence count: " << state02OccurenceCount << endl;
-  cout << "State03 occurence count: " << state03OccurenceCount << endl;
   CPPUNIT_ASSERT(state01OccurenceCount < state02OccurenceCount);
   CPPUNIT_ASSERT(state03OccurenceCount < state02OccurenceCount);
 }
@@ -93,13 +89,13 @@ void StateActionTransition_test::transitionExceptionCatchingTest(){
   try {
     sat.getReward(AI::INT(23));
   } catch (StateActionTransitionException& exception) {
-    cout << exception.what() << endl;
+    //cout << exception.what() << endl;
   }
 
   try {
     sat.getNextState();
   } catch (StateActionTransitionException& exception) {
-    cout << exception.what() << endl;
+    //cout << exception.what() << endl;
   }
 
   sat.update(10, 100);
@@ -107,6 +103,6 @@ void StateActionTransition_test::transitionExceptionCatchingTest(){
   try {
     sat.getReward(23);
   } catch (StateActionTransitionException& exception) {
-    cout << exception.what() << endl;
+    //cout << exception.what() << endl;
   }
 }

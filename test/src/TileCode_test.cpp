@@ -37,9 +37,9 @@ void TileCode_test::basicTest(){
   TileCodeCorrect tileCode(dimensionalInfoVector, 6);
 
   FEATURE_VECTOR fv = tileCode.getFeatureVector(STATE_CONT( { -1.2, -0.07, 0 }));
-  printfv(fv);
+  //printfv(fv);
   fv = tileCode.getFeatureVector(STATE_CONT( { 0.5, 0.07, 2 }));
-  printfv(fv);  
+  //printfv(fv);  
   fv = tileCode.getFeatureVector(STATE_CONT( { 0.0, 0.00, 1 }));
-  printfv(fv);
+  //printfv(fv);
 }

@@ -68,9 +68,7 @@ void QLearningETGD_test::episodeTest(){
     mce.reset();
 
     iterationCount = agent.executeEpisode();
-    //#ifdef DEBUG_OUT
-    cout << iterationCount << endl;
-    //#endif
+
   }
 
   // We should've optimize for less than 100 iteration per episode when.

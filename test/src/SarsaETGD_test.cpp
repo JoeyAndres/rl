@@ -54,7 +54,6 @@ void SarsaETGD_test::episodeTest(){
     mce.reset();
     
     iterationCount = agent.executeEpisode();
-    //cout << iterationCount << endl;
   }
   CPPUNIT_ASSERT(iterationCount < 100);
 }
