@@ -7,7 +7,7 @@ Note: This is currently only built for Linux systems. Some threading libraries a
 
 # Compilation
 
-Dependency:
+## Dependency:
 * boost_1_55_0 or greater.  
 * g++-4.9 or greater due to utilization of -std++14 features. I'm working on replicating these features to avoid such high requirement.
 * armadillo
