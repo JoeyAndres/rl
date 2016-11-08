@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <iostream>
+#include <cmath>
 
 #include "SensorMountainCar.h"
 #include "MountainCarEnvironment.h"
@@ -18,7 +19,7 @@ SensorMountainCar::SensorMountainCar(Environment<STATE_CONT, ACTION_CONT>& env) 
 
 bool SensorMountainCar::isTerminalState(
     const STATE_CONT& stateData) const {
-  if (abs(stateData[0] - 0.50F) <= 0.01F) {
+  if (std::abs(stateData[0] - 0.50F) <= 0.01F) {
     return true;
   }
 

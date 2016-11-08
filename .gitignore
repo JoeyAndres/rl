@@ -2,7 +2,12 @@
 *.o
 *~
 *_test[^\.]
-
-# Eclipse Ignore
-RemoteSystemsTempFiles/
 build/
+
+# IDE Crap
+RemoteSystemsTempFiles/
+.settings/
+.metadata/
+.cproject
+.idea/
+.project
