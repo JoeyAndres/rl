@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(AIProject)
+project(rl)
 
 set(intrinsic "none" CACHE STRING "The possible intrinsics are the following: none, mmx, sse, sse2, sse3, sse4, sse4.1, sse4.2, sse4a, avx.")
 

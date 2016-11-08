@@ -1,5 +1,5 @@
 /**
- * AIProject_testRunner.cpp
+ * rl_testRunner.cpp
  */
 
 #include <cppunit/ui/text/TestRunner.h>

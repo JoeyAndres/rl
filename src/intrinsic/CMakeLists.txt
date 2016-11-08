@@ -1,4 +1,4 @@
-include_directories(${AIProject_SOURCE_DIR}/include)
+include_directories(${rl_SOURCE_DIR}/include)
 
 if(${intrinsic} STREQUAL "none")
   add_definitions(-DNO_INTRINSIC)
@@ -37,4 +37,4 @@ endif()
 # Sources
 file(GLOB SRC_INT_FILES "*.cpp")
 SET( CMAKE_CXX_FLAGS  ${CMAKE_CXX_FLAGS} ${INTRINSIC_FLAG} )
-add_library(aiproject2Intrinsic OBJECT ${SRC_INT_FILES})
+add_library(rlIntrinsic OBJECT ${SRC_INT_FILES})
