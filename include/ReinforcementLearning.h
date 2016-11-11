@@ -136,6 +136,18 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
 };
 
 template<class S, class A>
+std::ostream& operator<<(std::ostream& os, const ReinforcementLearning<S, A>& rl) {
+  auto stateActionPairContainer = rl.getStateActionPairContainer();
+  os << "{" << std::endl;
+  for (auto iter = stateActionPairContainer.begin(); iter != stateActionPairContainer.end(); iter++) {
+    os << "\t(" << iter->first.getState() << ", " << iter->first.getAction() << "): " << iter->second << "," << std::endl;
+  }
+  os << "}" << std::endl;
+
+  return os;
+}
+
+template<class S, class A>
 ReinforcementLearning<S, A>::ReinforcementLearning(
     AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy)
     : LearningAlgorithm<S, A>(policy) {

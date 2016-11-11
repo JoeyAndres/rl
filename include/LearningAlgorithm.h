@@ -82,12 +82,12 @@ class LearningAlgorithm {
   /**
    * @return current default action value.
    */
-  const AI::FLOAT& getDefaultStateActionValue() const;
+  AI::FLOAT getDefaultStateActionValue() const;
 
   /**
    * @param defaultStateActionValue set the default state action value.
    */
-  void setDefaultStateActionValue(const AI::FLOAT& defaultStateActionValue);
+  void setDefaultStateActionValue(AI::FLOAT defaultStateActionValue);
 
   /**
    * @param policy set the new learning policy.
@@ -156,14 +156,14 @@ void LearningAlgorithm<S, A>::reset() {
 }
 
 template<class S, class A>
-inline const AI::FLOAT& LearningAlgorithm<S, A>::getDefaultStateActionValue() const {
+inline AI::FLOAT LearningAlgorithm<S, A>::getDefaultStateActionValue() const {
   return _defaultStateActionValue;
 }
 
 template<class S, class A>
 inline void LearningAlgorithm<S, A>::setDefaultStateActionValue(
-    const AI::FLOAT& defaultStateActionValue) {
-  _defaultStateActionValue = &defaultStateActionValue;
+    AI::FLOAT defaultStateActionValue) {
+  _defaultStateActionValue = defaultStateActionValue;
 }
 
 template<class S, class A>

@@ -28,6 +28,35 @@ using std::endl;
 
 namespace AI {
 
+template<class S, class A>
+class AgentSupervised {
+ public:
+  /**
+   * @param learningAlgorithm aggregate a Learning algorithm
+   */
+  AgentSupervised(
+    ActuatorBase<S, A>& actuatorInstance,
+    Algorithm::LearningAlgorithm<S, A>& learningAlgorithm) :
+    _actuatorInstance(actuatorInstance),
+    _learningAlgorithm(learningAlgorithm) {}
+
+  /**
+   * For training (instead of control) purposes.
+   * @param state
+   * @param action
+   * @param reward
+   * @param nextState
+   */
+  virtual void train(const S& state, const A& action, FLOAT reward, const S& nextState) {
+    this->_learningAlgorithm.update(StateAction<S, A>(state, action),
+                                    nextState, reward, this->_actuatorInstance.getActionSet());
+  }
+
+ protected:
+  ActuatorBase<S, A>& _actuatorInstance;  //!< Aggregate an Actuator object.
+  Algorithm::LearningAlgorithm<S, A>& _learningAlgorithm;
+};
+
 /*! \class Agent
  *  \brief A class that represent an AI agent.
  *
@@ -47,6 +76,15 @@ class Agent {
    */
   Agent(SensorBase<S, A>& sensorInstance, ActuatorBase<S, A>& actuatorInstance,
         Algorithm::LearningAlgorithm<S, A>& learningAlgorithm);
+
+  /**
+   * For training (instead of control) purposes.
+   * @param state
+   * @param action
+   * @param reward
+   * @param nextState
+   */
+  virtual void train(const S& state, const A& action, FLOAT reward, const S& nextState);
 
   /**
    * Prepare agent prior to start execution.
@@ -112,6 +150,8 @@ class Agent {
  *
  *  Supervised Learning usually deals with multi-dimension states and action,
  *  hence the specific typedef of Agent.
+ *
+ *  TODO: Made by young me, probably under a lot of stress so above statement doesn't makes sense. Remove this crap.
  */
 template<class D = FLOAT>
 using AgentSL = Agent<vector<D>, vector<D>>;
@@ -138,6 +178,12 @@ S AI::Agent<S, A>::_getCurrentState() {
 }
 
 template<class S, class A>
+void AI::Agent<S, A>::train(const S& state, const A& action, FLOAT reward, const S& nextState) {
+  this->_learningAlgorithm.update(StateAction<S, A>(state, action),
+                            nextState, reward, this->_actuatorInstance.getActionSet());
+}
+
+template<class S, class A>
 void AI::Agent<S, A>::preExecute() {
   _currentState = std::move(_getCurrentState());
   _currentAction = std::move(_learningAlgorithm.getAction(
@@ -148,25 +194,23 @@ void AI::Agent<S, A>::preExecute() {
 
 template<class S, class A>
 void AI::Agent<S, A>::execute() {
-  _actuatorInstance.applyAction(_currentAction);
+  this->_actuatorInstance.applyAction(_currentAction);
   S nextState = std::move(_getCurrentState());
-  FLOAT reward = _sensorInstance.getLastObservedReward();
+  FLOAT reward = this->_sensorInstance.getLastObservedReward();
 
   // Accumulate reward.
-  _accumulativeReward += reward;
+  this->_accumulativeReward += reward;
 
   // Update value, e.g. perform back ups.
-  _learningAlgorithm.update(StateAction<S, A>(_currentState, _currentAction),
-                            nextState, reward,
-                            _actuatorInstance.getActionSet());
+  this->train(this->_currentState, this->_currentAction, reward, nextState);
 
   // Get the action from the algorithm.
   // Note the algorithm will retrieve from controlPolicy.
-  _currentAction = std::move(_learningAlgorithm.getAction(
-      nextState, _actuatorInstance.getActionSet()));
+  this->_currentAction = std::move(this->_learningAlgorithm.getAction(
+      nextState, this->_actuatorInstance.getActionSet()));
 
   // Update current state.
-  _currentState = nextState;
+  this->_currentState = nextState;
 }
 
 template<class S, class A>

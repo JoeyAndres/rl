@@ -1,0 +1,22 @@
+# Library/Header checks.
+find_library(ARMADILLO_LIB armadillo)
+if (ARMADILLO_LIB_NOTFOUND)
+    MESSAGE(FATAL_ERROR "armadillo library NOT found.")
+else()
+    MESSAGE(STATUS "armadillo library found.")
+endif()
+
+find_file(ARMADILLO_HEADER armadillo PATHS /usr/include)
+if (ARMADILLO_HEADER)
+    MESSAGE(STATUS "armadillo header found.")
+else()
+    MESSAGE(FATAL_ERROR "armadillo header NOT found.")
+endif()
+
+find_library(PTHREAD_LIB pthread)
+if (PTHREAD_LIB_NOTFOUND)
+    MESSAGE(FATAL_ERROR "pthread library NOT found.")
+else()
+    MESSAGE(STATUS "pthread library found.")
+endif()
+# No need to check for pthread header since this is part of the c++ standard.

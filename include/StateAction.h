@@ -72,16 +72,10 @@ class StateAction {
 };
 
 template<class S, class A>
-StateAction<S, A>::StateAction(S state, A action) {
-  _state = state;
-  _action = action;
-}
+StateAction<S, A>::StateAction(S state, A action) : _state(state), _action(action) {}
 
 template<class S, class A>
-StateAction<S, A>::StateAction(const StateAction& sa){
-  _state = sa._state;
-  _action = sa._action;
-}
+StateAction<S, A>::StateAction(const StateAction& sa) : _state(sa._state), _action(sa._action) {}
 
 template<class S, class A>
 bool StateAction<S, A>::operator<(const StateAction<S, A>& stateAction) const {

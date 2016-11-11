@@ -42,7 +42,7 @@ class SensorBase {
   /**
    * @return current state of agent in environment.
    */
-  virtual S getSensorState() const;
+  virtual const S& getSensorState() const;
 
   /**
    * @param stateData to determine if it is a terminal state.
@@ -71,7 +71,7 @@ SensorBase<S, A>::SensorBase(Environment<S, A>& env) : _env(env){
 }
 
 template<class S, class A>
-S SensorBase<S, A>::getSensorState() const{
+const S& SensorBase<S, A>::getSensorState() const{
   return _env.getLastObservedState();
 }
 

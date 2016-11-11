@@ -19,6 +19,7 @@
 #include "StateAction.h"
 #include "Observer.h"
 #include "StateActionNotExistException.h"
+#include "utility.h"
 
 using namespace std;
 
@@ -96,6 +97,11 @@ class StateActionPairContainer {
    * @return end iterator of state-action to value map.
    */
   typename map<StateAction<S, A>, AI::FLOAT>::const_iterator end() const;
+
+  /**
+   * @return A multimap in which the entry are organized by the reward (from least to greatest).
+   */
+  multimap<AI::FLOAT, StateAction<S, A>> getReverseMap() const;
 
  protected:
   map<StateAction<S, A>, AI::FLOAT> _stateActionPairMap;  //!< state-action -> value mapping.
@@ -182,6 +188,12 @@ inline typename map<AI::StateAction<S, A>, AI::FLOAT>::const_iterator AI::StateA
     S, A>::end() const {
   return _stateActionPairMap.end();
 }
+
+template<class S, class A>
+inline multimap<AI::FLOAT, AI::StateAction<S, A>> AI::StateActionPairContainer<
+  S, A>::getReverseMap() const {
+  return AI::Utility::flipMap(this->_stateActionPairMap);
+};
 
 #endif	/* STATEACTIONPAIRCONTAINER_H */
 

@@ -1,0 +1,5 @@
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    MESSAGE(STATUS "Platform ${CMAKE_SYSTEM_NAME} is supported.")
+else()
+    MESSAGE(STATUS "Platform ${CMAKE_SYSTEM_NAME} is NOT supported. This project might not compile properly.")
+endif()
