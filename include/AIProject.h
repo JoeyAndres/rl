@@ -1,3 +1,0 @@
-/**
- * AIProject.h
- */
