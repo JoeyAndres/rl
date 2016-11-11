@@ -99,6 +99,11 @@ class StateActionPairContainer {
   typename map<StateAction<S, A>, AI::FLOAT>::const_iterator end() const;
 
   /**
+   * @return The state-action pair to reward map.
+   */
+  const map<StateAction<S, A>, AI::FLOAT>& getMap() const;
+
+  /**
    * @return A multimap in which the entry are organized by the reward (from least to greatest).
    */
   multimap<AI::FLOAT, StateAction<S, A>> getReverseMap() const;
@@ -162,7 +167,6 @@ inline const AI::FLOAT& AI::StateActionPairContainer<S, A>::getStateActionValue(
   try {
     return _stateActionPairMap.at(stateAction);
   } catch (const std::out_of_range& oor) {
-    std::cerr << "Out of Range error: " << oor.what() << '\n';
     StateActionNotExistException exception(
         "State-Pair given is not yet added.");
     throw exception;
@@ -186,6 +190,12 @@ inline typename map<AI::StateAction<S, A>, AI::FLOAT>::const_iterator AI::StateA
     S, A>::end() const {
   return _stateActionPairMap.end();
 }
+
+template<class S, class A>
+inline const map<AI::StateAction<S, A>, AI::FLOAT>& AI::StateActionPairContainer<
+  S, A>::getMap() const {
+  return this->_stateActionPairMap;
+};
 
 template<class S, class A>
 inline multimap<AI::FLOAT, AI::StateAction<S, A>> AI::StateActionPairContainer<
