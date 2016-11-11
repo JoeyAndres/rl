@@ -148,9 +148,7 @@ inline void AI::StateActionPairContainer<S, A>::setStateActionValue(
   try {
     _stateActionPairMap.at(stateAction);
   } catch (const std::out_of_range& oor) {
-    std::cerr << "Out of Range error: " << oor.what() << '\n';
-    StateActionNotExistException exception(
-        "State-Pair given is not yet added.");
+    StateActionNotExistException exception("State-Pair given is not yet added.");
     throw exception;
   }
 
