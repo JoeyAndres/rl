@@ -55,11 +55,13 @@ template<class S, class A>
 void SarsaET<S, A>::update(const StateAction<S, A>& currentStateAction,
                            const S& nextState, const AI::FLOAT reward,
                            const set<A>& actionSet) {
-  ReinforcementLearning<S, A>::update(currentStateAction, nextState, reward,
-                                      actionSet);
+  A nextAction = this->getAction(nextState, actionSet);
+  ReinforcementLearning<S, A>::updateStateAction(
+    currentStateAction,
+    StateAction<S, A>(nextState, nextAction),
+    reward);
   EligibilityTraces<S, A>::_eligibilityTraces.insert(
       std::pair<StateAction<S, A>, AI::FLOAT>(currentStateAction, 0.0F));
-  A nextAction = this->getAction(nextState, actionSet);
 
   this->_updateEligibilityTraces(currentStateAction,
                                  StateAction<S, A>(nextState, nextAction),

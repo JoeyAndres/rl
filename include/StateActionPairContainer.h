@@ -48,6 +48,13 @@ class StateActionPairContainer {
                         const set<A>& actionSet);
 
   /**
+   * Adds a new state with the corresponding action.
+   * @param stateAction State and corresponding action to be added.
+   * @param value The value of the stateAction.
+   */
+  virtual void addStateAction(const StateAction<S, A>& stateAction, AI::FLOAT value);
+
+  /**
    * Adds a new action.
    * @param action
    * @param value
@@ -68,8 +75,8 @@ class StateActionPairContainer {
    * @throws StateActionNotEistException when stateAction does not exist.
    */
   virtual const AI::FLOAT& getStateActionValue(
-      const StateAction<S, A>& stateAction) const
-          throw (StateActionNotExistException);
+    const StateAction<S, A>& stateAction) const
+  throw (StateActionNotExistException);
 
   /**
    * \f$ map[stateAction] \Leftarrow value \f$.
@@ -79,14 +86,15 @@ class StateActionPairContainer {
    */
   virtual void setStateActionValue(const StateAction<S, A>& stateAction,
                                    AI::FLOAT value)
-                                       throw (StateActionNotExistException);
+  throw (StateActionNotExistException);
 
   /**
    * Access state-action value via [] operator.
    * @param stateAction StateActionPairContainer[stateAction]
    * @return StateActionPairContainer[stateAction] value.
    */
-  const AI::FLOAT& operator[](const StateAction<S, A>& stateAction) const;
+  AI::FLOAT operator[](const StateAction<S, A>& stateAction) const
+  throw (StateActionNotExistException);
 
   /**
    * @return begin iterator of state-action to value map.
@@ -121,35 +129,42 @@ void StateActionPairContainer<S, A>::addState(const S& state, AI::FLOAT value,
                                               const set<A>& actionSet) {
   for (const A& action : actionSet) {
     _stateActionPairMap.insert(
-        std::pair<StateAction<S, A>, AI::FLOAT>(
-            StateAction<S, A>(state, action), value));
+      std::pair<StateAction<S, A>, AI::FLOAT>(
+        StateAction<S, A>(state, action), value));
   }
 }
+
+template<class S, class A>
+void StateActionPairContainer<S, A>::addStateAction(const StateAction<S, A>& stateAction,
+                                                    AI::FLOAT value) {
+  this->_stateActionPairMap.insert(
+    std::pair<StateAction<S, A>, AI::FLOAT>(stateAction, value));
+};
 
 template<class S, class A>
 void StateActionPairContainer<S, A>::addAction(A& action, AI::FLOAT value,
                                                const set<S>& stateSet) {
   for (const S& state : stateSet) {
     _stateActionPairMap.insert(
-        std::pair<StateAction<S, A>, AI::FLOAT>(
-            StateAction<S, A>(state, action), value));
+      std::pair<StateAction<S, A>, AI::FLOAT>(
+        StateAction<S, A>(state, action), value));
   }
 }
 
 template<class S, class A>
 bool StateActionPairContainer<S, A>::stateInStateActionPairMap(
-    const S& state, const set<A>& actionSet) const {
+  const S& state, const set<A>& actionSet) const {
   const A& sampleAction = *(actionSet.begin());
   bool rv = _stateActionPairMap.find(StateAction<S, A>(state, sampleAction))
-      != _stateActionPairMap.end();
+    != _stateActionPairMap.end();
   return rv;
 }
 }
 
 template<class S, class A>
 inline void AI::StateActionPairContainer<S, A>::setStateActionValue(
-    const StateAction<S, A>& stateAction, AI::FLOAT value)
-        throw (StateActionNotExistException) {
+  const StateAction<S, A>& stateAction, AI::FLOAT value)
+throw (StateActionNotExistException) {
   try {
     _stateActionPairMap.at(stateAction);
   } catch (const std::out_of_range& oor) {
@@ -162,8 +177,8 @@ inline void AI::StateActionPairContainer<S, A>::setStateActionValue(
 
 template<class S, class A>
 inline const AI::FLOAT& AI::StateActionPairContainer<S, A>::getStateActionValue(
-    const StateAction<S, A>& stateAction) const
-        throw (StateActionNotExistException) {
+  const StateAction<S, A>& stateAction) const
+throw (StateActionNotExistException) {
   try {
     return _stateActionPairMap.at(stateAction);
   } catch (const std::out_of_range& oor) {
@@ -173,20 +188,21 @@ inline const AI::FLOAT& AI::StateActionPairContainer<S, A>::getStateActionValue(
 }
 
 template<class S, class A>
-inline const AI::FLOAT& AI::StateActionPairContainer<S, A>::operator [](
-    const StateAction<S, A>& stateAction) const {
+inline AI::FLOAT AI::StateActionPairContainer<S, A>::operator [](
+  const StateAction<S, A>& stateAction) const
+throw (StateActionNotExistException) {
   return getStateActionValue(stateAction);
 }
 
 template<class S, class A>
 inline typename map<AI::StateAction<S, A>, AI::FLOAT>::const_iterator AI::StateActionPairContainer<
-    S, A>::begin() const {
+  S, A>::begin() const {
   return _stateActionPairMap.begin();
 }
 
 template<class S, class A>
 inline typename map<AI::StateAction<S, A>, AI::FLOAT>::const_iterator AI::StateActionPairContainer<
-    S, A>::end() const {
+  S, A>::end() const {
   return _stateActionPairMap.end();
 }
 

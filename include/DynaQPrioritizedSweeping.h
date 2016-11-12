@@ -74,18 +74,18 @@ class DynaQPrioritizeSweeping final: public DynaQ<S, A> {
                         const StateAction<S, A>& nextStateAction);
  protected:
   priority_queue<StateActionPair, std::vector<StateActionPair>,
-      StateActionPairValueComparison<S, A> > _priorityQueue;
+                 StateActionPairValueComparison<S, A> > _priorityQueue;
   AI::FLOAT _priorityThreshold;
 };
 
 template<class S, class A>
 DynaQPrioritizeSweeping<S, A>::DynaQPrioritizeSweeping(
-    AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy,
-    AI::UINT simulationIterationCount, AI::FLOAT stateTransitionGreediness,
-    AI::FLOAT stateTransitionStepSize, AI::FLOAT priorityThreshold)
-    : DynaQ<S, A>(stepSize, discountRate, policy, simulationIterationCount,
-                  stateTransitionGreediness, stateTransitionStepSize),
-      _priorityThreshold(priorityThreshold) {
+  AI::FLOAT stepSize, AI::FLOAT discountRate, Policy::Policy<S, A>& policy,
+  AI::UINT simulationIterationCount, AI::FLOAT stateTransitionGreediness,
+  AI::FLOAT stateTransitionStepSize, AI::FLOAT priorityThreshold)
+  : DynaQ<S, A>(stepSize, discountRate, policy, simulationIterationCount,
+                stateTransitionGreediness, stateTransitionStepSize),
+    _priorityThreshold(priorityThreshold) {
 }
 
 template<class S, class A>
@@ -100,7 +100,7 @@ void DynaQPrioritizeSweeping<S, A>::_prioritySweep(const set<A>& actionSet) {
 
     // Acquire next reward from model.
     const StateActionTransition<S>& currentStateActionTransition = this->_model
-        .at(currentStateActionPair);
+      .at(currentStateActionPair);
     const S& nextState = currentStateActionTransition.getNextState();
     AI::FLOAT nextReward = currentStateActionTransition.getReward(nextState);
 
@@ -114,7 +114,7 @@ void DynaQPrioritizeSweeping<S, A>::_prioritySweep(const set<A>& actionSet) {
                                 nextStateAction);
 
     for (typename map<StateAction<S, A>, StateActionTransition<S> >::iterator iter =
-        this->_model.begin(); iter != this->_model.end(); iter++) {
+      this->_model.begin(); iter != this->_model.end(); iter++) {
       // Acquire a model(S) and look for a model(S) that transition to current(S, A).
       StateActionTransition<S>& modelStateTransition = iter->second;
       const S& modelNextState = modelStateTransition.getNextState();
@@ -126,8 +126,8 @@ void DynaQPrioritizeSweeping<S, A>::_prioritySweep(const set<A>& actionSet) {
         A nextModelAction = this->argMax(modelNextState, actionSet);
 
         AI::FLOAT temptdError = _getTDError(
-            iter->first, priorReward,
-            StateAction<S, A>(modelNextState, nextModelAction));
+          iter->first, priorReward,
+          StateAction<S, A>(modelNextState, nextModelAction));
 
         AI::FLOAT tempPriority = abs(temptdError);
         if (tempPriority > _priorityThreshold) {
@@ -140,28 +140,30 @@ void DynaQPrioritizeSweeping<S, A>::_prioritySweep(const set<A>& actionSet) {
 
 template<class S, class A>
 AI::FLOAT DynaQPrioritizeSweeping<S, A>::_getTDError(
-    const StateAction<S, A>& currentStateAction, const AI::FLOAT reward,
-    const StateAction<S, A>& nextStateAction) {
+  const StateAction<S, A>& currentStateAction, const AI::FLOAT reward,
+  const StateAction<S, A>& nextStateAction) {
   AI::FLOAT tdError = (reward
-      + this->_discountRate * this->_stateActionPairContainer[nextStateAction]
-      - this->_stateActionPairContainer[currentStateAction]);
+    + this->_discountRate * this->_stateActionPairContainer[nextStateAction]
+    - this->_stateActionPairContainer[currentStateAction]);
   return tdError;
 }
 
 template<class S, class A>
 void DynaQPrioritizeSweeping<S, A>::update(
-    const StateAction<S, A>& currentStateAction, const S& nextState,
-    const AI::FLOAT reward, const set<A>& actionSet) {
-  ReinforcementLearning<S, A>::update(currentStateAction, nextState, reward,
-                                      actionSet);
+    const StateAction<S, A>& currentStateAction,
+    const S& nextState,
+    const AI::FLOAT reward,
+    const set<A>& actionSet) {
+  A nextAction = this->argMax(nextState, actionSet);
+  auto nextStateAction = StateAction<S, A>(nextState, nextAction);
+
+  DynaQ<S, A>::update(currentStateAction, nextState, reward, actionSet);
 
   // Update model.
   this->_updateModel(currentStateAction, nextState, reward);
 
-  // Acquire A', and tdError.
-  A nextAction = this->argMax(nextState, actionSet);
-  AI::FLOAT tdError = _getTDError(currentStateAction, reward,
-                                  StateAction<S, A>(nextState, nextAction));
+  // Acquire A' and tdError.
+  AI::FLOAT tdError = _getTDError(currentStateAction, reward, nextStateAction);
 
   // Acquire priority value.
   AI::FLOAT priority = abs(tdError);

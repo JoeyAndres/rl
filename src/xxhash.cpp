@@ -61,9 +61,12 @@
 // Compiler Specific Options
 //**************************************
 // Disable some Visual warning messages
-#ifdef _MSC_VER  // Visual Studio#  pragma warning(disable : 4127)      // disable: C4127: conditional expression is constant#endif
+#ifdef _MSC_VER  // Visual Studio
+#  pragma warning(disable : 4127)      // disable: C4127: conditional expression is constant
+#endif
 
-#ifdef _MSC_VER    // Visual Studio#  define FORCE_INLINE static __forceinline
+#ifdef _MSC_VER    // Visual Studio
+#  define FORCE_INLINE static __forceinline
 #else 
 #  ifdef __GNUC__
 #    define FORCE_INLINE static inline __attribute__((always_inline))
@@ -94,7 +97,8 @@ FORCE_INLINE void* XXH_memcpy(void* dest, const void* src, size_t size) {
 //**************************************
 // Basic Types
 //**************************************
-#if defined (__STDC_VERSION__) && __STDC_VERSION__ >= 199901L   // C99# include <stdint.h>
+#if defined (__STDC_VERSION__) && __STDC_VERSION__ >= 199901L   // C99
+# include <stdint.h>
 typedef uint8_t BYTE;
 typedef uint16_t U16;
 typedef uint32_t U32;
@@ -149,7 +153,8 @@ typedef struct _U32_S {
 #  define XXH_rotl32(x,r) ((x << r) | (x >> (32 - r)))
 #endif
 
-#if defined(_MSC_VER)     // Visual Studio#  define XXH_swap32 _byteswap_ulong
+#if defined(_MSC_VER)     // Visual Studio
+#  define XXH_swap32 _byteswap_ulong
 #elif GCC_VERSION >= 403
 #  define XXH_swap32 __builtin_bswap32
 #else
@@ -175,7 +180,8 @@ typedef enum {
   XXH_bigEndian = 0,
   XXH_littleEndian = 1
 } XXH_endianess;
-#ifndef XXH_CPU_LITTLE_ENDIAN   // It is possible to define XXH_CPU_LITTLE_ENDIAN externally, for example using a compiler switchstatic const int one = 1;
+#ifndef XXH_CPU_LITTLE_ENDIAN   // It is possible to define XXH_CPU_LITTLE_ENDIAN externally, for example using a compiler switch
+static const int one = 1;
 #   define XXH_CPU_LITTLE_ENDIAN   (*(char*)(&one))
 #endif
 
@@ -356,7 +362,7 @@ FORCE_INLINE XXH_errorcode XXH32_update_endian(void* state_in,
     return XXH_OK;
   }
 
-  if (state->memsize)   // some data left from previous update
+  if (state->memsize)   // some data left from previous updateStateAction
   {
     XXH_memcpy(state->memory + state->memsize, input, 16 - state->memsize);
     {

@@ -58,12 +58,13 @@ template<class S, class A>
 void QLearning<S, A>::update(const StateAction<S, A>& currentStateAction,
                              const S& nextState, const AI::FLOAT reward,
                              const set<A>& actionSet) {
-  ReinforcementLearning<S, A>::update(currentStateAction, nextState, reward,
-                                      actionSet);
-
   // Note: this algorithm is in pg. 145 of Sutton Barto 2nd edition.
   // Q(S, A) <- Q(S, A) + α[ R + γ max a Q(S' , a) − Q(S, A)]
   A nextAction = this->getLearningAction(nextState, actionSet);
+
+  ReinforcementLearning<S, A>::updateStateAction(currentStateAction,
+                                      StateAction<S, A>(nextState, nextAction),
+                                      reward);
 
   this->backUpStateActionPair(currentStateAction, reward,
                               StateAction<S, A>(nextState, nextAction));

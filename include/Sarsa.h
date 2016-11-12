@@ -32,6 +32,8 @@ namespace RL {
 template<class S, class A>
 class Sarsa : public ReinforcementLearning<S, A> {
  public:
+  using SA = StateAction<S, A>;
+
   /**
    * @param stepSize range \f$[0.0, 1.0]\f$. High step size means faster learning, but
    * less precise convergence.
@@ -45,7 +47,7 @@ class Sarsa : public ReinforcementLearning<S, A> {
  public:
   // Inherited.
 
-  virtual void update(const StateAction<S, A>& currentStateAction,
+  virtual void update(const SA& currentStateAction,
                       const S& nextState, const AI::FLOAT reward,
                       const set<A>& actionSet);
 };
@@ -62,11 +64,9 @@ template<class S, class A>
 void Sarsa<S, A>::update(const StateAction<S, A>& currentStateAction,
                          const S& nextState, const AI::FLOAT reward,
                          const set<A>& actionSet) {
-  ReinforcementLearning<S, A>::update(currentStateAction, nextState, reward,
-                                      actionSet);
   A nextAction = this->getAction(nextState, actionSet);
-  this->backUpStateActionPair(currentStateAction, reward,
-                              StateAction<S, A>(nextState, nextAction));
+  ReinforcementLearning<S, A>::updateStateAction(currentStateAction, SA(nextState, nextAction), reward);
+  this->backUpStateActionPair(currentStateAction, reward, SA(nextState, nextAction));
 }
 
 } /* Sarsa */

@@ -14,6 +14,7 @@
 using std::set;
 
 #include "Environment.h"
+#include "ActionSet.h"
 
 namespace AI {
 
@@ -43,7 +44,7 @@ namespace AI {
  * drivers, where speed of each motor is given in pairs of two floats.
  */
 template<class S, class A>
-class ActuatorBase {
+class ActuatorBase : public ActionSet<A> {
  public:
   /**
    * no-arg constructor. Use this if action set is added later.
@@ -63,57 +64,22 @@ class ActuatorBase {
    */
   virtual void applyAction(const A& action);
 
-  /**
-   * @return set of actions.
-   */
-  const set<A>& getActionSet() const;
-
-  /**
-   * @param data A to be added.
-   */
-  void addAction(const A& data);
-
-  /**
-   * @param dataSet replace the action set with a new one.
-   */
-  void setActionSet(set<A> dataSet);
  private:
-  set<A> _actionData;  //!< A set of possible action to be applied to
-                       //!< the environment.
   Environment<S, A>& _env; //!< Aggregate environment.
 };
 
 typedef ActuatorBase<STATE_CONT, ACTION_CONT> ActuatorSL;
 
 template<class S, class A>
-AI::ActuatorBase<S, A>::ActuatorBase(Environment<S, A>& env) :
-    _env(env){
-}
+AI::ActuatorBase<S, A>::ActuatorBase(Environment<S, A>& env) : _env(env){}
 
 template<class S, class A>
 AI::ActuatorBase<S, A>::ActuatorBase(Environment<S, A>& env, set<A> dataSet) :
-    _env(env){
-  _actionData = dataSet;
-}
+    ActionSet<A>(dataSet), _env(env) {}
 
 template<class S, class A>
 void AI::ActuatorBase<S, A>::applyAction(const A& action){
   _env.applyAction(action);
-}
-
-template<class S, class A>
-void AI::ActuatorBase<S, A>::addAction(const A& data) {
-  _actionData.insert(data);
-}
-
-template<class S, class A>
-const set<A>& AI::ActuatorBase<S, A>::getActionSet() const {
-  return _actionData;
-}
-
-template<class S, class A>
-void AI::ActuatorBase<S, A>::setActionSet(set<A> dataSet) {
-  _actionData = dataSet;
 }
 
 } /* namespace AI */

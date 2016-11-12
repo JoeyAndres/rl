@@ -40,14 +40,13 @@ class LearningAlgorithm {
 
   /**
    * Update the stateAction map.
-   * @param currentState currentState agent is in.
-   * @param currentAction action taken by agent by being in currentState.
-   * @param nextState nextState by taking currentAction in currentState.
-   * @param reward reward of currentStateAction.
-   * @param actionSet A set of all actions.
+   * @param currentStateAction Current state-action pair.
+   * @param nextState Next state
+   * @param reward Reward for the transition from current-state action to next state-action.
    */
   virtual void update(const StateAction<S, A>& currentStateAction,
-                      const S& nextState, const AI::FLOAT reward,
+                      const S& nextState,
+                      const AI::FLOAT reward,
                       const set<A>& actionSet) = 0;
 
   /**

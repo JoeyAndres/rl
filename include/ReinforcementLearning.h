@@ -120,10 +120,9 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
 
  public:
   // Inherited.
-
-  virtual void update(const StateAction<S, A>& currentStateAction,
-                      const S& nextState, const AI::FLOAT reward,
-                      const set<A>& actionSet);
+  virtual void updateStateAction(const StateAction <S, A> &currentStateAction,
+                                 const StateAction <S, A> &nextStateAction,
+                                 const AI::FLOAT reward);
   virtual A getAction(const S& currentState, const set<A>& actionSet);
 
  protected:
@@ -159,11 +158,22 @@ template<class S, class A>
 A ReinforcementLearning<S, A>::argMax(
     const S& state, const set<A>& actionSet) const {
   A greedAct = *(actionSet.begin());
-  AI::FLOAT currentValue = this->_stateActionPairContainer[StateAction<S, A>(
-      state, greedAct)];
+
+  AI::FLOAT currentValue = this->_defaultStateActionValue;
+  try {
+    currentValue = this->_stateActionPairContainer[{state, greedAct}];
+  } catch (StateActionNotExistException& e) {
+    // Do nothing. We already assign it the default state-action value.
+  }
+
   for (const A& action : actionSet) {
-    AI::FLOAT value = this->_stateActionPairContainer[StateAction<S, A>(state,
-                                                                        action)];
+    AI::FLOAT value = this->_defaultStateActionValue;
+    try {
+      value = this->_stateActionPairContainer[StateAction<S, A>(state, action)];
+    } catch (StateActionNotExistException& e) {
+      // Do nothing. We already assign it the default state-action value.
+    }
+
     if (currentValue < value) {
       currentValue = value;
       greedAct = action;
@@ -263,15 +273,14 @@ void ReinforcementLearning<S, A>::backUpStateActionPair(
 }
 
 template<class S, class A>
-void ReinforcementLearning<S, A>::update(
-    const StateAction<S, A>& currentStateAction, const S& nextState,
-    const AI::FLOAT reward, const set<A>& actionSet) {
+void ReinforcementLearning<S, A>::updateStateAction(
+  const StateAction <S, A> &currentStateAction,
+  const StateAction <S, A> &nextStateAction,
+  const AI::FLOAT reward) {
   (void) reward;
-  _stateActionPairContainer.addState(currentStateAction.getState(),
-                                     this->_defaultStateActionValue, actionSet);
-  _stateActionPairContainer.addState(nextState, this->_defaultStateActionValue,
-                                     actionSet);
-}
+  _stateActionPairContainer.addStateAction(currentStateAction, this->_defaultStateActionValue);
+  _stateActionPairContainer.addStateAction(nextStateAction, this->_defaultStateActionValue);
+};
 
 } /* namespace RL */
 } /* namespace Algorithm */

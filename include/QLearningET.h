@@ -51,11 +51,13 @@ template<class S, class A>
 void QLearningET<S, A>::update(const StateAction<S, A>& currentStateAction,
                                const S& nextState, const AI::FLOAT reward,
                                const set<A>& actionSet) {
-  ReinforcementLearning<S, A>::update(currentStateAction, nextState, reward,
-                                      actionSet);
-  EligibilityTraces<S, A>::_eligibilityTraces.insert(
-      std::pair<StateAction<S, A>, AI::FLOAT>(currentStateAction, 0.0F));
   A nextAction = this->getLearningAction(nextState, actionSet);
+  ReinforcementLearning<S, A>::updateStateAction(
+    currentStateAction,
+    StateAction<S, A>(nextState, nextAction),
+    reward);
+  EligibilityTraces<S, A>::_eligibilityTraces.insert(
+    std::pair<StateAction<S, A>, AI::FLOAT>(currentStateAction, 0.0F));
 
   this->_updateEligibilityTraces(currentStateAction,
                                  StateAction<S, A>(nextState, nextAction),
@@ -66,8 +68,8 @@ void QLearningET<S, A>::update(const StateAction<S, A>& currentStateAction,
 template<class S, class A>
 QLearningET<S, A>::QLearningET(AI::FLOAT stepSize, AI::FLOAT discountRate,
                                Policy::Policy<S, A>& policy, AI::FLOAT lambda)
-    : EligibilityTraces<S, A>(lambda),
-      QLearning<S, A>(stepSize, discountRate, policy) {
+  : EligibilityTraces<S, A>(lambda),
+    QLearning<S, A>(stepSize, discountRate, policy) {
 }
 
 } // namespace RL

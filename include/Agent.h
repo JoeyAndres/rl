@@ -21,13 +21,19 @@
 #include "SensorBase.h"
 #include "StateActionPairContainer.h"
 
-using std::vector;
-using std::map;
-using std::cout;
-using std::endl;
+using namespace std;
 
 namespace AI {
 
+/*! \class AgentSupervised
+ *  \brief A class that represent an AI agent for suprvised learning.
+ *
+ *  Supervised learning agent don't interact with the enivornment, but
+ *  only takes data from the environment.
+ *
+ *  \tparam S State data type.
+ *  \tparam A Action data type.
+ */
 template<class S, class A>
 class AgentSupervised {
  public:
@@ -35,9 +41,9 @@ class AgentSupervised {
    * @param learningAlgorithm aggregate a Learning algorithm
    */
   AgentSupervised(
-    ActuatorBase<S, A>& actuatorInstance,
+    ActionSet<A>& actionSet,
     Algorithm::LearningAlgorithm<S, A>& learningAlgorithm) :
-    _actuatorInstance(actuatorInstance),
+    _actionSet(actionSet),
     _learningAlgorithm(learningAlgorithm) {}
 
   /**
@@ -49,11 +55,13 @@ class AgentSupervised {
    */
   virtual void train(const S& state, const A& action, FLOAT reward, const S& nextState) {
     this->_learningAlgorithm.update(StateAction<S, A>(state, action),
-                                    nextState, reward, this->_actuatorInstance.getActionSet());
+                                    nextState,
+                                    reward,
+                                    this->_actionSet.getActionSet());
   }
 
  protected:
-  ActuatorBase<S, A>& _actuatorInstance;  //!< Aggregate an Actuator object.
+  ActionSet<A>& _actionSet;  //!< Aggregate an Actuator object.
   Algorithm::LearningAlgorithm<S, A>& _learningAlgorithm;
 };
 
@@ -74,7 +82,8 @@ class Agent {
    * @param actuatorInstance aggregate an actuator object.
    * @param learningAlgorithm aggregate a Learning algorithm
    */
-  Agent(SensorBase<S, A>& sensorInstance, ActuatorBase<S, A>& actuatorInstance,
+  Agent(SensorBase<S, A>& sensorInstance,
+        ActuatorBase<S, A>& actuatorInstance,
         Algorithm::LearningAlgorithm<S, A>& learningAlgorithm);
 
   /**
@@ -179,8 +188,11 @@ S AI::Agent<S, A>::_getCurrentState() {
 
 template<class S, class A>
 void AI::Agent<S, A>::train(const S& state, const A& action, FLOAT reward, const S& nextState) {
-  this->_learningAlgorithm.update(StateAction<S, A>(state, action),
-                            nextState, reward, this->_actuatorInstance.getActionSet());
+  this->_learningAlgorithm.update(
+    StateAction<S, A>(state, action),
+    nextState,
+    reward,
+    this->_actuatorInstance.getActionSet());
 }
 
 template<class S, class A>

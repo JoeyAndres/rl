@@ -51,26 +51,32 @@ class DynaQ : public DynaQRLMP<S, A> {
         AI::FLOAT stateTransitionGreediness, AI::FLOAT stateTransitionStepSize);
 
   virtual void update(const StateAction<S, A>& currentStateAction,
-                      const S& nextState, const FLOAT reward,
+                      const S& nextState,
+                      const FLOAT reward,
                       const set<A>& actionSet) override;
 };
 
 template<class S, class A>
 DynaQ<S, A>::DynaQ(AI::FLOAT stepSize, AI::FLOAT discountRate,
-                                  Policy::Policy<S, A>& policy,
-                                  AI::UINT simulationIterationCount,
-                                  AI::FLOAT stateTransitionGreediness,
-                                  AI::FLOAT stateTransitionStepSize)
-    : DynaQRLMP<S, A>(stepSize, discountRate, policy, simulationIterationCount,
-                      stateTransitionGreediness, stateTransitionStepSize) {
+                   Policy::Policy<S, A>& policy,
+                   AI::UINT simulationIterationCount,
+                   AI::FLOAT stateTransitionGreediness,
+                   AI::FLOAT stateTransitionStepSize)
+  : DynaQRLMP<S, A>(stepSize, discountRate, policy, simulationIterationCount,
+                    stateTransitionGreediness, stateTransitionStepSize) {
 }
 
 template<class S, class A>
 void AI::Algorithm::RL::DynaQ<S, A>::update(
-    const StateAction<S, A>& currentStateAction, const S& nextState,
-    const FLOAT reward, const set<A>& actionSet) {
-  DynaQRLMP<S, A>::update(currentStateAction, nextState, reward, actionSet);
+  const StateAction<S, A>& currentStateAction,
+  const S& nextState,
+  const FLOAT reward,
+  const set<A>& actionSet) {
   A nextAction = this->getLearningAction(nextState, actionSet);
+  DynaQRLMP<S, A>::updateStateAction(
+    currentStateAction,
+    StateAction<S, A>(nextState, nextAction),
+    reward);
   this->backUpStateActionPair(currentStateAction, reward,
                               StateAction<S, A>(nextState, nextAction));
 
