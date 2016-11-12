@@ -2,7 +2,7 @@
  * RandomWalkEnvironment.cpp
  */
 
-#include "RandomWalkEnvironment.h"
+#include "../include/RandomWalkEnvironment.h"
 
 namespace AI {
 

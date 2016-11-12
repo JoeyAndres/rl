@@ -1,6 +1,11 @@
-include_directories(${rl_SOURCE_DIR}/test/include)
+include_directories(${CMAKE_SOURCE_DIR}/test/lib)
+include_directories(${CMAKE_SOURCE_DIR}/test/helper/include)
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
-add_subdirectory(src)
+add_subdirectory(helper)
 
-add_executable(testExecutable rl_testRunner.cpp)
-target_link_libraries(testExecutable cppunit rlTest)
+# We can't have "add_subdirectory(src)" since catch.hp requires everything to be compiled with each other, not linked.
+file(GLOB SRC_TEST_FILES "src/*.cpp")
+
+add_executable(testRunner testRunner.cpp ${SRC_TEST_FILES})
+target_link_libraries(testRunner rlTestHelper)

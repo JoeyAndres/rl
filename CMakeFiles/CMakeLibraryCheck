@@ -1,19 +1,5 @@
 # Library/Header checks.
 
-# Armadillo for linear-algebra math stuff.
-find_library(ARMADILLO_LIB armadillo)
-if (ARMADILLO_LIB_NOTFOUND)
-    MESSAGE(FATAL_ERROR "armadillo library NOT found.")
-else()
-    MESSAGE(STATUS "armadillo library found.")
-endif()
-find_file(ARMADILLO_HEADER armadillo PATHS /usr/include)
-if (ARMADILLO_HEADER)
-    MESSAGE(STATUS "armadillo header found.")
-else()
-    MESSAGE(FATAL_ERROR "armadillo header NOT found.")
-endif()
-
 # pthread - for multithreading.
 find_library(PTHREAD_LIB pthread)
 if (PTHREAD_LIB_NOTFOUND)
@@ -22,17 +8,3 @@ else()
     MESSAGE(STATUS "pthread library found.")
 endif()
 # No need to check for pthread header since this is part of the c++ standard.
-
-# cppunit - For testing.
-find_library(CPPUNIT_LIB cppunit)
-if (CPPUNIT_LIB_NOTFOUND)
-    MESSAGE(FATAL_ERROR "cppunit library NOT found.")
-else()
-    MESSAGE(STATUS "cppunit library found.")
-endif()
-find_path(CPPUNIT_HEADER cppunit PATHS /usr/include)
-if (CPPUNIT_HEADER)
-    MESSAGE(STATUS "cppunit headers found.")
-else()
-    MESSAGE(FATAL_ERROR "cppunit headers NOT found.")
-endif()

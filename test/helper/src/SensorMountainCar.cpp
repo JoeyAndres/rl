@@ -6,8 +6,8 @@
 #include <iostream>
 #include <cmath>
 
-#include "SensorMountainCar.h"
-#include "MountainCarEnvironment.h"
+#include "../include/SensorMountainCar.h"
+#include "../include/MountainCarEnvironment.h"
 
 using namespace std;
 

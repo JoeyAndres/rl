@@ -11,12 +11,10 @@ Some threading libraries are linux specific (even the latest c++ standard which 
 
 ### Dependency:
 * g++-4.9 or greater.
-* armadillo
-* cppunit
 
 ### Installing dependencies Ubuntu:
 
-`sudo apt install libarmadillo-dev libcppunit-dev g++`
+`sudo apt install g++`
 
 ### Building 
 1. `mkdir build`

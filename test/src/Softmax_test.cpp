@@ -5,18 +5,17 @@
 #include <map>
 #include <iostream>
 #include <set>
-#include <cppunit/TestAssert.h>
 
-#include "Softmax_test.h"
 #include "Softmax.h"
-#include "StateAction.h"
-#include "StateAction.h"
+
+#include "catch.hpp"
 
 using namespace AI;
 using namespace AI::Algorithm;
 using namespace std;
 
-void Softmax_test::episodeTest(){
+SCENARIO("Softmax action selection probability increases as the value of the action increases.",
+         "[AI::Policy::Softmax]") {
   Policy::Softmax<AI::INT, AI::INT> policy(0.9F);
 
   AI::INT dummyState(1);
@@ -30,40 +29,39 @@ void Softmax_test::episodeTest(){
   actionSet.insert(action03);
   actionSet.insert(action04);
 
+  using StateActionII = StateAction<AI::INT, AI::INT>;
+
   map<StateAction<AI::INT, AI::INT>, AI::FLOAT> stateActionPairValueMap;
-  stateActionPairValueMap[StateAction<AI::INT, AI::INT>(dummyState, action01)] =
-      1.0F;
-  stateActionPairValueMap[StateAction<AI::INT, AI::INT>(dummyState, action02)] =
-      2.0F;
-  stateActionPairValueMap[StateAction<AI::INT, AI::INT>(dummyState, action03)] =
-      -1.0F;
-  stateActionPairValueMap[StateAction<AI::INT, AI::INT>(dummyState, action04)] =
-      2.2F;
+  stateActionPairValueMap[StateActionII(dummyState, action01)] = 1.0F;
+  stateActionPairValueMap[StateActionII(dummyState, action02)] = 2.0F;
+  stateActionPairValueMap[StateActionII(dummyState, action03)] = -1.0F;
+  stateActionPairValueMap[StateActionII(dummyState, action04)] = 2.2F;
 
-  map<AI::INT, AI::FLOAT> actionValueMap;
-  for (const AI::INT& action : actionSet) {
-    actionValueMap[action] = stateActionPairValueMap.at(
-        StateAction<AI::INT, AI::INT>(dummyState, action));
-  }
-
-  AI::UINT action01Ctr(0), action02Ctr(0), action03Ctr(0), action04Ctr(0);
-  for (AI::INT i = 0; i < 1000; i++) {
-    AI::INT action = policy.getAction(actionValueMap, actionSet);
-
-    if (action == action01) {
-      action01Ctr++;
-    } else if (action == action02) {
-      action02Ctr++;
-    } else if (action == action03) {
-      action03Ctr++;
-    } else if (action == action04) {
-      action04Ctr++;
-    } else {
-      assert(false);
+  GIVEN("The following action-value map") {
+    map<AI::INT, AI::FLOAT> actionValueMap;
+    for (const AI::INT &action : actionSet) {
+      actionValueMap[action] = stateActionPairValueMap.at(StateActionII(dummyState, action));
     }
-  }
 
-  CPPUNIT_ASSERT(action01Ctr > action03Ctr);
-  CPPUNIT_ASSERT(action02Ctr > action01Ctr);
-  CPPUNIT_ASSERT(action04Ctr > action02Ctr);
+    AI::UINT action01Ctr(0), action02Ctr(0), action03Ctr(0), action04Ctr(0);
+    for (AI::INT i = 0; i < 1000; i++) {
+      AI::INT action = policy.getAction(actionValueMap, actionSet);
+
+      if (action == action01) {
+        action01Ctr++;
+      } else if (action == action02) {
+        action02Ctr++;
+      } else if (action == action03) {
+        action03Ctr++;
+      } else if (action == action04) {
+        action04Ctr++;
+      } else {
+        assert(false);
+      }
+    }
+
+    REQUIRE(action01Ctr > action03Ctr);
+    REQUIRE(action02Ctr > action01Ctr);
+    REQUIRE(action04Ctr > action02Ctr);
+  }
 }

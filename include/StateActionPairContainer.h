@@ -167,8 +167,7 @@ inline const AI::FLOAT& AI::StateActionPairContainer<S, A>::getStateActionValue(
   try {
     return _stateActionPairMap.at(stateAction);
   } catch (const std::out_of_range& oor) {
-    StateActionNotExistException exception(
-        "State-Pair given is not yet added.");
+    StateActionNotExistException exception("State-Pair given is not yet added.");
     throw exception;
   }
 }

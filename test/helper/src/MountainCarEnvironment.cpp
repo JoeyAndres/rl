@@ -6,7 +6,7 @@
 #include <cmath>
 #include <iostream>
 
-#include "MountainCarEnvironment.h"
+#include "../include/MountainCarEnvironment.h"
 
 using namespace std;
 
