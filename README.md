@@ -1,6 +1,8 @@
 rl
 ===========
 
+[![Build Status](http://ci.joeyandres.com/view/rl-tests/job/rl-full-unit-tests/badge/icon)](http://ci.joeyandres.com/view/rl-tests/job/rl-full-unit-tests/)
+
 Modularized various Reinforcement Learning Algorithm library. 
 See test/include and test/src for examples.
 
