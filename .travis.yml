@@ -1,0 +1,17 @@
+language: cpp
+sudo: required
+dist: xenial
+compiler:
+- gcc
+os:
+- linux
+# - osx
+before_install:
+- if [ $TRAVIS_OS_NAME == linux ]; then ./scripts/dependencies.sh; fi
+before_script:
+- if [ $TRAVIS_OS_NAME == linux ]; then ./scripts/cmake.sh; fi
+script: cd build/ && make -j16 && ./test/testRunner
+branches:
+  only:
+  - master
+  - "/^v\\d+\\.\\d+\\.\\d+(?:-(?:alpha|beta)\\.\\d+)?/"
