@@ -29,6 +29,7 @@ FEATURE_VECTOR TileCodeCorrect::getFeatureVector(
     }
 
     hashedIndex += mult * i;
+    assert(hashedIndex <= this->_sizeCache /* Size cache exceeded. Illegal feature vector value. */);
     fv[i] = hashedIndex;
   }
   return fv;
