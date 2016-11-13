@@ -15,3 +15,4 @@ branches:
   only:
   - master
   - "/^v(?:\\d+|x)\\.(?:\\d+|x)\\.(?:\\d+|x)(?:-(?:alpha|beta)\\.\\d+)?/"
+  - "/^wip-RL-\\d+/"

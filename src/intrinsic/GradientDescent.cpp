@@ -173,32 +173,35 @@ FEATURE_VECTOR GradientDescent::getFeatureVector(const vector<FLOAT>& parameters
 }
 
 void GradientDescent::buildActionValues(
-    const set<ACTION_CONT >& actionSet, const vector<FLOAT>& param,
+    const set<ACTION_CONT >& actionSet, const vector<FLOAT>& nextState,
     map<ACTION_CONT, FLOAT>& actionVectorValueMap, ACTION_CONT& actions) const {
-  set<ACTION_CONT>::const_iterator maxIter = actionSet.begin();
-  vector<FLOAT> pc;
-  pc.reserve(param.size() + (*maxIter).size());
-  pc.insert(pc.end(), param.begin(), param.end());
-  pc.insert(pc.end(), (*maxIter).begin(), (*maxIter).end());
-  FLOAT maxVal = getValueFromParameters(pc);
-  actionVectorValueMap[*maxIter] = maxVal;
+  set<ACTION_CONT>::const_iterator maxActionIter = actionSet.begin();
 
-  set<ACTION_CONT>::const_iterator iter = maxIter;
+  // Build pc = <state1, ..., action1, ...> array.
+  vector<FLOAT> pc;
+  pc.reserve(nextState.size() + (*maxActionIter).size());
+  pc.insert(pc.end(), nextState.begin(), nextState.end());
+  pc.insert(pc.end(), (*maxActionIter).begin(), (*maxActionIter).end());
+
+  FLOAT maxVal = getValueFromParameters(pc);
+  actionVectorValueMap[*maxActionIter] = maxVal;
+
+  set<ACTION_CONT>::const_iterator iter = maxActionIter;
   iter++;
   for (;  iter != actionSet.end(); ++iter) {
     vector<FLOAT> paramCopy;
-    paramCopy.reserve(param.size() + (*iter).size());
-    paramCopy.insert(paramCopy.end(), param.begin(), param.end());
+    paramCopy.reserve(nextState.size() + (*iter).size());
+    paramCopy.insert(paramCopy.end(), nextState.begin(), nextState.end());
     paramCopy.insert(paramCopy.end(), (*iter).begin(), (*iter).end());
     
     FLOAT value = getValueFromParameters(paramCopy);
     actionVectorValueMap[*iter] = value;
     if(maxVal < value){
       maxVal = value;
-      maxIter = iter;
+      maxActionIter = iter;
     }
   }
-  actions = *maxIter;
+  actions = *maxActionIter;
 }
 
 void GradientDescent::resetEligibilityTraces() {
