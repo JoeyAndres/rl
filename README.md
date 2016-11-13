@@ -1,7 +1,7 @@
 rl
 ===========
 
-[![Build Status](http://ci.joeyandres.com/view/rl-tests/job/rl-full-unit-tests/badge/icon)](http://ci.joeyandres.com/view/rl-tests/job/rl-full-unit-tests/)
+[![Build Status](https://travis-ci.org/JoeyAndres/rl.svg?branch=master)](https://travis-ci.org/JoeyAndres/rl)
 
 Modularized various Reinforcement Learning Algorithm library. 
 See test/include and test/src for examples.
