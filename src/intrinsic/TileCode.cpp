@@ -70,10 +70,15 @@ size_t TileCode::_calculateSizeCache() {
 
 size_t TileCode::_paramToGridValue(
     AI::FLOAT param, size_t tilingIndex, size_t dimensionIndex) {
-  return ((param +
-           _randomOffsets[tilingIndex][dimensionIndex] * this->_dimensionalInfos[dimensionIndex].getGeneralizationScale() -
-           this->_dimensionalInfos[dimensionIndex].getLowerBound()) * this->_dimensionalInfos[dimensionIndex].GetGridCountIdeal())
-           / this->_dimensionalInfos[dimensionIndex].GetRangeDifference();
+  auto randomOffset = _randomOffsets[tilingIndex][dimensionIndex];
+  auto dimGeneraliztionScale = this->_dimensionalInfos[dimensionIndex].getGeneralizationScale();
+  auto dimLowerBound = this->_dimensionalInfos[dimensionIndex].getLowerBound();
+  auto dimGridCountIdeal = this->_dimensionalInfos[dimensionIndex].GetGridCountIdeal();
+  auto dimRangeMagnitude = this->_dimensionalInfos[dimensionIndex].GetRangeDifference();
+
+  return (
+    (param + randomOffset * dimGeneraliztionScale - dimLowerBound) * dimGridCountIdeal
+  ) / dimRangeMagnitude;
 }
 
 }  // namespace SL

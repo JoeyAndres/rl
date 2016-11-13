@@ -7,7 +7,7 @@
 #ifndef _GRADIENT_DESCENT_H_
 #define _GRADIENT_DESCENT_H_
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <set>
 #include <map>

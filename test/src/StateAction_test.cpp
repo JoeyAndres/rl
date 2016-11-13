@@ -2,7 +2,7 @@
  * StateAction_test.cpp
  */
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include "catch.hpp"
 

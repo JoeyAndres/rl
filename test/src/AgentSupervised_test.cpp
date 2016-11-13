@@ -2,7 +2,7 @@
 // Created by jandres on 12/11/16.
 //
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include "Agent.h"
 #include "EpsilonGreedy.h"

@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <map>
 #include <set>

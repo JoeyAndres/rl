@@ -8,7 +8,7 @@
 #ifndef DIMENSIONINFO_H
 #define	DIMENSIONINFO_H
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <map>
 #include <cmath>

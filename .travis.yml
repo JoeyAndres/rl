@@ -2,7 +2,8 @@ language: cpp
 sudo: required
 dist: xenial
 compiler:
-- gcc
+- g++
+- clang
 os:
 - linux
 - osx

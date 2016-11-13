@@ -8,7 +8,7 @@
 #ifndef EPSILONGREEDY_H
 #define	EPSILONGREEDY_H
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <random>
 #include <iostream>

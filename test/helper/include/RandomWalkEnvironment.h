@@ -8,7 +8,7 @@
 #ifndef RANDOMWALKENVIRONMENT_H_
 #define RANDOMWALKENVIRONMENT_H_
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <map>
 

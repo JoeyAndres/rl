@@ -8,7 +8,7 @@
 #ifndef DYNAQPRIORITIZEDSWEEPING_H
 #define	DYNAQPRIORITIZEDSWEEPING_H
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <cstdint>
 #include <set>

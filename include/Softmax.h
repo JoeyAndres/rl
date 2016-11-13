@@ -8,7 +8,7 @@
 #ifndef SOFTMAX_H
 #define	SOFTMAX_H
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <cmath>
 #include <random>

@@ -8,7 +8,7 @@
 #ifndef POLICY_H
 #define	POLICY_H
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <map>
 #include <vector>

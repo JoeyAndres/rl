@@ -5,7 +5,7 @@
  *      Author: jandres
  */
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <iostream>
 

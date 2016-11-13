@@ -8,7 +8,7 @@
 #ifndef SENSORMOUNTAINCAR_H_
 #define SENSORMOUNTAINCAR_H_
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <vector>
 

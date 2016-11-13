@@ -8,7 +8,7 @@
 #ifndef HASHUNH_H_
 #define HASHUNH_H_
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <cstdint>
 #include <vector>

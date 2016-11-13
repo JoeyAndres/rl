@@ -9,8 +9,13 @@ Some threading libraries are linux specific (even the latest c++ standard which 
 
 # Compilation and Installation
 
+### Caveat
+**rl** have some minor _double precision floating point_ issues in older compilers and os.
+The mountain car problem in test won't converge to a an optimal solution in osx and
+old g++ compiler (e.g. g++ 4.2.1). For optimal performance, use linux and new g++ compiler.
+
 ### Dependency:
-* g++-4.9 or greater.
+* g++-4.9 or greater or clang.
 
 ### Installing dependencies Ubuntu:
 
@@ -107,4 +112,3 @@ SCENARIO("Supervised agent develop an accurate model of the environment.",
 
 As observed, prediction problem, since the agent don't have to interact with the environment,
 but just takes intput. It looks way simpler.
-

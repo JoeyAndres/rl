@@ -8,7 +8,7 @@
 #ifndef SARSAETGD_H
 #define	SARSAETGD_H
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <vector>
 #include <map>

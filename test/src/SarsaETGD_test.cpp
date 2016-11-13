@@ -2,7 +2,7 @@
  * SarsaETGD_test.cpp
  */
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <vector>
 #include <iostream>
@@ -35,14 +35,14 @@ SCENARIO("Sarsa Eligibility Traces and Gradient Descent converge to a solution",
 "[Algorithm::RL::SarsaETGD]") {
   GIVEN("A Mountain Car environment") {
     vector<DimensionInfo<AI::FLOAT> > dimensionalInfoVector = {
-      DimensionInfo<AI::FLOAT>(-1.2F, 0.5F, 7),
-      DimensionInfo<AI::FLOAT>(-0.07F, 0.07F, 7),
+      DimensionInfo<AI::FLOAT>(-1.2F, 0.5F, 10),
+      DimensionInfo<AI::FLOAT>(-0.07F, 0.07F, 10),
       DimensionInfo<AI::FLOAT>(0.0F, 2.0F, 3, 0.0F),
     };
 
-    TileCodeCorrect tileCode(dimensionalInfoVector, 8);
+    TileCodeCorrect tileCode(dimensionalInfoVector, 10);
     Policy::EpsilonGreedySL policy(1.0F);
-    SarsaETGD sarsa(tileCode, 0.1F, 1.0F, 0.70F, policy);
+    SarsaETGD sarsa(tileCode, 0.1F, 1.0F, 0.9F, policy);
     MountainCarEnvironment mce;
     SensorMountainCar smc(mce);
     ActuatorBase<AI::STATE_CONT, AI::ACTION_CONT> amc(mce);

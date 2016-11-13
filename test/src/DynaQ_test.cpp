@@ -2,7 +2,7 @@
  * DynaQ_test.cpp
  */
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <iostream>
 

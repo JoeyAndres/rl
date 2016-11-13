@@ -12,7 +12,7 @@
 #include <set>
 #include <algorithm>
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include "StateNotExistException.h"
 #include "Environment.h"

@@ -8,7 +8,7 @@
 #ifndef STATEACTIONPAIRCONTAINER_H
 #define	STATEACTIONPAIRCONTAINER_H
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <map>
 #include <set>

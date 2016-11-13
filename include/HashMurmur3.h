@@ -8,7 +8,7 @@
 #ifndef HASH_H_
 #define HASH_H_
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <cstdint>
 #include <vector>

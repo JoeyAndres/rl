@@ -8,7 +8,7 @@
 #ifndef MOUNTAINCARENVIRONMENT_H_
 #define MOUNTAINCARENVIRONMENT_H_
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <vector>
 

@@ -2,7 +2,7 @@
  * Sarsa_test.cpp
  */
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <vector>
 #include <iostream>
@@ -42,13 +42,13 @@ SCENARIO("Q-learning Eligibility Traces and Gradient Descent converge to a solut
 
     // Now that we have the domain information, we feed these to TileCode* object
     // to create a multi-dimensional grid.
-    TileCodeCorrect tileCode(dimensionalInfoVector, 8);
+    TileCodeCorrect tileCode(dimensionalInfoVector, 10);
 
     // We will be using the greedy policy for both offline and online policy.
     Policy::EpsilonGreedySL policy(1.0F);
 
     // We will be using Q-Learning Gradient Descent for learning algorithm.
-    QLearningETGD qLearning(tileCode, 0.1F, 1.0F, 0.9F, policy);
+    QLearningETGD qLearning(tileCode, 0.05F, 1.0F, 0.9F, policy);
 
     // Instantiate the environment that represent that represent our environment.
     MountainCarEnvironment mce;
@@ -68,7 +68,7 @@ SCENARIO("Q-learning Eligibility Traces and Gradient Descent converge to a solut
 
     WHEN("We do multiple episodes") {
       AI::INT iterationCount = 0;
-      for (AI::INT i = 0; i < 100; i++) {
+      for (AI::INT i = 0; i < 1000; i++) {
         mce.reset();
 
         iterationCount = agent.executeEpisode();

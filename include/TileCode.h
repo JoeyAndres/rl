@@ -8,7 +8,7 @@
 #ifndef _TILE_CODE_H_
 #define _TILE_CODE_H_
 
-#include "GlobalHeader.h"  // Removes assertions.
+#include "declares.h"
 
 #include <cstdint>
 #include <random>

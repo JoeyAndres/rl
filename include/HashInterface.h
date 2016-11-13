@@ -12,7 +12,7 @@
 #include <cstdint>
 #include <vector>
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 using std::vector;
 

@@ -2,7 +2,7 @@
  * DynaQETWatkins_test.cpp
  */
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <vector>
 #include <iostream>

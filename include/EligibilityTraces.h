@@ -8,7 +8,7 @@
 #ifndef REINFORCEMENTLEARNINGET_H
 #define	REINFORCEMENTLEARNINGET_H
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <map>
 

@@ -8,7 +8,7 @@
 #ifndef STATEACTIONPAIRVALUECOMPARISON_H
 #define	STATEACTIONPAIRVALUECOMPARISON_H
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <map>
 

@@ -8,7 +8,7 @@
 #ifndef INCLUDE_ENVIRONMENT_H_
 #define INCLUDE_ENVIRONMENT_H_
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 namespace AI {
 

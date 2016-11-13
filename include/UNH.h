@@ -5,7 +5,7 @@
  *      Author: jandres
  */
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #ifndef ALGORITHMS_HASH_IMPLEMENTATION_UNH_H_
 #define ALGORITHMS_HASH_IMPLEMENTATION_UNH_H_

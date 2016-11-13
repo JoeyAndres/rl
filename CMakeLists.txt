@@ -3,7 +3,7 @@ project(rl)
 
 include(CMakeFiles/CMakeLibraryCheck)
 include(CMakeFiles/CMakePlatformCheck)
-Include(CMakeFiles/CMakeGenerateMainHeader)
+include(CMakeFiles/CMakeGenerateMainHeader)
 
 set(intrinsic "none" CACHE STRING "The possible intrinsics are the following: none, mmx, sse, sse2, sse3, sse4, sse4.1, sse4.2, sse4a, avx.")
 

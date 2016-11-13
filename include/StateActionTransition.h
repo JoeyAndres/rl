@@ -8,7 +8,7 @@
 #ifndef STATEACTIONTRANSITION_H
 #define	STATEACTIONTRANSITION_H
 
-#include "GlobalHeader.h"
+#include "declares.h"
 
 #include <cassert>
 #include <map>
