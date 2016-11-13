@@ -14,4 +14,4 @@ script: cd build/ && make -j16 && ./test/testRunner
 branches:
   only:
   - master
-  - "/^v\\d+\\.\\d+\\.\\d+(?:-(?:alpha|beta)\\.\\d+)?/"
+  - "/^v(?:\\d+|x)\\.(?:\\d+|x)\\.(?:\\d+|x)(?:-(?:alpha|beta)\\.\\d+)?/"
