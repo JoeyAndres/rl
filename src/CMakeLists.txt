@@ -1,12 +1,26 @@
-include_directories(${rl_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # Intrinsic Sources.
+add_subdirectory(agent)
+add_subdirectory(hash)
+add_subdirectory(coding)
+add_subdirectory(algorithm)
 add_subdirectory(intrinsic)
 
 # Non-Intrinsic Sources.
-file(GLOB SRC_FILES "*.cpp")
-add_library(rlNoIntrinsic OBJECT ${SRC_FILES})
-add_library(rl $<TARGET_OBJECTS:rlIntrinsic> $<TARGET_OBJECTS:rlNoIntrinsic>)
-target_link_libraries(rl ${ARMADILLO_LIB} ${PTHREAD_LIB})
+add_library(rl
+        # lib
+        $<TARGET_OBJECTS:murmur3>
+        $<TARGET_OBJECTS:superfasthash>
+        $<TARGET_OBJECTS:unh>
+
+        $<TARGET_OBJECTS:rlAgent>
+        $<TARGET_OBJECTS:rlIntrinsic>
+        $<TARGET_OBJECTS:rlCoding>
+        $<TARGET_OBJECTS:rlHash>
+
+        # Algorithms.
+        $<TARGET_OBJECTS:rlAlgorithmGradientDescent>)
+target_link_libraries(rl ${PTHREAD_LIB})
 
 install(TARGETS rl DESTINATION lib)

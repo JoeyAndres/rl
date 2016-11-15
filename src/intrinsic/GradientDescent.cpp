@@ -4,16 +4,15 @@
 
 #include <iostream>
 
-#include "GradientDescent.h"
+#include "algorithm/gradient-descent/GradientDescent.h"
 
 using namespace std;
 
-namespace AI {
-namespace Algorithm {
-namespace SL {
+namespace rl {
+namespace algorithm {
 
-GradientDescent::GradientDescent(TileCode& tileCode, AI::FLOAT stepSize,
-                                 AI::FLOAT discountRate, AI::FLOAT lambda)
+GradientDescent::GradientDescent(TileCode& tileCode, rl::FLOAT stepSize,
+                                 rl::FLOAT discountRate, rl::FLOAT lambda)
     : _tileCode(tileCode) {
   _stepSize = stepSize / _tileCode.getNumTilings();
   _discountRate = discountRate;
@@ -21,11 +20,11 @@ GradientDescent::GradientDescent(TileCode& tileCode, AI::FLOAT stepSize,
   _discountRateTimesLambda = _discountRate*_lambda;
 
 #if defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
-  _discountRateTimesLambdaArray = (AI::FLOAT*)aligned_alloc(128, 2*sizeof(AI::FLOAT));
+  _discountRateTimesLambdaArray = (rl::FLOAT*)aligned_alloc(128, 2*sizeof(rl::FLOAT));
   _discountRateTimesLambdaArray[0] = _discountRateTimesLambda;
   _discountRateTimesLambdaArray[1] = _discountRateTimesLambda;
 #elif AVX
-  _discountRateTimesLambdaArray = (AI::FLOAT*)aligned_alloc(128, 4*sizeof(AI::FLOAT));
+  _discountRateTimesLambdaArray = (rl::FLOAT*)aligned_alloc(128, 4*sizeof(rl::FLOAT));
   _discountRateTimesLambdaArray[0] = _discountRateTimesLambda;
   _discountRateTimesLambdaArray[1] = _discountRateTimesLambda;
   _discountRateTimesLambdaArray[2] = _discountRateTimesLambda;
@@ -35,11 +34,11 @@ GradientDescent::GradientDescent(TileCode& tileCode, AI::FLOAT stepSize,
 #endif
   
 #if defined(NO_INTRINSIC) || defined(MMX)
-  _e = (AI::FLOAT*)malloc(getSize()*sizeof(AI::FLOAT));
-  _w = (AI::FLOAT*)malloc(getSize()*sizeof(AI::FLOAT));
+  _e = (rl::FLOAT*)malloc(getSize()*sizeof(rl::FLOAT));
+  _w = (rl::FLOAT*)malloc(getSize()*sizeof(rl::FLOAT));
 #else // Without intrinsic.
-  _e = (AI::FLOAT*)aligned_alloc(128, getSize()*sizeof(AI::FLOAT));
-  _w = (AI::FLOAT*)aligned_alloc(128, getSize()*sizeof(AI::FLOAT));
+  _e = (rl::FLOAT*)aligned_alloc(128, getSize()*sizeof(rl::FLOAT));
+  _w = (rl::FLOAT*)aligned_alloc(128, getSize()*sizeof(rl::FLOAT));
 #endif
   std::fill(_e, _e + getSize(), 0);
   std::fill(_w, _w + getSize(), 0);
@@ -68,7 +67,7 @@ FLOAT GradientDescent::getValueFromParameters(
 
 FLOAT GradientDescent::getValueFromFeatureVector(
     const FEATURE_VECTOR& fv) const {
-  AI::FLOAT sum = 0.0F;
+  rl::FLOAT sum = 0.0F;
 
   for(auto f : fv){
     sum += _w[f];
@@ -78,13 +77,13 @@ FLOAT GradientDescent::getValueFromFeatureVector(
 }
 
 void GradientDescent::incrementEligibilityTraces(const FEATURE_VECTOR& fv) {
-  for (AI::INT f : fv) {
+  for (rl::INT f : fv) {
     ++_e[f];
   }
 }
 
 void GradientDescent::replaceEligibilityTraces(const FEATURE_VECTOR& fv) {
-  for (AI::INT f : fv) {
+  for (rl::INT f : fv) {
     _e[f] = 1;
   }
 }
@@ -115,7 +114,7 @@ void GradientDescent::decreaseEligibilityTraces() {
 }
 
 void GradientDescent::backUpWeights(FLOAT tdError) {
-  AI::FLOAT multiplier = _stepSize * tdError;
+  rl::FLOAT multiplier = _stepSize * tdError;
 #if defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
   __m128d multSSE = _mm_set_pd(multiplier, multiplier);
   __m128d* eSSE = (__m128d*)_e;
@@ -237,6 +236,5 @@ FLOAT GradientDescent::getMaxValue(
   return maxValue;
 }
 
-}  // SL
 }  // Algorithm
-}  // AI
+}  // rl

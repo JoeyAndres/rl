@@ -8,35 +8,29 @@
 #ifndef MOUNTAINCARENVIRONMENT_H_
 #define MOUNTAINCARENVIRONMENT_H_
 
-#include "declares.h"
-
 #include <vector>
+#include <utility>
 
-#include "Environment.h"
+#include "rl"
 
 using namespace std;
 
 #define POS 0
 #define VEL 1
 
-namespace AI {
+namespace rl {
 
-class MountainCarEnvironment :
-      public Environment<STATE_CONT, ACTION_CONT>{
+class MountainCarEnvironment : public Environment<STATE_CONT, ACTION_CONT>{
  public:
-  MountainCarEnvironment();
+  using SA = Environment<STATE_CONT, ACTION_CONT>::SA;
+
+ public:
+  MountainCarEnvironment(Actuator<STATE_CONT>& actuator, Sensor<STATE_CONT>& sensor);
 
   // Overloaded methods.
-  virtual const STATE_CONT& getLastObservedState() const;
-  virtual AI::FLOAT getLastObservedReward() const;
-  virtual AI::FLOAT applyAction(const ACTION_CONT& Action);
-  virtual void reset();
-  
- private:
-  STATE_CONT _currentState;
-  AI::FLOAT _currentReward;
+  virtual std::pair<STATE_CONT, FLOAT> getNextStateAndReward(const SA& stateAction) override;
 };
 
-} /* namespace AI */
+} /* namespace rl */
 
 #endif /* MOUNTAINCARENVIRONMENT_H_ */

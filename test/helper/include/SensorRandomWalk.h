@@ -8,14 +8,15 @@
 #ifndef SENSORRANDOMWALK_H_
 #define SENSORRANDOMWALK_H_
 
-#include "SensorDiscrete.h"
+#include "rl"
 
-namespace AI {
+namespace rl {
 
-class SensorRandomWalk final : public SensorDiscrete<AI::INT, AI::INT> {
+class  SensorRandomWalk : public SensorDiscrete<rl::INT> {
  public:
-  SensorRandomWalk(Environment<AI::INT, AI::INT>& env);
+  SensorRandomWalk();
 };
-} /* namespace AI */
+
+} /* namespace rl */
 
 #endif /* SENSORRANDOMWALK_H_ */

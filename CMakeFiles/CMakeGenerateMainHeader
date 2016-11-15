@@ -1,3 +1,9 @@
-function(GenerateMainHeader INCLUDE_DIR OUTPUT_DIR SUB_HEADER_PREFIX)
-    execute_process(COMMAND bash ${rl_SOURCE_DIR}/CMakeFiles/generate-main-header.sh "${INCLUDE_DIR}" "${OUTPUT_DIR}" "${SUB_HEADER_PREFIX}")
+function(GenerateMainHeader INCLUDE_DIR OUTPUT_DIR SUB_HEADER_PREFIX LIB_DIR)
+    execute_process(COMMAND
+            bash
+            ${rl_SOURCE_DIR}/CMakeFiles/generate-main-header.sh
+            "${INCLUDE_DIR}"
+            "${OUTPUT_DIR}"
+            "${SUB_HEADER_PREFIX}"
+            "${LIB_DIR}")
 endfunction()

@@ -8,35 +8,31 @@
 #ifndef RANDOMWALKENVIRONMENT_H_
 #define RANDOMWALKENVIRONMENT_H_
 
-#include "declares.h"
-
 #include <map>
 
-#include "StateAction.h"
-#include "Environment.h"
+#include "rl"
 
 using std::map;
 
-const AI::INT A(0), B(1), C(2), D(3), T(4);
-const AI::INT L(0), R(1);
+const rl::INT A(0), B(1), C(2), D(3), T(4);
+const rl::INT L(0), R(1);
 
-namespace AI {
+namespace rl {
 
-class RandomWalkEnvironment : public Environment<AI::INT, AI::INT>{
+class RandomWalkEnvironment : public Environment<rl::INT, rl::INT>{
  public:
-  RandomWalkEnvironment();
+  enum State : int { A = 0, B, C, D, T };
+  enum Action : int { L = 0, R = 1 };
 
-  // Overloaded methods.
-  const AI::INT& getLastObservedState() const;
-  AI::FLOAT getLastObservedReward() const;
-  AI::FLOAT applyAction(const AI::INT& Action);
-  virtual void reset();
-  
- private:
-  AI::INT _currentState;
-  map<AI::StateAction<AI::INT, AI::INT>, AI::INT> _env;
+ public:
+  RandomWalkEnvironment(Actuator<rl::INT>& actuator, Sensor<rl::INT>& sensor);
+
+  virtual std::pair<INT, FLOAT> getNextStateAndReward(const StateAction<rl::INT, rl::INT>& stateAction) override;
+
+ protected:
+  map<StateAction<rl::INT, rl::INT>, FLOAT> _env;
 };
 
-} /* namespace AI */
+} /* namespace rl */
 
 #endif /* RANDOMWALKENVIRONMENT_H_ */

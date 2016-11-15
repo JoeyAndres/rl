@@ -11,10 +11,10 @@
 
 using namespace std;
 
-namespace AI {
+namespace rl {
 
-SensorMountainCar::SensorMountainCar(Environment<STATE_CONT, ACTION_CONT>& env) :
-    SensorBase<STATE_CONT, ACTION_CONT>(env) {
+SensorMountainCar::SensorMountainCar() :
+  Sensor<STATE_CONT>(STATE_CONT(2, 0)) {
 }
 
 bool SensorMountainCar::isTerminalState(
@@ -28,4 +28,4 @@ bool SensorMountainCar::isTerminalState(
 
 }
 
-/* namespace AI */
+/* namespace rl */

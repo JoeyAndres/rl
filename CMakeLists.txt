@@ -7,17 +7,25 @@ include(CMakeFiles/CMakeGenerateMainHeader)
 
 set(intrinsic "none" CACHE STRING "The possible intrinsics are the following: none, mmx, sse, sse2, sse3, sse4, sse4.1, sse4.2, sse4a, avx.")
 
-set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS} -O3 -g")
+set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS} -g")
 
 add_subdirectory(src)
+add_subdirectory(lib)
 add_subdirectory(test)
 
 # This is where the sub-headers will be installed in /usr/local/include directory.
 set(SUB_HEADERS_PREFIX rl_bits)
 
 # Include all header file to just one.
-GenerateMainHeader(${rl_SOURCE_DIR}/include ${PROJECT_BINARY_DIR} ${SUB_HEADERS_PREFIX})
+GenerateMainHeader(
+        ${CMAKE_SOURCE_DIR}/include
+        ${PROJECT_BINARY_DIR}
+        ${SUB_HEADERS_PREFIX}
+        ${CMAKE_SOURCE_DIR}/lib)
 MESSAGE(STATUS "Generated global header file")
 
-install(FILES ${PROJECT_BINARY_DIR}/rl DESTINATION /usr/local/include/)
-install(DIRECTORY ${rl_SOURCE_DIR}/include/ DESTINATION /usr/local/include/${SUB_HEADERS_PREFIX})
+set(INSTALL_DIRECTORY /usr/local/include)
+install(FILES ${PROJECT_BINARY_DIR}/rl
+        DESTINATION ${INSTALL_DIRECTORY})
+install(DIRECTORY ${PROJECT_BINARY_DIR}/${SUB_HEADERS_PREFIX}
+        DESTINATION ${INSTALL_DIRECTORY}/${SUB_HEADERS_PREFIX})
