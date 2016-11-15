@@ -2,11 +2,10 @@
  * TileCode.cpp
  */
 
-#include "TileCode.h"
+#include "coding/TileCode.h"
 
-namespace AI {
-namespace Algorithm {
-namespace SL {
+namespace rl {
+namespace coding {
 
 TileCode::TileCode(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
                    size_t numTilings) : _dimensionalInfos(dimensionalInfos){
@@ -17,9 +16,9 @@ TileCode::TileCode(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
   _sizeCache = _calculateSizeCache();
 
   // Calculate random offsets.
-  std::uniform_real_distribution<AI::FLOAT> distribution(0, 1.0F);
+  std::uniform_real_distribution<rl::FLOAT> distribution(0, 1.0F);
   for (size_t i = 0; i < _numTilings; i++) {
-    _randomOffsets.push_back(vector<AI::FLOAT>());
+    _randomOffsets.push_back(vector<rl::FLOAT>());
     for (size_t j = 0; j < this->getDimension(); j++) {
       _randomOffsets[i].push_back(
           distribution(_pseudoRNG) * _dimensionalInfos[j].GetOffsets()
@@ -49,7 +48,7 @@ size_t TileCode::getSize() const {
 
 size_t TileCode::_calculateSizeCache() {
   // Calculate the size.
-  AI::UINT size = 1;
+  rl::UINT size = 1;
   for (const DimensionInfo<FLOAT>& di : _dimensionalInfos) {
     size *= di.GetGridCountReal();
   }
@@ -58,7 +57,7 @@ size_t TileCode::_calculateSizeCache() {
 
   // Add paddings
 #ifdef MMX
-  // MMX is 64bits, same as AI::DOUBLE.
+  // MMX is 64bits, same as rl::DOUBLE.
 #elif defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
   size += size%2;
 #elif AVX
@@ -68,8 +67,7 @@ size_t TileCode::_calculateSizeCache() {
   return size;
 }
 
-size_t TileCode::_paramToGridValue(
-    AI::FLOAT param, size_t tilingIndex, size_t dimensionIndex) {
+size_t TileCode::paramToGridValue(rl::FLOAT param, size_t tilingIndex, size_t dimensionIndex) {
   auto randomOffset = _randomOffsets[tilingIndex][dimensionIndex];
   auto dimGeneraliztionScale = this->_dimensionalInfos[dimensionIndex].getGeneralizationScale();
   auto dimLowerBound = this->_dimensionalInfos[dimensionIndex].getLowerBound();
@@ -81,6 +79,5 @@ size_t TileCode::_paramToGridValue(
   ) / dimRangeMagnitude;
 }
 
-}  // namespace SL
-}  // namespace Algorithm
-}  // namespace AI
+}  // namespace Coding
+}  // namespace rl

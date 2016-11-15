@@ -43,34 +43,48 @@ For examples, see test. One of the test solves the _Random Walk Problem_ with
 the _SARSA_ algorithm. The following is a snippet with a walk through comment:
 
 ```c++
-# Override `Environment` class for your specific problem.
-RandomWalkEnvironment rwe;
+#include <vector>
+#include <iostream>
 
-# Override the `SensorDiscrete` since Random Walk deals with discrete state space. 
-SensorRandomWalk srw(rwe);
-# Add a terminal state. (This definition of `T` is not defined in this snippet).
-srw.addTerminalState(T);
+#include "rl"
 
-# Initialize the actuator base. Here we store the possible actions.
-ActuatorBase<AI::INT, AI::INT> arw(rwe);
-arw.addAction(L);
-arw.addAction(R);
+# Here are files where rl::agent::Environment and rl::agent::Sensor are overidden.
+#include "RandomWalkEnvironment.h"
+#include "SensorRandomWalk.h"
 
-# Initialize the policy. Here we use greedy. Other policies exist, such as
-# Softmax.
-Algorithm::Policy::EpsilonGreedy<AI::INT, AI::INT> policy(1.0F);
+#include "../../lib/catch.hpp"
 
-# Initialize the sarsa algorithm. We gave it 0.1 step-size and 0.9 discount rate.
-Algorithm::RL::Sarsa<AI::INT, AI::INT> sarsaAlgorithm(0.1F, 0.9F, policy);
+using std::vector;
 
-# Initialize the agent.
-Agent<AI::INT, AI::INT> agent(srw, arw, sarsaAlgorithm);
+using namespace rl;
+using namespace std;
 
-# Execute multiple episodes.
-AI::INT iterationCount = 0;
-for (AI::INT i = 0; i < 100; i++) {
-  rwe.reset();
-  iterationCount = agent.executeEpisode();
+SCENARIO("Sarsa converge to a solution",
+         "[rl::Sarsa]") {
+  GIVEN("A random walk environment") {
+    Actuator <rl::INT> arw({L, R});  // Setup actuator with actions.
+    SensorRandomWalk srw;  // Setup sensor.
+    srw.addTerminalState(T);  // Setup terminal state.
+    rl::RandomWalkEnvironment rwEnv(arw, srw);  // Setup environment.
+
+    policy::EpsilonGreedy <rl::INT, rl::INT> policy(1.0F);
+    algorithm::Sarsa <rl::INT, rl::INT> sarsa(0.1F, 0.9F, policy);
+
+    Agent <rl::INT, rl::INT> agent(rwEnv, sarsa);
+
+    WHEN("We do multiple episodes") {
+      rl::INT iterationCount = 0;
+      for (rl::INT i = 0; i < 100; i++) {
+        agent.reset();  // Overloaded to go back to set b.
+
+        iterationCount = agent.executeEpisode();
+
+        THEN("At the end, we solve the random walk environment in 2 iteration") {
+          REQUIRE(iterationCount <= 2);
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -78,32 +92,27 @@ for (AI::INT i = 0; i < 100; i++) {
 Taken from AgentSupervised_test.cpp
 
 ```c++
-#include "GlobalHeader.h"
+#include "rl"
 
-#include "Agent.h"
-#include "EpsilonGreedy.h"
-#include "Sarsa.h"
+#include "../../lib/catch.hpp"
 
-#include "catch.hpp"
-
-using namespace AI;
 using namespace std;
 
 SCENARIO("Supervised agent develop an accurate model of the environment.",
-         "[AI::AgentSupervised]") {
+         "[rl::AgentSupervised]") {
   GIVEN("A binary environment in which 1 is good and 0 is bad.") {
-    Algorithm::Policy::EpsilonGreedy<int, int> policy(1.0F);
-    Algorithm::RL::Sarsa<int, int> sarsaAlgorithm(0.1F, 0.9F, policy);
-    auto actionSet = ActionSet<int>({0, 1});
-    AgentSupervised<int, int> supevisedAgent(actionSet, sarsaAlgorithm);
+    rl::policy::EpsilonGreedy<int, int> policy(1.0F);
+    rl::algorithm::Sarsa<int, int> sarsaAlgorithm(0.1F, 0.9F, policy);
+    auto actionSet = rl::agent::ActionSet<int>({0, 1});
+    rl::AgentSupervised<int, int> supevisedAgent(actionSet, sarsaAlgorithm);
 
     WHEN ("When I train 1 to be good and 0 to be bad") {
       supevisedAgent.train(1, 1, 1000, 1);  // We don't transition anywhere. It's just being in state 1 is good.
       supevisedAgent.train(0, 0, -1000, 0);  // Same deal.
 
       THEN ("Agent should know that 1 should be good and 0 should be bad") {
-        auto value1 = sarsaAlgorithm.getStateActionValue(StateAction<int, int>(1, 1));
-        auto value0 = sarsaAlgorithm.getStateActionValue(StateAction<int, int>(0, 0));
+        auto value1 = sarsaAlgorithm.getStateActionValue(rl::agent::StateAction<int, int>(1, 1));
+        auto value0 = sarsaAlgorithm.getStateActionValue(rl::agent::StateAction<int, int>(0, 0));
 
         REQUIRE(value1 > value0);
       }

@@ -1,4 +1,0 @@
-/**
- * HillClimbing.h
- */
-

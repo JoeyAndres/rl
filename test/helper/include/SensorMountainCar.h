@@ -8,23 +8,20 @@
 #ifndef SENSORMOUNTAINCAR_H_
 #define SENSORMOUNTAINCAR_H_
 
-#include "declares.h"
-
 #include <vector>
 
-#include "SensorBase.h"
-#include "Environment.h"
+#include "rl"
 
 using namespace std;
 
-namespace AI {
+namespace rl {
 class SensorMountainCar final :    
-      public SensorBase<STATE_CONT, ACTION_CONT> {
+      public Sensor<STATE_CONT> {
 public:
-  SensorMountainCar(Environment<STATE_CONT, ACTION_CONT>& env);
+  SensorMountainCar();
   virtual bool isTerminalState(const STATE_CONT& stateData) const;
 };
 
-} /* namespace AI */
+} /* namespace rl */
 
 #endif /* SENSORMOUNTAINCAR_H_ */

@@ -9,6 +9,7 @@
 #define ALGORITHMS_UTILITY_H_
 
 #include <map>
+#include <algorithm>
 
 /**
  * For measuring duration of a program block.
@@ -22,7 +23,7 @@
   std::cout << "Program runtime Info: " << std::ctime(&end_time)        \
   << "elapsed time: " << elapsed_seconds.count() << "s\n" << endl;
 
-namespace AI {
+namespace rl {
 namespace Utility {
 
 /**
@@ -50,6 +51,6 @@ std::multimap<B,A> flipMap(const M<A,B,Args...> &src) {
   return dst;
 }
 } /* namespace Utility */
-} /* namespace AI */
+} /* namespace rl */
 
 #endif /* ALGORITHMS_UTILITY_H_ */

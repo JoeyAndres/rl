@@ -18,7 +18,7 @@
 #define NDEBUG  // Gets rid of assertions.
 #endif
 
-namespace AI {
+namespace rl {
 
 typedef double FLOAT;  //!< Default floating type.
 typedef uint64_t UINT;  //!< Default unsigned integer type.
@@ -40,6 +40,9 @@ typedef std::vector<FLOAT> ACTION_CONT;  //!< Action container.
  *  that contains the data points to be sampled.
  */
 typedef std::vector<UINT> FEATURE_VECTOR;
+
+template<class S>
+using StateAndReward = std::pair<S, FLOAT>;
 
 }
 
