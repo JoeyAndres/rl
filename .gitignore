@@ -11,3 +11,9 @@ RemoteSystemsTempFiles/
 .cproject
 .idea/
 .project
+.gitignore
+osx/
+windows/
+
+# Node modules.
+/node_modules/

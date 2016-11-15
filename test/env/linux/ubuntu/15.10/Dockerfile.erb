@@ -1,0 +1,22 @@
+FROM <%- baseImage %>
+USER root
+
+RUN apt update
+
+<% _.forEach(dependencies, function(dependency) { %>
+RUN apt install -y <%- dependency %>
+<% }); %>
+
+RUN useradd -ms /bin/bash tester
+
+USER tester
+WORKDIR /home/tester
+RUN mkdir /home/tester/rl
+
+VOLUME /home/tester/rl
+
+COPY executeTest.sh /tmp/
+
+# For systemd usage this changes to /usr/sbin/init
+# Keeping it as /bin/bash for compatability with previous
+CMD ["/bin/bash"]

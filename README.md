@@ -1,7 +1,7 @@
 rl
 ===========
 
-[![Build Status](https://travis-ci.org/JoeyAndres/rl.svg?branch=master)](https://travis-ci.org/JoeyAndres/rl)
+[![Build Status](http://ci.joeyandres.com/job/rl-unit-test-master/badge/icon)](http://ci.joeyandres.com/job/rl-unit-test-master/)
 
 Modularized various Reinforcement Learning Algorithm library. 
 See test/include and test/src for examples.
@@ -18,10 +18,11 @@ old g++ compiler (e.g. g++ 4.2.1). For optimal performance, use linux and new g+
 
 ### Dependency:
 * g++-4.9 or greater or clang.
+* cmake 3.2.2 or greater.
 
-### Installing dependencies Ubuntu:
+### Installing dependencies Ubuntu 16.04:
 
-`sudo apt install g++`
+`sudo apt install g++ cmake`
 
 ### Building 
 1. `mkdir build`

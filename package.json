@@ -1,0 +1,34 @@
+{
+  "name": "rl",
+  "version": "2.0.1-beta.2",
+  "description": "Reinforcement Learning library",
+  "main": "null",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-test-env": "gulp build-test-env"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoeyAndres/rl.git"
+  },
+  "author": "Joey Andres <yeojserdna@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoeyAndres/rl/issues"
+  },
+  "homepage": "https://github.com/JoeyAndres/rl#readme",
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-register": "^6.18.0",
+    "gulp": "^3.9.1"
+  },
+  "dependencies": {
+    "assert": "^1.4.1",
+    "config": "^1.24.0",
+    "lodash": "^4.16.6"
+  }
+}

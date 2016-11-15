@@ -1,0 +1,30 @@
+{
+  "docker": {
+    "user": "yeojserdna"
+  },
+  "test": {
+    "env": {
+      "linux": {
+        "dependencies": [
+          "emacs",
+          "openssh-server",
+          "git",
+          "make",
+          "cmake"
+        ],
+
+        "ubuntu": {
+          "dependencies": [
+            "g++"
+          ]
+        },
+
+        "centos": {
+          "dependencies": [
+            "gcc-c++"
+          ]
+        }
+      }
+    }
+  }
+}
