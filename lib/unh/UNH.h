@@ -6,7 +6,7 @@
  */
 #pragma once
 
-#include "declares.h"
+#include <cstdint>
 
 /**
  * Hash function from University New Hampshire CMAC program.
@@ -15,4 +15,4 @@
  * @param memory_size
  * @return
  */
-extern rl::INT hashUNH(rl::INT *coordinates, size_t num_indices, size_t memory_size);
+extern int64_t hashUNH(int64_t *coordinates, size_t num_indices, size_t memory_size);

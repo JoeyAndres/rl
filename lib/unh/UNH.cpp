@@ -9,12 +9,12 @@
 
 #include "UNH.h"
 
-rl::INT hashUNH(rl::INT *coordinates, size_t num_indices, size_t memory_size) {
-  static rl::INT first_call = 1;
-  static rl::INT rndseq[2048];
+int64_t hashUNH(int64_t *coordinates, size_t num_indices, size_t memory_size) {
+  static int64_t first_call = 1;
+  static int64_t rndseq[2048];
   size_t i, k;
-  rl::INT index;
-  rl::INT sum = 0;
+  int64_t index;
+  int64_t sum = 0;
 
   std::default_random_engine randomEngine;
 
@@ -22,7 +22,7 @@ rl::INT hashUNH(rl::INT *coordinates, size_t num_indices, size_t memory_size) {
   if (first_call) {
     for (k = 0; k < 2048; k++) {
       rndseq[k] = 0;
-      for (i = 0; i < sizeof(rl::INT); ++i)
+      for (i = 0; i < sizeof(int64_t); ++i)
         rndseq[k] = (rndseq[k] << 8) | (randomEngine() & 0xff);
     }
     first_call = 0;
@@ -37,9 +37,9 @@ rl::INT hashUNH(rl::INT *coordinates, size_t num_indices, size_t memory_size) {
       index += 2048;
 
     /* add selected random number to sum */
-    sum += (rl::INT) rndseq[(rl::INT) index];
+    sum += (int64_t) rndseq[(int64_t) index];
   }
-  index = (rl::INT) (sum % memory_size);
+  index = (int64_t) (sum % memory_size);
   while (index < 0)
     index += memory_size;
 
