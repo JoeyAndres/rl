@@ -38,17 +38,17 @@ class Actuator : public ActionSet<A> {
    * Constructor for when actions (or some actions) are known.
    * @param actionSet Set of actions.
    */
-  Actuator(const set<A>& actionSet);
+  Actuator(const spActionSet<A>& actionSet);
 };
 
-typedef Actuator<ACTION_CONT> ActuatorSL;
+typedef Actuator<actionCont> ActuatorSL;
 
 template<class A>
-rl::agent::Actuator<A>::Actuator() {
+Actuator<A>::Actuator() {
 }
 
 template<class A>
-rl::agent::Actuator<A>::Actuator(const set<A>& actionSet) : ActionSet<A>(actionSet) {
+Actuator<A>::Actuator(const spActionSet<A>& actionSet) : ActionSet<A>(actionSet) {
 }
 
 }  // namespace agent

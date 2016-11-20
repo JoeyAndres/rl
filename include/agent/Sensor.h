@@ -32,12 +32,12 @@ namespace agent {
 template<class S>
 class Sensor {
  public:
-  Sensor(const S &initialState);
+  Sensor(const spState<S> &initialState);
 
   /**
    * @return current state of agent in environment.
    */
-  virtual const S &getLastObservedState() const;
+  virtual const spState<S> &getLastObservedState() const;
 
   /**
    * Maps sensorState to its corresponding reward.
@@ -50,13 +50,13 @@ class Sensor {
    * Set the last observed state.
    * @param s Last observed state.
    */
-  virtual void setLastObservedState(const S &s);
+  virtual void setLastObservedState(const spState<S> &s);
 
   /**
    * Changes initial state.
    * @param s New initial state.
    */
-  virtual void setInitialState(const S &s);
+  virtual void setInitialState(const spState<S> &s);
 
   /**
    * Set the last observed reward
@@ -69,7 +69,7 @@ class Sensor {
    * @param stateAndReward pair of state and reward.
    */
   virtual void setLastObservedStateAndReward(
-    const StateAndReward<S> &stateAndReward);
+    const spStateAndReward<S> &stateAndReward);
 
   /**
    * Resets last observed state to initial state.
@@ -80,22 +80,22 @@ class Sensor {
    * @param stateData to determine if it is a terminal state.
    * @return true if its a terminal state.
    */
-  virtual bool isTerminalState(const S &stateData) const = 0;
+  virtual bool isTerminalState(const spState<S> &stateData) const = 0;
 
  private:
   FLOAT _lastObservedReward = NAN;
-  S _initialState;
-  S _lastObservedState;
+  spState<S> _initialState;
+  spState<S> _lastObservedState;
 };
 
 template<class S>
-Sensor<S>::Sensor(const S &initialState) :
+Sensor<S>::Sensor(const spState<S> &initialState) :
   _initialState(initialState),
   _lastObservedState(_initialState) {
 }
 
 template<class S>
-const S &Sensor<S>::getLastObservedState() const {
+const spState<S> &Sensor<S>::getLastObservedState() const {
   return this->_lastObservedState;
 }
 
@@ -105,12 +105,12 @@ rl::FLOAT Sensor<S>::getLastObservedReward() const {
 }
 
 template<class S>
-void Sensor<S>::setLastObservedState(const S &s) {
+void Sensor<S>::setLastObservedState(const spState<S> &s) {
   this->_lastObservedState = s;
 }
 
 template<class S>
-void Sensor<S>::setInitialState(const S &s) {
+void Sensor<S>::setInitialState(const spState<S> &s) {
   this->_initialState = s;
 }
 
@@ -121,7 +121,7 @@ void Sensor<S>::setLastObservedReward(FLOAT r) {
 
 template<class S>
 void Sensor<S>::setLastObservedStateAndReward(
-  const StateAndReward<S> &stateAndReward) {
+  const spStateAndReward<S> &stateAndReward) {
   this->setLastObservedState(std::get<0>(stateAndReward));
   this->setLastObservedReward(std::get<1>(stateAndReward));
 }

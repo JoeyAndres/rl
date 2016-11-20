@@ -63,11 +63,11 @@ class DynaQPrioritizeSweeping final: public DynaQ<S, A> {
                           rl::FLOAT priorityThreshold);
 
   virtual void update(const StateAction<S, A>& currentStateAction,
-                      const S& nextState, const rl::FLOAT reward,
-                      const set<A>& actionSet) override;
+                      const spState<S>& nextState, const rl::FLOAT reward,
+                      const spActionSet<A>& actionSet) override;
 
  protected:
-  void _prioritySweep(const set<A>& actionSet);
+  void _prioritySweep(const spActionSet<A>& actionSet);
   rl::FLOAT _getTDError(const StateAction<S, A>& currentStateAction,
                         const rl::FLOAT reward,
                         const StateAction<S, A>& nextStateAction);
@@ -88,7 +88,7 @@ DynaQPrioritizeSweeping<S, A>::DynaQPrioritizeSweeping(
 }
 
 template<class S, class A>
-void DynaQPrioritizeSweeping<S, A>::_prioritySweep(const set<A>& actionSet) {
+void DynaQPrioritizeSweeping<S, A>::_prioritySweep(const spActionSet<A>& actionSet) {
   // Repeat n times while priority queue is not empty.
   for (rl::UINT i = 0; i < this->_simulationIterationCount; i++) {
     if (_priorityQueue.empty())
@@ -100,11 +100,11 @@ void DynaQPrioritizeSweeping<S, A>::_prioritySweep(const set<A>& actionSet) {
     // Acquire next reward from model.
     const StateActionTransition<S>& currentStateActionTransition = this->_model
       .at(currentStateActionPair);
-    const S& nextState = currentStateActionTransition.getNextState();
+    auto nextState = currentStateActionTransition.getNextState();
     rl::FLOAT nextReward = currentStateActionTransition.getReward(nextState);
 
     // Acquire max_action(Q(S, a)).
-    A nextAction = this->getLearningAction(nextState, actionSet);
+    auto nextAction = this->getLearningAction(nextState, actionSet);
 
     StateAction<S, A> nextStateAction(nextState, nextAction);
 
@@ -116,13 +116,13 @@ void DynaQPrioritizeSweeping<S, A>::_prioritySweep(const set<A>& actionSet) {
       this->_model.begin(); iter != this->_model.end(); iter++) {
       // Acquire a model(S) and look for a model(S) that transition to current(S, A).
       StateActionTransition<S>& modelStateTransition = iter->second;
-      const S& modelNextState = modelStateTransition.getNextState();
+      auto modelNextState = modelStateTransition.getNextState();
 
       // If model(S) -> current(S, A), that means model(S) factors in reaching terminal state.
       // And because of that, back up model(S).
       if (modelNextState == currentStateActionPair.getState()) {
         rl::FLOAT priorReward = modelStateTransition.getReward(modelNextState);
-        A nextModelAction = this->argMax(modelNextState, actionSet);
+        auto nextModelAction = this->argMax(modelNextState, actionSet);
 
         rl::FLOAT temptdError = _getTDError(
           iter->first, priorReward,
@@ -150,11 +150,11 @@ rl::FLOAT DynaQPrioritizeSweeping<S, A>::_getTDError(
 template<class S, class A>
 void DynaQPrioritizeSweeping<S, A>::update(
     const StateAction<S, A>& currentStateAction,
-    const S& nextState,
+    const spState<S>& nextState,
     const rl::FLOAT reward,
-    const set<A>& actionSet) {
-  A nextAction = this->argMax(nextState, actionSet);
-  auto nextStateAction = StateAction<S, A>(nextState, nextAction);
+    const spActionSet<A>& actionSet) {
+  spAction<A> nextAction = this->argMax(nextState, actionSet);
+  StateAction<S, A> nextStateAction(nextState, nextAction);
 
   DynaQ<S, A>::update(currentStateAction, nextState, reward, actionSet);
 

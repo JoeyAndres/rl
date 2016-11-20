@@ -39,7 +39,7 @@ class TileCodeSuperFastHash : public TileCode {
    * @param parameters
    * @return Vector of discretize index.
    */
-  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters);
+  virtual FEATURE_VECTOR getFeatureVector(const floatVector& parameters);
 };
 
 } // namespace Coding

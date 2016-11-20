@@ -6,9 +6,11 @@
 #include "../include/RandomWalkEnvironment.h"
 
 namespace rl {
+namespace agent {
 
 SensorRandomWalk::SensorRandomWalk() :
-  SensorDiscrete<INT>(RandomWalkEnvironment::State::B){
+  SensorDiscrete<INT>(spState<INT>(new INT(RandomWalkEnvironment::State::B))) {
 }
 
+}
 }

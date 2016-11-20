@@ -30,7 +30,7 @@ class TileCodeUNH : public TileCode {
    * @param parameters
    * @return Vector of discretize index.
    */
-  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters);
+  virtual FEATURE_VECTOR getFeatureVector(const floatVector& parameters);
 
   size_t mod(size_t n, size_t k) {
     return (n >= 0) ? n % k : k - 1 - ((-n - 1) % k);

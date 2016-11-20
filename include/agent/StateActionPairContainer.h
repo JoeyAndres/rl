@@ -14,7 +14,7 @@
 #include <set>
 #include <algorithm>
 #include <iostream>
-#include <mutex>
+#include <memory>
 
 #include "StateAction.h"
 #include "StateActionNotExistException.h"
@@ -44,8 +44,8 @@ class StateActionPairContainer {
    * @param value Value of the state to be added.
    * @param actionArray
    */
-  virtual void addState(const S &state, rl::FLOAT value,
-                        const set<A> &actionSet);
+  virtual void addState(const spState<S> &state, rl::FLOAT value,
+                        const spActionSet<A> &actionSet);
 
   /**
    * Adds a new state with the corresponding action.
@@ -60,14 +60,14 @@ class StateActionPairContainer {
    * @param value
    * @param actionSet
    */
-  virtual void addAction(const A &action, rl::FLOAT value, const set<S> &stateSet);
+  virtual void addAction(const spAction<A> &action, rl::FLOAT value, const spStateSet<S> &stateSet);
 
   /**
    * @param state to be search in the _stateActionPairMap.
    * @return true if state is in _stateActionPairMap.
    */
-  virtual bool stateInStateActionPairMap(const S &state,
-                                         const set<A> &actionSet) const;
+  virtual bool stateInStateActionPairMap(const spState<S> &state,
+                                         const spActionSet<A> &actionSet) const;
 
   /**
    * @param stateAction
@@ -125,9 +125,9 @@ StateActionPairContainer<S, A>::StateActionPairContainer() {
 }
 
 template<class S, class A>
-void StateActionPairContainer<S, A>::addState(const S &state, rl::FLOAT value,
-                                              const set<A> &actionSet) {
-  for (const A &action : actionSet) {
+void StateActionPairContainer<S, A>::addState(const spState<S> &state, rl::FLOAT value,
+                                              const spActionSet<A> &actionSet) {
+  for (auto action : actionSet) {
     _stateActionPairMap.insert(
       std::pair<StateAction<S, A>, rl::FLOAT>(
         StateAction<S, A>(state, action), value));
@@ -142,9 +142,9 @@ void StateActionPairContainer<S, A>::addStateAction(const StateAction<S, A> &sta
 };
 
 template<class S, class A>
-void StateActionPairContainer<S, A>::addAction(const A &action, rl::FLOAT value,
-                                               const set<S> &stateSet) {
-  for (const S &state : stateSet) {
+void StateActionPairContainer<S, A>::addAction(const spAction<A> &action, rl::FLOAT value,
+                                               const spStateSet<S> &stateSet) {
+  for (auto state : stateSet) {
     _stateActionPairMap.insert(
       std::pair<StateAction<S, A>, rl::FLOAT>(
         StateAction<S, A>(state, action), value));
@@ -153,8 +153,8 @@ void StateActionPairContainer<S, A>::addAction(const A &action, rl::FLOAT value,
 
 template<class S, class A>
 bool StateActionPairContainer<S, A>::stateInStateActionPairMap(
-  const S &state, const set<A> &actionSet) const {
-  const A &sampleAction = *(actionSet.begin());
+  const spState<S> &state, const spActionSet<A> &actionSet) const {
+  const spAction<A> &sampleAction = *(actionSet.begin());
   bool rv = _stateActionPairMap.find(StateAction<S, A>(state, sampleAction))
     != _stateActionPairMap.end();
   return rv;
@@ -167,6 +167,7 @@ throw(StateActionNotExistException) {
   try {
     _stateActionPairMap.at(stateAction);
   } catch (const std::out_of_range &oor) {
+    cerr << "State-Pair given is not yet added. " << __FILE__ ":" << __LINE__ << std::endl;
     StateActionNotExistException exception("State-Pair given is not yet added.");
     throw exception;
   }
@@ -181,6 +182,7 @@ throw(StateActionNotExistException) {
   try {
     return _stateActionPairMap.at(stateAction);
   } catch (const std::out_of_range &oor) {
+    cerr << "State-Pair given is not yet added. " << __FILE__ ":" << __LINE__ << std::endl;
     StateActionNotExistException exception("State-Pair given is not yet added.");
     throw exception;
   }
@@ -221,4 +223,3 @@ inline multimap<rl::FLOAT, rl::agent::StateAction<S, A>> rl::agent::StateActionP
 }  // namespace rl
 
 #endif	/* STATEACTIONPAIRCONTAINER_H */
-

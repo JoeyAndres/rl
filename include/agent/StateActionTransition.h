@@ -8,15 +8,15 @@
 #ifndef STATEACTIONTRANSITION_H
 #define	STATEACTIONTRANSITION_H
 
-#include "../declares.h"
-
 #include <cassert>
 #include <map>
 #include <vector>
 #include <algorithm>
 #include <iostream>
 #include <random>
+#include <functional>
 
+#include "../declares.h"
 #include "StateActionTransitionException.h"
 #include "../algorithm/QLearning.h"
 
@@ -62,7 +62,7 @@ class StateActionTransition {
    * @param nextState to be added or increased frequency value and update reward value.
    * @param reward to update the value of the nextState.
    */
-  virtual void update(const S& nextState, const rl::FLOAT reward);
+  virtual void update(const spState<S>& nextState, const rl::FLOAT reward);
 
   /**
    * Given a state returns its latest reward info.
@@ -70,7 +70,7 @@ class StateActionTransition {
    * @return reward of the state.
    * @throw StateActionTransitionException when given state don't exist.
    */
-  virtual rl::FLOAT getReward(const S& state) const
+  virtual rl::FLOAT getReward(const spState<S>& state) const
       throw (StateActionTransitionException);
 
   /**
@@ -78,7 +78,7 @@ class StateActionTransition {
    * chance of occuring.
    * @throw StateActionTransitionException when given state don't exist.
    */
-  virtual const S& getNextState() const throw (StateActionTransitionException);
+  virtual const spState<S>& getNextState() const throw (StateActionTransitionException);
 
   /**
    * @return the number of transition states.
@@ -106,13 +106,13 @@ class StateActionTransition {
   rl::FLOAT getGreedy() const;
 
  private:
-  bool _findState(const S& state) const;
+  bool _findState(const spState<S>& state) const;
 
  private:
   // Keeps track of all the possible transistion states and their
   // corresponding frequency and reward.
-  map<S, rl::FLOAT> _stateActionTransitionFrequency;
-  map<S, rl::FLOAT> _stateActionTransitionReward;
+  spStateXMap<S, FLOAT> _stateActionTransitionFrequency;
+  spStateXMap<S, FLOAT> _stateActionTransitionReward;
 
   rl::FLOAT _greedy;
   rl::FLOAT _stepSize;
@@ -137,18 +137,18 @@ StateActionTransition<S>::StateActionTransition(
 }
 
 template<class S>
-void StateActionTransition<S>::update(const S& nextState,
+void StateActionTransition<S>::update(const spState<S>& nextState,
                                       const rl::FLOAT reward) {
   _stateActionTransitionFrequency.insert(
-      std::pair<S, rl::FLOAT>(nextState, 0.0F));
+    spStateAndReward<S>(nextState, 0.0F));
   _stateActionTransitionReward.insert(
-      std::pair<S, rl::FLOAT>(nextState, reward));
+    spStateAndReward<S>(nextState, reward));
 
   // Update Frequency.
   // --Lower the value of all other frequencies.
   for (auto iter = _stateActionTransitionFrequency.begin();
-      iter != _stateActionTransitionFrequency.end(); iter++) {
-    const S& state = iter->first;
+       iter != _stateActionTransitionFrequency.end(); iter++) {
+    auto state = iter->first;
     if (state != nextState) {
       _stateActionTransitionFrequency[state] =
           _stateActionTransitionFrequency[state]
@@ -172,7 +172,7 @@ void StateActionTransition<S>::update(const S& nextState,
 }
 
 template<class S>
-rl::FLOAT StateActionTransition<S>::getReward(const S& state) const
+rl::FLOAT StateActionTransition<S>::getReward(const spState<S>& state) const
     throw (StateActionTransitionException) {  
   StateActionTransitionException exception(
       "StateActionTransition<S, rl::FLOAT>::getReward(const S& state): state not yet added.");
@@ -184,14 +184,14 @@ rl::FLOAT StateActionTransition<S>::getReward(const S& state) const
 }
 
 template<class S>
-bool StateActionTransition<S>::_findState(const S& state) const {
+bool StateActionTransition<S>::_findState(const spState<S>& state) const {
   bool found = _stateActionTransitionFrequency.find(state)
       != _stateActionTransitionFrequency.end();
   return found;
 }
 
 template<class S>
-const S& StateActionTransition<S>::getNextState() const
+const spState<S>& StateActionTransition<S>::getNextState() const
     throw (StateActionTransitionException) {
   StateActionTransitionException exception(
       "StateActionTransition<S, rl::FLOAT>::getNextState(): nextStates are empty.");
@@ -209,8 +209,7 @@ const S& StateActionTransition<S>::getNextState() const
   if (randomNumberRandomSelection > _greedy) {
     auto it = _stateActionTransitionFrequency.begin();
     std::advance(it, _randomDevice() % _stateActionTransitionFrequency.size());
-    const S& nextState = it->first;
-    return nextState;
+    return it->first;
   }
 
   // http://stackoverflow.com/questions/1761626/weighted-random-numbers

@@ -48,17 +48,19 @@ class DynaQET final: public DynaQ<S, A>, public EligibilityTraces<S, A> {
    *                 Small \f$\lambda\f$ converges to TD(0).
    */
   DynaQET(rl::FLOAT stepSize, rl::FLOAT discountRate,
-          policy::Policy<S, A>& policy, rl::UINT simulationIterationCount,
+          policy::Policy<S, A>& policy,
+          rl::UINT simulationIterationCount,
           rl::FLOAT stateTransitionGreediness,
-          rl::FLOAT stateTransitionStepSize, rl::FLOAT lambda);
+          rl::FLOAT stateTransitionStepSize,
+          rl::FLOAT lambda);
 
  public:
   // Inherited.
 
   virtual void update(const StateAction<S, A>& currentStateAction,
-                      const S& nextState,
+                      const spState<S>& nextState,
                       const rl::FLOAT currentStateActionValue,
-                      const set<A>& actionSet) override;
+                      const spActionSet<A>& actionSet) override;
 };
 
 template<class S, class A>
@@ -74,9 +76,9 @@ DynaQET<S, A>::DynaQET(rl::FLOAT stepSize, rl::FLOAT discountRate,
 
 template<class S, class A>
 void DynaQET<S, A>::update(const StateAction<S, A>& currentStateAction,
-                           const S& nextState, const rl::FLOAT reward,
-                           const set<A>& actionSet) {
-  A nextAction = this->getLearningAction(nextState, actionSet);
+                           const spState<S>& nextState, const rl::FLOAT reward,
+                           const spActionSet<A>& actionSet) {
+  spAction<A> nextAction = this->getLearningAction(nextState, actionSet);
 
   // For some reason I need to call the grand parent class ReinforcementLearning.
   DynaQ<S, A>::updateStateAction(

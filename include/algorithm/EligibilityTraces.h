@@ -82,7 +82,7 @@ class EligibilityTraces {
 
  protected:
   rl::FLOAT _lambda;
-  map<StateAction<S, A>, rl::FLOAT> _eligibilityTraces;
+  map<rl::StateAction<S, A>, rl::FLOAT> _eligibilityTraces;
 };
 
 template<class S, class A>
@@ -116,8 +116,8 @@ void EligibilityTraces<S, A>::_updateEligibilityTraces(
 
   for (auto iter = stateActionPairValue.begin();
       iter != stateActionPairValue.end(); iter++) {
-    const S& state = iter->first.getState();
-    const A& action = iter->first.getAction();
+    auto state = iter->first.getState();
+    auto action = iter->first.getAction();
     rl::FLOAT value = iter->second;
 
     stateActionPairValue.setStateActionValue(

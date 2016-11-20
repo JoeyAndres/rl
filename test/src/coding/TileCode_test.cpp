@@ -48,7 +48,7 @@ SCENARIO("Tile code retrieves the correct feature vector",
 
     WHEN ("TileCode::getFeatureVector is called for (-0.4, -0.4).") {
       THEN ("Return (0, 16, 32, 48)") {
-        auto fv = tileCode.getFeatureVector(STATE_CONT({-0.4, -0.4}));
+        auto fv = tileCode.getFeatureVector(stateCont({-0.4, -0.4}));
         decltype(fv) result { 0, 16, 32, 48 };
         REQUIRE(fv == result);
       }

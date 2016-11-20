@@ -14,23 +14,23 @@
 
 using std::map;
 
-const rl::INT A(0), B(1), C(2), D(3), T(4);
-const rl::INT L(0), R(1);
+const rl::spState<rl::INT> A(new rl::INT(0)), B(new rl::INT(1)), C(new rl::INT(2)), D(new rl::INT(3)), T(new rl::INT(4));
+const rl::spAction<rl::INT> L(new rl::INT(0)), R(new rl::INT(1));
 
 namespace rl {
 
 class RandomWalkEnvironment : public Environment<rl::INT, rl::INT>{
  public:
   enum State : int { A = 0, B, C, D, T };
-  enum Action : int { L = 0, R = 1 };
+  enum Action : int { L = 0, R };
 
  public:
   RandomWalkEnvironment(Actuator<rl::INT>& actuator, Sensor<rl::INT>& sensor);
 
-  virtual std::pair<INT, FLOAT> getNextStateAndReward(const StateAction<rl::INT, rl::INT>& stateAction) override;
+  virtual std::pair<spState<INT>, FLOAT> getNextStateAndReward(const StateAction<rl::INT, rl::INT>& stateAction) override;
 
  protected:
-  map<StateAction<rl::INT, rl::INT>, FLOAT> _env;
+  map<StateAction<rl::INT, rl::INT>, spState<rl::INT>> _env;
 };
 
 } /* namespace rl */

@@ -19,7 +19,7 @@ using namespace std;
 SCENARIO("QLearning converge to a solution",
          "[rl::QLearning]") {
   GIVEN("A random walk environment") {
-    rl::agent::Actuator <rl::INT> arw({L, R});  // Setup actuator with actions.
+    rl::agent::Actuator <rl::INT> arw(rl::spActionSet<rl::INT>({ L, R }));  // Setup actuator with actions.
     rl::SensorRandomWalk srw;  // Setup sensor.
     srw.addTerminalState(T);  // Setup terminal state.
     rl::RandomWalkEnvironment rwEnv(arw, srw);  // Setup environment.

@@ -5,14 +5,12 @@
  * Created on June 6, 2014, 5:48 PM
  */
 
-#ifndef POLICY_H
-#define	POLICY_H
-
-#include "../declares.h"
+#pragma once
 
 #include <map>
 #include <vector>
 
+#include "../declares.h"
 #include "../agent/StateAction.h"
 
 using namespace std;
@@ -41,8 +39,10 @@ class Policy {
    * @return <b>action</b> given a mapping of actions and their value and a
    *         set of actions.
    */
-  virtual A getAction(const map<A, rl::FLOAT>& actionValues,
-                             const set<A>& actionSet) = 0;
+
+  virtual spAction<A> getAction(
+    const spActionValueMap<A>& actionValues,
+    const spActionSet<A>& actionSet) = 0;
 
     /**
    * Returns <b>action</b> given a mapping of actions and their value and a
@@ -54,8 +54,9 @@ class Policy {
    * @return <b>action</b> given a mapping of actions and their value and a
    *         set of actions.
    */
-  virtual A getAction(const map<A, rl::FLOAT>& actionValues,
-                      const set<A>& actionSet, const A& maxAction) = 0;
+  virtual spAction<A> getAction(const spActionValueMap<A>& actionValues,
+                                const spActionSet<A>& actionSet,
+                                const rl::spAction<A>& maxAction) = 0;
  private:
 
 };
@@ -67,10 +68,7 @@ class Policy {
  *  and action space, PolicySL is a typedef of Policy specifically for that
  *  purpose.
  */
-typedef Policy<STATE_CONT, ACTION_CONT> PolicySL;
+typedef Policy<stateCont, actionCont> PolicySL;
 
-} /* Policy */
-} /* rl */
-
-#endif	/* POLICY_H */
-
+}  // namespace policy
+}  // rl

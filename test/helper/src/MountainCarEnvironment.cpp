@@ -13,11 +13,11 @@ using namespace std;
 namespace rl{
 
 rl::MountainCarEnvironment::MountainCarEnvironment(
-  Actuator<STATE_CONT>& actuator, Sensor<ACTION_CONT>& sensor) :
-  rl::agent::Environment<STATE_CONT, ACTION_CONT>(actuator, sensor) {
+  Actuator<stateCont>& actuator, Sensor<actionCont>& sensor) :
+  rl::agent::Environment<stateCont, actionCont>(actuator, sensor) {
 }
 
-std::pair<STATE_CONT, FLOAT> MountainCarEnvironment::getNextStateAndReward(
+rl::spStateAndReward<rl::stateCont> MountainCarEnvironment::getNextStateAndReward(
   const MountainCarEnvironment::SA& stateAction) {
   auto act = stateAction.getAction();
 
@@ -27,7 +27,7 @@ std::pair<STATE_CONT, FLOAT> MountainCarEnvironment::getNextStateAndReward(
     }*/
   auto nextState = stateAction.getState();
 
-  rl::INT copyAct = act[0] - 1;
+  rl::INT copyAct = act->at(0) - 1;
   rl::FLOAT nextReward = -1;
   if (copyAct == 0) {
     nextReward = -1;
@@ -35,20 +35,20 @@ std::pair<STATE_CONT, FLOAT> MountainCarEnvironment::getNextStateAndReward(
     nextReward = -2;
   }
 
-  nextState[VEL] +=
-      (0.001F * copyAct - 0.0025F * cos(3.0F * nextState[POS]));
+  nextState->at(VEL) +=
+      (0.001F * copyAct - 0.0025F * cos(3.0F * nextState->at(POS)));
 
-  if (nextState[VEL] < -0.07F)
-    nextState[VEL] = -0.07F;
-  else if (nextState[VEL] >= 0.07F)
-    nextState[VEL] = 0.06999999F;
-  nextState[POS] += nextState[VEL];
-  if (nextState[POS] >= 0.5F) {
-    nextState[POS] = 0.5;
+  if (nextState->at(VEL) < -0.07F)
+    nextState->at(VEL) = -0.07F;
+  else if (nextState->at(VEL) >= 0.07F)
+    nextState->at(VEL) = 0.06999999F;
+  nextState->at(POS) += nextState->at(VEL);
+  if (nextState->at(POS) >= 0.5F) {
+    nextState->at(POS) = 0.5;
     nextReward = 0;
-  } else if (nextState[POS] < -1.2F) {
-    nextState[POS] = -1.2F;
-    nextState[VEL] = 0.0F;
+  } else if (nextState->at(POS) < -1.2F) {
+    nextState->at(POS) = -1.2F;
+    nextState->at(VEL) = 0.0F;
   }
 
 

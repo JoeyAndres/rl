@@ -44,7 +44,7 @@ class TileCode {
    * @param parameters
    * @param Vector of "discretize" index.
    */
-  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters) = 0;
+  virtual FEATURE_VECTOR getFeatureVector(const floatVector& parameters) = 0;
 
   /**
    * @return size of the weight vector.

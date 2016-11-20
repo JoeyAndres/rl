@@ -16,14 +16,9 @@ using namespace std;
 SCENARIO("Sensor for representing the states in the environment.",
          "[rl::agent::Sensor]") {
   GIVEN("Sensor instance") {
-    rl::agent::Actuator<rl::INT> arw(
-      {
-        rl::RandomWalkEnvironment::Action::L,
-        rl::RandomWalkEnvironment::Action::R
-      }
-    );
+    rl::agent::Actuator<rl::INT> arw({ L, R });
     rl::SensorRandomWalk srw;
-    srw.addTerminalState(rl::RandomWalkEnvironment::State::T);
+    srw.addTerminalState(T);
 
     rl::RandomWalkEnvironment rwe(arw, srw);
 
@@ -33,10 +28,10 @@ SCENARIO("Sensor for representing the states in the environment.",
     rl::agent::Agent<rl::INT, rl::INT> agent(rwe, dynaQAlgorithm);
 
     WHEN ("When I move left.") {
-      REQUIRE(srw.getLastObservedState() == rl::RandomWalkEnvironment::State::B);
-      agent.applyAction(rl::RandomWalkEnvironment::Action::L);
+      REQUIRE(*(srw.getLastObservedState()) == *B);
+      agent.applyAction(L);
       THEN ("I move from B to A.") {
-        REQUIRE(srw.getLastObservedState() == rl::RandomWalkEnvironment::State::A);
+        REQUIRE(*(srw.getLastObservedState()) == *A);
       }
     }
   }

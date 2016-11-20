@@ -9,26 +9,27 @@ namespace algorithm {
 
 ReinforcementLearningGD::ReinforcementLearningGD(
     TileCode& tileCode, rl::FLOAT stepSize, rl::FLOAT discountRate,
-    rl::FLOAT lambda, policy::Policy<STATE_CONT, ACTION_CONT >& policy)
-    : LearningAlgorithm<STATE_CONT, ACTION_CONT >(policy),
+    rl::FLOAT lambda, policy::Policy<stateCont, actionCont >& policy)
+    : LearningAlgorithm<stateCont, actionCont >(policy),
       _gradientDescent(tileCode, stepSize, discountRate, lambda) {
 }
 
 void ReinforcementLearningGD::_buildActionValues(
-    const set<STATE_CONT >& actionSet, const STATE_CONT& nextState,
-    map<ACTION_CONT, FLOAT>& actionValueMap,
-    ACTION_CONT& action) {
+    const spActionSet<actionCont>& actionSet,
+    const spStateCont& nextState,
+    spActionValueMap<actionCont>& actionValueMap,
+    spActionCont& action) {
   _gradientDescent.buildActionValues(actionSet, nextState, actionValueMap, action);
 }
 
 void ReinforcementLearningGD::update(
-    const StateAction<STATE_CONT, ACTION_CONT >& currentStateAction,
-    const STATE_CONT& nextStateVector, const FLOAT reward,
-    const set<ACTION_CONT >& actionSet) {
-  map<ACTION_CONT, FLOAT> actionValueMap;
-  ACTION_CONT maxAction;
+    const StateAction<stateCont, actionCont >& currentStateAction,
+    const spStateCont& nextStateVector, const FLOAT reward,
+    const spActionSet<actionCont>& actionSet) {
+  spActionValueMap<actionCont> actionValueMap;
+  spActionCont maxAction(new actionCont);
   _buildActionValues(actionSet, nextStateVector, actionValueMap, maxAction);
-  const ACTION_CONT& nextAction = this->_getLearningPolicyAction(
+  const spActionCont& nextAction = this->_getLearningPolicyAction(
       actionValueMap, actionSet, maxAction);
 
   _gradientDescent.updateWeights(currentStateAction.getState(),
@@ -37,29 +38,29 @@ void ReinforcementLearningGD::update(
                                  reward);
 }
 
-ACTION_CONT ReinforcementLearningGD::getAction(
-    const STATE_CONT& state, const set<ACTION_CONT >& actionSet) {
-  map<ACTION_CONT, FLOAT> actionValueMap;
-  ACTION_CONT maxAction;
+spActionCont ReinforcementLearningGD::getAction(
+    const spStateCont& state, const spActionSet<actionCont>& actionSet) {
+  spActionValueMap<actionCont> actionValueMap;
+  spActionCont maxAction(new actionCont);
   _buildActionValues(actionSet, state, actionValueMap, maxAction);
   return this->_learningPolicy->getAction(actionValueMap, actionSet, maxAction);
 }
 
 FLOAT ReinforcementLearningGD::getStateActionValue(
-    const StateAction<STATE_CONT, ACTION_CONT >& stateAction) {
+    const StateAction<stateCont, actionCont >& stateAction) {
   return _getStateActionValue(stateAction);
 }
 
 FLOAT ReinforcementLearningGD::_getStateActionValue(
-    const StateAction<STATE_CONT, ACTION_CONT >& stateAction) {
-  vector<FLOAT> copy = stateAction.getState();
-  copy.insert(copy.end(), stateAction.getAction().begin(),
-              stateAction.getAction().end());
+    const StateAction<stateCont, actionCont >& stateAction) {
+  auto copy = *(stateAction.getState());
+  copy.insert(copy.end(), stateAction.getAction()->begin(),
+              stateAction.getAction()->end());
   return _gradientDescent.getValueFromParameters(copy);
 }
 
 void ReinforcementLearningGD::reset() {
-  LearningAlgorithm<STATE_CONT, ACTION_CONT >::reset();
+  LearningAlgorithm<stateCont, actionCont >::reset();
   _gradientDescent.resetEligibilityTraces();
 }
 

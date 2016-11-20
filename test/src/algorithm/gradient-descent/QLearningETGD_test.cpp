@@ -24,12 +24,14 @@ SCENARIO("Q-learning Eligibility Traces and Gradient Descent converge to a solut
          "[rl::QLearingETGD]") {
   GIVEN("A Mountain Car environment") {
 // Actions.
-    rl::agent::Actuator <rl::STATE_CONT> amc(
-      {
-        {0},  // Reverse.
-        {1},  // Neutral.
-        {2}   // Forward.
-      }
+    rl::agent::Actuator <rl::actionCont> amc(
+      nrl::spActionSet<rl::actionCont>(
+        {
+          {0},  // Reverse.
+          {1},  // Neutral.
+          {2}   // Forward.
+        }
+      )
     );
     rl::SensorMountainCar smc;  // Setup sensor.
     rl::MountainCarEnvironment mce(amc, smc);  // Setup environment.

@@ -11,12 +11,12 @@
 #include "rl"
 
 namespace rl {
-
-class  SensorRandomWalk : public SensorDiscrete<rl::INT> {
+namespace agent {
+class SensorRandomWalk : public SensorDiscrete<rl::INT> {
  public:
   SensorRandomWalk();
 };
-
+}
 } /* namespace rl */
 
 #endif /* SENSORRANDOMWALK_H_ */

@@ -43,8 +43,8 @@ class QLearning : public ReinforcementLearning<S, A> {
             policy::Policy<S, A>& policy);
 
   virtual void update(const StateAction<S, A>& currentStateAction,
-                      const S& nextState, const rl::FLOAT reward,
-                      const set<A>& actionSet) override;
+                      const spState<S>& nextState, const rl::FLOAT reward,
+                      const spActionSet<A>& actionSet) override;
 };
 
 template<class S, class A>
@@ -55,11 +55,12 @@ QLearning<S, A>::QLearning(rl::FLOAT stepSize, rl::FLOAT discountRate,
 
 template<class S, class A>
 void QLearning<S, A>::update(const StateAction<S, A>& currentStateAction,
-                             const S& nextState, const rl::FLOAT reward,
-                             const set<A>& actionSet) {
+                             const spState<S>& nextState,
+                             const rl::FLOAT reward,
+                             const spActionSet<A>& actionSet) {
   // Note: this algorithm is in pg. 145 of Sutton Barto 2nd edition.
   // Q(S, A) <- Q(S, A) + α[ R + γ max a Q(S' , a) − Q(S, A)]
-  A nextAction = this->getLearningAction(nextState, actionSet);
+  spAction<A> nextAction = this->getLearningAction(nextState, actionSet);
 
   ReinforcementLearning<S, A>::updateStateAction(currentStateAction,
                                       StateAction<S, A>(nextState, nextAction),

@@ -50,9 +50,9 @@ class DynaQ : public DynaQRLMP<S, A> {
         rl::FLOAT stateTransitionGreediness, rl::FLOAT stateTransitionStepSize);
 
   virtual void update(const StateAction<S, A>& currentStateAction,
-                      const S& nextState,
+                      const spState<S>& nextState,
                       const FLOAT reward,
-                      const set<A>& actionSet) override;
+                      const spActionSet<A>& actionSet) override;
 };
 
 template<class S, class A>
@@ -68,10 +68,10 @@ DynaQ<S, A>::DynaQ(rl::FLOAT stepSize, rl::FLOAT discountRate,
 template<class S, class A>
 void rl::algorithm::DynaQ<S, A>::update(
   const StateAction<S, A>& currentStateAction,
-  const S& nextState,
+  const spState<S>& nextState,
   const FLOAT reward,
-  const set<A>& actionSet) {
-  A nextAction = this->getLearningAction(nextState, actionSet);
+  const spActionSet<A>& actionSet) {
+  spState<A> nextAction = this->getLearningAction(nextState, actionSet);
   DynaQRLMP<S, A>::updateStateAction(
     currentStateAction,
     StateAction<S, A>(nextState, nextAction),

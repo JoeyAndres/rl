@@ -39,18 +39,18 @@ class QLearningET final: public EligibilityTraces<S, A>, public QLearning<S, A> 
   // Inherited.
 
   virtual void update(const StateAction<S, A>& currentStateAction,
-                      const S& nextState,
+                      const spState<S>& nextState,
                       const rl::FLOAT currentStateActionValue,
-                      const set<A>& actionSet);
+                      const spActionSet<A>& actionSet);
  private:
 
 };
 
 template<class S, class A>
 void QLearningET<S, A>::update(const StateAction<S, A>& currentStateAction,
-                               const S& nextState, const rl::FLOAT reward,
-                               const set<A>& actionSet) {
-  A nextAction = this->getLearningAction(nextState, actionSet);
+                               const spAction<S>& nextState, const rl::FLOAT reward,
+                               const spActionSet<A>& actionSet) {
+  spAction<A> nextAction = this->getLearningAction(nextState, actionSet);
   ReinforcementLearning<S, A>::updateStateAction(
     currentStateAction,
     StateAction<S, A>(nextState, nextAction),

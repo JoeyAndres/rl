@@ -18,16 +18,16 @@ SCENARIO("Softmax action selection probability increases as the value of the act
          "[rl::Policy::Softmax]") {
   policy::Softmax<rl::INT, rl::INT> policy(0.9F);
 
-  rl::INT dummyState(1);
-  rl::INT action01(1);
-  rl::INT action02(2);
-  rl::INT action03(3);
-  rl::INT action04(4);
-  set<rl::INT> actionSet;
-  actionSet.insert(action01);
-  actionSet.insert(action02);
-  actionSet.insert(action03);
-  actionSet.insert(action04);
+  rl::spState<rl::INT> dummyState(new rl::INT(1));
+  rl::spAction<rl::INT> action01(new rl::INT(1));
+  rl::spAction<rl::INT> action02(new rl::INT(2));
+  rl::spAction<rl::INT> action03(new rl::INT(3));
+  rl::spAction<rl::INT> action04(new rl::INT(4));
+  spActionSet<rl::INT> actionSet(
+    {
+      action01, action02, action03, action04
+    }
+  );
 
   using StateActionII = StateAction<rl::INT, rl::INT>;
 
@@ -38,22 +38,22 @@ SCENARIO("Softmax action selection probability increases as the value of the act
   stateActionPairValueMap[StateActionII(dummyState, action04)] = 2.2F;
 
   GIVEN("The following action-value map") {
-    map<rl::INT, rl::FLOAT> actionValueMap;
-    for (const rl::INT &action : actionSet) {
+    spActionValueMap<rl::INT> actionValueMap;
+    for (auto &action : actionSet) {
       actionValueMap[action] = stateActionPairValueMap.at(StateActionII(dummyState, action));
     }
 
     rl::UINT action01Ctr(0), action02Ctr(0), action03Ctr(0), action04Ctr(0);
     for (rl::INT i = 0; i < 1000; i++) {
-      rl::INT action = policy.getAction(actionValueMap, actionSet);
+      auto action = policy.getAction(actionValueMap, actionSet);
 
-      if (action == action01) {
+      if (*action == *action01) {
         action01Ctr++;
-      } else if (action == action02) {
+      } else if (*action == *action02) {
         action02Ctr++;
-      } else if (action == action03) {
+      } else if (*action == *action03) {
         action03Ctr++;
-      } else if (action == action04) {
+      } else if (*action == *action04) {
         action04Ctr++;
       } else {
         assert(false);
