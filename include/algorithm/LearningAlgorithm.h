@@ -46,16 +46,16 @@ class LearningAlgorithm {
    * @param reward Reward for the transition from current-state action to next state-action.
    */
   virtual void update(const StateAction<S, A>& currentStateAction,
-                      const S& nextState,
+                      const spState<S>& nextState,
                       const rl::FLOAT reward,
-                      const set<A>& actionSet) = 0;
+                      const spActionSet<A>& actionSet) = 0;
 
   /**
    * @param state the state to take the action to.
    * @param actionSet set of possible actions.
    * @return action based on control policy and current state.
    */
-  virtual A getAction(const S& state, const set<A>& actionSet) = 0;
+  virtual spAction<A> getAction(const spState<S>& state, const spActionSet<A>& actionSet) = 0;
 
   /**
    * @param stateAction
@@ -116,10 +116,11 @@ class LearningAlgorithm {
    * @param actionSet current action set.
    * @return action selected by learning policy.
    */
-  A _getLearningPolicyAction(const map<A, rl::FLOAT>& actionValueMap,
-                               const set<A>& actionSet);
-  A _getLearningPolicyAction(const map<A, rl::FLOAT>& actionValueMap,
-                             const set<A>& actionSet, ACTION_CONT& action);
+  spAction<A> _getLearningPolicyAction(const spActionValueMap<A>& actionValueMap,
+                                       const spActionSet<A>& actionSet);
+  spAction<A> _getLearningPolicyAction(const spActionValueMap<A>& actionValueMap,
+                                       const spActionSet<A>& actionSet,
+                                       const spAction<A>& action);
 
  protected:
   rl::FLOAT _defaultStateActionValue;  //!< Place holder for default state action value.
@@ -179,15 +180,17 @@ inline const policy::Policy<S, A>& rl::algorithm::LearningAlgorithm<
 }
 
 template<class S, class A>
-inline A LearningAlgorithm<S, A>::_getLearningPolicyAction(
-    const map<A, rl::FLOAT>& actionValueMap, const set<A>& actionSet) {
+inline spAction<A> LearningAlgorithm<S, A>::_getLearningPolicyAction(
+  const spActionValueMap<A>& actionValueMap,
+  const spActionSet<A>& actionSet) {
   return _learningPolicy->getAction(actionValueMap, actionSet);
 }
 
 template<class S, class A>
-inline A LearningAlgorithm<S, A>::_getLearningPolicyAction(
-    const map<A, rl::FLOAT>& actionValueMap, const set<A>& actionSet,
-    ACTION_CONT& action) {
+inline spAction<A> LearningAlgorithm<S, A>::_getLearningPolicyAction(
+  const spActionValueMap<A>& actionValueMap,
+  const spActionSet<A>& actionSet,
+  const spAction<A>& action) {
   return _learningPolicy->getAction(actionValueMap, actionSet, action);
 }
 

@@ -5,16 +5,15 @@
  * Created on June 6, 2014, 6:11 PM
  */
 
-#ifndef EPSILONGREEDY_H
-#define	EPSILONGREEDY_H
-
-#include "../declares.h"
+#pragma once
 
 #include <random>
 #include <iostream>
+#include <vector>
 
-#include "Policy.h"
+#include "../declares.h"
 #include "../agent/StateAction.h"
+#include "Policy.h"
 
 using namespace std;
 
@@ -49,12 +48,18 @@ class EpsilonGreedy : public Policy<S, A> {
    * @param actionSet a set of possible actions.
    * @return the action that will "likely" gives the highest reward.
    */
-  A argMax(const map<A, rl::FLOAT>& actionValues, const set<A>& actionSet) const;
+  spAction<A> argMax(
+    const spActionValueMap<A>& actionValues,
+    const spActionSet<A>& actionSet) const;
 
-  virtual A getAction(const map<A, rl::FLOAT>& actionValues, const set<A>& actionSet);
+  spAction<A> getAction(
+    const spActionValueMap<A>& actionValues,
+    const spActionSet<A>& actionSet) override;
 
-  virtual A getAction(const map<A, rl::FLOAT>& actionValues, const set<A>& actionSet,
-                      const A& maxAction);
+  spAction<A> getAction(
+    const spActionValueMap<A>& actionValues,
+    const spActionSet<A>& actionSet,
+    const spAction<A>& maxAction) override;
   
   /**
    * @param greediness
@@ -71,26 +76,29 @@ class EpsilonGreedy : public Policy<S, A> {
   rl::FLOAT _greediness;  //!< Probability of selecting a greedy action.
 };
 
-typedef EpsilonGreedy<vector<rl::FLOAT>, vector<rl::FLOAT> > EpsilonGreedySL;
+typedef EpsilonGreedy<vector<rl::FLOAT>, vector<rl::FLOAT>> EpsilonGreedySL;
 
 template<class S, class A>
-rl::policy::EpsilonGreedy<S, A>::EpsilonGreedy(rl::FLOAT greediness)
+EpsilonGreedy<S, A>::EpsilonGreedy(rl::FLOAT greediness)
     : _greediness(greediness),
       _distribution(0.0F, 1.0F) {
 }
 
 template<class S, class A>
-rl::policy::EpsilonGreedy<S, A>::~EpsilonGreedy() {
+EpsilonGreedy<S, A>::~EpsilonGreedy() {
 }
 
 template<class S, class A>
-A rl::policy::EpsilonGreedy<S, A>::getAction(
-    const map<A, rl::FLOAT>& actionValues, const set<A>& actionSet) {
-  if(_greediness==1.0F) return argMax(actionValues, actionSet);
+spAction<A> EpsilonGreedy<S, A>::getAction(
+    const spActionValueMap<A>& actionValues,
+    const spActionSet<A>& actionSet) {
+  if (_greediness == 1.0F) {
+    return argMax(actionValues, actionSet);
+  }
   const rl::FLOAT& r = _distribution(_randomDevice);
   if (r > _greediness) {
     uniform_int_distribution<rl::INT> indexDistribution(0, actionSet.size());
-    typename set<A>::const_iterator it(actionSet.begin());
+    typename spActionSet<A>::const_iterator it(actionSet.begin());
     advance(it, indexDistribution(_randomDevice));
     return (*it);
   } else {
@@ -99,14 +107,17 @@ A rl::policy::EpsilonGreedy<S, A>::getAction(
 }
 
 template<class S, class A>
-A rl::policy::EpsilonGreedy<S, A>::getAction(
-    const map<A, rl::FLOAT>& actionValues,
-    const set<A>& actionSet, const A& maxAction){
-  if(_greediness == 1.0F) return maxAction;
+spAction<A> EpsilonGreedy<S, A>::getAction(
+  const spActionValueMap<A>& actionValues,
+  const spActionSet<A>& actionSet,
+  const spAction<A>& maxAction) {
+  if (_greediness == 1.0F) {
+    return maxAction;
+  }
   const rl::FLOAT& r = _distribution(_randomDevice);
   if (r > _greediness) {
     uniform_int_distribution<rl::INT> indexDistribution(0, actionSet.size());
-    typename set<A>::const_iterator it(actionSet.begin());
+    typename spActionSet<A>::const_iterator it(actionSet.begin());
     advance(it, indexDistribution(_randomDevice));
     return (*it);
   } else {
@@ -115,8 +126,9 @@ A rl::policy::EpsilonGreedy<S, A>::getAction(
 }
 
 template<class S, class A>
-A rl::policy::EpsilonGreedy<S, A>::argMax(
-    const map<A, rl::FLOAT>& actionValues, const set<A>& actionSet) const {
+spAction<A> EpsilonGreedy<S, A>::argMax(
+  const spActionValueMap<A>& actionValues,
+  const spActionSet<A>& actionSet) const {
   auto maxActionIter = actionSet.begin();
   rl::FLOAT maxVal = actionValues.at(*maxActionIter);
   for (auto iter = actionSet.begin(); iter != actionSet.end(); ++iter) {
@@ -130,18 +142,16 @@ A rl::policy::EpsilonGreedy<S, A>::argMax(
 }
 
 template<class S, class A>
-void rl::policy::EpsilonGreedy<S, A>::setGreediness(
+void EpsilonGreedy<S, A>::setGreediness(
     rl::FLOAT greediness) {
   this->_greediness = greediness;
 }
 
 template<class S, class A>
-rl::FLOAT rl::policy::EpsilonGreedy<S, A>::getGreediness() const {
+rl::FLOAT EpsilonGreedy<S, A>::getGreediness() const {
   return _greediness;
 }
 
-}  // Policy
-}  // rl
-
-#endif	/* EPSILONGREEDY_H */
+}  // namespace policy
+}  // namespace rl
 

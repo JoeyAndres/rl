@@ -17,14 +17,9 @@ using namespace std;
 
 SCENARIO("DynaQ converge to a solution", "[rl::DynaQ]") {
   GIVEN("A random walk environment") {
-    rl::agent::Actuator <rl::INT> arw(
-      {
-        rl::RandomWalkEnvironment::Action::L,
-        rl::RandomWalkEnvironment::Action::R
-      }
-    );
+    rl::agent::Actuator <rl::INT> arw(rl::spActionSet<rl::INT>({ L, R }));  // Setup actuator with actions.
     rl::SensorRandomWalk srw;
-    srw.addTerminalState(rl::RandomWalkEnvironment::State::T);
+    srw.addTerminalState(T);
 
     rl::RandomWalkEnvironment rwe(arw, srw);
 

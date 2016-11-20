@@ -46,15 +46,15 @@ class SarsaET final: public EligibilityTraces<S, A>, public Sarsa<S, A> {
           policy::Policy<S, A>& policy, rl::FLOAT lambda);
   
   virtual void update(const StateAction<S, A>& currentStateAction,
-                      const S& nextState, const rl::FLOAT reward,
-                      const set<A>& actionSet) override;
+                      const spState<S>& nextState, const rl::FLOAT reward,
+                      const spActionSet<A>& actionSet) override;
 };
 
 template<class S, class A>
 void SarsaET<S, A>::update(const StateAction<S, A>& currentStateAction,
-                           const S& nextState, const rl::FLOAT reward,
-                           const set<A>& actionSet) {
-  A nextAction = this->getAction(nextState, actionSet);
+                           const spState<S>& nextState, const rl::FLOAT reward,
+                           const spActionSet<A>& actionSet) {
+  spAction<A> nextAction = this->getAction(nextState, actionSet);
   ReinforcementLearning<S, A>::updateStateAction(
     currentStateAction,
     StateAction<S, A>(nextState, nextAction),

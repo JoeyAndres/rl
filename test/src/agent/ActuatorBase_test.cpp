@@ -13,14 +13,9 @@ using namespace std;
 SCENARIO("Agent have a storage for actions and actuator.",
          "[rl::agent::Actuator]") {
   GIVEN("Actuator") {
-    rl::agent::Actuator<rl::INT> actuator(
-      {
-        rl::RandomWalkEnvironment::Action::L,
-        rl::RandomWalkEnvironment::Action::R
-      }
-    );
+    rl::agent::Actuator<rl::INT> actuator(rl::spActionSet<rl::INT>({ L, R }));
     rl::SensorRandomWalk srw;
-    srw.addTerminalState(rl::RandomWalkEnvironment::State::T);
+    srw.addTerminalState(T);
 
     rl::RandomWalkEnvironment rwe(actuator, srw);
 

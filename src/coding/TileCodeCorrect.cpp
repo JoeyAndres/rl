@@ -13,8 +13,8 @@ TileCodeCorrect::TileCodeCorrect(vector<DimensionInfo<FLOAT> >& dimensionalInfos
 }
 
 FEATURE_VECTOR TileCodeCorrect::getFeatureVector(
-    const STATE_CONT& parameters) {
-  assert(this->getDimension() == parameters.size());  
+    const floatVector& parameters) {
+  assert(this->getDimension() == parameters.size());
   FEATURE_VECTOR fv;
   fv.resize(this->_numTilings);
   
@@ -23,7 +23,7 @@ FEATURE_VECTOR TileCodeCorrect::getFeatureVector(
     rl::INT hashedIndex = 0;
     rl::INT mult = 1;
     for (size_t j = 0; j < this->getDimension(); j++) {
-      hashedIndex += this->paramToGridValue(parameters[j], i, j) * mult;
+      hashedIndex += this->paramToGridValue(parameters.at(j), i, j) * mult;
       mult *= this->_dimensionalInfos[j].GetGridCountReal();
     }
 

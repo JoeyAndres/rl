@@ -5,8 +5,9 @@
  *      Author: jandres
  */
 
-#ifndef STATEACTION_H_
-#define STATEACTION_H_
+#pragma once
+
+#include "../declares.h"
 
 namespace rl {
 namespace agent {
@@ -32,7 +33,7 @@ class StateAction {
    * @param state of state-action pair.
    * @param action of state-action pair.
    */
-  StateAction(S state, A action);
+  explicit StateAction(const spState<S>& state, const spState<A>& action);
 
   /**
    * Copy Constructor.
@@ -50,52 +51,55 @@ class StateAction {
   /**
    * @return return state of state-action pair.
    */
-  const S &getState() const;
+  const spState<S> &getState() const;
 
   /**
    * @return return action of state-action pair.
    */
-  const A &getAction() const;
+  const spAction<A> &getAction() const;
 
   /**
    * @param state set the state of state-action pair.
    */
-  void setState(const S &state);
+  void setState(const spState<S> &state);
 
   /**
    * @param action set the action of state-action pair.
    */
-  void setAction(const A &action);
+  void setAction(const spAction<A> &action);
 
  protected:
-  S _state;  //!< State of state-action pair.
-  A _action;  //!< Action of state-action pair.
+  spState<S> _state;  //!< State of state-action pair.
+  spAction<A> _action;  //!< Action of state-action pair.
 };
 
 template<class S, class A>
-StateAction<S, A>::StateAction(S state, A action) : _state(state), _action(action) {}
+StateAction<S, A>::StateAction(const spState<S>& state, const spAction<A>& action) :
+  _state(state),
+  _action(action) {
+}
 
 template<class S, class A>
 StateAction<S, A>::StateAction(const StateAction &sa) : _state(sa._state), _action(sa._action) {}
 
 template<class S, class A>
 bool StateAction<S, A>::operator<(const StateAction<S, A> &stateAction) const {
-  if (_state < stateAction._state)
+  if (*_state < *(stateAction._state))
     return true;
-  if (_state > stateAction._state)
+  if (*_state > *(stateAction._state))
     return false;
-  if (_action < stateAction._action)
+  if (*_action < *(stateAction._action))
     return true;
   return false;
 }
 
 template<class S, class A>
 bool StateAction<S, A>::operator>(const StateAction<S, A> &stateAction) const {
-  if (_state > stateAction._state)
+  if (*_state > *(stateAction._state))
     return true;
-  if (_state < stateAction._state)
+  if (*_state < *(stateAction._state))
     return false;
-  if (_action > stateAction._action)
+  if (*_action > *(stateAction._action))
     return true;
   return false;
 }
@@ -112,7 +116,7 @@ bool StateAction<S, A>::operator>=(const StateAction<S, A> &stateAction) const {
 
 template<class S, class A>
 bool StateAction<S, A>::operator==(const StateAction<S, A> &stateAction) const {
-  if (_state == stateAction._state && _action == stateAction._action) {
+  if (*_state == *(stateAction._state) && *_action == *(stateAction._action)) {
     return true;
   }
   return false;
@@ -127,26 +131,24 @@ bool StateAction<S, A>::operator!=(const StateAction<S, A> &stateAction) const {
 }
 
 template<class S, class A>
-const S &StateAction<S, A>::getState() const {
+const spState<S> &StateAction<S, A>::getState() const {
   return this->_state;
 }
 
 template<class S, class A>
-const A &StateAction<S, A>::getAction() const {
+const spAction<A> &StateAction<S, A>::getAction() const {
   return this->_action;
 }
 
 template<class S, class A>
-void StateAction<S, A>::setState(const S &state) {
+void StateAction<S, A>::setState(const spState<S> &state) {
   _state = state;
 }
 
 template<class S, class A>
-void StateAction<S, A>::setAction(const A &action) {
+void StateAction<S, A>::setAction(const spAction<A> &action) {
   _action = action;
 }
 
 }  // namespace agent
 } /* namespace rl */
-
-#endif /* STATEACTION_H_ */

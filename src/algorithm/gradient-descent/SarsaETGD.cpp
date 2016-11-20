@@ -9,7 +9,7 @@ namespace algorithm {
 
 SarsaETGD::SarsaETGD(
   TileCode& tileCode, rl::FLOAT stepSize, rl::FLOAT discountRate,
-  rl::FLOAT lambda, policy::Policy<vector<FLOAT>, vector<FLOAT> >& policy)
+  rl::FLOAT lambda, policy::Policy<stateCont, actionCont>& policy)
   : ReinforcementLearningGD(tileCode, stepSize, discountRate, lambda, policy) {
   this->setLearningPolicy(policy);
 }

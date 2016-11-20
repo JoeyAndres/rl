@@ -40,7 +40,7 @@ class TileCodeMt1993764 : public TileCode {
    * @param parameters
    * @return Vector of discretize index.
    */
-  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters) override;
+  virtual FEATURE_VECTOR getFeatureVector(const floatVector& parameters) override;
 
  protected:
   std::mt19937_64 _prng;

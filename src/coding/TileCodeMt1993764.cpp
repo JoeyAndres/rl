@@ -22,13 +22,13 @@ TileCodeMt1993764::TileCodeMt1993764(
 }
 
 FEATURE_VECTOR TileCodeMt1993764::getFeatureVector(
-    const STATE_CONT& parameters) {
+    const floatVector& parameters) {
   vector<rl::INT> tileComponents(this->getDimension() + 1);
   FEATURE_VECTOR fv;
   
   for (size_t i = 0; i < this->_numTilings; i++) {
     for (size_t j = 0; j < this->getDimension(); j++) {
-      tileComponents[j] = this->paramToGridValue(parameters[j], i, j);
+      tileComponents[j] = this->paramToGridValue(parameters.at(j), i, j);
     }
 
     // Add a unique number_tiling identifier.

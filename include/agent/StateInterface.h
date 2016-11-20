@@ -17,7 +17,7 @@ namespace agent {
 template<class S>
 class StateInterface {
  public:
-  StateInterface(const S &value) : _value(value) {}
+  StateInterface(const spState<S> &value) : _value(value) {}
 
   virtual bool operator<(const StateInterface<S> &rhs) const {
     return this->_value < rhs._value;
@@ -52,16 +52,16 @@ class StateInterface {
     return *this;
   }
 
-  virtual S &getValue() {
+  virtual spState<S> &getValue() {
     return this->_value;
   }
 
-  virtual const S &getValue() const {
+  virtual const spState<S> &getValue() const {
     return this->_value;
   }
 
  protected:
-  S _value;  // Value of this thing.
+  spState<S> _value;  // Value of this thing.
 };
 
 }  // namespace agent

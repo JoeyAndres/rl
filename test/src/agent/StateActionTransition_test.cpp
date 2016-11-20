@@ -26,20 +26,18 @@ SCENARIO("StateActionTransition have the ability to represent offline model for 
     }
     
     GIVEN("A set of states") {
-      rl::INT state01(1);
-      rl::INT state02(2);
-      rl::INT state03(3);
+      rl::spState<rl::INT> state01(new rl::INT(1));
+      rl::spState<rl::INT> state02(new rl::INT(2));
+      rl::spState<rl::INT> state03(new rl::INT(3));
       WHEN("Update all of them. One more than the other.") {
         sat.update(state01, 10);
         REQUIRE(sat.getSize() == 1);
         REQUIRE(sat.getNextState() == state01);  // 1 states stored.
 
-        rl::INT state02(2);
         sat.update(state02, 10);
         sat.update(state02, 10);
         REQUIRE(sat.getSize() == 2);  // 2 states stored.
 
-        rl::INT state03(3);
         sat.update(state03, 10);
         sat.update(state03, 10);
         sat.update(state03, 10);
@@ -51,7 +49,7 @@ SCENARIO("StateActionTransition have the ability to represent offline model for 
             state03OccurenceCount = 0;
 
           for (rl::UINT i = 0; i < 1000; i++) {
-            const rl::INT& state = sat.getNextState();
+            rl::spState<rl::INT> state = sat.getNextState();
             if (state == state01) {
               state01OccurenceCount++;
             } else if (state == state02) {
@@ -78,7 +76,7 @@ SCENARIO("StateActionTransition have the ability to represent offline model for 
 
         bool exceptionCalled = false;
         try {
-          sat.getReward(rl::INT(23));
+          sat.getReward(rl::spState<rl::INT>(new rl::INT(23)));
         } catch (StateActionTransitionException& exception) {
           //cout << exception.what() << endl;
           exceptionCalled = true;
@@ -101,11 +99,13 @@ SCENARIO("StateActionTransition have the ability to represent offline model for 
     }
 
     WHEN("I try to access a reward for a state that was not know to this StateActionTransition") {
-      sat.update(10, 100);
+      rl::spState<rl::INT> state10(new rl::INT(10));
+      rl::spState<rl::INT> state23(new rl::INT(23));
+      sat.update(state10, 100);
       THEN ("I get an exception.") {
         bool exceptionCalled = false;
         try {
-          sat.getReward(23);
+          sat.getReward(state23);
         } catch (StateActionTransitionException& exception) {
           //cout << exception.what() << endl;
           exceptionCalled = true;

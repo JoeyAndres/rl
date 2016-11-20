@@ -20,9 +20,9 @@ using namespace std;
 SCENARIO("Sarsa converge to a solution",
          "[rl::Sarsa]") {
   GIVEN("A random walk environment") {
-    Actuator <rl::INT> arw({L, R});  // Setup actuator with actions.
+    rl::agent::Actuator <rl::INT> arw(rl::spActionSet<rl::INT>({ L, R }));  // Setup actuator with actions.
     SensorRandomWalk srw;  // Setup sensor.
-    srw.addTerminalState(T);  // Setup terminal state.
+    srw.addTerminalState(::T);  // Setup terminal state.
     rl::RandomWalkEnvironment rwEnv(arw, srw);  // Setup environment.
 
     policy::EpsilonGreedy <rl::INT, rl::INT> policy(1.0F);

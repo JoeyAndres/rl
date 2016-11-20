@@ -39,7 +39,7 @@ TileCodeUNH::TileCodeUNH(
 }
 
 FEATURE_VECTOR TileCodeUNH::getFeatureVector(
-  const STATE_CONT& parameters) {
+  const floatVector& parameters) {
   assert(this->getDimension() == parameters.size());
   FEATURE_VECTOR fv;
 
@@ -48,7 +48,7 @@ FEATURE_VECTOR TileCodeUNH::getFeatureVector(
   for (size_t i = 0; i < this->getDimension(); i++) {
     // Note to floor since casting to integer is not consistent
     // with negative number. Casting is always a number toward zero.
-    qStates[i] = floor(parameters[i] * _normalization[i]);
+    qStates[i] = floor(parameters.at(i) * _normalization[i]);
   }
 
   for (size_t i = 0; i < this->_numTilings; i++) {

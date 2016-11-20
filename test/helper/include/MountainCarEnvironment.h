@@ -20,15 +20,15 @@ using namespace std;
 
 namespace rl {
 
-class MountainCarEnvironment : public Environment<STATE_CONT, ACTION_CONT>{
+class MountainCarEnvironment : public Environment<stateCont, actionCont>{
  public:
-  using SA = Environment<STATE_CONT, ACTION_CONT>::SA;
+  using SA = Environment<stateCont, actionCont>::SA;
 
  public:
-  MountainCarEnvironment(Actuator<STATE_CONT>& actuator, Sensor<STATE_CONT>& sensor);
+  MountainCarEnvironment(Actuator<stateCont>& actuator, Sensor<stateCont>& sensor);
 
   // Overloaded methods.
-  virtual std::pair<STATE_CONT, FLOAT> getNextStateAndReward(const SA& stateAction) override;
+  virtual rl::spStateAndReward<stateCont> getNextStateAndReward(const SA& stateAction) override;
 };
 
 } /* namespace rl */

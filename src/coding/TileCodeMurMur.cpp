@@ -22,14 +22,14 @@ TileCodeMurMur::TileCodeMurMur(
 }
 
 FEATURE_VECTOR TileCodeMurMur::getFeatureVector(
-    const STATE_CONT& parameters) {
+    const floatVector& parameters) {
   assert(this->getDimension() == parameters.size());
   FEATURE_VECTOR fv;
 
   vector<rl::INT> tileComponents(this->getDimension() + 1);
   for (rl::INT i = 0; i < this->_numTilings; i++) {
     for (size_t j = 0; j < this->getDimension(); j++) {
-      tileComponents[j] = this->paramToGridValue(parameters[j], i, j);
+      tileComponents[j] = this->paramToGridValue(parameters.at(j), i, j);
     }
     
     // Add a unique number_tiling identifier.

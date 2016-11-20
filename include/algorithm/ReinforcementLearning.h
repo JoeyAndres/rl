@@ -51,7 +51,7 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
    * @param actionSet a set of possible actions.
    * @return the action that will "likely" gives the highest reward.
    */
-  A argMax(const S& state, const set<A>& actionSet) const;
+  spAction<A> argMax(const spState<S>& state, const spActionSet<A>& actionSet) const;
 
   /**
    * @return current discount rate.
@@ -90,7 +90,7 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
    * @param actionSet Set of actions.
    * @return Action with respect to learning/offline policy.
    */
-  A getLearningAction(const S& currentState, const set<A>& actionSet);
+  spAction<A> getLearningAction(const spState<S>& currentState, const spActionSet<A>& actionSet);
 
   /**
    * @param stateAction to acquire a value of.
@@ -110,6 +110,7 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
    * @return state-action pair container.
    */
   const StateActionPairContainer<S, A>& getStateActionPairContainer() const;
+  StateActionPairContainer<S, A>& getStateActionPairContainer();
 
   /**
    * @param stateActionPairContainer set state-action pair container.
@@ -122,11 +123,11 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
   virtual void updateStateAction(const StateAction <S, A> &currentStateAction,
                                  const StateAction <S, A> &nextStateAction,
                                  const rl::FLOAT reward);
-  virtual A getAction(const S& currentState, const set<A>& actionSet);
+  virtual spAction<A> getAction(const spState<S>& currentState, const spActionSet<A>& actionSet);
 
  protected:
-  void _buildActionValueMap(const set<A>& actionSet, const S& currentState,
-                            map<A, rl::FLOAT>& actionValueMap);
+  void _buildActionValueMap(const spActionSet<A>& actionSet, const spState<S>& currentState,
+                            spActionValueMap<A>& actionValueMap);
  protected:
   rl::FLOAT _stepSize;
   rl::FLOAT _discountRate;
@@ -154,18 +155,18 @@ ReinforcementLearning<S, A>::ReinforcementLearning(
 }
 
 template<class S, class A>
-A ReinforcementLearning<S, A>::argMax(
-    const S& state, const set<A>& actionSet) const {
-  A greedAct = *(actionSet.begin());
+spAction<A> ReinforcementLearning<S, A>::argMax(
+    const spState<S>& state, const spActionSet<A>& actionSet) const {
+  spAction<A> greedAct = *(actionSet.begin());
 
   rl::FLOAT currentValue = this->_defaultStateActionValue;
   try {
-    currentValue = this->_stateActionPairContainer[{state, greedAct}];
+    currentValue = this->_stateActionPairContainer[StateAction<S, A>(state, greedAct)];
   } catch (StateActionNotExistException& e) {
     // Do nothing. We already assign it the default state-action value.
   }
 
-  for (const A& action : actionSet) {
+  for (const spState<A>& action : actionSet) {
     rl::FLOAT value = this->_defaultStateActionValue;
     try {
       value = this->_stateActionPairContainer[StateAction<S, A>(state, action)];
@@ -210,6 +211,12 @@ inline const StateActionPairContainer<S, A>& ReinforcementLearning<
 }
 
 template<class S, class A>
+inline StateActionPairContainer<S, A>& ReinforcementLearning<
+  S, A>::getStateActionPairContainer() {
+  return _stateActionPairContainer;
+}
+
+template<class S, class A>
 inline void ReinforcementLearning<S, A>::setStateActionPairContainer(
     const StateActionPairContainer<S, A>& stateActionPairContainer) {
   _stateActionPairContainer = stateActionPairContainer;
@@ -222,31 +229,31 @@ inline void ReinforcementLearning<S, A>::setStateActionValue(
 }
 
 template<class S, class A>
-inline A ReinforcementLearning<S, A>::getLearningAction(
-    const S& currentState, const set<A>& actionSet) {
+inline spAction<A> ReinforcementLearning<S, A>::getLearningAction(
+    const spState<S>& currentState, const spActionSet<A>& actionSet) {
   _stateActionPairContainer.addState(currentState,
                                      this->_defaultStateActionValue, actionSet);
-  map<A, rl::FLOAT> actionValueMap;
+  spActionValueMap<A> actionValueMap;
   _buildActionValueMap(actionSet, currentState, actionValueMap);
   return this->_getLearningPolicyAction(actionValueMap, actionSet);
 }
 
 template<class S, class A>
 void ReinforcementLearning<S, A>::_buildActionValueMap(
-    const set<A>& actionSet, const S& currentState,
-    map<A, rl::FLOAT>& actionValueMap) {
-  for (const A& action : actionSet) {
-    actionValueMap[action] = _stateActionPairContainer[StateAction<S, A>(
-        currentState, action)];
+  const spActionSet<A>& actionSet, const spState<S>& currentState,
+  spActionValueMap<A>& actionValueMap) {
+  for (const spAction<A>& action : actionSet) {
+    actionValueMap[action] = _stateActionPairContainer[
+      StateAction<S, A>(currentState, action)];
   }
 }
 
 template<class S, class A>
-A ReinforcementLearning<S, A>::getAction(
-    const S& currentState, const set<A>& actionSet) {
+spAction<A> ReinforcementLearning<S, A>::getAction(
+  const spState<S>& currentState, const spActionSet<A>& actionSet) {
   _stateActionPairContainer.addState(currentState,
                                      this->_defaultStateActionValue, actionSet);
-  map<A, rl::FLOAT> actionValueMap;
+  spActionValueMap<A> actionValueMap;
   _buildActionValueMap(actionSet, currentState, actionValueMap);
   return this->_controlPolicy->getAction(actionValueMap, actionSet);
 }

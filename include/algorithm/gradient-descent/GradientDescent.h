@@ -7,14 +7,13 @@
 #ifndef _GRADIENT_DESCENT_H_
 #define _GRADIENT_DESCENT_H_
 
-#include "../../declares.h"
-
 #include <set>
 #include <map>
 #include <vector>
 #include <cstdlib>
 #include <x86intrin.h>
 
+#include "../../declares.h"
 #include "../../coding/TileCode.h"
 
 using namespace std;
@@ -51,7 +50,7 @@ class GradientDescent {
    * @param parameters
    * @return corresponding value.
    */
-  FLOAT getValueFromParameters(const vector<FLOAT>& parameters) const;
+  FLOAT getValueFromParameters(const floatVector& parameters) const;
 
   /**
    * Get the value of the parameters in the real space.
@@ -65,7 +64,7 @@ class GradientDescent {
    * @param fv feature vector output. Feature vector are samples taken around
    *           the parameters in the n-dimension tilecde.
    */
-  FEATURE_VECTOR getFeatureVector(const vector<FLOAT>& parameters) const;
+  FEATURE_VECTOR getFeatureVector(const floatVector& parameters) const;
 
   /**
    * Increase the eligibility traces of a given feature vector.
@@ -96,9 +95,9 @@ class GradientDescent {
    * @param nextStateVector array of next states.
    * @param reward reward for taking nextAction.
    */
-  void updateWeights(const STATE_CONT& currentStateVector,
-                     const ACTION_CONT& currentActionVector,
-                     const STATE_CONT& nextStateVector,
+  void updateWeights(const spStateCont& currentStateVector,
+                     const spActionCont& currentActionVector,
+                     const spStateCont& nextStateVector,
                      const FLOAT nextActionValue, const FLOAT reward);
 
   /**
@@ -108,16 +107,16 @@ class GradientDescent {
    * @param maxAction max action calculated while building action value map.
    */
   void buildActionValues(
-      const set<ACTION_CONT>& actionSet, const vector<FLOAT>& param,
-      map<ACTION_CONT, FLOAT>& actionVectorValueMap,
-      ACTION_CONT& maxAction) const;
+      const spActionSet<actionCont>& actionSet, const spStateCont& param,
+      spActionValueMap<actionCont>& actionVectorValueMap,
+      spActionCont& maxAction) const;
 
   /**
    * @param actionValueMap state-action to value mapping.
    * @return value.
    */
   FLOAT getMaxValue(
-      const map<ACTION_CONT, FLOAT>& actionValueMap) const;
+      const spActionValueMap<actionCont>& actionValueMap) const;
 
   /**
    * Update weights with tderror.

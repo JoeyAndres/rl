@@ -64,7 +64,7 @@ class DynaQBase {
    * @param actionSet a set of possible actions.
    * @return the action that will "likely" gives the highest reward.
    */
-  virtual A argMax(const S& state, const set<A>& actionSet) const = 0;
+  virtual spAction<A> argMax(const spState<S>& state, const spActionSet<A>& actionSet) const = 0;
 
   /**
    * Update the stateAction map.
@@ -75,7 +75,7 @@ class DynaQBase {
    * @param actionSet A set of all actions.
    */
   virtual void _updateModel(const StateAction<S, A>& currentStateAction,
-                            const S& nextState, const FLOAT reward);
+                            const spState<S>& nextState, const FLOAT reward);
 
   /**
    * Adds new stateAction pair to the model with mutex lock.
@@ -93,7 +93,7 @@ class DynaQBase {
    * Performs simulation _simulationIterationCount times.
    * @param actionSet set of actions of agent.
    */
-  virtual void _simulate(const set<A>& actionSet);
+  virtual void _simulate(const spActionSet<A>& actionSet);
 
  protected:
   rl::UINT _simulationIterationCount;  //!< Number of simulation, the higher the value
@@ -125,7 +125,7 @@ inline DynaQBase<S, A>::DynaQBase(
 
 template<class S, class A>
 void DynaQBase<S, A>::_updateModel(
-    const StateAction<S, A>& currentStateAction, const S& nextState,
+    const StateAction<S, A>& currentStateAction, const spState<S>& nextState,
     const FLOAT reward) {
   
   _addModel(currentStateAction);
@@ -151,7 +151,7 @@ inline void DynaQBase<S, A>::_addModel(
 }
 
 template<class S, class A>
-void DynaQBase<S, A>::_simulate(const set<A>& actionSet) {
+void DynaQBase<S, A>::_simulate(const spActionSet<A>& actionSet) {
   if (_model.empty())
     return;
 
@@ -163,9 +163,9 @@ void DynaQBase<S, A>::_simulate(const set<A>& actionSet) {
 
     const StateActionTransition<S>& st = _model.at(item->first);
 
-    const S& transState = st.getNextState();
+    const spState<S>& transState = st.getNextState();
 
-    A nextAction = argMax(transState, actionSet);
+    spAction<A> nextAction = argMax(transState, actionSet);
 
     backUpStateActionPair(item->first, st.getReward(transState),
                           StateAction<S, A>(transState, nextAction));

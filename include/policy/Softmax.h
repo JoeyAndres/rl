@@ -50,10 +50,10 @@ class Softmax : public Policy<S, A> {
  public:
   Softmax(rl::FLOAT temperature);
 
-  virtual A getAction(const map<A, rl::FLOAT>& actionValues,
-                             const set<A>& actionSet) override;
-  virtual A getAction(const map<A, rl::FLOAT>& actionValues,
-                      const set<A>& actionSet, const A& maxAction) override;
+  virtual spAction<A> getAction(const spActionValueMap<A>& actionValues,
+                             const spActionSet<A>& actionSet) override;
+  virtual spAction<A> getAction(const spActionValueMap<A>& actionValues,
+                      const spActionSet<A>& actionSet, const spAction<A>& maxAction) override;
  private:
   std::random_device _randomDevice;
   std::uniform_real_distribution<rl::FLOAT> _distribution;
@@ -67,22 +67,22 @@ typedef Softmax<vector<rl::FLOAT>, vector<rl::FLOAT> > SoftmaxSL;
 
 template<class S, class A>
 rl::policy::Softmax<S, A>::Softmax(rl::FLOAT temperature)
-    : _distribution(0.0F, 1.0F) {
-  _temperature = temperature;
+    : _distribution(0.0F, 1.0F),
+      _temperature(temperature) {
 }
 
 template<class S, class A>
-A rl::policy::Softmax<S, A>::getAction(
-    const map<A, rl::FLOAT>& actionValues, const set<A>& actionSet) {
+spAction<A> rl::policy::Softmax<S, A>::getAction(
+    const spActionValueMap<A>& actionValues, const spActionSet<A>& actionSet) {
   // Acquire E(i=1...n) e^(Q(i)/temp)
   rl::FLOAT sum = 0.0F;
-  for (const A& action : actionSet) {
+  for (const spAction<A>& action : actionSet) {
     sum += exp(actionValues.at(action) / _temperature);
   }
 
   // Acquire probability for each action.
-  map<A, rl::FLOAT> actionProbabilityMap;
-  for (const A& action : actionSet) {
+  spActionValueMap<A> actionProbabilityMap;
+  for (const spAction<A>& action : actionSet) {
     rl::FLOAT probability = exp(actionValues.at(action) / _temperature) / sum;
     actionProbabilityMap[action] = probability;
   }
@@ -110,8 +110,9 @@ A rl::policy::Softmax<S, A>::getAction(
 }
 
 template<class S, class A>
-A rl::policy::Softmax<S, A>::getAction(const map<A, rl::FLOAT>& actionValues,
-                                   const set<A>& actionSet, const A& maxAction){
+spAction<A> rl::policy::Softmax<S, A>::getAction(
+  const spActionValueMap<A>& actionValues,
+  const spActionSet<A>& actionSet, const spAction<A>& maxAction){
   return getAction(actionValues, actionSet);
 }
 

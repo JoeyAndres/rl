@@ -47,12 +47,14 @@ class Sarsa : public ReinforcementLearning<S, A> {
   // Inherited.
 
   virtual void update(const SA& currentStateAction,
-                      const S& nextState, const rl::FLOAT reward,
-                      const set<A>& actionSet);
+                      const spState<S>& nextState,
+                      const rl::FLOAT reward,
+                      const spActionSet<A>& actionSet);
 };
 
 template<class S, class A>
-Sarsa<S, A>::Sarsa(rl::FLOAT stepSize, rl::FLOAT discountRate,
+Sarsa<S, A>::Sarsa(rl::FLOAT stepSize,
+                   rl::FLOAT discountRate,
                    policy::Policy<S, A>& policy)
     : ReinforcementLearning<S, A>(stepSize, discountRate, policy) {
   this->setLearningPolicy(policy);
@@ -61,9 +63,9 @@ Sarsa<S, A>::Sarsa(rl::FLOAT stepSize, rl::FLOAT discountRate,
 // TODO: Make setLearningPolicy and setPolicy the same.
 template<class S, class A>
 void Sarsa<S, A>::update(const StateAction<S, A>& currentStateAction,
-                         const S& nextState, const rl::FLOAT reward,
-                         const set<A>& actionSet) {
-  A nextAction = this->getAction(nextState, actionSet);
+                         const spState<S>& nextState, const rl::FLOAT reward,
+                         const spActionSet<A>& actionSet) {
+  spAction<A> nextAction = this->getAction(nextState, actionSet);
   ReinforcementLearning<S, A>::updateStateAction(currentStateAction, SA(nextState, nextAction), reward);
   this->backUpStateActionPair(currentStateAction, reward, SA(nextState, nextAction));
 }

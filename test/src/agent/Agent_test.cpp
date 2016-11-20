@@ -16,14 +16,9 @@ using namespace std;
 SCENARIO("Agent interacts with the environment as expected.",
          "[rl::agent::Agent]") {
   GIVEN("A binary environment in which 1 is good and 0 is bad.") {
-    rl::agent::Actuator<rl::INT> arw(
-      {
-        rl::RandomWalkEnvironment::Action::L,
-        rl::RandomWalkEnvironment::Action::R
-      }
-    );
+    rl::agent::Actuator<rl::INT> arw(rl::spActionSet<rl::INT>({ L, R }));
     rl::SensorRandomWalk srw;
-    srw.addTerminalState(rl::RandomWalkEnvironment::State::T);
+    srw.addTerminalState(T);
 
     rl::RandomWalkEnvironment rwe(arw, srw);
 
@@ -33,10 +28,10 @@ SCENARIO("Agent interacts with the environment as expected.",
     rl::agent::Agent<rl::INT, rl::INT> agent(rwe, dynaQAlgorithm);
 
     WHEN ("When I move left.") {
-      REQUIRE(agent.getLastObservedState() == rl::RandomWalkEnvironment::State::B);
-      agent.applyAction(rl::RandomWalkEnvironment::Action::L);
+      REQUIRE(*(agent.getLastObservedState()) == *B);
+      agent.applyAction(L);
       THEN ("I move from B to A.") {
-        REQUIRE(agent.getLastObservedState() == rl::RandomWalkEnvironment::State::A);
+        REQUIRE(*(agent.getLastObservedState()) == *A);
       }
     }
   }

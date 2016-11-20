@@ -24,7 +24,7 @@ using namespace coding;
 /*! \class ReinforcementLearningGD
  *  \brief Gradient descent implementation of Reinforcement Learning.
  */
-class ReinforcementLearningGD : public LearningAlgorithm<STATE_CONT, ACTION_CONT> {
+class ReinforcementLearningGD : public LearningAlgorithm<stateCont, actionCont> {
  public:
   /**
    * @param tileCode tileCode implementation to be aggregated.
@@ -37,7 +37,7 @@ class ReinforcementLearningGD : public LearningAlgorithm<STATE_CONT, ACTION_CONT
    */
   ReinforcementLearningGD(
       TileCode& tileCode, rl::FLOAT stepSize, rl::FLOAT discountRate,
-      rl::FLOAT lambda, policy::Policy<STATE_CONT, ACTION_CONT >& policy);
+      rl::FLOAT lambda, policy::Policy<stateCont, actionCont >& policy);
 
   /**
    * @param currentStateAction current state-action vector to apply.
@@ -46,24 +46,24 @@ class ReinforcementLearningGD : public LearningAlgorithm<STATE_CONT, ACTION_CONT
    * @param actionSet set of possible actions.
    */
   virtual void update(
-      const StateAction<STATE_CONT, ACTION_CONT >& currentStateAction,
-      const STATE_CONT& nextStateVector, const FLOAT reward,
-      const set<ACTION_CONT >& actionSet);
+      const StateAction<stateCont, actionCont >& currentStateAction,
+      const spStateCont& nextStateVector, const FLOAT reward,
+      const spActionSet<actionCont>& actionSet);
 
   /**
    * @param state State to take action to.
    * @param actionSet Set of possible actions.
    * @return Action determined by Control Policy.
    */
-  virtual ACTION_CONT getAction(const STATE_CONT& state,
-                                const set<ACTION_CONT >& actionSet);
+  virtual spActionCont getAction(const spStateCont& state,
+                                 const spActionSet<actionCont>& actionSet);
 
   /**
    * @param stateAction State-action pair to determine value of.
    * @return value of state-actio pair.
    */
   virtual FLOAT getStateActionValue(
-      const StateAction<STATE_CONT, ACTION_CONT>& stateAction);
+      const StateAction<stateCont, actionCont>& stateAction);
 
   /**
    * Reset routine for an algorithm for every episode.
@@ -77,7 +77,7 @@ class ReinforcementLearningGD : public LearningAlgorithm<STATE_CONT, ACTION_CONT
    * @return value of state-actio pair.
    */
   FLOAT _getStateActionValue(
-      const StateAction<STATE_CONT, ACTION_CONT >& stateAction);
+      const StateAction<stateCont, actionCont >& stateAction);
 
   /**
    * @param actionSet set of possible actions.
@@ -85,10 +85,10 @@ class ReinforcementLearningGD : public LearningAlgorithm<STATE_CONT, ACTION_CONT
    * @param actionValueMap mapping of value for every action.
    * @param action of the highest value. This avoid recomputation later.
    */
-  void _buildActionValues(const set<ACTION_CONT >& actionSet,
-                          const vector<FLOAT>& nextState,
-                          map<ACTION_CONT, FLOAT>& actionValueMap,
-                          ACTION_CONT& maxAction);
+  void _buildActionValues(const spActionSet<actionCont>& actionSet,
+                          const spStateCont& nextState,
+                          spActionValueMap<actionCont>& actionValueMap,
+                          spActionCont& maxAction);
 
  protected:
   GradientDescent _gradientDescent;

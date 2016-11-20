@@ -53,7 +53,10 @@ class AgentSupervised {
    * @param reward
    * @param nextState
    */
-  virtual void train(const S& state, const A& action, FLOAT reward, const S& nextState) {
+  virtual void train(const spState<S>& state,
+                     const spAction<A>& action,
+                     FLOAT reward,
+                     const spState<S>& nextState) {
     this->_learningAlgorithm.update(StateAction<S, A>(state, action),
                                     nextState,
                                     reward,
@@ -92,7 +95,10 @@ class Agent {
    * @param reward
    * @param nextState
    */
-  virtual void train(const S& state, const A& action, FLOAT reward, const S& nextState);
+  virtual void train(const spState<S>& state,
+                     const spAction<A>& action,
+                     FLOAT reward,
+                     const spState<S>& nextState);
 
   /**
    * Prepare agent prior to start execution.
@@ -131,12 +137,12 @@ class Agent {
   /**
    * @param action Agent applies action to the environment.
    */
-  virtual void applyAction(const A& action);
+  virtual void applyAction(const spAction<A>& action);
   
   /**
    * @return CurrentState of the agent.
    */
-  virtual S getLastObservedState() const;
+  virtual spState<S> getLastObservedState() const;
 
   /**
    * Calls the Environment<S, A>::reset
@@ -151,8 +157,8 @@ class Agent {
 
   Environment<S, A>& _environment;  // !< Aggregate environment obj.
 
-  S _currentState;  //!< Keeps track of the current state.
-  A _currentAction;  //!< Keeps track of the current action.
+  spState<S> _currentState;  //!< Keeps track of the current state.
+  spAction<A> _currentAction;  //!< Keeps track of the current action.
 
   FLOAT _accumulativeReward; //!< Keeps track of accumulation of reward during
                              //!< the span of the episode.Specifically, after
@@ -173,7 +179,7 @@ template<class D = FLOAT>
 using AgentSL = Agent<vector<D>, vector<D>>;
 
 template<class S, class A>
-rl::agent::Agent<S, A>::Agent(Environment<S, A>& environment,
+Agent<S, A>::Agent(Environment<S, A>& environment,
                        algorithm::LearningAlgorithm<S, A>& learningAlgorithm)
     : _environment(environment),
       _learningAlgorithm(learningAlgorithm),
@@ -184,12 +190,16 @@ rl::agent::Agent<S, A>::Agent(Environment<S, A>& environment,
 }
 
 template<class S, class A>
-S rl::agent::Agent<S, A>::getLastObservedState() const {
+spState<S> Agent<S, A>::getLastObservedState() const {
   return _environment.getSensor().getLastObservedState();
 }
 
 template<class S, class A>
-void rl::agent::Agent<S, A>::train(const S& state, const A& action, FLOAT reward, const S& nextState) {
+void Agent<S, A>::train(
+  const spState<S>& state,
+  const spAction<A>& action,
+  FLOAT reward,
+  const spState<S>& nextState) {
   this->_learningAlgorithm.update(
     StateAction<S, A>(state, action),
     nextState,
@@ -198,7 +208,7 @@ void rl::agent::Agent<S, A>::train(const S& state, const A& action, FLOAT reward
 }
 
 template<class S, class A>
-void rl::agent::Agent<S, A>::preExecute() {
+void Agent<S, A>::preExecute() {
   _currentState = std::move(getLastObservedState());
   _currentAction = std::move(_learningAlgorithm.getAction(
         _currentState, _environment.getActuator().getActionSet()));
@@ -207,10 +217,10 @@ void rl::agent::Agent<S, A>::preExecute() {
 }
 
 template<class S, class A>
-void rl::agent::Agent<S, A>::execute() {
+void Agent<S, A>::execute() {
   // todo: Acquire last state and reward here.
   this->applyAction(_currentAction);
-  S nextState = std::move(getLastObservedState());
+  spState<S> nextState = std::move(getLastObservedState());
   FLOAT reward = this->_environment.getSensor().getLastObservedReward();
 
   // Accumulate reward.
@@ -229,7 +239,7 @@ void rl::agent::Agent<S, A>::execute() {
 }
 
 template<class S, class A>
-size_t rl::agent::Agent<S, A>::executeEpisode(UINT maxIter){
+size_t Agent<S, A>::executeEpisode(UINT maxIter){
   preExecute();
   UINT i = 0;
   for(; i < maxIter && episodeDone() == false; i++) {
@@ -240,27 +250,27 @@ size_t rl::agent::Agent<S, A>::executeEpisode(UINT maxIter){
 }
 
 template<class S, class A>
-bool rl::agent::Agent<S, A>::episodeDone() {
+bool Agent<S, A>::episodeDone() {
   return _environment.getSensor().isTerminalState(_currentState);
 }
 
 template<class S, class A>
-rl::FLOAT rl::agent::Agent<S, A>::postExecute() {
+rl::FLOAT Agent<S, A>::postExecute() {
   return _accumulativeReward;
 }
 
 template<class S, class A>
-inline rl::FLOAT rl::agent::Agent<S, A>::getAccumulativeReward() const {
+inline rl::FLOAT Agent<S, A>::getAccumulativeReward() const {
   return _accumulativeReward;
 }
 
 template<class S, class A>
-void rl::agent::Agent<S, A>::applyAction(const A& action) {
+void Agent<S, A>::applyAction(const spAction<A>& action) {
   this->_environment.applyAction(action);
 }
 
 template<class S, class A>
-void rl::agent::Agent<S, A>::reset() {
+void Agent<S, A>::reset() {
   this->_environment.reset();
 };
 

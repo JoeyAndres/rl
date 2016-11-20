@@ -12,20 +12,20 @@
 using namespace std;
 
 namespace rl {
-
+namespace agent {
 SensorMountainCar::SensorMountainCar() :
-  Sensor<STATE_CONT>(STATE_CONT(2, 0)) {
+  Sensor<stateCont>(rl::spStateCont(new rl::stateCont(2, 0))) {
 }
 
 bool SensorMountainCar::isTerminalState(
-    const STATE_CONT& stateData) const {
-  if (std::abs(stateData[0] - 0.50F) <= 0.01F) {
+  const spStateCont &stateData) const {
+  if (std::abs(stateData->at(0) - 0.50F) <= 0.01F) {
     return true;
   }
 
   return false;
 }
-
+}
 }
 
 /* namespace rl */

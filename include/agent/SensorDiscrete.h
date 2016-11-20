@@ -27,26 +27,26 @@ class SensorDiscrete : public Sensor<S> {
  public:
   using Sensor<S>::Sensor;
 
-  virtual bool isTerminalState(const S &stateData) const override;
+  virtual bool isTerminalState(const spState<S> &stateData) const override;
 
   /**
    * @param terminalData new terminal state to be added.
    */
-  virtual void addTerminalState(const S &terminalData);
+  virtual void addTerminalState(const spState<S> &terminalData);
 
  private:
-  set<S> _terminalStates;  // Must know when to stop.
+  spStateSet<S> _terminalStates;  // Must know when to stop.
 };
 
 template<class S>
 bool SensorDiscrete<S>::isTerminalState(
-  const S &stateData) const {
+  const spState<S> &stateData) const {
   return _terminalStates.find(stateData) != _terminalStates.end();
 }
 
 template<class S>
 void SensorDiscrete<S>::addTerminalState(
-  const S &terminalData) {
+  const spState<S> &terminalData) {
   _terminalStates.insert(terminalData);
 }
 

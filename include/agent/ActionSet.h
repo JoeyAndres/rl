@@ -6,6 +6,8 @@
 
 #include <set>
 
+#include "../declares.h"
+
 using namespace std;
 
 namespace rl {
@@ -27,46 +29,45 @@ class ActionSet {
   /**
    * @param actionSet Initial set of action.
    */
-  ActionSet(const set<A> &actionSet);
+  ActionSet(const spActionSet<A> &actionSet);
 
   /**
  * @return set of actions.
  */
-  const set<A> &getActionSet() const;
+  const spActionSet<A> &getActionSet() const;
 
   /**
    * @param data A to be added.
    */
-  void addAction(const A &data);
+  void addAction(const rl::spAction<A> &data);
 
   /**
    * @param dataSet replace the action set with a new one.
    */
-  void setActionSet(set<A> dataSet);
+  void setActionSet(const spActionSet<A>& dataSet);
 
  protected:
-  set<A> _actionData;
-
+  spActionSet<A> _actionData;
 };
 
 template<class A>
 ActionSet<A>::ActionSet() {}
 
 template<class A>
-ActionSet<A>::ActionSet(const set<A> &actionSet) : _actionData(actionSet) {}
+ActionSet<A>::ActionSet(const spActionSet<A> &actionSet) : _actionData(actionSet) {}
 
 template<class A>
-void ActionSet<A>::addAction(const A &data) {
+void ActionSet<A>::addAction(const spAction<A> &data) {
   _actionData.insert(data);
 }
 
 template<class A>
-const set<A> &ActionSet<A>::getActionSet() const {
+const spActionSet<A> &ActionSet<A>::getActionSet() const {
   return _actionData;
 }
 
 template<class A>
-void ActionSet<A>::setActionSet(set<A> dataSet) {
+void ActionSet<A>::setActionSet(const spActionSet<A>& dataSet) {
   _actionData = dataSet;
 }
 

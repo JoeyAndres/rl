@@ -9,9 +9,3 @@ file(GLOB SRC_TEST_FILES "src/**/*.cpp")
 
 add_executable(testRunner testRunner.cpp ${SRC_TEST_FILES})
 target_link_libraries(testRunner rlTestHelper)
-
-add_custom_command(
-        TARGET testRunner
-        POST_BUILD
-        COMMAND ${PROJECT_BINARY_DIR}/test/testRunner
-)

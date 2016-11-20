@@ -58,8 +58,8 @@ class DynaQRLMP : public ReinforcementLearning<S, A>, public DynaQBase<S, A> {
    * @param nextStateActionPair \f$(S', A')\f$, next state-action pair.
    */
   virtual void backUpStateActionPair(
-      const StateAction<S, A>& currentStateAction, const rl::FLOAT reward,
-      const StateAction<S, A>& nextStateActionPair);
+    const StateAction<S, A>& currentStateAction, const rl::FLOAT reward,
+    const StateAction<S, A>& nextStateActionPair);
 
   /**
    * Returns the action that will most "likely" gives the highest reward from the
@@ -69,30 +69,30 @@ class DynaQRLMP : public ReinforcementLearning<S, A>, public DynaQBase<S, A> {
    * @param actionSet a set of possible actions.
    * @return the action that will "likely" gives the highest reward.
    */
-  virtual A argMax(const S& state, const set<A>& actionSet) const;
+  virtual spAction<A> argMax(const spState<S>& state, const spActionSet<A>& actionSet) const;
 };
 
 template<class S, class A>
 inline DynaQRLMP<S, A>::DynaQRLMP(
-    rl::FLOAT stepSize, rl::FLOAT discountRate, policy::Policy<S, A>& policy,
-    rl::UINT simulationIterationCount, rl::FLOAT stateTransitionGreediness,
-    rl::FLOAT stateTransitionStepSize)
-    : ReinforcementLearning<S, A>(stepSize, discountRate, policy),
-      DynaQBase<S, A>(simulationIterationCount, stateTransitionGreediness,
-                      stateTransitionStepSize) {
+  rl::FLOAT stepSize, rl::FLOAT discountRate, policy::Policy<S, A>& policy,
+  rl::UINT simulationIterationCount, rl::FLOAT stateTransitionGreediness,
+  rl::FLOAT stateTransitionStepSize)
+  : ReinforcementLearning<S, A>(stepSize, discountRate, policy),
+    DynaQBase<S, A>(simulationIterationCount, stateTransitionGreediness,
+                    stateTransitionStepSize) {
 }
 
 template<class S, class A>
 inline void DynaQRLMP<S, A>::backUpStateActionPair(
-    const StateAction<S, A>& currentStateAction, const rl::FLOAT reward,
-    const StateAction<S, A>& nextStateActionPair) {
+  const StateAction<S, A>& currentStateAction, const rl::FLOAT reward,
+  const StateAction<S, A>& nextStateActionPair) {
   ReinforcementLearning<S, A>::backUpStateActionPair(currentStateAction, reward,
                                                      nextStateActionPair);
 }
 
 template<class S, class A>
-inline A DynaQRLMP<S, A>::argMax(const S& state,
-                                                const set<A>& actionSet) const {
+inline spAction<A> DynaQRLMP<S, A>::argMax(const spState<S>& state,
+                                           const spActionSet<A>& actionSet) const {
   return ReinforcementLearning<S, A>::argMax(state, actionSet);
 }
 

@@ -20,7 +20,7 @@ class TileCodeMurMur : public TileCode {
   TileCodeMurMur(vector<DimensionInfo<FLOAT> >& dimensionalInfos, size_t numTilings);
   TileCodeMurMur(vector<DimensionInfo<FLOAT> >& dimensionalInfos, size_t numTilings,
                  size_t sizeHint);
-  virtual FEATURE_VECTOR getFeatureVector(const STATE_CONT& parameters) override;
+  virtual FEATURE_VECTOR getFeatureVector(const floatVector& parameters) override;
 };
 
 } // namespace Coding

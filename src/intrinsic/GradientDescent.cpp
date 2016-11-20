@@ -3,6 +3,7 @@
  */
 
 #include <iostream>
+#include <memory>
 
 #include "algorithm/gradient-descent/GradientDescent.h"
 
@@ -59,7 +60,7 @@ size_t GradientDescent::getSize() const {
 }
 
 FLOAT GradientDescent::getValueFromParameters(
-    const vector<FLOAT>& parameters) const {
+    const floatVector& parameters) const {
   FEATURE_VECTOR fv = std::move(_tileCode.getFeatureVector(parameters));
 
   return getValueFromFeatureVector(fv);
@@ -142,21 +143,23 @@ void GradientDescent::backUpWeights(FLOAT tdError) {
 }
 
 void GradientDescent::updateWeights(
-    const STATE_CONT& currentStateVector,
-    const ACTION_CONT& currentActionVector,
-    const STATE_CONT& nextStateVector, const FLOAT nextActionValue,
+    const spStateCont& currentStateVector,
+    const spActionCont& currentActionVector,
+    const spStateCont& nextStateVector,
+    const FLOAT nextActionValue,
     const FLOAT reward) {
   vector<FLOAT> currentStateVectorCopy;
-  currentStateVectorCopy.reserve(currentStateVector.size() +
-                                 currentActionVector.size());
+  currentStateVectorCopy.reserve(currentStateVector->size() +
+                                 currentActionVector->size());
   currentStateVectorCopy.insert(currentStateVectorCopy.end(),
-                                currentStateVector.begin(),
-                                currentStateVector.end());
+                                currentStateVector->begin(),
+                                currentStateVector->end());
   currentStateVectorCopy.insert(currentStateVectorCopy.end(),
-                                currentActionVector.begin(),
-                                currentActionVector.end());
+                                currentActionVector->begin(),
+                                currentActionVector->end());
 
-  FEATURE_VECTOR currentStateFv = std::move(getFeatureVector(currentStateVectorCopy));
+  FEATURE_VECTOR currentStateFv =
+    std::move(getFeatureVector(currentStateVectorCopy));
   incrementEligibilityTraces(currentStateFv);
 
   FLOAT tdError = reward + _discountRate * nextActionValue
@@ -167,31 +170,31 @@ void GradientDescent::updateWeights(
   decreaseEligibilityTraces();
 }
 
-FEATURE_VECTOR GradientDescent::getFeatureVector(const vector<FLOAT>& parameters) const {
+FEATURE_VECTOR GradientDescent::getFeatureVector(const floatVector& parameters) const {
   return _tileCode.getFeatureVector(parameters);
 }
 
 void GradientDescent::buildActionValues(
-    const set<ACTION_CONT >& actionSet, const vector<FLOAT>& nextState,
-    map<ACTION_CONT, FLOAT>& actionVectorValueMap, ACTION_CONT& actions) const {
-  set<ACTION_CONT>::const_iterator maxActionIter = actionSet.begin();
+    const spActionSet<actionCont>& actionSet, const spStateCont& nextState,
+    spActionValueMap<actionCont>& actionVectorValueMap, spActionCont& actions) const {
+  spActionSet<actionCont>::const_iterator maxActionIter = actionSet.begin();
 
   // Build pc = <state1, ..., action1, ...> array.
   vector<FLOAT> pc;
-  pc.reserve(nextState.size() + (*maxActionIter).size());
-  pc.insert(pc.end(), nextState.begin(), nextState.end());
-  pc.insert(pc.end(), (*maxActionIter).begin(), (*maxActionIter).end());
+  pc.reserve(nextState->size() + (*maxActionIter)->size());
+  pc.insert(pc.end(), nextState->begin(), nextState->end());
+  pc.insert(pc.end(), (*maxActionIter)->begin(), (*maxActionIter)->end());
 
   FLOAT maxVal = getValueFromParameters(pc);
   actionVectorValueMap[*maxActionIter] = maxVal;
 
-  set<ACTION_CONT>::const_iterator iter = maxActionIter;
+  spActionSet<actionCont>::const_iterator iter = maxActionIter;
   iter++;
   for (;  iter != actionSet.end(); ++iter) {
     vector<FLOAT> paramCopy;
-    paramCopy.reserve(nextState.size() + (*iter).size());
-    paramCopy.insert(paramCopy.end(), nextState.begin(), nextState.end());
-    paramCopy.insert(paramCopy.end(), (*iter).begin(), (*iter).end());
+    paramCopy.reserve(nextState->size() + (*iter)->size());
+    paramCopy.insert(paramCopy.end(), nextState->begin(), nextState->end());
+    paramCopy.insert(paramCopy.end(), (*iter)->begin(), (*iter)->end());
     
     FLOAT value = getValueFromParameters(paramCopy);
     actionVectorValueMap[*iter] = value;
@@ -224,10 +227,12 @@ void GradientDescent::resetEligibilityTraces() {
 }
 
 FLOAT GradientDescent::getMaxValue(
-    const map<ACTION_CONT, FLOAT>& actionValueMap) const {
+    const spActionValueMap<actionCont>& actionValueMap) const {
   // Get max action.
   FLOAT maxValue = actionValueMap.begin()->second;
-  for (auto iter = actionValueMap.begin(); iter != actionValueMap.end(); ++iter) {
+  for (auto iter = actionValueMap.begin();
+       iter != actionValueMap.end();
+       ++iter) {
     if (iter->second > maxValue) {
       maxValue = iter->second;
     }
@@ -236,5 +241,5 @@ FLOAT GradientDescent::getMaxValue(
   return maxValue;
 }
 
-}  // Algorithm
-}  // rl
+}  // namespace Algorithm
+}  // namespace rl

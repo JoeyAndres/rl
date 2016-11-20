@@ -34,13 +34,13 @@ class Environment {
    * @param stateAction Given this state-action, gives next state and reward.
    * @return Next state and reward.
    */
-  virtual std::pair<S, FLOAT> getNextStateAndReward(const SA &stateAction) = 0;
+  virtual spStateAndReward<S> getNextStateAndReward(const SA &stateAction) = 0;
 
   /**
    * @see Actuator Documentation for example.
    * @param action to be applied to environment.
    */
-  virtual StateAndReward<S> applyAction(const A &action);
+  virtual spStateAndReward<S> applyAction(const spAction<A> &action);
 
   Actuator<A> &getActuator();
   const Actuator<A> &getActuator() const;
@@ -65,10 +65,10 @@ inline Environment<S, A>::Environment(Actuator<A> &actuator, Sensor<S> &sensor)
 }
 
 template<class S, class A>
-StateAndReward<S> Environment<S, A>::applyAction(const A &action) {
-  auto currentState = this->_sensor.getLastObservedState();
-  auto currentStateAction = StateAction<S, A>(currentState, action);
-  auto nextStateAndReward = this->getNextStateAndReward(currentStateAction);
+spStateAndReward<S> Environment<S, A>::applyAction(const spAction<A> &action) {
+  spState<S> currentState = this->_sensor.getLastObservedState();
+  StateAction<S, A> currentStateAction (currentState, action);
+  spStateAndReward<S> nextStateAndReward = this->getNextStateAndReward(currentStateAction);
   this->_sensor.setLastObservedStateAndReward(nextStateAndReward);
 
   return nextStateAndReward;
