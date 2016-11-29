@@ -15,7 +15,7 @@
 
 #include "GradientDescent.h"
 #include "../../agent/StateAction.h"
-#include "ReinforcementLearningGD.h"
+#include "ReinforcementLearningGDET.h"
 
 using namespace std;
 
@@ -28,7 +28,7 @@ using namespace coding;
  *  \brief Gradient Descent with Sarsa implementation (the same policy for
  *         learning and action selection).
  */
-class SarsaETGD final: public ReinforcementLearningGD {
+class SarsaETGD final: public ReinforcementLearningGDET {
  public:
   SarsaETGD(TileCode& tileCode, rl::FLOAT stepSize,
             rl::FLOAT discountRate,

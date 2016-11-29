@@ -38,11 +38,14 @@ rl::spStateAndReward<rl::stateCont> MountainCarEnvironment::getNextStateAndRewar
   nextState->at(VEL) +=
       (0.001F * copyAct - 0.0025F * cos(3.0F * nextState->at(POS)));
 
-  if (nextState->at(VEL) < -0.07F)
+  if (nextState->at(VEL) < -0.07F) {
     nextState->at(VEL) = -0.07F;
-  else if (nextState->at(VEL) >= 0.07F)
+  } else if (nextState->at(VEL) >= 0.07F) {
     nextState->at(VEL) = 0.06999999F;
+  }
+
   nextState->at(POS) += nextState->at(VEL);
+
   if (nextState->at(POS) >= 0.5F) {
     nextState->at(POS) = 0.5;
     nextReward = 0;
@@ -50,7 +53,6 @@ rl::spStateAndReward<rl::stateCont> MountainCarEnvironment::getNextStateAndRewar
     nextState->at(POS) = -1.2F;
     nextState->at(VEL) = 0.0F;
   }
-
 
   return { nextState, nextReward };
 }

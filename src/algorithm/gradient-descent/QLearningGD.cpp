@@ -16,16 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "algorithm/gradient-descent/QLearningETGD.h"
+#include "algorithm/gradient-descent/QLearningGD.h"
 
 namespace rl {
 namespace algorithm {
 
-QLearningETGD::QLearningETGD(
+QLearningGD::QLearningGD(
   TileCode& tileCode, rl::FLOAT stepSize, rl::FLOAT discountRate,
   rl::FLOAT lambda, policy::PolicySL& controlPolicy)
-  : ReinforcementLearningGDET(tileCode, stepSize, discountRate, lambda,
-                            controlPolicy) {
+  : ReinforcementLearningGD(tileCode, stepSize, discountRate, lambda,
+                              controlPolicy) {
 }
 
 }  // namespace Algorithm
