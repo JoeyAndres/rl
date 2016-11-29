@@ -16,17 +16,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "algorithm/gradient-descent/QLearningETGD.h"
+#pragma once
+
+#include <vector>
+#include <map>
+
+#include "../../declares.h"
+#include "../../agent/StateAction.h"
+#include "GradientDescent.h"
+#include "ReinforcementLearningGD.h"
+
+using namespace std;
 
 namespace rl {
 namespace algorithm {
 
-QLearningETGD::QLearningETGD(
-  TileCode& tileCode, rl::FLOAT stepSize, rl::FLOAT discountRate,
-  rl::FLOAT lambda, policy::PolicySL& controlPolicy)
-  : ReinforcementLearningGDET(tileCode, stepSize, discountRate, lambda,
-                            controlPolicy) {
-}
+using namespace coding;
 
-}  // namespace Algorithm
+/*! \class SarsaET
+ *  \brief Gradient Descent with Sarsa implementation (the same policy for
+ *         learning and action selection).
+ */
+class SarsaGD final: public ReinforcementLearningGD {
+ public:
+  SarsaGD(TileCode& tileCode, rl::FLOAT stepSize,
+          rl::FLOAT discountRate,
+          rl::FLOAT lambda,
+          policy::Policy<vector<FLOAT>, vector<FLOAT> >& policy);
+};
+
+}  // namespace algorithm
 }  // namespace rl

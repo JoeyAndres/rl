@@ -1,67 +1,37 @@
 /**
- * ReinforcementLearningGD.cpp
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "algorithm/gradient-descent/GradientDescent.h"
 #include "algorithm/gradient-descent/ReinforcementLearningGD.h"
 
 namespace rl {
 namespace algorithm {
 
-ReinforcementLearningGD::ReinforcementLearningGD(
-    TileCode& tileCode, rl::FLOAT stepSize, rl::FLOAT discountRate,
-    rl::FLOAT lambda, policy::Policy<stateCont, actionCont >& policy)
-    : LearningAlgorithm<stateCont, actionCont >(policy),
-      _gradientDescent(tileCode, stepSize, discountRate, lambda) {
+ReinforcementLearningGD::ReinforcementLearningGD (
+  TileCode& tileCode, rl::FLOAT stepSize, rl::FLOAT discountRate,
+  rl::FLOAT lambda, policy::Policy<stateCont, actionCont >& policy)
+: ReinforcementLearningGDAbstract::ReinforcementLearningGDAbstract(tileCode, stepSize, discountRate, lambda, policy) {
+  this->_gradientDescent = shared_ptr<GradientDescentAbstract>(
+      new GradientDescent(tileCode, stepSize, discountRate, lambda)
+  );
 }
 
-void ReinforcementLearningGD::_buildActionValues(
-    const spActionSet<actionCont>& actionSet,
-    const spStateCont& nextState,
-    spActionValueMap<actionCont>& actionValueMap,
-    spActionCont& action) {
-  _gradientDescent.buildActionValues(actionSet, nextState, actionValueMap, action);
-}
-
-void ReinforcementLearningGD::update(
-    const StateAction<stateCont, actionCont >& currentStateAction,
-    const spStateCont& nextStateVector, const FLOAT reward,
-    const spActionSet<actionCont>& actionSet) {
-  spActionValueMap<actionCont> actionValueMap;
-  spActionCont maxAction(new actionCont);
-  _buildActionValues(actionSet, nextStateVector, actionValueMap, maxAction);
-  const spActionCont& nextAction = this->_getLearningPolicyAction(
-      actionValueMap, actionSet, maxAction);
-
-  _gradientDescent.updateWeights(currentStateAction.getState(),
-                                 currentStateAction.getAction(),
-                                 nextStateVector, actionValueMap[nextAction],
-                                 reward);
-}
-
-spActionCont ReinforcementLearningGD::getAction(
-    const spStateCont& state, const spActionSet<actionCont>& actionSet) {
-  spActionValueMap<actionCont> actionValueMap;
-  spActionCont maxAction(new actionCont);
-  _buildActionValues(actionSet, state, actionValueMap, maxAction);
-  return this->_learningPolicy->getAction(actionValueMap, actionSet, maxAction);
-}
-
-FLOAT ReinforcementLearningGD::getStateActionValue(
-    const StateAction<stateCont, actionCont >& stateAction) {
-  return _getStateActionValue(stateAction);
-}
-
-FLOAT ReinforcementLearningGD::_getStateActionValue(
-    const StateAction<stateCont, actionCont >& stateAction) {
-  auto copy = *(stateAction.getState());
-  copy.insert(copy.end(), stateAction.getAction()->begin(),
-              stateAction.getAction()->end());
-  return _gradientDescent.getValueFromParameters(copy);
-}
-
-void ReinforcementLearningGD::reset() {
-  LearningAlgorithm<stateCont, actionCont >::reset();
-  _gradientDescent.resetEligibilityTraces();
+ReinforcementLearningGD::~ReinforcementLearningGD() {
 }
 
 } // namespace Algorithm

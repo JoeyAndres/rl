@@ -1,5 +1,19 @@
-/*
- * SarsaETGD_test.cpp
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <vector>
@@ -20,9 +34,10 @@ using std::vector;
 using namespace std::chrono;
 using namespace std;
 
-SCENARIO("Sarsa Eligibility Traces and Gradient Descent converge to a solution",
-         "[rl::SarsaETGD]") {
+SCENARIO("Q-learning Gradient Descent converge to a solution",
+         "[rl::QLearingGD]") {
   GIVEN("A Mountain Car environment") {
+    // Actions.
     rl::spActionCont reverse(new rl::actionCont({0}));
     rl::spActionCont neutral(new rl::actionCont({1}));
     rl::spActionCont forward(new rl::actionCont({2}));
@@ -48,13 +63,13 @@ SCENARIO("Sarsa Eligibility Traces and Gradient Descent converge to a solution",
       rl::coding::DimensionInfo<rl::FLOAT>(0.0F, 2.0F, 3, 0.0F),  // Action dimension.
     };
     rl::coding::TileCodeCorrect tileCode(dimensionalInfoVector, 8);  // Setup tile coding with 10 offsets.
-    rl::algorithm::SarsaETGD sarsa(tileCode, 0.1F, 1.0F, 0.9F, policy);
-    rl::agent::AgentSL <rl::FLOAT> agent(mce, sarsa);
+    rl::algorithm::QLearningGD qLearning(tileCode, 0.1F, 1.0F, 0.9F, policy);
+    rl::agent::AgentSL <rl::FLOAT> agent(mce, qLearning);
 
     WHEN("We do multiple episodes") {
       rl::INT iterationCount = 0;
       for (rl::INT i = 0; i < 1000; i++) {
-        agent.reset();
+        mce.reset();
 
         iterationCount = agent.executeEpisode();
       }
