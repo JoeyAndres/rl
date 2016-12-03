@@ -1,21 +1,31 @@
-/*
- * File:   ReinforcementLearningET.h
- * Author: jandres
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- * Created on June 7, 2014, 6:07 AM
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef REINFORCEMENTLEARNINGET_H
-#define	REINFORCEMENTLEARNINGET_H
-
-#include "../declares.h"
+#pragma once
 
 #include <map>
 
+#include "../declares.h"
 #include "../agent/StateAction.h"
 #include "../agent/StateActionPairContainer.h"
 
-using namespace std;
+using std::map;
+using rl::agent::StateAction;
 
 namespace rl {
 namespace algorithm {
@@ -47,7 +57,7 @@ class EligibilityTraces {
    * @param lambda A huge lambda means basically back up ranging from
    * terminal state to initial state. Small lambda converges to TD(0).
    */
-  EligibilityTraces(rl::FLOAT lambda);
+  explicit EligibilityTraces(rl::FLOAT lambda);
 
   /**
    * @param lambda A huge \f$\lambda\f$ means
@@ -62,7 +72,6 @@ class EligibilityTraces {
   rl::FLOAT getLambda() const;
 
  protected:
-
   /**
    * Iterate through all states and update each with respect to the their
    * eligibility Trace.
@@ -77,12 +86,12 @@ class EligibilityTraces {
   virtual void _updateEligibilityTraces(
       const StateAction<S, A>& currentStateAction,
       const StateAction<S, A>& nextStateAction, rl::FLOAT reward,
-      StateActionPairContainer<S, A>& stateActionPairValueMap,
+      StateActionPairContainer<S, A> * const stateActionPairValueMap,
       rl::FLOAT stepSize, rl::FLOAT discountRate);
 
  protected:
   rl::FLOAT _lambda;
-  map<rl::StateAction<S, A>, rl::FLOAT> _eligibilityTraces;
+  map<StateAction<S, A>, rl::FLOAT> _eligibilityTraces;
 };
 
 template<class S, class A>
@@ -103,24 +112,26 @@ rl::FLOAT EligibilityTraces<S, A>::getLambda() const {
 template<class S, class A>
 void EligibilityTraces<S, A>::_updateEligibilityTraces(
     const StateAction<S, A>& currentStateAction,
-    const StateAction<S, A>& nextStateAction, rl::FLOAT reward,
-    StateActionPairContainer<S, A>& stateActionPairValue, rl::FLOAT stepSize,
+    const StateAction<S, A>& nextStateAction,
+    rl::FLOAT reward,
+    StateActionPairContainer<S, A> * const stateActionPairValue,
+    rl::FLOAT stepSize,
     rl::FLOAT discountRate) {
 
   rl::FLOAT tdError = reward
       + discountRate
-          * (reward + discountRate * stateActionPairValue[nextStateAction]
-              - stateActionPairValue[currentStateAction]);
+          * (reward + discountRate * (*stateActionPairValue)[nextStateAction]
+            - (*stateActionPairValue)[currentStateAction]);
   _eligibilityTraces[currentStateAction] =
       _eligibilityTraces[currentStateAction] + 1;
 
-  for (auto iter = stateActionPairValue.begin();
-      iter != stateActionPairValue.end(); iter++) {
+  for (auto iter = stateActionPairValue->begin();
+      iter != stateActionPairValue->end(); iter++) {
     auto state = iter->first.getState();
     auto action = iter->first.getAction();
     rl::FLOAT value = iter->second;
 
-    stateActionPairValue.setStateActionValue(
+    stateActionPairValue->setStateActionValue(
         StateAction<S, A>(state, action),
         value
             + stepSize * tdError
@@ -132,8 +143,6 @@ void EligibilityTraces<S, A>::_updateEligibilityTraces(
   }
 }
 
-} /* Algoirithm */
-} /* rl */
-
-#endif	/* REINFORCEMENTLEARNINGET_H */
+}  // namespace algorithm
+}  // namespace rl
 

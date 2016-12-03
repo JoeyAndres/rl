@@ -18,31 +18,27 @@
 
 #pragma once
 
-#include <vector>
-#include <map>
-
 #include "../../declares.h"
 #include "../../agent/StateAction.h"
 #include "GradientDescent.h"
 #include "ReinforcementLearningGD.h"
 
-using namespace std;
+using rl::coding::spTileCode;
 
 namespace rl {
 namespace algorithm {
 
-using namespace coding;
-
-/*! \class SarsaET
+/*! \class SarsaGD
  *  \brief Gradient Descent with Sarsa implementation (the same policy for
  *         learning and action selection).
  */
 class SarsaGD final: public ReinforcementLearningGD {
  public:
-  SarsaGD(TileCode& tileCode, rl::FLOAT stepSize,
+  SarsaGD(const spTileCode& tileCode,
+          rl::FLOAT stepSize,
           rl::FLOAT discountRate,
           rl::FLOAT lambda,
-          policy::Policy<vector<FLOAT>, vector<FLOAT> >& policy);
+          const policy::spPolicy<stateCont, actionCont>& policy);
 };
 
 }  // namespace algorithm

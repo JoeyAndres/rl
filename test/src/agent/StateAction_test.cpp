@@ -1,12 +1,26 @@
 /**
- * StateAction_test.cpp
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+#include "catch.hpp"
 
 #include "rl"
 
-#include "../../lib/catch.hpp"
-
-SCENARIO("StateAction data type","[rl::agent::StateAction") {
+SCENARIO("StateAction data type", "[rl::agent::StateAction") {
   auto state01 = rl::spState<rl::INT>(new rl::INT(10));
   auto action01 = rl::spAction<rl::INT>(new rl::INT(10));
 

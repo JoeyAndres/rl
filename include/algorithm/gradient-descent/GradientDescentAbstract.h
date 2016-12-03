@@ -23,12 +23,16 @@
 #include <vector>
 #include <memory>
 #include <cstdlib>
+#include <tuple>
 
 #include "../../declares.h"
 #include "../../coding/TileCode.h"
 
+using std::tuple;
+
+using rl::coding::spTileCode;
+
 namespace rl {
-using coding::TileCode;
 namespace algorithm {
 
 class GradientDescentAbstract {
@@ -39,7 +43,7 @@ class GradientDescentAbstract {
    * @param discountRate discount rate for gradient descent.
    * @param lambda How influential is current state-action to ther state-action.
    */
-  GradientDescentAbstract(TileCode& tileCode,
+  GradientDescentAbstract(const spTileCode& tileCode,
                           rl::FLOAT stepSize,
                           rl::FLOAT discountRate,
                           rl::FLOAT lambda);
@@ -83,16 +87,15 @@ class GradientDescentAbstract {
                              const FLOAT reward) = 0;
 
   /**
-   * @param actionSet set of actions.
-   * @param param array of current state.
-   * @param actionVectorValueMap state-action to value mapping to be returned.
-   * @param maxAction max action calculated while building action value map.
+   * Acquires the action-value map as well as the action with max action.
+   * @param actionSet Set of actions.
+   * @param nextState Next state.
+   * @return {actionValueMap, maxaction}
    */
-  void buildActionValues(
+  tuple<spActionValueMap<actionCont>, spActionCont>
+  buildActionValues(
     const spActionSet<actionCont>& actionSet,
-    const spStateCont& param,
-    spActionValueMap<actionCont>& actionVectorValueMap,
-    spActionCont& maxAction) const;
+    const spStateCont& nextState) const;
 
   /**
    * @param actionValueMap state-action to value mapping.
@@ -102,12 +105,21 @@ class GradientDescentAbstract {
     const spActionValueMap<actionCont>& actionValueMap) const;
 
  protected:
-  TileCode& _tileCode;  //!< Tile Code.
+  spTileCode _tileCode;  //!< Tile Code.
   std::vector<rl::FLOAT> _w;  //!< Vector of weights.
   rl::FLOAT _stepSize;  //!< Step Size of the weight update.
-  rl::FLOAT _discountRate;  //!< Discount rate, mix with _lambda on how past states
-  //!< influence current.
-  rl::FLOAT _lambda;  //!< lambda, mix with _lambda on how past states influence current.
+
+  /*! \var _discount
+   *
+   * Rate, mix with _lambda on how past states influence current.
+   */
+  rl::FLOAT _discountRate;
+
+  /*! \var _lambda
+   *
+   * mix with _lambda on how past states influence current.
+   */
+  rl::FLOAT _lambda;
 
   // Optimization.
   rl::FLOAT _discountRateTimesLambda;
@@ -116,5 +128,5 @@ class GradientDescentAbstract {
 
 using spGradientDescentAbstract = std::shared_ptr<GradientDescentAbstract>;
 
-} // namespace algorithm
-} // namespace rl
+}  // namespace algorithm
+}  // namespace rl

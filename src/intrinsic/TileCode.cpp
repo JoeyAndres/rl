@@ -1,15 +1,31 @@
 /**
- * TileCode.cpp
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 
 #include "coding/TileCode.h"
 
 namespace rl {
 namespace coding {
 
-TileCode::TileCode(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
-                   size_t numTilings) : _dimensionalInfos(dimensionalInfos){
-  assert(numTilings > 0);  
+TileCode::TileCode(
+  const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
+  size_t numTilings) : _dimensionalInfos(dimensionalInfos) {
+  assert(numTilings > 0);
   _numTilings = numTilings;
 
   // Calculate the size.
@@ -58,7 +74,7 @@ size_t TileCode::_calculateSizeCache() {
   // Add paddings
 #ifdef MMX
   // MMX is 64bits, same as rl::DOUBLE.
-#elif defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)
+#elif defined(SSE) || defined(SSE2) || defined(SSE3) || defined(SSE4) || defined(SSE4_1) || defined(SSE4_2) || defined(SSE4A)  // NOLINT
   size += size%2;
 #elif AVX
   size += size%4;
@@ -67,17 +83,25 @@ size_t TileCode::_calculateSizeCache() {
   return size;
 }
 
-size_t TileCode::paramToGridValue(rl::FLOAT param, size_t tilingIndex, size_t dimensionIndex) {
-  auto randomOffset = _randomOffsets[tilingIndex][dimensionIndex];
-  auto dimGeneraliztionScale = this->_dimensionalInfos[dimensionIndex].getGeneralizationScale();
-  auto dimLowerBound = this->_dimensionalInfos[dimensionIndex].getLowerBound();
-  auto dimGridCountIdeal = this->_dimensionalInfos[dimensionIndex].GetGridCountIdeal();
-  auto dimRangeMagnitude = this->_dimensionalInfos[dimensionIndex].GetRangeDifference();
+size_t TileCode::paramToGridValue(
+  rl::FLOAT param, size_t tilingIndex, size_t dimensionIndex) {
+  auto randomOffset =
+    _randomOffsets[tilingIndex][dimensionIndex];
+  auto dimGeneraliztionScale =
+    this->_dimensionalInfos[dimensionIndex].getGeneralizationScale();
+  auto dimLowerBound =
+    this->_dimensionalInfos[dimensionIndex].getLowerBound();
+  auto dimGridCountIdeal =
+    this->_dimensionalInfos[dimensionIndex].GetGridCountIdeal();
+  auto dimRangeMagnitude =
+    this->_dimensionalInfos[dimensionIndex].GetRangeDifference();
 
   return (
-    (param + randomOffset * dimGeneraliztionScale - dimLowerBound) * dimGridCountIdeal
-  ) / dimRangeMagnitude;
+    (
+      param +
+      randomOffset * dimGeneraliztionScale - dimLowerBound
+    ) * dimGridCountIdeal) / dimRangeMagnitude;  // NOLINT: I'd like to make this easy to understand.
 }
 
-}  // namespace Coding
+}  // namespace coding
 }  // namespace rl

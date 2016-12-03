@@ -1,9 +1,19 @@
-/*
- * SensorStatesAbstract.h
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- *  Created on: May 31, 2014
- *      Author: jandres
- * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #pragma once
@@ -11,6 +21,7 @@
 #include <set>
 #include <algorithm>
 #include <cmath>
+#include <memory>
 
 #include "../declares.h"
 
@@ -23,7 +34,6 @@ namespace agent {
 /*! \class Sensor
  *  \brief Base and interface class for all Sensor objects.
  *  \tparam S State data type.
- *  \tparam A Action data type.
  *
  *  Base and interface class for all Sensor objects. For sensors with
  *  states of discrete nature, @see Sensor. Otherwise, use this or
@@ -32,7 +42,7 @@ namespace agent {
 template<class S>
 class Sensor {
  public:
-  Sensor(const spState<S> &initialState);
+  explicit Sensor(const spState<S> &initialState);
 
   /**
    * @return current state of agent in environment.
@@ -87,6 +97,13 @@ class Sensor {
   spState<S> _initialState;
   spState<S> _lastObservedState;
 };
+
+/*! \class spSensor
+ *  \brief Sensor wrapped in shared_ptr.
+ *  \tparam S Sensor data type.
+ */
+template<class S>
+using spSensor = shared_ptr<Sensor<S>>;
 
 template<class S>
 Sensor<S>::Sensor(const spState<S> &initialState) :

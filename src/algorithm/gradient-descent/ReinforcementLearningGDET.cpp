@@ -16,23 +16,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <memory>
+
 #include "algorithm/gradient-descent/GradientDescentET.h"
 #include "algorithm/gradient-descent/ReinforcementLearningGDET.h"
 
 namespace rl {
 namespace algorithm {
 
-ReinforcementLearningGDET::ReinforcementLearningGDET (
-  TileCode& tileCode, rl::FLOAT stepSize, rl::FLOAT discountRate,
-  rl::FLOAT lambda, policy::Policy<stateCont, actionCont >& policy)
-  : ReinforcementLearningGDAbstract::ReinforcementLearningGDAbstract(tileCode, stepSize, discountRate, lambda, policy) {
-  this->_gradientDescent = shared_ptr<GradientDescentAbstract>(
-    new GradientDescentET(tileCode, stepSize, discountRate, lambda)
-  );
+ReinforcementLearningGDET::ReinforcementLearningGDET(
+  const spTileCode& tileCode,
+  rl::FLOAT stepSize,
+  rl::FLOAT discountRate,
+  rl::FLOAT lambda,
+  const policy::spPolicy<stateCont, actionCont >& policy) :
+  ReinforcementLearningGDAbstract::ReinforcementLearningGDAbstract(
+    tileCode, stepSize, discountRate, lambda, policy) {
+  this->_gradientDescent = std::shared_ptr<GradientDescentAbstract>(
+    new GradientDescentET(tileCode, stepSize, discountRate, lambda));
 }
 
 ReinforcementLearningGDET::~ReinforcementLearningGDET() {
 }
 
-} // namespace Algorithm
-} // namespace rl
+}  // namespace algorithm
+}  // namespace rl

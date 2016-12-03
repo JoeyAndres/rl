@@ -16,23 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _GRADIENT_DESCENT_H_
-#define _GRADIENT_DESCENT_H_
-
-#include <set>
-#include <map>
-#include <vector>
-#include <cstdlib>
-#include <x86intrin.h>
+#pragma once
 
 #include "../../declares.h"
 #include "../../coding/TileCode.h"
 #include "GradientDescentAbstract.h"
 
-using namespace std;
-
 namespace rl {
-using coding::TileCode;
+using coding::spTileCode;
 namespace algorithm {
 
 /*! \class GradientDescent
@@ -49,7 +40,5 @@ class GradientDescent : public GradientDescentAbstract {
                      const FLOAT reward) override;
 };
 
-} // namespace algorithm
-} // namespace rl
-
-#endif // _GRADIENT_DESCENT_H_
+}  // namespace algorithm
+}  // namespace rl

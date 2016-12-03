@@ -1,26 +1,38 @@
-/*
- * ReinforcementLearning.h
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- *  Created on: May 31, 2014
- *      Author: jandres
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef REINFORCEMENTLEARNING_H_
-#define REINFORCEMENTLEARNING_H_
+#pragma once
 
 #include <cstdlib>
-#include <set>
-#include <map>
 #include <iostream>
 
 #include "../agent/StateAction.h"
-#include "LearningAlgorithm.h"
 #include "../policy/Policy.h"
 #include "../agent/StateActionPairContainer.h"
+#include "LearningAlgorithm.h"
 
-using namespace std;
+using rl::agent::StateActionPairContainer;
+using rl::agent::StateActionNotExistException;
+using rl::policy::Policy;
+using rl::policy::spPolicy;
 
 namespace rl {
+
 namespace algorithm {
 
 /*! \class ReinforcementLearning
@@ -40,8 +52,9 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
    * consideration of future events.
    * @param policy online policy, that is policy used for action selection.
    */
-  ReinforcementLearning(rl::FLOAT stepSize, rl::FLOAT discountRate,
-                        policy::Policy<S, A>& policy);
+  ReinforcementLearning(rl::FLOAT stepSize,
+                        rl::FLOAT discountRate,
+                        const spPolicy<S, A>& policy);
 
   /**
    * Returns the action that will most "likely" gives the highest reward from the
@@ -51,7 +64,8 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
    * @param actionSet a set of possible actions.
    * @return the action that will "likely" gives the highest reward.
    */
-  spAction<A> argMax(const spState<S>& state, const spActionSet<A>& actionSet) const;
+  spAction<A> argMax(
+    const spState<S>& state, const spActionSet<A>& actionSet) const;
 
   /**
    * @return current discount rate.
@@ -90,7 +104,8 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
    * @param actionSet Set of actions.
    * @return Action with respect to learning/offline policy.
    */
-  spAction<A> getLearningAction(const spState<S>& currentState, const spActionSet<A>& actionSet);
+  spAction<A> getLearningAction(
+    const spState<S>& currentState, const spActionSet<A>& actionSet);
 
   /**
    * @param stateAction to acquire a value of.
@@ -119,15 +134,17 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
       const StateActionPairContainer<S, A>& stateActionPairContainer);
 
  public:
-  // Inherited.
   virtual void updateStateAction(const StateAction <S, A> &currentStateAction,
                                  const StateAction <S, A> &nextStateAction,
                                  const rl::FLOAT reward);
-  virtual spAction<A> getAction(const spState<S>& currentState, const spActionSet<A>& actionSet);
+  virtual spAction<A> getAction(
+    const spState<S>& currentState, const spActionSet<A>& actionSet);
 
  protected:
-  void _buildActionValueMap(const spActionSet<A>& actionSet, const spState<S>& currentState,
-                            spActionValueMap<A>& actionValueMap);
+  spActionValueMap<A> _buildActionValueMap(
+    const spActionSet<A>& actionSet,
+    const spState<S>& currentState) const;
+
  protected:
   rl::FLOAT _stepSize;
   rl::FLOAT _discountRate;
@@ -135,11 +152,18 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
 };
 
 template<class S, class A>
-std::ostream& operator<<(std::ostream& os, const ReinforcementLearning<S, A>& rl) {
+std::ostream& operator<<(
+  std::ostream& os, const ReinforcementLearning<S, A>& rl) {
   auto stateActionPairContainer = rl.getStateActionPairContainer();
   os << "{" << std::endl;
-  for (auto iter = stateActionPairContainer.begin(); iter != stateActionPairContainer.end(); iter++) {
-    os << "\t(" << iter->first.getState() << ", " << iter->first.getAction() << "): " << iter->second << "," << std::endl;
+  for (auto iter = stateActionPairContainer.begin();
+       iter != stateActionPairContainer.end();
+       iter++) {
+    os << "\t("
+       << iter->first.getState()
+       << ", " << iter->first.getAction()
+       << "): " << iter->second
+       << "," << std::endl;
   }
   os << "}" << std::endl;
 
@@ -148,7 +172,9 @@ std::ostream& operator<<(std::ostream& os, const ReinforcementLearning<S, A>& rl
 
 template<class S, class A>
 ReinforcementLearning<S, A>::ReinforcementLearning(
-    rl::FLOAT stepSize, rl::FLOAT discountRate, policy::Policy<S, A>& policy)
+    rl::FLOAT stepSize,
+    rl::FLOAT discountRate,
+    const spPolicy<S, A>& policy)
     : LearningAlgorithm<S, A>(policy) {
   _stepSize = stepSize;
   _discountRate = discountRate;
@@ -161,7 +187,8 @@ spAction<A> ReinforcementLearning<S, A>::argMax(
 
   rl::FLOAT currentValue = this->_defaultStateActionValue;
   try {
-    currentValue = this->_stateActionPairContainer[StateAction<S, A>(state, greedAct)];
+    currentValue =
+      this->_stateActionPairContainer[StateAction<S, A>(state, greedAct)];
   } catch (StateActionNotExistException& e) {
     // Do nothing. We already assign it the default state-action value.
   }
@@ -183,69 +210,71 @@ spAction<A> ReinforcementLearning<S, A>::argMax(
 }
 
 template<class S, class A>
-inline rl::FLOAT ReinforcementLearning<S, A>::getDiscountRate() const {
+rl::FLOAT ReinforcementLearning<S, A>::getDiscountRate() const {
   return _discountRate;
 }
 
 template<class S, class A>
-inline void ReinforcementLearning<S, A>::setDiscountRate(
+void ReinforcementLearning<S, A>::setDiscountRate(
     rl::FLOAT discountRate) {
   _discountRate = discountRate;
 }
 
 template<class S, class A>
-inline rl::FLOAT ReinforcementLearning<S, A>::getStepSize() const {
+rl::FLOAT ReinforcementLearning<S, A>::getStepSize() const {
   return _stepSize;
 }
 
 template<class S, class A>
-inline void ReinforcementLearning<S, A>::setStepSize(
+void ReinforcementLearning<S, A>::setStepSize(
     rl::FLOAT stepSize) {
   _stepSize = stepSize;
 }
 
 template<class S, class A>
-inline const StateActionPairContainer<S, A>& ReinforcementLearning<
+const StateActionPairContainer<S, A>& ReinforcementLearning<
     S, A>::getStateActionPairContainer() const {
   return _stateActionPairContainer;
 }
 
 template<class S, class A>
-inline StateActionPairContainer<S, A>& ReinforcementLearning<
+StateActionPairContainer<S, A>& ReinforcementLearning<
   S, A>::getStateActionPairContainer() {
   return _stateActionPairContainer;
 }
 
 template<class S, class A>
-inline void ReinforcementLearning<S, A>::setStateActionPairContainer(
+void ReinforcementLearning<S, A>::setStateActionPairContainer(
     const StateActionPairContainer<S, A>& stateActionPairContainer) {
   _stateActionPairContainer = stateActionPairContainer;
 }
 
 template<class S, class A>
-inline void ReinforcementLearning<S, A>::setStateActionValue(
+void ReinforcementLearning<S, A>::setStateActionValue(
     const StateAction<S, A>& stateAction, const rl::FLOAT& reward) {
   _stateActionPairContainer.setStateActionValue(stateAction, reward);
 }
 
 template<class S, class A>
-inline spAction<A> ReinforcementLearning<S, A>::getLearningAction(
+spAction<A> ReinforcementLearning<S, A>::getLearningAction(
     const spState<S>& currentState, const spActionSet<A>& actionSet) {
-  _stateActionPairContainer.addState(currentState,
-                                     this->_defaultStateActionValue, actionSet);
-  spActionValueMap<A> actionValueMap;
-  _buildActionValueMap(actionSet, currentState, actionValueMap);
+  _stateActionPairContainer.addState(
+    currentState,
+    this->_defaultStateActionValue, actionSet);
+  spActionValueMap<A> actionValueMap =
+    _buildActionValueMap(actionSet, currentState);
   return this->_getLearningPolicyAction(actionValueMap, actionSet);
 }
 
 template<class S, class A>
-void ReinforcementLearning<S, A>::_buildActionValueMap(
-  const spActionSet<A>& actionSet, const spState<S>& currentState,
-  spActionValueMap<A>& actionValueMap) {
+spActionValueMap<A> ReinforcementLearning<S, A>::_buildActionValueMap(
+  const spActionSet<A>& actionSet, const spState<S>& currentState) const {
+  spActionValueMap<A> actionValueMap;
   for (const spAction<A>& action : actionSet) {
     actionValueMap[action] = _stateActionPairContainer[
       StateAction<S, A>(currentState, action)];
   }
+  return actionValueMap;
 }
 
 template<class S, class A>
@@ -253,8 +282,8 @@ spAction<A> ReinforcementLearning<S, A>::getAction(
   const spState<S>& currentState, const spActionSet<A>& actionSet) {
   _stateActionPairContainer.addState(currentState,
                                      this->_defaultStateActionValue, actionSet);
-  spActionValueMap<A> actionValueMap;
-  _buildActionValueMap(actionSet, currentState, actionValueMap);
+  spActionValueMap<A> actionValueMap =
+    _buildActionValueMap(actionSet, currentState);
   return this->_controlPolicy->getAction(actionValueMap, actionSet);
 }
 
@@ -284,11 +313,11 @@ void ReinforcementLearning<S, A>::updateStateAction(
   const StateAction <S, A> &nextStateAction,
   const rl::FLOAT reward) {
   (void) reward;
-  _stateActionPairContainer.addStateAction(currentStateAction, this->_defaultStateActionValue);
-  _stateActionPairContainer.addStateAction(nextStateAction, this->_defaultStateActionValue);
-};
+  _stateActionPairContainer.addStateAction(
+    currentStateAction, this->_defaultStateActionValue);
+  _stateActionPairContainer.addStateAction(
+    nextStateAction, this->_defaultStateActionValue);
+}
 
-} /* namespace algorithm */
-} /* namespace rl */
-
-#endif /* REINFORCEMENTLEARNING_H_ */
+}  // namespace algorithm
+}  // namespace rl

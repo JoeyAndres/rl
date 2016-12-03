@@ -1,22 +1,34 @@
 /**
- * Sarsa.h
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- *  Created on: May 31, 2014
- *      Author: jandres
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SARSA_H_
-#define SARSA_H_
+#pragma once
 
 #include <set>
 #include <map>
+#include <memory>
 
 #include "../agent/StateAction.h"
-#include "ReinforcementLearning.h"
 #include "../policy/Policy.h"
+#include "ReinforcementLearning.h"
 
 using std::set;
 using std::map;
+using std::shared_ptr;
 
 namespace rl {
 namespace algorithm {
@@ -40,37 +52,44 @@ class Sarsa : public ReinforcementLearning<S, A> {
    * consideration of future events.
    * @param policy online policy, that is policy used for action selection.
    */
-  Sarsa(rl::FLOAT stepSize, rl::FLOAT discountRate,
-        policy::Policy<S, A>& policy);
+  Sarsa(rl::FLOAT stepSize,
+        rl::FLOAT discountRate,
+        const policy::spPolicy<S, A>& policy);
 
  public:
-  // Inherited.
-
-  virtual void update(const SA& currentStateAction,
-                      const spState<S>& nextState,
-                      const rl::FLOAT reward,
-                      const spActionSet<A>& actionSet);
+  void update(const SA& currentStateAction,
+              const spState<S>& nextState,
+              const rl::FLOAT reward,
+              const spActionSet<A>& actionSet) override;
 };
+
+template <class S, class A>
+using spSarsa = shared_ptr<Sarsa<S, A>>;
 
 template<class S, class A>
 Sarsa<S, A>::Sarsa(rl::FLOAT stepSize,
                    rl::FLOAT discountRate,
-                   policy::Policy<S, A>& policy)
+                   const policy::spPolicy<S, A>& policy)
     : ReinforcementLearning<S, A>(stepSize, discountRate, policy) {
   this->setLearningPolicy(policy);
 }
 
-// TODO: Make setLearningPolicy and setPolicy the same.
+// TODO(jandres): Make setLearningPolicy and setPolicy the same.
 template<class S, class A>
 void Sarsa<S, A>::update(const StateAction<S, A>& currentStateAction,
-                         const spState<S>& nextState, const rl::FLOAT reward,
+                         const spState<S>& nextState,
+                         const rl::FLOAT reward,
                          const spActionSet<A>& actionSet) {
   spAction<A> nextAction = this->getAction(nextState, actionSet);
-  ReinforcementLearning<S, A>::updateStateAction(currentStateAction, SA(nextState, nextAction), reward);
-  this->backUpStateActionPair(currentStateAction, reward, SA(nextState, nextAction));
+  ReinforcementLearning<S, A>::updateStateAction(
+    currentStateAction,
+    SA(nextState, nextAction),
+    reward);
+  this->backUpStateActionPair(
+    currentStateAction,
+    reward,
+    SA(nextState, nextAction));
 }
 
-} /* algorithm */
-} /* namespace rl */
-
-#endif /* SARSA_H_ */
+}  // namespace algorithm
+}  // namespace rl

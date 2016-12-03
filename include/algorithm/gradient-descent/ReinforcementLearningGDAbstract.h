@@ -18,23 +18,25 @@
 
 #pragma once
 
-#include <vector>
-#include <map>
+#include <tuple>
 
 #include "../../declares.h"
 #include "../../agent/StateAction.h"
 #include "../LearningAlgorithm.h"
 #include "GradientDescent.h"
 
+using std::tuple;
+
+using rl::coding::spTileCode;
+
 namespace rl {
 namespace algorithm {
-
-using coding::TileCode;
 
 /*! \class ReinforcementLearningGDAbstract
  *  \brief Gradient descent implementation of Reinforcement Learning.
  */
-class ReinforcementLearningGDAbstract : public LearningAlgorithm<stateCont, actionCont> {
+class ReinforcementLearningGDAbstract
+  : public LearningAlgorithm<stateCont, actionCont> {
  public:
   /**
    * @param tileCode tileCode implementation to be aggregated.
@@ -46,8 +48,11 @@ class ReinforcementLearningGDAbstract : public LearningAlgorithm<stateCont, acti
    * @param policy Control policy.
    */
   ReinforcementLearningGDAbstract(
-    TileCode& tileCode, rl::FLOAT stepSize, rl::FLOAT discountRate,
-    rl::FLOAT lambda, policy::Policy<stateCont, actionCont >& policy);
+    const spTileCode& tileCode,
+    rl::FLOAT stepSize,
+    rl::FLOAT discountRate,
+    rl::FLOAT lambda,
+    const policy::spPolicy<stateCont, actionCont>& policy);
 
   virtual ~ReinforcementLearningGDAbstract() = 0;
 
@@ -83,7 +88,6 @@ class ReinforcementLearningGDAbstract : public LearningAlgorithm<stateCont, acti
   virtual void reset();
 
  protected:
-
   /**
    * @param stateAction State-action pair to determine value of.
    * @return value of state-actio pair.
@@ -92,19 +96,19 @@ class ReinforcementLearningGDAbstract : public LearningAlgorithm<stateCont, acti
     const StateAction<stateCont, actionCont >& stateAction);
 
   /**
-   * @param actionSet set of possible actions.
-   * @param nextState state, action just got applied.
-   * @param actionValueMap mapping of value for every action.
-   * @param action of the highest value. This avoid recomputation later.
+   * Acquires the action-value map as well as the action with max action.
+   * @param actionSet Set of actions.
+   * @param nextState Next state.
+   * @return {actionValueMap, maxaction}
    */
-  void _buildActionValues(const spActionSet<actionCont>& actionSet,
-                          const spStateCont& nextState,
-                          spActionValueMap<actionCont>& actionValueMap,
-                          spActionCont& maxAction);
+  tuple<spActionValueMap<actionCont>, spActionCont>
+  _buildActionValues(
+    const spActionSet<actionCont>& actionSet,
+    const spStateCont& nextState) const;
 
  protected:
   spGradientDescentAbstract _gradientDescent = nullptr;
 };
 
-} // namespace algorithm
-} // namespace rl
+}  // namespace algorithm
+}  // namespace rl

@@ -1,8 +1,19 @@
-/* 
- * File:   globalHeader.h
- * Author: Joey Andres
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- * Created on June 3, 2014, 4:45 PM
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #pragma once
@@ -41,7 +52,7 @@ const UINT MAX_EPISODES = 100000;
 /*! \typedef FEATURE_VECTOR
  *  Feature vector is a data structure for Tile Coding. It is the indices
  *  that contains the data points to be sampled.
- *  
+ *
  *  TODO(jandres): See #RL-14
  */
 typedef std::vector<UINT> FEATURE_VECTOR;
@@ -62,7 +73,7 @@ using spFloatVector = std::shared_ptr<std::vector<FLOAT>>;
 
 /*! \typedef StateAndReward
  *  \tparam S data type of the State.
- *  
+ *
  *  Represent the pair of state and the corresponding reward.
  */
 template<class S>
@@ -70,7 +81,7 @@ using StateAndReward = std::pair<S, FLOAT>;
 
 /*! \typedef spState
  *  \tparam S data type of the State.
- *  
+ *
  *  Wraps states in shared_ptr. This makes development easier since
  *  as we pass the states around, we are guaranteed they still exist.
  */
@@ -79,7 +90,7 @@ using spState = std::shared_ptr<S>;
 
 /*! \typedef spStateComp
  *  \tparam S data type of the State.
- *  
+ *
  *  Comparison for spState should be by the value they dereference,
  *  not their pointer address value.
  */

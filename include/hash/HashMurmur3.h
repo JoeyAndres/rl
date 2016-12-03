@@ -1,21 +1,30 @@
-/*
- * Hash.h
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- *  Created on: Jun 15, 2014
- *      Author: jandres
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef HASH_H_
-#define HASH_H_
-
-#include "../declares.h"
+#pragma once
 
 #include <cstdint>
 #include <vector>
 
+#include "../declares.h"
 #include "HashInterface.h"
 
-using namespace std;
+using std::vector;
 
 namespace rl {
 namespace hash {
@@ -38,7 +47,5 @@ class Murmur3 : public HashInterface<HashMurmur3Out> {
   virtual HashMurmur3Out hash(const vector<rl::BYTE>& byteArray);
 };
 
-} /* Hash */
-} /* rl */
-
-#endif /* HASH_H_ */
+}  // namespace hash
+}  // namespace rl

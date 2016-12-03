@@ -1,17 +1,27 @@
-/*
- * StateActionNotExist.h
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- *  Created on: Jun 13, 2014
- *      Author: jandres
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef STATEACTIONNOTEXISTEXCEPTION_H_
-#define STATEACTIONNOTEXISTEXCEPTION_H_
+#pragma once
 
 #include <exception>
 #include <string>
 
-using namespace std;
+using std::string;
 
 namespace rl {
 namespace agent {
@@ -22,13 +32,13 @@ namespace agent {
  * Handling situations when StateAction being query does not exist.
  * e.g. map[StateAction] throws out of range since StateAction does not exist.
  */
-class StateActionNotExistException : public exception {
+class StateActionNotExistException : public std::exception {
  public:
   /**
    * @param extraMessage To add more details of the cause
    * of exception. This should put the exception in a better context.
    */
-  StateActionNotExistException(string extraMessage);
+  explicit StateActionNotExistException(string extraMessage);
   virtual const char *what() const throw();
 
  private:
@@ -36,6 +46,4 @@ class StateActionNotExistException : public exception {
 };
 
 }  // namespace agent
-} /* namespace rl */
-
-#endif /* STATEACTIONNOTEXISTEXCEPTION_H_ */
+}  // namespace rl

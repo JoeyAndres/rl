@@ -1,12 +1,22 @@
-/*
- * File:   DynaQ.h
- * Author: jandres
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- * Created on June 2, 2014, 11:09 PM
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DYNAQ_H
-#define	DYNAQ_H
+#pragma once
 
 #include <cstdint>
 #include <set>
@@ -16,8 +26,6 @@
 #include "../agent/StateActionTransition.h"
 #include "ReinforcementLearning.h"
 #include "DynaQRLMP.h"
-
-using namespace std;
 
 namespace rl {
 namespace algorithm {
@@ -45,19 +53,22 @@ class DynaQ : public DynaQRLMP<S, A> {
    * @param stateTransitionStepSize how fast does a model update a value of a
    *                                state-action pair.
    */
-  DynaQ(rl::FLOAT stepSize, rl::FLOAT discountRate,
-        policy::Policy<S, A>& policy, rl::UINT simulationIterationCount,
-        rl::FLOAT stateTransitionGreediness, rl::FLOAT stateTransitionStepSize);
+  DynaQ(rl::FLOAT stepSize,
+        rl::FLOAT discountRate,
+        const policy::spPolicy<S, A>& policy,
+        rl::UINT simulationIterationCount,
+        rl::FLOAT stateTransitionGreediness,
+        rl::FLOAT stateTransitionStepSize);
 
-  virtual void update(const StateAction<S, A>& currentStateAction,
-                      const spState<S>& nextState,
-                      const FLOAT reward,
-                      const spActionSet<A>& actionSet) override;
+  void update(const StateAction<S, A>& currentStateAction,
+              const spState<S>& nextState,
+              const FLOAT reward,
+              const spActionSet<A>& actionSet) override;
 };
 
 template<class S, class A>
 DynaQ<S, A>::DynaQ(rl::FLOAT stepSize, rl::FLOAT discountRate,
-                   policy::Policy<S, A>& policy,
+                   const policy::spPolicy<S, A>& policy,
                    rl::UINT simulationIterationCount,
                    rl::FLOAT stateTransitionGreediness,
                    rl::FLOAT stateTransitionStepSize)
@@ -86,8 +97,5 @@ void rl::algorithm::DynaQ<S, A>::update(
   this->_simulate(actionSet);
 }
 
-} /* namespace algorithm */
-} /* namespace rl */
-
-#endif	/* DYNAQ_H */
-
+}  // namespace algorithm
+}  // namespace rl

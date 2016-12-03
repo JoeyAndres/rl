@@ -1,15 +1,29 @@
-/*
- * TileCodeUNH.h
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- *  Created on: Jun 15, 2014
- *      Author: jandres
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #pragma once
 
 #include <random>
+#include <vector>
 
 #include "TileCode.h"
+
+using std::vector;
 
 namespace rl {
 namespace coding {
@@ -19,10 +33,11 @@ namespace coding {
  */
 class TileCodeUNH : public TileCode {
  public:
-  TileCodeUNH(vector<DimensionInfo<FLOAT> > dimensionalInfos,
+  TileCodeUNH(const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
               size_t numTilings);
 
-  TileCodeUNH(vector<DimensionInfo<FLOAT> > dimensionalInfos, size_t numTilings,
+  TileCodeUNH(const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
+              size_t numTilings,
               size_t sizeHint);
 
   /**
@@ -30,7 +45,7 @@ class TileCodeUNH : public TileCode {
    * @param parameters
    * @return Vector of discretize index.
    */
-  virtual FEATURE_VECTOR getFeatureVector(const floatVector& parameters);
+  FEATURE_VECTOR getFeatureVector(const floatVector& parameters);
 
   size_t mod(size_t n, size_t k) {
     return (n >= 0) ? n % k : k - 1 - ((-n - 1) % k);
@@ -41,5 +56,5 @@ class TileCodeUNH : public TileCode {
   vector<rl::FLOAT> _normalization;
 };
 
-} // namespace Coding
-} /* namespace rl */
+}  // namespace coding
+}  // namespace rl

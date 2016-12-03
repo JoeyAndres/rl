@@ -1,5 +1,19 @@
 /**
- * Softmax_test.cpp
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <map>
@@ -7,27 +21,24 @@
 #include <set>
 
 #include "rl"
-
 #include "catch.hpp"
 
-using namespace rl;
-using namespace rl::algorithm;
-using namespace std;
+using rl::policy::SoftmaxFactory;
 
-SCENARIO("Softmax action selection probability increases as the value of the action increases.",
+SCENARIO("Softmax action selection probability increases as the value of the "
+           "action increases.",
          "[rl::Policy::Softmax]") {
-  policy::Softmax<rl::INT, rl::INT> policy(0.9F);
+  auto policy = SoftmaxFactory<rl::INT, rl::INT>(0.9F).get();
 
   rl::spState<rl::INT> dummyState(new rl::INT(1));
   rl::spAction<rl::INT> action01(new rl::INT(1));
   rl::spAction<rl::INT> action02(new rl::INT(2));
   rl::spAction<rl::INT> action03(new rl::INT(3));
   rl::spAction<rl::INT> action04(new rl::INT(4));
-  spActionSet<rl::INT> actionSet(
+  rl::spActionSet<rl::INT> actionSet(
     {
       action01, action02, action03, action04
-    }
-  );
+    });
 
   using StateActionII = StateAction<rl::INT, rl::INT>;
 
@@ -38,14 +49,15 @@ SCENARIO("Softmax action selection probability increases as the value of the act
   stateActionPairValueMap[StateActionII(dummyState, action04)] = 2.2F;
 
   GIVEN("The following action-value map") {
-    spActionValueMap<rl::INT> actionValueMap;
+    rl::spActionValueMap<rl::INT> actionValueMap;
     for (auto &action : actionSet) {
-      actionValueMap[action] = stateActionPairValueMap.at(StateActionII(dummyState, action));
+      actionValueMap[action] = stateActionPairValueMap.at(
+        StateActionII(dummyState, action));
     }
 
     rl::UINT action01Ctr(0), action02Ctr(0), action03Ctr(0), action04Ctr(0);
     for (rl::INT i = 0; i < 1000; i++) {
-      auto action = policy.getAction(actionValueMap, actionSet);
+      auto action = policy->getAction(actionValueMap, actionSet);
 
       if (*action == *action01) {
         action01Ctr++;

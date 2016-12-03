@@ -1,21 +1,30 @@
-/* 
- * File:   EpsilonGreedy.h
- * Author: jandres
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- * Created on June 6, 2014, 6:11 PM
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #pragma once
 
 #include <random>
 #include <iostream>
-#include <vector>
+#include <memory>
 
 #include "../declares.h"
 #include "../agent/StateAction.h"
 #include "Policy.h"
-
-using namespace std;
 
 namespace rl {
 namespace policy {
@@ -36,7 +45,7 @@ class EpsilonGreedy : public Policy<S, A> {
   /**
    * @param greediness probability of selecting greedy action.
    */
-  EpsilonGreedy(rl::FLOAT greediness);
+  explicit EpsilonGreedy(FLOAT greediness);
   virtual ~EpsilonGreedy();
 
   /**
@@ -60,7 +69,7 @@ class EpsilonGreedy : public Policy<S, A> {
     const spActionValueMap<A>& actionValues,
     const spActionSet<A>& actionSet,
     const spAction<A>& maxAction) override;
-  
+
   /**
    * @param greediness
    */
@@ -70,13 +79,21 @@ class EpsilonGreedy : public Policy<S, A> {
    * @return current greediness.
    */
   rl::FLOAT getGreediness() const;
+
  protected:
-  random_device _randomDevice;
-  uniform_real_distribution<rl::FLOAT> _distribution;
+  std::random_device _randomDevice;
+  std::uniform_real_distribution<rl::FLOAT> _distribution;
   rl::FLOAT _greediness;  //!< Probability of selecting a greedy action.
 };
 
-typedef EpsilonGreedy<vector<rl::FLOAT>, vector<rl::FLOAT>> EpsilonGreedySL;
+typedef EpsilonGreedy<rl::floatVector, rl::floatVector> EpsilonGreedySL;
+
+/*! \typedef spEpsilonGreedy
+ *
+ *  EpsilonGreedy wrapped in smart pointer.
+ */
+template<class S, class A>
+using spEpsilonGreedy = shared_ptr<EpsilonGreedy<S, A>>;
 
 template<class S, class A>
 EpsilonGreedy<S, A>::EpsilonGreedy(rl::FLOAT greediness)
@@ -97,7 +114,8 @@ spAction<A> EpsilonGreedy<S, A>::getAction(
   }
   const rl::FLOAT& r = _distribution(_randomDevice);
   if (r > _greediness) {
-    uniform_int_distribution<rl::INT> indexDistribution(0, actionSet.size());
+    std::uniform_int_distribution<rl::INT> indexDistribution(
+      0, actionSet.size());
     typename spActionSet<A>::const_iterator it(actionSet.begin());
     advance(it, indexDistribution(_randomDevice));
     return (*it);
@@ -116,7 +134,8 @@ spAction<A> EpsilonGreedy<S, A>::getAction(
   }
   const rl::FLOAT& r = _distribution(_randomDevice);
   if (r > _greediness) {
-    uniform_int_distribution<rl::INT> indexDistribution(0, actionSet.size());
+    std::uniform_int_distribution<rl::INT> indexDistribution(
+      0, actionSet.size());
     typename spActionSet<A>::const_iterator it(actionSet.begin());
     advance(it, indexDistribution(_randomDevice));
     return (*it);

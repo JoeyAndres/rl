@@ -22,11 +22,14 @@ namespace rl {
 namespace algorithm {
 
 SarsaGD::SarsaGD(
-  TileCode& tileCode, rl::FLOAT stepSize, rl::FLOAT discountRate,
-  rl::FLOAT lambda, policy::Policy<stateCont, actionCont>& policy)
-  : ReinforcementLearningGD(tileCode, stepSize, discountRate, lambda, policy) {
+  const spTileCode& tileCode,
+  rl::FLOAT stepSize,
+  rl::FLOAT discountRate,
+  rl::FLOAT lambda,
+  const policy::spPolicy<stateCont, actionCont>& policy) :
+  ReinforcementLearningGD(tileCode, stepSize, discountRate, lambda, policy) {
   this->setLearningPolicy(policy);
 }
 
-}  // namespace Algorithm
+}  // namespace algorithm
 }  // namespace rl

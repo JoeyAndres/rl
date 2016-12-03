@@ -1,12 +1,22 @@
-/*
- * DynaQRLMP.h
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- *  Created on: Jun 14, 2014
- *      Author: jandres
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DYNAQRLMP_H_
-#define DYNAQRLMP_H_
+#pragma once
 
 #include "DynaQBase.h"
 #include "ReinforcementLearning.h"
@@ -29,6 +39,7 @@ template<class S, class A>
 class DynaQRLMP : public ReinforcementLearning<S, A>, public DynaQBase<S, A> {
   using DynaQBase<S, A>::argMax;
   using DynaQBase<S, A>::backUpStateActionPair;
+
  public:
   /**
    * @param stepSize range \f$[0.0, 1.0]\f$. High step size means faster learning, but
@@ -41,14 +52,16 @@ class DynaQRLMP : public ReinforcementLearning<S, A>, public DynaQBase<S, A> {
    * @param stateTransitionStepSize how fast does a model update a value of a
    *                                state-action pair.
    */
-  DynaQRLMP(rl::FLOAT stepSize, rl::FLOAT discountRate,
-            policy::Policy<S, A>& policy, rl::UINT simulationIterationCount,
+  DynaQRLMP(rl::FLOAT stepSize,
+            rl::FLOAT discountRate,
+            const policy::spPolicy<S, A>& policy,
+            rl::UINT simulationIterationCount,
             rl::FLOAT stateTransitionGreediness,
             rl::FLOAT stateTransitionStepSize);
 
  public:
-  // Inherited. Note that, although inherited, documentation have to be reintroduced due
-  // to functions aggregating each other.
+  // Inherited. Note that, although inherited, documentation have to be
+  // reintroduced due to functions aggregating each other.
 
   /**
    * Does the main back up for all Temporal difference:
@@ -65,17 +78,21 @@ class DynaQRLMP : public ReinforcementLearning<S, A>, public DynaQBase<S, A> {
    * Returns the action that will most "likely" gives the highest reward from the
    * current state.
    * @param state the state to apply the argMax to.
-   * @param stateAction map of StateAction to value.
    * @param actionSet a set of possible actions.
    * @return the action that will "likely" gives the highest reward.
    */
-  virtual spAction<A> argMax(const spState<S>& state, const spActionSet<A>& actionSet) const;
+  virtual spAction<A> argMax(
+    const spState<S>& state,
+    const spActionSet<A>& actionSet) const;
 };
 
 template<class S, class A>
-inline DynaQRLMP<S, A>::DynaQRLMP(
-  rl::FLOAT stepSize, rl::FLOAT discountRate, policy::Policy<S, A>& policy,
-  rl::UINT simulationIterationCount, rl::FLOAT stateTransitionGreediness,
+DynaQRLMP<S, A>::DynaQRLMP(
+  rl::FLOAT stepSize,
+  rl::FLOAT discountRate,
+  const policy::spPolicy<S, A>& policy,
+  rl::UINT simulationIterationCount,
+  rl::FLOAT stateTransitionGreediness,
   rl::FLOAT stateTransitionStepSize)
   : ReinforcementLearning<S, A>(stepSize, discountRate, policy),
     DynaQBase<S, A>(simulationIterationCount, stateTransitionGreediness,
@@ -83,7 +100,7 @@ inline DynaQRLMP<S, A>::DynaQRLMP(
 }
 
 template<class S, class A>
-inline void DynaQRLMP<S, A>::backUpStateActionPair(
+void DynaQRLMP<S, A>::backUpStateActionPair(
   const StateAction<S, A>& currentStateAction, const rl::FLOAT reward,
   const StateAction<S, A>& nextStateActionPair) {
   ReinforcementLearning<S, A>::backUpStateActionPair(currentStateAction, reward,
@@ -91,12 +108,10 @@ inline void DynaQRLMP<S, A>::backUpStateActionPair(
 }
 
 template<class S, class A>
-inline spAction<A> DynaQRLMP<S, A>::argMax(const spState<S>& state,
-                                           const spActionSet<A>& actionSet) const {
+spAction<A> DynaQRLMP<S, A>::argMax(const spState<S>& state,
+                                    const spActionSet<A>& actionSet) const {
   return ReinforcementLearning<S, A>::argMax(state, actionSet);
 }
 
-} /* namespace algorithm */
-} /* namespace rl */
-
-#endif /* DYNAQRLMP_H_ */
+}  // namespace algorithm
+}  // namespace rl

@@ -1,17 +1,27 @@
-/*
- * StateNotExistException.h
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- *  Created on: Jun 13, 2014
- *      Author: jandres
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef STATENOTEXISTEXCEPTION_H_
-#define STATENOTEXISTEXCEPTION_H_
+#pragma once
 
 #include <exception>
 #include <string>
 
-using namespace std;
+using std::string;
 
 namespace rl {
 namespace agent {
@@ -19,9 +29,9 @@ namespace agent {
 /*! \StateNotExistException
  *  \brief exception when State does not exist.
  */
-class StateNotExistException : exception {
+class StateNotExistException : std::exception {
  public:
-  StateNotExistException(string extraMessage);
+  explicit StateNotExistException(string extraMessage);
   virtual const char *what() const throw();
  private:
   string _extraMessage;
@@ -29,5 +39,3 @@ class StateNotExistException : exception {
 
 }  // namespace agent
 }  // namespace rl
-
-#endif /* STATENOTEXISTEXCEPTION_H_ */

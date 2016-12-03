@@ -18,12 +18,16 @@
 
 #pragma once
 
+#include <vector>
+
 #include "../../declares.h"
 #include "../../coding/TileCode.h"
 #include "GradientDescent.h"
 
+using std::vector;
+using rl::coding::spTileCode;
+
 namespace rl {
-using coding::TileCode;
 namespace algorithm {
 
 /*! \class GradientDescentET
@@ -35,9 +39,9 @@ class GradientDescentET : public GradientDescentAbstract {
    * @param tileCode Type of tile coding.
    * @param stepSize Step size for gradient descent.
    * @param discountRate discount rate for gradient descent.
-   * @param lambda How influential is current state-action to ther state-action.
+   * @param lambda How influential is current state-action to their state-action.
    */
-  GradientDescentET(TileCode& tileCode,
+  GradientDescentET(const spTileCode& tileCode,
                     rl::FLOAT stepSize,
                     rl::FLOAT discountRate,
                     rl::FLOAT lambda);
@@ -87,5 +91,5 @@ class GradientDescentET : public GradientDescentAbstract {
   std::vector<rl::FLOAT> _e;  //!< Vector of eligibility traces.
 };
 
-} // namespace algorithm
-} // namespace rl
+}  // namespace algorithm
+}  // namespace rl
