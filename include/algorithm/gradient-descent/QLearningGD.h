@@ -20,10 +20,10 @@
 
 #include "ReinforcementLearningGD.h"
 
+using rl::coding::spTileCode;
+
 namespace rl {
 namespace algorithm {
-
-using namespace coding;
 
 /*! \class QLearningET
  *  \brief Gradient Descent with QLearning implementation (Separate control
@@ -31,8 +31,11 @@ using namespace coding;
  */
 class QLearningGD : public ReinforcementLearningGD {
  public:
-  QLearningGD(TileCode& tileCode, rl::FLOAT stepSize, rl::FLOAT discountRate,
-              rl::FLOAT lambda, policy::PolicySL& controlPolicy);
+  QLearningGD(const spTileCode& tileCode,
+              rl::FLOAT stepSize,
+              rl::FLOAT discountRate,
+              rl::FLOAT lambda,
+              const policy::spPolicy<stateCont, actionCont>& policy);
 };
 
 }  // namespace algorithm

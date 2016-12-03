@@ -1,31 +1,50 @@
-/*
- * DynaQ_test.cpp
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream>
+#include <vector>
 
 #include "rl"
-
-#include "../../lib/catch.hpp"
+#include "catch.hpp"
 
 #include "RandomWalkEnvironment.h"
 #include "SensorRandomWalk.h"
 
 using std::vector;
 
-using namespace std;
+using rl::policy::EpsilonGreedyFactory;
+using rl::agent::ActuatorFactory;
+using rl::agent::SensorDiscreteFactory;
+using rl::algorithm::DynaQFactory;
 
 SCENARIO("DynaQ converge to a solution", "[rl::DynaQ]") {
   GIVEN("A random walk environment") {
-    rl::agent::Actuator <rl::INT> arw(rl::spActionSet<rl::INT>({ L, R }));  // Setup actuator with actions.
-    rl::SensorRandomWalk srw;
-    srw.addTerminalState(T);
+    // Setup actuator with actions.
+    auto arw = ActuatorFactory<rl::INT>({ L, R }).get();
+    // Setup sensor.
+    auto srw = SensorDiscreteFactory<rl::INT>(B).get();
+    srw->addTerminalState(T);  // Setup terminal state.
 
-    rl::RandomWalkEnvironment rwe(arw, srw);
+    // Setup environment.
+    auto rwe = RandomWalkEnvironmentFactory(arw, srw).get();
 
-    rl::policy::EpsilonGreedy <rl::INT, rl::INT> policy(1.0F);
-    rl::algorithm::DynaQ <rl::INT, rl::INT> dynaQAlgorithm(0.1F, 0.9F, policy, 100,
-                                                           1.0F, 1.0F);
+    auto policy = EpsilonGreedyFactory<rl::INT, rl::INT>(1.0F).get();
+    auto dynaQAlgorithm = DynaQFactory<rl::INT, rl::INT>(
+        0.1F, 0.9F, policy, 100, 1.0F, 1.0F).get();
     rl::agent::Agent <rl::INT, rl::INT> agent(rwe, dynaQAlgorithm);
 
     WHEN("We do multiple episodes") {
@@ -35,7 +54,8 @@ SCENARIO("DynaQ converge to a solution", "[rl::DynaQ]") {
 
         iterationCount = agent.executeEpisode();
 
-        THEN("At the end, we solve the random walk environment in 2 iteration") {
+        THEN("At the end, we solve the random walk environment in 2 "
+               "iteration") {
           REQUIRE(iterationCount <= 2);
         }
       }

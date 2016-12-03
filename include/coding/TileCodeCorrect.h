@@ -1,21 +1,29 @@
-/*
- * TileCodeCorrect.h
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- *  Created on: Jun 15, 2014
- *      Author: jandres
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TILECODECORRECT_H_
-#define TILECODECORRECT_H_
+#pragma once
 
-#include <vector>
-#include <map>
-#include <random>
 #include <cmath>
+#include <vector>
 
 #include "TileCode.h"
 
-using namespace std;
+using std::vector;
 
 namespace rl {
 namespace coding {
@@ -36,14 +44,11 @@ class TileCodeCorrect : public TileCode {
    * @param numTilings The higher the value, the more accurate is the
    * 			generalization.
    */
-  TileCodeCorrect(vector<DimensionInfo<FLOAT> >& dimensionalInfos,
+  TileCodeCorrect(const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
                   size_t numTilings);
 
-  virtual FEATURE_VECTOR getFeatureVector(const floatVector& parameters) override;
-
+  FEATURE_VECTOR getFeatureVector(const floatVector& parameters) override;
 };
 
-} // namespace Coding
-} // namespace rl
-
-#endif /* TILECODECORRECT_H_ */
+}  // namespace coding
+}  // namespace rl

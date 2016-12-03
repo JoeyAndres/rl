@@ -18,18 +18,16 @@
 
 #pragma once
 
-#include <vector>
-#include <map>
-
 #include "../../declares.h"
 #include "../../agent/StateAction.h"
 #include "../../coding/TileCode.h"
 #include "../LearningAlgorithm.h"
 #include "ReinforcementLearningGDAbstract.h"
 
+using rl::coding::spTileCode;
+
 namespace rl {
 namespace algorithm {
-using coding::TileCode;
 
 /*! \class ReinforcementLearningGDAbstract
  *  \brief Gradient descent implementation of Reinforcement Learning.
@@ -37,10 +35,13 @@ using coding::TileCode;
 class ReinforcementLearningGD : public ReinforcementLearningGDAbstract {
  public:
   ReinforcementLearningGD(
-      TileCode& tileCode, rl::FLOAT stepSize, rl::FLOAT discountRate,
-      rl::FLOAT lambda, policy::Policy<stateCont, actionCont >& policy);
+      const spTileCode& tileCode,
+      rl::FLOAT stepSize,
+      rl::FLOAT discountRate,
+      rl::FLOAT lambda,
+      const policy::spPolicy<stateCont, actionCont>& policy);
   virtual ~ReinforcementLearningGD();
 };
 
-} // namespace algorithm
-} // namespace rl
+}  // namespace algorithm
+}  // namespace rl

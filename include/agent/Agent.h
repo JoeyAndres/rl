@@ -1,26 +1,37 @@
-/*
- * Agent.h
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- *  Created on: May 30, 2014
- *      Author: Joey Andres
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #pragma once
 
-#include "../declares.h"
-
 #include <vector>
-#include <map>
 #include <algorithm>
 #include <cassert>
 #include <iostream>
 
+#include "../declares.h"
 #include "../algorithm/LearningAlgorithm.h"
 #include "Environment.h"
 #include "StateAction.h"
 #include "StateActionPairContainer.h"
 
-using namespace std;
+using std::vector;
+
+using rl::algorithm::spLearningAlgorithm;
 
 namespace rl {
 namespace agent {
@@ -41,9 +52,9 @@ class AgentSupervised {
    * @param learningAlgorithm aggregate a Learning algorithm
    */
   AgentSupervised(
-    ActionSet<A>& actionSet,
-    algorithm::LearningAlgorithm<S, A>& learningAlgorithm) :
-    _actionSet(actionSet),
+    const spActionContainer<A>& actionContainer,
+    const spLearningAlgorithm<S, A>& learningAlgorithm) :
+    _actionContainer(actionContainer),
     _learningAlgorithm(learningAlgorithm) {}
 
   /**
@@ -57,15 +68,16 @@ class AgentSupervised {
                      const spAction<A>& action,
                      FLOAT reward,
                      const spState<S>& nextState) {
-    this->_learningAlgorithm.update(StateAction<S, A>(state, action),
-                                    nextState,
-                                    reward,
-                                    this->_actionSet.getActionSet());
+    this->_learningAlgorithm->update(
+      StateAction<S, A>(state, action),
+      nextState,
+      reward,
+      this->_actionContainer->getActionSet());
   }
 
  protected:
-  ActionSet<A>& _actionSet;  //!< Aggregate an Actuator object.
-  algorithm::LearningAlgorithm<S, A>& _learningAlgorithm;
+  spActionContainer<A> _actionContainer;  //!< Aggregate an Actuator object.
+  spLearningAlgorithm<S, A> _learningAlgorithm;
 };
 
 /*! \class Agent
@@ -85,8 +97,8 @@ class Agent {
    * @param actuatorInstance aggregate an actuator object.
    * @param learningAlgorithm aggregate a Learning algorithm
    */
-  Agent(Environment<S, A>& environment,
-        algorithm::LearningAlgorithm<S, A>& learningAlgorithm);
+  Agent(const spEnvironment<S, A>& environment,
+        const spLearningAlgorithm<S, A>& learningAlgorithm);
 
   /**
    * For training (instead of control) purposes.
@@ -116,7 +128,7 @@ class Agent {
    * @return number of iteration to acheive the task.
    * @throw MaxIterationException maximum iteration in an episode is hit.
    */
-  virtual size_t executeEpisode(UINT maxIter=MAX_EPISODES);
+  virtual size_t executeEpisode(UINT maxIter = MAX_EPISODES);
 
   /**
    * @return true if episode is done.
@@ -138,7 +150,7 @@ class Agent {
    * @param action Agent applies action to the environment.
    */
   virtual void applyAction(const spAction<A>& action);
-  
+
   /**
    * @return CurrentState of the agent.
    */
@@ -153,17 +165,17 @@ class Agent {
   /*! \var _learningAlgorithm
    *  Aggregates a learning algorithm.
    */
-  algorithm::LearningAlgorithm<S, A>& _learningAlgorithm;
+  spLearningAlgorithm<S, A> _learningAlgorithm;
 
-  Environment<S, A>& _environment;  // !< Aggregate environment obj.
+  spEnvironment<S, A> _environment;  //!< Aggregate environment obj.
 
   spState<S> _currentState;  //!< Keeps track of the current state.
   spAction<A> _currentAction;  //!< Keeps track of the current action.
 
-  FLOAT _accumulativeReward; //!< Keeps track of accumulation of reward during
-                             //!< the span of the episode.Specifically, after
-                             //!< the call of preExecute, and after the call of
-                             //!< postExecute.
+  FLOAT _accumulativeReward;  //!< Keeps track of accumulation of reward during
+                              //!< the span of the episode.Specifically, after
+                              //!< the call of preExecute, and after the call of
+                              //!< postExecute.
 };
 
 /*! \typedef AgentSL
@@ -179,19 +191,19 @@ template<class D = FLOAT>
 using AgentSL = Agent<vector<D>, vector<D>>;
 
 template<class S, class A>
-Agent<S, A>::Agent(Environment<S, A>& environment,
-                       algorithm::LearningAlgorithm<S, A>& learningAlgorithm)
-    : _environment(environment),
-      _learningAlgorithm(learningAlgorithm),
-      _accumulativeReward(0.0F) {
-  _currentState = _environment.getSensor().getLastObservedState();
-  _currentAction = _learningAlgorithm.getAction(
-        _currentState, _environment.getActuator().getActionSet());
+Agent<S, A>::Agent(const spEnvironment<S, A>& environment,
+                   const spLearningAlgorithm<S, A>& learningAlgorithm)
+  : _environment(environment),
+    _learningAlgorithm(learningAlgorithm),
+    _accumulativeReward(0.0F) {
+  _currentState = _environment->getSensor()->getLastObservedState();
+  _currentAction = _learningAlgorithm->getAction(
+        _currentState, _environment->getActuator()->getActionSet());
 }
 
 template<class S, class A>
 spState<S> Agent<S, A>::getLastObservedState() const {
-  return _environment.getSensor().getLastObservedState();
+  return _environment->getSensor()->getLastObservedState();
 }
 
 template<class S, class A>
@@ -200,19 +212,19 @@ void Agent<S, A>::train(
   const spAction<A>& action,
   FLOAT reward,
   const spState<S>& nextState) {
-  this->_learningAlgorithm.update(
+  this->_learningAlgorithm->update(
     StateAction<S, A>(state, action),
     nextState,
     reward,
-    this->_environment.getActuator().getActionSet());
+    this->_environment->getActuator()->getActionSet());
 }
 
 template<class S, class A>
 void Agent<S, A>::preExecute() {
   _currentState = std::move(getLastObservedState());
-  _currentAction = std::move(_learningAlgorithm.getAction(
-        _currentState, _environment.getActuator().getActionSet()));
-  _learningAlgorithm.reset();
+  _currentAction = std::move(_learningAlgorithm->getAction(
+        _currentState, _environment->getActuator()->getActionSet()));
+  _learningAlgorithm->reset();
   _accumulativeReward = 0.0F;
 }
 
@@ -221,7 +233,7 @@ void Agent<S, A>::execute() {
   // todo: Acquire last state and reward here.
   this->applyAction(_currentAction);
   spState<S> nextState = std::move(getLastObservedState());
-  FLOAT reward = this->_environment.getSensor().getLastObservedReward();
+  FLOAT reward = this->_environment->getSensor()->getLastObservedReward();
 
   // Accumulate reward.
   this->_accumulativeReward += reward;
@@ -231,18 +243,18 @@ void Agent<S, A>::execute() {
 
   // Get the action from the algorithm.
   // Note the algorithm will retrieve from controlPolicy.
-  this->_currentAction = std::move(this->_learningAlgorithm.getAction(
-      nextState, this->_environment.getActuator().getActionSet()));
+  this->_currentAction = std::move(this->_learningAlgorithm->getAction(
+      nextState, this->_environment->getActuator()->getActionSet()));
 
   // Update current state.
   this->_currentState = nextState;
 }
 
 template<class S, class A>
-size_t Agent<S, A>::executeEpisode(UINT maxIter){
+size_t Agent<S, A>::executeEpisode(UINT maxIter) {
   preExecute();
   UINT i = 0;
-  for(; i < maxIter && episodeDone() == false; i++) {
+  for (; i < maxIter && episodeDone() == false; i++) {
     execute();
   }
   postExecute();
@@ -251,7 +263,7 @@ size_t Agent<S, A>::executeEpisode(UINT maxIter){
 
 template<class S, class A>
 bool Agent<S, A>::episodeDone() {
-  return _environment.getSensor().isTerminalState(_currentState);
+  return _environment->getSensor()->isTerminalState(_currentState);
 }
 
 template<class S, class A>
@@ -266,13 +278,13 @@ inline rl::FLOAT Agent<S, A>::getAccumulativeReward() const {
 
 template<class S, class A>
 void Agent<S, A>::applyAction(const spAction<A>& action) {
-  this->_environment.applyAction(action);
+  this->_environment->applyAction(action);
 }
 
 template<class S, class A>
 void Agent<S, A>::reset() {
-  this->_environment.reset();
-};
+  this->_environment->reset();
+}
 
 }  // namespace agent
 }  // namespace rl

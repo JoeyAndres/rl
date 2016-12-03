@@ -1,23 +1,31 @@
-/* 
- * File:   Softmax.h
- * Author: jandres
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- * Created on June 7, 2014, 4:43 AM
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SOFTMAX_H
-#define	SOFTMAX_H
-
-#include "../declares.h"
+#pragma once
 
 #include <cmath>
 #include <random>
 #include <cassert>
+#include <memory>
 
-#include "Policy.h"
+#include "../declares.h"
 #include "../agent/StateAction.h"
-
-using namespace std;
+#include "Policy.h"
 
 namespace rl {
 namespace policy {
@@ -48,12 +56,13 @@ namespace policy {
 template<class S, class A>
 class Softmax : public Policy<S, A> {
  public:
-  Softmax(rl::FLOAT temperature);
+  explicit Softmax(rl::FLOAT temperature);
 
-  virtual spAction<A> getAction(const spActionValueMap<A>& actionValues,
-                             const spActionSet<A>& actionSet) override;
-  virtual spAction<A> getAction(const spActionValueMap<A>& actionValues,
-                      const spActionSet<A>& actionSet, const spAction<A>& maxAction) override;
+  spAction<A> getAction(const spActionValueMap<A>& actionValues,
+                        const spActionSet<A>& actionSet) override;
+  spAction<A> getAction(const spActionValueMap<A>& actionValues,
+                        const spActionSet<A>& actionSet,
+                        const spAction<A>& maxAction) override;
  private:
   std::random_device _randomDevice;
   std::uniform_real_distribution<rl::FLOAT> _distribution;
@@ -63,7 +72,14 @@ class Softmax : public Policy<S, A> {
                            //!< that differ in their action estimates.
 };
 
-typedef Softmax<vector<rl::FLOAT>, vector<rl::FLOAT> > SoftmaxSL;
+typedef Softmax<rl::floatVector, rl::floatVector> SoftmaxSL;
+
+/*! \typedef spSoftmax
+ *
+ *  Softmax wrapped in smart pointer.
+ */
+template<class S, class A>
+using spSoftmax = shared_ptr<Softmax<S, A>>;
 
 template<class S, class A>
 rl::policy::Softmax<S, A>::Softmax(rl::FLOAT temperature)
@@ -112,12 +128,9 @@ spAction<A> rl::policy::Softmax<S, A>::getAction(
 template<class S, class A>
 spAction<A> rl::policy::Softmax<S, A>::getAction(
   const spActionValueMap<A>& actionValues,
-  const spActionSet<A>& actionSet, const spAction<A>& maxAction){
+  const spActionSet<A>& actionSet, const spAction<A>& maxAction) {
   return getAction(actionValues, actionSet);
 }
 
-}  // Policy
-}  // rl
-
-#endif	/* SOFTMAX_H */
-
+}  // namespace policy
+}  // namespace rl

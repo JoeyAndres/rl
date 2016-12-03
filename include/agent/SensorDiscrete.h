@@ -1,16 +1,24 @@
-/*
- * SensorStatesDiscrete.h
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- *  Created on: Jun 17, 2014
- *      Author: jandres
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SENSORSTATESDISCRETE_H_
-#define SENSORSTATESDISCRETE_H_
+#pragma once
 
 #include "Sensor.h"
-
-using namespace std;
 
 namespace rl {
 namespace agent {
@@ -27,7 +35,7 @@ class SensorDiscrete : public Sensor<S> {
  public:
   using Sensor<S>::Sensor;
 
-  virtual bool isTerminalState(const spState<S> &stateData) const override;
+  bool isTerminalState(const spState<S> &stateData) const override;
 
   /**
    * @param terminalData new terminal state to be added.
@@ -37,6 +45,13 @@ class SensorDiscrete : public Sensor<S> {
  private:
   spStateSet<S> _terminalStates;  // Must know when to stop.
 };
+
+/*! \class spSensorDiscrete
+ *  \brief SensorDiscrete wrapped in shared_ptr.
+ *  \tparam S Sensor data type.
+ */
+template<class S>
+using spSensorDiscrete = shared_ptr<SensorDiscrete<S>>;
 
 template<class S>
 bool SensorDiscrete<S>::isTerminalState(
@@ -51,6 +66,4 @@ void SensorDiscrete<S>::addTerminalState(
 }
 
 }  // namespace agent
-}  /* namespace rl */
-
-#endif /* SENSORSTATESDISCRETE_H_ */
+}  // namespace rl

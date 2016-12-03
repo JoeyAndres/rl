@@ -16,36 +16,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream>
-#include <memory>
-
 #include "algorithm/gradient-descent/GradientDescent.h"
-
-using namespace std;
 
 namespace rl {
 namespace algorithm {
 
-GradientDescentAbstract::GradientDescentAbstract(TileCode& tileCode,
+GradientDescentAbstract::GradientDescentAbstract(const spTileCode& tileCode,
                                                  rl::FLOAT stepSize,
                                                  rl::FLOAT discountRate,
                                                  rl::FLOAT lambda)
   : _tileCode(tileCode) {
-  _stepSize = stepSize / _tileCode.getNumTilings();
+  _stepSize = stepSize / _tileCode->getNumTilings();
   _discountRate = discountRate;
   _lambda = lambda;
   _discountRateTimesLambda = _discountRate*_lambda;
 
-  _w = std::vector<rl::FLOAT>(this->getSize(), 0);
+  _w = floatVector(this->getSize(), 0);
 }
 
 size_t GradientDescentAbstract::getSize() const {
-  return _tileCode.getSize();
+  return _tileCode->getSize();
 }
 
 FLOAT GradientDescentAbstract::getValueFromParameters(
   const floatVector& parameters) const {
-  FEATURE_VECTOR fv = std::move(_tileCode.getFeatureVector(parameters));
+  FEATURE_VECTOR fv = std::move(_tileCode->getFeatureVector(parameters));
 
   return getValueFromFeatureVector(fv);
 }
@@ -54,20 +49,25 @@ FLOAT GradientDescentAbstract::getValueFromFeatureVector(
   const FEATURE_VECTOR& fv) const {
   rl::FLOAT sum = 0.0F;
 
-  for(auto f : fv){
+  for (auto f : fv) {
     sum += _w[f];
   }
 
   return sum;
 }
 
-FEATURE_VECTOR GradientDescentAbstract::getFeatureVector(const floatVector& parameters) const {
-  return _tileCode.getFeatureVector(parameters);
+FEATURE_VECTOR GradientDescentAbstract::getFeatureVector(
+  const floatVector& parameters) const {
+  return _tileCode->getFeatureVector(parameters);
 }
 
-void GradientDescentAbstract::buildActionValues(
-  const spActionSet<actionCont>& actionSet, const spStateCont& nextState,
-  spActionValueMap<actionCont>& actionVectorValueMap, spActionCont& actions) const {
+tuple<spActionValueMap<actionCont>, spActionCont>
+GradientDescentAbstract::buildActionValues(
+  const spActionSet<actionCont>& actionSet,
+  const spStateCont& nextState) const {
+  spActionValueMap<actionCont> actionVectorValueMap;
+  spActionCont maxAction;
+
   spActionSet<actionCont>::const_iterator maxActionIter = actionSet.begin();
 
   // Build pc = <state1, ..., action1, ...> array.
@@ -94,8 +94,10 @@ void GradientDescentAbstract::buildActionValues(
       maxActionIter = iter;
     }
   }
-  actions = *maxActionIter;
+  maxAction = *maxActionIter;
+
+  return std::make_tuple(actionVectorValueMap, maxAction);
 }
 
-}  // namespace Algorithm
+}  // namespace algorithm
 }  // namespace rl

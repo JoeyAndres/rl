@@ -1,19 +1,28 @@
-/*
- * Actuator.h
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- *  Created on: May 31, 2014
- *      Author: jandres
- * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ACTUATOR_H_
-#define ACTUATOR_H_
+#pragma once
 
-#include <set>
+#include <memory>
 
-#include "ActionSet.h"
+#include "ActionContainer.h"
 
-using std::set;
+using std::shared_ptr;
 
 namespace rl {
 namespace agent {
@@ -27,7 +36,7 @@ namespace agent {
  * example, consider a line following robot example.
  */
 template<class A>
-class Actuator : public ActionSet<A> {
+class Actuator : public ActionContainer<A> {
  public:
   /**
    * No-arg constructor.
@@ -38,20 +47,28 @@ class Actuator : public ActionSet<A> {
    * Constructor for when actions (or some actions) are known.
    * @param actionSet Set of actions.
    */
-  Actuator(const spActionSet<A>& actionSet);
+  explicit Actuator(const spActionSet<A>& actionSet);
 };
 
 typedef Actuator<actionCont> ActuatorSL;
+
+/*! \typedef spActuator
+ *
+ * Wraps Actuator with shared_ptr. @see Actuator
+ *
+ * \tparam A Action data type.
+ */
+template<class A>
+using spActuator = shared_ptr<Actuator<A>>;
 
 template<class A>
 Actuator<A>::Actuator() {
 }
 
 template<class A>
-Actuator<A>::Actuator(const spActionSet<A>& actionSet) : ActionSet<A>(actionSet) {
+Actuator<A>::Actuator(const spActionSet<A>& actionSet)
+  : ActionContainer<A>(actionSet) {
 }
 
 }  // namespace agent
 }  // namespace rl
-
-#endif /* ACTUATOR_H_ */

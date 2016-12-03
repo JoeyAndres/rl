@@ -1,26 +1,32 @@
-/* 
- * File:   StateActionTransition.h
- * Author: jandres
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- * Created on June 3, 2014, 1:38 AM
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef STATEACTIONTRANSITION_H
-#define	STATEACTIONTRANSITION_H
+#pragma once
 
 #include <cassert>
-#include <map>
-#include <vector>
 #include <algorithm>
 #include <iostream>
 #include <random>
 #include <functional>
 
 #include "../declares.h"
-#include "StateActionTransitionException.h"
 #include "../algorithm/QLearning.h"
-
-using namespace std;
+#include "StateActionTransitionException.h"
 
 namespace rl {
 namespace agent {
@@ -71,14 +77,15 @@ class StateActionTransition {
    * @throw StateActionTransitionException when given state don't exist.
    */
   virtual rl::FLOAT getReward(const spState<S>& state) const
-      throw (StateActionTransitionException);
+  throw(StateActionTransitionException);
 
   /**
    * @return the possible next state based on its value. Bigger value, better
    * chance of occuring.
    * @throw StateActionTransitionException when given state don't exist.
    */
-  virtual const spState<S>& getNextState() const throw (StateActionTransitionException);
+  virtual const spState<S>& getNextState() const
+  throw(StateActionTransitionException);
 
   /**
    * @return the number of transition states.
@@ -173,9 +180,8 @@ void StateActionTransition<S>::update(const spState<S>& nextState,
 
 template<class S>
 rl::FLOAT StateActionTransition<S>::getReward(const spState<S>& state) const
-    throw (StateActionTransitionException) {  
-  StateActionTransitionException exception(
-      "StateActionTransition<S, rl::FLOAT>::getReward(const S& state): state not yet added.");
+throw(StateActionTransitionException) {
+  StateActionTransitionException exception("state not yet added.");
   if (_findState(state) == false) {
     throw exception;
   }
@@ -192,9 +198,8 @@ bool StateActionTransition<S>::_findState(const spState<S>& state) const {
 
 template<class S>
 const spState<S>& StateActionTransition<S>::getNextState() const
-    throw (StateActionTransitionException) {
-  StateActionTransitionException exception(
-      "StateActionTransition<S, rl::FLOAT>::getNextState(): nextStates are empty.");
+throw(StateActionTransitionException) {
+  StateActionTransitionException exception("nextStates are empty.");
   if (_stateActionTransitionFrequency.size() == 0) {
     throw exception;
   }
@@ -271,6 +276,4 @@ rl::FLOAT StateActionTransition<S>::getGreedy() const {
 }
 
 }  // namespace agent
-}  // namespace agent
-
-#endif	/* STATEACTIONTRANSITION_H */
+}  // namespace rl

@@ -22,11 +22,14 @@ namespace rl {
 namespace algorithm {
 
 QLearningGD::QLearningGD(
-  TileCode& tileCode, rl::FLOAT stepSize, rl::FLOAT discountRate,
-  rl::FLOAT lambda, policy::PolicySL& controlPolicy)
+  const spTileCode& tileCode,
+  rl::FLOAT stepSize,
+  rl::FLOAT discountRate,
+  rl::FLOAT lambda,
+  const policy::spPolicy<stateCont, actionCont>& controlPolicy)
   : ReinforcementLearningGD(tileCode, stepSize, discountRate, lambda,
                               controlPolicy) {
 }
 
-}  // namespace Algorithm
+}  // namespace algorithm
 }  // namespace rl

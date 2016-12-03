@@ -1,25 +1,37 @@
-/* 
- * File:   TileCode.h
- * Author: jandres
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- * Created on June 8, 2014, 8:28 AM
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _TILE_CODE_H_
-#define _TILE_CODE_H_
+#pragma once
 
-#include "../declares.h"
+#include <stdarg.h>
 
 #include <cstdint>
 #include <random>
-#include <stdarg.h>
 #include <vector>
 #include <cassert>
 #include <cmath>
+#include <memory>
 
+#include "../declares.h"
 #include "DimensionInfo.h"
 
-using namespace std;
+using std::vector;
+using std::shared_ptr;
 
 namespace rl {
 namespace coding {
@@ -37,7 +49,8 @@ class TileCode {
    * @param numTilings The higher the value, the more accurate is the
    * 			generalization.
    */
-  TileCode(vector<DimensionInfo<FLOAT> >& dimensionalInfos, size_t numTilings);
+  TileCode(const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
+           size_t numTilings);
 
   /**
    * Hashed the parameter in Real space to a Natural space [0, infinity).
@@ -64,7 +77,7 @@ class TileCode {
   /**
    * @param dimension
    */
-  //void setDimension(size_t dimension);
+
   /**
    * @return number of dimension.
    */
@@ -87,7 +100,12 @@ class TileCode {
 
  protected:
   size_t _numTilings;  //!< How many tilings/also known as sample.
-  vector<DimensionInfo<FLOAT> >& _dimensionalInfos;  //!< Contains information for each dimension.
+
+  /*! \var _dimensionalInfos
+   *
+   * Contains information for each dimension.
+   */
+  vector<DimensionInfo<FLOAT>> _dimensionalInfos;
   std::random_device _randomDevice;
   std::default_random_engine _pseudoRNG;
 
@@ -106,10 +124,10 @@ class TileCode {
    * would require ALOT more number tiling to achieve consistency. This alleviates us from
    * that problem and still have a reasonable generalization.
    */
-  vector<vector<rl::FLOAT> > _randomOffsets;
+  vector<rl::floatVector> _randomOffsets;
 };
 
-}  // namespace Coding
-}  // namespace rl
+using spTileCode = shared_ptr<TileCode>;
 
-#endif // _TILE_CODE_H_
+}  // namespace coding
+}  // namespace rl

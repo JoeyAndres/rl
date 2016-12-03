@@ -1,12 +1,22 @@
-/* 
- * File:   QLearning.h
- * Author: jandres
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- * Created on June 3, 2014, 3:13 AM
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef QLEARNING_H
-#define	QLEARNING_H
+#pragma once
 
 #include <set>
 #include <map>
@@ -40,16 +50,17 @@ class QLearning : public ReinforcementLearning<S, A> {
    * @param policy online policy, that is policy used for action selection.
    */
   QLearning(rl::FLOAT stepSize, rl::FLOAT discountRate,
-            policy::Policy<S, A>& policy);
+            const policy::spPolicy<S, A>& policy);
 
-  virtual void update(const StateAction<S, A>& currentStateAction,
-                      const spState<S>& nextState, const rl::FLOAT reward,
-                      const spActionSet<A>& actionSet) override;
+  void update(const StateAction<S, A>& currentStateAction,
+              const spState<S>& nextState, const rl::FLOAT reward,
+              const spActionSet<A>& actionSet) override;
 };
 
 template<class S, class A>
-QLearning<S, A>::QLearning(rl::FLOAT stepSize, rl::FLOAT discountRate,
-                           policy::Policy<S, A>& policy)
+QLearning<S, A>::QLearning(rl::FLOAT stepSize,
+                           rl::FLOAT discountRate,
+                           const policy::spPolicy<S, A>& policy)
     : ReinforcementLearning<S, A>(stepSize, discountRate, policy) {
 }
 
@@ -70,8 +81,5 @@ void QLearning<S, A>::update(const StateAction<S, A>& currentStateAction,
                               StateAction<S, A>(nextState, nextAction));
 }
 
-} /* algorithm */
-} /* rl */
-
-#endif	/* QLEARNING_H */
-
+}  // namespace algorithm
+}  // namespace rl

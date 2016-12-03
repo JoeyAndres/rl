@@ -17,22 +17,19 @@
  */
 
 #include <vector>
-#include <iostream>
-#include <ctime>
-#include <ratio>
-#include <chrono>
 
+#include "catch.hpp"
 #include "rl"
-
-#include "../../../lib/catch.hpp"
 
 #include "MountainCarEnvironment.h"
 #include "SensorMountainCar.h"
 
 using std::vector;
 
-using namespace std::chrono;
-using namespace std;
+using rl::policy::EpsilonGreedyFactory;
+using rl::agent::ActuatorFactory;
+using rl::algorithm::SarsaGDFactory;
+using rl::coding::TileCodeCorrectFactory;
 
 SCENARIO("Sarsa Gradient Descent converge to a solution",
          "[rl::SarsaGD]") {
@@ -41,28 +38,34 @@ SCENARIO("Sarsa Gradient Descent converge to a solution",
     rl::spActionCont neutral(new rl::actionCont({1}));
     rl::spActionCont forward(new rl::actionCont({2}));
 
-    rl::agent::Actuator <rl::actionCont> amc(
+    auto amc = ActuatorFactory<rl::actionCont>(
       rl::spActionSet<rl::actionCont>(
         {
           reverse,
           neutral,
           forward
-        }
-      )
-    );
-    rl::SensorMountainCar smc;  // Setup sensor.
-    rl::MountainCarEnvironment mce(amc, smc);  // Setup environment.
+        })).get();
+    // Setup sensor.
+    auto smc = SensorMountainCarFactory::create();
+    // Setup environment.
+    auto mce = MountainCarEnvironmentFactory(amc, smc).get();
 
-    rl::policy::EpsilonGreedySL policy(1.0F);
+    auto policy =
+      EpsilonGreedyFactory<rl::stateCont, rl::actionCont>(1.0F).get();
 
     // Setup tile coding.
     vector <rl::coding::DimensionInfo<rl::FLOAT>> dimensionalInfoVector = {
       rl::coding::DimensionInfo<rl::FLOAT>(-1.2F, 0.5F, 7),  // Velocity.
       rl::coding::DimensionInfo<rl::FLOAT>(-0.07F, 0.07F, 7),  // Position.
-      rl::coding::DimensionInfo<rl::FLOAT>(0.0F, 2.0F, 3, 0.0F),  // Action dimension.
+
+      // Action dimension.
+      rl::coding::DimensionInfo<rl::FLOAT>(0.0F, 2.0F, 3, 0.0F)
     };
-    rl::coding::TileCodeCorrect tileCode(dimensionalInfoVector, 8);  // Setup tile coding with 10 offsets.
-    rl::algorithm::SarsaGD sarsa(tileCode, 0.1F, 1.0F, 0.9F, policy);
+
+    // Setup tile coding with 8 offsets.
+    auto tileCode = TileCodeCorrectFactory(dimensionalInfoVector, 8).get();
+
+    auto sarsa = SarsaGDFactory(tileCode, 0.1F, 1.0F, 0.9F, policy).get();
     rl::agent::AgentSL <rl::FLOAT> agent(mce, sarsa);
 
     WHEN("We do multiple episodes") {
@@ -73,7 +76,8 @@ SCENARIO("Sarsa Gradient Descent converge to a solution",
         iterationCount = agent.executeEpisode();
       }
 
-      THEN("At the end, we solve the Mountain Car environment in 100 iteration") {
+      THEN("At the end, we solve the Mountain Car environment in 100 "
+             "iteration") {
         REQUIRE(iterationCount <= 100);
       }
     }

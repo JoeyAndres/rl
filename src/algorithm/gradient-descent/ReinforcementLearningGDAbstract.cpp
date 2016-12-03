@@ -22,29 +22,34 @@ namespace rl {
 namespace algorithm {
 
 ReinforcementLearningGDAbstract::ReinforcementLearningGDAbstract(
-    TileCode& tileCode, rl::FLOAT stepSize, rl::FLOAT discountRate,
-    rl::FLOAT lambda, policy::Policy<stateCont, actionCont >& policy)
-    : LearningAlgorithm<stateCont, actionCont >(policy) {
+    const spTileCode& tileCode,
+    rl::FLOAT stepSize,
+    rl::FLOAT discountRate,
+    rl::FLOAT lambda,
+    const policy::spPolicy<stateCont, actionCont >& policy)
+  : LearningAlgorithm<stateCont, actionCont>(policy) {
 }
 
 ReinforcementLearningGDAbstract::~ReinforcementLearningGDAbstract() {
 }
 
-void ReinforcementLearningGDAbstract::_buildActionValues(
-    const spActionSet<actionCont>& actionSet,
-    const spStateCont& nextState,
-    spActionValueMap<actionCont>& actionValueMap,
-    spActionCont& action) {
-  _gradientDescent->buildActionValues(actionSet, nextState, actionValueMap, action);
+std::tuple<spActionValueMap<actionCont>, spActionCont>
+ReinforcementLearningGDAbstract::_buildActionValues(
+  const spActionSet<actionCont>& actionSet,
+  const spStateCont& nextState) const {
+  return _gradientDescent->buildActionValues(actionSet, nextState);
 }
 
 void ReinforcementLearningGDAbstract::update(
     const StateAction<stateCont, actionCont >& currentStateAction,
     const spStateCont& nextStateVector, const FLOAT reward,
     const spActionSet<actionCont>& actionSet) {
-  spActionValueMap<actionCont> actionValueMap;
-  spActionCont maxAction(new actionCont);
-  _buildActionValues(actionSet, nextStateVector, actionValueMap, maxAction);
+  auto actionValueAndMaxAction =
+    this->_buildActionValues(actionSet, nextStateVector);
+  spActionValueMap<actionCont> actionValueMap =
+    std::get<0>(actionValueAndMaxAction);
+  spActionCont maxAction = std::get<1>(actionValueAndMaxAction);
+
   const spActionCont& nextAction = this->_getLearningPolicyAction(
       actionValueMap, actionSet, maxAction);
 
@@ -56,9 +61,11 @@ void ReinforcementLearningGDAbstract::update(
 
 spActionCont ReinforcementLearningGDAbstract::getAction(
     const spStateCont& state, const spActionSet<actionCont>& actionSet) {
-  spActionValueMap<actionCont> actionValueMap;
-  spActionCont maxAction(new actionCont);
-  _buildActionValues(actionSet, state, actionValueMap, maxAction);
+  auto actionValueAndMaxAction =
+    this->_buildActionValues(actionSet, state);
+  spActionValueMap<actionCont> actionValueMap =
+    std::get<0>(actionValueAndMaxAction);
+  spActionCont maxAction = std::get<1>(actionValueAndMaxAction);
   return this->_learningPolicy->getAction(actionValueMap, actionSet, maxAction);
 }
 
@@ -79,5 +86,5 @@ void ReinforcementLearningGDAbstract::reset() {
   LearningAlgorithm<stateCont, actionCont >::reset();
 }
 
-} // namespace Algorithm
-} // namespace rl
+}  // namespace algorithm
+}  // namespace rl

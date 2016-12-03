@@ -1,26 +1,36 @@
-/* 
- * File:   StateActionPairContainer.h
- * Author: jandres
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- * Created on June 2, 2014, 12:59 PM
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef STATEACTIONPAIRCONTAINER_H
-#define	STATEACTIONPAIRCONTAINER_H
-
-#include "../declares.h"
+#pragma once
 
 #include <map>
-#include <set>
 #include <algorithm>
 #include <iostream>
 #include <memory>
+#include <utility>
 
+#include "../declares.h"
+#include "../utility/utility.h"
 #include "StateAction.h"
 #include "StateActionNotExistException.h"
-#include "../utility.h"
 
-using namespace std;
+using std::map;
+using std::multimap;
 
 namespace rl {
 namespace agent {
@@ -52,7 +62,8 @@ class StateActionPairContainer {
    * @param stateAction State and corresponding action to be added.
    * @param value The value of the stateAction.
    */
-  virtual void addStateAction(const StateAction<S, A> &stateAction, rl::FLOAT value);
+  virtual void addStateAction(const StateAction<S, A> &stateAction,
+                              rl::FLOAT value);
 
   /**
    * Adds a new action.
@@ -60,7 +71,8 @@ class StateActionPairContainer {
    * @param value
    * @param actionSet
    */
-  virtual void addAction(const spAction<A> &action, rl::FLOAT value, const spStateSet<S> &stateSet);
+  virtual void addAction(const spAction<A> &action, rl::FLOAT value,
+                         const spStateSet<S> &stateSet);
 
   /**
    * @param state to be search in the _stateActionPairMap.
@@ -117,7 +129,10 @@ class StateActionPairContainer {
   multimap<rl::FLOAT, StateAction<S, A>> getReverseMap() const;
 
  protected:
-  map<StateAction<S, A>, rl::FLOAT> _stateActionPairMap;  //!< state-action -> value mapping.
+  /*! \var _stateActionPairMap
+   *  A mapping of state-action to value.
+   */
+  map<StateAction<S, A>, rl::FLOAT> _stateActionPairMap;
 };
 
 template<class S, class A>
@@ -125,8 +140,10 @@ StateActionPairContainer<S, A>::StateActionPairContainer() {
 }
 
 template<class S, class A>
-void StateActionPairContainer<S, A>::addState(const spState<S> &state, rl::FLOAT value,
-                                              const spActionSet<A> &actionSet) {
+void StateActionPairContainer<S, A>::addState(
+  const spState<S> &state,
+  rl::FLOAT value,
+  const spActionSet<A> &actionSet) {
   for (auto action : actionSet) {
     _stateActionPairMap.insert(
       std::pair<StateAction<S, A>, rl::FLOAT>(
@@ -135,14 +152,16 @@ void StateActionPairContainer<S, A>::addState(const spState<S> &state, rl::FLOAT
 }
 
 template<class S, class A>
-void StateActionPairContainer<S, A>::addStateAction(const StateAction<S, A> &stateAction,
-                                                    rl::FLOAT value) {
+void StateActionPairContainer<S, A>::addStateAction(
+  const StateAction<S, A> &stateAction,
+  rl::FLOAT value) {
   this->_stateActionPairMap.insert(
     std::pair<StateAction<S, A>, rl::FLOAT>(stateAction, value));
-};
+}
 
 template<class S, class A>
-void StateActionPairContainer<S, A>::addAction(const spAction<A> &action, rl::FLOAT value,
+void StateActionPairContainer<S, A>::addAction(const spAction<A> &action,
+                                               rl::FLOAT value,
                                                const spStateSet<S> &stateSet) {
   for (auto state : stateSet) {
     _stateActionPairMap.insert(
@@ -161,14 +180,17 @@ bool StateActionPairContainer<S, A>::stateInStateActionPairMap(
 }
 
 template<class S, class A>
-inline void rl::agent::StateActionPairContainer<S, A>::setStateActionValue(
+void rl::agent::StateActionPairContainer<S, A>::setStateActionValue(
   const StateAction<S, A> &stateAction, rl::FLOAT value)
 throw(StateActionNotExistException) {
   try {
     _stateActionPairMap.at(stateAction);
   } catch (const std::out_of_range &oor) {
-    cerr << "State-Pair given is not yet added. " << __FILE__ ":" << __LINE__ << std::endl;
-    StateActionNotExistException exception("State-Pair given is not yet added.");
+    std::cerr << "State-Pair given is not yet added. "
+              << __FILE__ ":" << __LINE__
+              << std::endl;
+    StateActionNotExistException exception(
+      "State-Pair given is not yet added.");
     throw exception;
   }
 
@@ -176,50 +198,51 @@ throw(StateActionNotExistException) {
 }
 
 template<class S, class A>
-inline const rl::FLOAT &rl::agent::StateActionPairContainer<S, A>::getStateActionValue(
+const rl::FLOAT &rl::agent::StateActionPairContainer<S, A>::getStateActionValue(
   const StateAction<S, A> &stateAction) const
 throw(StateActionNotExistException) {
   try {
     return _stateActionPairMap.at(stateAction);
   } catch (const std::out_of_range &oor) {
-    cerr << "State-Pair given is not yet added. " << __FILE__ ":" << __LINE__ << std::endl;
-    StateActionNotExistException exception("State-Pair given is not yet added.");
+    std::cerr << "State-Pair given is not yet added. "
+              << __FILE__ ":" << __LINE__
+              << std::endl;
+    StateActionNotExistException exception(
+      "State-Pair given is not yet added.");
     throw exception;
   }
 }
 
 template<class S, class A>
-inline rl::FLOAT rl::agent::StateActionPairContainer<S, A>::operator[](
+rl::FLOAT rl::agent::StateActionPairContainer<S, A>::operator[](
   const StateAction<S, A> &stateAction) const
 throw(StateActionNotExistException) {
   return getStateActionValue(stateAction);
 }
 
 template<class S, class A>
-inline typename map<rl::agent::StateAction<S, A>, rl::FLOAT>::const_iterator rl::agent::StateActionPairContainer<
-  S, A>::begin() const {
+typename map<rl::agent::StateAction<S, A>, rl::FLOAT>::const_iterator
+rl::agent::StateActionPairContainer<S, A>::begin() const {
   return _stateActionPairMap.begin();
 }
 
 template<class S, class A>
-inline typename map<rl::agent::StateAction<S, A>, rl::FLOAT>::const_iterator rl::agent::StateActionPairContainer<
-  S, A>::end() const {
+typename map<rl::agent::StateAction<S, A>, rl::FLOAT>::const_iterator
+rl::agent::StateActionPairContainer<S, A>::end() const {
   return _stateActionPairMap.end();
 }
 
 template<class S, class A>
-inline const map<rl::agent::StateAction<S, A>, rl::FLOAT> &rl::agent::StateActionPairContainer<
-  S, A>::getMap() const {
+const map<rl::agent::StateAction<S, A>, rl::FLOAT> &
+rl::agent::StateActionPairContainer<S, A>::getMap() const {
   return this->_stateActionPairMap;
-};
+}
 
 template<class S, class A>
-inline multimap<rl::FLOAT, rl::agent::StateAction<S, A>> rl::agent::StateActionPairContainer<
-  S, A>::getReverseMap() const {
-  return rl::Utility::flipMap(this->_stateActionPairMap);
-};
+multimap<rl::FLOAT, rl::agent::StateAction<S, A>>
+rl::agent::StateActionPairContainer<S, A>::getReverseMap() const {
+  return rl::utility::flipMap(this->_stateActionPairMap);
+}
 
 }  // namespace agent
 }  // namespace rl
-
-#endif	/* STATEACTIONPAIRCONTAINER_H */

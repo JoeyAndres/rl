@@ -1,14 +1,24 @@
-//
-// Created by jandres on 12/11/16.
-//
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-#include <set>
+#include "catch.hpp"
 
 #include "rl"
-
-#include "../../lib/catch.hpp"
-
-using namespace std;
 
 SCENARIO("StateActionPairContainer a storage for state-action pair.",
          "[rl::agent::StateActionPairContainer]") {
@@ -27,9 +37,10 @@ SCENARIO("StateActionPairContainer a storage for state-action pair.",
   GIVEN("Empty rl::agent::StateActionPairContainer instance") {
     rl::agent::StateActionPairContainer<int, int> container;
 
-    WHEN ("Adding a state-action.") {
-      container.addStateAction(rl::agent::StateAction<int, int>(state0, action1), 1);
-      THEN ("Size should be 1p") {
+    WHEN("Adding a state-action.") {
+      container.addStateAction(rl::agent::StateAction<int, int>(state0,
+                                                                action1), 1);
+      THEN("Size should be 1p") {
         REQUIRE(container.getMap().size() == 1);
       }
     }
@@ -38,13 +49,12 @@ SCENARIO("StateActionPairContainer a storage for state-action pair.",
   GIVEN("Empty rl::agent::StateActionPairContainer") {
     rl::agent::StateActionPairContainer<int, int> container;
 
-    WHEN ("Calling addSate with 5 actions.") {
+    WHEN("Calling addSate with 5 actions.") {
       container.addState(state0, -1, rl::spActionSet<int>(
       {
         action1, action2, action3, action4, action5
-      }
-      ));
-      THEN ("Changes the count to 5.") {
+      }));
+      THEN("Changes the count to 5.") {
         REQUIRE(container.getMap().size() == 5);
       }
     }
@@ -53,13 +63,12 @@ SCENARIO("StateActionPairContainer a storage for state-action pair.",
   GIVEN("Empty rl::agent::StateActionPairContainer") {
     rl::agent::StateActionPairContainer<int, int> container;
 
-    WHEN ("Calling addAction with 5 states.") {
+    WHEN("Calling addAction with 5 states.") {
       container.addAction(action5, -1, rl::spStateSet<int>(
         {
           state0, state1, state2, state3, state4
-        }
-      ));
-      THEN ("Changes the count to 5.") {
+        }));
+      THEN("Changes the count to 5.") {
         REQUIRE(container.getMap().size() == 5);
       }
     }
@@ -67,13 +76,17 @@ SCENARIO("StateActionPairContainer a storage for state-action pair.",
 
   GIVEN("A non-empty rl::agent::StateActionPairContainer") {
     rl::agent::StateActionPairContainer<int, int> container;
-    container.addStateAction(rl::agent::StateAction<int, int>(state0, action1), 1);
+    container.addStateAction(rl::agent::StateAction<int, int>(state0,
+                                                              action1), 1);
 
-    WHEN ("Calling setStateActionValue.") {
-      REQUIRE(container.getStateActionValue(rl::agent::StateAction<int, int>(state0, action1)) == 1);
-      container.setStateActionValue(rl::agent::StateAction<int, int>(state0, action1), 2);
-      THEN ("Changes the value of an existing state action.") {
-        REQUIRE(container.getStateActionValue(rl::agent::StateAction<int, int>(state0, action1)) == 2);
+    WHEN("Calling setStateActionValue.") {
+      REQUIRE(container.getStateActionValue(
+        rl::agent::StateAction<int, int>(state0, action1)) == 1);
+      container.setStateActionValue(
+        rl::agent::StateAction<int, int>(state0, action1), 2);
+      THEN("Changes the value of an existing state action.") {
+        REQUIRE(container.getStateActionValue(
+          rl::agent::StateAction<int, int>(state0, action1)) == 2);
       }
     }
   }

@@ -1,4 +1,4 @@
-include_directories(${CMAKE_SOURCE_DIR}/test/lib)
+include_directories(${CMAKE_SOURCE_DIR}/lib)
 include_directories(${CMAKE_SOURCE_DIR}/test/helper/include)
 include_directories(${PROJECT_BINARY_DIR})
 

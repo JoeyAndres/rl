@@ -1,15 +1,27 @@
-/* 
- * File:   StateActionTransitionException.h
- * Author: jandres
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- * Created on June 6, 2014, 4:55 AM
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef STATEACTIONTRANSITIONEXCEPTION_H
-#define	STATEACTIONTRANSITIONEXCEPTION_H
+#pragma once
 
 #include <exception>
 #include <string>
+
+using std::string;
 
 namespace rl {
 namespace agent {
@@ -19,16 +31,14 @@ namespace agent {
  */
 class StateActionTransitionException : public std::exception {
  public:
-  StateActionTransitionException(std::string extraMsg);
+  explicit StateActionTransitionException(string extraMsg);
 
-  virtual const char* what() const throw ();
+  virtual const char* what() const throw();
 
  private:
-  std::string _extramMsg;
+  string _extramMsg;
 };
 
 }  // namespace agent
-}  /* rl */
-
-#endif	/* STATEACTIONTRANSITIONEXCEPTION_H */
+}  // namespace rl
 

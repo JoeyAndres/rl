@@ -16,20 +16,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream>
-#include <memory>
-
 #include "algorithm/gradient-descent/GradientDescentET.h"
 
 namespace rl {
 namespace algorithm {
 
-GradientDescentET::GradientDescentET(TileCode& tileCode,
+GradientDescentET::GradientDescentET(const spTileCode& tileCode,
                                      rl::FLOAT stepSize,
                                      rl::FLOAT discountRate,
-                                     rl::FLOAT lambda)
-  : GradientDescentAbstract::GradientDescentAbstract(tileCode, stepSize, discountRate, lambda) {
-  _e = std::vector<rl::FLOAT>(this->getSize(), 0);
+                                     rl::FLOAT lambda) :
+  GradientDescentAbstract::GradientDescentAbstract(
+    tileCode, stepSize, discountRate, lambda) {
+  _e = floatVector(this->getSize(), 0);
 }
 
 void GradientDescentET::incrementEligibilityTraces(const FEATURE_VECTOR& fv) {
@@ -46,7 +44,7 @@ void GradientDescentET::replaceEligibilityTraces(const FEATURE_VECTOR& fv) {
 
 void GradientDescentET::decreaseEligibilityTraces() {
   size_t n = getSize();
-  for (size_t i = 0; i < n; i++){
+  for (size_t i = 0; i < n; i++) {
     _e[i] *= _discountRateTimesLambda;
   }
 }
@@ -54,7 +52,7 @@ void GradientDescentET::decreaseEligibilityTraces() {
 void GradientDescentET::backUpWeights(FLOAT tdError) {
   rl::FLOAT multiplier = _stepSize * tdError;
   size_t n = getSize();
-  for (size_t i = 0; i < n-1; i++){
+  for (size_t i = 0; i < n-1; i++) {
     _w[i] += multiplier*_e[i];
   }
 }
@@ -91,5 +89,5 @@ void GradientDescentET::resetEligibilityTraces() {
   std::fill(&_e[0], &_e[0] + getSize(), 0);
 }
 
-}  // namespace Algorithm
+}  // namespace algorithm
 }  // namespace rl

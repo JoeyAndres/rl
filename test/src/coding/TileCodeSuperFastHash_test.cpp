@@ -1,33 +1,46 @@
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include <vector>
-#include <iostream>
 
 #include "rl"
+#include "catch.hpp"
 
-#include "../../lib/catch.hpp"
-
-using namespace rl;
-using namespace rl::algorithm;
-using namespace rl::algorithm;
-using namespace std;
+using std::vector;
 
 SCENARIO("TileCodeSuperFastHash retrieves the correct feature vector",
          "[TileCodeSuperFastHash]") {
   GIVEN("TileCodeSuperFastHash instance") {
-    vector<DimensionInfo<rl::FLOAT> > dimensionalInfoVector = {
-      DimensionInfo<rl::FLOAT>(-0.5F, 0.5F, 3, 0),
-      DimensionInfo<rl::FLOAT>(-0.5F, 0.5F, 3, 0)
+    vector<rl::coding::DimensionInfo<rl::FLOAT> > dimensionalInfoVector = {
+      rl::coding::DimensionInfo<rl::FLOAT>(-0.5F, 0.5F, 3, 0),
+      rl::coding::DimensionInfo<rl::FLOAT>(-0.5F, 0.5F, 3, 0)
     };
 
-    TileCodeSuperFastHash tileCode(dimensionalInfoVector, 4, 100);
+    rl::coding::TileCodeSuperFastHash tileCode(dimensionalInfoVector, 4, 100);
 
-    WHEN ("TileCodeSuperFastHash::getDimension is called.") {
-      THEN ("Returns 3") {
+    WHEN("TileCodeSuperFastHash::getDimension is called.") {
+      THEN("Returns 3") {
         REQUIRE(tileCode.getDimension() == 2);
       }
     }
 
-    WHEN ("TileCodeSuperFastHash::getSize is called.") {
-      THEN ("Returns 100") {
+    WHEN("TileCodeSuperFastHash::getSize is called.") {
+      THEN("Returns 100") {
         REQUIRE(tileCode.getSize() == 100);
       }
     }

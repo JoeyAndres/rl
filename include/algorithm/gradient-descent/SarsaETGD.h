@@ -1,28 +1,32 @@
-/* 
- * File:   SarsaETGD.h
- * Author: jandres
+/**
+ * rl - Reinforcement Learning
+ * Copyright (C) 2016  Joey Andres<yeojserdna@gmail.com>
  *
- * Created on June 10, 2014, 5:06 AM
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SARSAETGD_H
-#define	SARSAETGD_H
+#pragma once
 
 #include "../../declares.h"
-
-#include <vector>
-#include <map>
-
-#include "GradientDescent.h"
 #include "../../agent/StateAction.h"
+#include "GradientDescent.h"
 #include "ReinforcementLearningGDET.h"
 
-using namespace std;
+using rl::coding::spTileCode;
 
 namespace rl {
 namespace algorithm {
-
-using namespace coding;
 
 /*! \class SarsaETGD
  *  \brief Gradient Descent with Sarsa implementation (the same policy for
@@ -30,14 +34,13 @@ using namespace coding;
  */
 class SarsaETGD final: public ReinforcementLearningGDET {
  public:
-  SarsaETGD(TileCode& tileCode, rl::FLOAT stepSize,
+  SarsaETGD(const spTileCode& tileCode,
+            rl::FLOAT stepSize,
             rl::FLOAT discountRate,
             rl::FLOAT lambda,
-            policy::Policy<vector<FLOAT>, vector<FLOAT> >& policy);
+            const policy::spPolicy<stateCont, actionCont>& policy);
 };
 
-} /* namespace algorithm */
-} /* namespace rl */
-
-#endif	/* SARSAETGD_H */
+}  // namespace algorithm
+}  // namespace rl
 
