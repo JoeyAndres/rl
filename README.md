@@ -45,33 +45,36 @@ the _SARSA_ algorithm. The following is a snippet with a walk through comment:
 
 ```c++
 #include <vector>
-#include <iostream>
 
+#include "catch.hpp"
 #include "rl"
 
-# Here are files where rl::agent::Environment and rl::agent::Sensor are overidden.
 #include "RandomWalkEnvironment.h"
 #include "SensorRandomWalk.h"
 
-#include "../../lib/catch.hpp"
-
 using std::vector;
 
-using namespace rl;
-using namespace std;
+using rl::policy::EpsilonGreedyFactory;
+using rl::agent::ActuatorFactory;
+using rl::agent::SensorDiscreteFactory;
+using rl::algorithm::SarsaFactory;
 
 SCENARIO("Sarsa converge to a solution",
          "[rl::Sarsa]") {
   GIVEN("A random walk environment") {
-    Actuator <rl::INT> arw({L, R});  // Setup actuator with actions.
-    SensorRandomWalk srw;  // Setup sensor.
-    srw.addTerminalState(T);  // Setup terminal state.
-    rl::RandomWalkEnvironment rwEnv(arw, srw);  // Setup environment.
+// Setup actuator with actions.
+    auto arw = ActuatorFactory<rl::INT>({ L, R }).get();
+    // Setup sensor.
+    auto srw = SensorDiscreteFactory<rl::INT>(B).get();
+    srw->addTerminalState(T);  // Setup terminal state.
 
-    policy::EpsilonGreedy <rl::INT, rl::INT> policy(1.0F);
-    algorithm::Sarsa <rl::INT, rl::INT> sarsa(0.1F, 0.9F, policy);
+    // Setup environment.
+    auto rwe = RandomWalkEnvironmentFactory(arw, srw).get();
 
-    Agent <rl::INT, rl::INT> agent(rwEnv, sarsa);
+    auto policy = EpsilonGreedyFactory<rl::INT, rl::INT>(1.0F).get();
+    auto sarsa = SarsaFactory<rl::INT, rl::INT>(0.1F, 0.9F, policy).get();
+
+    rl::agent::Agent <rl::INT, rl::INT> agent(rwe, sarsa);
 
     WHEN("We do multiple episodes") {
       rl::INT iterationCount = 0;
@@ -80,7 +83,8 @@ SCENARIO("Sarsa converge to a solution",
 
         iterationCount = agent.executeEpisode();
 
-        THEN("At the end, we solve the random walk environment in 2 iteration") {
+        THEN("At the end, we solve the random walk environment in 2 "
+               "iteration") {
           REQUIRE(iterationCount <= 2);
         }
       }
@@ -95,25 +99,39 @@ Taken from AgentSupervised_test.cpp
 ```c++
 #include "rl"
 
-#include "../../lib/catch.hpp"
+#include "catch.hpp"
 
-using namespace std;
+using rl::agent::ActionContainerFactory;
+using rl::algorithm::SarsaFactory;
+using rl::policy::EpsilonGreedyFactory;
 
 SCENARIO("Supervised agent develop an accurate model of the environment.",
-         "[rl::AgentSupervised]") {
+         "[rl::agent::AgentSupervised]") {
   GIVEN("A binary environment in which 1 is good and 0 is bad.") {
-    rl::policy::EpsilonGreedy<int, int> policy(1.0F);
-    rl::algorithm::Sarsa<int, int> sarsaAlgorithm(0.1F, 0.9F, policy);
-    auto actionSet = rl::agent::ActionSet<int>({0, 1});
-    rl::AgentSupervised<int, int> supevisedAgent(actionSet, sarsaAlgorithm);
+    rl::spState<int> state0(new int(0));
+    rl::spState<int> state1(new int(1));
 
-    WHEN ("When I train 1 to be good and 0 to be bad") {
-      supevisedAgent.train(1, 1, 1000, 1);  // We don't transition anywhere. It's just being in state 1 is good.
-      supevisedAgent.train(0, 0, -1000, 0);  // Same deal.
+    rl::spAction<int> action0(new int(0));
+    rl::spAction<int> action1(new int(1));
 
-      THEN ("Agent should know that 1 should be good and 0 should be bad") {
-        auto value1 = sarsaAlgorithm.getStateActionValue(rl::agent::StateAction<int, int>(1, 1));
-        auto value0 = sarsaAlgorithm.getStateActionValue(rl::agent::StateAction<int, int>(0, 0));
+    auto policy = EpsilonGreedyFactory<int, int>(1.0F).get();
+    auto sarsaAlgorithm = SarsaFactory<int, int>(0.1F, 0.9F, policy).get();
+    auto actionSet = ActionContainerFactory<int>({action0, action1}).get();
+    rl::agent::AgentSupervised<int, int> supevisedAgent(actionSet,
+                                                        sarsaAlgorithm);
+
+    WHEN("When I train 1 to be good and 0 to be bad") {
+      // We don't transition anywhere. It's just being in state 1 is good.
+      supevisedAgent.train(state1, action1, 1000, state1);
+
+      // Same deal.
+      supevisedAgent.train(state0, action0, -1000, state0);
+
+      THEN("Agent should know that 1 should be good and 0 should be bad") {
+        auto value1 = sarsaAlgorithm->getStateActionValue(
+          rl::agent::StateAction<int, int>(state1, action1));
+        auto value0 = sarsaAlgorithm->getStateActionValue(
+          rl::agent::StateAction<int, int>(state0, action0));
 
         REQUIRE(value1 > value0);
       }
