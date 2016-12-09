@@ -16,25 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <vector>
+#include <array>
 
 #include "rl"
 #include "catch.hpp"
 
-using std::vector;
+using std::array;
 
 SCENARIO("Tile code retrieves the correct feature vector",
          "[TileCodeCorrect]") {
   GIVEN("TileCodeCorrect instance") {
-    vector<rl::coding::DimensionInfo<rl::FLOAT> > dimensionalInfoVector = {
+    array<rl::coding::DimensionInfo<rl::FLOAT>, 2> dimensionalInfoVector = {
       rl::coding::DimensionInfo<rl::FLOAT>(-0.5F, 0.5F, 3, 0),
       rl::coding::DimensionInfo<rl::FLOAT>(-0.5F, 0.5F, 3, 0)
     };
 
-    rl::coding::TileCodeCorrect tileCode(dimensionalInfoVector, 4);
+    rl::coding::TileCodeCorrect<2, 4> tileCode(dimensionalInfoVector);
 
     WHEN("TileCode::getDimension is called.") {
-      THEN("Returns 3") {
+      THEN("Returns 2") {
         REQUIRE(tileCode.getDimension() == 2);
       }
     }
@@ -53,7 +53,7 @@ SCENARIO("Tile code retrieves the correct feature vector",
 
     WHEN("TileCode::getFeatureVector is called for (-0.4, -0.4).") {
       THEN("Return (0, 16, 32, 48)") {
-        auto fv = tileCode.getFeatureVector(rl::stateCont({-0.4, -0.4}));
+        auto fv = tileCode.getFeatureVector(rl::floatArray<2>({-0.4, -0.4}));
         decltype(fv) result { 0, 16, 32, 48 };
         REQUIRE(fv == result);
       }

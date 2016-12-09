@@ -22,12 +22,12 @@
 #include "../include/MountainCarEnvironment.h"
 
 MountainCarEnvironment::MountainCarEnvironment(
-  const spActuator<stateCont>& actuator,
-  const spSensor<actionCont>& sensor) :
-  rl::agent::Environment<stateCont, actionCont>(actuator, sensor) {
+  const spActuator<floatArray<1>>& actuator,
+  const spSensor<floatArray<2>>& sensor) :
+  rl::agent::Environment<floatArray<2>, floatArray<1>>(actuator, sensor) {
 }
 
-rl::spStateAndReward<rl::stateCont>
+rl::spStateAndReward<floatArray<2>>
 MountainCarEnvironment::getNextStateAndReward(
   const MountainCarEnvironment::SA& stateAction) {
   auto act = stateAction.getAction();
@@ -69,8 +69,8 @@ MountainCarEnvironment::getNextStateAndReward(
 }
 
 MountainCarEnvironmentFactory::MountainCarEnvironmentFactory(
-  const spActuator<stateCont>& actuator,
-  const spSensor<stateCont>& sensor) {
-  this->_instance = spEnvironment<stateCont, actionCont>(
+  const spActuator<floatArray<1>>& actuator,
+  const spSensor<floatArray<2>>& sensor) {
+  this->_instance = spEnvironment<floatArray<2>, floatArray<1>>(
     new MountainCarEnvironment(actuator, sensor));
 }

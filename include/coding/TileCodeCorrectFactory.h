@@ -31,11 +31,13 @@ namespace coding {
 
 /*!\class TileCodeCorrectFactory
  * \brief Factory method for TileCodeCorrect.
+ * \tparam D Number of dimension.
+ * \tparam NUM_TILINGS Number of tilings.
  */
-class TileCodeCorrectFactory : public TileCodeFactory {
- public:
-  TileCodeCorrectFactory(
-    const vector<DimensionInfo<FLOAT>>& dimensionalInfos, size_t numTilings);
+template<size_t D, size_t NUM_TILINGS>
+class TileCodeCorrectFactory :
+  public TileCodeFactory<D, NUM_TILINGS, TileCodeCorrect> {
+  using TileCodeFactory<D, NUM_TILINGS, TileCodeCorrect>::TileCodeFactory;
 };
 
 }  // namespace coding

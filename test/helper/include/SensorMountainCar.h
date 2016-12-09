@@ -22,8 +22,8 @@
 
 #include "rl"
 
-using rl::stateCont;
-using rl::actionCont;
+using rl::floatArray;
+using rl::spFloatArray;
 using rl::agent::Environment;
 using rl::agent::spEnvironment;
 using rl::agent::Sensor;
@@ -32,13 +32,13 @@ using rl::agent::Actuator;
 
 using std::shared_ptr;
 
-class SensorMountainCar final : public Sensor<stateCont> {
+class SensorMountainCar final : public Sensor<floatArray<2>> {
  public:
   SensorMountainCar();
-  bool isTerminalState(const rl::spStateCont &stateData) const override;
+  bool isTerminalState(const spFloatArray<2> &stateData) const override;
 };
 
 class SensorMountainCarFactory {
  public:
-  static spSensor<stateCont> create();
+  static spSensor<floatArray<2>> create();
 };

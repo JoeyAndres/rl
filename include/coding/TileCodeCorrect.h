@@ -20,10 +20,12 @@
 
 #include <cmath>
 #include <vector>
+#include <array>
 
 #include "TileCode.h"
 
 using std::vector;
+using std::array;
 
 namespace rl {
 namespace coding {
@@ -36,19 +38,41 @@ namespace coding {
  *  in which there might be a collision thus feature vectors might not be unique. Although
  *  it is correct, it consumes more space than hashing alternative, making it impractical
  *  for high dimensional state-spaces.
+ *
+ *  \tparam D Number of dimension.
+ *  \tparam NUM_TILINGS Number of tilings.
  */
-class TileCodeCorrect : public TileCode {
+template<size_t D, size_t NUM_TILINGS>
+class TileCodeCorrect : public TileCode<D, NUM_TILINGS> {
  public:
-  /**
-   * @param dimensionalInfos A vector dimensionalInfos.
-   * @param numTilings The higher the value, the more accurate is the
-   * 			generalization.
-   */
-  TileCodeCorrect(const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
-                  size_t numTilings);
+  using TileCode<D, NUM_TILINGS>::TileCode;
 
-  FEATURE_VECTOR getFeatureVector(const floatVector& parameters) override;
+  FEATURE_VECTOR getFeatureVector(
+    const floatArray<D>& parameters) override;
 };
+
+template<size_t D, size_t NUM_TILINGS>
+FEATURE_VECTOR TileCodeCorrect<D, NUM_TILINGS>::getFeatureVector(
+  const floatArray<D>& parameters) {
+  FEATURE_VECTOR fv;
+  fv.resize(NUM_TILINGS);
+
+  for (rl::INT i = 0; i < NUM_TILINGS; i++) {
+    // x1 + x2*x1.gridSize + x3*x1.gridSize*x2.gridSize + ...
+    rl::INT hashedIndex = 0;
+    rl::INT mult = 1;
+    for (size_t j = 0; j < this->getDimension(); j++) {
+      hashedIndex += this->paramToGridValue(parameters.at(j), i, j) * mult;
+      mult *= this->_dimensionalInfos[j].GetGridCountReal();
+    }
+
+    hashedIndex += mult * i;
+    assert(hashedIndex <= this->_sizeCache
+    /* Size cache exceeded. Illegal feature vector value. */);
+    fv[i] = hashedIndex;
+  }
+  return fv;
+}
 
 }  // namespace coding
 }  // namespace rl

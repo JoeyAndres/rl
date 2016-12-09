@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <vector>
+#include <array>
 
 #include "catch.hpp"
 #include "rl"
@@ -24,7 +24,7 @@
 #include "MountainCarEnvironment.h"
 #include "SensorMountainCar.h"
 
-using std::vector;
+using std::array;
 
 using rl::policy::EpsilonGreedyFactory;
 using rl::agent::ActuatorFactory;
@@ -34,12 +34,12 @@ using rl::coding::TileCodeCorrectFactory;
 SCENARIO("Sarsa Gradient Descent converge to a solution",
          "[rl::SarsaGD]") {
   GIVEN("A Mountain Car environment") {
-    rl::spActionCont reverse(new rl::actionCont({0}));
-    rl::spActionCont neutral(new rl::actionCont({1}));
-    rl::spActionCont forward(new rl::actionCont({2}));
+    rl::spFloatArray<1> reverse(new rl::floatArray<1>({0}));
+    rl::spFloatArray<1> neutral(new rl::floatArray<1>({1}));
+    rl::spFloatArray<1> forward(new rl::floatArray<1>({2}));
 
-    auto amc = ActuatorFactory<rl::actionCont>(
-      rl::spActionSet<rl::actionCont>(
+    auto amc = ActuatorFactory<rl::floatArray<1>>(
+      rl::spActionSet<rl::floatArray<1>>(
         {
           reverse,
           neutral,
@@ -51,10 +51,10 @@ SCENARIO("Sarsa Gradient Descent converge to a solution",
     auto mce = MountainCarEnvironmentFactory(amc, smc).get();
 
     auto policy =
-      EpsilonGreedyFactory<rl::stateCont, rl::actionCont>(1.0F).get();
+      EpsilonGreedyFactory<rl::floatArray<2>, rl::floatArray<1>>(1.0F).get();
 
     // Setup tile coding.
-    vector <rl::coding::DimensionInfo<rl::FLOAT>> dimensionalInfoVector = {
+    array<rl::coding::DimensionInfo<rl::FLOAT>, 3> dimensionalInfoVector = {
       rl::coding::DimensionInfo<rl::FLOAT>(-1.2F, 0.5F, 7),  // Velocity.
       rl::coding::DimensionInfo<rl::FLOAT>(-0.07F, 0.07F, 7),  // Position.
 
@@ -63,10 +63,10 @@ SCENARIO("Sarsa Gradient Descent converge to a solution",
     };
 
     // Setup tile coding with 8 offsets.
-    auto tileCode = TileCodeCorrectFactory(dimensionalInfoVector, 8).get();
+    auto tileCode = TileCodeCorrectFactory<3, 8>(dimensionalInfoVector).get();
 
-    auto sarsa = SarsaGDFactory(tileCode, 0.1F, 1.0F, 0.9F, policy).get();
-    rl::agent::AgentSL <rl::FLOAT> agent(mce, sarsa);
+    auto sarsa = SarsaGDFactory<3, 8>(tileCode, 0.1F, 1.0F, 0.9F, policy).get();
+    rl::agent::AgentGD<3> agent(mce, sarsa);
 
     WHEN("We do multiple episodes") {
       rl::INT iterationCount = 0;

@@ -80,6 +80,15 @@ class AgentSupervised {
   spLearningAlgorithm<S, A> _learningAlgorithm;
 };
 
+/*! \class AgentSupervisedGD
+ *  \brief AgentSupervised for Gradient Descent.
+ *  \tparam D Number of dimension.
+ *  \tparam STATE_DIM Number of state dimension.
+ */
+template<size_t D, size_t STATE_DIM = D-1>
+using AgentSupervisedGD =
+AgentSupervised<floatArray<STATE_DIM>, floatArray<D - STATE_DIM>>;
+
 /*! \class Agent
  *  \brief A class that represent an rl agent.
  *
@@ -178,17 +187,13 @@ class Agent {
                               //!< postExecute.
 };
 
-/*! \typedef AgentSL
- *  \brief Agent for Supervised Learning.
- *  \tparam D data type of Supervised Learning agent.
- *
- *  Supervised Learning usually deals with multi-dimension states and action,
- *  hence the specific typedef of Agent.
- *
- *  TODO: Made by young me, probably under a lot of stress so above statement doesn't makes sense. Remove this crap.
+/*! \class AgentGD
+ *  \brief Agent for Gradient Descent.
+ *  \tparam D Number of dimension.
+ *  \tparam STATE_DIM Number of state dimension.
  */
-template<class D = FLOAT>
-using AgentSL = Agent<vector<D>, vector<D>>;
+template<size_t D, size_t STATE_DIM = D-1>
+using AgentGD = Agent<floatArray<STATE_DIM>, floatArray<D - STATE_DIM>>;
 
 template<class S, class A>
 Agent<S, A>::Agent(const spEnvironment<S, A>& environment,
@@ -230,7 +235,7 @@ void Agent<S, A>::preExecute() {
 
 template<class S, class A>
 void Agent<S, A>::execute() {
-  // todo: Acquire last state and reward here.
+  // todo(jandres): Acquire last state and reward here.
   this->applyAction(_currentAction);
   spState<S> nextState = std::move(getLastObservedState());
   FLOAT reward = this->_environment->getSensor()->getLastObservedReward();

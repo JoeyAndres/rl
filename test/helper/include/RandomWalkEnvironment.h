@@ -27,8 +27,6 @@ using std::map;
 using std::pair;
 
 using rl::spState;
-using rl::stateCont;
-using rl::actionCont;
 using rl::agent::Environment;
 using rl::agent::spEnvironment;
 using rl::agent::spSensor;

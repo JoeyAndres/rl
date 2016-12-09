@@ -21,6 +21,7 @@
 #include <random>
 #include <vector>
 
+#include "../hash/HashUNH.h"
 #include "TileCode.h"
 
 using std::vector;
@@ -30,22 +31,18 @@ namespace coding {
 
 /*! \class TileCodeUNH
  *  \brief Tile Code using University New Hampshire hash, or UNH.
+ *  \tparam D Number of dimension.
+ *  \tparam NUM_TILINGS Number of tilings.
  */
-class TileCodeUNH : public TileCode {
+template <size_t D, size_t NUM_TILINGS>
+class TileCodeUNH : public TileCode<D, NUM_TILINGS> {
  public:
-  TileCodeUNH(const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
-              size_t numTilings);
+  using TileCode<D, NUM_TILINGS>::TileCode;
 
-  TileCodeUNH(const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
-              size_t numTilings,
+  TileCodeUNH(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
               size_t sizeHint);
 
-  /**
-   * Hashed the parameter in Real space to a Natural space [0, infinity).
-   * @param parameters
-   * @return Vector of discretize index.
-   */
-  FEATURE_VECTOR getFeatureVector(const floatVector& parameters);
+  FEATURE_VECTOR getFeatureVector(const floatArray<D>& parameters) override;
 
   size_t mod(size_t n, size_t k) {
     return (n >= 0) ? n % k : k - 1 - ((-n - 1) % k);
@@ -55,6 +52,53 @@ class TileCodeUNH : public TileCode {
   // Optimization parameters.
   vector<rl::FLOAT> _normalization;
 };
+
+template <size_t D, size_t NUM_TILINGS>
+TileCodeUNH<D, NUM_TILINGS>::TileCodeUNH(
+  const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
+  size_t sizeHint) :
+  TileCode<D, NUM_TILINGS>::TileCode(dimensionalInfos) {
+  if (sizeHint > this->_sizeCache) {
+    this->_sizeCache = sizeHint;
+  }
+
+  _normalization = vector<rl::FLOAT>(this->getDimension());
+
+  for (size_t i = 0; i < this->_dimensionalInfos.size(); i++) {
+    _normalization[i] = NUM_TILINGS
+      / this->_dimensionalInfos[i].GetRangeDifference();
+  }
+}
+
+template <size_t D, size_t NUM_TILINGS>
+FEATURE_VECTOR TileCodeUNH<D, NUM_TILINGS>::getFeatureVector(
+  const floatArray<D>& parameters) {
+  FEATURE_VECTOR fv;
+
+  vector<rl::UINT> base(this->getDimension(), 0);
+  vector<rl::INT> qStates(this->getDimension());
+  for (size_t i = 0; i < this->getDimension(); i++) {
+    // Note to floor since casting to integer is not consistent
+    // with negative number. Casting is always a number toward zero.
+    qStates[i] = floor(parameters.at(i) * _normalization[i]);
+  }
+
+  for (size_t i = 0; i < NUM_TILINGS; i++) {
+    vector<rl::INT> tileComponents(this->getDimension() + 1);
+
+    for (size_t j = 0; j < this->getDimension(); j++) {
+      tileComponents[j] = qStates[j]
+        - mod(qStates[j] - base[j], NUM_TILINGS);
+      base[j] += 1 + (j * 2);
+    }
+    tileComponents[this->getDimension()] = i;
+    hash::UNH hashAlg;
+    fv.push_back(
+      hashAlg.hash((rl::BYTE*) &tileComponents[0], this->_sizeCache));
+  }
+
+  return fv;
+}
 
 }  // namespace coding
 }  // namespace rl

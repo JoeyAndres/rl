@@ -72,8 +72,6 @@ class Softmax : public Policy<S, A> {
                            //!< that differ in their action estimates.
 };
 
-typedef Softmax<rl::floatVector, rl::floatVector> SoftmaxSL;
-
 /*! \typedef spSoftmax
  *
  *  Softmax wrapped in smart pointer.

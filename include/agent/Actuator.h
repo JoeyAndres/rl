@@ -50,8 +50,6 @@ class Actuator : public ActionContainer<A> {
   explicit Actuator(const spActionSet<A>& actionSet);
 };
 
-typedef Actuator<actionCont> ActuatorSL;
-
 /*! \typedef spActuator
  *
  * Wraps Actuator with shared_ptr. @see Actuator

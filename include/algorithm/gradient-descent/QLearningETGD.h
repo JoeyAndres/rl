@@ -28,15 +28,35 @@ namespace algorithm {
 /*! \class QLearningETGD
  *  \brief Gradient Descent with QLearning implementation (Separate control
  *         and learning policy).
+ *  \tparam D Number of dimensions.
+ *  \tparam NUM_TILINGS Number of tilings.
+ *  \tparam STATE_DIM Number of dimension in State. This defaults to D-1.
+ *                    This also implies ACTION_DIM = D - STATE_DIM.
  */
-class QLearningETGD : public ReinforcementLearningGDET {
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM = D-1>
+class QLearningETGD :
+  public ReinforcementLearningGDET<D, NUM_TILINGS, STATE_DIM> {
  public:
-  QLearningETGD(const spTileCode& tileCode,
+  QLearningETGD(const spTileCode<D, NUM_TILINGS>& tileCode,
                 rl::FLOAT stepSize,
                 rl::FLOAT discountRate,
                 rl::FLOAT lambda,
-                const policy::spPolicy<stateCont, actionCont>& policy);
+                const typename ReinforcementLearningGDAbstract<
+                  D, NUM_TILINGS, STATE_DIM>::spPolicy& policy);
 };
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+QLearningETGD<D, NUM_TILINGS, STATE_DIM>::QLearningETGD(
+  const spTileCode<D, NUM_TILINGS>& tileCode,
+  rl::FLOAT stepSize,
+  rl::FLOAT discountRate,
+  rl::FLOAT lambda,
+  const typename ReinforcementLearningGDAbstract<
+    D, NUM_TILINGS, STATE_DIM>::spPolicy& controlPolicy) :
+  ReinforcementLearningGDET<
+    D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGDET(
+    tileCode, stepSize, discountRate, lambda, controlPolicy) {
+}
 
 }  // namespace algorithm
 }  // namespace rl

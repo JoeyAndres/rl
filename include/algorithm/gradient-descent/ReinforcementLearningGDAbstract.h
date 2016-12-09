@@ -18,14 +18,17 @@
 
 #pragma once
 
+#include <algorithm>
 #include <tuple>
+#include <memory>
 
 #include "../../declares.h"
 #include "../../agent/StateAction.h"
 #include "../LearningAlgorithm.h"
-#include "GradientDescent.h"
+#include "GradientDescentAbstract.h"
 
 using std::tuple;
+using std::shared_ptr;
 
 using rl::coding::spTileCode;
 
@@ -34,10 +37,27 @@ namespace algorithm {
 
 /*! \class ReinforcementLearningGDAbstract
  *  \brief Gradient descent implementation of Reinforcement Learning.
+ *  \tparam D Number of dimension.
+ *  \tparam NUM_TILINGS Number of tilings.
+ *  \tparam STATE_DIM Number of dimension in State.
+ *                    This also implies ACTION_DIM = D - STATE_DIM.
  */
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
 class ReinforcementLearningGDAbstract
-  : public LearningAlgorithm<stateCont, actionCont> {
+  : public LearningAlgorithm<
+    floatArray<STATE_DIM>,
+    floatArray<
+      GradientDescentAbstract<D, NUM_TILINGS, STATE_DIM>::ACTION_DIM>> {
  public:
+  static constexpr size_t ACTION_DIM =
+    GradientDescentAbstract<D, NUM_TILINGS, STATE_DIM>::ACTION_DIM;
+
+  using StateParam = floatArray<STATE_DIM>;
+  using spStateParam = shared_ptr<floatArray<STATE_DIM>>;
+  using ActionParam = floatArray<ACTION_DIM>;
+  using spActionParam = shared_ptr<floatArray<ACTION_DIM>>;
+  using spPolicy = policy::spPolicy<StateParam, ActionParam>;
+
   /**
    * @param tileCode tileCode implementation to be aggregated.
    * @param stepSize step size indicates how fast increment to a new estimates occur.
@@ -48,11 +68,14 @@ class ReinforcementLearningGDAbstract
    * @param policy Control policy.
    */
   ReinforcementLearningGDAbstract(
-    const spTileCode& tileCode,
+    const spTileCode<D, NUM_TILINGS>& tileCode,
     rl::FLOAT stepSize,
     rl::FLOAT discountRate,
     rl::FLOAT lambda,
-    const policy::spPolicy<stateCont, actionCont>& policy);
+    const typename ReinforcementLearningGDAbstract<
+        D,
+        NUM_TILINGS,
+        STATE_DIM>::spPolicy& policy);
 
   virtual ~ReinforcementLearningGDAbstract() = 0;
 
@@ -63,24 +86,56 @@ class ReinforcementLearningGDAbstract
    * @param actionSet set of possible actions.
    */
   virtual void update(
-    const StateAction<stateCont, actionCont >& currentStateAction,
-    const spStateCont& nextStateVector, const FLOAT reward,
-    const spActionSet<actionCont>& actionSet);
+    const StateAction<
+      typename ReinforcementLearningGDAbstract<
+        D,
+        NUM_TILINGS,
+        STATE_DIM>::StateParam,
+      typename ReinforcementLearningGDAbstract<
+        D,
+        NUM_TILINGS,
+        STATE_DIM>::ActionParam
+    >& currentStateAction,
+    const ReinforcementLearningGDAbstract<
+      D,
+      NUM_TILINGS,
+      STATE_DIM>::spStateParam& nextStateVector,
+    const FLOAT reward,
+    const spActionSet<
+      ReinforcementLearningGDAbstract<
+        D, NUM_TILINGS, STATE_DIM>::ActionParam>& actionSet);
 
   /**
    * @param state State to take action to.
    * @param actionSet Set of possible actions.
    * @return Action determined by Control Policy.
    */
-  virtual spActionCont getAction(const spStateCont& state,
-                                 const spActionSet<actionCont>& actionSet);
+  virtual
+  typename ReinforcementLearningGDAbstract<
+    D, NUM_TILINGS, STATE_DIM>::spActionParam
+  getAction(
+    const typename ReinforcementLearningGDAbstract<
+      D,
+      NUM_TILINGS,
+      STATE_DIM>::spStateParam& state,
+    const spActionSet<
+      typename ReinforcementLearningGDAbstract<
+        D,
+        NUM_TILINGS,
+        STATE_DIM>::ActionParam>& actionSet);
 
   /**
    * @param stateAction State-action pair to determine value of.
-   * @return value of state-actio pair.
+   * @return value of state-action pair.
    */
   virtual FLOAT getStateActionValue(
-    const StateAction<stateCont, actionCont>& stateAction);
+    const StateAction<
+      typename ReinforcementLearningGDAbstract<
+        D, NUM_TILINGS, STATE_DIM>::StateParam,
+      typename ReinforcementLearningGDAbstract<
+        D,
+        NUM_TILINGS,
+        STATE_DIM>::ActionParam>& stateAction);
 
   /**
    * Reset routine for an algorithm for every episode.
@@ -93,7 +148,14 @@ class ReinforcementLearningGDAbstract
    * @return value of state-actio pair.
    */
   FLOAT _getStateActionValue(
-    const StateAction<stateCont, actionCont >& stateAction);
+    const StateAction<
+      typename ReinforcementLearningGDAbstract<D,
+                                               NUM_TILINGS,
+                                               STATE_DIM>::StateParam,
+      typename ReinforcementLearningGDAbstract<
+        D,
+        NUM_TILINGS,
+        STATE_DIM>::ActionParam >& stateAction);
 
   /**
    * Acquires the action-value map as well as the action with max action.
@@ -101,14 +163,165 @@ class ReinforcementLearningGDAbstract
    * @param nextState Next state.
    * @return {actionValueMap, maxaction}
    */
-  tuple<spActionValueMap<actionCont>, spActionCont>
+  tuple<
+    spActionValueMap<
+      typename ReinforcementLearningGDAbstract<
+        D, NUM_TILINGS, STATE_DIM>::ActionParam>,
+    typename ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::spActionParam>
   _buildActionValues(
-    const spActionSet<actionCont>& actionSet,
-    const spStateCont& nextState) const;
+    const spActionSet<
+      ReinforcementLearningGDAbstract<
+        D, NUM_TILINGS, STATE_DIM>::ActionParam>& actionSet,
+    const ReinforcementLearningGDAbstract<
+      D,
+      NUM_TILINGS,
+      STATE_DIM>::spStateParam& nextState) const;
 
  protected:
-  spGradientDescentAbstract _gradientDescent = nullptr;
+  spGradientDescentAbstract<D, NUM_TILINGS, STATE_DIM> _gradientDescent =
+    nullptr;
 };
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+ReinforcementLearningGDAbstract<
+  D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGDAbstract(
+  const spTileCode<D, NUM_TILINGS>& tileCode,
+  rl::FLOAT stepSize,
+  rl::FLOAT discountRate,
+  rl::FLOAT lambda,
+  const typename ReinforcementLearningGDAbstract<
+    D,
+    NUM_TILINGS,
+    STATE_DIM>::spPolicy& policy) :
+  LearningAlgorithm<
+    ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::StateParam,
+    ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::ActionParam>(policy) {
+}
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+ReinforcementLearningGDAbstract<
+  D,
+  NUM_TILINGS,
+  STATE_DIM>::~ReinforcementLearningGDAbstract() {
+}
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+std::tuple<
+  spActionValueMap<
+    typename ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::ActionParam>,
+  typename ReinforcementLearningGDAbstract<
+    D, NUM_TILINGS, STATE_DIM>::spActionParam>
+ReinforcementLearningGDAbstract<D, NUM_TILINGS, STATE_DIM>::_buildActionValues(
+  const spActionSet<
+    ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::ActionParam>& actionSet,
+  const ReinforcementLearningGDAbstract<
+    D,
+    NUM_TILINGS,
+    STATE_DIM>::spStateParam& nextState) const {
+  return _gradientDescent->buildActionValues(actionSet, nextState);
+}
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+void ReinforcementLearningGDAbstract<D, NUM_TILINGS, STATE_DIM>::update(
+  const StateAction<
+    typename ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::StateParam,
+    typename ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::ActionParam
+  >& currentStateAction,
+  const ReinforcementLearningGDAbstract<
+    D,
+    NUM_TILINGS,
+    STATE_DIM>::spStateParam& nextStateVector, const FLOAT reward,
+  const spActionSet<
+    ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::ActionParam>& actionSet) {
+  auto actionValueAndMaxAction =
+    this->_buildActionValues(actionSet, nextStateVector);
+  spActionValueMap<
+    ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::ActionParam> actionValueMap =
+    std::get<0>(actionValueAndMaxAction);
+  ReinforcementLearningGDAbstract<
+    D, NUM_TILINGS, STATE_DIM>::spActionParam maxAction =
+    std::get<1>(actionValueAndMaxAction);
+
+  const ReinforcementLearningGDAbstract<
+    D,
+    NUM_TILINGS,
+    STATE_DIM>::spActionParam& nextAction =
+    this->_getLearningPolicyAction(actionValueMap, actionSet, maxAction);
+
+  _gradientDescent->updateWeights(currentStateAction.getState(),
+                                  currentStateAction.getAction(),
+                                  nextStateVector, actionValueMap[nextAction],
+                                  reward);
+}
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+typename ReinforcementLearningGDAbstract<
+  D, NUM_TILINGS, STATE_DIM>::spActionParam
+ReinforcementLearningGDAbstract<D, NUM_TILINGS, STATE_DIM>::getAction(
+  const typename ReinforcementLearningGDAbstract<
+    D, NUM_TILINGS, STATE_DIM>::spStateParam& state,
+  const spActionSet<
+    typename ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::ActionParam>& actionSet) {
+  auto actionValueAndMaxAction =
+    this->_buildActionValues(actionSet, state);
+  spActionValueMap<
+    ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::ActionParam> actionValueMap =
+    std::get<0>(actionValueAndMaxAction);
+  ReinforcementLearningGDAbstract<
+    D, NUM_TILINGS, STATE_DIM>::spActionParam maxAction =
+    std::get<1>(actionValueAndMaxAction);
+  return this->_learningPolicy->getAction(actionValueMap, actionSet, maxAction);
+}
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+FLOAT ReinforcementLearningGDAbstract<
+  D, NUM_TILINGS, STATE_DIM>::getStateActionValue(
+  const StateAction<
+    ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::StateParam,
+    ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::ActionParam >& stateAction) {
+  return _getStateActionValue(stateAction);
+}
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+FLOAT ReinforcementLearningGDAbstract<
+  D, NUM_TILINGS, STATE_DIM>::_getStateActionValue(
+  const StateAction<
+    ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::StateParam,
+    ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::ActionParam >& stateAction) {
+  auto copy = *(stateAction.getState());
+  floatArray<D> currentParams;
+  std::copy(stateAction.getState()->begin(),
+            stateAction.getState()->end(),
+            currentParams.begin());
+  std::copy(stateAction.getAction()->begin(),
+            stateAction.getAction()->end(),
+            currentParams.begin() + stateAction.getState()->size());
+  return _gradientDescent->getValueFromParameters(currentParams);
+}
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+void ReinforcementLearningGDAbstract<D, NUM_TILINGS, STATE_DIM>::reset() {
+  LearningAlgorithm<
+    ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::StateParam,
+    ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::ActionParam>::reset();
+}
 
 }  // namespace algorithm
 }  // namespace rl
