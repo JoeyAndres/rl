@@ -21,7 +21,7 @@
 #include <vector>
 
 #include "../declares.h"
-#include "TileCodeFactory.h"
+#include "TileCodeHashedFactory.h"
 #include "TileCodeMt1993764.h"
 
 using std::vector;
@@ -31,11 +31,17 @@ namespace coding {
 
 /*!\class TileCodeMt1993764Factory
  * \brief Factory method for TileCodeMt1993764.
+ * \tparam D Number of dimension.
+ * \tparam NUM_TILINGS Number of tilings.
  */
-class TileCodeMt1993764Factory : public TileCodeFactory {
+template <size_t D, size_t NUM_TILINGS>
+class TileCodeMt1993764Factory :
+  public TileCodeHashedFactory<D, NUM_TILINGS, TileCodeMt1993764> {
  public:
-  TileCodeMt1993764Factory(
-    const vector<DimensionInfo<FLOAT>>& dimensionalInfos, size_t numTilings);
+  using TileCodeFactory<
+    D, NUM_TILINGS, TileCodeMt1993764>::TileCodeFactory;
+  using TileCodeHashedFactory<
+    D, NUM_TILINGS, TileCodeMt1993764>::TileCodeFactory;
 };
 
 }  // namespace coding

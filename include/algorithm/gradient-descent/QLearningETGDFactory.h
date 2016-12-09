@@ -18,8 +18,7 @@
 
 #pragma once
 
-#include "../ReinforcementLearningFactory.h"
-#include "../LearningAlgorithm.h"
+#include "ReinforcementLearningGDFactory.h"
 #include "QLearningETGD.h"
 
 namespace rl {
@@ -27,25 +26,18 @@ namespace algorithm {
 
 /*!\class QLearningETGD
  * \brief Factory method for QLearningETGD.
- * \tparam S State data type.
- * \tparam A Action data type.
+ * \tparam D Number of dimension.
+ * \tparam NUM_TILINGS Number of tilings.
+ * \tparam STATE_DIM Number of dimension in state.
+ *                   Implies that action is D - STATE_DIM.
  */
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM = D-1>
 class QLearningETGDFactory :
-  public ReinforcementLearningFactory<stateCont, actionCont> {
+  public ReinforcementLearningGDFactory<
+    D, NUM_TILINGS, STATE_DIM, QLearningETGD> {
  public:
-  QLearningETGDFactory(const spTileCode& tileCode,
-                       rl::FLOAT stepSize,
-                       rl::FLOAT discountRate,
-                       rl::FLOAT lambda,
-                       const policy::spPolicy<stateCont, actionCont>& policy) {
-    this->_instance = spLearningAlgorithm<stateCont, actionCont>(
-      new QLearningETGD(
-        tileCode,
-        stepSize,
-        discountRate,
-        lambda,
-        policy));
-  }
+  using ReinforcementLearningGDFactory<
+    D, NUM_TILINGS, STATE_DIM, QLearningETGD>::ReinforcementLearningGDFactory;
 };
 
 }  // namespace algorithm

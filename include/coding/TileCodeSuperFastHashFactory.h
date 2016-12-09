@@ -21,7 +21,7 @@
 #include <vector>
 
 #include "../declares.h"
-#include "TileCodeFactory.h"
+#include "TileCodeHashedFactory.h"
 #include "TileCodeSuperFastHash.h"
 
 using std::vector;
@@ -31,11 +31,17 @@ namespace coding {
 
 /*!\class TileCodeSuperFastHashFactory
  * \brief Factory method for TileCodeSuperFastHash.
+ * \tparam D Number of dimension.
+ * \tparam NUM_TILINGS Number of tilings.
  */
-class TileCodeSuperFastHashFactory : public TileCodeFactory {
+template <size_t D, size_t NUM_TILINGS>
+class TileCodeSuperFastHashFactory :
+  public TileCodeHashedFactory<D, NUM_TILINGS, TileCodeSuperFastHash> {
  public:
-  TileCodeSuperFastHashFactory(
-    const vector<DimensionInfo<FLOAT>>& dimensionalInfos, size_t numTilings);
+  using TileCodeFactory<
+    D, NUM_TILINGS, TileCodeSuperFastHash>::TileCodeFactory;
+  using TileCodeHashedFactory<
+    D, NUM_TILINGS, TileCodeSuperFastHash>::TileCodeFactory;
 };
 
 }  // namespace coding

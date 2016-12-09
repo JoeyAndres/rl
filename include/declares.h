@@ -20,6 +20,7 @@
 
 #include <cstdint>
 #include <vector>
+#include <array>
 #include <set>
 #include <memory>
 #include <map>
@@ -60,16 +61,32 @@ typedef std::vector<UINT> FEATURE_VECTOR;
 /*! \typedef floatFector
  *  \brief A vector of float.
  *
- *  TODO(jandres): See #RL-14
+ *  TODO(jandres): See #RL-16
+ *
+ *  \deprecated
  */
 using floatVector = std::vector<FLOAT>;
+
+/*! \typedef floatArray
+ *  \brief An array of float.
+ *  \tparam N Number of element.
+ */
+template <size_t N>
+using floatArray = std::array<FLOAT, N>;
 
 /*! \typedef spFloatVector
  *  \brief Wraps floatVector in shared_ptr.
  *
- *  TODO(jandres): See #RL-14
+ *  TODO(jandres): See #RL-16
  */
 using spFloatVector = std::shared_ptr<std::vector<FLOAT>>;
+
+/*! \typedef spFloatArray
+ *  \brief floatArray wrapped in shared_ptr.
+ *  \tparam N Number of element.
+ */
+template <size_t N>
+using spFloatArray = std::shared_ptr<std::array<FLOAT, N>>;
 
 /*! \typedef StateAndReward
  *  \tparam S data type of the State.
@@ -124,30 +141,6 @@ class spActionComp {
     return *x < *y;
   }
 };
-
-/*! \typedef stateCont
- *  \brief State for Gradient descent learning.
- *
- *  TODO(jandres): See #RL-14
- */
-typedef std::vector<FLOAT> stateCont;  //!< State container.
-
-/*! \typedef actionCont
- *  \brief Action for Gradient descent learning.
- *
- *  TODO(jandres): See #RL-14
- */
-typedef std::vector<FLOAT> actionCont;  //!< Action container.
-
-/*! \typedef spStateCont
- *  \brief Wraps stateCont in shared_ptr.
- */
-using spStateCont = spState<stateCont>;
-
-/*! \typedef spActionCont
- *  \brief Wraps actionCont in shared_ptr.
- */
-using spActionCont = spState<actionCont>;
 
 /*! \typedef spStateAndReward
  *  \brief A pair of spState and its corresponding reward.

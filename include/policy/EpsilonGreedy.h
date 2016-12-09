@@ -86,8 +86,6 @@ class EpsilonGreedy : public Policy<S, A> {
   rl::FLOAT _greediness;  //!< Probability of selecting a greedy action.
 };
 
-typedef EpsilonGreedy<rl::floatVector, rl::floatVector> EpsilonGreedySL;
-
 /*! \typedef spEpsilonGreedy
  *
  *  EpsilonGreedy wrapped in smart pointer.

@@ -16,22 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <vector>
+#include <array>
 
 #include "rl"
 #include "catch.hpp"
 
-using std::vector;
+using std::array;
 
 SCENARIO("TileCodeSuperFastHash retrieves the correct feature vector",
          "[TileCodeSuperFastHash]") {
   GIVEN("TileCodeSuperFastHash instance") {
-    vector<rl::coding::DimensionInfo<rl::FLOAT> > dimensionalInfoVector = {
+    array<rl::coding::DimensionInfo<rl::FLOAT>, 2> dimensionalInfoVector = {
       rl::coding::DimensionInfo<rl::FLOAT>(-0.5F, 0.5F, 3, 0),
       rl::coding::DimensionInfo<rl::FLOAT>(-0.5F, 0.5F, 3, 0)
     };
 
-    rl::coding::TileCodeSuperFastHash tileCode(dimensionalInfoVector, 4, 100);
+    rl::coding::TileCodeSuperFastHash<2, 4> tileCode(
+      dimensionalInfoVector, 100);
 
     WHEN("TileCodeSuperFastHash::getDimension is called.") {
       THEN("Returns 3") {

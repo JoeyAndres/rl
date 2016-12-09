@@ -22,12 +22,12 @@
 #include "../include/MountainCarEnvironment.h"
 
 SensorMountainCar::SensorMountainCar() :
-  rl::agent::Sensor<rl::stateCont>(
-    rl::spStateCont(new rl::stateCont({ 2, 0 }))) {
+  rl::agent::Sensor<floatArray<2>>(
+    spFloatArray<2>(new floatArray<2>({ 2, 0 }))) {
 }
 
 bool SensorMountainCar::isTerminalState(
-  const rl::spStateCont &stateData) const {
+  const spFloatArray<2> &stateData) const {
   if (std::abs(stateData->at(POS) - 0.50F) <= 0.01F) {
     return true;
   }
@@ -35,6 +35,6 @@ bool SensorMountainCar::isTerminalState(
   return false;
 }
 
-rl::agent::spSensor<stateCont> SensorMountainCarFactory::create() {
-  return spSensor<stateCont>(new SensorMountainCar);
+rl::agent::spSensor<floatArray<2>> SensorMountainCarFactory::create() {
+  return spSensor<floatArray<2>>(new SensorMountainCar);
 }

@@ -31,17 +31,46 @@ namespace algorithm {
 
 /*! \class ReinforcementLearningGDAbstract
  *  \brief Gradient descent implementation of Reinforcement Learning.
+ *  \tparam D Number of dimension.
+ *  \tparam NUM_TILINGS Number of tilings.
+ *  \tparam STATE_DIM Number of dimension in State. This defaults to D-1.
+ *                    This also implies ACTION_DIM = D - STATE_DIM.
  */
-class ReinforcementLearningGD : public ReinforcementLearningGDAbstract {
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM = D-1>
+class ReinforcementLearningGD :
+  public ReinforcementLearningGDAbstract<D, NUM_TILINGS, STATE_DIM> {
  public:
   ReinforcementLearningGD(
-      const spTileCode& tileCode,
+      const spTileCode<D, NUM_TILINGS>& tileCode,
       rl::FLOAT stepSize,
       rl::FLOAT discountRate,
       rl::FLOAT lambda,
-      const policy::spPolicy<stateCont, actionCont>& policy);
+      const typename ReinforcementLearningGDAbstract<
+        D, NUM_TILINGS, STATE_DIM>::spPolicy& policy);
   virtual ~ReinforcementLearningGD();
 };
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+ReinforcementLearningGD<D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGD(
+  const spTileCode<D, NUM_TILINGS>& tileCode,
+  rl::FLOAT stepSize,
+  rl::FLOAT discountRate,
+  rl::FLOAT lambda,
+  const typename ReinforcementLearningGDAbstract<
+    D, NUM_TILINGS, STATE_DIM>::spPolicy& policy) :
+  ReinforcementLearningGDAbstract<
+    D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGDAbstract(
+    tileCode, stepSize, discountRate, lambda, policy) {
+  this->_gradientDescent =
+    spGradientDescentAbstract<D, NUM_TILINGS, STATE_DIM>(
+      new GradientDescent<D, NUM_TILINGS, STATE_DIM>(
+        tileCode, stepSize, discountRate, lambda));
+}
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+ReinforcementLearningGD<
+  D, NUM_TILINGS, STATE_DIM>::~ReinforcementLearningGD() {
+}
 
 }  // namespace algorithm
 }  // namespace rl

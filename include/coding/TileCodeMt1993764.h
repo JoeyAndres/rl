@@ -20,25 +20,25 @@
 
 #include <random>
 #include <vector>
+#include <array>
 
 #include "TileCode.h"
 
 using std::vector;
+using std::array;
 
 namespace rl {
 namespace coding {
 
 /*! \class TileCodeMt1993764
  *  \brief Tile Code using Mt1993764 hash.2
+ *  \tparam D Number of dimensions.
+ *  \tparam NUM_TILINGS Number of tilings.
  */
-class TileCodeMt1993764 : public TileCode {
+template <size_t D, size_t NUM_TILINGS>
+class TileCodeMt1993764 : public TileCode<D, NUM_TILINGS> {
  public:
-  /**
-   * @param dimensionalInfos
-   * @param numTilings
-   */
-  TileCodeMt1993764(const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
-                    size_t numTilings);
+  using TileCode<D, NUM_TILINGS>::TileCode;
 
   /**
    * @param dimensionalInfos
@@ -47,19 +47,48 @@ class TileCodeMt1993764 : public TileCode {
    * will be used instead. The bigger the sizeHint, the less likely is the collision
    * during hashing.
    */
-  TileCodeMt1993764(const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
-                    size_t numTilings, size_t sizeHint);
+  TileCodeMt1993764(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
+                    size_t sizeHint);
 
-  /**
-   * Hashed the parameter in Real space to a Natural space [0, infinity).
-   * @param parameters
-   * @return Vector of discretize index.
-   */
-  FEATURE_VECTOR getFeatureVector(const floatVector& parameters) override;
+  FEATURE_VECTOR getFeatureVector(
+    const floatArray<D>& parameters) override;
 
  protected:
   std::mt19937_64 _prng;
 };
+
+template <size_t D, size_t NUM_TILINGS>
+TileCodeMt1993764<D, NUM_TILINGS>::TileCodeMt1993764(
+  const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
+  size_t sizeHint) :
+  TileCode<D, NUM_TILINGS>::TileCode(dimensionalInfos) {
+  if (sizeHint > this->_sizeCache) {
+    this->_sizeCache = sizeHint;
+  }
+}
+
+template <size_t D, size_t NUM_TILINGS>
+FEATURE_VECTOR TileCodeMt1993764<D, NUM_TILINGS>::getFeatureVector(
+  const floatArray<D>& parameters) {
+  vector<rl::INT> tileComponents(this->getDimension() + 1);
+  FEATURE_VECTOR fv;
+
+  for (size_t i = 0; i < NUM_TILINGS; i++) {
+    for (size_t j = 0; j < this->getDimension(); j++) {
+      tileComponents[j] = this->paramToGridValue(parameters.at(j), i, j);
+    }
+
+    // Add a unique number_tiling identifier.
+    tileComponents[this->getDimension()] = i;
+
+    std::seed_seq seed1(tileComponents.begin(), tileComponents.end());
+    _prng.seed(seed1);
+
+    fv.push_back(_prng() % this->_sizeCache);
+  }
+
+  return fv;
+}
 
 }  // namespace coding
 }  // namespace rl

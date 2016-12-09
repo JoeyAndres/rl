@@ -22,14 +22,16 @@
 
 #include <cstdint>
 #include <random>
-#include <vector>
 #include <cassert>
 #include <cmath>
 #include <memory>
+#include <array>
+#include <vector>
 
 #include "../declares.h"
 #include "DimensionInfo.h"
 
+using std::array;
 using std::vector;
 using std::shared_ptr;
 
@@ -39,35 +41,31 @@ namespace coding {
 /*! \class TileCode
  *  \brief Base object encapsulate tile coding.
  *
- *  For an in-dept explaination of Tile Coding, see
+ *  For an in-dept explanation of Tile Coding, see
  *  <a href="tileCoding.html">Tile Coding</a>
+ *
+ *  \tparam D Number of dimension.
+ *  \tparam NUM_TILINGS Number of tilings.
  */
+template<size_t D, size_t NUM_TILINGS>
 class TileCode {
  public:
   /**
-   * @param dimensionalInfos A vector dimensionalInfos.
-   * @param numTilings The higher the value, the more accurate is the
-   * 			generalization.
+   * @param dimensionalInfos An array of dimensionalInfos.
    */
-  TileCode(const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
-           size_t numTilings);
+  explicit TileCode(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos);
 
   /**
    * Hashed the parameter in Real space to a Natural space [0, infinity).
    * @param parameters
-   * @param Vector of "discretize" index.
+   * @return Vector of "discretize" index.
    */
-  virtual FEATURE_VECTOR getFeatureVector(const floatVector& parameters) = 0;
+  virtual FEATURE_VECTOR getFeatureVector(const floatArray<D>& parameters) = 0;
 
   /**
    * @return size of the weight vector.
    */
   size_t getSize() const;
-
-  /**
-   * @param numTilings
-   */
-  void setNumTilings(size_t numTilings);
 
   /**
    * @return number of tiling.
@@ -99,13 +97,11 @@ class TileCode {
   size_t _calculateSizeCache();
 
  protected:
-  size_t _numTilings;  //!< How many tilings/also known as sample.
-
   /*! \var _dimensionalInfos
    *
    * Contains information for each dimension.
    */
-  vector<DimensionInfo<FLOAT>> _dimensionalInfos;
+  array<DimensionInfo<FLOAT>, D> _dimensionalInfos;
   std::random_device _randomDevice;
   std::default_random_engine _pseudoRNG;
 
@@ -127,7 +123,75 @@ class TileCode {
   vector<rl::floatVector> _randomOffsets;
 };
 
-using spTileCode = shared_ptr<TileCode>;
+template<size_t D, size_t NUM_TILINGS>
+using spTileCode = shared_ptr<TileCode<D, NUM_TILINGS>>;
+
+template<size_t D, size_t NUM_TILINGS>
+TileCode<D, NUM_TILINGS>::TileCode(
+  const array<DimensionInfo<FLOAT>, D>& dimensionalInfos) :
+  _dimensionalInfos(dimensionalInfos) {
+  // Calculate the size.
+  _sizeCache = _calculateSizeCache();
+
+  // Calculate random offsets.
+  std::uniform_real_distribution<rl::FLOAT> distribution(0, 1.0F);
+  for (size_t i = 0; i < NUM_TILINGS; i++) {
+    _randomOffsets.push_back(vector<rl::FLOAT>());
+    for (size_t j = 0; j < this->getDimension(); j++) {
+      _randomOffsets[i].push_back(
+        distribution(_pseudoRNG) * _dimensionalInfos[j].GetOffsets()
+          * _dimensionalInfos[j].getGeneralizationScale());
+    }
+  }
+}
+
+template<size_t D, size_t NUM_TILINGS>
+size_t TileCode<D, NUM_TILINGS>::getNumTilings() const {
+  return NUM_TILINGS;
+}
+
+template<size_t D, size_t NUM_TILINGS>
+size_t TileCode<D, NUM_TILINGS>::getDimension() const {
+  return D;
+}
+
+template<size_t D, size_t NUM_TILINGS>
+size_t TileCode<D, NUM_TILINGS>::getSize() const {
+  return _sizeCache;
+}
+
+template<size_t D, size_t NUM_TILINGS>
+size_t TileCode<D, NUM_TILINGS>::_calculateSizeCache() {
+  // Calculate the size.
+  rl::UINT size = 1;
+  for (const DimensionInfo<FLOAT>& di : _dimensionalInfos) {
+    size *= di.GetGridCountReal();
+  }
+
+  size *= NUM_TILINGS;
+  return size;
+}
+
+template<size_t D, size_t NUM_TILINGS>
+size_t TileCode<D, NUM_TILINGS>::paramToGridValue(
+  rl::FLOAT param, size_t tilingIndex, size_t dimensionIndex) {
+  auto randomOffset =
+    _randomOffsets[tilingIndex][dimensionIndex];
+  auto dimGeneraliztionScale =
+    this->_dimensionalInfos[dimensionIndex].getGeneralizationScale();
+  auto dimLowerBound =
+    this->_dimensionalInfos[dimensionIndex].getLowerBound();
+  auto dimGridCountIdeal =
+    this->_dimensionalInfos[dimensionIndex].GetGridCountIdeal();
+  auto dimRangeMagnitude =
+    this->_dimensionalInfos[dimensionIndex].GetRangeDifference();
+
+  return (
+    (
+      param +
+        randomOffset * dimGeneraliztionScale - dimLowerBound
+    ) * dimGridCountIdeal) / dimRangeMagnitude;  // NOLINT: I'd like to make this easy to understand.
+}
 
 }  // namespace coding
 }  // namespace rl
