@@ -16,22 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <vector>
+#include <array>
 
 #include "rl"
 #include "catch.hpp"
 
-using std::vector;
+using std::array;
 
 SCENARIO("TileCodeMurMur retrieves the correct feature vector",
          "[TileCodeMurMur]") {
   GIVEN("TileCodeMurMur instance") {
-    vector<rl::coding::DimensionInfo<rl::FLOAT> > dimensionalInfoVector = {
+    array<rl::coding::DimensionInfo<rl::FLOAT>, 2> dimensionalInfoVector = {
       rl::coding::DimensionInfo<rl::FLOAT>(-0.5F, 0.5F, 3, 0),
       rl::coding::DimensionInfo<rl::FLOAT>(-0.5F, 0.5F, 3, 0)
     };
 
-    rl::coding::TileCodeMurMur tileCode(dimensionalInfoVector, 4, 100);
+    rl::coding::TileCodeMurMur<2, 4> tileCode(dimensionalInfoVector, 100);
 
     WHEN("TileCodeMurMur::getDimension is called.") {
       THEN("Returns 3") {

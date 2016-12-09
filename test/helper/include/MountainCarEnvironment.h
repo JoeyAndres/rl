@@ -20,8 +20,8 @@
 
 #include "rl"
 
-using rl::stateCont;
-using rl::actionCont;
+using rl::floatArray;
+using rl::spFloatArray;
 using rl::agent::Environment;
 using rl::agent::spEnvironment;
 using rl::agent::spSensor;
@@ -30,22 +30,23 @@ using rl::agent::spActuator;
 #define POS 0
 #define VEL 1
 
-class MountainCarEnvironment : public Environment<stateCont, actionCont>{
+class MountainCarEnvironment :
+  public Environment<floatArray<2>, floatArray<1>>{
  public:
-  using SA = Environment<stateCont, actionCont>::SA;
+  using SA = Environment<floatArray<2>, floatArray<1>>::SA;
 
  public:
-  MountainCarEnvironment(const spActuator<stateCont>& actuator,
-                         const spSensor<stateCont>& sensor);
+  MountainCarEnvironment(const spActuator<floatArray<1>>& actuator,
+                         const spSensor<floatArray<2>>& sensor);
 
-  rl::spStateAndReward<stateCont> getNextStateAndReward(
+  rl::spStateAndReward<floatArray<2>> getNextStateAndReward(
     const SA& stateAction) override;
 };
 
 class MountainCarEnvironmentFactory :
-  public rl::FactoryAbstract<Environment<stateCont, actionCont>>{
+  public rl::FactoryAbstract<Environment<floatArray<2>, floatArray<1>>>{
  public:
   MountainCarEnvironmentFactory(
-    const spActuator<stateCont>& actuator,
-    const spSensor<stateCont>& sensor);
+    const spActuator<floatArray<1>>& actuator,
+    const spSensor<floatArray<2>>& sensor);
 };

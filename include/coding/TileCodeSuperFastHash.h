@@ -20,25 +20,26 @@
 
 #include <random>
 #include <vector>
+#include <array>
 
+#include "../hash/HashSuperFastHash.h"
 #include "TileCode.h"
 
 using std::vector;
+using std::array;
 
 namespace rl {
 namespace coding {
 
 /*! \class TileCodeSuperFastHash
  *  \brief Tile Code using SuperFastHash.
+ *  \tparam D Number of dimension.
+ *  \tparam NUM_TILINGS Number of tilings.
  */
-class TileCodeSuperFastHash : public TileCode {
+template <size_t D, size_t NUM_TILINGS>
+class TileCodeSuperFastHash : public TileCode<D, NUM_TILINGS> {
  public:
-  /**
-   * @param dimensionalInfos
-   * @param numTilings
-   */
-  TileCodeSuperFastHash(const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
-                        size_t numTilings);
+  using TileCode<D, NUM_TILINGS>::TileCode;
 
   /**
    * @param dimensionalInfos
@@ -47,16 +48,46 @@ class TileCodeSuperFastHash : public TileCode {
    * will be used instead. The bigger the sizeHint, the less likely is the collision
    * during hashing.
    */
-  TileCodeSuperFastHash(const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
-                        size_t numTilings, size_t sizeHint);
+  TileCodeSuperFastHash(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
+                        size_t sizeHint);
 
-  /**
-   * Hashed the parameter in Real space to a Natural space [0, infinity).
-   * @param parameters
-   * @return Vector of discretize index.
-   */
-  FEATURE_VECTOR getFeatureVector(const floatVector& parameters);
+  FEATURE_VECTOR getFeatureVector(const floatArray<D>& parameters) override;
 };
+
+template <size_t D, size_t NUM_TILINGS>
+TileCodeSuperFastHash<D, NUM_TILINGS>::TileCodeSuperFastHash(
+  const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
+  size_t sizeHint) :
+  TileCode<D, NUM_TILINGS>::TileCode(dimensionalInfos) {
+  if (sizeHint > this->_sizeCache) {
+    this->_sizeCache = sizeHint;
+  }
+}
+
+template <size_t D, size_t NUM_TILINGS>
+FEATURE_VECTOR TileCodeSuperFastHash<D, NUM_TILINGS>::getFeatureVector(
+  const floatArray<D>& parameters) {
+  vector<rl::INT> tileComponents(this->getDimension() + 1);
+  FEATURE_VECTOR fv;
+
+  for (size_t i = 0; i < NUM_TILINGS; i++) {
+    for (size_t j = 0; j < this->getDimension(); j++) {
+      tileComponents[j] = this->paramToGridValue(parameters.at(j), i, j);
+    }
+
+    // Add a unique number_tiling identifier.
+    tileComponents[this->getDimension()] = i;
+
+    hash::SuperFastHash hashAlg;
+    rl::UINT hashVal = hashAlg.hash(
+      (rl::BYTE*) &tileComponents[0],
+      tileComponents.size() * sizeof(tileComponents[0]));
+
+    fv.push_back(hashVal % this->_sizeCache);
+  }
+
+  return fv;
+}
 
 }  // namespace coding
 }  // namespace rl

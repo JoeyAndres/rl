@@ -31,15 +31,34 @@ namespace algorithm {
 /*! \class SarsaGD
  *  \brief Gradient Descent with Sarsa implementation (the same policy for
  *         learning and action selection).
+ *  \tparam D Number of dimension.
+ *  \tparam NUM_TILINGS Number of tilings.
+ *  \tparam STATE_DIM Number of dimension in State. This defaults to D-1.
+ *                    This also implies ACTION_DIM = D - STATE_DIM.
  */
-class SarsaGD final: public ReinforcementLearningGD {
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM = D-1>
+class SarsaGD final: public ReinforcementLearningGD<D, NUM_TILINGS, STATE_DIM> {
  public:
-  SarsaGD(const spTileCode& tileCode,
+  SarsaGD(const spTileCode<D, NUM_TILINGS>& tileCode,
           rl::FLOAT stepSize,
           rl::FLOAT discountRate,
           rl::FLOAT lambda,
-          const policy::spPolicy<stateCont, actionCont>& policy);
+          const typename ReinforcementLearningGDAbstract<
+            D, NUM_TILINGS, STATE_DIM>::spPolicy & policy);
 };
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+SarsaGD<D, NUM_TILINGS, STATE_DIM>::SarsaGD(
+  const spTileCode<D, NUM_TILINGS>& tileCode,
+  rl::FLOAT stepSize,
+  rl::FLOAT discountRate,
+  rl::FLOAT lambda,
+  const typename ReinforcementLearningGDAbstract<
+    D, NUM_TILINGS, STATE_DIM>::spPolicy& policy) :
+  ReinforcementLearningGD<D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGD(
+    tileCode, stepSize, discountRate, lambda, policy) {
+  this->setLearningPolicy(policy);
+}
 
 }  // namespace algorithm
 }  // namespace rl

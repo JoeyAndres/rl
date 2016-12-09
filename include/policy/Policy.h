@@ -69,15 +69,6 @@ class Policy {
                                 const rl::spAction<A>& maxAction) = 0;
 };
 
-/*! \typedef PolicySL
- *  \brief Policy for Supervised Learning.
- *
- *  Since supervised learning usually involves multi-dimensional state space
- *  and action space, PolicySL is a typedef of Policy specifically for that
- *  purpose.
- */
-typedef Policy<stateCont, actionCont> PolicySL;
-
 /*! \typedef spPolicy
  *
  *  Policy wrapped in smart pointer.

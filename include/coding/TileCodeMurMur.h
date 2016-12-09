@@ -20,26 +20,64 @@
 
 #include <random>
 #include <vector>
+#include <array>
 
+#include "../hash/HashMurmur3.h"
 #include "TileCode.h"
 
 using std::vector;
+using std::array;
 
 namespace rl {
 namespace coding {
 
 /*! \class TileCodeMurMur
  *  \brief Tile Code using MurMur3 hash.
+ *  \tparam D Number of dimensions.
+ *  \tparam NUM_TILINGS Number of tilings.
  */
-class TileCodeMurMur : public TileCode {
+template <size_t D, size_t NUM_TILINGS>
+class TileCodeMurMur : public TileCode<D, NUM_TILINGS> {
  public:
-  TileCodeMurMur(const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
-                 size_t numTilings);
-  TileCodeMurMur(const vector<DimensionInfo<FLOAT>>& dimensionalInfos,
-                 size_t numTilings,
+  using TileCode<D, NUM_TILINGS>::TileCode;
+  TileCodeMurMur(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
                  size_t sizeHint);
-  FEATURE_VECTOR getFeatureVector(const floatVector& parameters) override;
+  FEATURE_VECTOR getFeatureVector(
+    const floatArray<D>& parameters) override;
 };
+
+template <size_t D, size_t NUM_TILINGS>
+TileCodeMurMur<D, NUM_TILINGS>::TileCodeMurMur(
+  const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
+  size_t sizeHint) :
+  TileCode<D, NUM_TILINGS>::TileCode(dimensionalInfos) {
+  this->_sizeCache = sizeHint;
+}
+
+template <size_t D, size_t NUM_TILINGS>
+FEATURE_VECTOR TileCodeMurMur<D, NUM_TILINGS>::getFeatureVector(
+  const floatArray<D>& parameters) {
+  FEATURE_VECTOR fv;
+
+  vector<rl::INT> tileComponents(this->getDimension() + 1);
+  for (rl::INT i = 0; i < NUM_TILINGS; i++) {
+    for (size_t j = 0; j < this->getDimension(); j++) {
+      tileComponents[j] = this->paramToGridValue(parameters.at(j), i, j);
+    }
+
+    // Add a unique number_tiling identifier.
+    tileComponents[this->getDimension()] = i;
+
+    hash::Murmur3 _hashAlg;
+    hash::HashMurmur3Out hash = _hashAlg.hash(
+      (rl::BYTE*) tileComponents.data(),
+      tileComponents.size() * sizeof(rl::INT));
+
+    fv.push_back(hash.hashVal[0] % this->_sizeCache);
+  }
+
+  return fv;
+}
 
 }  // namespace coding
 }  // namespace rl

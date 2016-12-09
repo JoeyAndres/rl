@@ -23,6 +23,7 @@
 #include "../../coding/TileCode.h"
 #include "../LearningAlgorithm.h"
 #include "ReinforcementLearningGDAbstract.h"
+#include "GradientDescentET.h"
 
 using rl::coding::spTileCode;
 
@@ -32,17 +33,46 @@ namespace algorithm {
 /*! \class ReinforcementLearningGDET
  *  \brief Gradient descent implementation of Reinforcement Learning
  *         with Eligibility Traces.
+ *  \tparam D Number of dimension.
+ *  \tparam NUM_TILINGS Number of tilings.
+ *  \tparam STATE_DIM Number of dimension in State. This defaults to D-1.
+ *                    This also implies ACTION_DIM = D - STATE_DIM.
  */
-class ReinforcementLearningGDET : public ReinforcementLearningGDAbstract {
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM = D-1>
+class ReinforcementLearningGDET :
+  public ReinforcementLearningGDAbstract<D, NUM_TILINGS, STATE_DIM> {
  public:
   ReinforcementLearningGDET(
-    const spTileCode& tileCode,
+    const spTileCode<D, NUM_TILINGS>& tileCode,
     rl::FLOAT stepSize,
     rl::FLOAT discountRate,
     rl::FLOAT lambda,
-    const policy::spPolicy<stateCont, actionCont >& policy);
+    const typename ReinforcementLearningGDAbstract<
+      D, NUM_TILINGS, STATE_DIM>::spPolicy& policy);
   virtual ~ReinforcementLearningGDET();
 };
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+ReinforcementLearningGDET<
+  D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGDET(
+  const spTileCode<D, NUM_TILINGS>& tileCode,
+  rl::FLOAT stepSize,
+  rl::FLOAT discountRate,
+  rl::FLOAT lambda,
+  const typename ReinforcementLearningGDAbstract<
+    D, NUM_TILINGS, STATE_DIM>::spPolicy& policy) :
+  ReinforcementLearningGDAbstract<
+    D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGDAbstract(
+    tileCode, stepSize, discountRate, lambda, policy) {
+  this->_gradientDescent = spGradientDescentAbstract<D, NUM_TILINGS, STATE_DIM>(
+    new GradientDescentET<D, NUM_TILINGS, STATE_DIM>(
+      tileCode, stepSize, discountRate, lambda));
+}
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+ReinforcementLearningGDET<
+  D, NUM_TILINGS, STATE_DIM>::~ReinforcementLearningGDET() {
+}
 
 }  // namespace algorithm
 }  // namespace rl

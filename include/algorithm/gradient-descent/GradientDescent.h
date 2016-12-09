@@ -18,27 +18,87 @@
 
 #pragma once
 
+#include <algorithm>
+#include <vector>
+#include <array>
+
 #include "../../declares.h"
 #include "../../coding/TileCode.h"
 #include "GradientDescentAbstract.h"
 
+using std::vector;
+using std::array;
+
+using rl::coding::spTileCode;
+
 namespace rl {
-using coding::spTileCode;
 namespace algorithm {
 
 /*! \class GradientDescent
  *  \brief Gradient Descent implementation.
+ *  \tparam D Number of dimension.
+ *  \tparam NUM_TILINGS Number of tilings.
+ *  \tparam STATE_DIM Number of dimension in State.
+ *                    This also implies ACTION_DIM = D - STATE_DIM.
  */
-class GradientDescent : public GradientDescentAbstract {
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+class GradientDescent :
+  public GradientDescentAbstract<D, NUM_TILINGS, STATE_DIM> {
  public:
-  using GradientDescentAbstract::GradientDescentAbstract;
+  using GradientDescentAbstract<
+    D, NUM_TILINGS, STATE_DIM>::GradientDescentAbstract;
 
-  void updateWeights(const spStateCont& currentStateVector,
-                     const spActionCont& currentActionVector,
-                     const spStateCont& nextStateVector,
-                     const FLOAT nextActionValue,
-                     const FLOAT reward) override;
+  void updateWeights(
+    const typename GradientDescentAbstract<
+      D,
+      NUM_TILINGS,
+      STATE_DIM>::spStateParam& currentStateVector,
+    const typename GradientDescentAbstract<
+      D,
+      NUM_TILINGS,
+      STATE_DIM>::spActionParam& currentActionVector,
+    const typename GradientDescentAbstract<
+      D,
+      NUM_TILINGS,
+      STATE_DIM>::spStateParam& nextStateVector,
+    const FLOAT nextActionValue,
+    const FLOAT reward) override;
 };
+
+template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+void GradientDescent<D, NUM_TILINGS, STATE_DIM>::updateWeights(
+  const typename GradientDescentAbstract<
+    D,
+    NUM_TILINGS,
+    STATE_DIM>::spStateParam& currentStateVector,
+  const typename GradientDescentAbstract<
+    D,
+    NUM_TILINGS,
+    STATE_DIM>::spActionParam& currentActionVector,
+  const typename GradientDescentAbstract<
+    D,
+    NUM_TILINGS,
+    STATE_DIM>::spStateParam& nextStateVector,
+  const FLOAT nextActionValue,
+  const FLOAT reward) {
+  floatArray<D> currentParams;
+  std::copy(currentStateVector->begin(),
+            currentStateVector->end(),
+            currentParams.begin());
+  std::copy(currentActionVector->begin(),
+            currentActionVector->end(),
+            currentParams.begin() + currentStateVector->size());
+
+  FEATURE_VECTOR currentStateFv =
+    std::move(this->getFeatureVector(currentParams));
+
+  FLOAT tdError = reward + this->_discountRate * nextActionValue
+    - this->getValueFromFeatureVector(currentStateFv);
+
+  for (auto f : currentStateFv) {
+    this->_w[f] += tdError * this->_stepSize;
+  }
+}
 
 }  // namespace algorithm
 }  // namespace rl
