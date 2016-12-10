@@ -21,8 +21,8 @@ fi
 # Remove so it doesn't list itself.
 rm -rf "${OUTPUT_DIR}"/rl
 
-fileList1=`cd ${INCLUDE_DIR} && find -name "*.h" | tail -n +2 | cut -c 3-`
-fileList2=`cd ${LIB_DIR} && find -name "*.h" | tail -n +2 | cut -c 3-`
+fileList1=`cd ${INCLUDE_DIR} && find -name "*.h" | tail -n +1 | cut -c 3-`
+fileList2=`cd ${LIB_DIR} && find -name "*.h" | tail -n +1 | cut -c 3-`
 
 # Include all files in $INCLUDE_DIR in one rl header file.
 cat "${DIR}/license.h" >> "${OUTPUT_DIR}"/rl
