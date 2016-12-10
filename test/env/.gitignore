@@ -1,0 +1,5 @@
+# Created by .ignore support plugin (hsz.mobi)
+Dockerfile
+dependencies.sh
+executeTest.sh
+!linux/common/*
