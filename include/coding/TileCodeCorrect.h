@@ -48,12 +48,12 @@ class TileCodeCorrect : public TileCode<D, NUM_TILINGS> {
   using TileCode<D, NUM_TILINGS>::TileCode;
 
   FEATURE_VECTOR getFeatureVector(
-    const floatArray<D>& parameters) override;
+    const floatArray<D>& parameters) const override;
 };
 
 template<size_t D, size_t NUM_TILINGS>
 FEATURE_VECTOR TileCodeCorrect<D, NUM_TILINGS>::getFeatureVector(
-  const floatArray<D>& parameters) {
+  const floatArray<D>& parameters) const {
   FEATURE_VECTOR fv;
   fv.resize(NUM_TILINGS);
 

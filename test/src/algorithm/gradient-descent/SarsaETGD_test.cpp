@@ -56,18 +56,17 @@ SCENARIO("Sarsa Eligibility Traces and Gradient Descent converge to a "
 
     // Setup tile coding.
     array<rl::coding::DimensionInfo<rl::FLOAT>, 3> dimensionalInfoVector = {
-      rl::coding::DimensionInfo<rl::FLOAT>(-1.2F, 0.5F, 7),  // Velocity.
-      rl::coding::DimensionInfo<rl::FLOAT>(-0.07F, 0.07F, 7),  // Position.
+      rl::coding::DimensionInfo<rl::FLOAT>(-1.2F, 0.5F, 10),  // Velocity.
+      rl::coding::DimensionInfo<rl::FLOAT>(-0.07F, 0.07F, 10),  // Position.
 
       // Action dimension.
       rl::coding::DimensionInfo<rl::FLOAT>(0.0F, 2.0F, 3, 0.0F)
     };
 
     // Setup tile coding with 8 offsets.
-    auto tileCode = TileCodeCorrectFactory<3, 8>(dimensionalInfoVector).get();
+    auto tileCode = TileCodeCorrectFactory<3, 10>(dimensionalInfoVector).get();
     auto sarsa =
-      SarsaETGDFactory<3, 8>(
-        tileCode, 0.1F, 1.0F, 0.9F, policy).get();
+      SarsaETGDFactory<3, 10>(tileCode, 0.1F, 1.0F, 0.9F, policy).get();
     rl::agent::AgentGD<3> agent(mce, sarsa);
 
     WHEN("We do multiple episodes") {

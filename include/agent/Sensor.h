@@ -27,6 +27,7 @@
 
 using std::set;
 using std::find;
+using std::shared_ptr;
 
 namespace rl {
 namespace agent {

@@ -42,9 +42,10 @@ class TileCodeUNH : public TileCode<D, NUM_TILINGS> {
   TileCodeUNH(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
               size_t sizeHint);
 
-  FEATURE_VECTOR getFeatureVector(const floatArray<D>& parameters) override;
+  FEATURE_VECTOR getFeatureVector(
+    const floatArray<D>& parameters) const override;
 
-  size_t mod(size_t n, size_t k) {
+  size_t mod(size_t n, size_t k) const {
     return (n >= 0) ? n % k : k - 1 - ((-n - 1) % k);
   }
 
@@ -72,7 +73,7 @@ TileCodeUNH<D, NUM_TILINGS>::TileCodeUNH(
 
 template <size_t D, size_t NUM_TILINGS>
 FEATURE_VECTOR TileCodeUNH<D, NUM_TILINGS>::getFeatureVector(
-  const floatArray<D>& parameters) {
+  const floatArray<D>& parameters) const {
   FEATURE_VECTOR fv;
 
   vector<rl::UINT> base(this->getDimension(), 0);
