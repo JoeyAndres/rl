@@ -173,10 +173,11 @@ GradientDescentAbstract<D, NUM_TILINGS, STATE_DIM>::GradientDescentAbstract(
   const spTileCode<D, NUM_TILINGS>& tileCode,
   rl::FLOAT stepSize,
   rl::FLOAT discountRate,
-  rl::FLOAT lambda) : _tileCode(tileCode) {
-  _stepSize = stepSize / _tileCode->getNumTilings();
-  _discountRate = discountRate;
-  _lambda = lambda;
+  rl::FLOAT lambda) :
+  _tileCode(tileCode),
+  _stepSize(stepSize),
+  _discountRate(discountRate),
+  _lambda(lambda) {
   _discountRateTimesLambda = _discountRate*_lambda;
 
   _w = floatVector(this->getSize(), 0);
