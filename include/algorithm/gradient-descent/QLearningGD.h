@@ -41,7 +41,7 @@ class QLearningGD : public ReinforcementLearningGD<D, NUM_TILINGS, STATE_DIM> {
               rl::FLOAT discountRate,
               rl::FLOAT lambda,
               const typename ReinforcementLearningGDAbstract<
-                D, NUM_TILINGS, STATE_DIM>::spPolicy& policy);
+                D, STATE_DIM>::spPolicy& policy);
 };
 
 template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
@@ -51,7 +51,7 @@ QLearningGD<D, NUM_TILINGS, STATE_DIM>::QLearningGD(
   rl::FLOAT discountRate,
   rl::FLOAT lambda,
   const typename ReinforcementLearningGDAbstract<
-    D, NUM_TILINGS, STATE_DIM>::spPolicy& controlPolicy) :
+    D, STATE_DIM>::spPolicy& controlPolicy) :
   ReinforcementLearningGD<D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGD(
     tileCode, stepSize, discountRate, lambda, controlPolicy) {
 }

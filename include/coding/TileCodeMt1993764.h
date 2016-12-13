@@ -51,10 +51,10 @@ class TileCodeMt1993764 : public TileCode<D, NUM_TILINGS> {
                     size_t sizeHint);
 
   FEATURE_VECTOR getFeatureVector(
-    const floatArray<D>& parameters) override;
+    const floatArray<D>& parameters) const override;
 
  protected:
-  std::mt19937_64 _prng;
+  mutable std::mt19937_64 _prng;
 };
 
 template <size_t D, size_t NUM_TILINGS>
@@ -69,7 +69,7 @@ TileCodeMt1993764<D, NUM_TILINGS>::TileCodeMt1993764(
 
 template <size_t D, size_t NUM_TILINGS>
 FEATURE_VECTOR TileCodeMt1993764<D, NUM_TILINGS>::getFeatureVector(
-  const floatArray<D>& parameters) {
+  const floatArray<D>& parameters) const {
   vector<rl::INT> tileComponents(this->getDimension() + 1);
   FEATURE_VECTOR fv;
 

@@ -18,8 +18,6 @@
 
 #pragma once
 
-#include <stdarg.h>
-
 #include <cstdint>
 #include <random>
 #include <cassert>
@@ -29,6 +27,7 @@
 #include <vector>
 
 #include "../declares.h"
+#include "CourseCode.h"
 #include "DimensionInfo.h"
 
 using std::array;
@@ -48,38 +47,42 @@ namespace coding {
  *  \tparam NUM_TILINGS Number of tilings.
  */
 template<size_t D, size_t NUM_TILINGS>
-class TileCode {
+class TileCode : public CourseCode<D> {
  public:
   /**
    * @param dimensionalInfos An array of dimensionalInfos.
    */
   explicit TileCode(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos);
 
+  FLOAT& operator[](size_t i);
+  FLOAT operator[](size_t i) const;
+
+  virtual FLOAT& at(size_t i);
+  virtual FLOAT at(size_t i) const;
+
   /**
    * Hashed the parameter in Real space to a Natural space [0, infinity).
    * @param parameters
    * @return Vector of "discretize" index.
    */
-  virtual FEATURE_VECTOR getFeatureVector(const floatArray<D>& parameters) = 0;
+  virtual FEATURE_VECTOR getFeatureVector(
+    const floatArray<D>& parameters) const = 0;
 
   /**
-   * @return size of the weight vector.
+   * Get the value of the parameters in the real space.
+   * @param featureVector
+   * @return corresponding value.
    */
-  size_t getSize() const;
+  virtual FLOAT getValueFromFeatureVector(const FEATURE_VECTOR& fv) const;
+
+  size_t getSize() const override;
 
   /**
    * @return number of tiling.
    */
   size_t getNumTilings() const;
 
-  /**
-   * @param dimension
-   */
-
-  /**
-   * @return number of dimension.
-   */
-  size_t getDimension() const;
+  FLOAT getValueFromParameters(const floatArray<D>& parameters) const override;
 
   /**
    * @param param
@@ -87,8 +90,9 @@ class TileCode {
    * @param dimensionIndex
    * @return
    */
-  size_t paramToGridValue(rl::FLOAT param, size_t tilingIndex,
-                          size_t dimensionIndex);
+  size_t paramToGridValue(rl::FLOAT param,
+                          size_t tilingIndex,
+                          size_t dimensionIndex) const;
 
  protected:
   /**
@@ -97,13 +101,10 @@ class TileCode {
   size_t _calculateSizeCache();
 
  protected:
-  /*! \var _dimensionalInfos
-   *
-   * Contains information for each dimension.
-   */
-  array<DimensionInfo<FLOAT>, D> _dimensionalInfos;
   std::random_device _randomDevice;
   std::default_random_engine _pseudoRNG;
+
+  std::vector<FLOAT> _w;  //!< Vector of weights.
 
   /*! \var _sizeCache
    *
@@ -121,6 +122,12 @@ class TileCode {
    * that problem and still have a reasonable generalization.
    */
   vector<rl::floatVector> _randomOffsets;
+
+  /*! \var _dimensionalInfos
+   *
+   * Contains information for each dimension.
+   */
+  array<DimensionInfo<FLOAT>, D> _dimensionalInfos;
 };
 
 template<size_t D, size_t NUM_TILINGS>
@@ -139,10 +146,12 @@ TileCode<D, NUM_TILINGS>::TileCode(
     _randomOffsets.push_back(vector<rl::FLOAT>());
     for (size_t j = 0; j < this->getDimension(); j++) {
       _randomOffsets[i].push_back(
-        distribution(_pseudoRNG) * _dimensionalInfos[j].GetOffsets()
-          * _dimensionalInfos[j].getGeneralizationScale());
+        distribution(_pseudoRNG) * this->_dimensionalInfos[j].GetOffsets()
+          * this->_dimensionalInfos[j].getGeneralizationScale());
     }
   }
+
+  _w = floatVector(this->getSize(), 0);
 }
 
 template<size_t D, size_t NUM_TILINGS>
@@ -151,20 +160,36 @@ size_t TileCode<D, NUM_TILINGS>::getNumTilings() const {
 }
 
 template<size_t D, size_t NUM_TILINGS>
-size_t TileCode<D, NUM_TILINGS>::getDimension() const {
-  return D;
-}
-
-template<size_t D, size_t NUM_TILINGS>
 size_t TileCode<D, NUM_TILINGS>::getSize() const {
   return _sizeCache;
+}
+
+template <size_t D, size_t NUM_TILINGS>
+FLOAT
+TileCode<D, NUM_TILINGS>::getValueFromParameters(
+  const floatArray<D>& parameters) const {
+  FEATURE_VECTOR fv = std::move(this->getFeatureVector(parameters));
+
+  return this->getValueFromFeatureVector(fv);
+}
+
+template <size_t D, size_t NUM_TILINGS>
+FLOAT TileCode<D, NUM_TILINGS>::getValueFromFeatureVector(
+  const FEATURE_VECTOR& fv) const {
+  rl::FLOAT sum = 0.0F;
+
+  for (auto f : fv) {
+    sum += _w[f];
+  }
+
+  return sum;
 }
 
 template<size_t D, size_t NUM_TILINGS>
 size_t TileCode<D, NUM_TILINGS>::_calculateSizeCache() {
   // Calculate the size.
   rl::UINT size = 1;
-  for (const DimensionInfo<FLOAT>& di : _dimensionalInfos) {
+  for (const DimensionInfo<FLOAT>& di : this->_dimensionalInfos) {
     size *= di.GetGridCountReal();
   }
 
@@ -174,23 +199,43 @@ size_t TileCode<D, NUM_TILINGS>::_calculateSizeCache() {
 
 template<size_t D, size_t NUM_TILINGS>
 size_t TileCode<D, NUM_TILINGS>::paramToGridValue(
-  rl::FLOAT param, size_t tilingIndex, size_t dimensionIndex) {
+  rl::FLOAT param, size_t tilingIndex, size_t dimensionIndex) const {
   auto randomOffset =
-    _randomOffsets[tilingIndex][dimensionIndex];
+    _randomOffsets.at(tilingIndex).at(dimensionIndex);
   auto dimGeneraliztionScale =
-    this->_dimensionalInfos[dimensionIndex].getGeneralizationScale();
+    this->_dimensionalInfos.at(dimensionIndex).getGeneralizationScale();
   auto dimLowerBound =
-    this->_dimensionalInfos[dimensionIndex].getLowerBound();
+    this->_dimensionalInfos.at(dimensionIndex).getLowerBound();
   auto dimGridCountIdeal =
-    this->_dimensionalInfos[dimensionIndex].GetGridCountIdeal();
+    this->_dimensionalInfos.at(dimensionIndex).GetGridCountIdeal();
   auto dimRangeMagnitude =
-    this->_dimensionalInfos[dimensionIndex].GetRangeDifference();
+    this->_dimensionalInfos.at(dimensionIndex).GetRangeDifference();
 
   return (
     (
       param +
         randomOffset * dimGeneraliztionScale - dimLowerBound
     ) * dimGridCountIdeal) / dimRangeMagnitude;  // NOLINT: I'd like to make this easy to understand.
+}
+
+template<size_t D, size_t NUM_TILINGS>
+FLOAT& TileCode<D, NUM_TILINGS>::at(size_t i) {
+  return _w.at(i);
+}
+
+template<size_t D, size_t NUM_TILINGS>
+FLOAT TileCode<D, NUM_TILINGS>::at(size_t i) const {
+  return _w.at(i);
+}
+
+template<size_t D, size_t NUM_TILINGS>
+FLOAT& TileCode<D, NUM_TILINGS>::operator[](size_t i) {
+  return this->at(i);
+}
+
+template<size_t D, size_t NUM_TILINGS>
+FLOAT TileCode<D, NUM_TILINGS>::operator[](size_t i) const {
+  return this->at(i);
 }
 
 }  // namespace coding

@@ -23,7 +23,7 @@
 #include "../../coding/TileCode.h"
 #include "../LearningAlgorithm.h"
 #include "ReinforcementLearningGDAbstract.h"
-#include "GradientDescentET.h"
+#include "GradientDescentTileCodeET.h"
 
 using rl::coding::spTileCode;
 
@@ -40,7 +40,7 @@ namespace algorithm {
  */
 template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM = D-1>
 class ReinforcementLearningGDET :
-  public ReinforcementLearningGDAbstract<D, NUM_TILINGS, STATE_DIM> {
+  public ReinforcementLearningGDAbstract<D, STATE_DIM> {
  public:
   ReinforcementLearningGDET(
     const spTileCode<D, NUM_TILINGS>& tileCode,
@@ -48,7 +48,7 @@ class ReinforcementLearningGDET :
     rl::FLOAT discountRate,
     rl::FLOAT lambda,
     const typename ReinforcementLearningGDAbstract<
-      D, NUM_TILINGS, STATE_DIM>::spPolicy& policy);
+      D, STATE_DIM>::spPolicy& policy);
   virtual ~ReinforcementLearningGDET();
 };
 
@@ -60,12 +60,12 @@ ReinforcementLearningGDET<
   rl::FLOAT discountRate,
   rl::FLOAT lambda,
   const typename ReinforcementLearningGDAbstract<
-    D, NUM_TILINGS, STATE_DIM>::spPolicy& policy) :
+    D, STATE_DIM>::spPolicy& policy) :
   ReinforcementLearningGDAbstract<
-    D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGDAbstract(
+    D, STATE_DIM>::ReinforcementLearningGDAbstract(
     tileCode, stepSize, discountRate, lambda, policy) {
-  this->_gradientDescent = spGradientDescentAbstract<D, NUM_TILINGS, STATE_DIM>(
-    new GradientDescentET<D, NUM_TILINGS, STATE_DIM>(
+  this->_gradientDescent = spGradientDescentAbstract<D, STATE_DIM>(
+    new GradientDescentTileCodeET<D, NUM_TILINGS, STATE_DIM>(
       tileCode, stepSize, discountRate, lambda));
 }
 

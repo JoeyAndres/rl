@@ -20,7 +20,6 @@
 
 #include "../../declares.h"
 #include "../../agent/StateAction.h"
-#include "GradientDescent.h"
 #include "ReinforcementLearningGDET.h"
 
 using rl::coding::spTileCode;
@@ -45,7 +44,7 @@ class SarsaETGD final:
             rl::FLOAT discountRate,
             rl::FLOAT lambda,
             const typename ReinforcementLearningGDAbstract<
-              D, NUM_TILINGS, STATE_DIM>::spPolicy& policy);
+              D, STATE_DIM>::spPolicy& policy);
 };
 
 template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
@@ -55,7 +54,7 @@ SarsaETGD<D, NUM_TILINGS, STATE_DIM>::SarsaETGD(
   rl::FLOAT discountRate,
   rl::FLOAT lambda,
   const typename ReinforcementLearningGDAbstract<
-    D, NUM_TILINGS, STATE_DIM>::spPolicy& policy) :
+    D, STATE_DIM>::spPolicy& policy) :
   ReinforcementLearningGDET<
     D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGDET(
     tileCode, stepSize, discountRate, lambda, policy) {

@@ -8,4 +8,5 @@ add_subdirectory(helper)
 file(GLOB_RECURSE SRC_TEST_FILES "src/*.cpp")
 
 add_executable(testRunner testRunner.cpp ${SRC_TEST_FILES})
-target_link_libraries(testRunner rlTestHelper)
+#add_executable(testRunner testRunner.cpp ${SRC_TEST_FILES} src/coding/KanervaCode_test.cpp)
+target_link_libraries(testRunner rlTestHelper rl)

@@ -43,7 +43,7 @@ class TileCodeMurMur : public TileCode<D, NUM_TILINGS> {
   TileCodeMurMur(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
                  size_t sizeHint);
   FEATURE_VECTOR getFeatureVector(
-    const floatArray<D>& parameters) override;
+    const floatArray<D>& parameters) const override;
 };
 
 template <size_t D, size_t NUM_TILINGS>
@@ -56,7 +56,7 @@ TileCodeMurMur<D, NUM_TILINGS>::TileCodeMurMur(
 
 template <size_t D, size_t NUM_TILINGS>
 FEATURE_VECTOR TileCodeMurMur<D, NUM_TILINGS>::getFeatureVector(
-  const floatArray<D>& parameters) {
+  const floatArray<D>& parameters) const {
   FEATURE_VECTOR fv;
 
   vector<rl::INT> tileComponents(this->getDimension() + 1);

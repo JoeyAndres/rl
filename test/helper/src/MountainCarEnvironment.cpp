@@ -18,7 +18,9 @@
 
 #include <cassert>
 #include <cmath>
+#include <iostream>
 
+#include "rl"
 #include "../include/MountainCarEnvironment.h"
 
 MountainCarEnvironment::MountainCarEnvironment(
@@ -30,13 +32,15 @@ MountainCarEnvironment::MountainCarEnvironment(
 rl::spStateAndReward<floatArray<2>>
 MountainCarEnvironment::getNextStateAndReward(
   const MountainCarEnvironment::SA& stateAction) {
-  auto act = stateAction.getAction();
+  auto act = rl::spFloatArray<1>(
+    new rl::floatArray<1>(*stateAction.getAction()));
 
   /*if (act[0] < 0 || act[0] > 2) {
     cout << "Illegal" << endl;
     assert(false && "Action Set recognized.");
     }*/
-  auto nextState = stateAction.getState();
+  auto nextState = rl::spFloatArray<2>(
+    new rl::floatArray<2>(*stateAction.getState()));
 
   rl::INT copyAct = act->at(0) - 1;
   rl::FLOAT nextReward = -1;
@@ -47,7 +51,7 @@ MountainCarEnvironment::getNextStateAndReward(
   }
 
   nextState->at(VEL) +=
-      (0.001F * copyAct - 0.0025F * cos(3.0F * nextState->at(POS)));
+      (0.001F * copyAct - 0.0025F * std::cos(3.0F * nextState->at(POS)));
 
   if (nextState->at(VEL) < -0.07F) {
     nextState->at(VEL) = -0.07F;
