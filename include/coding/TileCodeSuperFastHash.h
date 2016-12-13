@@ -51,7 +51,8 @@ class TileCodeSuperFastHash : public TileCode<D, NUM_TILINGS> {
   TileCodeSuperFastHash(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
                         size_t sizeHint);
 
-  FEATURE_VECTOR getFeatureVector(const floatArray<D>& parameters) override;
+  FEATURE_VECTOR getFeatureVector(
+    const floatArray<D>& parameters) const override;
 };
 
 template <size_t D, size_t NUM_TILINGS>
@@ -66,7 +67,7 @@ TileCodeSuperFastHash<D, NUM_TILINGS>::TileCodeSuperFastHash(
 
 template <size_t D, size_t NUM_TILINGS>
 FEATURE_VECTOR TileCodeSuperFastHash<D, NUM_TILINGS>::getFeatureVector(
-  const floatArray<D>& parameters) {
+  const floatArray<D>& parameters) const {
   vector<rl::INT> tileComponents(this->getDimension() + 1);
   FEATURE_VECTOR fv;
 

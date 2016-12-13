@@ -35,7 +35,11 @@
 
 namespace rl {
 
+constexpr size_t BYTE_BIT_SIZE = 8;
+
 typedef double FLOAT;  //!< Default floating type.
+constexpr size_t FLOAT_SIZE = sizeof(FLOAT) * BYTE_BIT_SIZE;
+
 typedef uint64_t UINT;  //!< Default unsigned integer type.
 typedef int64_t INT;  //!< Default signed integer type.
 typedef uint8_t BYTE;  //!< Byte type.

@@ -48,8 +48,8 @@ class Policy {
    * @param actionSet set of actions.
    * @return <b>action</b> given a mapping of actions and their value and a
    *         set of actions.
+   * TODO(jandres): Make this and the method below const.
    */
-
   virtual spAction<A> getAction(
     const spActionValueMap<A>& actionValues,
     const spActionSet<A>& actionSet) = 0;

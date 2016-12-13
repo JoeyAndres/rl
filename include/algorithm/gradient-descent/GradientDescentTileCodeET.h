@@ -24,25 +24,26 @@
 
 #include "../../declares.h"
 #include "../../coding/TileCode.h"
-#include "GradientDescent.h"
+#include "GradientDescentTileCodeAbstract.h"
 
 using std::vector;
 using std::array;
 
+using rl::utility::concatArray;
 using rl::coding::spTileCode;
 
 namespace rl {
 namespace algorithm {
 
-/*! \class GradientDescentET
+/*! \class GradientDescentTileCodeET
  *  \brief Gradient Descent eligibility traces.
  *  \tparam D Number of dimension.
  *  \tparam STATE_DIM Number of dimension in State.
  *                    This also implies ACTION_DIM = D - STATE_DIM.
  */
 template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
-class GradientDescentET :
-  public GradientDescentAbstract<D, NUM_TILINGS, STATE_DIM> {
+class GradientDescentTileCodeET :
+  public GradientDescentTileCodeAbstract<D, NUM_TILINGS, STATE_DIM> {
  public:
   /**
    * @param tileCode Type of tile coding.
@@ -50,10 +51,11 @@ class GradientDescentET :
    * @param discountRate discount rate for gradient descent.
    * @param lambda How influential is current state-action to their state-action.
    */
-  GradientDescentET(const spTileCode<D, NUM_TILINGS>& tileCode,
-                    rl::FLOAT stepSize,
-                    rl::FLOAT discountRate,
-                    rl::FLOAT lambda);
+  GradientDescentTileCodeET(
+    const spTileCode<D, NUM_TILINGS>& tileCode,
+    rl::FLOAT stepSize,
+    rl::FLOAT discountRate,
+    rl::FLOAT lambda);
 
   /**
    * Increase the eligibility traces of a given feature vector.
@@ -87,15 +89,12 @@ class GradientDescentET :
   void updateWeights(
     const typename GradientDescentAbstract<
       D,
-      NUM_TILINGS,
       STATE_DIM>::spStateParam& currentStateVector,
     const typename GradientDescentAbstract<
       D,
-      NUM_TILINGS,
       STATE_DIM>::spActionParam& currentActionVector,
     const typename GradientDescentAbstract<
       D,
-      NUM_TILINGS,
       STATE_DIM>::spStateParam& nextStateVector,
     const FLOAT nextActionValue,
     const FLOAT reward) override;
@@ -111,18 +110,20 @@ class GradientDescentET :
 };
 
 template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
-GradientDescentET<D, NUM_TILINGS, STATE_DIM>::GradientDescentET(
+GradientDescentTileCodeET<D, NUM_TILINGS, STATE_DIM>::GradientDescentTileCodeET(
   const spTileCode<D, NUM_TILINGS>& tileCode,
   rl::FLOAT stepSize,
   rl::FLOAT discountRate,
   rl::FLOAT lambda) :
-  GradientDescentAbstract<D, NUM_TILINGS, STATE_DIM>::GradientDescentAbstract(
+  GradientDescentTileCodeAbstract<
+    D, NUM_TILINGS, STATE_DIM>::GradientDescentTileCodeAbstract(
     tileCode, stepSize, discountRate, lambda) {
-  _e = floatVector(this->getSize(), 0);
+  _e = floatVector(this->_courseCode->getSize(), 0);
 }
 
 template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
-void GradientDescentET<D, NUM_TILINGS, STATE_DIM>::incrementEligibilityTraces(
+void GradientDescentTileCodeET<
+  D, NUM_TILINGS, STATE_DIM>::incrementEligibilityTraces(
   const FEATURE_VECTOR& fv) {
   for (rl::INT f : fv) {
     ++(this->_e)[f];
@@ -130,7 +131,8 @@ void GradientDescentET<D, NUM_TILINGS, STATE_DIM>::incrementEligibilityTraces(
 }
 
 template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
-void GradientDescentET<D, NUM_TILINGS, STATE_DIM>::replaceEligibilityTraces(
+void GradientDescentTileCodeET<
+  D, NUM_TILINGS, STATE_DIM>::replaceEligibilityTraces(
   const FEATURE_VECTOR& fv) {
   for (rl::INT f : fv) {
     this->_e[f] = 1;
@@ -139,7 +141,8 @@ void GradientDescentET<D, NUM_TILINGS, STATE_DIM>::replaceEligibilityTraces(
 
 template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
 void
-GradientDescentET<D, NUM_TILINGS, STATE_DIM>::decreaseEligibilityTraces() {
+GradientDescentTileCodeET<
+  D, NUM_TILINGS, STATE_DIM>::decreaseEligibilityTraces() {
   size_t n = this->getSize();
   for (size_t i = 0; i < n; i++) {
     this->_e[i] *= this->_discountRateTimesLambda;
@@ -148,37 +151,30 @@ GradientDescentET<D, NUM_TILINGS, STATE_DIM>::decreaseEligibilityTraces() {
 
 template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
 void
-GradientDescentET<D, NUM_TILINGS, STATE_DIM>::backUpWeights(FLOAT tdError) {
-  rl::FLOAT multiplier = this->_stepSize * tdError;
+GradientDescentTileCodeET<
+  D, NUM_TILINGS, STATE_DIM>::backUpWeights(FLOAT tdError) {
+  rl::FLOAT multiplier = (this->_stepSize / NUM_TILINGS) * tdError;
   size_t n = this->getSize();
   for (size_t i = 0; i < n-1; i++) {
-    this->_w[i] += multiplier*_e[i];
+    this->_tileCode->at(i) += multiplier*_e[i];
   }
 }
 
 template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
-void GradientDescentET<D, NUM_TILINGS, STATE_DIM>::updateWeights(
+void GradientDescentTileCodeET<
+  D, NUM_TILINGS, STATE_DIM>::updateWeights(
   const typename GradientDescentAbstract<
     D,
-    NUM_TILINGS,
     STATE_DIM>::spStateParam& currentStateVector,
   const typename GradientDescentAbstract<
     D,
-    NUM_TILINGS,
     STATE_DIM>::spActionParam& currentActionVector,
   const typename GradientDescentAbstract<
     D,
-    NUM_TILINGS,
     STATE_DIM>::spStateParam& nextStateVector,
   const FLOAT nextActionValue,
   const FLOAT reward) {
-  floatArray<D> currentParams;
-  std::copy(currentStateVector->begin(),
-            currentStateVector->end(),
-            currentParams.begin());
-  std::copy(currentActionVector->begin(),
-            currentActionVector->end(),
-            currentParams.begin() + currentStateVector->size());
+  auto currentParams = concatArray(*currentStateVector, *currentActionVector);
 
   FEATURE_VECTOR currentStateFv =
     std::move(this->getFeatureVector(currentParams));
@@ -193,7 +189,8 @@ void GradientDescentET<D, NUM_TILINGS, STATE_DIM>::updateWeights(
 }
 
 template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
-void GradientDescentET<D, NUM_TILINGS, STATE_DIM>::resetEligibilityTraces() {
+void GradientDescentTileCodeET<
+  D, NUM_TILINGS, STATE_DIM>::resetEligibilityTraces() {
   std::fill(&this->_e[0], &this->_e[0] + this->getSize(), 0);
 }
 

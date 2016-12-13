@@ -42,7 +42,7 @@ class QLearningETGD :
                 rl::FLOAT discountRate,
                 rl::FLOAT lambda,
                 const typename ReinforcementLearningGDAbstract<
-                  D, NUM_TILINGS, STATE_DIM>::spPolicy& policy);
+                  D, STATE_DIM>::spPolicy& policy);
 };
 
 template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
@@ -52,7 +52,7 @@ QLearningETGD<D, NUM_TILINGS, STATE_DIM>::QLearningETGD(
   rl::FLOAT discountRate,
   rl::FLOAT lambda,
   const typename ReinforcementLearningGDAbstract<
-    D, NUM_TILINGS, STATE_DIM>::spPolicy& controlPolicy) :
+    D, STATE_DIM>::spPolicy& controlPolicy) :
   ReinforcementLearningGDET<
     D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGDET(
     tileCode, stepSize, discountRate, lambda, controlPolicy) {

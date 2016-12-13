@@ -17,6 +17,7 @@
  */
 
 #include <array>
+#include <iostream>
 
 #include "catch.hpp"
 #include "rl"
@@ -39,12 +40,8 @@ SCENARIO("Sarsa Gradient Descent converge to a solution",
     rl::spFloatArray<1> forward(new rl::floatArray<1>({2}));
 
     auto amc = ActuatorFactory<rl::floatArray<1>>(
-      rl::spActionSet<rl::floatArray<1>>(
-        {
-          reverse,
-          neutral,
-          forward
-        })).get();
+      rl::spActionSet<rl::floatArray<1>>({ reverse, neutral, forward})).get();
+
     // Setup sensor.
     auto smc = SensorMountainCarFactory::create();
     // Setup environment.
@@ -55,8 +52,8 @@ SCENARIO("Sarsa Gradient Descent converge to a solution",
 
     // Setup tile coding.
     array<rl::coding::DimensionInfo<rl::FLOAT>, 3> dimensionalInfoVector = {
-      rl::coding::DimensionInfo<rl::FLOAT>(-1.2F, 0.5F, 7),  // Velocity.
-      rl::coding::DimensionInfo<rl::FLOAT>(-0.07F, 0.07F, 7),  // Position.
+      rl::coding::DimensionInfo<rl::FLOAT>(-1.2F, 0.5F, 10),  // Velocity.
+      rl::coding::DimensionInfo<rl::FLOAT>(-0.07F, 0.07F, 10),  // Position.
 
       // Action dimension.
       rl::coding::DimensionInfo<rl::FLOAT>(0.0F, 2.0F, 3, 0.0F)

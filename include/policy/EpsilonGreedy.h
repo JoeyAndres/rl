@@ -113,7 +113,7 @@ spAction<A> EpsilonGreedy<S, A>::getAction(
   const rl::FLOAT& r = _distribution(_randomDevice);
   if (r > _greediness) {
     std::uniform_int_distribution<rl::INT> indexDistribution(
-      0, actionSet.size());
+      0, actionSet.size() - 1);
     typename spActionSet<A>::const_iterator it(actionSet.begin());
     advance(it, indexDistribution(_randomDevice));
     return (*it);
@@ -133,9 +133,10 @@ spAction<A> EpsilonGreedy<S, A>::getAction(
   const rl::FLOAT& r = _distribution(_randomDevice);
   if (r > _greediness) {
     std::uniform_int_distribution<rl::INT> indexDistribution(
-      0, actionSet.size());
+      0, actionSet.size() - 1);
     typename spActionSet<A>::const_iterator it(actionSet.begin());
-    advance(it, indexDistribution(_randomDevice));
+    auto randomIndex = indexDistribution(_randomDevice);
+    advance(it, randomIndex);
     return (*it);
   } else {
     return maxAction;

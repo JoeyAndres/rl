@@ -170,6 +170,11 @@ class Agent {
    */
   virtual void reset();
 
+  /**
+   * @return Last action applied.
+   */
+  spAction<A> getLastActionApplied() const;
+
  protected:
   /*! \var _learningAlgorithm
    *  Aggregates a learning algorithm.
@@ -226,10 +231,10 @@ void Agent<S, A>::train(
 
 template<class S, class A>
 void Agent<S, A>::preExecute() {
+  _learningAlgorithm->reset();
   _currentState = std::move(getLastObservedState());
   _currentAction = std::move(_learningAlgorithm->getAction(
         _currentState, _environment->getActuator()->getActionSet()));
-  _learningAlgorithm->reset();
   _accumulativeReward = 0.0F;
 }
 
@@ -289,6 +294,11 @@ void Agent<S, A>::applyAction(const spAction<A>& action) {
 template<class S, class A>
 void Agent<S, A>::reset() {
   this->_environment->reset();
+}
+
+template<class S, class A>
+spAction<A> Agent<S, A>::getLastActionApplied() const {
+  return _currentAction;
 }
 
 }  // namespace agent

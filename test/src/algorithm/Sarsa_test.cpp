@@ -54,11 +54,11 @@ SCENARIO("Sarsa converge to a solution",
         agent.reset();  // Overloaded to go back to set b.
 
         iterationCount = agent.executeEpisode();
+      }
 
-        THEN("At the end, we solve the random walk environment in 2 "
-               "iteration") {
-          REQUIRE(iterationCount <= 2);
-        }
+      THEN("At the end, we solve the random walk environment in 2 "
+             "iteration") {
+        REQUIRE(iterationCount <= 2);
       }
     }
   }
