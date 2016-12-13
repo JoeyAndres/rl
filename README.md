@@ -17,8 +17,11 @@ The mountain car problem in test won't converge to a an optimal solution in osx 
 old g++ compiler (e.g. g++ 4.2.1). For optimal performance, use linux and new g++ compiler.
 
 ### Dependency:
+#### Required
 * g++-4.9 or greater or clang.
 * cmake 3.2.2 or greater.
+#### Optional
+* [SDM (Sparse Distributed Memory)](https://github.com/JoeyAndres/sdm.git) - If you want to utilize storage servers.
 
 ### Installing dependencies Ubuntu 16.04:
 
