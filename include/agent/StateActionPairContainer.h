@@ -54,7 +54,7 @@ class StateActionPairContainer {
    * @param value Value of the state to be added.
    * @param actionArray
    */
-  virtual void addState(const spState<S> &state, rl::FLOAT value,
+  virtual void addState(const spState<S> &state, FLOAT value,
                         const spActionSet<A> &actionSet);
 
   /**
@@ -63,7 +63,7 @@ class StateActionPairContainer {
    * @param value The value of the stateAction.
    */
   virtual void addStateAction(const StateAction<S, A> &stateAction,
-                              rl::FLOAT value);
+                              FLOAT value);
 
   /**
    * Adds a new action.
@@ -71,7 +71,7 @@ class StateActionPairContainer {
    * @param value
    * @param actionSet
    */
-  virtual void addAction(const spAction<A> &action, rl::FLOAT value,
+  virtual void addAction(const spAction<A> &action, FLOAT value,
                          const spStateSet<S> &stateSet);
 
   /**
@@ -86,7 +86,7 @@ class StateActionPairContainer {
    * @return the value of stateAction.
    * @throws StateActionNotEistException when stateAction does not exist.
    */
-  virtual const rl::FLOAT &getStateActionValue(
+  virtual const FLOAT &getStateActionValue(
     const StateAction<S, A> &stateAction) const
   throw(StateActionNotExistException);
 
@@ -97,42 +97,45 @@ class StateActionPairContainer {
    * @throw StateActionNoExistException stateAction given does not exist.
    */
   virtual void setStateActionValue(const StateAction<S, A> &stateAction,
-                                   rl::FLOAT value)
-  throw(StateActionNotExistException);
+                                   FLOAT value);
 
   /**
    * Access state-action value via [] operator.
    * @param stateAction StateActionPairContainer[stateAction]
    * @return StateActionPairContainer[stateAction] value.
+   *
+   * Note: Although we can add the stateAction if it doesn't exist,
+   *       I don't want this program to pass when something is deeply wrong
+   *       stateAction pair is never added in the first place.
    */
-  rl::FLOAT operator[](const StateAction<S, A> &stateAction) const
+  FLOAT operator[](const StateAction<S, A> &stateAction) const
   throw(StateActionNotExistException);
 
   /**
    * @return begin iterator of state-action to value map.
    */
-  typename map<StateAction<S, A>, rl::FLOAT>::const_iterator begin() const;
+  typename map<StateAction<S, A>, FLOAT>::const_iterator begin() const;
 
   /**
    * @return end iterator of state-action to value map.
    */
-  typename map<StateAction<S, A>, rl::FLOAT>::const_iterator end() const;
+  typename map<StateAction<S, A>, FLOAT>::const_iterator end() const;
 
   /**
    * @return The state-action pair to reward map.
    */
-  const map<StateAction<S, A>, rl::FLOAT> &getMap() const;
+  const map<StateAction<S, A>, FLOAT> &getMap() const;
 
   /**
    * @return A multimap in which the entry are organized by the reward (from least to greatest).
    */
-  multimap<rl::FLOAT, StateAction<S, A>> getReverseMap() const;
+  multimap<FLOAT, StateAction<S, A>> getReverseMap() const;
 
  protected:
   /*! \var _stateActionPairMap
    *  A mapping of state-action to value.
    */
-  map<StateAction<S, A>, rl::FLOAT> _stateActionPairMap;
+  map<StateAction<S, A>, FLOAT> _stateActionPairMap;
 };
 
 template<class S, class A>
@@ -142,11 +145,11 @@ StateActionPairContainer<S, A>::StateActionPairContainer() {
 template<class S, class A>
 void StateActionPairContainer<S, A>::addState(
   const spState<S> &state,
-  rl::FLOAT value,
+  FLOAT value,
   const spActionSet<A> &actionSet) {
   for (auto action : actionSet) {
     _stateActionPairMap.insert(
-      std::pair<StateAction<S, A>, rl::FLOAT>(
+      std::pair<StateAction<S, A>, FLOAT>(
         StateAction<S, A>(state, action), value));
   }
 }
@@ -154,18 +157,18 @@ void StateActionPairContainer<S, A>::addState(
 template<class S, class A>
 void StateActionPairContainer<S, A>::addStateAction(
   const StateAction<S, A> &stateAction,
-  rl::FLOAT value) {
+  FLOAT value) {
   this->_stateActionPairMap.insert(
-    std::pair<StateAction<S, A>, rl::FLOAT>(stateAction, value));
+    std::pair<StateAction<S, A>, FLOAT>(stateAction, value));
 }
 
 template<class S, class A>
 void StateActionPairContainer<S, A>::addAction(const spAction<A> &action,
-                                               rl::FLOAT value,
+                                               FLOAT value,
                                                const spStateSet<S> &stateSet) {
   for (auto state : stateSet) {
     _stateActionPairMap.insert(
-      std::pair<StateAction<S, A>, rl::FLOAT>(
+      std::pair<StateAction<S, A>, FLOAT>(
         StateAction<S, A>(state, action), value));
   }
 }
@@ -180,33 +183,23 @@ bool StateActionPairContainer<S, A>::stateInStateActionPairMap(
 }
 
 template<class S, class A>
-void rl::agent::StateActionPairContainer<S, A>::setStateActionValue(
-  const StateAction<S, A> &stateAction, rl::FLOAT value)
-throw(StateActionNotExistException) {
-  try {
-    _stateActionPairMap.at(stateAction);
-  } catch (const std::out_of_range &oor) {
-    std::cerr << "State-Pair given is not yet added. "
-              << __FILE__ ":" << __LINE__
-              << std::endl;
-    StateActionNotExistException exception(
-      "State-Pair given is not yet added.");
-    throw exception;
-  }
-
+void StateActionPairContainer<S, A>::setStateActionValue(
+  const StateAction<S, A> &stateAction, FLOAT value) {
   _stateActionPairMap[stateAction] = value;
 }
 
 template<class S, class A>
-const rl::FLOAT &rl::agent::StateActionPairContainer<S, A>::getStateActionValue(
+const FLOAT &StateActionPairContainer<S, A>::getStateActionValue(
   const StateAction<S, A> &stateAction) const
 throw(StateActionNotExistException) {
   try {
     return _stateActionPairMap.at(stateAction);
   } catch (const std::out_of_range &oor) {
+#ifdef DEBUG
     std::cerr << "State-Pair given is not yet added. "
               << __FILE__ ":" << __LINE__
               << std::endl;
+#endif
     StateActionNotExistException exception(
       "State-Pair given is not yet added.");
     throw exception;
@@ -214,33 +207,33 @@ throw(StateActionNotExistException) {
 }
 
 template<class S, class A>
-rl::FLOAT rl::agent::StateActionPairContainer<S, A>::operator[](
+FLOAT StateActionPairContainer<S, A>::operator[](
   const StateAction<S, A> &stateAction) const
 throw(StateActionNotExistException) {
   return getStateActionValue(stateAction);
 }
 
 template<class S, class A>
-typename map<rl::agent::StateAction<S, A>, rl::FLOAT>::const_iterator
-rl::agent::StateActionPairContainer<S, A>::begin() const {
+typename map<StateAction<S, A>, FLOAT>::const_iterator
+StateActionPairContainer<S, A>::begin() const {
   return _stateActionPairMap.begin();
 }
 
 template<class S, class A>
-typename map<rl::agent::StateAction<S, A>, rl::FLOAT>::const_iterator
-rl::agent::StateActionPairContainer<S, A>::end() const {
+typename map<StateAction<S, A>, FLOAT>::const_iterator
+StateActionPairContainer<S, A>::end() const {
   return _stateActionPairMap.end();
 }
 
 template<class S, class A>
-const map<rl::agent::StateAction<S, A>, rl::FLOAT> &
-rl::agent::StateActionPairContainer<S, A>::getMap() const {
+const map<StateAction<S, A>, FLOAT> &
+StateActionPairContainer<S, A>::getMap() const {
   return this->_stateActionPairMap;
 }
 
 template<class S, class A>
-multimap<rl::FLOAT, rl::agent::StateAction<S, A>>
-rl::agent::StateActionPairContainer<S, A>::getReverseMap() const {
+multimap<FLOAT, StateAction<S, A>>
+StateActionPairContainer<S, A>::getReverseMap() const {
   return rl::utility::flipMap(this->_stateActionPairMap);
 }
 
