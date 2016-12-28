@@ -83,6 +83,17 @@ bitset<D * FLOAT_SIZE> floatArrayToBitset(const floatArray<D>& fv) {
   return rv;
 }
 
+/**
+ * Concatenates array.
+ *
+ * @tparam T Type of data stored in array.
+ * @tparam D1 Dimension of first array.
+ * @tparam D2 Dimension of second array.
+ *
+ * @param a1 First array with dimension D1.
+ * @param a2 Second array with dimension D2.
+ * @return Concatenated a1 and a2, with dimension D1 + D2.
+ */
 template <class T, size_t D1, size_t D2>
 array<T, D1 + D2> concatArray(const array<T, D1>& a1, const array<T, D2>& a2) {
   array<T, D1 + D2> rv;

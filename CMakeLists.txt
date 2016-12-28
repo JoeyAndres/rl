@@ -7,7 +7,14 @@ include(CMakeFiles/CMakeGenerateMainHeader)
 
 set(intrinsic "none" CACHE STRING "The possible intrinsics are the following: none, mmx, sse, sse2, sse3, sse4, sse4.1, sse4.2, sse4a, avx.")
 
-set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS} -O3 -g")
+# Default c++ flags.
+set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS_DEBUG "-ggdb -Wall --pedantic ${CMAKE_CXX_FLAGS_DEBUG}")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 ${CMAKE_CXX_FLAGS_RELEASE}")
+
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_definitions("-DDEBUG")
+endif()
 
 add_subdirectory(src)
 add_subdirectory(lib)

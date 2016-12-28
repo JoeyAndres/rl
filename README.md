@@ -20,12 +20,10 @@ old g++ compiler (e.g. g++ 4.2.1). For optimal performance, use linux and new g+
 #### Required
 * g++-4.9 or greater or clang.
 * cmake 3.2.2 or greater.
-#### Optional
-* [SDM (Sparse Distributed Memory)](https://github.com/JoeyAndres/sdm.git) - If you want to utilize storage servers.
+* boost v1.62 (might work for version < 1.62)
 
 ### Installing dependencies Ubuntu 16.04:
-
-`sudo apt install g++ cmake`
+`sudo apt install g++ cmake libboost-all-dev`
 
 ### Building 
 1. `mkdir build`
