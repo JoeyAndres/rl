@@ -27,9 +27,8 @@
 #include <iostream>
 #include <utility>
 
-#define DEBUG
-
 #ifndef DEBUG
+#undef  NDEBUG  // Gets rid of annoying redefining warning.
 #define NDEBUG  // Gets rid of assertions.
 #endif
 

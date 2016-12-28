@@ -95,8 +95,8 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
    * @param nextStateActionPair \f$(S', A')\f$, next state-action pair.
    */
   virtual void backUpStateActionPair(
-      const StateAction<S, A>& currentStateAction, const rl::FLOAT reward,
-      const StateAction<S, A>& nextStateActionPair);
+    const StateAction<S, A>& currentStateAction, const rl::FLOAT reward,
+    const StateAction<S, A>& nextStateActionPair);
 
   /**
    * Get Action with respect to learning/offline policy.
@@ -131,7 +131,7 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
    * @param stateActionPairContainer set state-action pair container.
    */
   void setStateActionPairContainer(
-      const StateActionPairContainer<S, A>& stateActionPairContainer);
+    const StateActionPairContainer<S, A>& stateActionPairContainer);
 
  public:
   virtual void updateStateAction(const StateAction <S, A> &currentStateAction,
@@ -172,17 +172,17 @@ std::ostream& operator<<(
 
 template<class S, class A>
 ReinforcementLearning<S, A>::ReinforcementLearning(
-    rl::FLOAT stepSize,
-    rl::FLOAT discountRate,
-    const spPolicy<S, A>& policy)
-    : LearningAlgorithm<S, A>(policy) {
+  rl::FLOAT stepSize,
+  rl::FLOAT discountRate,
+  const spPolicy<S, A>& policy)
+  : LearningAlgorithm<S, A>(policy) {
   _stepSize = stepSize;
   _discountRate = discountRate;
 }
 
 template<class S, class A>
 spAction<A> ReinforcementLearning<S, A>::argMax(
-    const spState<S>& state, const spActionSet<A>& actionSet) const {
+  const spState<S>& state, const spActionSet<A>& actionSet) const {
   spAction<A> greedAct = *(actionSet.begin());
 
   rl::FLOAT currentValue = this->_defaultStateActionValue;
@@ -190,7 +190,7 @@ spAction<A> ReinforcementLearning<S, A>::argMax(
     currentValue =
       this->_stateActionPairContainer[StateAction<S, A>(state, greedAct)];
   } catch (StateActionNotExistException& e) {
-    // Do nothing. We already assign it the default state-action value.
+    // Happens if state is a terminal state in which no actions applies.
   }
 
   for (const spState<A>& action : actionSet) {
@@ -198,7 +198,7 @@ spAction<A> ReinforcementLearning<S, A>::argMax(
     try {
       value = this->_stateActionPairContainer[StateAction<S, A>(state, action)];
     } catch (StateActionNotExistException& e) {
-      // Do nothing. We already assign it the default state-action value.
+      // Happens if state is a terminal state in which no actions applies.
     }
 
     if (currentValue < value) {
@@ -216,7 +216,7 @@ rl::FLOAT ReinforcementLearning<S, A>::getDiscountRate() const {
 
 template<class S, class A>
 void ReinforcementLearning<S, A>::setDiscountRate(
-    rl::FLOAT discountRate) {
+  rl::FLOAT discountRate) {
   _discountRate = discountRate;
 }
 
@@ -227,13 +227,13 @@ rl::FLOAT ReinforcementLearning<S, A>::getStepSize() const {
 
 template<class S, class A>
 void ReinforcementLearning<S, A>::setStepSize(
-    rl::FLOAT stepSize) {
+  rl::FLOAT stepSize) {
   _stepSize = stepSize;
 }
 
 template<class S, class A>
 const StateActionPairContainer<S, A>& ReinforcementLearning<
-    S, A>::getStateActionPairContainer() const {
+  S, A>::getStateActionPairContainer() const {
   return _stateActionPairContainer;
 }
 
@@ -245,19 +245,19 @@ StateActionPairContainer<S, A>& ReinforcementLearning<
 
 template<class S, class A>
 void ReinforcementLearning<S, A>::setStateActionPairContainer(
-    const StateActionPairContainer<S, A>& stateActionPairContainer) {
+  const StateActionPairContainer<S, A>& stateActionPairContainer) {
   _stateActionPairContainer = stateActionPairContainer;
 }
 
 template<class S, class A>
 void ReinforcementLearning<S, A>::setStateActionValue(
-    const StateAction<S, A>& stateAction, const rl::FLOAT& reward) {
+  const StateAction<S, A>& stateAction, const rl::FLOAT& reward) {
   _stateActionPairContainer.setStateActionValue(stateAction, reward);
 }
 
 template<class S, class A>
 spAction<A> ReinforcementLearning<S, A>::getLearningAction(
-    const spState<S>& currentState, const spActionSet<A>& actionSet) {
+  const spState<S>& currentState, const spActionSet<A>& actionSet) {
   _stateActionPairContainer.addState(
     currentState,
     this->_defaultStateActionValue, actionSet);
@@ -289,22 +289,22 @@ spAction<A> ReinforcementLearning<S, A>::getAction(
 
 template<class S, class A>
 rl::FLOAT ReinforcementLearning<S, A>::getStateActionValue(
-    const StateAction<S, A>& stateAction) {
+  const StateAction<S, A>& stateAction) {
   return _stateActionPairContainer.getStateActionValue(stateAction);
 }
 
 template<class S, class A>
 void ReinforcementLearning<S, A>::backUpStateActionPair(
-    const StateAction<S, A>& currentStateAction, const rl::FLOAT reward,
-    const StateAction<S, A>& nextStateActionPair) {
+  const StateAction<S, A>& currentStateAction, const rl::FLOAT reward,
+  const StateAction<S, A>& nextStateActionPair) {
   // Next state-action value (nSAV) and current state-action value (cSAV).
   rl::FLOAT nSAV = getStateActionValue(nextStateActionPair);
   rl::FLOAT cSAV = getStateActionValue(currentStateAction);
   rl::FLOAT discountRate = this->_discountRate;
 
   setStateActionValue(
-      currentStateAction,
-      cSAV + this->_stepSize * (reward + discountRate * nSAV - cSAV));
+    currentStateAction,
+    cSAV + this->_stepSize * (reward + discountRate * nSAV - cSAV));
 }
 
 template<class S, class A>

@@ -120,8 +120,8 @@ void DynaQPrioritizedSweeping<S, A>::_prioritySweep(
     _priorityQueue.pop();
 
     // Acquire next reward from model.
-    const StateActionTransition<S>& currentStateActionTransition = this->_model
-      .at(currentStateActionPair);
+    auto& currentStateActionTransition =
+      this->_model.at(currentStateActionPair);
     auto nextState = currentStateActionTransition.getNextState();
     rl::FLOAT nextReward = currentStateActionTransition.getReward(nextState);
 
@@ -148,10 +148,9 @@ void DynaQPrioritizedSweeping<S, A>::_prioritySweep(
       if (modelNextState == currentStateActionPair.getState()) {
         rl::FLOAT priorReward = modelStateTransition.getReward(modelNextState);
         auto nextModelAction = this->argMax(modelNextState, actionSet);
-
-        rl::FLOAT temptdError = _getTDError(
-          iter->first, priorReward,
-          StateAction<S, A>(modelNextState, nextModelAction));
+        auto& currentSA = iter->first;
+        auto nextSA = StateAction<S, A>(modelNextState, nextModelAction);
+        rl::FLOAT temptdError = _getTDError(currentSA, priorReward, nextSA);
 
         rl::FLOAT tempPriority = std::abs(temptdError);
         if (tempPriority > _priorityThreshold) {
@@ -164,11 +163,12 @@ void DynaQPrioritizedSweeping<S, A>::_prioritySweep(
 
 template<class S, class A>
 rl::FLOAT DynaQPrioritizedSweeping<S, A>::_getTDError(
-  const StateAction<S, A>& currentStateAction, const rl::FLOAT reward,
+  const StateAction<S, A>& currentStateAction,
+  const rl::FLOAT reward,
   const StateAction<S, A>& nextStateAction) {
-  rl::FLOAT tdError = (reward
+  rl::FLOAT tdError = reward
     + this->_discountRate * this->_stateActionPairContainer[nextStateAction]
-    - this->_stateActionPairContainer[currentStateAction]);
+    - this->_stateActionPairContainer[currentStateAction];
   return tdError;
 }
 
