@@ -23,7 +23,7 @@
 
 SensorMountainCar::SensorMountainCar() :
   rl::agent::Sensor<floatArray<2>>(
-    spFloatArray<2>(new floatArray<2>({ 2, 0 }))) {
+    spFloatArray<2>(new floatArray<2>({ 0.0F, 0.0F }))) {
 }
 
 bool SensorMountainCar::isTerminalState(

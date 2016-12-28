@@ -27,11 +27,12 @@
 #include <tuple>
 
 #include "../../declares.h"
-#include "../../coding/TileCode.h"
+#include "../../utility/utility.h"
+#include "../../coding/CourseCode.h"
 
 using std::tuple;
 
-using rl::coding::spTileCode;
+using rl::coding::spCourseCode;
 
 namespace rl {
 namespace algorithm {
@@ -39,11 +40,10 @@ namespace algorithm {
 /*! \class GradientDescentAbstract
  *  \brief Gradient Descent implementation. Abstract class.
  *  \tparam D Number of dimension.
- *  \tparam NUM_TILINGS Number of tilings.
  *  \tparam STATE_DIM Number of dimension in State.
  *                    This also implies ACTION_DIM = D - STATE_DIM.
  */
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t STATE_DIM>
 class GradientDescentAbstract {
  public:
   static constexpr size_t ACTION_DIM = D - STATE_DIM;
@@ -54,12 +54,12 @@ class GradientDescentAbstract {
   using spActionParam = shared_ptr<floatArray<ACTION_DIM>>;
 
   /**
-   * @param tileCode Type of tile coding.
+   * @param courseCode Type of course coding.
    * @param stepSize Step size for gradient descent.
    * @param discountRate discount rate for gradient descent.
    * @param lambda How influential is current state-action to ther state-action.
    */
-  GradientDescentAbstract(const spTileCode<D, NUM_TILINGS>& tileCode,
+  GradientDescentAbstract(const spCourseCode<D>& courseCode,
                           rl::FLOAT stepSize,
                           rl::FLOAT discountRate,
                           rl::FLOAT lambda);
@@ -77,20 +77,6 @@ class GradientDescentAbstract {
   FLOAT getValueFromParameters(const floatArray<D>& parameters) const;
 
   /**
-   * Get the value of the parameters in the real space.
-   * @param featureVector
-   * @return corresponding value.
-   */
-  FLOAT getValueFromFeatureVector(const FEATURE_VECTOR& fv) const;
-
-  /**
-   * @param parameters parameters.
-   * @param fv feature vector output. Feature vector are samples taken around
-   *           the parameters in the n-dimension tilecde.
-   */
-  FEATURE_VECTOR getFeatureVector(const floatArray<D>& parameters) const;
-
-  /**
    * @param currentStateVector array of current states.
    * @param actionVector action taken to get to nextStateVector.
    * @param nextStateVector array of next states.
@@ -99,15 +85,12 @@ class GradientDescentAbstract {
   virtual void updateWeights(
     const GradientDescentAbstract<
       D,
-      NUM_TILINGS,
       STATE_DIM>::spStateParam& currentStateVector,
     const GradientDescentAbstract<
       D,
-      NUM_TILINGS,
       STATE_DIM>::spActionParam& currentActionVector,
     const GradientDescentAbstract<
       D,
-      NUM_TILINGS,
       STATE_DIM>::spStateParam& nextStateVector,
     const FLOAT nextActionValue,
     const FLOAT reward) = 0;
@@ -120,16 +103,13 @@ class GradientDescentAbstract {
    */
   tuple<
     spActionValueMap<
-      typename GradientDescentAbstract<
-        D, NUM_TILINGS, STATE_DIM>::ActionParam>,
-    typename GradientDescentAbstract<
-      D, NUM_TILINGS, STATE_DIM>::spActionParam>
+      typename GradientDescentAbstract<D, STATE_DIM>::ActionParam>,
+    typename GradientDescentAbstract<D, STATE_DIM>::spActionParam>
   buildActionValues(
     const spActionSet<
-      GradientDescentAbstract<
-        D, NUM_TILINGS, STATE_DIM>::ActionParam>& actionSet,
+      GradientDescentAbstract<D, STATE_DIM>::ActionParam>& actionSet,
     const GradientDescentAbstract<
-      D, NUM_TILINGS, STATE_DIM>::spStateParam& nextState) const;
+      D, STATE_DIM>::spStateParam& nextState) const;
 
   /**
    * @param actionValueMap state-action to value mapping.
@@ -139,12 +119,10 @@ class GradientDescentAbstract {
     const spActionValueMap<
       GradientDescentAbstract<
         D,
-        NUM_TILINGS,
         STATE_DIM>::ActionParam>& actionValueMap) const;
 
  protected:
-  spTileCode<D, NUM_TILINGS> _tileCode;  //!< Tile Code.
-  std::vector<rl::FLOAT> _w;  //!< Vector of weights.
+  spCourseCode<D> _courseCode;  //!< Tile Code.
   rl::FLOAT _stepSize;  //!< Step Size of the weight update.
 
   /*! \var _discount
@@ -161,117 +139,71 @@ class GradientDescentAbstract {
 
   // Optimization.
   rl::FLOAT _discountRateTimesLambda;
-  rl::FLOAT* _discountRateTimesLambdaArray;
 };
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t STATE_DIM>
 using spGradientDescentAbstract =
-std::shared_ptr<GradientDescentAbstract<D, NUM_TILINGS, STATE_DIM>>;
+std::shared_ptr<GradientDescentAbstract<D, STATE_DIM>>;
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
-GradientDescentAbstract<D, NUM_TILINGS, STATE_DIM>::GradientDescentAbstract(
-  const spTileCode<D, NUM_TILINGS>& tileCode,
+template <size_t D, size_t STATE_DIM>
+GradientDescentAbstract<D, STATE_DIM>::GradientDescentAbstract(
+  const spCourseCode<D>& courseCode,
   rl::FLOAT stepSize,
   rl::FLOAT discountRate,
   rl::FLOAT lambda) :
-  _tileCode(tileCode),
+  _courseCode(courseCode),
   _stepSize(stepSize),
   _discountRate(discountRate),
   _lambda(lambda) {
   _discountRateTimesLambda = _discountRate*_lambda;
-
-  _w = floatVector(this->getSize(), 0);
 }
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
-size_t GradientDescentAbstract<D, NUM_TILINGS, STATE_DIM>::getSize() const {
-  return _tileCode->getSize();
+template <size_t D, size_t STATE_DIM>
+size_t GradientDescentAbstract<D, STATE_DIM>::getSize() const {
+  return _courseCode->getSize();
 }
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t STATE_DIM>
 FLOAT
-GradientDescentAbstract<D, NUM_TILINGS, STATE_DIM>::getValueFromParameters(
+GradientDescentAbstract<D, STATE_DIM>::getValueFromParameters(
   const floatArray<D>& parameters) const {
-  FEATURE_VECTOR fv = std::move(_tileCode->getFeatureVector(parameters));
-
-  return getValueFromFeatureVector(fv);
+  return _courseCode->getValueFromParameters(parameters);
 }
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
-FLOAT
-GradientDescentAbstract<D, NUM_TILINGS, STATE_DIM>::getValueFromFeatureVector(
-  const FEATURE_VECTOR& fv) const {
-  rl::FLOAT sum = 0.0F;
-
-  for (auto f : fv) {
-    sum += _w[f];
-  }
-
-  return sum;
-}
-
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
-FEATURE_VECTOR
-GradientDescentAbstract<D, NUM_TILINGS, STATE_DIM>::getFeatureVector(
-  const floatArray<D>& parameters) const {
-  return _tileCode->getFeatureVector(parameters);
-}
-
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t STATE_DIM>
 tuple<
   spActionValueMap<
-    typename GradientDescentAbstract<
-      D, NUM_TILINGS, STATE_DIM>::ActionParam>,
-  typename GradientDescentAbstract<
-    D, NUM_TILINGS, STATE_DIM>::spActionParam>
-GradientDescentAbstract<D, NUM_TILINGS, STATE_DIM>::buildActionValues(
+    typename GradientDescentAbstract<D, STATE_DIM>::ActionParam>,
+  typename GradientDescentAbstract<D, STATE_DIM>::spActionParam>
+GradientDescentAbstract<D, STATE_DIM>::buildActionValues(
   const spActionSet<GradientDescentAbstract<
     D,
-    NUM_TILINGS,
     STATE_DIM>::ActionParam>& actionSet,
   const GradientDescentAbstract<
-    D, NUM_TILINGS, STATE_DIM>::spStateParam& nextState) const {
+    D, STATE_DIM>::spStateParam& nextState) const {
   spActionValueMap<GradientDescentAbstract<
     D,
-    NUM_TILINGS,
     STATE_DIM>::ActionParam> actionVectorValueMap;
   typename GradientDescentAbstract<
-    D, NUM_TILINGS, STATE_DIM>::spActionParam maxAction;
+    D, STATE_DIM>::spActionParam maxAction;
 
-  typename spActionSet<
-    GradientDescentAbstract<
-      D,
-      NUM_TILINGS,
-      STATE_DIM>::ActionParam>::const_iterator maxActionIter =
+  typename spActionSet<GradientDescentAbstract<
+      D, STATE_DIM>::ActionParam>::const_iterator maxActionIter =
     actionSet.begin();
 
-  // Build paramCopy = <state1, ..., action1, ...> array.
-  floatArray<D> paramCopy;
-  std::copy(nextState->begin(),
-            nextState->end(),
-            paramCopy.begin());
-  std::copy((*maxActionIter)->begin(),
-            (*maxActionIter)->end(),
-            paramCopy.begin() + nextState->size());
+  floatArray<D> paramCopy =
+    std::move(utility::concatArray(*nextState, *(*maxActionIter)));
 
   FLOAT maxVal = getValueFromParameters(paramCopy);
   actionVectorValueMap[*maxActionIter] = maxVal;
 
-  typename spActionSet<
-    GradientDescentAbstract<
-      D,
-      NUM_TILINGS,
-      STATE_DIM>::ActionParam>::const_iterator iter = maxActionIter;
+  typename spActionSet<GradientDescentAbstract<
+    D, STATE_DIM>::ActionParam>::const_iterator iter = maxActionIter;
 
   iter++;
   for (; iter != actionSet.end(); ++iter) {
-    floatArray<D> paramCopy;
-    std::copy(nextState->begin(),
-              nextState->end(),
-              paramCopy.begin());
-    std::copy((*maxActionIter)->begin(),
-              (*maxActionIter)->end(),
-              paramCopy.begin() + nextState->size());
+    floatArray<D> paramCopy =
+      std::move(utility::concatArray(*nextState, *(*iter)));
 
     FLOAT value = getValueFromParameters(paramCopy);
     actionVectorValueMap[*iter] = value;

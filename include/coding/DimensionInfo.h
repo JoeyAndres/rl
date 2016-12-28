@@ -95,12 +95,12 @@ class DimensionInfo {
   /**
    * @return b in range \f$[a, b]\f$
    */
-  D getUpperBound();
+  D getUpperBound() const;
 
   /**
    * @return a in range \f$[a, b]\f$.
    */
-  D getLowerBound();
+  D getLowerBound() const;
 
   /**
    * @return the generalization amount.
@@ -173,12 +173,12 @@ void DimensionInfo<D>::setLowerBound(D lowerBound) {
 }
 
 template<typename D>
-D DimensionInfo<D>::getUpperBound() {
+D DimensionInfo<D>::getUpperBound() const {
   return _range.second;
 }
 
 template<typename D>
-D DimensionInfo<D>::getLowerBound() {
+D DimensionInfo<D>::getLowerBound() const {
   return _range.first;
 }
 

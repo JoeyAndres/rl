@@ -18,6 +18,14 @@
 
 #pragma once
 
+#include <array>
+#include <memory>
+
+#include "../declares.h"
+
+using std::array;
+using std::shared_ptr;
+
 namespace rl {
 namespace coding {
 
@@ -28,10 +36,45 @@ namespace coding {
 template <size_t D>
 class CourseCode {
  public:
-  virtual FEATURE_VECTOR getFeatureVector(const floatArray<D>& parameters) = 0;
-  virtual size_t getSize() const = 0;
+  /**
+   * No-arg constructor.
+   */
+  CourseCode();
+
+  /**
+   * @return number of dimension.
+   */
   virtual size_t getDimension() const;
+
+  /**
+   * Get the value of the parameters in the real space.
+   * @param parameters
+   * @return corresponding value.
+   */
+  virtual FLOAT getValueFromParameters(
+    const floatArray<D>& parameters) const = 0;
+
+  /**
+   * @return size of the weight vector.
+   */
+  virtual size_t getSize() const = 0;
 };
+
+/*!\typedef spCourseCode
+ * \brief Wraps CourseCode
+ * \tparam D Number of dimension.
+ */
+template <size_t D>
+using spCourseCode = shared_ptr<CourseCode<D>>;
+
+template <size_t D>
+CourseCode<D>::CourseCode() {
+}
+
+template <size_t D>
+size_t CourseCode<D>::getDimension() const {
+  return D;
+}
 
 }  // namespace coding
 }  // namespace rl

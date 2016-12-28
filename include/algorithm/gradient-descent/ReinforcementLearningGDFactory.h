@@ -40,24 +40,22 @@ template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM,
   size_t E_STATE_DIM> class REINFORCEMENT_LEARNING_GD>
 class ReinforcementLearningGDFactory :
   public ReinforcementLearningFactory<
-    typename ReinforcementLearningGDAbstract<
-      D, NUM_TILINGS, STATE_DIM>::StateParam,
-    typename ReinforcementLearningGDAbstract<
-      D, NUM_TILINGS, STATE_DIM>::ActionParam> {
+    typename ReinforcementLearningGDAbstract<D, STATE_DIM>::StateParam,
+    typename ReinforcementLearningGDAbstract<D, STATE_DIM>::ActionParam> {
  public:
-  ReinforcementLearningGDFactory(const spTileCode<D, NUM_TILINGS>& tileCode,
-                                 rl::FLOAT stepSize,
-                                 rl::FLOAT discountRate,
-                                 rl::FLOAT lambda,
-                                 const typename ReinforcementLearningGDAbstract<
-                                   D,
-                                   NUM_TILINGS,
-                                   STATE_DIM>::spPolicy& policy) {
+  ReinforcementLearningGDFactory(
+    const spTileCode<D, NUM_TILINGS>& tileCode,
+    rl::FLOAT stepSize,
+    rl::FLOAT discountRate,
+    rl::FLOAT lambda,
+    const typename ReinforcementLearningGDAbstract<
+      D,
+      STATE_DIM>::spPolicy& policy) {
     this->_instance = spLearningAlgorithm<
       typename ReinforcementLearningGDAbstract<
-        D, NUM_TILINGS, STATE_DIM>::StateParam,
+        D, STATE_DIM>::StateParam,
       typename ReinforcementLearningGDAbstract<
-        D, NUM_TILINGS, STATE_DIM>::ActionParam>(
+        D, STATE_DIM>::ActionParam>(
       new REINFORCEMENT_LEARNING_GD<D, NUM_TILINGS, STATE_DIM>(
         tileCode, stepSize, discountRate, lambda, policy));
   }

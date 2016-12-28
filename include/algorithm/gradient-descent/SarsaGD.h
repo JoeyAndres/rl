@@ -20,7 +20,6 @@
 
 #include "../../declares.h"
 #include "../../agent/StateAction.h"
-#include "GradientDescent.h"
 #include "ReinforcementLearningGD.h"
 
 using rl::coding::spTileCode;
@@ -44,7 +43,7 @@ class SarsaGD final: public ReinforcementLearningGD<D, NUM_TILINGS, STATE_DIM> {
           rl::FLOAT discountRate,
           rl::FLOAT lambda,
           const typename ReinforcementLearningGDAbstract<
-            D, NUM_TILINGS, STATE_DIM>::spPolicy & policy);
+            D, STATE_DIM>::spPolicy & policy);
 };
 
 template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
@@ -54,7 +53,7 @@ SarsaGD<D, NUM_TILINGS, STATE_DIM>::SarsaGD(
   rl::FLOAT discountRate,
   rl::FLOAT lambda,
   const typename ReinforcementLearningGDAbstract<
-    D, NUM_TILINGS, STATE_DIM>::spPolicy& policy) :
+    D, STATE_DIM>::spPolicy& policy) :
   ReinforcementLearningGD<D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGD(
     tileCode, stepSize, discountRate, lambda, policy) {
   this->setLearningPolicy(policy);
