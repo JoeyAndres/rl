@@ -227,7 +227,8 @@ void Agent<S, A>::train(
     nextState,
     reward,
     this->_environment->getActuator()->getActionSet());
-  // TODO(jandres): If environment is known, allow actuator actions to be state dependent.
+  // TODO(jandres): If environment is known, allow actuator actions to be
+  //                state dependent.
 }
 
 template<class S, class A>
