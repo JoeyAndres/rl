@@ -25,10 +25,13 @@
 #include <memory>
 #include <array>
 #include <vector>
+#include <iostream>
 
 #include "../declares.h"
+#include "../utility/IndexAccessorInterface.h"
 #include "CourseCode.h"
 #include "DimensionInfo.h"
+#include "container/TileCodeContainer.h"
 
 using std::array;
 using std::vector;
@@ -36,6 +39,8 @@ using std::shared_ptr;
 
 namespace rl {
 namespace coding {
+
+using DEFAULT_TILE_CONT = vector<FLOAT>;
 
 /*! \class TileCode
  *  \brief Base object encapsulate tile coding.
@@ -45,20 +50,28 @@ namespace coding {
  *
  *  \tparam D Number of dimension.
  *  \tparam NUM_TILINGS Number of tilings.
+ *  \tparam WEIGHT_CONT The container object to store the weights.
  */
-template<size_t D, size_t NUM_TILINGS>
-class TileCode : public CourseCode<D> {
+template<
+  size_t D,
+  size_t NUM_TILINGS,
+  class WEIGHT_CONT = DEFAULT_TILE_CONT>
+class TileCode :
+  public CourseCode<D>,
+  public utility::IndexAccessorInterface<WEIGHT_CONT> {
  public:
   /**
    * @param dimensionalInfos An array of dimensionalInfos.
    */
   explicit TileCode(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos);
+  TileCode(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
+           size_t sizeHint);
 
-  FLOAT& operator[](size_t i);
-  FLOAT operator[](size_t i) const;
+  typename WEIGHT_CONT::reference
+  at(size_t i) override;
 
-  virtual FLOAT& at(size_t i);
-  virtual FLOAT at(size_t i) const;
+  typename WEIGHT_CONT::value_type
+  at(size_t i) const override;
 
   /**
    * Hashed the parameter in Real space to a Natural space [0, infinity).
@@ -98,13 +111,15 @@ class TileCode : public CourseCode<D> {
   /**
    * @return Number of possible grid points.
    */
-  size_t _calculateSizeCache();
+  size_t _calculateSizeCache() const;
+  static size_t _calculateSize(
+    const array<DimensionInfo<FLOAT>, D>& dims);
 
  protected:
   std::random_device _randomDevice;
   std::default_random_engine _pseudoRNG;
 
-  std::vector<FLOAT> _w;  //!< Vector of weights.
+  WEIGHT_CONT _w;  //!< Vector of weights.
 
   /*! \var _sizeCache
    *
@@ -130,16 +145,27 @@ class TileCode : public CourseCode<D> {
   array<DimensionInfo<FLOAT>, D> _dimensionalInfos;
 };
 
-template<size_t D, size_t NUM_TILINGS>
-using spTileCode = shared_ptr<TileCode<D, NUM_TILINGS>>;
+template<
+  size_t D,
+  size_t NUM_TILINGS,
+  class WEIGHT_CONT = DEFAULT_TILE_CONT>
+using spTileCode = shared_ptr<TileCode<D, NUM_TILINGS, WEIGHT_CONT>>;
 
-template<size_t D, size_t NUM_TILINGS>
-TileCode<D, NUM_TILINGS>::TileCode(
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+TileCode<D, NUM_TILINGS, WEIGHT_CONT>::TileCode(
   const array<DimensionInfo<FLOAT>, D>& dimensionalInfos) :
-  _dimensionalInfos(dimensionalInfos) {
-  // Calculate the size.
-  _sizeCache = _calculateSizeCache();
+  TileCode<D, NUM_TILINGS, WEIGHT_CONT>::TileCode(
+    dimensionalInfos,
+    TileCode<D, NUM_TILINGS, WEIGHT_CONT>::_calculateSize(dimensionalInfos)) {
+}
 
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+TileCode<D, NUM_TILINGS, WEIGHT_CONT>::TileCode(
+  const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
+  size_t sizeHint) :
+  _dimensionalInfos(dimensionalInfos),
+  _sizeCache(sizeHint),
+  _w(WEIGHT_CONT(sizeHint, 0)) {
   // Calculate random offsets.
   std::uniform_real_distribution<rl::FLOAT> distribution(0, 1.0F);
   for (size_t i = 0; i < NUM_TILINGS; i++) {
@@ -150,31 +176,29 @@ TileCode<D, NUM_TILINGS>::TileCode(
           * this->_dimensionalInfos[j].getGeneralizationScale());
     }
   }
-
-  _w = floatVector(this->getSize(), 0);
 }
 
-template<size_t D, size_t NUM_TILINGS>
-size_t TileCode<D, NUM_TILINGS>::getNumTilings() const {
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+size_t TileCode<D, NUM_TILINGS, WEIGHT_CONT>::getNumTilings() const {
   return NUM_TILINGS;
 }
 
-template<size_t D, size_t NUM_TILINGS>
-size_t TileCode<D, NUM_TILINGS>::getSize() const {
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+size_t TileCode<D, NUM_TILINGS, WEIGHT_CONT>::getSize() const {
   return _sizeCache;
 }
 
-template <size_t D, size_t NUM_TILINGS>
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
 FLOAT
-TileCode<D, NUM_TILINGS>::getValueFromParameters(
+TileCode<D, NUM_TILINGS, WEIGHT_CONT>::getValueFromParameters(
   const floatArray<D>& parameters) const {
   FEATURE_VECTOR fv = std::move(this->getFeatureVector(parameters));
 
   return this->getValueFromFeatureVector(fv);
 }
 
-template <size_t D, size_t NUM_TILINGS>
-FLOAT TileCode<D, NUM_TILINGS>::getValueFromFeatureVector(
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+FLOAT TileCode<D, NUM_TILINGS, WEIGHT_CONT>::getValueFromFeatureVector(
   const FEATURE_VECTOR& fv) const {
   rl::FLOAT sum = 0.0F;
 
@@ -185,11 +209,17 @@ FLOAT TileCode<D, NUM_TILINGS>::getValueFromFeatureVector(
   return sum;
 }
 
-template<size_t D, size_t NUM_TILINGS>
-size_t TileCode<D, NUM_TILINGS>::_calculateSizeCache() {
-  // Calculate the size.
-  rl::UINT size = 1;
-  for (const DimensionInfo<FLOAT>& di : this->_dimensionalInfos) {
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+size_t TileCode<D, NUM_TILINGS, WEIGHT_CONT>::_calculateSizeCache() const {
+  return TileCode<D, NUM_TILINGS, WEIGHT_CONT>::_calculateSize(
+    _dimensionalInfos);
+}
+
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+size_t TileCode<D, NUM_TILINGS, WEIGHT_CONT>::_calculateSize(
+  const array<DimensionInfo<FLOAT>, D>& dims) {
+  size_t size = 1;
+  for (auto& di : dims) {
     size *= di.GetGridCountReal();
   }
 
@@ -197,8 +227,8 @@ size_t TileCode<D, NUM_TILINGS>::_calculateSizeCache() {
   return size;
 }
 
-template<size_t D, size_t NUM_TILINGS>
-size_t TileCode<D, NUM_TILINGS>::paramToGridValue(
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+size_t TileCode<D, NUM_TILINGS, WEIGHT_CONT>::paramToGridValue(
   rl::FLOAT param, size_t tilingIndex, size_t dimensionIndex) const {
   auto randomOffset =
     _randomOffsets.at(tilingIndex).at(dimensionIndex);
@@ -218,24 +248,16 @@ size_t TileCode<D, NUM_TILINGS>::paramToGridValue(
     ) * dimGridCountIdeal) / dimRangeMagnitude;  // NOLINT: I'd like to make this easy to understand.
 }
 
-template<size_t D, size_t NUM_TILINGS>
-FLOAT& TileCode<D, NUM_TILINGS>::at(size_t i) {
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+typename WEIGHT_CONT::reference
+TileCode<D, NUM_TILINGS, WEIGHT_CONT>::at(size_t i) {
   return _w.at(i);
 }
 
-template<size_t D, size_t NUM_TILINGS>
-FLOAT TileCode<D, NUM_TILINGS>::at(size_t i) const {
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+typename WEIGHT_CONT::value_type
+TileCode<D, NUM_TILINGS, WEIGHT_CONT>::at(size_t i) const {
   return _w.at(i);
-}
-
-template<size_t D, size_t NUM_TILINGS>
-FLOAT& TileCode<D, NUM_TILINGS>::operator[](size_t i) {
-  return this->at(i);
-}
-
-template<size_t D, size_t NUM_TILINGS>
-FLOAT TileCode<D, NUM_TILINGS>::operator[](size_t i) const {
-  return this->at(i);
 }
 
 }  // namespace coding

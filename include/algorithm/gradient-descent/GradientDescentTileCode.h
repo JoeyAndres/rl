@@ -39,15 +39,21 @@ namespace algorithm {
  *  \brief Gradient Descent implementation.
  *  \tparam D Number of dimension.
  *  \tparam NUM_TILINGS Number of tilings.
+  * \tparam WEIGHT_CONT The container object to store the weights.
  *  \tparam STATE_DIM Number of dimension in State.
  *                    This also implies ACTION_DIM = D - STATE_DIM.
  */
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <
+  size_t D,
+  size_t NUM_TILINGS,
+  class WEIGHT_CONT,
+  size_t STATE_DIM>
 class GradientDescentTileCode :
-  public GradientDescentTileCodeAbstract<D, NUM_TILINGS, STATE_DIM> {
+  public GradientDescentTileCodeAbstract<
+    D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM> {
  public:
   using GradientDescentTileCodeAbstract<
-    D, NUM_TILINGS, STATE_DIM>::GradientDescentTileCodeAbstract;
+    D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::GradientDescentTileCodeAbstract;
 
   void updateWeights(
     const typename GradientDescentAbstract<
@@ -63,8 +69,9 @@ class GradientDescentTileCode :
     const FLOAT reward) override;
 };
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
-void GradientDescentTileCode<D, NUM_TILINGS, STATE_DIM>::updateWeights(
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
+void GradientDescentTileCode<
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::updateWeights(
   const typename GradientDescentAbstract<
     D,
     STATE_DIM>::spStateParam& currentStateVector,

@@ -3,32 +3,36 @@ rl
 
 [![Build Status](http://ci.joeyandres.com/job/rl-unit-test-master/badge/icon)](http://ci.joeyandres.com/job/rl-unit-test-master/)
 
-Modularized various Reinforcement Learning Algorithm library. 
-See test/include and test/src for examples.
-
-Note: This is currently only built for Linux systems. 
-Some threading libraries are linux specific (even the latest c++ standard which is supposed to be platform independent).
+Modularized various Reinforcement Learning Algorithm library.
 
 # Compilation and Installation
-
-### Caveat
-**rl** have some minor _double precision floating point_ issues in older compilers and os.
-The mountain car problem in test won't converge to a an optimal solution in osx and
-old g++ compiler (e.g. g++ 4.2.1). For optimal performance, use linux and new g++ compiler.
 
 ### Dependency:
 #### Required
 * g++-4.9 or greater or clang.
 * cmake 3.2.2 or greater.
-* boost v1.62 (might work for version < 1.62)
+* boost v1.59 or greater.
+### Optional: To enable cassandradb 
+* cassandra v3.9 or greater.
+* [datastax-cpp-driver](https://github.com/datastax/cpp-driver) v2.5 or greater.
 
 ### Installing dependencies Ubuntu 16.04:
 `sudo apt install g++ cmake libboost-all-dev`
 
-### Building 
+// TODO: Installing dependencies from http://downloads.datastax.com/cpp-driver/ubuntu/16.04/
+// TODO: Make a script to do this?
+
+### Building (no cassandradb)
 1. `mkdir build`
 2. `cd build`
-3. `cmake ..`
+3. `cmake .. -DCMAKE_BUILD_TYPE=Release`
+4. `make -j16`
+5. `sudo make install`
+
+### Building  (with cassandradb)
+1. `mkdir build`
+2. `cd build`
+3. `cmake .. -DCMAKE_BUILD_TYPE=Release -DENABLE_DB=true`
 4. `make -j16`
 5. `sudo make install`
 

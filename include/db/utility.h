@@ -18,33 +18,42 @@
 
 #pragma once
 
-#include <vector>
+#ifdef ENABLE_DB
 
-#include "../declares.h"
-#include "TileCodeHashedFactory.h"
-#include "TileCodeMurMur.h"
+#include <cassandra.h>
+#include <string>
 
-using std::vector;
+using std::string;
 
 namespace rl {
-namespace coding {
+namespace db {
 
-/*!\class TileCodeMurMurFactory
- * \brief Factory method for TileCodeMurMur.
- * \tparam D Number of dimension.
- * \tparam NUM_TILINGS Number of tilings.
- * \tparam WEIGHT_CONT The container object to store the weights.
+extern CassCluster* cluster;
+extern CassSession* session;
+extern CassFuture* connectFuture;
+
+bool isInitialized();
+
+/**
+   * Initialize connections and schema (if it doesn't exist yet).
+   */
+void initialize();
+
+/**
+ * Terminate connections.
  */
-template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT = DEFAULT_TILE_CONT>
-class TileCodeMurMurFactory :
-  public TileCodeHashedFactory<
-    D, NUM_TILINGS, WEIGHT_CONT, TileCodeMurMur> {
- public:
-  using TileCodeFactory<
-    D, NUM_TILINGS, WEIGHT_CONT, TileCodeMurMur>::TileCodeFactory;
-  using TileCodeHashedFactory<
-    D, NUM_TILINGS, WEIGHT_CONT, TileCodeMurMur>::TileCodeFactory;
-};
+void terminate();
 
-}  // namespace coding
+void executeStatement(const string& stmtStr);
+
+/**
+ * Creates the keyspace to be used by this app.
+ */
+void createKeySpace();
+
+CassUuid genUuid();
+
+}  // namespace db
 }  // namespace rl
+
+#endif  // #ifdef ENABLE_DB

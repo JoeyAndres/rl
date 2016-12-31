@@ -56,17 +56,12 @@ const UINT MAX_EPISODES = 100000;
 /*! \typedef FEATURE_VECTOR
  *  Feature vector is a data structure for Tile Coding. It is the indices
  *  that contains the data points to be sampled.
- *
- *  TODO(jandres): See #RL-14
  */
 typedef std::vector<UINT> FEATURE_VECTOR;
 
 /*! \typedef floatFector
  *  \brief A vector of float.
  *
- *  TODO(jandres): See #RL-16
- *
- *  \deprecated
  */
 using floatVector = std::vector<FLOAT>;
 
@@ -79,8 +74,6 @@ using floatArray = std::array<FLOAT, N>;
 
 /*! \typedef spFloatVector
  *  \brief Wraps floatVector in shared_ptr.
- *
- *  TODO(jandres): See #RL-16
  */
 using spFloatVector = std::shared_ptr<std::vector<FLOAT>>;
 
@@ -179,6 +172,8 @@ using spActionSet = std::set<spAction<A>, spActionComp<A>>;
  */
 template <class A>
 using spActionValueMap = std::map<spAction<A>, FLOAT, spActionComp<A>>;
+
+constexpr size_t SEGMENT_SIZE = 100;
 
 }  // namespace rl
 
