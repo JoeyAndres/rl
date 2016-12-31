@@ -16,31 +16,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#include "rl"
+#include "catch.hpp"
 
-#include <vector>
+#ifdef ENABLE_DB
 
-#include "../declares.h"
-#include "TileCodeFactory.h"
-#include "TileCodeCorrect.h"
+SCENARIO("TileCodeContainerSegment saves segment of the weight vector",
+         "[TileCodeContainerSegment]") {
+  GIVEN("TileCodeContainerSegment instance") {
+    rl::coding::TileCodeContainer<'i', 'd', '1'> tcc(1000, 0.0F);
+    rl::coding::TileCodeContainerSegment tccs(tcc.getID(), 0);
+    WHEN("Initialized") {
+      THEN("An element exist") {
+        REQUIRE(tccs.at(0) == 0.0F);
+      }
+    }
 
-using std::vector;
+    tcc.delete2();
+  }
+}
 
-namespace rl {
-namespace coding {
-
-/*!\class TileCodeCorrectFactory
- * \brief Factory method for TileCodeCorrect.
- * \tparam D Number of dimension.
- * \tparam NUM_TILINGS Number of tilings.
- * \tparam WEIGHT_CONT The container object to store the weights.
- */
-template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT = DEFAULT_TILE_CONT>
-class TileCodeCorrectFactory :
-  public TileCodeFactory<D, NUM_TILINGS, WEIGHT_CONT, TileCodeCorrect> {
-  using TileCodeFactory<
-    D, NUM_TILINGS, WEIGHT_CONT, TileCodeCorrect>::TileCodeFactory;
-};
-
-}  // namespace coding
-}  // namespace rl
+#endif  // #ifdef ENABLE_DB

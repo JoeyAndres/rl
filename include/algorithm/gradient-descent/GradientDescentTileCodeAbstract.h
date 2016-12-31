@@ -32,10 +32,15 @@ namespace algorithm {
  *
  * \tparam D Number of dimension.
  * \tparam NUM_TILINGS Number of tilings.
+ * \tparam WEIGHT_CONT The container object to store the weights.
  * \tparam STATE_DIM Number of dimension in State.
  *                    This also implies ACTION_DIM = D - STATE_DIM.
  */
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <
+  size_t D,
+  size_t NUM_TILINGS,
+  class WEIGHT_CONT,
+  size_t STATE_DIM>
 class GradientDescentTileCodeAbstract :
   public GradientDescentAbstract<D, STATE_DIM> {
  public:
@@ -45,10 +50,11 @@ class GradientDescentTileCodeAbstract :
    * @param discountRate discount rate for gradient descent.
    * @param lambda How influential is current state-action to ther state-action.
    */
-  GradientDescentTileCodeAbstract(const spTileCode<D, NUM_TILINGS>& tileCode,
-                                  rl::FLOAT stepSize,
-                                  rl::FLOAT discountRate,
-                                  rl::FLOAT lambda);
+  GradientDescentTileCodeAbstract(
+    const spTileCode<D, NUM_TILINGS, WEIGHT_CONT>& tileCode,
+    rl::FLOAT stepSize,
+    rl::FLOAT discountRate,
+    rl::FLOAT lambda);
 
   /**
    * Get the value of the parameters in the real space.
@@ -69,13 +75,13 @@ class GradientDescentTileCodeAbstract :
    * \brief Refers to the same object as _courseCode but this one is downcast'd
    *        to spTileCode allowing access to tile code specific methods.
    */
-  spTileCode<D, NUM_TILINGS> _tileCode;
+  spTileCode<D, NUM_TILINGS, WEIGHT_CONT> _tileCode;
 };
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
 GradientDescentTileCodeAbstract<
-  D, NUM_TILINGS, STATE_DIM>::GradientDescentTileCodeAbstract(
-  const spTileCode <D, NUM_TILINGS> &tileCode,
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::GradientDescentTileCodeAbstract(
+  const spTileCode <D, NUM_TILINGS, WEIGHT_CONT> &tileCode,
   rl::FLOAT stepSize,
   rl::FLOAT discountRate,
   rl::FLOAT lambda) :
@@ -88,18 +94,18 @@ GradientDescentTileCodeAbstract<
   _tileCode = tileCode;
 }
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
 FLOAT
 GradientDescentTileCodeAbstract<
-  D, NUM_TILINGS, STATE_DIM>::getValueFromFeatureVector(
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::getValueFromFeatureVector(
   const FEATURE_VECTOR& fv) const {
   return _tileCode->getValueFromFeatureVector(fv);
 }
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
 FEATURE_VECTOR
 GradientDescentTileCodeAbstract<
-  D, NUM_TILINGS, STATE_DIM>::getFeatureVector(
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::getFeatureVector(
   const floatArray<D>& parameters) const {
   return _tileCode->getFeatureVector(parameters);
 }

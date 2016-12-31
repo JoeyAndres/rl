@@ -18,33 +18,16 @@
 
 #pragma once
 
-#include <vector>
-
-#include "../declares.h"
-#include "TileCodeHashedFactory.h"
-#include "TileCodeMurMur.h"
-
-using std::vector;
-
 namespace rl {
-namespace coding {
+namespace utility {
 
-/*!\class TileCodeMurMurFactory
- * \brief Factory method for TileCodeMurMur.
- * \tparam D Number of dimension.
- * \tparam NUM_TILINGS Number of tilings.
- * \tparam WEIGHT_CONT The container object to store the weights.
- */
-template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT = DEFAULT_TILE_CONT>
-class TileCodeMurMurFactory :
-  public TileCodeHashedFactory<
-    D, NUM_TILINGS, WEIGHT_CONT, TileCodeMurMur> {
+class CRUDInterface {
  public:
-  using TileCodeFactory<
-    D, NUM_TILINGS, WEIGHT_CONT, TileCodeMurMur>::TileCodeFactory;
-  using TileCodeHashedFactory<
-    D, NUM_TILINGS, WEIGHT_CONT, TileCodeMurMur>::TileCodeFactory;
+  virtual void create() = 0;
+  virtual void read() = 0;
+  virtual void update() = 0;
+  virtual void delete2() = 0;
 };
 
-}  // namespace coding
+}  // namespace utility
 }  // namespace rl

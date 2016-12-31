@@ -35,27 +35,31 @@ namespace coding {
  *  \brief Tile Code using MurMur3 hash.
  *  \tparam D Number of dimensions.
  *  \tparam NUM_TILINGS Number of tilings.
+ *  \tparam WEIGHT_CONT The container object to store the weights.
  */
-template <size_t D, size_t NUM_TILINGS>
-class TileCodeMurMur : public TileCode<D, NUM_TILINGS> {
+template <
+  size_t D,
+  size_t NUM_TILINGS,
+  class WEIGHT_CONT = DEFAULT_TILE_CONT>
+class TileCodeMurMur : public TileCode<D, NUM_TILINGS, WEIGHT_CONT> {
  public:
-  using TileCode<D, NUM_TILINGS>::TileCode;
+  using TileCode<D, NUM_TILINGS, WEIGHT_CONT>::TileCode;
   TileCodeMurMur(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
                  size_t sizeHint);
   FEATURE_VECTOR getFeatureVector(
     const floatArray<D>& parameters) const override;
 };
 
-template <size_t D, size_t NUM_TILINGS>
-TileCodeMurMur<D, NUM_TILINGS>::TileCodeMurMur(
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+TileCodeMurMur<D, NUM_TILINGS, WEIGHT_CONT>::TileCodeMurMur(
   const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
   size_t sizeHint) :
-  TileCode<D, NUM_TILINGS>::TileCode(dimensionalInfos) {
-  this->_sizeCache = sizeHint;
+  TileCode<D, NUM_TILINGS, WEIGHT_CONT>::TileCode(dimensionalInfos, sizeHint) {
 }
 
-template <size_t D, size_t NUM_TILINGS>
-FEATURE_VECTOR TileCodeMurMur<D, NUM_TILINGS>::getFeatureVector(
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+FEATURE_VECTOR
+TileCodeMurMur<D, NUM_TILINGS, WEIGHT_CONT>::getFeatureVector(
   const floatArray<D>& parameters) const {
   FEATURE_VECTOR fv;
 

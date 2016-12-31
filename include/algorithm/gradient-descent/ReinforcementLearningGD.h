@@ -34,15 +34,20 @@ namespace algorithm {
  *  \brief Gradient descent implementation of Reinforcement Learning.
  *  \tparam D Number of dimension.
  *  \tparam NUM_TILINGS Number of tilings.
+ *  \tparam WEIGHT_CONT The container object to store the weights.
  *  \tparam STATE_DIM Number of dimension in State. This defaults to D-1.
  *                    This also implies ACTION_DIM = D - STATE_DIM.
  */
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM = D-1>
+template <
+  size_t D,
+  size_t NUM_TILINGS,
+  class WEIGHT_CONT = coding::DEFAULT_TILE_CONT,
+  size_t STATE_DIM = D-1>
 class ReinforcementLearningGD :
   public ReinforcementLearningGDAbstract<D, STATE_DIM> {
  public:
   ReinforcementLearningGD(
-      const spTileCode<D, NUM_TILINGS>& tileCode,
+      const spTileCode<D, NUM_TILINGS, WEIGHT_CONT>& tileCode,
       rl::FLOAT stepSize,
       rl::FLOAT discountRate,
       rl::FLOAT lambda,
@@ -51,9 +56,10 @@ class ReinforcementLearningGD :
   virtual ~ReinforcementLearningGD();
 };
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
-ReinforcementLearningGD<D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGD(
-  const spTileCode<D, NUM_TILINGS>& tileCode,
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
+ReinforcementLearningGD<
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::ReinforcementLearningGD(
+  const spTileCode<D, NUM_TILINGS, WEIGHT_CONT>& tileCode,
   rl::FLOAT stepSize,
   rl::FLOAT discountRate,
   rl::FLOAT lambda,
@@ -63,13 +69,13 @@ ReinforcementLearningGD<D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGD(
     D, STATE_DIM>::ReinforcementLearningGDAbstract(
     tileCode, stepSize, discountRate, lambda, policy) {
   this->_gradientDescent = spGradientDescentAbstract<D, STATE_DIM>(
-      new GradientDescentTileCode<D, NUM_TILINGS, STATE_DIM>(
+      new GradientDescentTileCode<D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>(
         tileCode, stepSize, discountRate, lambda));
 }
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
 ReinforcementLearningGD<
-  D, NUM_TILINGS, STATE_DIM>::~ReinforcementLearningGD() {
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::~ReinforcementLearningGD() {
 }
 
 }  // namespace algorithm
