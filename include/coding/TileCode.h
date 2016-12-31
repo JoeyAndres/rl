@@ -29,6 +29,7 @@
 #include "../declares.h"
 #include "CourseCode.h"
 #include "DimensionInfo.h"
+#include "../utility/IndexAccessorInterface.h"
 
 using std::array;
 using std::vector;
@@ -47,18 +48,15 @@ namespace coding {
  *  \tparam NUM_TILINGS Number of tilings.
  */
 template<size_t D, size_t NUM_TILINGS>
-class TileCode : public CourseCode<D> {
+class TileCode :
+  public CourseCode<D>, public utility::IndexAccessorInterface<FLOAT> {
  public:
   /**
    * @param dimensionalInfos An array of dimensionalInfos.
    */
   explicit TileCode(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos);
 
-  FLOAT& operator[](size_t i);
-  FLOAT operator[](size_t i) const;
-
-  virtual FLOAT& at(size_t i);
-  virtual FLOAT at(size_t i) const;
+  FLOAT& at(size_t i) override;
 
   /**
    * Hashed the parameter in Real space to a Natural space [0, infinity).
@@ -221,21 +219,6 @@ size_t TileCode<D, NUM_TILINGS>::paramToGridValue(
 template<size_t D, size_t NUM_TILINGS>
 FLOAT& TileCode<D, NUM_TILINGS>::at(size_t i) {
   return _w.at(i);
-}
-
-template<size_t D, size_t NUM_TILINGS>
-FLOAT TileCode<D, NUM_TILINGS>::at(size_t i) const {
-  return _w.at(i);
-}
-
-template<size_t D, size_t NUM_TILINGS>
-FLOAT& TileCode<D, NUM_TILINGS>::operator[](size_t i) {
-  return this->at(i);
-}
-
-template<size_t D, size_t NUM_TILINGS>
-FLOAT TileCode<D, NUM_TILINGS>::operator[](size_t i) const {
-  return this->at(i);
 }
 
 }  // namespace coding

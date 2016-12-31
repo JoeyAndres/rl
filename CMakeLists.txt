@@ -9,7 +9,7 @@ set(intrinsic "none" CACHE STRING "The possible intrinsics are the following: no
 
 # Default c++ flags.
 set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
-set(CMAKE_CXX_FLAGS_DEBUG "-ggdb -Wall --pedantic ${CMAKE_CXX_FLAGS_DEBUG}")
+set(CMAKE_CXX_FLAGS_DEBUG "-ggdb -O0 -Wall --pedantic ${CMAKE_CXX_FLAGS_DEBUG}")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 ${CMAKE_CXX_FLAGS_RELEASE}")
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")

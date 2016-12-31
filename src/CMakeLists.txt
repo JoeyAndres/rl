@@ -2,7 +2,9 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # Intrinsic Sources.
 add_subdirectory(agent)
+add_subdirectory(coding)
 add_subdirectory(hash)
+add_subdirectory(db)
 
 # Non-Intrinsic Sources.
 add_library(rl
@@ -12,7 +14,9 @@ add_library(rl
         $<TARGET_OBJECTS:unh>
 
         $<TARGET_OBJECTS:rlAgent>
-        $<TARGET_OBJECTS:rlHash>)
-target_link_libraries(rl ${PTHREAD_LIB})
+        $<TARGET_OBJECTS:rlCoding>
+        $<TARGET_OBJECTS:rlHash>
+        $<TARGET_OBJECTS:rlDB>)
+target_link_libraries(rl ${PTHREAD_LIB} cassandra)
 
 install(TARGETS rl DESTINATION lib)
