@@ -18,33 +18,21 @@
 
 #pragma once
 
-#include <vector>
+#ifdef ENABLE_DB
+
+#include <string>
 
 #include "../declares.h"
-#include "TileCodeHashedFactory.h"
-#include "TileCodeMurMur.h"
 
-using std::vector;
+using std::string;
 
 namespace rl {
-namespace coding {
+namespace db {
 
-/*!\class TileCodeMurMurFactory
- * \brief Factory method for TileCodeMurMur.
- * \tparam D Number of dimension.
- * \tparam NUM_TILINGS Number of tilings.
- * \tparam WEIGHT_CONT The container object to store the weights.
- */
-template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT = DEFAULT_TILE_CONT>
-class TileCodeMurMurFactory :
-  public TileCodeHashedFactory<
-    D, NUM_TILINGS, WEIGHT_CONT, TileCodeMurMur> {
- public:
-  using TileCodeFactory<
-    D, NUM_TILINGS, WEIGHT_CONT, TileCodeMurMur>::TileCodeFactory;
-  using TileCodeHashedFactory<
-    D, NUM_TILINGS, WEIGHT_CONT, TileCodeMurMur>::TileCodeFactory;
-};
+extern const string InsertTileCodeContainer;
+extern const string InsertTileCodeContainerSegment;
 
-}  // namespace coding
-}  // namespace rl
+}  // db
+}  // rl
+
+#endif  // #ifdef ENABLE_DB

@@ -33,15 +33,17 @@ namespace coding {
  * \brief Factory method for TileCodeSuperFastHash.
  * \tparam D Number of dimension.
  * \tparam NUM_TILINGS Number of tilings.
+ * \tparam WEIGHT_CONT The container object to store the weights.
  */
-template <size_t D, size_t NUM_TILINGS>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT = DEFAULT_TILE_CONT>
 class TileCodeSuperFastHashFactory :
-  public TileCodeHashedFactory<D, NUM_TILINGS, TileCodeSuperFastHash> {
+  public TileCodeHashedFactory<
+    D, NUM_TILINGS, WEIGHT_CONT, TileCodeSuperFastHash> {
  public:
   using TileCodeFactory<
-    D, NUM_TILINGS, TileCodeSuperFastHash>::TileCodeFactory;
+    D, NUM_TILINGS, WEIGHT_CONT, TileCodeSuperFastHash>::TileCodeFactory;
   using TileCodeHashedFactory<
-    D, NUM_TILINGS, TileCodeSuperFastHash>::TileCodeFactory;
+    D, NUM_TILINGS, WEIGHT_CONT, TileCodeSuperFastHash>::TileCodeFactory;
 };
 
 }  // namespace coding

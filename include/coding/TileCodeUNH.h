@@ -33,11 +33,12 @@ namespace coding {
  *  \brief Tile Code using University New Hampshire hash, or UNH.
  *  \tparam D Number of dimension.
  *  \tparam NUM_TILINGS Number of tilings.
+ *  \tparam WEIGHT_CONT The container object to store the weights.
  */
-template <size_t D, size_t NUM_TILINGS>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT = DEFAULT_TILE_CONT>
 class TileCodeUNH : public TileCode<D, NUM_TILINGS> {
  public:
-  using TileCode<D, NUM_TILINGS>::TileCode;
+  using TileCode<D, NUM_TILINGS, DEFAULT_TILE_CONT>::TileCode;
 
   TileCodeUNH(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
               size_t sizeHint);
@@ -54,15 +55,11 @@ class TileCodeUNH : public TileCode<D, NUM_TILINGS> {
   vector<rl::FLOAT> _normalization;
 };
 
-template <size_t D, size_t NUM_TILINGS>
-TileCodeUNH<D, NUM_TILINGS>::TileCodeUNH(
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+TileCodeUNH<D, NUM_TILINGS, WEIGHT_CONT>::TileCodeUNH(
   const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
   size_t sizeHint) :
-  TileCode<D, NUM_TILINGS>::TileCode(dimensionalInfos) {
-  if (sizeHint > this->_sizeCache) {
-    this->_sizeCache = sizeHint;
-  }
-
+  TileCode<D, NUM_TILINGS, WEIGHT_CONT>::TileCode(dimensionalInfos, sizeHint) {
   _normalization = vector<rl::FLOAT>(this->getDimension());
 
   for (size_t i = 0; i < this->_dimensionalInfos.size(); i++) {
@@ -71,8 +68,8 @@ TileCodeUNH<D, NUM_TILINGS>::TileCodeUNH(
   }
 }
 
-template <size_t D, size_t NUM_TILINGS>
-FEATURE_VECTOR TileCodeUNH<D, NUM_TILINGS>::getFeatureVector(
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+FEATURE_VECTOR TileCodeUNH<D, NUM_TILINGS, WEIGHT_CONT>::getFeatureVector(
   const floatArray<D>& parameters) const {
   FEATURE_VECTOR fv;
 
