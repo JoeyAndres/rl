@@ -55,27 +55,23 @@ TileCodeContainerSegment::TileCodeContainerSegment(
 
 void TileCodeContainerSegment::create() {
   CassStatement* stmt =
-    cass_statement_new(db::InsertTileCodeContainerSegment.c_str(), 4);
+    cass_statement_new(db::InsertTileCodeContainerSegment.c_str(), 103);
 
   CassUuid tileCodeContainerId;
   cass_uuid_from_string(_tileCodeContainerId.c_str(), &tileCodeContainerId);
-
-  CassCollection* list = cass_collection_new(CASS_COLLECTION_TYPE_LIST, _size);
-  for (size_t i = 0; i < _size; i++) {
-    cass_collection_append_double(list, 0.0F);
-  }
 
   // Bind the values using the indices of the bind variables.
   cass_statement_bind_uuid(stmt, 0, tileCodeContainerId);
   cass_statement_bind_int64(stmt, 1, _size);
   cass_statement_bind_int64(stmt, 2, _segmentIndex);
-  cass_statement_bind_collection(stmt, 3, list);
+  for (size_t i = 0; i < SEGMENT_SIZE; i++) {
+    cass_statement_bind_double(stmt, 3 + i, 0.0F);
+  }
 
   CassFuture* queryFuture = cass_session_execute(
     db::session, stmt);
 
   // Statement objects can be freed immediately after being executed.
-  cass_collection_free(list);
   cass_statement_free(stmt);
 
   // This will block until the query has finished.
@@ -93,7 +89,7 @@ void TileCodeContainerSegment::create() {
 
 void TileCodeContainerSegment::read() {
   string stmtStr = ""
-    "SELECT * \n"
+    "SELECT tileCodeContainerId, size, segmentIndex \n"
     "FROM rl.tilecodecontainersegment\n"
     "WHERE tileCodeContainerId = " + _tileCodeContainerId + " AND\n"
     "      segmentIndex = " + std::to_string(_segmentIndex) + ";\n";
@@ -102,11 +98,13 @@ void TileCodeContainerSegment::read() {
   CassFuture* resultFuture =
     cass_session_execute(db::session, stmt);
 
+  CassError rc = cass_future_error_code(resultFuture);
   const CassResult* result = cass_future_get_result(resultFuture);
 
   // If there was an error then the result won't be available.
   if (result == NULL) {
     /* Handle error */
+    printf("Query result [read]: %s\n", cass_error_desc(rc));
     cass_future_free(resultFuture);
     throw "Query failed.";
   }
@@ -117,11 +115,6 @@ void TileCodeContainerSegment::read() {
 
   // This can be used to retrieve on the first row of the result.
   const CassRow* row = cass_result_first_row(result);
-
-  // Now we can retrieve the column values from the row.
-  CassUuid id;
-  // Get the column value of "id" by name.
-  cass_value_get_uuid(cass_row_get_column_by_name(row, "id"), &id);
 
   CassUuid tileCodeContainerId;
   cass_value_get_uuid(
@@ -149,18 +142,7 @@ void TileCodeContainerSegment::read() {
     _data2[i].setIndex(i);
   }
 
-  const CassValue* data = cass_row_get_column_by_name(row, "data");
-  CassIterator* iterator = cass_iterator_from_collection(data);
-  size_t i = 0;
-  while (cass_iterator_next(iterator)) {
-    const CassValue* value = cass_iterator_get_value(iterator);
-    double outVal = 0.0F;
-    cass_value_get_double(value, &outVal);
-    _data[i++] = outVal;
-  }
-
   // This will free the result as well as the string pointed to by 'key'.
-  cass_iterator_free(iterator);
   cass_result_free(result);
 }
 

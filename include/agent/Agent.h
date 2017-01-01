@@ -268,6 +268,7 @@ size_t Agent<S, A>::executeEpisode(UINT maxIter) {
   UINT i = 0;
   for (; i < maxIter && episodeDone() == false; i++) {
     execute();
+    std::cout << "iter: " << i << std::endl;
   }
   postExecute();
   return i;

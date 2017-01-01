@@ -39,8 +39,9 @@ void TileCodeContainerCell::setIndex(size_t index) {
 }
 
 FLOAT TileCodeContainerCell::get() const {
+  const string dataField = "data" + std::to_string(_index);
   string stmtStr = ""
-    "SELECT tileCodeContainerId, segmentIndex, data\n"
+    "SELECT tileCodeContainerId, segmentIndex, " + dataField + "\n"
     "FROM rl.tilecodecontainersegment\n"
     "WHERE tileCodeContainerId = " + _tileCodeContainerId + " AND\n"
     "      segmentIndex = " + std::to_string(_segmentIndex) + ";\n";
@@ -69,29 +70,21 @@ FLOAT TileCodeContainerCell::get() const {
   // This can be used to retrieve on the first row of the result.
   const CassRow* row = cass_result_first_row(result);
 
-  const CassValue* data = cass_row_get_column_by_name(row, "data");
-  CassIterator* iterator = cass_iterator_from_collection(data);
-  // cassandra have 1-based indexing instead of 0-based when
-  // retrieving.
-  for (size_t i = 1; i <= _index + 1; i++) {
-    cass_iterator_next(iterator);  // Advance the iterator.
-  }
-
-  const CassValue* value = cass_iterator_get_value(iterator);
   cass_double_t outVal = 0.0F;
-  cass_value_get_double(value, &outVal);
+  cass_value_get_double(
+    cass_row_get_column_by_name(row, dataField.c_str()), &outVal);
 
   // Free memory.
-  cass_iterator_free(iterator);
   cass_result_free(result);
 
   return outVal;
 }
 
 void TileCodeContainerCell::set(FLOAT val) {
+  const string dataField = "data" + std::to_string(_index);
   string stmtStr = ""
     "UPDATE rl.tilecodecontainersegment\n"
-    "SET data[" + std::to_string(_index) + "] = " + std::to_string(val) + "\n"
+    "SET " + dataField + " = " + std::to_string(val) + "\n"
     "WHERE tileCodeContainerId = " + _tileCodeContainerId + " AND\n"
     "      segmentIndex = " + std::to_string(_segmentIndex) + ";\n";
 

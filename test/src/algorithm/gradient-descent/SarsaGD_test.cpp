@@ -60,7 +60,7 @@ SCENARIO("Sarsa Gradient Descent converge to a solution",
       rl::coding::DimensionInfo<rl::FLOAT>(0.0F, 2.0F, 3, 0.0F)
     };
 
-    WHEN("We do multiple episodes with Default weight container (vector)") {
+    /*WHEN("We do multiple episodes with Default weight container (vector)") {
       // Setup tile coding with 8 offsets.
       auto tileCode = TileCodeCorrectFactory<3, 8>(dimensionalInfoVector).get();
       auto sarsa =
@@ -78,7 +78,7 @@ SCENARIO("Sarsa Gradient Descent converge to a solution",
              "iteration") {
         REQUIRE(iterationCount <= 100);
       }
-    }
+    }*/
 
     WHEN("We do multiple episodes with TileCodeContainer.") {
       // Setup tile coding with 8 offsets.
