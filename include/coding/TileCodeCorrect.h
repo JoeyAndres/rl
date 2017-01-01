@@ -42,17 +42,17 @@ namespace coding {
  *  \tparam D Number of dimension.
  *  \tparam NUM_TILINGS Number of tilings.
  */
-template<size_t D, size_t NUM_TILINGS>
-class TileCodeCorrect : public TileCode<D, NUM_TILINGS> {
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT = DEFAULT_TILE_CONT>
+class TileCodeCorrect : public TileCode<D, NUM_TILINGS, WEIGHT_CONT> {
  public:
-  using TileCode<D, NUM_TILINGS>::TileCode;
+  using TileCode<D, NUM_TILINGS, WEIGHT_CONT>::TileCode;
 
   FEATURE_VECTOR getFeatureVector(
     const floatArray<D>& parameters) const override;
 };
 
-template<size_t D, size_t NUM_TILINGS>
-FEATURE_VECTOR TileCodeCorrect<D, NUM_TILINGS>::getFeatureVector(
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+FEATURE_VECTOR TileCodeCorrect<D, NUM_TILINGS, WEIGHT_CONT>::getFeatureVector(
   const floatArray<D>& parameters) const {
   FEATURE_VECTOR fv;
   fv.resize(NUM_TILINGS);

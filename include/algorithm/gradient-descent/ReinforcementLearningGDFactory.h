@@ -33,10 +33,11 @@ namespace algorithm {
  *                   Implies that action is D - STATE_DIM.
  * \tparam REINFORCEMENT_LEARNING_GD ReinforcementLearningGDAbstract child class.
  */
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM,
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM,
   template <
   size_t E_D,
   size_t E_NUM_TILINGS,
+  class E_WEIGHT_CONT,
   size_t E_STATE_DIM> class REINFORCEMENT_LEARNING_GD>
 class ReinforcementLearningGDFactory :
   public ReinforcementLearningFactory<
@@ -44,19 +45,18 @@ class ReinforcementLearningGDFactory :
     typename ReinforcementLearningGDAbstract<D, STATE_DIM>::ActionParam> {
  public:
   ReinforcementLearningGDFactory(
-    const spTileCode<D, NUM_TILINGS>& tileCode,
+    const spTileCode<D, NUM_TILINGS, WEIGHT_CONT>& tileCode,
     rl::FLOAT stepSize,
     rl::FLOAT discountRate,
     rl::FLOAT lambda,
     const typename ReinforcementLearningGDAbstract<
-      D,
-      STATE_DIM>::spPolicy& policy) {
+      D, STATE_DIM>::spPolicy& policy) {
     this->_instance = spLearningAlgorithm<
       typename ReinforcementLearningGDAbstract<
         D, STATE_DIM>::StateParam,
       typename ReinforcementLearningGDAbstract<
         D, STATE_DIM>::ActionParam>(
-      new REINFORCEMENT_LEARNING_GD<D, NUM_TILINGS, STATE_DIM>(
+      new REINFORCEMENT_LEARNING_GD<D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>(
         tileCode, stepSize, discountRate, lambda, policy));
   }
 };

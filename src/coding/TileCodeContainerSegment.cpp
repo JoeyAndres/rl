@@ -195,6 +195,10 @@ TileCodeContainerCell& TileCodeContainerSegment::at(size_t i) {
   return _data2[i];
 }
 
+TileCodeContainerCell TileCodeContainerSegment::at(size_t i) const {
+  return _data2[i];
+}
+
 void TileCodeContainerSegment::createSchema() {
   db::executeStatement(db::TileCodeContainerSegment.c_str());
 }

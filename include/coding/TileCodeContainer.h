@@ -41,9 +41,19 @@ namespace coding {
 class TileCodeContainer;
 using spTileCodeContainer = shared_ptr<TileCodeContainer>;
 
+using TileCodeContainerAllocator = std::allocator<TileCodeContainerCell>;
+
 class TileCodeContainer :
   public utility::CRUDInterface,
   public utility::IndexAccessorInterface<TileCodeContainerCell> {
+ public:
+  typedef TileCodeContainerAllocator allocator_type;
+  typedef typename TileCodeContainerAllocator::value_type value_type;
+  typedef typename TileCodeContainerAllocator::reference reference;
+  typedef typename TileCodeContainerAllocator::const_reference const_reference;
+  typedef typename TileCodeContainerAllocator::difference_type difference_type;
+  typedef typename TileCodeContainerAllocator::size_type size_type;
+
  public:
   TileCodeContainer(size_t size, FLOAT initialValue);
   TileCodeContainer(const string& id);
@@ -59,9 +69,9 @@ class TileCodeContainer :
   std::vector<spTileCodeContainerSegment> getSegments() const;
 
   TileCodeContainerCell& at(size_t i) override;
+  TileCodeContainerCell at(size_t i) const override;
 
  protected:
-  void _setInserted(bool inserted);
   void _deleteAllSegments();
 
  public:
@@ -87,7 +97,6 @@ class TileCodeContainer :
   size_t _size;
   FLOAT _initialValue = 0.0F;
   string _id = "";
-  bool _inserted = false;
   vector<spTileCodeContainerSegment> _segments;
 };
 

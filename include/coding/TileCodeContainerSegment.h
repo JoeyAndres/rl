@@ -52,6 +52,7 @@ class TileCodeContainerSegment :
   void delete2() override;
 
   TileCodeContainerCell& at(size_t i) override;
+  TileCodeContainerCell at(size_t i) const override;
 
  public:
   /**

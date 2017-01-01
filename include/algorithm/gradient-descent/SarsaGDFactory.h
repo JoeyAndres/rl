@@ -31,12 +31,21 @@ namespace algorithm {
  * \tparam STATE_DIM Number of dimension in state.
  *                   Implies that action is D - STATE_DIM.
  */
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM = D-1>
+template <
+  size_t D,
+  size_t NUM_TILINGS,
+  class WEIGHT_CONT = coding::DEFAULT_TILE_CONT,
+  size_t STATE_DIM = D-1>
 class SarsaGDFactory :
-  public ReinforcementLearningGDFactory<D, NUM_TILINGS, STATE_DIM, SarsaGD> {
+  public ReinforcementLearningGDFactory<
+    D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM, SarsaGD> {
  public:
   using ReinforcementLearningGDFactory<
-    D, NUM_TILINGS, STATE_DIM, SarsaGD>::ReinforcementLearningGDFactory;
+    D,
+    NUM_TILINGS,
+    WEIGHT_CONT,
+    STATE_DIM,
+    SarsaGD>::ReinforcementLearningGDFactory;
 };
 
 }  // namespace algorithm

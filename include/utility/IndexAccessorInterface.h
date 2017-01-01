@@ -28,13 +28,8 @@ class IndexAccessorInterface {
   virtual T operator[](size_t i) const;
 
   virtual T& at(size_t i) = 0;
-  virtual T at(size_t i) const;
+  virtual T at(size_t i) const = 0;
 };
-
-template<class T>
-T IndexAccessorInterface<T>::at(size_t i) const {
-  return this->at(i);
-}
 
 template<class T>
 T& IndexAccessorInterface<T>::operator[](size_t i) {

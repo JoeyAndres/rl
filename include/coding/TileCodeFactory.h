@@ -34,15 +34,18 @@ namespace coding {
  * \tparam D Number of dimension.
  * \tparam NUM_TILINGS Number of tilings.
  * \tparam TILE_CODE_CLASS TileCode child that don't utilizes hashing.
+ * \tparam WEIGHT_CONT The container object to store the weights.
  */
-template<size_t D, size_t NUM_TILINGS,
-  template <size_t E_D, size_t E_NUM_TILINGS> class TILE_CODE_CLASS>
-class TileCodeFactory : public FactoryAbstract<TileCode<D, NUM_TILINGS>> {
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT,
+  template <size_t E_D, size_t E_NUM_TILINGS, class E_WEIGHT_CONT>
+  class TILE_CODE_CLASS>
+class TileCodeFactory :
+  public FactoryAbstract<TileCode<D, NUM_TILINGS, WEIGHT_CONT>> {
  public:
   explicit TileCodeFactory(
     const array<DimensionInfo<FLOAT>, D>& dimensionalInfos) {
-    this->_instance = spTileCode<D, NUM_TILINGS>(
-      new TILE_CODE_CLASS<D, NUM_TILINGS>(dimensionalInfos));
+    this->_instance = spTileCode<D, NUM_TILINGS, WEIGHT_CONT>(
+      new TILE_CODE_CLASS<D, NUM_TILINGS, WEIGHT_CONT>(dimensionalInfos));
   }
 };
 

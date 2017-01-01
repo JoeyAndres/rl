@@ -34,10 +34,11 @@ namespace coding {
  * \tparam D Number of dimension.
  * \tparam NUM_TILINGS Number of tilings.
  */
-template<size_t D, size_t NUM_TILINGS>
+template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT = DEFAULT_TILE_CONT>
 class TileCodeCorrectFactory :
-  public TileCodeFactory<D, NUM_TILINGS, TileCodeCorrect> {
-  using TileCodeFactory<D, NUM_TILINGS, TileCodeCorrect>::TileCodeFactory;
+  public TileCodeFactory<D, NUM_TILINGS, WEIGHT_CONT, TileCodeCorrect> {
+  using TileCodeFactory<
+    D, NUM_TILINGS, WEIGHT_CONT, TileCodeCorrect>::TileCodeFactory;
 };
 
 }  // namespace coding

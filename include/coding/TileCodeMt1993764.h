@@ -35,10 +35,10 @@ namespace coding {
  *  \tparam D Number of dimensions.
  *  \tparam NUM_TILINGS Number of tilings.
  */
-template <size_t D, size_t NUM_TILINGS>
-class TileCodeMt1993764 : public TileCode<D, NUM_TILINGS> {
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT = DEFAULT_TILE_CONT>
+class TileCodeMt1993764 : public TileCode<D, NUM_TILINGS, WEIGHT_CONT> {
  public:
-  using TileCode<D, NUM_TILINGS>::TileCode;
+  using TileCode<D, NUM_TILINGS, WEIGHT_CONT>::TileCode;
 
   /**
    * @param dimensionalInfos
@@ -57,18 +57,16 @@ class TileCodeMt1993764 : public TileCode<D, NUM_TILINGS> {
   mutable std::mt19937_64 _prng;
 };
 
-template <size_t D, size_t NUM_TILINGS>
-TileCodeMt1993764<D, NUM_TILINGS>::TileCodeMt1993764(
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+TileCodeMt1993764<D, NUM_TILINGS, WEIGHT_CONT>::TileCodeMt1993764(
   const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
   size_t sizeHint) :
-  TileCode<D, NUM_TILINGS>::TileCode(dimensionalInfos) {
-  if (sizeHint > this->_sizeCache) {
-    this->_sizeCache = sizeHint;
-  }
+  TileCode<D, NUM_TILINGS, WEIGHT_CONT>::TileCode(dimensionalInfos, sizeHint) {
 }
 
-template <size_t D, size_t NUM_TILINGS>
-FEATURE_VECTOR TileCodeMt1993764<D, NUM_TILINGS>::getFeatureVector(
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+FEATURE_VECTOR
+TileCodeMt1993764<D, NUM_TILINGS, WEIGHT_CONT>::getFeatureVector(
   const floatArray<D>& parameters) const {
   vector<rl::INT> tileComponents(this->getDimension() + 1);
   FEATURE_VECTOR fv;

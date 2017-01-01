@@ -42,6 +42,7 @@ class TileCodeContainerCell {
 
   // operator overload.
   TileCodeContainerCell& operator=(FLOAT val);
+  TileCodeContainerCell& operator+=(FLOAT val);
 
   // Implicit conversion to FLOAT.
   operator FLOAT() const;

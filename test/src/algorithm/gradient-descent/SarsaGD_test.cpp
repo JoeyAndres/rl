@@ -31,6 +31,7 @@ using rl::policy::EpsilonGreedyFactory;
 using rl::agent::ActuatorFactory;
 using rl::algorithm::SarsaGDFactory;
 using rl::coding::TileCodeCorrectFactory;
+using rl::coding::TileCodeContainer;
 
 SCENARIO("Sarsa Gradient Descent converge to a solution",
          "[rl::SarsaGD]") {
@@ -59,18 +60,49 @@ SCENARIO("Sarsa Gradient Descent converge to a solution",
       rl::coding::DimensionInfo<rl::FLOAT>(0.0F, 2.0F, 3, 0.0F)
     };
 
-    // Setup tile coding with 8 offsets.
-    auto tileCode = TileCodeCorrectFactory<3, 8>(dimensionalInfoVector).get();
+    WHEN("We do multiple episodes with Default weight container (vector)") {
+      // Setup tile coding with 8 offsets.
+      auto tileCode = TileCodeCorrectFactory<3, 8>(dimensionalInfoVector).get();
+      auto sarsa =
+        SarsaGDFactory<3, 8>(tileCode, 0.1F, 1.0F, 0.9F, policy).get();
+      rl::agent::AgentGD<3> agent(mce, sarsa);
 
-    auto sarsa = SarsaGDFactory<3, 8>(tileCode, 0.1F, 1.0F, 0.9F, policy).get();
-    rl::agent::AgentGD<3> agent(mce, sarsa);
-
-    WHEN("We do multiple episodes") {
       rl::INT iterationCount = 0;
       for (rl::INT i = 0; i < 1000; i++) {
         agent.reset();
 
         iterationCount = agent.executeEpisode();
+      }
+
+      THEN("At the end, we solve the Mountain Car environment in 100 "
+             "iteration") {
+        REQUIRE(iterationCount <= 100);
+      }
+    }
+
+    WHEN("We do multiple episodes with TileCodeContainer.") {
+      // Setup tile coding with 8 offsets.
+      auto tileCode =
+        TileCodeCorrectFactory<
+          3, 8, TileCodeContainer>(dimensionalInfoVector).get();
+      auto sarsa =
+        SarsaGDFactory<3, 8, TileCodeContainer>(
+          tileCode, 0.1F, 1.0F, 0.9F, policy).get();
+      rl::agent::AgentGD<3> agent(mce, sarsa);
+
+      rl::INT iterationCount = 0;
+
+#ifdef DEBUG
+      std::cout << "Starting episodes with SarasaGD and TileCodeContainer "
+        "(cassandradb)" << std::endl;
+#endif
+      for (rl::INT i = 0; i < 1000; i++) {
+        agent.reset();
+
+        iterationCount = agent.executeEpisode();
+#ifdef DEBUG
+        std::cout << iterationCount << std::endl;
+#endif
       }
 
       THEN("At the end, we solve the Mountain Car environment in 100 "

@@ -34,14 +34,15 @@ namespace coding {
  * \tparam D Number of dimension.
  * \tparam NUM_TILINGS Number of tilings.
  */
-template <size_t D, size_t NUM_TILINGS>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT = DEFAULT_TILE_CONT>
 class TileCodeMt1993764Factory :
-  public TileCodeHashedFactory<D, NUM_TILINGS, TileCodeMt1993764> {
+  public TileCodeHashedFactory<
+    D, NUM_TILINGS, WEIGHT_CONT, TileCodeMt1993764> {
  public:
   using TileCodeFactory<
-    D, NUM_TILINGS, TileCodeMt1993764>::TileCodeFactory;
+    D, NUM_TILINGS, WEIGHT_CONT, TileCodeMt1993764>::TileCodeFactory;
   using TileCodeHashedFactory<
-    D, NUM_TILINGS, TileCodeMt1993764>::TileCodeFactory;
+    D, NUM_TILINGS, WEIGHT_CONT, TileCodeMt1993764>::TileCodeFactory;
 };
 
 }  // namespace coding

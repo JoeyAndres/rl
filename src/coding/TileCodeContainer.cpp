@@ -50,12 +50,7 @@ TileCodeContainer::TileCodeContainer(const string& id) : _id(id) {
 }
 
 void TileCodeContainer::create() {
-  if (_inserted) {
-    return;
-  }
-
   _id = TileCodeContainer::_insertTileCodeContainer(_size, _initialValue);
-  _setInserted(true);
 
   // Create the segments.
   size_t segmentCount = getSegmentCount();
@@ -70,10 +65,6 @@ void TileCodeContainer::create() {
 }
 
 void TileCodeContainer::read() {
-  if (_inserted) {
-    return;
-  }
-
   // Throws exception if _id is invalid.
   auto paramTuple = TileCodeContainer::_getTileContainer(_id);
   this->_id = std::get<0>(paramTuple);
@@ -81,17 +72,12 @@ void TileCodeContainer::read() {
   this->_initialValue = std::get<2>(paramTuple);
 
   _segments = getSegments();
-  _setInserted(true);
 }
 
 void TileCodeContainer::update() {
 }
 
 void TileCodeContainer::delete2() {
-  if (!_inserted) {
-    return;
-  }
-
   this->_deleteAllSegments();
 
   string stmtStr = ""
@@ -112,8 +98,6 @@ void TileCodeContainer::delete2() {
 
   cass_statement_free(stmt);
   cass_future_free(resultFuture);
-
-  _setInserted(false);
 }
 
 string TileCodeContainer::getID() const {
@@ -125,18 +109,9 @@ size_t TileCodeContainer::getSegmentCount() const {
     static_cast<FLOAT>(_size) / static_cast<FLOAT>(rl::SEGMENT_SIZE));
 }
 
-void TileCodeContainer::_setInserted(bool inserted) {
-  _inserted = inserted;
-
-  if (!inserted) {
-    _id = "";
-  }
-}
-
 vector<spTileCodeContainerSegment>
 TileCodeContainer::getSegments() const {
   vector<spTileCodeContainerSegment> tileCodeContainerSegments;
-
   string stmtStr = ""
     "SELECT tileCodeContainerId, segmentIndex \n"
     "FROM rl.tilecodecontainersegment\n"
@@ -287,7 +262,12 @@ throw(exception) {
 TileCodeContainerCell& TileCodeContainer::at(size_t i) {
   size_t segmentIndex = i / SEGMENT_SIZE;
   size_t innerSegmentIndex = i % SEGMENT_SIZE;
+  return _segments[segmentIndex]->at(innerSegmentIndex);
+}
 
+TileCodeContainerCell TileCodeContainer::at(size_t i) const {
+  size_t segmentIndex = i / SEGMENT_SIZE;
+  size_t innerSegmentIndex = i % SEGMENT_SIZE;
   return _segments[segmentIndex]->at(innerSegmentIndex);
 }
 

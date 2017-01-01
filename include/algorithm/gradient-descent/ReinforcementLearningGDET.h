@@ -38,12 +38,16 @@ namespace algorithm {
  *  \tparam STATE_DIM Number of dimension in State. This defaults to D-1.
  *                    This also implies ACTION_DIM = D - STATE_DIM.
  */
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM = D-1>
+template <
+  size_t D,
+  size_t NUM_TILINGS,
+  class WEIGHT_CONT = coding::DEFAULT_TILE_CONT,
+  size_t STATE_DIM = D-1>
 class ReinforcementLearningGDET :
   public ReinforcementLearningGDAbstract<D, STATE_DIM> {
  public:
   ReinforcementLearningGDET(
-    const spTileCode<D, NUM_TILINGS>& tileCode,
+    const spTileCode<D, NUM_TILINGS, WEIGHT_CONT>& tileCode,
     rl::FLOAT stepSize,
     rl::FLOAT discountRate,
     rl::FLOAT lambda,
@@ -52,10 +56,10 @@ class ReinforcementLearningGDET :
   virtual ~ReinforcementLearningGDET();
 };
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
 ReinforcementLearningGDET<
-  D, NUM_TILINGS, STATE_DIM>::ReinforcementLearningGDET(
-  const spTileCode<D, NUM_TILINGS>& tileCode,
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::ReinforcementLearningGDET(
+  const spTileCode<D, NUM_TILINGS, WEIGHT_CONT>& tileCode,
   rl::FLOAT stepSize,
   rl::FLOAT discountRate,
   rl::FLOAT lambda,
@@ -65,13 +69,13 @@ ReinforcementLearningGDET<
     D, STATE_DIM>::ReinforcementLearningGDAbstract(
     tileCode, stepSize, discountRate, lambda, policy) {
   this->_gradientDescent = spGradientDescentAbstract<D, STATE_DIM>(
-    new GradientDescentTileCodeET<D, NUM_TILINGS, STATE_DIM>(
+    new GradientDescentTileCodeET<D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>(
       tileCode, stepSize, discountRate, lambda));
 }
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
 ReinforcementLearningGDET<
-  D, NUM_TILINGS, STATE_DIM>::~ReinforcementLearningGDET() {
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::~ReinforcementLearningGDET() {
 }
 
 }  // namespace algorithm

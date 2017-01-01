@@ -40,7 +40,7 @@ void TileCodeContainerCell::setIndex(size_t index) {
 
 FLOAT TileCodeContainerCell::get() const {
   string stmtStr = ""
-    "SELECT *\n"
+    "SELECT tileCodeContainerId, segmentIndex, data\n"
     "FROM rl.tilecodecontainersegment\n"
     "WHERE tileCodeContainerId = " + _tileCodeContainerId + " AND\n"
     "      segmentIndex = " + std::to_string(_segmentIndex) + ";\n";
@@ -116,6 +116,11 @@ void TileCodeContainerCell::set(FLOAT val) {
 
 TileCodeContainerCell& TileCodeContainerCell::operator=(FLOAT val) {
   this->set(val);
+  return *this;
+}
+
+TileCodeContainerCell& TileCodeContainerCell::operator+=(FLOAT val) {
+  this->set(this->get() + val);
   return *this;
 }
 

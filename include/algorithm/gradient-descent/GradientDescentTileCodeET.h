@@ -41,9 +41,14 @@ namespace algorithm {
  *  \tparam STATE_DIM Number of dimension in State.
  *                    This also implies ACTION_DIM = D - STATE_DIM.
  */
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <
+  size_t D,
+  size_t NUM_TILINGS,
+  class WEIGHT_CONT,
+  size_t STATE_DIM>
 class GradientDescentTileCodeET :
-  public GradientDescentTileCodeAbstract<D, NUM_TILINGS, STATE_DIM> {
+  public GradientDescentTileCodeAbstract<
+    D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM> {
  public:
   /**
    * @param tileCode Type of tile coding.
@@ -52,7 +57,7 @@ class GradientDescentTileCodeET :
    * @param lambda How influential is current state-action to their state-action.
    */
   GradientDescentTileCodeET(
-    const spTileCode<D, NUM_TILINGS>& tileCode,
+    const spTileCode<D, NUM_TILINGS, WEIGHT_CONT>& tileCode,
     rl::FLOAT stepSize,
     rl::FLOAT discountRate,
     rl::FLOAT lambda);
@@ -109,50 +114,51 @@ class GradientDescentTileCodeET :
   std::vector<rl::FLOAT> _e;  //!< Vector of eligibility traces.
 };
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
-GradientDescentTileCodeET<D, NUM_TILINGS, STATE_DIM>::GradientDescentTileCodeET(
-  const spTileCode<D, NUM_TILINGS>& tileCode,
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
+GradientDescentTileCodeET<
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::GradientDescentTileCodeET(
+  const spTileCode<D, NUM_TILINGS, WEIGHT_CONT>& tileCode,
   rl::FLOAT stepSize,
   rl::FLOAT discountRate,
   rl::FLOAT lambda) :
   GradientDescentTileCodeAbstract<
-    D, NUM_TILINGS, STATE_DIM>::GradientDescentTileCodeAbstract(
+    D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::GradientDescentTileCodeAbstract(
     tileCode, stepSize, discountRate, lambda) {
   _e = floatVector(this->_courseCode->getSize(), 0);
 }
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
 void GradientDescentTileCodeET<
-  D, NUM_TILINGS, STATE_DIM>::incrementEligibilityTraces(
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::incrementEligibilityTraces(
   const FEATURE_VECTOR& fv) {
   for (rl::INT f : fv) {
     ++(this->_e)[f];
   }
 }
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
 void GradientDescentTileCodeET<
-  D, NUM_TILINGS, STATE_DIM>::replaceEligibilityTraces(
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::replaceEligibilityTraces(
   const FEATURE_VECTOR& fv) {
   for (rl::INT f : fv) {
     this->_e[f] = 1;
   }
 }
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
 void
 GradientDescentTileCodeET<
-  D, NUM_TILINGS, STATE_DIM>::decreaseEligibilityTraces() {
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::decreaseEligibilityTraces() {
   size_t n = this->getSize();
   for (size_t i = 0; i < n; i++) {
     this->_e[i] *= this->_discountRateTimesLambda;
   }
 }
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
 void
 GradientDescentTileCodeET<
-  D, NUM_TILINGS, STATE_DIM>::backUpWeights(FLOAT tdError) {
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::backUpWeights(FLOAT tdError) {
   rl::FLOAT multiplier = (this->_stepSize / NUM_TILINGS) * tdError;
   size_t n = this->getSize();
   for (size_t i = 0; i < n-1; i++) {
@@ -160,9 +166,9 @@ GradientDescentTileCodeET<
   }
 }
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
 void GradientDescentTileCodeET<
-  D, NUM_TILINGS, STATE_DIM>::updateWeights(
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::updateWeights(
   const typename GradientDescentAbstract<
     D,
     STATE_DIM>::spStateParam& currentStateVector,
@@ -188,9 +194,9 @@ void GradientDescentTileCodeET<
   decreaseEligibilityTraces();
 }
 
-template <size_t D, size_t NUM_TILINGS, size_t STATE_DIM>
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM>
 void GradientDescentTileCodeET<
-  D, NUM_TILINGS, STATE_DIM>::resetEligibilityTraces() {
+  D, NUM_TILINGS, WEIGHT_CONT, STATE_DIM>::resetEligibilityTraces() {
   std::fill(&this->_e[0], &this->_e[0] + this->getSize(), 0);
 }
 

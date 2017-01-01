@@ -36,10 +36,10 @@ namespace coding {
  *  \tparam D Number of dimension.
  *  \tparam NUM_TILINGS Number of tilings.
  */
-template <size_t D, size_t NUM_TILINGS>
-class TileCodeSuperFastHash : public TileCode<D, NUM_TILINGS> {
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT = DEFAULT_TILE_CONT>
+class TileCodeSuperFastHash : public TileCode<D, NUM_TILINGS, WEIGHT_CONT> {
  public:
-  using TileCode<D, NUM_TILINGS>::TileCode;
+  using TileCode<D, NUM_TILINGS, WEIGHT_CONT>::TileCode;
 
   /**
    * @param dimensionalInfos
@@ -55,18 +55,16 @@ class TileCodeSuperFastHash : public TileCode<D, NUM_TILINGS> {
     const floatArray<D>& parameters) const override;
 };
 
-template <size_t D, size_t NUM_TILINGS>
-TileCodeSuperFastHash<D, NUM_TILINGS>::TileCodeSuperFastHash(
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+TileCodeSuperFastHash<D, NUM_TILINGS, WEIGHT_CONT>::TileCodeSuperFastHash(
   const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
   size_t sizeHint) :
-  TileCode<D, NUM_TILINGS>::TileCode(dimensionalInfos) {
-  if (sizeHint > this->_sizeCache) {
-    this->_sizeCache = sizeHint;
-  }
+  TileCode<D, NUM_TILINGS, WEIGHT_CONT>::TileCode(dimensionalInfos, sizeHint) {
 }
 
-template <size_t D, size_t NUM_TILINGS>
-FEATURE_VECTOR TileCodeSuperFastHash<D, NUM_TILINGS>::getFeatureVector(
+template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
+FEATURE_VECTOR
+TileCodeSuperFastHash<D, NUM_TILINGS, WEIGHT_CONT>::getFeatureVector(
   const floatArray<D>& parameters) const {
   vector<rl::INT> tileComponents(this->getDimension() + 1);
   FEATURE_VECTOR fv;
