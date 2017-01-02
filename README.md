@@ -13,7 +13,7 @@ Modularized various Reinforcement Learning Algorithm library.
 * cmake 3.2.2 or greater.
 * boost v1.59 or greater.
 
-### Optional: To enable cassandradb 
+#### Optional: To enable cassandradb 
 * cassandra v3.9 or greater.
 * [datastax-cpp-driver](https://github.com/datastax/cpp-driver) v2.5 or greater.
 
