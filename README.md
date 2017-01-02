@@ -12,6 +12,7 @@ Modularized various Reinforcement Learning Algorithm library.
 * g++-4.9 or greater or clang.
 * cmake 3.2.2 or greater.
 * boost v1.59 or greater.
+
 ### Optional: To enable cassandradb 
 * cassandra v3.9 or greater.
 * [datastax-cpp-driver](https://github.com/datastax/cpp-driver) v2.5 or greater.
@@ -20,6 +21,7 @@ Modularized various Reinforcement Learning Algorithm library.
 `sudo apt install g++ cmake libboost-all-dev`
 
 // TODO: Installing dependencies from http://downloads.datastax.com/cpp-driver/ubuntu/16.04/
+
 // TODO: Make a script to do this?
 
 ### Building (no cassandradb)
