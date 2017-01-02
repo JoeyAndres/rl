@@ -18,6 +18,8 @@
 
 #pragma once
 
+#ifdef ENABLE_DB
+
 #include <cassandra.h>
 #include <string>
 
@@ -53,3 +55,5 @@ CassUuid genUuid();
 
 }  // namespace db
 }  // namespace rl
+
+#endif  // #ifdef ENABLE_DB

@@ -18,6 +18,8 @@
 
 #pragma once
 
+#ifdef ENABLE_DB
+
 #include <string>
 
 #include "../declares.h"
@@ -27,8 +29,10 @@ using std::string;
 namespace rl {
 namespace db {
 
-extern string InsertTileCodeContainer;
-extern string InsertTileCodeContainerSegment;
+extern const string InsertTileCodeContainer;
+extern const string InsertTileCodeContainerSegment;
 
 }  // db
 }  // rl
+
+#endif  // #ifdef ENABLE_DB

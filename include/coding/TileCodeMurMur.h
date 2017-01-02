@@ -35,6 +35,7 @@ namespace coding {
  *  \brief Tile Code using MurMur3 hash.
  *  \tparam D Number of dimensions.
  *  \tparam NUM_TILINGS Number of tilings.
+ *  \tparam WEIGHT_CONT The container object to store the weights.
  */
 template <
   size_t D,

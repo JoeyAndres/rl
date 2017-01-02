@@ -19,10 +19,12 @@
 #include "rl"
 #include "catch.hpp"
 
+#ifdef ENABLE_DB
+
 SCENARIO("TileCodeContainerSegment saves segment of the weight vector",
          "[TileCodeContainerSegment]") {
   GIVEN("TileCodeContainerSegment instance") {
-    rl::coding::TileCodeContainer tcc(1000, 0.0F);
+    rl::coding::TileCodeContainer<'i', 'd', '1'> tcc(1000, 0.0F);
     rl::coding::TileCodeContainerSegment tccs(tcc.getID(), 0);
     WHEN("Initialized") {
       THEN("An element exist") {
@@ -33,3 +35,5 @@ SCENARIO("TileCodeContainerSegment saves segment of the weight vector",
     tcc.delete2();
   }
 }
+
+#endif  // #ifdef ENABLE_DB

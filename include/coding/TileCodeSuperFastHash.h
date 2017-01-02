@@ -35,6 +35,7 @@ namespace coding {
  *  \brief Tile Code using SuperFastHash.
  *  \tparam D Number of dimension.
  *  \tparam NUM_TILINGS Number of tilings.
+ *  \tparam WEIGHT_CONT The container object to store the weights.
  */
 template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT = DEFAULT_TILE_CONT>
 class TileCodeSuperFastHash : public TileCode<D, NUM_TILINGS, WEIGHT_CONT> {

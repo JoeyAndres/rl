@@ -18,6 +18,8 @@
 
 #pragma once
 
+#ifdef ENABLE_DB
+
 #include <string>
 
 using std::string;
@@ -29,19 +31,21 @@ namespace db {
  *
  * Schema for the rl keyspace.
  */
-extern string RLKeySpace;
+extern const string RLKeySpace;
 
 /*!\var TilecodeContainer
  *
  * Schema for rl.tilecodecontainer.
  */
-extern string TileCodeContainer;
+extern const string TileCodeContainer;
 
 /*!\var TilecodeContainerSegment
  *
  * Schema for rl.tilecodecontainersegment.
  */
-extern string TileCodeContainerSegment;
+extern const string TileCodeContainerSegment;
 
 }  // namespace db
 }  // namespace rl
+
+#endif  // #ifdef ENABLE_DB

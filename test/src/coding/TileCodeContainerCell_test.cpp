@@ -16,11 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <chrono>
-#include <thread>
-
 #include "rl"
 #include "catch.hpp"
+
+#ifdef ENABLE_DB
 
 namespace rl {
 namespace coding {
@@ -28,14 +27,13 @@ namespace coding {
 SCENARIO("TileCodeContainerCell, a single weight in TileCodeContainer.",
          "[TileCodeContainerCell]") {
   GIVEN("A default TileCodeContainerSegment instance") {
-    rl::coding::TileCodeContainer tcc(1000, 0.0F);
+    rl::coding::TileCodeContainer<'i', 'd', '1'> tcc(1000, 0.0F);
 
     WHEN("TileCodeContainerCell is initialized with index 0, 23, 50, 99") {
-      TileCodeContainerCell tccc1(tcc.getID(), 0, 0);
-      TileCodeContainerCell tccc2(tcc.getID(), 0, 23);
-      TileCodeContainerCell tccc3(tcc.getID(), 0, 50);
-      TileCodeContainerCell tccc4(tcc.getID(), 0, 99);
-
+      rl::coding::TileCodeContainerCell tccc1(tcc.getID(), 0, 0);
+      rl::coding::TileCodeContainerCell tccc2(tcc.getID(), 0, 23);
+      rl::coding::TileCodeContainerCell tccc3(tcc.getID(), 0, 50);
+      rl::coding::TileCodeContainerCell tccc4(tcc.getID(), 0, 99);
       THEN("All have 0 values") {
         REQUIRE(tccc1 == 0.0F);
         REQUIRE(tccc2 == 0.0F);
@@ -48,7 +46,7 @@ SCENARIO("TileCodeContainerCell, a single weight in TileCodeContainer.",
   }
 
   GIVEN("A TileCodeContainerCell instance") {
-    rl::coding::TileCodeContainer tcc(1000, 0.0F);
+    rl::coding::TileCodeContainer<'i', 'd', '1'> tcc(1000, 0.0F);
 
     WHEN("I change the value of index 0 from 0.0 to 69.0") {
       TileCodeContainerCell tccc(tcc.getID(), 0, 0);
@@ -74,3 +72,5 @@ SCENARIO("TileCodeContainerCell, a single weight in TileCodeContainer.",
 
 }  // namespace coding
 }  // namespace rl
+
+#endif  // #ifdef ENABLE_DB

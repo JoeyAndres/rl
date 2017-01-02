@@ -19,6 +19,8 @@
 #include "rl"
 #include "catch.hpp"
 
+#ifdef ENABLE_DB
+
 SCENARIO("TileCodeContainer, encapsulates the weight storage in tile code.",
          "[TileCodeContainer]") {
   GIVEN("Uninitialized underlying db") {
@@ -32,9 +34,8 @@ SCENARIO("TileCodeContainer, encapsulates the weight storage in tile code.",
   GIVEN("Initialized underlying db") {
     WHEN("New TileCodeContainer instance is created with the "
            "id agnostic constructor") {
-      rl::coding::TileCodeContainer tcc(1000, 0.0F);
+      rl::coding::TileCodeContainer<'i', 'd', '1'> tcc(1000, 0.0F);
       THEN("It is added in db") {
-        REQUIRE(tcc.getID().size() > 0);
         tcc.delete2();
       }
     }
@@ -47,7 +48,7 @@ SCENARIO("TileCodeContainer, encapsulates the weight storage in tile code.",
   }
 
   GIVEN("An inserted TileCodeContainer") {
-    rl::coding::TileCodeContainer tcc(1000, 0.0F);
+    rl::coding::TileCodeContainer<'i', 'd', '2'> tcc(1000, 0.0F);
 
     WHEN("A member is accessed.") {
       THEN("It is first 0.0") {
@@ -71,3 +72,5 @@ SCENARIO("TileCodeContainer, encapsulates the weight storage in tile code.",
     }
   }
 }
+
+#endif  // #ifdef ENABLE_DB

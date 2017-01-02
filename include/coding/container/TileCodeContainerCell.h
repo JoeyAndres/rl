@@ -18,10 +18,13 @@
 
 #pragma once
 
+#ifdef ENABLE_DB
+
+#include <cassandra.h>
 #include <string>
 #include <memory>
 
-#include "../declares.h"
+#include "../../declares.h"
 
 using std::string;
 using std::shared_ptr;
@@ -29,15 +32,28 @@ using std::shared_ptr;
 namespace rl {
 namespace coding {
 
+/*!\class TileCodeContainerCell
+ * \brief Represents a single data that can be modified or retrieved.
+ */
 class TileCodeContainerCell {
  public:
+  /**
+   * @param tileCodeContainerId ID of the parent TileCodeContainer.
+   * @param segmentIndex Index of this segment.
+   * @param index Index of the data within segment.
+   */
   TileCodeContainerCell(string tileCodeContainerId,
                         size_t segmentIndex,
                         size_t index);
 
-  void setIndex(size_t index);
-
+  /**
+   * @return the data being represented in this cell.
+   */
   FLOAT get() const;
+
+  /**
+   * @param val The value to set this cell.
+   */
   void set(FLOAT val);
 
   // operator overload.
@@ -57,3 +73,5 @@ using spTileCodeContainerCell = shared_ptr<TileCodeContainerCell>;
 
 }  // namespace coding
 }  // namespace rl
+
+#endif  // #ifdef ENABLE_DB

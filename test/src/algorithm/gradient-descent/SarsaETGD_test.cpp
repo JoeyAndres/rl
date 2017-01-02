@@ -63,13 +63,13 @@ SCENARIO("Sarsa Eligibility Traces and Gradient Descent converge to a "
       rl::coding::DimensionInfo<rl::FLOAT>(0.0F, 2.0F, 3, 0.0F)
     };
 
-    // Setup tile coding with 8 offsets.
-    auto tileCode = TileCodeCorrectFactory<3, 10>(dimensionalInfoVector).get();
-    auto sarsa =
-      SarsaETGDFactory<3, 10>(tileCode, 0.1F, 1.0F, 0.9F, policy).get();
-    rl::agent::AgentGD<3> agent(mce, sarsa);
+    WHEN("We do multiple episodes with Default weight container (vector)") {
+      // Setup tile coding with 8 offsets.
+      auto tileCode = TileCodeCorrectFactory<3, 8>(dimensionalInfoVector).get();
+      auto sarsa =
+        SarsaETGDFactory<3, 8>(tileCode, 0.1F, 1.0F, 0.9F, policy).get();
+      rl::agent::AgentGD<3> agent(mce, sarsa);
 
-    WHEN("We do multiple episodes") {
       rl::INT iterationCount = 0;
       for (rl::INT i = 0; i < 1000; i++) {
         agent.reset();

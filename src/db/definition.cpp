@@ -16,25 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifdef ENABLE_DB
+
 #include "db/definition.h"
 
 namespace rl {
 namespace db {
 
-string RLKeySpace = ""
+const string RLKeySpace = ""
   "CREATE KEYSPACE IF NOT EXISTS rl\n"
   "  WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 3};";
 
-string TileCodeContainer = ""
+const string TileCodeContainer = ""
   "CREATE TABLE IF NOT EXISTS rl.tilecodecontainer (\n"
-  "  id uuid PRIMARY KEY,\n"
+  "  id text PRIMARY KEY,\n"
   "  size bigint,\n"
   "  initialValue double\n"
   ");";
 
-string TileCodeContainerSegment = ""
+const string TileCodeContainerSegment = ""
   "CREATE TABLE IF NOT EXISTS rl.tilecodecontainersegment (\n"
-  "  tileCodeContainerId uuid,\n"
+  "  tileCodeContainerId text,\n"
   "  size bigint,\n"
   "  segmentIndex bigint,\n"
 
@@ -140,8 +142,9 @@ string TileCodeContainerSegment = ""
   "  data99 double,\n"
 
   "  PRIMARY KEY (tileCodeContainerId, segmentIndex)"
-  ");";
+  ") WITH caching = { 'keys' : 'NONE', 'rows_per_partition' : '120' };";
 
 }  // namespace db
 }  // namespace rl
 
+#endif  // #ifdef ENABLE_DB

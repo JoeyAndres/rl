@@ -16,6 +16,12 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_definitions("-DDEBUG")
 endif()
 
+if (ENABLE_DB STREQUAL "true")
+    MESSAGE(STATUS "DB Enabled: ${ENABLE_DB}")
+    add_definitions("-DENABLE_DB")
+    set(ENABLE_DB "true")
+endif()
+
 add_subdirectory(src)
 add_subdirectory(lib)
 add_subdirectory(test)

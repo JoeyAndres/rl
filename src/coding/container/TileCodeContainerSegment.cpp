@@ -16,7 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "coding/TileCodeContainerSegment.h"
+#ifdef ENABLE_DB
+
+#include "coding/container/TileCodeContainerSegment.h"
 #include "db/definition.h"
 #include "db/manipulation.h"
 #include "db/utility.h"
@@ -31,14 +33,6 @@ TileCodeContainerSegment::TileCodeContainerSegment(
   _tileCodeContainerId(tileCodeContainerId),
   _size(size),
   _segmentIndex(index) {
-  _data = vector<FLOAT>(_size, 0);
-  // TODO: One place to set this up.
-  _data2 = vector<TileCodeContainerCell>(
-    _size,
-    TileCodeContainerCell(_tileCodeContainerId, index, 0));
-  for (size_t i = 0; i < _data2.size(); i++) {
-    _data2[i].setIndex(i);
-  }
   db::initialize();
   TileCodeContainerSegment::createSchema();
   create();
@@ -57,11 +51,8 @@ void TileCodeContainerSegment::create() {
   CassStatement* stmt =
     cass_statement_new(db::InsertTileCodeContainerSegment.c_str(), 103);
 
-  CassUuid tileCodeContainerId;
-  cass_uuid_from_string(_tileCodeContainerId.c_str(), &tileCodeContainerId);
-
   // Bind the values using the indices of the bind variables.
-  cass_statement_bind_uuid(stmt, 0, tileCodeContainerId);
+  cass_statement_bind_string(stmt, 0, _tileCodeContainerId.c_str());
   cass_statement_bind_int64(stmt, 1, _size);
   cass_statement_bind_int64(stmt, 2, _segmentIndex);
   for (size_t i = 0; i < SEGMENT_SIZE; i++) {
@@ -91,7 +82,7 @@ void TileCodeContainerSegment::read() {
   string stmtStr = ""
     "SELECT tileCodeContainerId, size, segmentIndex \n"
     "FROM rl.tilecodecontainersegment\n"
-    "WHERE tileCodeContainerId = " + _tileCodeContainerId + " AND\n"
+    "WHERE tileCodeContainerId = '" + _tileCodeContainerId + "' AND\n"
     "      segmentIndex = " + std::to_string(_segmentIndex) + ";\n";
   CassStatement* stmt = cass_statement_new(stmtStr.c_str(), 0);
 
@@ -116,14 +107,6 @@ void TileCodeContainerSegment::read() {
   // This can be used to retrieve on the first row of the result.
   const CassRow* row = cass_result_first_row(result);
 
-  CassUuid tileCodeContainerId;
-  cass_value_get_uuid(
-    cass_row_get_column_by_name(row, "tileCodeContainerId"),
-    &tileCodeContainerId);
-  char tileCodeContainerIdStr[CASS_UUID_STRING_LENGTH];
-  cass_uuid_string(tileCodeContainerId, tileCodeContainerIdStr);
-  _tileCodeContainerId = tileCodeContainerIdStr;
-
   cass_int64_t size;
   // Get the column value of "size" by name.
   cass_value_get_int64(cass_row_get_column_by_name(row, "size"), &size);
@@ -134,26 +117,17 @@ void TileCodeContainerSegment::read() {
     cass_row_get_column_by_name(row, "segmentIndex"), &segmentIndex);
   _segmentIndex = segmentIndex;
 
-  _data = vector<FLOAT>(_size, 0.0F);
-  _data2 = vector<TileCodeContainerCell>(
-    _size,
-    TileCodeContainerCell(_tileCodeContainerId, _segmentIndex, 0));
-  for (size_t i = 0; i < _data2.size(); i++) {
-    _data2[i].setIndex(i);
-  }
-
   // This will free the result as well as the string pointed to by 'key'.
   cass_result_free(result);
 }
 
 void TileCodeContainerSegment::update() {
-
 }
 
 void TileCodeContainerSegment::delete2() {
   string stmtStr = ""
     "DELETE FROM rl.tilecodecontainersegment\n"
-    "WHERE tileCodeContainerId = " + _tileCodeContainerId + " AND\n"
+    "WHERE tileCodeContainerId = '" + _tileCodeContainerId + "' AND\n"
     "      segmentIndex = " + std::to_string(_segmentIndex) + ";\n";
   CassStatement* stmt = cass_statement_new(stmtStr.c_str(), 0);
 
@@ -173,12 +147,12 @@ void TileCodeContainerSegment::delete2() {
   cass_future_free(resultFuture);
 }
 
-TileCodeContainerCell& TileCodeContainerSegment::at(size_t i) {
-  return _data2[i];
+TileCodeContainerCell TileCodeContainerSegment::operator[](size_t i) const {
+  return this->at(i);
 }
 
 TileCodeContainerCell TileCodeContainerSegment::at(size_t i) const {
-  return _data2[i];
+  return TileCodeContainerCell(_tileCodeContainerId, _segmentIndex, i);
 }
 
 void TileCodeContainerSegment::createSchema() {
@@ -187,3 +161,5 @@ void TileCodeContainerSegment::createSchema() {
 
 }  // namespace coding
 }  // namespace rl
+
+#endif  // #ifdef ENABLE_DB

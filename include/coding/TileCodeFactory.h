@@ -33,8 +33,8 @@ namespace coding {
  * \brief Factory method for TileCode. Abstract class.
  * \tparam D Number of dimension.
  * \tparam NUM_TILINGS Number of tilings.
- * \tparam TILE_CODE_CLASS TileCode child that don't utilizes hashing.
  * \tparam WEIGHT_CONT The container object to store the weights.
+ * \tparam TILE_CODE_CLASS TileCode child that don't utilizes hashing.
  */
 template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT,
   template <size_t E_D, size_t E_NUM_TILINGS, class E_WEIGHT_CONT>

@@ -16,18 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifdef ENABLE_DB
+
 #include "db/manipulation.h"
 
 namespace rl {
 namespace db {
 
-string InsertTileCodeContainer = ""
+const string InsertTileCodeContainer = ""
   "INSERT INTO rl.tilecodecontainer ("
   "id, size, initialValue) VALUES (?, ?, ?);";
 
-string InsertTileCodeContainerSegment = ""
+const string InsertTileCodeContainerSegment = ""
   "INSERT INTO rl.tilecodecontainersegment ("
-  "tileCodeContainerId, "
+  "tileCodeContainerId,\n"
   "size,\n"
   "segmentIndex,\n"
 
@@ -145,5 +147,7 @@ string InsertTileCodeContainerSegment = ""
   "?, ?, ?, ?, ?, ?, ?, ?, ?, ?"
   ");";
 
-}  // db
-}  // rl
+}  // namespace db
+}  // namespace rl
+
+#endif  // #if ENABLE_DB

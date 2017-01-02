@@ -39,6 +39,7 @@ namespace algorithm {
  *  \brief Gradient Descent implementation.
  *  \tparam D Number of dimension.
  *  \tparam NUM_TILINGS Number of tilings.
+  * \tparam WEIGHT_CONT The container object to store the weights.
  *  \tparam STATE_DIM Number of dimension in State.
  *                    This also implies ACTION_DIM = D - STATE_DIM.
  */

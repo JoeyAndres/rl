@@ -34,6 +34,7 @@ namespace coding {
  *  \brief Tile Code using Mt1993764 hash.2
  *  \tparam D Number of dimensions.
  *  \tparam NUM_TILINGS Number of tilings.
+ *  \tparam WEIGHT_CONT The container object to store the weights.
  */
 template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT = DEFAULT_TILE_CONT>
 class TileCodeMt1993764 : public TileCode<D, NUM_TILINGS, WEIGHT_CONT> {

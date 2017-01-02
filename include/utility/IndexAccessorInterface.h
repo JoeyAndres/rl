@@ -9,35 +9,38 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR CONT PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should have received CONT copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #pragma once
 
+#include <memory>
+
 namespace rl {
 namespace utility {
 
-template<class T>
+template<class CONT>
 class IndexAccessorInterface {
  public:
-  virtual T& operator[](size_t i);
-  virtual T operator[](size_t i) const;
+  virtual typename CONT::reference operator[](size_t i);
+  virtual typename CONT::value_type operator[](size_t i) const;
 
-  virtual T& at(size_t i) = 0;
-  virtual T at(size_t i) const = 0;
+  virtual typename CONT::reference at(size_t i) = 0;
+  virtual typename CONT::value_type at(size_t i) const = 0;
 };
 
-template<class T>
-T& IndexAccessorInterface<T>::operator[](size_t i) {
+template<class CONT>
+typename CONT::reference IndexAccessorInterface<CONT>::operator[](size_t i) {
   return this->at(i);
 }
 
-template<class T>
-T IndexAccessorInterface<T>::operator[](size_t i) const {
+template<class CONT>
+typename CONT::value_type
+IndexAccessorInterface<CONT>::operator[](size_t i) const {
   return this->at(i);
 }
 

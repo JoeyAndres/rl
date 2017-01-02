@@ -31,7 +31,6 @@ using rl::policy::EpsilonGreedyFactory;
 using rl::agent::ActuatorFactory;
 using rl::algorithm::SarsaGDFactory;
 using rl::coding::TileCodeCorrectFactory;
-using rl::coding::TileCodeContainer;
 
 SCENARIO("Sarsa Gradient Descent converge to a solution",
          "[rl::SarsaGD]") {
@@ -60,7 +59,7 @@ SCENARIO("Sarsa Gradient Descent converge to a solution",
       rl::coding::DimensionInfo<rl::FLOAT>(0.0F, 2.0F, 3, 0.0F)
     };
 
-    /*WHEN("We do multiple episodes with Default weight container (vector)") {
+    WHEN("We do multiple episodes with Default weight container (vector)") {
       // Setup tile coding with 8 offsets.
       auto tileCode = TileCodeCorrectFactory<3, 8>(dimensionalInfoVector).get();
       auto sarsa =
@@ -78,15 +77,17 @@ SCENARIO("Sarsa Gradient Descent converge to a solution",
              "iteration") {
         REQUIRE(iterationCount <= 100);
       }
-    }*/
+    }
 
+#ifdef ENABLE_DB
     WHEN("We do multiple episodes with TileCodeContainer.") {
       // Setup tile coding with 8 offsets.
       auto tileCode =
         TileCodeCorrectFactory<
-          3, 8, TileCodeContainer>(dimensionalInfoVector).get();
+          3, 8, rl::coding::TileCodeContainer<'i', 'd', '3'>>(
+            dimensionalInfoVector).get();
       auto sarsa =
-        SarsaGDFactory<3, 8, TileCodeContainer>(
+        SarsaGDFactory<3, 8, rl::coding::TileCodeContainer<'i', 'd', '3'>>(
           tileCode, 0.1F, 1.0F, 0.9F, policy).get();
       rl::agent::AgentGD<3> agent(mce, sarsa);
 
@@ -110,5 +111,6 @@ SCENARIO("Sarsa Gradient Descent converge to a solution",
         REQUIRE(iterationCount <= 100);
       }
     }
+#endif  // #ifdef ENABLE_DB
   }
 }

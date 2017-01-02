@@ -14,7 +14,7 @@ add_library(rl
         $<TARGET_OBJECTS:unh>
 
         $<TARGET_OBJECTS:rlAgent>
-        $<TARGET_OBJECTS:rlCoding>
+        $<TARGET_OBJECTS:rlCodingContainer>
         $<TARGET_OBJECTS:rlHash>
         $<TARGET_OBJECTS:rlDB>)
 target_link_libraries(rl ${PTHREAD_LIB} cassandra)

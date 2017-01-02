@@ -32,6 +32,7 @@ namespace algorithm {
  *         learning and action selection).
  *  \tparam D Number of dimension.
  *  \tparam NUM_TILINGS Number of tilings.
+ *  \tparam WEIGHT_CONT The container object to store the weights.
  *  \tparam STATE_DIM Number of dimension in State. This defaults to D-1.
  *                    This also implies ACTION_DIM = D - STATE_DIM.
  */

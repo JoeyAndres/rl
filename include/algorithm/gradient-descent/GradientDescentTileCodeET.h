@@ -38,6 +38,7 @@ namespace algorithm {
 /*! \class GradientDescentTileCodeET
  *  \brief Gradient Descent eligibility traces.
  *  \tparam D Number of dimension.
+ *  \tparam WEIGHT_CONT The container object to store the weights.
  *  \tparam STATE_DIM Number of dimension in State.
  *                    This also implies ACTION_DIM = D - STATE_DIM.
  */

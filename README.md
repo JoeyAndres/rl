@@ -5,10 +5,6 @@ rl
 
 Modularized various Reinforcement Learning Algorithm library.
 
-# Nice Features
-* _Utilized cassandra database._ Not enough RAM? No worries, you can represent your model
-  in your hard drive or even an army of servers thanks to the utilization of cassandradb.
-
 # Compilation and Installation
 
 ### Dependency:
@@ -16,6 +12,7 @@ Modularized various Reinforcement Learning Algorithm library.
 * g++-4.9 or greater or clang.
 * cmake 3.2.2 or greater.
 * boost v1.59 or greater.
+### Optional: To enable cassandradb 
 * cassandra v3.9 or greater.
 * [datastax-cpp-driver](https://github.com/datastax/cpp-driver) v2.5 or greater.
 
@@ -25,10 +22,17 @@ Modularized various Reinforcement Learning Algorithm library.
 // TODO: Installing dependencies from http://downloads.datastax.com/cpp-driver/ubuntu/16.04/
 // TODO: Make a script to do this?
 
-### Building 
+### Building (no cassandradb)
 1. `mkdir build`
 2. `cd build`
-3. `cmake ..`
+3. `cmake .. -DCMAKE_BUILD_TYPE=Release`
+4. `make -j16`
+5. `sudo make install`
+
+### Building  (with cassandradb)
+1. `mkdir build`
+2. `cd build`
+3. `cmake .. -DCMAKE_BUILD_TYPE=Release -DENABLE_DB=true`
 4. `make -j16`
 5. `sudo make install`
 

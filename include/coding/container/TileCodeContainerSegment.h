@@ -18,13 +18,15 @@
 
 #pragma once
 
+#ifdef ENABLE_DB
+
 #include <string>
 #include <vector>
 #include <memory>
 
-#include "../declares.h"
-#include "../utility/CRUDInterface.h"
-#include "../utility/IndexAccessorInterface.h"
+#include "../../declares.h"
+#include "../../utility/CRUDInterface.h"
+#include "../../utility/IndexAccessorInterface.h"
 #include "TileCodeContainerCell.h"
 
 using std::string;
@@ -34,14 +36,26 @@ using std::shared_ptr;
 namespace rl {
 namespace coding {
 
+/*!\class TileCodeContainerSegment
+ * \brief Represents a group of data accessible via TileCodeContainerCell.
+ */
 class TileCodeContainerSegment :
-  public utility::CRUDInterface,
-  public utility::IndexAccessorInterface<TileCodeContainerCell> {
+  public utility::CRUDInterface {
  public:
+  /**
+   * @param tileCodeContainerId Id of parent TileCodeContainer
+   * @param size Size of the segment.
+   * @param index Index of this segment.
+   */
   TileCodeContainerSegment(
     const string& tileCodeContainerId,
     size_t size,
     size_t index);
+
+  /**
+   * @param size Size of the segment.
+   * @param index Index of this segment.
+   */
   TileCodeContainerSegment(
     const string& tileCodeContainer,
     size_t index);
@@ -51,8 +65,8 @@ class TileCodeContainerSegment :
   void update() override;
   void delete2() override;
 
-  TileCodeContainerCell& at(size_t i) override;
-  TileCodeContainerCell at(size_t i) const override;
+  TileCodeContainerCell operator[](size_t i) const;
+  TileCodeContainerCell at(size_t i) const;
 
  public:
   /**
@@ -69,11 +83,11 @@ class TileCodeContainerSegment :
   string _tileCodeContainerId;
   size_t _size;
   size_t _segmentIndex;
-  vector<FLOAT> _data;  // TODO(jandres): Remove this.
-  vector<TileCodeContainerCell> _data2;
 };
 
 using spTileCodeContainerSegment = shared_ptr<TileCodeContainerSegment>;
 
 }  // namespace coding
 }  // namespace rl
+
+#endif  // #ifdef ENABLE_DB

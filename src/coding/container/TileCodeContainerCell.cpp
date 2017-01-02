@@ -16,11 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifdef ENABLE_DB
+
 #include <cassandra.h>
 #include <string>
 
 #include "db/utility.h"
-#include "coding/TileCodeContainerCell.h"
+#include "coding/container/TileCodeContainerCell.h"
 
 using std::string;
 
@@ -34,16 +36,12 @@ TileCodeContainerCell::TileCodeContainerCell(
   _index(index) {
 }
 
-void TileCodeContainerCell::setIndex(size_t index) {
-  _index = index;
-}
-
 FLOAT TileCodeContainerCell::get() const {
   const string dataField = "data" + std::to_string(_index);
   string stmtStr = ""
     "SELECT tileCodeContainerId, segmentIndex, " + dataField + "\n"
     "FROM rl.tilecodecontainersegment\n"
-    "WHERE tileCodeContainerId = " + _tileCodeContainerId + " AND\n"
+    "WHERE tileCodeContainerId = '" + _tileCodeContainerId + "' AND\n"
     "      segmentIndex = " + std::to_string(_segmentIndex) + ";\n";
 
   CassStatement* stmt = cass_statement_new(stmtStr.c_str(), 0);
@@ -85,7 +83,7 @@ void TileCodeContainerCell::set(FLOAT val) {
   string stmtStr = ""
     "UPDATE rl.tilecodecontainersegment\n"
     "SET " + dataField + " = " + std::to_string(val) + "\n"
-    "WHERE tileCodeContainerId = " + _tileCodeContainerId + " AND\n"
+    "WHERE tileCodeContainerId='" + _tileCodeContainerId + "' AND\n"
     "      segmentIndex = " + std::to_string(_segmentIndex) + ";\n";
 
   CassStatement* stmt = cass_statement_new(stmtStr.c_str(), 0);
@@ -93,14 +91,20 @@ void TileCodeContainerCell::set(FLOAT val) {
   CassFuture* resultFuture =
     cass_session_execute(db::session, stmt);
 
+#ifdef DEBUG
+  // Block till the result is back.
+  CassError rc = cass_future_error_code(resultFuture);
   const CassResult* result = cass_future_get_result(resultFuture);
 
   // If there was an error then the result won't be available.
   if (result == NULL) {
     /* Handle error */
+    printf("Query result: %s\n", cass_error_desc(rc));
     cass_future_free(resultFuture);
+    cass_statement_free(stmt);
     throw "Query failed.";
   }
+#endif
 
   // The future can be freed immediately after getting the result object.
   cass_future_free(resultFuture);
@@ -123,3 +127,5 @@ TileCodeContainerCell::operator FLOAT() const {
 
 }  // namespace coding
 }  // namespace rl
+
+#endif  // #ifdef ENABLE_DB

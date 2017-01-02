@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifdef ENABLE_DB
+
 #include <iostream>
 
 #include "db/utility.h"
@@ -38,6 +40,7 @@ void initialize() {
   rl::db::session = cass_session_new();
 
   // Add contact points.
+  // TODO(jandres): Make this a config file.
   cass_cluster_set_contact_points(db::cluster, "127.0.0.1");
 
   // Provide the cluster object as configuration to connect the session.
@@ -94,7 +97,6 @@ void executeStatement(const string& stmtStr) {
     cass_session_execute(db::session, stmt);
 
   if (cass_future_error_code(resultFuture) == CASS_OK) {
-
   } else {
     // Deal With Error.
     /* Handle error */
@@ -122,3 +124,5 @@ CassUuid genUuid() {
 
 }  // namespace db
 }  // namespace rl
+
+#endif  // #ifdef ENABLE_DB

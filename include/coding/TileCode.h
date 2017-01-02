@@ -31,7 +31,7 @@
 #include "../utility/IndexAccessorInterface.h"
 #include "CourseCode.h"
 #include "DimensionInfo.h"
-#include "TileCodeContainer.h"
+#include "container/TileCodeContainer.h"
 
 using std::array;
 using std::vector;
@@ -58,7 +58,7 @@ template<
   class WEIGHT_CONT = DEFAULT_TILE_CONT>
 class TileCode :
   public CourseCode<D>,
-  public utility::IndexAccessorInterface<typename WEIGHT_CONT::value_type> {
+  public utility::IndexAccessorInterface<WEIGHT_CONT> {
  public:
   /**
    * @param dimensionalInfos An array of dimensionalInfos.
@@ -67,7 +67,7 @@ class TileCode :
   TileCode(const array<DimensionInfo<FLOAT>, D>& dimensionalInfos,
            size_t sizeHint);
 
-  typename WEIGHT_CONT::value_type&
+  typename WEIGHT_CONT::reference
   at(size_t i) override;
 
   typename WEIGHT_CONT::value_type
@@ -241,16 +241,15 @@ size_t TileCode<D, NUM_TILINGS, WEIGHT_CONT>::paramToGridValue(
   auto dimRangeMagnitude =
     this->_dimensionalInfos.at(dimensionIndex).GetRangeDifference();
 
-  // NOLINT: I'd like to make this easy to understand.
   return (
     (
       param +
         randomOffset * dimGeneraliztionScale - dimLowerBound
-    ) * dimGridCountIdeal) / dimRangeMagnitude;
+    ) * dimGridCountIdeal) / dimRangeMagnitude;  // NOLINT: I'd like to make this easy to understand.
 }
 
 template<size_t D, size_t NUM_TILINGS, class WEIGHT_CONT>
-typename WEIGHT_CONT::value_type&
+typename WEIGHT_CONT::reference
 TileCode<D, NUM_TILINGS, WEIGHT_CONT>::at(size_t i) {
   return _w.at(i);
 }
