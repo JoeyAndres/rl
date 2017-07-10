@@ -43,7 +43,7 @@ class TileCodeMurMurFactory :
   using TileCodeFactory<
     D, NUM_TILINGS, WEIGHT_CONT, TileCodeMurMur>::TileCodeFactory;
   using TileCodeHashedFactory<
-    D, NUM_TILINGS, WEIGHT_CONT, TileCodeMurMur>::TileCodeFactory;
+    D, NUM_TILINGS, WEIGHT_CONT, TileCodeMurMur>::TileCodeHashedFactory;
 };
 
 }  // namespace coding
