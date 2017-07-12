@@ -41,7 +41,7 @@ template <size_t D, size_t NUM_TILINGS, class WEIGHT_CONT, size_t STATE_DIM,
   class E_WEIGHT_CONT,
   size_t E_STATE_DIM> class REINFORCEMENT_LEARNING_GD>
 class ReinforcementLearningGDFactory :
-  public ReinforcementLearningFactory<
+  public LearningAlgorithmFactory<
     typename ReinforcementLearningGDAbstract<D, STATE_DIM>::StateParam,
     typename ReinforcementLearningGDAbstract<D, STATE_DIM>::ActionParam> {
  public:

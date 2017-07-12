@@ -39,7 +39,7 @@ class DynaQFactory : public ReinforcementLearningFactory<S, A> {
                rl::UINT simulationIterationCount,
                rl::FLOAT stateTransitionGreediness,
                rl::FLOAT stateTransitionStepSize) {
-    this->_instance = spLearningAlgorithm<S, A>(
+    this->_instance = spReinforcementLearning<S, A>(
       new DynaQ<S, A>(
         stepSize,
         discountRate,

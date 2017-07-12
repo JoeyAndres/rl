@@ -36,7 +36,7 @@ class QLearningFactory : public ReinforcementLearningFactory<S, A> {
   QLearningFactory(FLOAT stepSize,
                    FLOAT discountRate,
                    const policy::spPolicy<S, A>& policy) {
-    this->_instance = spLearningAlgorithm<S, A>(
+    this->_instance = spReinforcementLearning<S, A>(
       new QLearning<S, A>(stepSize, discountRate, policy));
   }
 };

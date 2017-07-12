@@ -36,7 +36,7 @@ class SarsaFactory : public ReinforcementLearningFactory<S, A> {
   SarsaFactory(FLOAT stepSize,
                FLOAT discountRate,
                const policy::spPolicy<S, A>& policy) {
-    this->_instance = spLearningAlgorithm<S, A>(
+    this->_instance = spReinforcementLearning<S, A>(
       new Sarsa<S, A>(stepSize, discountRate, policy));
   }
 };

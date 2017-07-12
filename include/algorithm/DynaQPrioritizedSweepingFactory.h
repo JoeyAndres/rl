@@ -41,7 +41,7 @@ class DynaQPrioritizedSweepingFactory :
                                   rl::FLOAT stateTransitionGreediness,
                                   rl::FLOAT stateTransitionStepSize,
                                   rl::FLOAT priorityThreshold) {
-    this->_instance = spLearningAlgorithm<S, A>(
+    this->_instance = spReinforcementLearning<S, A>(
       new DynaQPrioritizedSweeping<S, A>(
         stepSize,
         discountRate,

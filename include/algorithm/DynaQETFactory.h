@@ -40,7 +40,7 @@ class DynaQETFactory : public ReinforcementLearningFactory<S, A> {
                  rl::FLOAT stateTransitionGreediness,
                  rl::FLOAT stateTransitionStepSize,
                  rl::FLOAT lambda) {
-    this->_instance = spLearningAlgorithm<S, A>(
+    this->_instance = spReinforcementLearning<S, A>(
       new DynaQET<S, A>(
         stepSize,
         discountRate,

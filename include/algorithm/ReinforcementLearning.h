@@ -171,6 +171,9 @@ std::ostream& operator<<(
 }
 
 template<class S, class A>
+using spReinforcementLearning = shared_ptr<ReinforcementLearning<S, A>>;
+
+template<class S, class A>
 ReinforcementLearning<S, A>::ReinforcementLearning(
   rl::FLOAT stepSize,
   rl::FLOAT discountRate,

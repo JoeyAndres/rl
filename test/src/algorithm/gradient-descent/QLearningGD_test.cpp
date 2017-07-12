@@ -65,7 +65,7 @@ SCENARIO("Q-learning Gradient Descent converge to a solution",
     // Setup tile coding with 8 offsets.
     auto tileCode = TileCodeCorrectFactory<3, 8>(dimensionalInfoVector).get();
     auto qLearning =
-      rl::algorithm::QLearningETGDFactory<3, 8>(
+      rl::algorithm::QLearningGDFactory<3, 8>(
         tileCode, 0.1F, 1.0F, 0.9F, policy).get();
     rl::agent::AgentGD<3> agent(mce, qLearning);
 

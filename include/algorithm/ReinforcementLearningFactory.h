@@ -30,7 +30,8 @@ namespace algorithm {
  * \tparam A Action data type.
  */
 template<class S, class A>
-class ReinforcementLearningFactory : public LearningAlgorithmFactory<S, A> {
+class ReinforcementLearningFactory :
+    public FactoryAbstract<ReinforcementLearning<S, A>> {
  protected:
   ReinforcementLearningFactory() {}
 };
