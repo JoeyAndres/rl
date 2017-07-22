@@ -122,9 +122,9 @@ class StateActionPairContainer {
   typename map<StateAction<S, A>, FLOAT>::const_iterator end() const;
 
   /**
-   * @return The state-action pair to reward map.
+   * @return state-action pair count.
    */
-  const map<StateAction<S, A>, FLOAT> &getMap() const;
+  size_t size() const;
 
   /**
    * @return A multimap in which the entry are organized by the reward (from least to greatest).
@@ -226,9 +226,8 @@ StateActionPairContainer<S, A>::end() const {
 }
 
 template<class S, class A>
-const map<StateAction<S, A>, FLOAT> &
-StateActionPairContainer<S, A>::getMap() const {
-  return this->_stateActionPairMap;
+size_t StateActionPairContainer<S, A>::size() const {
+  return this->_stateActionPairMap.size();
 }
 
 template<class S, class A>

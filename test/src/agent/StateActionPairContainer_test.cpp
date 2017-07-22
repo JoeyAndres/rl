@@ -41,7 +41,7 @@ SCENARIO("StateActionPairContainer a storage for state-action pair.",
       container.addStateAction(rl::agent::StateAction<int, int>(state0,
                                                                 action1), 1);
       THEN("Size should be 1p") {
-        REQUIRE(container.getMap().size() == 1);
+        REQUIRE(container.size() == 1);
       }
     }
   }
@@ -55,7 +55,7 @@ SCENARIO("StateActionPairContainer a storage for state-action pair.",
         action1, action2, action3, action4, action5
       }));
       THEN("Changes the count to 5.") {
-        REQUIRE(container.getMap().size() == 5);
+        REQUIRE(container.size() == 5);
       }
     }
   }
@@ -69,7 +69,7 @@ SCENARIO("StateActionPairContainer a storage for state-action pair.",
           state0, state1, state2, state3, state4
         }));
       THEN("Changes the count to 5.") {
-        REQUIRE(container.getMap().size() == 5);
+        REQUIRE(container.size() == 5);
       }
     }
   }
