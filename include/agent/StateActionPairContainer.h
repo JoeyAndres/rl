@@ -40,17 +40,7 @@ namespace agent {
  *  \tparam S State data type.
  *  \tparam A Action data type.
  */
-template<
-    class S,
-    class A,
-
-    template<
-      class Key,
-      class T,
-      class Compare = std::less<Key>,
-      class Allocator = std::allocator<std::pair<const Key, T>>
-    >
-    class SA_MAP = map>
+template<class S, class A>
 class StateActionPairContainer {
  public:
   /**
@@ -124,45 +114,36 @@ class StateActionPairContainer {
   /**
    * @return begin iterator of state-action to value map.
    */
-  typename SA_MAP<StateAction<S, A>, FLOAT>::const_iterator begin() const;
+  typename map<StateAction<S, A>, FLOAT>::const_iterator begin() const;
 
   /**
    * @return end iterator of state-action to value map.
    */
-  typename SA_MAP<StateAction<S, A>, FLOAT>::const_iterator end() const;
+  typename map<StateAction<S, A>, FLOAT>::const_iterator end() const;
 
   /**
    * @return state-action pair count.
    */
   size_t size() const;
 
+  /**
+   * @return A multimap in which the entry are organized by the reward (from least to greatest).
+   */
+  multimap<FLOAT, StateAction<S, A>> getReverseMap() const;
+
  protected:
   /*! \var _stateActionPairMap
    *  A mapping of state-action to value.
    */
-  SA_MAP<StateAction<S, A>, FLOAT> _stateActionPairMap;
+  map<StateAction<S, A>, FLOAT> _stateActionPairMap;
 };
 
-template<
-    class S,
-    class A,
-    template<
-    class Key,
-    class T,
-    class Compare = std::less<Key>,
-    class Allocator = std::allocator<std::pair<const Key, T>>> class SA_MAP>
-StateActionPairContainer<S, A, SA_MAP>::StateActionPairContainer() {
+template<class S, class A>
+StateActionPairContainer<S, A>::StateActionPairContainer() {
 }
 
-template<
-    class S,
-    class A,
-    template<
-    class Key,
-    class T,
-    class Compare = std::less<Key>,
-    class Allocator = std::allocator<std::pair<const Key, T>>> class SA_MAP>
-void StateActionPairContainer<S, A, SA_MAP>::addState(
+template<class S, class A>
+void StateActionPairContainer<S, A>::addState(
   const spState<S> &state,
   FLOAT value,
   const spActionSet<A> &actionSet) {
@@ -173,33 +154,18 @@ void StateActionPairContainer<S, A, SA_MAP>::addState(
   }
 }
 
-template<
-    class S,
-    class A,
-    template<
-    class Key,
-    class T,
-    class Compare = std::less<Key>,
-    class Allocator = std::allocator<std::pair<const Key, T>>> class SA_MAP>
-void StateActionPairContainer<S, A, SA_MAP>::addStateAction(
+template<class S, class A>
+void StateActionPairContainer<S, A>::addStateAction(
   const StateAction<S, A> &stateAction,
   FLOAT value) {
   this->_stateActionPairMap.insert(
     std::pair<StateAction<S, A>, FLOAT>(stateAction, value));
 }
 
-template<
-    class S,
-    class A,
-    template<
-    class Key,
-    class T,
-    class Compare = std::less<Key>,
-    class Allocator = std::allocator<std::pair<const Key, T>>> class SA_MAP>
-void StateActionPairContainer<S, A, SA_MAP>::addAction(
-    const spAction<A> &action,
-    FLOAT value,
-    const spStateSet<S> &stateSet) {
+template<class S, class A>
+void StateActionPairContainer<S, A>::addAction(const spAction<A> &action,
+                                               FLOAT value,
+                                               const spStateSet<S> &stateSet) {
   for (auto state : stateSet) {
     _stateActionPairMap.insert(
       std::pair<StateAction<S, A>, FLOAT>(
@@ -207,15 +173,8 @@ void StateActionPairContainer<S, A, SA_MAP>::addAction(
   }
 }
 
-template<
-    class S,
-    class A,
-    template<
-    class Key,
-    class T,
-    class Compare = std::less<Key>,
-    class Allocator = std::allocator<std::pair<const Key, T>>> class SA_MAP>
-bool StateActionPairContainer<S, A, SA_MAP>::stateInStateActionPairMap(
+template<class S, class A>
+bool StateActionPairContainer<S, A>::stateInStateActionPairMap(
   const spState<S> &state, const spActionSet<A> &actionSet) const {
   const spAction<A> &sampleAction = *(actionSet.begin());
   bool rv = _stateActionPairMap.find(StateAction<S, A>(state, sampleAction))
@@ -223,28 +182,14 @@ bool StateActionPairContainer<S, A, SA_MAP>::stateInStateActionPairMap(
   return rv;
 }
 
-template<
-    class S,
-    class A,
-    template<
-    class Key,
-    class T,
-    class Compare = std::less<Key>,
-    class Allocator = std::allocator<std::pair<const Key, T>>> class SA_MAP>
-void StateActionPairContainer<S, A, SA_MAP>::setStateActionValue(
+template<class S, class A>
+void StateActionPairContainer<S, A>::setStateActionValue(
   const StateAction<S, A> &stateAction, FLOAT value) {
   _stateActionPairMap[stateAction] = value;
 }
 
-template<
-    class S,
-    class A,
-    template<
-    class Key,
-    class T,
-    class Compare = std::less<Key>,
-    class Allocator = std::allocator<std::pair<const Key, T>>> class SA_MAP>
-const FLOAT &StateActionPairContainer<S, A, SA_MAP>::getStateActionValue(
+template<class S, class A>
+const FLOAT &StateActionPairContainer<S, A>::getStateActionValue(
   const StateAction<S, A> &stateAction) const
 throw(StateActionNotExistException) {
   try {
@@ -261,56 +206,34 @@ throw(StateActionNotExistException) {
   }
 }
 
-template<
-    class S,
-    class A,
-    template<
-    class Key,
-    class T,
-    class Compare = std::less<Key>,
-    class Allocator = std::allocator<std::pair<const Key, T>>> class SA_MAP>
-FLOAT StateActionPairContainer<S, A, SA_MAP>::operator[](
+template<class S, class A>
+FLOAT StateActionPairContainer<S, A>::operator[](
   const StateAction<S, A> &stateAction) const
 throw(StateActionNotExistException) {
   return getStateActionValue(stateAction);
 }
 
-template<
-    class S,
-    class A,
-    template<
-    class Key,
-    class T,
-    class Compare = std::less<Key>,
-    class Allocator = std::allocator<std::pair<const Key, T>>> class SA_MAP>
-typename SA_MAP<StateAction<S, A>, FLOAT>::const_iterator
-StateActionPairContainer<S, A, SA_MAP>::begin() const {
+template<class S, class A>
+typename map<StateAction<S, A>, FLOAT>::const_iterator
+StateActionPairContainer<S, A>::begin() const {
   return _stateActionPairMap.begin();
 }
 
-template<
-    class S,
-    class A,
-    template<
-    class Key,
-    class T,
-    class Compare = std::less<Key>,
-    class Allocator = std::allocator<std::pair<const Key, T>>> class SA_MAP>
-typename SA_MAP<StateAction<S, A>, FLOAT>::const_iterator
-StateActionPairContainer<S, A, SA_MAP>::end() const {
+template<class S, class A>
+typename map<StateAction<S, A>, FLOAT>::const_iterator
+StateActionPairContainer<S, A>::end() const {
   return _stateActionPairMap.end();
 }
 
-template<
-    class S,
-    class A,
-    template<
-    class Key,
-    class T,
-    class Compare = std::less<Key>,
-    class Allocator = std::allocator<std::pair<const Key, T>>> class SA_MAP>
-size_t StateActionPairContainer<S, A, SA_MAP>::size() const {
+template<class S, class A>
+size_t StateActionPairContainer<S, A>::size() const {
   return this->_stateActionPairMap.size();
+}
+
+template<class S, class A>
+multimap<FLOAT, StateAction<S, A>>
+StateActionPairContainer<S, A>::getReverseMap() const {
+  return rl::utility::flipMap(this->_stateActionPairMap);
 }
 
 }  // namespace agent
