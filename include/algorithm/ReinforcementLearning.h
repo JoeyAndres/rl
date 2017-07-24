@@ -27,6 +27,7 @@
 #include "LearningAlgorithm.h"
 
 using rl::agent::StateActionPairContainer;
+using rl::agent::StateActionPairContainerSimple;
 using rl::agent::StateActionNotExistException;
 using rl::policy::Policy;
 using rl::policy::spPolicy;
@@ -42,7 +43,11 @@ namespace algorithm {
  *
  * All reinforcement algorithm inherit from this class.
  */
-template<class S, class A>
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER = StateActionPairContainerSimple>
 class ReinforcementLearning : public LearningAlgorithm<S, A> {
  public:
   /**
@@ -124,14 +129,14 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
   /**
    * @return state-action pair container.
    */
-  const StateActionPairContainer<S, A>& getStateActionPairContainer() const;
-  StateActionPairContainer<S, A>& getStateActionPairContainer();
+  const SAP_CONTAINER<S, A>& getStateActionPairContainer() const;
+  SAP_CONTAINER<S, A>& getStateActionPairContainer();
 
   /**
    * @param stateActionPairContainer set state-action pair container.
    */
   void setStateActionPairContainer(
-    const StateActionPairContainer<S, A>& stateActionPairContainer);
+    const SAP_CONTAINER<S, A>& stateActionPairContainer);
 
  public:
   virtual void updateStateAction(const StateAction <S, A> &currentStateAction,
@@ -148,33 +153,22 @@ class ReinforcementLearning : public LearningAlgorithm<S, A> {
  protected:
   rl::FLOAT _stepSize;
   rl::FLOAT _discountRate;
-  StateActionPairContainer<S, A> _stateActionPairContainer;
+  SAP_CONTAINER<S, A> _stateActionPairContainer;
 };
 
-template<class S, class A>
-std::ostream& operator<<(
-  std::ostream& os, const ReinforcementLearning<S, A>& rl) {
-  auto stateActionPairContainer = rl.getStateActionPairContainer();
-  os << "{" << std::endl;
-  for (auto iter = stateActionPairContainer.begin();
-       iter != stateActionPairContainer.end();
-       iter++) {
-    os << "\t("
-       << iter->first.getState()
-       << ", " << iter->first.getAction()
-       << "): " << iter->second
-       << "," << std::endl;
-  }
-  os << "}" << std::endl;
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER = StateActionPairContainerSimple>
+using spReinforcementLearning = shared_ptr<ReinforcementLearning<S, A, SAP_CONTAINER>>;
 
-  return os;
-}
-
-template<class S, class A>
-using spReinforcementLearning = shared_ptr<ReinforcementLearning<S, A>>;
-
-template<class S, class A>
-ReinforcementLearning<S, A>::ReinforcementLearning(
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+ReinforcementLearning<S, A, SAP_CONTAINER>::ReinforcementLearning(
   rl::FLOAT stepSize,
   rl::FLOAT discountRate,
   const spPolicy<S, A>& policy)
@@ -183,8 +177,13 @@ ReinforcementLearning<S, A>::ReinforcementLearning(
   _discountRate = discountRate;
 }
 
-template<class S, class A>
-spAction<A> ReinforcementLearning<S, A>::argMax(
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+spAction<A>
+ReinforcementLearning<S, A, SAP_CONTAINER>::argMax(
   const spState<S>& state, const spActionSet<A>& actionSet) const {
   spAction<A> greedAct = *(actionSet.begin());
 
@@ -212,54 +211,92 @@ spAction<A> ReinforcementLearning<S, A>::argMax(
   return greedAct;
 }
 
-template<class S, class A>
-rl::FLOAT ReinforcementLearning<S, A>::getDiscountRate() const {
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+rl::FLOAT
+ReinforcementLearning<S, A, SAP_CONTAINER>::getDiscountRate() const {
   return _discountRate;
 }
 
-template<class S, class A>
-void ReinforcementLearning<S, A>::setDiscountRate(
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+void ReinforcementLearning<S, A, SAP_CONTAINER>::setDiscountRate(
   rl::FLOAT discountRate) {
   _discountRate = discountRate;
 }
 
-template<class S, class A>
-rl::FLOAT ReinforcementLearning<S, A>::getStepSize() const {
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+rl::FLOAT
+ReinforcementLearning<S, A, SAP_CONTAINER>::getStepSize() const {
   return _stepSize;
 }
 
-template<class S, class A>
-void ReinforcementLearning<S, A>::setStepSize(
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+void ReinforcementLearning<S, A, SAP_CONTAINER>::setStepSize(
   rl::FLOAT stepSize) {
   _stepSize = stepSize;
 }
 
-template<class S, class A>
-const StateActionPairContainer<S, A>& ReinforcementLearning<
-  S, A>::getStateActionPairContainer() const {
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+const SAP_CONTAINER<S, A>&
+ReinforcementLearning<S, A, SAP_CONTAINER>::getStateActionPairContainer() const {
   return _stateActionPairContainer;
 }
 
-template<class S, class A>
-StateActionPairContainer<S, A>& ReinforcementLearning<
-  S, A>::getStateActionPairContainer() {
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+SAP_CONTAINER<S, A>&
+ReinforcementLearning<S, A, SAP_CONTAINER>::getStateActionPairContainer() {
   return _stateActionPairContainer;
 }
 
-template<class S, class A>
-void ReinforcementLearning<S, A>::setStateActionPairContainer(
-  const StateActionPairContainer<S, A>& stateActionPairContainer) {
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+void ReinforcementLearning<S, A, SAP_CONTAINER>::setStateActionPairContainer(
+  const SAP_CONTAINER<S, A>& stateActionPairContainer) {
   _stateActionPairContainer = stateActionPairContainer;
 }
 
-template<class S, class A>
-void ReinforcementLearning<S, A>::setStateActionValue(
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+void ReinforcementLearning<S, A, SAP_CONTAINER>::setStateActionValue(
   const StateAction<S, A>& stateAction, const rl::FLOAT& reward) {
   _stateActionPairContainer.setStateActionValue(stateAction, reward);
 }
 
-template<class S, class A>
-spAction<A> ReinforcementLearning<S, A>::getLearningAction(
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+spAction<A> ReinforcementLearning<S, A, SAP_CONTAINER>::getLearningAction(
   const spState<S>& currentState, const spActionSet<A>& actionSet) {
   _stateActionPairContainer.addState(
     currentState,
@@ -269,8 +306,12 @@ spAction<A> ReinforcementLearning<S, A>::getLearningAction(
   return this->_getLearningPolicyAction(actionValueMap, actionSet);
 }
 
-template<class S, class A>
-spActionValueMap<A> ReinforcementLearning<S, A>::_buildActionValueMap(
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+spActionValueMap<A> ReinforcementLearning<S, A, SAP_CONTAINER>::_buildActionValueMap(
   const spActionSet<A>& actionSet, const spState<S>& currentState) const {
   spActionValueMap<A> actionValueMap;
   for (const spAction<A>& action : actionSet) {
@@ -280,8 +321,12 @@ spActionValueMap<A> ReinforcementLearning<S, A>::_buildActionValueMap(
   return actionValueMap;
 }
 
-template<class S, class A>
-spAction<A> ReinforcementLearning<S, A>::getAction(
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+spAction<A> ReinforcementLearning<S, A, SAP_CONTAINER>::getAction(
   const spState<S>& currentState, const spActionSet<A>& actionSet) {
   _stateActionPairContainer.addState(currentState,
                                      this->_defaultStateActionValue, actionSet);
@@ -290,14 +335,22 @@ spAction<A> ReinforcementLearning<S, A>::getAction(
   return this->_controlPolicy->getAction(actionValueMap, actionSet);
 }
 
-template<class S, class A>
-rl::FLOAT ReinforcementLearning<S, A>::getStateActionValue(
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+rl::FLOAT ReinforcementLearning<S, A, SAP_CONTAINER>::getStateActionValue(
   const StateAction<S, A>& stateAction) {
   return _stateActionPairContainer.getStateActionValue(stateAction);
 }
 
-template<class S, class A>
-void ReinforcementLearning<S, A>::backUpStateActionPair(
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+void ReinforcementLearning<S, A, SAP_CONTAINER>::backUpStateActionPair(
   const StateAction<S, A>& currentStateAction, const rl::FLOAT reward,
   const StateAction<S, A>& nextStateActionPair) {
   // Next state-action value (nSAV) and current state-action value (cSAV).
@@ -310,8 +363,12 @@ void ReinforcementLearning<S, A>::backUpStateActionPair(
     cSAV + this->_stepSize * (reward + discountRate * nSAV - cSAV));
 }
 
-template<class S, class A>
-void ReinforcementLearning<S, A>::updateStateAction(
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+void ReinforcementLearning<S, A, SAP_CONTAINER>::updateStateAction(
   const StateAction <S, A> &currentStateAction,
   const StateAction <S, A> &nextStateAction,
   const rl::FLOAT reward) {

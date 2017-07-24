@@ -21,6 +21,8 @@
 #include "LearningAlgorithmFactory.h"
 #include "ReinforcementLearning.h"
 
+#include "../agent/StateActionPairContainer.h"
+
 namespace rl {
 namespace algorithm {
 
@@ -29,9 +31,13 @@ namespace algorithm {
  * \tparam S State data type.
  * \tparam A Action data type.
  */
-template<class S, class A>
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER = rl::agent::StateActionPairContainerSimple>
 class ReinforcementLearningFactory :
-    public FactoryAbstract<ReinforcementLearning<S, A>> {
+    public FactoryAbstract<ReinforcementLearning<S, A, SAP_CONTAINER>> {
  protected:
   ReinforcementLearningFactory() {}
 };

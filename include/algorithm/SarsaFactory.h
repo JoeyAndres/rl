@@ -30,14 +30,18 @@ namespace algorithm {
  * \tparam S State data type.
  * \tparam A Action data type.
  */
-template<class S, class A>
-class SarsaFactory : public ReinforcementLearningFactory<S, A> {
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER = rl::agent::StateActionPairContainerSimple>
+class SarsaFactory : public ReinforcementLearningFactory<S, A, SAP_CONTAINER> {
  public:
   SarsaFactory(FLOAT stepSize,
                FLOAT discountRate,
                const policy::spPolicy<S, A>& policy) {
-    this->_instance = spReinforcementLearning<S, A>(
-      new Sarsa<S, A>(stepSize, discountRate, policy));
+    this->_instance = spReinforcementLearning<S, A, SAP_CONTAINER>(
+      new Sarsa<S, A, SAP_CONTAINER>(stepSize, discountRate, policy));
   }
 };
 

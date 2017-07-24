@@ -40,8 +40,12 @@ namespace algorithm {
  *
  *  The same policy is used for both learning and taking action given state.
  */
-template<class S, class A>
-class Sarsa : public ReinforcementLearning<S, A> {
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER = rl::agent::StateActionPairContainerSimple>
+class Sarsa : public ReinforcementLearning<S, A, SAP_CONTAINER> {
  public:
   using SA = StateAction<S, A>;
 
@@ -63,25 +67,40 @@ class Sarsa : public ReinforcementLearning<S, A> {
               const spActionSet<A>& actionSet) override;
 };
 
-template <class S, class A>
-using spSarsa = shared_ptr<Sarsa<S, A>>;
+template <
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER = rl::agent::StateActionPairContainerSimple>
+using spSarsa = shared_ptr<Sarsa<S, A, SAP_CONTAINER>>;
 
-template<class S, class A>
-Sarsa<S, A>::Sarsa(rl::FLOAT stepSize,
-                   rl::FLOAT discountRate,
-                   const policy::spPolicy<S, A>& policy)
-    : ReinforcementLearning<S, A>(stepSize, discountRate, policy) {
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+Sarsa<S, A, SAP_CONTAINER>::Sarsa(
+    rl::FLOAT stepSize,
+    rl::FLOAT discountRate,
+    const policy::spPolicy<S, A>& policy) :
+    ReinforcementLearning<S, A, SAP_CONTAINER>(
+        stepSize, discountRate, policy) {
   this->setLearningPolicy(policy);
 }
 
 // TODO(jandres): Make setLearningPolicy and setPolicy the same.
-template<class S, class A>
-void Sarsa<S, A>::update(const StateAction<S, A>& currentStateAction,
-                         const spState<S>& nextState,
-                         const rl::FLOAT reward,
-                         const spActionSet<A>& actionSet) {
+template<
+    class S,
+    class A,
+    template<class S2, class A2>
+    class SAP_CONTAINER>
+void Sarsa<S, A, SAP_CONTAINER>::update(
+    const StateAction<S, A>& currentStateAction,
+    const spState<S>& nextState,
+    const rl::FLOAT reward,
+    const spActionSet<A>& actionSet) {
   spAction<A> nextAction = this->getAction(nextState, actionSet);
-  ReinforcementLearning<S, A>::updateStateAction(
+  ReinforcementLearning<S, A, SAP_CONTAINER>::updateStateAction(
     currentStateAction,
     SA(nextState, nextAction),
     reward);
